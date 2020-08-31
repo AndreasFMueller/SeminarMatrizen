@@ -46,6 +46,10 @@ Thema: Matrizen
   * Operatoren
   * Norm
   * *-Operation
+  * normale Operationen
+  * Satz von Stone-Weierstrasse
+  * kommutative Algebren
+  * Spektrum, Gelfand-Transformation
 
 - Analysis mit Matrizen
 
@@ -54,5 +58,12 @@ Thema: Matrizen
   * Newton-Algorithmus für Randwertprobleme
   * Reihenentwicklungen für Operatoren
   * Iterative Lösung von Operatorgleichungen
+  * Spektralzerlegung von selbstadjungierten Operatoren
+
+- Anwendungen
+ 
+  * Euklidischer Algorithmus und Matrizen
+  * Kettenbrüche und Matrizen
+  * Polyphasen-Zerlegung
 
 
