@@ -1,0 +1,58 @@
+Mathematisches Seminar 2021
+
+Thema: Matrizen
+
+- Reelle und komplexe Vektoren
+
+  * Vektorräume
+  * lineare Gleichungssysteme
+  * lineare Abhängigkeit
+  * Basis
+  * Skalarprodukt
+  * Abbildungen
+
+- Lineare Algebra mit Matrizen
+
+  * Gleichungssysteme
+  * Eigenwerte
+  * Minimalpolynome, charakteristisches Polynom
+  * Satz von Cayley
+  * Normalformen (Jordan)
+
+- Anwendungen auf Graphen
+
+  * Inzidenzmatrix, Laplace-Operator
+  * Wavelets auf Graphen
+  * Netzwerke (Kirchhoffsche Sätze, Cayley)
+
+- Matrizengruppen
+
+  * GL_n, SL_n, O(n), SO(n), SO(n,k), U(n), SU(n)
+  * Lie-Algebra, z.B. Vektorprodukt
+  * Diskrete Gruppen
+  * abstrakte Gruppen
+  * Wirkung von Gruppen auf Räumen
+  * Integration über Gruppen
+  * Zerlegung von Gruppen (Iwasawa-Zerlegung)
+  * Untergruppen, Faktoren, Bahnen, Normalteiler
+
+- Darstellungen
+
+  * Gruppen als Operationen auf Matrizen
+  * Klassifikation der Gruppen, warum sind SO(3) und SU(2) so ähnlich
+
+- Algebra-Eigenschaften
+
+  * Operatoren
+  * Norm
+  * *-Operation
+
+- Analysis mit Matrizen
+
+  * Matrix-Differentialgleichungen
+  * Differentialgleichung für die Jacobi-Matrix
+  * Newton-Algorithmus für Randwertprobleme
+  * Reihenentwicklungen für Operatoren
+  * Iterative Lösung von Operatorgleichungen
+
+
