@@ -18,6 +18,7 @@ Thema: Matrizen
   * Minimalpolynome, charakteristisches Polynom
   * Satz von Cayley
   * Normalformen (Jordan)
+  * Endliche Körper
 
 - Anwendungen auf Graphen
 
@@ -35,6 +36,9 @@ Thema: Matrizen
   * Integration über Gruppen
   * Zerlegung von Gruppen (Iwasawa-Zerlegung)
   * Untergruppen, Faktoren, Bahnen, Normalteiler
+  * Exponentialabbildung
+  * SL_n(Z)
+  * Matrixgruppen in Charakteristik != 0
 
 - Darstellungen
 
@@ -59,11 +63,14 @@ Thema: Matrizen
   * Reihenentwicklungen für Operatoren
   * Iterative Lösung von Operatorgleichungen
   * Spektralzerlegung von selbstadjungierten Operatoren
+  * analytische Funktionen von Matrizen
 
 - Anwendungen
  
   * Euklidischer Algorithmus und Matrizen
   * Kettenbrüche und Matrizen
   * Polyphasen-Zerlegung
+  * Vektorräume über endlichen Körpern und Codierungstheorie
+  * Homologie und Kohomologie
 
 
