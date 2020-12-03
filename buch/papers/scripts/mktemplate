@@ -1,0 +1,37 @@
+#
+# mktemplate -- generate empty project files
+#
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+# 
+
+# make sure we have a target argument
+if [ $# -lt 1 ]
+then
+	echo "paper short name missing" >&2
+	exit 1
+fi
+
+target=${1:-test}
+
+if [ -z "${target}" ]
+then
+	echo "target name empty" >&2
+	exit 1
+fi
+
+# generate the directory
+if [ ! -d ${target} ]
+then
+	mkdir ${target}
+fi
+
+FILES="Makefile.inc Makefile main.tex packages.tex references.bib"
+SECTIONS="einleitung.tex problemstellung.tex loesung.tex folgerungen.tex"
+
+for file in ${FILES} ${SECTIONS}
+do
+	echo "generating ${target}/${file}"
+	sed -e 's/000template/'"${target}"'/g' < 000template/${file} \
+		> ${target}/${file}
+done
+

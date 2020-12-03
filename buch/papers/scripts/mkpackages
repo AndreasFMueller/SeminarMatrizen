@@ -1,0 +1,16 @@
+#
+# mkpackages -- this script builds the package inclusions for all papers
+#
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+#
+awk 'BEGIN {
+	printf("%%\n")
+	printf("%% addpackages.tex -- file to add all paper packages files\n")
+	printf("%%\n")
+	printf("%% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil\n")
+	printf("%%\n")
+}
+{
+	printf("\\input{papers/%s/packages.tex}\n", $1)
+}' common/paperlist > common/addpackages.tex
+

@@ -1,0 +1,95 @@
+#
+# mkmakefile -- build the Makefile.inc for all the papers
+#
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+#
+
+#
+# Header of the Makefile.inc
+#
+cat >common/Makefile.inc <<EOF
+#
+# Makefile.inc -- Makefile Targets und Variablen für Papers
+#
+# Achtung: dieses File wird erzeugt vom Skript scripts/mkmakefile
+#
+# (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+#
+EOF
+
+#
+# add dependency variables for the main paper files
+#
+awk 'BEGIN {
+	printf("PAPERFILES = \\\n")
+	printf("\tpapers/part2.tex \\\n")
+	printf("\tpapers/uebersicht.tex \\\n")
+}
+{
+	printf("\tpapers/%s/main.tex \\\n", $1)
+}
+END {
+	printf("\t\n")
+}' common/paperlist >> common/Makefile.inc
+
+#
+# generate bibliographic dependency variables and commands
+#
+awk 'BEGIN {
+	counter=1
+}
+{
+	printf("buch%d-blx.bbl:\tbuch%d-blx.aux\n", counter, counter)
+	printf("\tbibtex buch%d-blx\n\n", counter)
+	counter++
+}
+END {
+	printf("buch%d-blx.bbl:\tbuch%d-blx.aux\n", counter, counter)
+	printf("\tbibtex buch%d-blx\n\n", counter)
+	printf("BLXFILES = buch.bbl \\\n")
+	for (i = 1; i <= counter; i++) {
+		printf("\tbuch%d-blx.bbl \\\n", i)
+	}
+	#printf("\tbuch%d-blx.bbl\n", i)
+	printf("\n")
+}' common/paperlist >> common/Makefile.inc
+
+#
+# generate a directory list for 
+#
+awk 'BEGIN {
+	printf("PAPER_DIRECTORIES = \\\n")
+}
+{
+	printf("\t%s \\\n", $1)
+}
+END {
+	printf("\t\n")
+}' common/paperlist >> common/Makefile.inc
+
+#
+# generate a list of Makefile.inc to be used by the top level makefile
+#
+awk 'BEGIN {
+	printf("PAPER_MAKEFILEINC = \\\n")
+}
+{
+	printf("\tpapers/%s/Makefile.inc \\\n", $1)
+}
+END {
+	printf("\t\n")
+}' common/paperlist >> common/Makefile.inc
+
+#
+# add include directives for all papers
+#
+awk '{
+	printf("include papers/%s/Makefile.inc\n", $1)
+	texfiles = sprintf("%s\t$(dependencies-%s) \\\n", texfiles, $1);
+}
+END {
+	printf("\n")
+	printf("TEXFILES = \\\n")
+	printf("%s\n", texfiles)
+}' common/paperlist > common/includes.inc
+

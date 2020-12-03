@@ -1,0 +1,45 @@
+#! /bin/bash
+#
+# splitpapers -- split PDF into one file per chapter
+#
+# (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+#
+if [ ! -f buch.aux ]
+then
+	echo "file buch.aux missing"
+	exit 1
+fi
+
+if [ ! -d separata ]
+then
+	mkdir separata
+fi
+
+awk 'BEGIN {
+	offsetpage = 10
+	startpage = 0
+	identifier = ""
+	chapterno = 0
+}
+/newlabel{chapter:/ {
+	s = substr($0, 19, length($0) - 19)
+	i = match(s, "}{{")
+	newidentifier = substr(s, 1, i-1)
+	s = substr(s, i+3, length(s)-i-3)
+	i = match(s, "}{")
+	newchapterno = int(substr(s, 1, i))
+	s = substr(s, i+2, length(s)-i-2)
+	i = match(s, "}{")
+	newpage = int(substr(s, 1, i))
+	if (chapterno > 7) {
+		printf("pdfjam --outfile separata/%s.pdf buch.pdf %d-%d\n", identifier, startpage + offsetpage, newpage + offsetpage - 1)
+	}
+	startpage = newpage
+	chapterno = newchapterno
+	identifier = newidentifier
+}
+END {
+	printf("pdfjam --outfile separata/%s.pdf buch.pdf %d-\n", identifier, startpage + offsetpage)
+}' buch.aux | bash
+
+

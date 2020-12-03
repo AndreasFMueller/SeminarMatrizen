@@ -1,0 +1,115 @@
+%
+% macros.tex -- some common macro definitions
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\hypersetup{
+    linktoc=all,
+    linkcolor=blue
+}
+\newcounter{beispiel}
+\newenvironment{beispiele}{
+\bgroup\smallskip\parindent0pt\bf Beispiele\egroup
+
+\begin{list}{\arabic{beispiel}.}
+  {\usecounter{beispiel}
+  \setlength{\labelsep}{5mm}
+  \setlength{\rightmargin}{0pt}
+}}{\end{list}}
+\newcounter{uebungsaufgabezaehler}
+% environment fuer uebungsaufgaben
+\newenvironment{uebungsaufgaben}{%
+}{%
+\vfill\pagebreak}
+\newenvironment{teilaufgaben}{
+\begin{enumerate}
+\renewcommand{\labelenumi}{\alph{enumi})}
+}{\end{enumerate}}
+% Aufgabe
+\newcounter{problemcounter}[chapter]
+\def\aufgabenpath{chapters/uebungsaufgaben/}
+\def\ainput#1{\input\aufgabenpath/#1}
+\def\verbatimainput#1{\expandafter\verbatiminput{\aufgabenpath/#1}}
+\def\aufgabetoplevel#1{%
+\expandafter\def\expandafter\inputpath{#1}%
+\let\aufgabepath=\inputpath
+}
+\def\includeagraphics[#1]#2{\expandafter\includegraphics[#1]{\aufgabepath#2}}
+% \aufgabe
+\renewcommand\theproblemcounter{\thechapter.\arabic{problemcounter}}
+\newcommand{\uebungsaufgabe}[1]{%
+\refstepcounter{problemcounter}%
+\label{#1}%
+\bigskip{\parindent0pt\strut}\hbox{\bf\theproblemcounter. }%
+\expandafter\def\csname aufgabenpath\endcsname{\inputpath/}%
+\expandafter\input{\aufgabenpath/#1.tex}
+}
+% linsys
+\newcolumntype{\linsysR}{>{$}r<{$}}
+\newcolumntype{\linsysL}{>{$}l<{$}}
+\newcolumntype{\linsysC}{>{$}c<{$}}
+\newenvironment{linsys}[1]{%
+\begin{tabular}{*{#1}{\linsysR@{\;}\linsysC}@{\;}\linsysR}}%
+{\end{tabular}}
+
+% Loesung
+\def\swallow#1{
+%nothing
+}
+\NewEnviron{loesung}[1][Lösung]{%
+\begin{proof}[#1]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+\BODY
+\end{proof}
+}
+\NewEnviron{bewertung}{%
+\begin{proof}[Bewertung]%
+\renewcommand{\qedsymbol}{}
+\BODY
+\end{proof}
+}
+\NewEnviron{diskussion}{%
+\begin{proof}[Diskussion]%
+\renewcommand{\qedsymbol}{}
+\BODY
+\end{proof}
+}
+\NewEnviron{hinweis}{%
+\begin{proof}[Hinweis]%
+\renewcommand{\qedsymbol}{}
+\BODY
+\end{proof}
+}
+\def\keineloesungen{%
+\RenewEnviron{loesung}{\relax}
+\RenewEnviron{bewertung}{\relax}
+\RenewEnviron{diskussion}{\relax}
+}
+\newenvironment{beispiel}{%
+\begin{proof}[Beispiel]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+}{\end{proof}}
+
+\allowdisplaybreaks
+
+\lhead{Inhaltsverzeichnis}
+\rhead{}
+\tableofcontents
+\newtheorem{satz}{Satz}[chapter]
+\newtheorem{hilfssatz}[satz]{Hilfssatz}
+\newtheorem{korollar}[satz]{Korollar}
+\newtheorem{lemma}[satz]{Lemma}
+\newtheorem{definition}[satz]{Definition}
+\newtheorem{annahme}[satz]{Annahme}
+\newtheorem{problem}[satz]{Problem}
+\newtheorem{aufgabe}[satz]{Aufgabe}
+\newtheorem*{problem*}{Problem}
+\newtheorem{forderung}{Forderung}[chapter]
+\newtheorem{konsequenz}[satz]{Konsequenz}
+\newtheorem{algorithmus}[satz]{Algorithmus}
+\renewcommand{\floatpagefraction}{0.7}
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{orange}{rgb}{1,0.6,0}
+

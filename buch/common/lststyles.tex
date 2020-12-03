@@ -1,0 +1,139 @@
+%
+% lststyles.tex -- styles for the listings package
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+
+%
+% lststyle for Matlab
+%
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstdefinestyle{Matlab}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  linewidth=13cm,
+  xleftmargin=1cm,
+  language=Matlab,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny,
+  morestring=*[d]{"},
+  numbersep=9pt,
+  captionpos=b
+}
+\lstdefinelanguage{Matlab}{
+  keywords={function,global,zeros,switch,case,otherwise,end,sin,cos,cot,%
+    floor,ode45,hold,polarplot,for,if,else,norm,abs,diag,sqrt,randn,hess,format,short,long},
+  sensitive=true
+}
+
+%
+% lst style for Maxima
+%
+\lstdefinelanguage{Maxima}{
+  keywords={addrow,addcol,zeromatrix,ident,augcoefmatrix,ratsubst,sum,diff,%
+    ev,tex,with_stdout,nouns,express,depends,load,length,submatrix,div,grad,%
+    curl,matrix,invert,lambda,facsum,expand,false,then,if,else,subst,%
+    batchload,rootscontract,solve,part,assume,sqrt,integrate,abs,inf,exp,%
+    sin,cos,sinh,cosh,taylor,ratsimp},
+  sensitive=true,
+  comment=[n][\itshape]{/*}{*/}
+}
+\lstdefinestyle{Maxima}{
+  numbers=left,
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  linewidth=13cm,
+  xleftmargin=1cm,
+  language=Maxima,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+  captionpos=b
+}
+
+%
+% lst style for Octave
+%
+\lstdefinelanguage{Octave}{
+  keywords={function,global,size,zeros,switch,case,otherwise,end,sin,cos,cot,%
+    floor,ode45,hold,polarplot,endfunction,size,endswitch,cat,printf,%
+    for,endfor,if,return,endif,abs,while,endwhile},
+  sensitive=true,
+}
+
+\lstdefinestyle{Octave}{
+  numbers=left,
+  abovecaptionskip=1\baselineskip,
+  captionpos=b,
+  breaklines=true,
+  frame=L,
+  linewidth=13cm,
+  xleftmargin=1cm,
+  language=Octave,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny,
+}
+
+%
+% lst style for C
+%
+\lstdefinestyle{C}{
+  numbers=left,
+  abovecaptionskip=1\baselineskip,
+  captionpos=b,
+  breaklines=true,
+  frame=L,
+  linewidth=13cm,
+  xleftmargin=1cm,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny,
+}
+
+%
+% lst style for Python
+%
+\lstdefinestyle{Python}{
+  numbers=left,
+  abovecaptionskip=1\baselineskip,
+  captionpos=b,
+  breaklines=true,
+  frame=L,
+  linewidth=13cm,
+  xleftmargin=1cm,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numberstyle=\ttfamily\tiny
+}
+
