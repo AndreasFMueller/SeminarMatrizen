@@ -1,0 +1,391 @@
+%
+% definitionen.tex -- Definition für das Kapitel über Polynome
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Definitionen
+\label{buch:section:polynome:definitionen}}
+\rhead{Definitionen}
+In diesem Abschnitt stellen wir einige grundlegende Definitionen für das 
+Rechnen mit Polynomen zusammen.
+
+%
+% Skalare
+%
+\subsection{Skalare
+\label{buch:subsection:polynome:skalare}}
+Wie schon in der Einleitung angedeutet sind Polynome nur dann sinnvoll,
+wenn man mit den Koeffizienten gewisse Rechenoperationen durchführen kann.
+Wir brauchen mindestens die Möglichkeit, Koeffizienten zu addieren.
+Wenn wir uns vorstellen, dass wir $X$ durch eine Zahl ersetzen können,
+dann brauchen wir zusätzlich die Möglichkeit, einen Koeffizienten mit einer
+Zahl zu multiplizieren.
+
+Die Struktur, die wir hier beschrieben haben, hängt davon ab, was wir uns
+unter einer ``Zahl'' vorstellen.
+Wir bezeichnen die Menge, aus der die ``Zahlen'' kommen können mit $R$ und
+nennen sie die Menge der Skalare.
+\index{Skalar}%
+Wenn wir uns vorstellen, dass man die Elemente von $R$ an Stelle von $X$ 
+in das Polynom einsetzen kann, dann muss es möglich sein, in $R$ zu
+Multiplizieren und zu Addieren, und es müssen die üblichen Rechenregeln
+der Algebra gelten, $R$ muss also ein Ring sein.
+\index{Ring}%
+Wir werden im folgenden meistens voraussetzen, dass $R$ sogar kommutativ
+ist und eine $1$ hat.
+
+\begin{definition}
+Sei $R$ ein Ring.
+Die Menge
+\[
+R[X]
+=
+\{
+p(X) = a_nX^n+a_{n-1}X^{n-1} + \dots a_1X+a_0\;|\; a_k\in R, n\in\mathbb{N}
+\}
+\]
+heisst die Menge der {\em Polynome} mit Koeffizienten in $R$ 
+oder
+{\em Polynome über} $R$.
+\index{Polynome über $R$}%
+Polynome können addiert werden, indem Koeffizienten mit gleichem Index
+addiert werden:
+\begin{align*}
+p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0\\
+q(X) &= b_nX^n + b_{n-1}X^{n-1} + \dots + b_1X + b_0\\
+p(X)+q(X)
+&=
+(a_n+b_n)X^n
++
+(a_{n-1}+b_{n-1})X^{n-1}
++
+\dots
++
+(a_1+b_1)X
++
+(a_0+b_0)
+\end{align*}
+Die Multiplikation ist durch die Formel~\eqref{buch:eqn:polynome:faltung}
+definiert.
+\end{definition}
+
+Ein Polynom heisst {\em normiert} oder auch {\em monisch}, wenn der
+\index{Polynom!normiert}%
+\index{normiertes Polynom}%
+\index{Polynom!monisch}%
+\index{normiertes Polynom}
+höchste Koeffizient oder auch {\em Leitkoeffizient} des Polynomus $1$ ist,
+also $a_n=1$.
+\index{Leitkoeffizient}%
+Wann man in $R$ durch $a_n$ dividieren kann, dann kann man aus dem Polynom
+$p(X)=a_nX^n+\dots$ mit Leitkoeffizient $a_n$ das normierte Polynom
+\[
+\frac{1}{a_n}p(X) = \frac{1}{a_n}(a_nX^n + \dots + a_0)=
+X^n + \frac{a_{n-1}}{a_n}X^{n-1} + \dots + \frac{a_0}{a_n}
+\]
+machen.
+Man sagt auch, das Polynom $p(X)$ wurde normiert.
+
+Die Beschreibung der Rechenoperationen wird etwas verkompliziert durch
+die Tatsache, zwei Polynome nicht gleich viele von $0$ verschiedene
+Koeffizienten haben müssen.
+Wir werden daher im Folgenden oft für ein Polynom
+\[
+p(X)
+=
+a_nX^n + a_{n-1}X^{n-1} + \dots a_1X+a_0
+\]
+annehmen, dass alle Koeffizienten $a_{n+1},a_{n+2},\dots$ implizit mit
+Wert $0$ definiert sind.
+Wir werden uns also erlauben,
+\[
+p(X)
+=
+\sum_{k}a_kX^k
+=
+\sum_{k=0}^\infty a_kX^k
+\]
+zu schreiben, wobei in der ersten Form das Summenzeichen bedeuten soll,
+dass nur über diejenigen Indizes $k$ summiert wird, für die $a_k$
+definiert ist.
+\label{summenzeichenkonvention}
+
+%
+% Abschnitt über Polynomring Definition
+%
+\subsection{Der Polynomring
+\label{buch:subsection:polynome:ring}}
+Die Menge $R[X]$ aller Polynome über $R$ wird zu einem Ring, wenn man die
+Rechenoperationen Addition und Multiplikation so definiert, wie man das
+in der Schule gelernt hat.
+Die Summe von zwei Polynomen 
+\begin{align*}
+p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0\\
+q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
+\end{align*}
+ist
+\[
+p(X)+q(X)
+=
+\sum_{k} (a_k+b_k)X^k,
+\]
+wobei die Summe wieder so zu interpretieren ist, über alle Terme 
+summiert wird, für die mindestens einer der Summanden von $0$
+verschieden ist.
+
+Für das Produkt verwenden wir die Definition
+\[
+p(X)q(X)
+=
+\sum_{k}\sum_{l} a_kb_l X^{k+l},
+\]
+die natürlich mit Formel~\eqref{buch:eqn:polynome:faltung}
+gleichbedeutend ist.
+Die Polynom-Multiplikation und Addition sind nur eine natürliche
+Erweiterung der Rechenregeln, die man schon in der Schule lernt,
+es ist daher nicht überraschend, dass die bekannten Rechenregeln
+auch für Polynome gelten.
+Das Distributivgesetz
+\[
+p(X)(u(X)+v(X)) = p(X)u(X) + p(X)v(X)
+\qquad
+(p(X)+q(X)) u(X) = p(X)u(X) + q(X)u(X)
+\]
+zum Beispiel sagt ja nichts anderes, als dass man ausmultiplizieren
+kann.
+Oder die Assoziativgesetze
+\begin{align*}
+p(X)+q(X)+r(X)
+&=
+(p(X)+q(X))+r(X)
+=
+p(X)+(q(X)+r(X))
+\\
+p(X)q(X)r(X)
+&=
+(p(X)q(X))r(X)
+=
+p(X)(q(X)r(X))
+\end{align*}
+für die Multiplikation besagt, das es keine Rolle spielt, in welcher
+Reihenfolge man die Additionen oder Multiplikationen ausführt.
+
+%
+% Der Grad eines Polynoms
+%
+\subsection{Grad
+\label{buch:subsection:polynome:grad}}
+
+\begin{definition}
+Der {\em Grad} eines Polynoms $p(X)$ ist die höchste Potenz von $X$, die im
+Polynom vorkommt.
+Das Polynom
+\[
+p(X) = a_nX^n + a_{n-1}X^{n-1}+\dots a_1X + a_0
+\]
+hat den Grad $n$, wenn $a_n\ne 0$ ist.
+Der Grad von $p$ wird mit $\deg p$ bezeichnet.
+Konstante Polynome $p(X)=a_0$ mit $a_0\ne 0$ hat den Grad $0$.
+Der Grad des Nullpolynoms $p(X)=0$ ist definiert als
+$-\infty$.
+\end{definition}
+
+Der Grad eines Polynoms ist sinnvoll in dem Sinn, dass er sich mit
+den Rechenoperationen gut verträgt.
+Damit lässt sich weiter unten auch die spezielle Wahl des Grades
+des Nullpolynoms begründen.
+Es gelten nämlich die folgenden Rechenregeln.
+
+\begin{lemma}
+\label{lemma:rechenregelnfuerpolynomgrad}
+Sind $p$ und $q$ Polynome mit Koeffizienten in $R$ und $0\ne \lambda\in R$,
+dann gilt
+\begin{align}
+\deg(pq) &\le \deg p + \deg q
+\label{buch:eqn:polynome:gradsumme}
+\\
+\deg(p+q) &\le \max(\deg p, \deg q)
+\label{buch:eqn:polynome:gradprodukt}
+\\
+\deg(\lambda p) &\le \deg p
+\label{buch:eqn:polynome:gradskalar}
+\end{align}
+\end{lemma}
+
+Die Formel \eqref{buch:eqn:polynome:gradskalar} ist eigentlich
+ein Spezialfall von \eqref{buch:eqn:polynome:gradsumme}.
+Die Zahl $\lambda\in R$ kann man als Polynom vom Grad $0$ betrachten,
+wofür natürlich \eqref{buch:eqn:polynome:gradsumme} gilt, also
+$\deg(\lambda p) \le \deg\lambda + \deg p$.
+
+\begin{proof}[Beweis]
+Wir schreiben die Polynome wieder in der Form
+\begin{align*}
+p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0&&\Rightarrow&\deg p&=n\\
+q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0&&\Rightarrow&\deg q&=m.
+\end{align*}
+Dann kann der höchste Koeffizient in der Summe $p+q$ nicht weiter oben
+sein als die grössere von den beiden Zahlen $n$ und $m$ angibt, dies
+beweist \eqref{buch:eqn:polynome:gradsumme}.
+Ebenso kann der höchste Koeffizient im Produkt nach der
+Formel~\eqref{buch:eqn:polynome:faltung} nicht weiter oben als bei
+$n+m$ liegen, dies beweist
+beweist \eqref{buch:eqn:polynome:gradprodukt}.
+Es könnte aber passieren, dass $a_nb_m=0$ ist, d.~h.~es ist durchaus möglich,
+dass der Grad kleiner ist.
+Schliesslich kann der höchsten Koeffizient von $\lambda p(X)$ nicht grösser
+als der höchste Koeffizient von $p(X)$ sein, was 
+\eqref{buch:eqn:polynome:gradskalar} beweist.
+\end{proof}
+
+Etwas enttäuschend an diesen Rechenregeln ist, dass der Grad eines
+Produktes nicht exakt die Summe der Grade hat.
+Der Grund ist natürlich, dass es in gewissen Ringen $R$ passieren kann,
+dass das Produkt $a_n\cdot b_m=0$ ist.
+Zum Beispiel ist im Ring der $2\times 2$ Matrizen das Produkt der Elemente
+\begin{equation}
+a_n = \begin{pmatrix}1&0\\0&0\end{pmatrix}
+\quad\text{und}\quad
+b_m = \begin{pmatrix}0&0\\0&1\end{pmatrix}
+\qquad\Rightarrow\qquad
+a_nb_m = \begin{pmatrix}0&0\\0&0\end{pmatrix}.
+\label{buch:eqn:definitionen:nullteilerbeispiel}
+\end{equation}
+Diese unangehme Situation tritt immer ein, wenn es von Null verschiedene
+Elemente gibt, deren Produkt $0$ ist.
+In Matrizenringen ist das der Normalfall, man kann diesen fall also nicht
+einfach ausschliessen.
+In den Zahlenmengen wie $\mathbb{Z}$, $\mathbb{Q}$ und $\mathbb{R}$ passiert
+das natürlich nie.
+
+\begin{definition}
+Ein Ring $R$ heisst {\em nullteilerfrei}, wenn für zwei Elemente
+$a,b\in R$ aus $ab=0$ immer geschlossen werden kann, dass
+$a=0$ oder $b=0$.
+Ein von $0$ verschiedenes Element $a\in R$ heisst ein Nullteiler,
+wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $b=0$.
+\index{Nullteiler}
+\index{nullteilerfrei}
+\end{definition}
+
+Die beiden Matrizen in 
+\eqref{buch:eqn:definitionen:nullteilerbeispiel}
+sind Nullteiler im Ring $M_2(\mathbb{Z})$ der $2\times 2$-Matrizen.
+Der Matrizenring $M_2(\mathbb{Z})$ ist also nicht nullteilerfrei.
+
+In einem nullteilerfreien Ring gelten die Rechenregeln für den Grad
+jetzt exakt:
+
+\begin{lemma}
+Sei $R$ ein nullteilerfreier Ring und $p$ und $q$ Polynome über $R$
+und $0\ne \lambda\in R$.
+Dann gilt
+\begin{align}
+\deg(pq) &= \deg p + \deg q
+\label{buch:eqn:polynome:gradsummeexakt}
+\\
+\deg(p+q) &\le \max(\deg p, \deg q)
+\label{buch:eqn:polynome:gradproduktexakt}
+\\
+\deg(\lambda p) &= \deg p
+\label{buch:eqn:polynome:gradskalarexakt}
+\end{align}
+\end{lemma}
+
+\begin{proof}[Beweis]
+Der Fall, dass der höchste Koeffizient verschwindet, weil $a_n$, $b_m$
+und $\lambda$ Nullteiler sind, kann unter den gegebenen Voraussetzungen
+nicht eintreten, daher werden die in
+Lemma~\ref{lemma:rechenregelnfuerpolynomgrad} gefunden Ungleichungen
+exakt für Produkte exakt.
+\end{proof}
+
+Die Gleichung
+\eqref{buch:eqn:polynome:gradskalarexakt}
+kann im Fall $\lambda=0$ natürlich nicht gelten.
+Betrachten wir $\lambda$ wieder als ein Polynom, dann folgt aus
+\eqref{buch:eqn:polynome:gradproduktexakt}, dass
+\[
+\begin{aligned}
+\lambda&\ne 0  &&\Rightarrow& \deg (\lambda p) &= \deg\lambda + \deg p = 0+\deg p
+\\
+\lambda&=0     &&\Rightarrow& \deg (0 p) &= \deg 0 + \deg p = \deg 0
+\end{aligned}
+\]
+Diese Gleichung kann also nur aufrechterhalten werden, wenn $\deg 0$ eine
+Zahl ist mit der Eigenschaft, dass man immer noch $\deg 0$ bekommt,
+wenn man irgend eine Zahl $\deg p$ hinzuaddiert.
+So eine Zahl gibt es in den ganzen Zahlen nicht, wenn zu einer ganzen
+Zahl eine andere ganze Zahl hinzuaddiert, ändert sich fast immer etwas.
+Man muss daher $\deg 0 = -\infty$ setzen mit der Festlegung, dass
+$-\infty + n = -\infty$ gilt für beliebige ganze Zahlen $n$.
+
+\begin{definition}
+\label{buch:def:definitionen:polynomfilterung}
+Die Polynome vom Grad $\le n$ mit Koeffizienten in $R$
+bilden die Teilmenge
+\[
+R^{(n)}[X]
+=
+\{ p\in R[X]\;|\; \deg p \le n\}.
+\]
+Die Mengen $R^{(n)}[X]$ bilden eine {\em Filtrierung} des Polynomrings
+$R[X]$, d.~h.~sie sind ineinander geschachtelt
+\[
+\arraycolsep=4pt
+\begin{array}{ccccccccccccccc}
+R^{(-\infty)}[X] & \subset
+	& R^{(0)}[X] & \subset
+		& R^{(1)}[X] & \subset & \dots & \subset
+			& R^{(k)}[X] & \subset
+				& R^{(k+1)}[x] & \subset & \dots & \subset
+					& R[X]\\[3pt]
+\bigg\| &
+	&\bigg\| &
+		&\bigg\| & & & 
+			&&
+				&& & &
+					&
+\\[3pt]
+\{0\} & \subset
+	& R & \subset
+		& \{ax+b\;|a,b\in R\} & \subset & \dots &
+\end{array}
+\]
+und ihre Vereinigung ist $R[X]$.
+\end{definition}
+
+Die Formeln für den Grad können wir auch mit den Mengen $R^{(k)}[X]$
+ausdrücken:
+\begin{align*}
+\deg (p+q) &\le \max(\deg p, \deg q)
+&&\Rightarrow&
+R^{(k)}+R^{(l)}
+&\subset R^{(\max(k,l))}
+=
+R^{(k)}[X] \cup R^{(l)}[X].
+\\
+\deg (p\cdot q)&=\deg p+\deg q
+&&\Rightarrow&
+R^{(k)}[X] \cdot R^{(l)}[X]
+&=
+R^{(k+l)}[X].
+\end{align*}
+
+
+%
+% Abschnitt über Teilbarkeit
+%
+\subsection{Teilbarkeit
+\label{buch:subsection:polynome:teilbarkeit}}
+XXX TODO
+
+%
+% Abschnitt über formale Potenzreihen
+%
+\subsection{Formale Potenzreihen
+\label{buch:subsection:polynome:potenzreihen}}
+XXX TODO
+
+
+

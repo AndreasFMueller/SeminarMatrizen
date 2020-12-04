@@ -6,4 +6,120 @@
 \chapter{Polynome
 \label{buch:chapter:polynome}}
 \lhead{Polynome}
+Ein {\em Polynom} ist ein Ausdruck der Form
+\index{Polynom}%
+\begin{equation}
+p(X) = a_nX^n+a_{n-1}X^{n-1} + \cdots a_2X^2 + a_1X + a_0.
+\label{buch:eqn:polynome:polynom}
+\end{equation}
+Ursprünglich stand das Symbol $X$ als Platzhalter für eine Zahl.
+Die Polynomgleichung $Y=p(X)$ drückt dann einen Zusammenhang zwischen
+den Grössen $X$ und $Y$ aus.
+Zum Beispiel drückt 
+\begin{equation}
+H = -\frac12gT^2 + v_0T +h_0 = p(T)
+\label{buch:eqn:polynome:beispiel}
+\end{equation}
+im Schwerefeld der Erde nahe der Oberfläche einen Zusammenhang
+zwischen der Zeit $T$ und der Höhe $H$ eines frei fallenden Körpers aus.
+Setzt man einen Wert für $T$ in \eqref{buch:eqn:polynome:beispiel} ein,
+erhält man den zugehörigen Wert für $H$.
+Man stellt sich hier also vor, dass $T$ eigentlich eine Zahl ist und dass
+\eqref{buch:eqn:polynome:polynom}
+nur ein ``unfertiger'' Ausdruck oder ein ``Programm'' für eine Berechnung
+ist.
+In dieser eher arithmetischen Sichtweise ist es aber eigentlich egal, dass in
+\index{arithmetische Sichtweise}%
+\eqref{buch:eqn:polynome:polynom} nur einfache Multiplikationen und
+Additionen vorkommen.
+In einem Programm könnten ja auch beliebig komplizierte Operationen
+verwendet werden, warum also diese Beschränkung.
+
+Für die nachfolgenden Betrachtungen stellen wir uns $X$ daher nicht
+mehr einfach als einen Platzhalter für eine Zahl vor, sondern als ein neues
+algebraisches Objekt, für das man die Rechenregeln erst noch definieren muss.
+In diesem Kapteil sollen die Regeln zum Beispiel sicherstellen,
+dass man mit Polynomen so rechnen kann, wie wenn $X$ eine Zahl wäre.
+Es sollen also zum Beispiel die Regeln
+\begin{align}
+aX&=Xa
+&
+(a+b)X&=aX+bX
+&
+a+X &= X+a
+\label{buch:eqn:polynome:basic}
+\end{align}
+gelten.
+In dieser algebraischen Sichtweise können je nach den gewählten algebraischen
+Rechenregeln für $X$ interessante rechnerische Strukturen abgebildet werden.
+\index{algebraische Sichtweise}%
+Ziel dieses Kapitels ist zu zeigen, wie man die Rechenregeln für $X$ 
+mit Hilfe von Matrizen allgemein darstellen kann.
+Diese Betrachtungsweise wird später in Anwendungen ermöglichen,
+handliche Realisierungen für das Rechnen mit Grössen zu finden, 
+die polynomielle Gleichungen erfüllen.
+Ebenso sollen in späteren Kapiteln die Regeln
+\eqref{buch:eqn:polynome:basic}
+erweitert werden oder abgelöst werden um weitere Anwendungen zu erschliessen.
+
+Bei der Auswahl der zusätzlichen algebraischen Regeln muss man sehr
+vorsichtig vorgehen.
+Nimmt man zum Beispiel an, dass man durch $X$ teilen kann, dann würde
+dies in der arithmetischen Sichtweise bereits ausschliessen, dass man
+für $X$ die Zahl $0$ einsetzen kann.
+Aber auch eine Regel wie $X^2 \ge 0$, die für alle reellen Zahlen gilt,
+würde die Anwendungsmöglichkeiten zu stark einschränken.
+Es gibt zwar keine reelle Zahl, die man in das Polynom $p(X)=X^2+1$
+einsetzen könnte, so dass es den Wert $0$ annimmt.
+Man könnte $X$ aber als ein neues Objekt ausserhalb von $\mathbb{R}$ 
+betrachten, welches die Gleichung $X^2+1=0$ erfüllt.
+In den komplexen Zahlen $\mathbb{C}$ gibt es mit der imaginären
+Einheit $i\in\mathbb{C}$ tatsächlich ein Zahl mit der Eigenschaft
+$i^2=-1$ und damit eine Objekt, welches die Ungleichung $X^2\ge 0$
+verletzt.
+
+Für das Symbol $X$ sollen also die ``üblichen'' Rechenregeln gelten.
+Dies ist natürlich nur sinnvoll, wenn man auch mit den Koeffizienten
+$a_0,\dots,a_n$ rechnen kann, sind müssen also Elemente einer 
+algebraischen Struktur sein, in der mindestens die Addition und die
+Multiplikation definiert sind.
+Die ganzen Zahlen $\mathbb{Z}$ kommen dafür in Frage, aber auch
+die rationalen oder reellen Zahlen $\mathbb{Q}$ und $\mathbb{R}$.
+Man kann sogar noch weiter gehen: man kann als Koeffizienten auch
+Vektoren oder sogar Matrizen zulassen.
+Polynome können addiert werden, indem die Koeffizienten addiert werden.
+Polynome können aber auch multipliziert werden, was auf die Faltung
+der Koeffizienten hinausläuft:
+\begin{align}
+p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0
+\notag
+\\
+q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
+\notag
+\\
+p(X) q(X) &=
+a_{n}b_{m}X^{n+m}
++
+(a_{n}b_{m-1}+a_{n-1}b_{m})X^{n+m-1}
++
+\dots
++
+\sum_{i + j = k}a_ib_j X^k
++
+\dots
++
+(a_1b_0+a_0b_1)X
++
+a_0b_0
+\label{buch:eqn:polynome:faltung}
+\end{align}
+Dies ist aber nur möglich, wenn die Koeffizienten selbst miteinander
+multipliziert werden können, wenn also die Koeffizienten mindestens
+Elemente einer Algebra sind.
+
+\input{chapters/20-polynome/definitionen.tex}
+\input{chapters/20-polynome/vektoren.tex}
+\input{chapters/20-polynome/matrizen.tex}
+\input{chapters/20-polynome/minimalpolynom.tex}
+
 

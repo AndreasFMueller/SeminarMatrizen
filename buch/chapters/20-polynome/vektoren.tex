@@ -1,0 +1,145 @@
+%
+% vektoren.tex -- Darstellung von Polynomen als Vektoren
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule Rapperswil
+%
+\section{Polynome als Vektoren
+\label{buch:section:polynome:vektoren}}
+Ein Polynom
+\[
+p(X) = a_nX^n + a_{n-1}X^{n-1} + \dots a_1X+a_0
+\]
+mit Koeffizienten in einem Ring $R$
+ist spezifiziert, wenn die Koeffizienten $a_k$ bekannt sind.
+Die Potenzen von $X$ dienen hier nur dazu, die verschiedenen
+Koeffizienten zu unterscheiden.
+Das Polynom $p(X)$ vom Grad $n$ ist also auch gegeben durch den
+$n+1$-dimensionalen Vektor
+\[
+\begin{pmatrix}
+a_0\\
+a_1\\
+\vdots\\
+a_{n-1}\\
+a_{n}
+\end{pmatrix}
+\in
+R^n.
+\]
+Diese Darstellung eines Polynoms gibt auch die Addition von Polynomen
+und die Multiplikation von Polynomen mit Skalaren aus $R$ korrekt wieder.
+Die Abbildung von Vektoren auf Polynome
+\[
+\varphi
+\colon  R^n \to R[X]
+:
+\begin{pmatrix}a_0\\\vdots\\a_n\end{pmatrix}
+\mapsto 
+a_nX^n + a_{n-1}X^{n-1}+\dots+a_1X+a_0
+\]
+erfüllt also 
+\[
+\varphi( \lambda a) = \lambda \varphi(a)
+\qquad\text{und}\qquad
+\varphi(a+b) = \varphi(a) + \varphi(b)
+\]
+und ist damit eine lineare Abbildung.
+Umgekehrt kann man auch zu jedem Polynom $p(X)$ vom Grad $\le n$ einen 
+Vektor finden, der von $\varphi$ auf das Polynom $p(X)$ abgebildet wird.
+Die Abbildung $\varphi$ ist also ein Isomorphismus
+\[
+\varphi
+\colon
+\{p\in R[X]\;|\; \deg(p) \le n\}
+\overset{\equiv}{\to}
+R^{n+1}
+\]
+zwischen der Menge
+der Polynome vom Grad $\le n$ auf $R^{n+1}$.
+Für alle Rechnungen, bei denen es nur um Addition von Polynomen oder
+um Multiplikation mit Skalaren geht, ist also diese vektorielle Darstellung
+mit Hilfe von $\varphi$ eine zweckmässige Darstellung.
+
+In zwei Bereichen ist die Beschreibung von Polynomen mit Vektoren allerdings
+ungenügend: einerseits können Polynome können beliebig hohen Grad haben,
+während Vektoren in $R^{n+1}$ höchstens $n+1$ Komponenten haben können.
+Andererseits geht bei der vektoriellen Beschreibung die multiplikative
+Struktur vollständig verloren.
+
+\subsection{Polynome beliebigen Grades
+\label{buch:subsection:polynome:beliebigergrad}}
+Ein Polynom
+\[
+q(X)
+=
+b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
+\]
+vom Grad $m<n$ kann dargestellt werden als ein Vektor
+\[
+\begin{pmatrix}
+b_0\\
+b_1\\
+\vdots\\
+b_{m-1}\\
+b_{m}\\
+0\\
+\vdots
+\end{pmatrix}
+\in
+R^{n+1}
+\]
+mit der Eigenschaft, dass die Komponenten mit Indizes
+$m+1,\dots n$ verschwinden.
+Polynome vom Grad $m<n$ bilden einen Unterraum der Polynome vom Grad $n$.
+Wir können auch die $m+1$-dimensionalen Vektoren in den $n+1$-dimensionalen
+Vektoren einbetten, indem wir die Vektoren durch ``auffüllen'' mit Nullen
+auf die richtige Länge bringen.
+Es gibt also eine lineare Abbildung
+\[
+R^{m+1} \to R^{n+1}
+\colon
+\begin{pmatrix}
+b_0\\b_1\\\vdots\\b_m
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+b_0\\b_1\\\vdots\\b_m\\0\\\vdots
+\end{pmatrix}
+.
+\]
+Die Moduln $R^{k}$ sind also alle ineinandergeschachtelt, können aber 
+alle auf konsistente Weise mit der Abbildung $\varphi$ in den Polynomring
+$R[X]$ abgebildet werden.
+\begin{center}
+\begin{tikzcd}
+\{0\}\ar[r] %\arrow[d,"\varphi"]
+	&R \ar[r] %\arrow[d, "\varphi"]
+		&R^2 \ar[r] %\arrow[d, "\varphi"]
+			&\dots \ar[r]
+				&R^k \ar[r] %\arrow[d, "\varphi"]
+					&R^{k+1} \ar[r] %\arrow[d, "\varphi"]
+						&\dots
+\\
+R^{(0)}[X]\arrow[r,hook] \arrow[drrr,hook]
+	&R^{(1)}[X]\arrow[r,hook] \arrow[drr,hook]
+		&R^{(2)}[X]\arrow[r,hook] \arrow[dr,hook]
+			&\dots\arrow[r,hook]
+				&R^{(k)}[X]\arrow[r,hook] \arrow[dl,hook]
+					&R^{(k+1)}[X]\arrow[r,hook] \arrow[dll,hook]
+						&\dots
+\\
+	&
+		&
+			&R[X]
+				&
+					&
+						&
+\end{tikzcd}
+\end{center}
+\subsection{Multiplikative Struktur
+\label{buch:subsection:polynome:multiplikativestruktur}}
+
+
+
+
+
