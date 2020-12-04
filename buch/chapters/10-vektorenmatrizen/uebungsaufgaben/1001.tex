@@ -1,0 +1,117 @@
+Gegeben ist die Matrix
+\[
+A
+=
+\begin{pmatrix}
+0&0&0&\dots&0&a_{1n}\\
+1&0&0&\dots&0&a_{2n}\\
+0&1&0&\dots&0&a_{3n}\\
+0&0&1&\dots&0&a_{4n}\\
+\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+0&0&0&\dots&1&a_{nn}
+\end{pmatrix}
+\]
+\begin{teilaufgaben}
+\item Berechnen Sie $\det A$
+\item Finden Sie die inverse Matrix $A^{-1}$
+\item Nehmen Sie an, dass $a_{in}\in\mathbb{Z}$.
+Formulieren Sie eine Bedingung an die Koeffizienten $a_{in}$, die garantiert,
+dass $A^{-1}$ eine Matrix mit ganzzahligen Koeffizienten ist.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Determinante ist am einfachsten mit Hilfe des Entwicklungssatzes durch
+Entwicklung nach der ersten Zeile zu bestimmen:
+\[
+\det A
+=
+\left|
+\begin{matrix}
+0&0&0&\dots&0&a_{1n}\\
+1&0&0&\dots&0&a_{2n}\\
+0&1&0&\dots&0&a_{3n}\\
+0&0&1&\dots&0&a_{4n}\\
+\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+0&0&0&\dots&1&a_{nn}
+\end{matrix}
+\right|
+=
+(-1)^{n+1}
+a_{1n} \det E_n
+=
+-1^{n+1}
+a_{1n}.
+\]
+\item
+Die inverse Matrix kann am einfachsten mit Hilfe des Gauss-Algorithmus
+gefunden werden.
+Dazu schreiben wir die Matrix $A$ in die linke Hälfte eines Tableaus
+und die Einheitsmatrix in die rechte Hälfte und führen den Gauss-Algorithmus
+durch.
+\[
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+0&0&0&\dots&a_{1n}&1&0&0&\dots&0\\
+1&0&0&\dots&a_{2n}&0&1&0&\dots&0\\
+0&1&0&\dots&a_{3n}&0&0&1&\dots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\dots&a_{nn}&0&0&0&\dots&1\\
+\hline
+\end{tabular}
+\]
+Die Arbeit wird wesentlich vereinfacht, wenn wir zunächst die erste Zeile 
+ganz nach unten schieben:
+\[
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+1&0&\dots&0&a_{2n}&0&1&0&\dots&0\\
+0&1&\dots&0&a_{3n}&0&0&1&\dots&0\\
+\vdots&\vdots&\ddots&\vdots&\vdots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&\dots&1&a_{nn}&0&0&0&\dots&1\\
+0&0&\dots&0&a_{1n}&1&0&0&\dots&0\\
+\hline
+\end{tabular}
+\]
+Mit einer einzigen Gauss-Operationen kann man jetzt die inverse Matrix
+finden.
+Dazu muss man zunächst durch das Pivot-Elemente $a_{1n}$ dividieren,
+und dann in der Zeile $k$ das $a_{k+1,n}$-fache der letzten Zeile
+subtrahieren.
+Dies hat nur eine Auswirkung auf die erste Spalte in der rechten Hälfte:
+\[
+\renewcommand\arraystretch{1.2}
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+1&0&\dots&0&0&-\frac{a_{2n}}{a_{1n}}&1&0&\dots&0\\
+0&1&\dots&0&0&-\frac{a_{3n}}{a_{1n}}&0&1&\dots&0\\
+\vdots&\vdots&\ddots&\vdots&\vdots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&\dots&1&0&-\frac{a_{nn}}{a_{1n}}&0&0&\dots&1\\
+0&0&\dots&0&1&\frac{1}{a_{1n}}&0&0&\dots&0\\
+\hline
+\end{tabular}
+\]
+Die inverse Matrix von $A$ ist also
+\begin{align}
+A^{-1}
+=
+\renewcommand\arraystretch{1.2}
+\begin{pmatrix}
+-\frac{a_{2n}}{a_{1n}}&1&0&\dots&0\\
+-\frac{a_{3n}}{a_{1n}}&0&1&\dots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+-\frac{a_{nn}}{a_{1n}}&0&0&\dots&1\\
+\frac{1}{a_{1n}}&0&0&\dots&0\\
+\end{pmatrix}
+\label{buch:1001:inverse}
+\end{align}
+\item
+Aus der Darstellung \eqref{buch:1001:inverse} der Inversen $A^{-1}$
+können wir ablesen, dass $A^{-1}$ nur dann eine ganzzahlige Matrix sein
+kann, wenn $a_{1n}$ invertierbar ist, also $a_{1n}=\pm1$.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
