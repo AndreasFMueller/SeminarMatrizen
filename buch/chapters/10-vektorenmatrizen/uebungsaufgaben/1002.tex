@@ -1,0 +1,97 @@
+Nach Aufgabe \ref{1001} hat die Matrix 
+\[
+A
+=
+\begin{pmatrix}
+0&0&1\\
+1&0&a\\
+0&1&b
+\end{pmatrix}
+\in
+M_2(\mathbb{Z})
+\quad\text{die Inverse}\quad
+A^{-1}
+=
+\begin{pmatrix}
+-b&1&0\\
+-a&0&1\\
+1&0&0
+\end{pmatrix}
+\in
+M_2(\mathbb{Z}).
+\]
+Kann man $A^{-1}$ als Linearkombination der Matrizen $E$, $A$ und $A^2$
+schreiben?
+
+\begin{loesung}
+Wir berechnen zunächst $A^2$:
+\[
+A^2
+=
+\begin{pmatrix}
+0&0&1\\
+1&0&a\\
+0&1&b
+\end{pmatrix}
+\begin{pmatrix}
+0&0&1\\
+1&0&a\\
+0&1&b
+\end{pmatrix}
+=
+\begin{pmatrix}
+0&1&b\\
+0&a&1+ab\\
+1&b&a+b^2
+\end{pmatrix}
+\]
+Gesucht sind jetzt die Koeffizienten
+$\lambda_i$ einer Linearkombination
+\[
+A^{-1} = \lambda_0 E + \lambda_1 A + \lambda_2 A^2.
+\]
+Die drei Matrizen auf der rechten Seite haben in der ersten
+Spalte nur Nullen und Einsen, so dass wir an der ersten Spalten von
+$A^{+}$ unmittelbar ablesen können, welche Werte wir für $\lambda_i$
+verwenden müssen.
+Wir finden $\lambda_0=-b$, $\lambda_1=-a$ und $\lambda_2=1$.
+Wir setzen dies ein:
+\begin{align*}
+-bE-aA+A^2
+&=
+{\color{red}-b}
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}
+{\color{blue}-a}
+\begin{pmatrix}
+0&0&1\\
+1&0&a\\
+0&1&b
+\end{pmatrix}
++
+\begin{pmatrix}
+0&1&b\\
+0&a&1+ab\\
+1&b&a+b^2
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+{\color{red}-b}      &{\color{darkgreen}1}                 &{\color{darkgreen}b}{\color{blue}-a}        \\
+{\color{blue}-a}     &{\color{red}-b}+{\color{darkgreen}a} &{\color{blue}-a^2}+{\color{darkgreen}1+ab}  \\
+{\color{darkgreen}1} &{\color{blue}-a}+{\color{darkgreen}b}&{\color{red}-b}{\color{blue}-ab}+{\color{darkgreen}a+b^2}\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-b       & 1         &b-a        \\
+-a       &a-b       &1+a(b-a)  \\
+ 1       &b-a       &(1-b)(a-b)\\
+\end{pmatrix}
+\end{align*}
+Diese Matrix kann nur dann mit $A^{-1}$ übereinstimmen, wenn $a-b=0$ ist, 
+als $a=b$.
+\end{loesung}
+
