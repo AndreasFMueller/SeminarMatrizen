@@ -1,0 +1,49 @@
+%
+% buch.tex -- Buch zum mathematischen Seminar Wavelets
+%
+% (c) 2019 Prof. Dr. Andreas Mueller, Hochschule Rapperswil
+%
+\documentclass{book}
+\input{common/packages.tex}
+
+% additional packages used by the individual papers, add a line for
+% each paper
+\input{papers/common/addpackages.tex}
+
+% workaround for biblatex bug
+\makeatletter
+\def\blx@maxline{77}
+\makeatother
+\addbibresource{chapters/references.bib}
+
+% Bibresources for each article
+\input{papers/common/addbibresources.tex}
+
+% make sure the last index starts on an odd page
+\AtEndDocument{\clearpage\ifodd\value{page}\else\null\clearpage\fi}
+\makeindex
+
+%\pgfplotsset{compat=1.12}
+\setlength{\headheight}{15pt} % fix headheight warning
+\DeclareGraphicsRule{*}{mps}{*}{}
+\begin{document}
+
+\input{common/titlepage.tex}
+
+% add common macros
+\input{common/macros.tex}
+
+\mainmatter
+\input{chapters/part1.tex}
+
+\input{papers/part2.tex}
+
+\vfill
+\pagebreak
+\ifodd\value{page}\else\null\clearpage\fi
+\lhead{Index}
+\rhead{}
+\addcontentsline{toc}{chapter}{\indexname}
+\input{buch.ind}
+
+\end{document}
