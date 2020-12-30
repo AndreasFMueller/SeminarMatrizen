@@ -1,0 +1,11 @@
+#
+# Makefile.inc -- Makefile dependencies for chapter 6
+#
+# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+#
+
+CHAPTERFILES = $(CHAPTERFILES)						\
+	chapters/60-gruppen/symmetrien.tex				\
+	chapters/60-gruppen/lie.tex					\
+	chapters/60-gruppen/homogen.tex					\
+	chapters/60-gruppen/chapter.tex
