@@ -8,7 +8,7 @@ dependencies-000template =						\
 	papers/000template/main.tex					\
 	papers/000template/references.bib				\
 	papers/000template/einleitung.tex				\
-	papers/000template/problemstellung.tex				\
-	papers/000template/loesung.tex					\
-	papers/000template/folgerungen.tex
+	papers/000template/teil1.tex					\
+	papers/000template/teil2.tex					\
+	papers/000template/teil3.tex
 
