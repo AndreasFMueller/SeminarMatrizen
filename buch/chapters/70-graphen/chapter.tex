@@ -7,6 +7,60 @@
 \label{buch:chapter:graphen}}
 \lhead{Graphen}
 \rhead{}
+Ein Graph ist eine Menge von Knoten, die untereinander mit Kanten
+verbunden sind.
+Graphen können zum Beispiel verwendet werden um Netzwerke zu beschreiben,
+aber auch viele andere Datenstrukturen.
+\index{Graph}%
+Die Knoten können einzelne Objekte beschreiben, die Kanten beschreiben
+dann Beziehungen zwischen diesen Objekten.
+Graphen haben zwar nur eine eindimensionale Geometrie, sie können aber als
+erste Approximation auch dreidimensionaler Objekte dienen.
+
+Die Bedeutung des Graphenkozeptes wird unterstrichen von der Vielzahl
+von Fragestellungen, die über Graphen gestellt worden sind und der
+zugehöriten Lösungsalgorithmen, die zu ihrer Beantwortung gefunden
+worden sind.
+Die Komplexitätstheorie hat sogar gezeigt, dass sich jedes diskrete
+Problem in ein Graphenproblem umformulieren lässt.
+\index{Komplexitätstheorie}%
+Das Problem, einen Stundenplan zu finden, der sicherstellt, dass
+alle Studierenden an jedes Fach besuchen können, für die sie sich
+angemeldet haben, lässt sich zum Beispiel wie folgt als ein
+Graphenproblem formulieren.
+Die Fächer betrachten wir als Knoten des Graphen.
+Für jedes Paar von Fächern ziehen wir eine Kante des Graphen, wenn 
+sich mindestens ein Studierender für beide Fächer angemeldet hat.
+Die Kante drückt aus, dass die beiden Fächer nicht zur gleichen Zeit
+geplant werden dürfen.
+Das Problem, einen Stundenplan zu finden, besteht jetzt darin, für
+jedes Fach ein Zeitintervall zu finden, während dem es durchgeführt
+werden soll.
+\index{Stundenplan}%
+Natürlich steht nur eine beschränkte Anzahl Zeitintervalle zur Verfügung
+und benachbarte Knoten dürfen nicht ins gleiche Zeitintervall geplant
+werden.
+Das zugehörige abstrakte Graphenproblem heisst das Färbeproblem: 
+\index{Färbeproblem}%
+ist es möglich, mit einer beschränkten Anzahl von Farben die Knoten
+des Graphen so einzufärben, dass benachbarte Knoten niemals die gleiche
+Farbe haben.
+
+In diesem Kapitel soll zunächst gezeigt werden, wie man Graphen mit 
+Hilfe von Matrizen beschreiben kann
+(Abschnitt~\ref{buch:section:beschreibung-von-graphen-mit-matrizen}).
+Das Ziel dabei ist natürlich, die Hilfsmittel der Matrixalgebra
+zur Lösung von Graphenprobleme hinzuzuziehen.
+Die spektrale Graphentheorie in
+Abschnitt~\ref{buch:section:spektrale-graphentheorie} verwendet
+die Eigenwerte und Eigenvektoren der zugehörigen Matrix, um Aussagen
+über den Graphen zu machen.
+\index{Graphentheorie!spektrale}%
+In Abschnitt~\ref{buch:section:wavelets-auf-graphen} wird gezeigt,
+wie spektralen Eigenschaften verwendet werden können, um eine
+Art von Wavelets auf einem Graphen zu definieren.
+Damit ensteht eine für gewisse Anwendungen besonders leistungsfähige
+Basis zur Beschreibung von Funktionen auf dem Graphen.
 
 \input{chapters/70-graphen/beschreibung.tex}
 \input{chapters/70-graphen/spektral.tex}

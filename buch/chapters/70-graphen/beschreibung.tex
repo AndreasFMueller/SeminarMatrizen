@@ -6,4 +6,136 @@
 \section{Beschreibung von Graphen mit Matrizen
 \label{buch:section:beschreibung-von-graphen-mit-matrizen}}
 \rhead{Beschreibung mit Matrizen}
+Ein Graph ist eine Menge von Knoten, die untereinander mit Kanten
+verbunden sind.
+Graphen können zum Beispiel verwendet werden um Netzwerke zu beschreiben,
+aber auch viele andere Datenstrukturen.
+Die Knoten können einzelne Objekte beschreiben, die Kanten beschreiben
+dann Beziehungen zwischen diesen Objekten.
+
+\subsection{Definition von Graphen
+\label{subsection:definition-von-graphen}}
+In der Einleitung zu diesem Abschnitt wurde bereits eine informelle
+Beschreibung des Konzeptes eines Graphen gegeben.
+Um zu einer Beschreibung mit Hilfe von Matrizen kommen können,
+wird eine exakte Definition benötigt.
+Dabei werden sich einige Feinheiten zeigen, die für Anwendungen wichtig
+sind und sich in Unterschieden in der Definition der zugehörigen Matrix 
+äussern.
+
+\subsubsection{Ungerichtete Graphen}
+Die Grundlage für alle Arten von Graphen ist eine Menge $V$ von {\em Knoten},
+auch {\em Vertices} genannt.
+\index{Knoten}%
+\index{Vertex}%
+Die Unterschiede zeigen sich in der Art und Weise, wie die Knoten
+mit sogenannten die Kanten 
+\index{Kante}%
+verbunden werden.
+Bei einen ungerichteten Graphen sind die beiden Endpunkte einer Kante
+gleichwertig, es gibt keine bevorzugte Reihenfolge oder Richtung der
+Kante.
+Eine Kante wird daher vollständig spezifiziert, wenn wir die
+Menge der Endpunkte kennen.
+Dies führt auf die folgende Definition eines ungerichteten Graphen.
+
+\begin{definition}
+\label{buch:def:ungerichteter-graph}
+\index{Graph!ungerichteter}%
+\index{ungerichteter Graph}%
+Ein {\em ungerichteter Graph} ist eine endliche Menge $V$ von {\em Knoten}
+und eine Menge $E$ von zweielementigen Teilmengen 
+\[
+E \subset \{\, \{a,b\}\subset V\,|\, a\ne b\}.
+\]
+Die Elemente von $E$ heissen {\em Kanten} ({\em edges}).
+\end{definition}
+
+Man beachte, dass es keine Kante gibt, die einen Knoten $a\in V$
+mit sich selbst verbindet, da die zugehörige Menge $\{a,a\}=\{a\}$
+nicht aus zwei verschiedenen Elementen besteht, wie die
+Definition~\ref{buch:def:ungerichteter-graph} dies verlangt.
+
+Ein elektrisches Netzwerk von ohmschen Widerständen kann mit Hilfe
+eines ungerichteten Graphen beschrieben werden.
+Ohmsche Widerstände hängen nicht von der Richtung des Stromflusses
+durch die Widerstände ab.
+Will man Spannungen und Ströme in einem solchen Netzwerk berechnen,
+ist auch das Fehlen von Schleifen, die von $a$ zu $a$ führen, kein
+Verlust.
+Die Endpunkte solcher Widerstände wären immer auf gleichem Potential,
+es würde daher kein Strom fliessen, sie haben daher keinen Einfluss auf
+das Verhalten des Netzwerkes und können weggelassen werden.
+
+\subsubsection{Gerichtete Graphen}
+In vielen Anwendungen sind die Endpunkte einer Kante nicht austauschbar.
+In einem Strassennetz sind Einbahnstrassen nicht in beiden Richtungen
+befahrbar.
+Anfangs- und Endpunkt einer Kante müssen in einem solche Graphen
+unterschieden werden.
+Eine zweielementige Menge ist daher nicht mehr eine geeignete Abstraktion
+für die Kante, ein (geordnetes) Paar von Vertizes passt besser.
+
+\begin{definition}
+\label{buch:def:gerichteter-graph}
+\index{Graph!gerichteter}%
+\index{gerichteter Graph}%
+Ein {\em gerichteter Graph} ist eine endliche Menge $V$ von Knoten
+und eine Menge $E \subset V\times V$ von gerichteten Kanten.
+Ausserdem gibt es zwei Abbildungen
+\[
+\begin{aligned}
+a&\colon E\to V: (p,q) \mapsto a((p,q)) = p
+\\
+e&\colon E\to V: (p,q) \mapsto e((p,q)) = q.
+\end{aligned}
+\]
+Der Knoten $a(k)$ heisst der {\em Anfangspunkt} der Kante $k\in E$,
+$e(k)$ heisst der {\em Endpunkt}.
+\end{definition}
+
+In einem gerichteten Graphen gehört also zu jeder Kante auch eine Richtung
+und die Unterscheidung von Anfangs- und Endpunkt einer Kante ist sinnvoll
+geworden.
+Ausderdem ist eine Kante $(a,a)$ wohldefiniert, also eine Kante, die vom
+Knoten $a$ wieder zu $a$ zurückführen.
+
+Man kann einen ungerichteten Graphen in einen gerichteten Graphen
+verwandeln, indem wir jede Kante $\{a,b\}$ durch zwei Kanten 
+$(a,b)$ und $(b,a)$ ersetzen.
+Aus dem ungerichteten Graphen $(V,E)$ mit Knotenmenge $V$ und Kantenmenge
+$E$ wird so der gerichtete Graph
+$(V,E')$ mit der Kantenmenge
+\[
+E' 
+=
+\{
+(a,e)
+\,|\,
+\{a,e\}\in E
+\}.
+\]
+Eine umgekehrte Zuordnung eines ungerichteten Graphen zu einem gerichteten
+Graphen ist nicht möglich, da eine ``Schleife'' $(a,a)$ nicht in Kante
+des ungerichteten Graphen abgebildet werden kann.
+
+\subsubsection{Beschriftete Graphen}
+Bei der Beschreibung eines elektrischen Netzwerkes mit Hilfe eines
+ungerichteten Graphen muss jeder Kante zusätzlich ein Widerstandswert
+zugeordnet werden.
+Dies ist, was eine Beschriftung einer Kante bewerkstelligt.
+
+\begin{definition}
+Eine Beschriftung mit Elementen der Menge $L$
+eines gerichteten oder ungerichteten Graphen $G=(V,E)$ 
+ist eine Abbildung $l\colon E\to L$.
+\end{definition}
+
+\subsection{Die Adjazenz-Matrix
+\label{subsection:adjazenz-matrix}}
+
+\subsection{Die Laplace-Matrix
+\label{subsection:laplace-matrix}}
+
+
 
