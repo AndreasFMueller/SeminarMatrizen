@@ -15,3 +15,6 @@ include chapters/30-endlichekoerper/Makefile.inc
 include chapters/40-eigenwerte/Makefile.inc
 include chapters/50-permutationen/Makefile.inc
 include chapters/60-gruppen/Makefile.inc
+include chapters/70-graphen/Makefile.inc
+include chapters/80-wahrscheinlichkeit/Makefile.inc
+include chapters/90-crypto/Makefile.inc
