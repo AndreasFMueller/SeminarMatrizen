@@ -7,3 +7,426 @@
 \label{buch:section:google-matrix}}
 \rhead{Google-Matrix}
 
+%
+% Ein Modell für Webseitenbesucher
+%
+\subsection{Ein Modell für Webseitenbesucher
+\label{buch:subsection:modell-fuer-webseitenbesucher}}
+\begin{figure}
+\centering
+\begin{tikzpicture}[>=latex,thick]
+\foreach \x in {0,3,6,9}{
+	\foreach \y in {0,3}{
+		\fill[color=white] ({\x},{\y}) circle[radius=0.3];
+		\draw ({\x},{\y}) circle[radius=0.3];
+	}
+}
+\node at (0,3) {$1$};
+\node at (0,0) {$2$};
+\node at (3,3) {$3$};
+\node at (3,0) {$4$};
+\node at (6,3) {$5$};
+\node at (6,0) {$6$};
+\node at (9,3) {$7$};
+\node at (9,0) {$8$};
+% 1
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,3) -- (3,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,3) -- (0,0);
+% 2
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,0) to[out=-20,in=-160] (3,0);
+% 3
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,3) -- (6,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,3) -- (0,0);
+% 4
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) -- (6,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) -- (6,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) to[out=160,in=20] (0,0);
+% 5
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (9,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (9,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (6,0);
+% 6
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,0) to[out=20,in=160] (9,0);
+% 7
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,3) .. controls (7.5,4) .. (6,4) -- (3,4) .. controls (1.5,4) .. (0,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,3) to[out=-110,in=110] (9,0);
+% 8
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,0) to[out=-160,in=-20] (6,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,0) to[out=70,in=-70] (9,3);
+\end{tikzpicture}
+\caption{Modell-Internet als Beispiel für die Link-Matrix und die Google-Matrix.
+\label{buch:figure:modellinternet}}
+\end{figure}
+Das Internet besteht aus einer grossen Zahl von Websites, etwa 400~Millionen
+aktiven Websites, jede besteht aus vielen einzelnen Seiten.
+Es ist daher angemessen von $N\approx 10^9$ verschiedenen Seiten auszugehen.
+Eine natürliche Sprache umfasst dagegen nur einige 100000 bis Millionen
+von Wörtern.
+Ein durchschnittlicher Sprecher englischer Muttersprache verwendet nur etwa
+50000 Wörter.
+Die Zahl der Wörter, die auf den $N$ Seiten vorkommen können, ist also
+viel kleiner als die Zahl der zur Verfügung stehenden Wörter.
+Ein einzelnes Wort wird daher notwendigerweise auf einer grossen Zahl
+von Seiten vorkommen.
+Eine Suche nach einem bestimmten Wort wird also in der überwiegenden Zahl
+der Fälle derart viele Treffer zurückgeben, dass das Suchresultat
+nur dann nützlich sein kann, wenn eine zusätzliche Informationsquelle
+ermöglicht, die Treffer in eine sinnvolle Ordnung zu bringem.
+
+Genau dieses Problem stellte sich den vielen traditionellen Suchmaschienen
+in der ersten grossen Boomphase des Internets.
+Traditionelle Informatione-Retrieval-Systeme operieren auf einem relativ
+kleinen Dokumentbestand und gehen davon aus, dass bereits wenige, spezifische
+Wörter nur in einem kleinen Teil des Dokumentbestandes vorkommen und damit
+eine übersichtliche Treffermenge ergeben.
+Die Einengung der Treffermenge dank der Suche nach spezifischer Menge
+bedeutet aber auch, dass nach Synonymen oder alternative Formen eines
+Wortes separat gesucht werden muss, was die Übersichtlichkeit wieder
+zerstört.
+
+Das kombinierte Vorkommen von Wörtern oder Begriffen alleine kann also 
+nicht ausreichen, um die Seiten zum Beispiel einem Fachgebiet zuzuordnen.
+Dazu muss eine externe Informationsquelle angezapft werden.
+Bei traditionellen Dokumenten liefert der Kontext, in dem ein
+Dokument erfasst wurde, solche ergänzenden Informationen.
+Eine Publikation in einem Fachjournal ordnet einen Text einem Fachgebiet zu.
+Im World-Wide-Web liefert die Link-Struktur diesen Kontext.
+Dokumente zu ähnlichen Themen werden bevorzugt untereinander verlinkt
+sein.
+
+Gesucht ist jetzt also ein Modell, welches objektiv die Linkstruktur
+bewertet und daraus eine Rangordnung der passenden Wörter ableitet.
+Die Linkstruktur kann natürlich als gerichteter Graph betrachtet und 
+mit Hilfe der Matrix~\eqref{buch:graphen:eqn:linkmatrix}
+beschrieben werden.
+Dies trägt jedoch der Anzahl der Wahlmöglichkeiten nicht Rechnung.
+Eine Website mit nur einem Link auf die Seite $j$ hat mehr Gewicht
+als eine Seite mit vielen Links, unter denen der Link auf die Seite $j$
+einer von vielen ist.
+Im Beispiel-Inter der Abbildung~\ref{buch:figure:modellinternet}
+signalisiert die Seite $t$ mit nur einem Link auf die Seite $8$
+viel deutlicher, dass $8$ eine wichtige Seite ist, also die die
+Seite $5$ tut, die auch noch zwei andere Links enthält.
+Wir können diesen Unterschied berücksichtigen, indem wir zu einem
+Wahrscheinlichkeitsmodell übergehen, was wir im folgenden Abschnitt
+tun werden.
+
+
+%
+% Wahrscheinlichkeitsinterpretation
+%
+\subsection{Wahrscheinlichkeitsinterpretation
+\label{buch:subsection:wahrscheinlichkeitsinterpretation}}
+Ein Internetbesucher kann eine grosse Zahl von Seiten besuchen.
+In diesem Abschnitt soll ein Modell entwickelt werden, welches die
+Wahrscheinlichkeit zu ermitteln gestattet, dass der Besucher auf
+einer bestimmten Seite landet.
+
+\subsubsection{Ereignisse und Wahrscheinlichkeiten}
+Wir bezeichnen mit $S_i$ das Ereignis, dass sich der Besucher auf
+der Seite mit der Nummer $i$ befindet, wobei $i=1,\dots,N$.
+Gesucht ist die Wahrscheinlichkeit $P(S_i)$.
+Ohne weitere Information müssten wir davon ausgehen, dass jede Seite
+etwa gleich wahrscheinlich ist, dass also $P(S_i) = 1/N$.
+
+Wir wissen jedoch mehr.
+Wir wissen, dass der Besucher die verschiedenen Seiten zu einem guten 
+Teil dadurch findet, dass er Links folgt.
+Die Wahrscheinlichkeit $P(S_i)$ verändert sich also, wenn die Zahl der
+Links ansteigt, die auf die Seite $i$ verweisen.
+Zur Beschreibung dieses Phänomens brauchen wir die zusätzliche Ereignisse
+$S_i'$, die mit Wahrscheinlichkeit $P(S'_i)$ eintreten, wenn sich der
+Besucher nach Navigation entlang eines Links auf der Seite $i$ befindet.
+
+Wir nehmen jetzt zusätzlich an, dass eine grosse Zahl von Besuchern über
+lange Zeit ungefähr nach den gleichen Dingen suchen und sich daher
+auf die gleiche Weise auf den verschiedenen Seiten verteilen und dass
+insbesondere die Verteilung stationär ist, dass also $P(S_i) = P(S'_i)$
+gilt.
+Suchmaschinen wie Google gehen davon aus, dass alle Besucher ungefähr
+die gleichen Suchprioritäten haben, so dass es sich lohnt, die Suchresultate
+nach der Wahrscheinlichkeit $P(S_i)$ zu ordnen und dem Suchenden die
+wahrscheinlichsten Dokumente als erste zu zeigen.
+
+\subsubsection{Bedingte Wahrscheinlichkeit}
+Um einen Zusammenhang zwischen $P(S_i)$ und $P(S'_j)$ herzustellen, muss
+die Navigation entlang der Links modelliert werden.
+Die naheliegende Wahrscheinlichkeitsinterpretation ist die bedingte
+Wahrscheinlichkeit $P(S'_j|S_i)$ dass der Besucher auf der Seite $j$
+landet, nachdem er auf der Seite $i$ die Linknavigation verwendet hat.
+Wenn es keinen Link zwischen den Seiten $i$ und $j$ gibt, dann ist diese
+Navigation natürlich nicht möglich und es folgt $P(S'_j|S_i)=0$.
+Falls es einen Link gibt, ist $P(S'_j|S_i)\ge 0$.
+
+A priori wissen wir nicht, wie wahrscheinlich es ist, dass der Besucher
+dem Link auf die Seite $j$ folgt, normalerweise werden nicht alle
+Links mit gleicher Wahrscheinlichkeit verwendet.
+Wir nehmen daher zusätzlich an, dass alle Links gleich wahrscheinlich
+sind.
+Die Seite $i$ enthält $n_i$ Links, also ist die Wahrscheinlichkeit,
+auf einer von $i$ aus verlinkten Seite $j$ zu landen $P(S'_j|S_i) = 1/n_i$.
+
+\subsubsection{Totale Wahrscheinlichkeit}
+Der Satz von der totalen Wahrscheinlichkeit ermöglicht, einen Zusammenhang
+\index{totale Wahrscheinlichkeit}%
+\index{Wahrscheinlichkeit!totale}%
+zwischen $P(S'_j)$ und $P(S_i)$ herzustellen.
+Es gilt
+\begin{equation}
+P(S'_j)
+=
+P(S'j|S_1) P(S_1)
++
+P(S'j|S_2) P(S_2)
++
+\dots
++
+P(S'j|S_N) P(S_N).
+\label{buch:google:eqn:totalewahrscheinlichkeit}
+\end{equation}
+Dies kann in Matrix- und Vektorform übersichtlicher geschrieben werden.
+Dazu fassen wir die Wahrscheinlichkeiten $p'_j=P(S'_j)$ und $p_i=P(S_i)$
+also Vektoren
+\[
+p
+=
+\begin{pmatrix}
+P(S_1)\\
+P(S_2)\\
+\vdots\\
+P(S_N)
+\end{pmatrix}
+\qquad
+\text{und}
+\qquad
+p'
+=
+\begin{pmatrix}
+P(S'_1)\\
+P(S'_2)\\
+\vdots\\
+P(S'_N)
+\end{pmatrix}
+\]
+zusammen.
+Die bedingten Wahrscheinlichkeiten $h_{ji}=P(S'_j|S_i)$ sind mit zwei Indizes
+beschrieben, sie bilden daher in natürlicher Weise eine Matrix
+\[
+H
+=
+\begin{pmatrix}
+P(S'_1|S_1)&P(S'_1|S_2)&\dots &P(S'_1|S_N)\\
+P(S'_2|S_1)&P(S'_2|S_2)&\dots &P(S'_2|S_N)\\
+\vdots     &\vdots     &\ddots&\vdots     \\
+P(S'_N|S_1)&P(S'_N|S_2)&\dots &P(S'_N|S_N)
+\end{pmatrix}.
+\]
+Die Formel~\eqref{buch:google:eqn:totalewahrscheinlichkeit} wird dann zur
+Formel für das Produkt Matrix mal Vektor:
+\[
+(Hp)_j
+=
+\sum_{i=1}^N h_{ji} p_i
+=
+\sum_{i=1}^N P(S'_j|S_i) P(S_i)
+=
+p'_j
+\qquad\Rightarrow\qquad
+Hp=p'.
+\]
+Die Matrix $H$ modelliert also die Wahrscheinlichkeit der Navigation
+entlang eines Links.
+
+\begin{beispiel}
+Für das Beispiel-Internet von Abbildung~\ref{buch:figure:modellinternet}
+ist die zugehörige Matrix
+\[
+H =
+\begin{pmatrix}
+   0   & 0&   0   &   0   &   0   & 0&\frac12&   0   \\
+\frac12& 0&\frac12&\frac13&   0   & 0&   0   &   0   \\
+\frac12& 0&   0   &   0   &   0   & 0&   0   &   0   \\
+   0   & 1&   0   &   0   &   0   & 0&   0   &   0   \\
+   0   & 0&\frac12&\frac13&   0   & 0&   0   &   0   \\
+   0   & 0&   0   &\frac13&\frac13& 0&   0   &\frac12\\
+   0   & 0&   0   &   0   &\frac13& 0&   0   &\frac12\\
+   0   & 0&   0   &   0   &\frac13& 1&\frac12&   0
+\end{pmatrix}.
+\qedhere
+\]
+\end{beispiel}
+
+%
+% Freier Wille
+%
+\subsection{``Freier Wille''
+\label{buch:subsection:freier-wille}}
+Das Modell in
+Abschnitt~\eqref{buch:subsection:wahrscheinlichkeitsinterpretation}
+beschriebene Modell geht unter anderem davon aus, dass der Benutzer
+ausschliesslich die Navigation entlang der Links verwendet.
+Natürlich gibt es viele weitere Wege, auf denen ein Besucher auf einer
+bestimmten Seite landen kann.
+Er kann zum Beispiel einen Link auf eine Seite per Email zugesandt
+erhalten haben.
+Ein solcher Link ist nicht enthalten in einer öffentlich zugänglichen
+Seite des Internets und wird daher auch von der Matrix $H$ nicht
+erfasst.
+Eine weitere wichtige Quelle von Links sind dynamisch erzeugte Links
+wie zum Beispiel die Suchresultate einer Suchmaschine.
+Hier entsteht die Möglichkeit, dass die erfolgreiche Suchmaschine,
+die ihre Suchresultate unter Zuhilfenahme der Matrix $H$ sortiert,
+ihr eigenes Modell, auf dem ihr Erfolg basiert, torpediert.
+
+\subsubsection{Erweiterung der Link-Matrix}
+Wir bezeichnen das Ereignis, dass der Benutzer nicht die Link-Navigation
+verwendet mit $F$ für ``freier Wille'', obwohl es so etwas natürlich nicht
+gibt.
+Die Wahrscheinlichkeit, auf der Seite $S'_j$ zu landen, setzt sich jetzt
+aus den zwei Fällen $F$ und $\overline{F}$ zusammen, für die erneut der
+Satz von der totalen Wahrscheinlichkeit den Zusammenhang
+\[
+P(S'_j)
+=
+P(S'_j|\overline{F}) P(\overline{F})
++
+P(S'_j|F) P(F)
+\]
+Die Wahrscheinlichkeit $\alpha = P(F)$, mit der der Benutzer den
+``freiene Willen'' bemüht, kann experimentell durch Studien ermittelt
+werden, die das Benutzerverhalten beobachten.
+
+Die Wahrscheinlichkeit $P(S'_j|\overline{F})$ entsteht dadurch, dass
+der Benutzer der Linknavigation folgt, sie entspricht also der früher
+berechnenten Wahrscheinlichkeit
+\[
+P(S'_j|\overline{F}) = \sum_{i=1}^N P(S'_j|S_i) P(S_i).
+\]
+oder in Vektorform
+\[
+(P(S'_j|\overline{F}))_j
+=
+Hp.
+\]
+
+Über die spontane Besuchswahrscheinlichkeit $P(S'_j|F)$ wissen wir 
+nichts.
+Eine erste Annahme könnte sein, dass jede Seite gleich wahrscheinlich
+ist, dass also $P(S'_j|F)=1/N$.
+Alternativ könnte man auch eine Wahrscheinlichkeitsverteilung
+$q_j = P(S'_j|F)$ experimentell zu ermitteln versuchen.
+Unter der Annahme, dass alle Seitenbesuche im Falle $F$ auf Grund
+eines Sucheresultats einer Suchmaschine erfolgen, könnte die
+Suchmaschine den Vektor $q$ aus ihrer eigenen Suchstatistik ermitteln.
+
+Das erweiterte Modell kann also durch
+\begin{equation}
+P(S'_j)
+=
+\sum_{i=1}^N
+\alpha P(S'_j|S_i) P(S_i)
++
+(1-\alpha) q_j
+\qquad\Rightarrow\qquad
+p'
+=
+\alpha Hp
++
+(1-\alpha)q
+\label{buch:google:eqn:composed}
+\end{equation}
+beschrieben werden.
+
+\subsubsection{Die Google-Matrix}
+Die Formel~\eqref{buch:google:eqn:composed} erlaubt, die Wahrscheinlichkeit
+$p'$ aus $p$ und $q$ zu berechnen.
+Für die Ermittlung der der stationären Verteilung war jedoch die Form
+$p=Hp$ besonders nützlich, weil sie das Problem in ein Eigenwertproblem
+mit einem bekanntem Eigenwert verwandelt.
+Wir streben daher an, die Formel~\eqref{buch:google:eqn:composed}
+ebenfalls in die Form $p=Gp$ mit einer neuen Matrix $G$ zu bringen.
+
+Die Matrixform von
+\label{buch:google:eqn:composed}
+zeigt, dass sich die gesuchte Matrix $G$ zusammensetzt aus dem Summanden
+$\alpha H$ und einem weiteren Summanden $A$ mit der Eigenschaft, dass
+$Ap = q$ für jeden beliebigen Wahrscheinlichkeitsvektor $p$.
+Da sich die Wahrscheinlichkeiten im Vektor $p$ zu $1$ summieren, gilt
+\[
+\underbrace{
+\begin{pmatrix}
+1&1&\dots&1
+\end{pmatrix}
+}_{\displaystyle = u^t}
+\begin{pmatrix}
+P(S_1)\\
+P(S_2)\\
+\vdots\\
+P(S_N)
+\end{pmatrix}
+=
+P(S_1)+P(S_2)+\dots+P(S_N)=1.
+\]
+Man erhält also die Wirkung der gewünschte Matrix $A$, indem man $p$
+erst mit dem Zeilenvektor $u^t$ und das Resultat mit $q$ multipliziert.
+Es gilt daher
+\[
+Ap = qu^tp
+\qquad\Rightarrow\qquad
+A=qu^t.
+\]
+Ausmultipliziert ist dies die Matrix
+\[
+A=\begin{pmatrix}
+q_1&q_1&\dots&q_1\\
+q_2&q_2&\dots&q_2\\
+\vdots&\vdots&\ddots&\vdots\\
+q_N&q_N&\dots&q_N
+\end{pmatrix}.
+\]
+Im Fall $q=\frac1Nu$ kann dies zu
+\[
+A
+=
+\frac1N uu^t
+=
+\frac1N
+\begin{pmatrix}
+1&1&\dots&1\\
+1&1&\dots&1\\
+\vdots&\vdots&\ddots&\vdots\\
+1&1&\dots&1
+\end{pmatrix}
+\]
+vereinfacht werden.
+
+\begin{definition}
+Die Matrix
+\[
+G
+=
+\alpha H
++
+\frac{1-\alpha}{N}
+uu^t
+\qquad\text{oder}\qquad
+G
+=
+\alpha H
++
+(1-\alpha)qu^t
+\]
+heisst die
+{\em Google-Matrix}.
+\index{Google-Matrix}%
+\end{definition}
+
+
+%
+% Bestimmung der zu erwartenden stationären Verteilung
+%
+\subsection{Wahrscheinlichkeitsverteilung
+\label{buch:subsection:wahrscheinlichkeitsverteilung}}
+\subsubsection{Stationäre Verteilung}
+\subsubsection{Potenzverfahren}
+

@@ -350,9 +350,9 @@ $A$ hat also die Matrixelemente
 a_{ik}
 =
 \begin{cases}
--1&\qquad $i=a(k)\\
-+1&\qquad $i=e(k)\\
-0&\qquad\text{sonst}
+-1&\qquad i=a(k)\\
++1&\qquad i=e(k)\\
+\phantom{+}0&\qquad\text{sonst}
 \end{cases}
 \label{buch:eqn:ajazenz-matrix}
 \end{equation}
@@ -364,5 +364,15 @@ Für $H$ drückt ein nicht verschwindendes Matrixelement das Vorhandensein
 einer Kante aus, in $A$ ist es die Tatsache, dass in diesem Knoten
 eine Kante endet.
 
+Es ist natürlich möglich, aus der Adjazenz-Matrix auch die Link-Matrix
+zu rekonstruieren.
+Dazu muss für jedes Paar $(j,i)$ von Knoten festgestellt werden,
+ob die Adjazenzmatrix eine entsprechende Verbindung enthält, also ob der
+Vektor 
+\[
+k_{ji} = e_i - e_j
+\]
+als Spaltenvektor vorkommt, wobei die $e_i$ die $n$-dimensionalen
+Standardbasisvektoren sind.
 
 
