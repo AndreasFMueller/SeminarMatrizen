@@ -240,7 +240,7 @@ entlang eines Links.
 \begin{beispiel}
 Für das Beispiel-Internet von Abbildung~\ref{buch:figure:modellinternet}
 ist die zugehörige Matrix
-\[
+\begin{equation}
 H =
 \begin{pmatrix}
    0   & 0&   0   &   0   &   0   & 0&\frac12&   0   \\
@@ -252,8 +252,9 @@ H =
    0   & 0&   0   &   0   &\frac13& 0&   0   &\frac12\\
    0   & 0&   0   &   0   &\frac13& 1&\frac12&   0
 \end{pmatrix}.
+\label{buch:google:eqn:linkmatrixbeispiel}
+\end{equation}
 \qedhere
-\]
 \end{beispiel}
 
 %
@@ -304,7 +305,7 @@ P(S'_j|\overline{F}) = \sum_{i=1}^N P(S'_j|S_i) P(S_i).
 \]
 oder in Vektorform
 \[
-(P(S'_j|\overline{F}))_j
+(P(S'_j|\overline{F}))_{j=1,\dots,n}
 =
 Hp.
 \]
@@ -421,12 +422,180 @@ heisst die
 \index{Google-Matrix}%
 \end{definition}
 
+Die Google-Matrix wurde von Sergei Brin und Larry Page 
+in dem Artikel \cite{BRIN1998107} als Basis der Suchmaschine
+Google beschrieben.
+Sie war die Basis für den Erfolg von Google und wird dem Prinzip nach
+auch heute noch zur Rangierung der Suchresultate verwendet.
+Dazu muss natürlich die Gleichung $p=Gp$ gelöst werden, was
+weiter unten in Abschnitt~\ref{buch:subsection:wahrscheinlichkeitsverteilung}
+diskutiert wird.
+
+Natürlich ist die heutzutage verwendete Matrix mit Sicherheit komplizierter.
+In der vorgestellten Form unterstützt sie zum Beispiel auch das folgende
+Geschäftsmodell, welches in der Anfangszeit von Google eine Zeitlang 
+erfolgreich war.
+Ein Anbieter betreibt zu diesem Zweck eine grosse Zahl von Websites,
+deren Seiten im Wesentlichen aus Suchbegriffen und Links untereinander
+und auf die Website des Kunden verweisen.
+Dadurch entsteht für die Google-Matrix der ``Eindruck'', dass sehr viele
+Websites gibt, die die Kundenwebsite als relevant für die Suchbegriffe 
+ansehen.
+Die Kundenwebsite wird daher in den Suchresultaten weiter oben gezeigt.
+Das Problem rührt natürlich daher, dass alle Links als gleichermassen
+aussagekräftig betrachtet werden.
+
+Die aktuell verwendete Variante der Google-Matrix ist natürlich ein
+Betriebsgeheimnis der Firma Google.
 
 %
 % Bestimmung der zu erwartenden stationären Verteilung
 %
 \subsection{Wahrscheinlichkeitsverteilung
 \label{buch:subsection:wahrscheinlichkeitsverteilung}}
+Die Google-Matrix $G$ selbst interessiert weniger als die
+Wahrscheinlichkeitsverteilung $p$.
+Ziel dieses Abschnittes, ist den Vektor $p$ zu berechnen.
+
 \subsubsection{Stationäre Verteilung}
+Die Einträge $P(S_i)$ des Vektors $p$ geben die Wahrscheinlichkeit an, mit
+der sich ein Benutzer auf der Seite $i$ befindet.
+Wir interpretieren diese Wahrscheinlichkeit auch als ein Mass für die
+Relevanz einer Seite.
+
+Wir nehmen an, dass sich diese Wahscheinlichkeit nur langsam ändert.
+Diese Annahme trifft nicht zu für neue Nachrichten, die durchaus eine
+hohe Relevanz haben, für es aber noch nicht viele Links geben kann,
+die die Relevanz in der Google-Matrix erkennbar machen.
+Die Annahme bedeutet, dass sich die Verteilung $p$ sehr viel langsamer 
+ändert als der Navigationsprozess entlang der Links erfolgt.
+In erster Näherung ist es daher zulässig, nach einem Vektor $p$ zu
+suchen, der sich unter Navigation nicht ändert, also nach einer
+{\em stationären} Lösung.
+\index{stationäre Verteilung}%
+
+Für eine stationäre Wahrscheinlichkeitsverteilung gilt $p'=p$.
+Der Vektor $p$ erfüllt daher die Gleichung
+\begin{equation}
+Gp = p.
+\label{buch:google:ewgleichung}
+\end{equation}
+$p$ ist also ein Eigenvektor der Matrix $G$ zum Eigenwert $1$.
+
+Für ein sehr kleines Netzwerk wie im oben dargestellten Beispiel ist es
+einfach, mit verbreiteten numerischen Algorithmen alle Eigenwerte und
+Eigenvektoren zu finden.
+Benötigt wird allerdings nur der Eigenvektor zum Eigenwert $1$.
+
+\begin{beispiel}
+Ein Eigenvektor zum Eigenwert $1$ der Matrix $G$, die aus der Matrix $H$
+von \eqref{buch:google:eqn:linkmatrixbeispiel}
+und dem Vektor $q=\frac18u$ und $\alpha=0.9$ gebildet wurde, ist
+\[
+p_0=\begin{pmatrix}
+   0.20100\\
+   0.25440\\
+   0.12163\\
+   0.26014\\
+   0.16394\\
+   0.45543\\
+   0.37739\\
+   0.66007
+\end{pmatrix}
+\qquad\Rightarrow\qquad
+p
+=
+\frac{1}{\|p_0\|_1}p_0
+=
+\begin{pmatrix}
+   0.080595\\
+   0.102004\\
+   0.048769\\
+   0.104305\\
+   0.065735\\
+   0.182609\\
+   0.151320\\
+   0.264664
+\end{pmatrix}.
+\]
+Der Vektor $p_0$ ist ein Einheitsvektor in der euklidischen Norm.
+Er kann daher nicht eine Wahrscheinlichkeitsverteilung sein,
+da sich die Elemente nicht zu $1$ summieren.
+Die $L^1$-Norm $\|\;\cdot\;\|_1$ eines Vektors ist die Summe der Beträge aller
+Elemente eines Vektors.
+Indem man $p_0$ durch die Summe aller Einträge von $p_0$ teilt,
+erhält man die Wahrscheinlichkeitsverteilung $p$.
+\end{beispiel}
+
+
 \subsubsection{Potenzverfahren}
+Die üblichen Algorithmen wie der Francis-Algorithmus zur Bestimmung
+von Eigenwerten und Eigenvektoren ist für grosse Matrizen nicht praktikabel.
+Da aber $1$ der betragsgrösste Eigenwert ist, kann sehr oft ein zugehöriger
+Eigenvektor mit der nachfolgend beschriebenen {\em Potenzmethode}
+gefunden werden.
+
+Sei $A$ eine $n\times n$-Matrix, der Einfachheit halber nehmen wir an,
+dass die Eigenwerte $\lambda_1>\lambda_2\ge \dots\ge \lambda_n$
+absteigend geordnet sind,
+und dass $v_1,\dots,v_n$ zugehörige linear unabhängige Eigenvektoren sind.
+Ein beliebiger Vektor $v$ lässt sich in der Eigenbasis von $A$
+als
+\[
+v = a_1v_1+\dots+a_nv_n
+\]
+ausdrücken.
+Wendet man darauf die Matrix $A$ $k$-mal an, erhält man
+\[
+A^kv
+=
+a_1\lambda_1^k v_1 
++
+a_2\lambda_2^k v_2
++
+\dots
++
+a_n\lambda_2^k v_n.
+\]
+Da $\lambda_1$ der betragsmässig grösste Eigenwert ist, wird der Vektor
+$A^kv$ ungefähr mit der $k$-ten Potenz anwachsen.
+Indem man durch $\lambda_1^k$ teilt, erhält man
+\[
+\frac{1}{\lambda_1^k} A^k v
+=
+a_1v_1
++
+a_2\biggl(\frac{\lambda_2}{\lambda_1}\biggr)^k v_2
++
+\dots
++
+a_n\biggl(\frac{\lambda_n}{\lambda_1}\biggr)^k v_n.
+\]
+Da alle Brüche Betrag $<1$ haben, konvergiert die rechte Seite für $k\to\infty$
+gegeben den  ersten Summanden.
+Durch wiederholte Anwendung von $A/\lambda_1$ auf einen (fast) belieibigen
+Startvektor $v$ erhält man also eine Folge von Vektoren, die gegen eine
+Eigenvektor zum Eigenwert $\lambda_1$ konvergiert.
+
+Numerische Ungenauigkeiten können bewirken, dass die Iteration mit der
+Matrix $A/\lambda_1$ trotzdem nicht konvergiert.
+Man kann dies komponsieren, indem man nach jeder Iteration normiert.
+Da der gesuchte Eigenvektor eine Wahrscheinlichkeitsverteilung sein muss,
+muss die $L^1$-Norm $1$ sein.
+Statt mit der euklidischen $L^2$-Norm zu normieren, normiert man daher
+besser mit der $L^1$-Norm.
+Damit ergibt sich das folgende Verfahren zur Bestimmung der Pagerank-Verteilung
+$p$ für die Google-Matrix.
+
+\begin{satz}
+Für die Google-Matrix $p$ konvergiert die Folge 
+\[
+p^{(0)} = u,
+\qquad
+p^{(k+1)} = \frac{G^{(k)}}{\| G^{(k)} \|_1}
+\]
+gegen die stationäre Verteilung $p$ mit $Gp=p$.
+\end{satz}
+
+
 
