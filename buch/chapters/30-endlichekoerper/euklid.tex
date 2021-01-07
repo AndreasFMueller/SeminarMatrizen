@@ -1,0 +1,430 @@
+%
+% euklid.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Der euklidische Algorithmus
+\label{buch:section:euklid}}
+\rhead{Der euklidische Algorithmus}
+Der euklidische Algorithmus bestimmt zu zwei gegebenen ganzen
+Zahlen $a$ und $b$ den grössten gemeinsamen Teiler $g$.
+Zusätzlich findet er ganze Zahlen $s$ und $t$ derart, dass
+\[
+sa + tb = g.
+\]
+In diesem Abschnitt soll der Algorithmus zunächst für ganze Zahlen
+vorgestellt werden, bevor er auf Polynome verallgemeinert und dann
+in Matrixform niedergeschrieben wird.
+
+\subsection{Ganze Zahlen}
+Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
+dass $a\ge b$.
+Gesucht ist der grösste gemeinsame Teiler $g$ von $a$ und $b$.
+Wir schreiben $g|a$ für ``$g$ ist Teiler von $a$'' oder ``$g$ teilt $a$'',
+gesucht ist also die grösste ganze Zahl $g$ derart, dass $g|a$ und $g|b$.
+
+Ist $b|a$, dann ist offenbar $b$ der grösste gemeinsame Teiler von $a$
+und $b$.
+Im Allgemeinen wird der grösste gemeinsame Teiler aber kleiner sein.
+Wir teilen daher $a$ durch $b$, was nur mit Rest möglich ist.
+Es gibt ganze Zahlen $q$, der Quotient, und $r$, der Rest, derart, dass
+\begin{equation}
+a = qb+ r
+\qquad \Rightarrow \qquad
+r = a - qb.
+\label{lifting:euklid:raqb}
+\end{equation}
+Nach Definition des Restes ist $r < b$.
+Da der grösste gemeinsame Teiler sowohl $a$ als auch $b$ teilt, muss er
+wegen~\eqref{lifting:euklid:raqb} auch $r$ teilen.
+Somit haben wir das Problem, den grössten gemeinsamen Teiler von $a$ und
+$b$ zu finden, auf das ``kleinere'' Problem zurückgeführt, den grössten
+gemeinsamen Teiler von $b$ und $r$ zu finden.
+
+Um den eben beschriebenen Schritt zu wiederholen, wählen wir die folgende
+Notation.
+Wir schreiben $a_0=a$ und $b_0=b$.
+Im ersten Schritt finden wird $q_0$ und $r_0$ derart,
+dass $a_0-q_0b_0 = r_0$.
+Dann setzen wir $a_1=b_0$ und $b_1=r_0$.
+Mit $a_1$ und $b_1$ wiederholen wir den Divisionsschritt, der einen
+neuen Quotienten $q_1$ und einen neuen Rest $r_1$ liefert mit $a_1-q_1b_1=r_1$.
+So entstehen vier Folgen von Zahlen $a_k$, $b_k$, $q_k$ und $r_k$ derart,
+dass in jedem Schritt gilt
+\begin{align*}
+a_k - q_kb_k &= r_k & g&|a_k & g&|b_k & a_k &= b_{k-1} & b_k = r_{k-1}
+\end{align*}
+Der Algorithmus bricht im Schritt $n$ ab, wenn $r_{n+1}=0$.
+Der letzte nicht verschwindende Rest $r_n$ muss daher der grösste gemeinsame
+Teiler sein: $g=r_n$.
+
+\begin{beispiel}
+Wir bestimmen den grössten gemeinsamen Teiler von $76415$ und $23205$
+mit Hilfe des eben beschriebenen Algorithmus.
+Wir schreiben die gefundenen Zahlen in eine Tabelle:
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+k&  a_k&  b_k&   q_k&  r_k\\
+\hline
+0&76415&23205&     3&6800\\
+1&23205& 6800&     3&2805\\
+2& 6800& 2805&     2&1190\\
+3& 2805& 1190&     2& 425\\
+4& 1190&  425&     2& 340\\
+5&  425&  340&     1&  85\\
+6&  340&   85&     4&   0\\
+\hline
+\end{tabular}
+\end{center}
+Der Algorithmus bricht also mit dem letzten Rest $r_n=85$ ab, dies
+ist der grösste gemeinsame Teiler.
+\end{beispiel}
+
+Die oben protokollierten Werte von $q_k$ werden für die Bestimmung
+des grössten gemeinsamen Teilers nicht benötigt.
+Wir können sie aber verwenden, um die Zahlen $s$ und $t$ zu bestimmen.
+
+\begin{beispiel}
+Wir drücken die Reste im obigen Beispiel durch die Zahlen $a_k$, $b_k$ und
+$q_k$ aus und setzen sie in den Ausdruck $g=a_5-q_5b_5$ ein, bis wir
+einen Ausdruck in $a_0$ und $b_0$ für $g$ finden:
+\begin{align*}
+r_5&=a_5-q_5 b_5=a_5-1\cdot b_5& g &= a_5 - 1 \cdot b_5 = b_4 - 1 \cdot r_4
+\\
+r_4&=a_4-q_4 b_4=a_4-2\cdot b_4&   &= b_4 - (a_4 -2b_4) 
+                                    = -a_4 +3b_4 = -b_3 + 3r_3
+\\
+r_3&=a_3-q_3 b_3=a_3-2\cdot b_3&   &= -b_3 + 3(a_3-2b_3)
+                                    = 3a_3 - 7b_3 = 3b_2 -7r_2
+\\
+r_2&=a_2-q_2 b_2=a_2-2\cdot b_2&   &= 3b_2 -7(a_2-2b_2)
+                                    = -7a_2 + 17b_2 = -7b_1 + 17r_1
+\\
+r_1&=a_1-q_1 b_1=a_1-3\cdot b_1&   &= -7b_1 + 17(a_1-3b_1)
+                                    = 17a_1 - 58b_1 = 17 b_0 - 58 r_0
+\\
+r_0&=a_0-q_0 b_0=a_0-3\cdot b_0&   &= 17b_0 - 58(a_0t-3b_0)
+                                    = -58a_0+191b_0
+\end{align*}
+Tatsächlich gilt
+\[
+-58\cdot 76415 + 191 \cdot 23205 = 85,
+\]
+die Zahlen $t=-58$ und $s=191$ sind also genau die eingangs versprochenen
+Faktoren.
+\end{beispiel}
+
+\subsection{Matrixschreibweise}
+Die Durchführung des euklidischen Algorithmus lässt sich besonders elegant
+in Matrixschreibweise dokumentieren.
+In jedem Schritt arbeitet man mit zwei ganzen Zahlen $a_k$ und $b_k$, die wir
+als zweidimensionalen Spaltenvektor betrachten können.
+Der Algorithmus macht aus $a_k$ und $b_k$ die neuen Zahlen
+$a_{k+1} = b_k$ und $b_{k+1} = r_k = a_k - q_kb_k$, dies
+kann man als
+\[
+\begin{pmatrix} a_{k+1} \\ b_{k+1} \end{pmatrix}
+=
+\begin{pmatrix} b_k \\ r_k \end{pmatrix}
+=
+\begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
+\begin{pmatrix} a_{k} \\ b_{k} \end{pmatrix}
+\]
+schreiben.
+Der Algorithmus bricht ab, wenn die zweite Komponente des Vektors $=0$ ist,
+in der ersten steht dann der grösste gemeinsame Teiler.
+Hier ist die Durchführung des Algorithmus in Matrix-Schreibweise:
+\begin{align*}
+\begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-3 \end{pmatrix}
+\begin{pmatrix} 76415 \\ 23205 \end{pmatrix}
+\\
+\begin{pmatrix} 6800 \\ 2805 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-3 \end{pmatrix}
+\begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
+\\
+\begin{pmatrix} 2805 \\ 1190 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 6800 \\ 2805 \end{pmatrix}
+\\
+\begin{pmatrix} 1190 \\ 425 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 2805 \\ 1190 \end{pmatrix}
+\\
+\begin{pmatrix} 425 \\ 340 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-2 \end{pmatrix}
+\begin{pmatrix} 1190 \\ 425 \end{pmatrix}
+\\
+\begin{pmatrix} 340 \\ 85 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-1 \end{pmatrix}
+\begin{pmatrix} 425 \\ 340 \end{pmatrix}
+\\
+\begin{pmatrix} 85 \\ 0 \end{pmatrix}
+&=
+\begin{pmatrix} 0&1\\1&-4 \end{pmatrix}
+\begin{pmatrix} 340 \\ 85 \end{pmatrix}
+=
+\begin{pmatrix}g\\0\end{pmatrix}.
+\end{align*}
+
+\begin{definition}
+Wir kürzen
+\[
+Q(q_k) = \begin{pmatrix} 0 & 1 \\ 1 & -q_k \end{pmatrix}
+\]
+ab.
+\end{definition}
+
+Mit dieser Definition lässt sich der euklidische Algorithmus wie folgt
+beschreiben.
+
+\begin{algorithmus}[Euklid]
+\label{lifting:euklid}
+Der Algorithmus operiert auf zweidimensionalen Zustandsvektoren
+$x\in\mathbb Z^2$ 
+wie folgt:
+\begin{enumerate}
+\item Initialisiere  den Zustandsvektor mit den ganzen Zahlen $a$ und $b$:
+$\displaystyle x = \begin{pmatrix}a\\b\end{pmatrix}$
+\item Bestimme den Quotienten $q$ als die grösste ganze Zahl,
+für die $qx_2\le x_1$ gilt.
+\item Berechne den neuen Zustandsvektor als $Q(q)x$.
+\item Wiederhole Schritte 2 und 3 bis die zweite Komponente des Zustandsvektors
+verschwindet.
+Die erste Komponente ist dann der gesuchte grösste gemeinsame Teiler.
+\end{enumerate}
+\end{algorithmus}
+
+Auch die Berechnung der Zahlen $s$ und $t$ lässt sich jetzt leichter verstehen.
+Nach Algorithmus~\ref{lifting:euklid} ist
+\[
+\begin{pmatrix} g \\ 0 \end{pmatrix}
+=
+Q(q_n)Q(q_{n-1})\cdots Q(q_0)
+\begin{pmatrix} a \\ b \end{pmatrix}.
+\]
+Schreiben wir $Q=Q(q_n)Q(q_{n-1})\cdots Q(q_0)$, dann enthält die Matrix
+$Q$ in der erste Zeile die ganzen Zahlen $s$ und $t$, mit denen sich der
+grösste gemeinsame Teiler aus $a$ und $b$ darstellen lässt:
+\[
+Q =
+\begin{pmatrix}
+s&t\\
+q_{21}&q_{22}
+\end{pmatrix}
+\qquad\Rightarrow\qquad
+\bigg\{
+\quad
+\begin{aligned}
+g&=sa+tb\\
+0&=q_{21}a+q_{22}b.
+\end{aligned}
+\]
+
+\begin{beispiel}
+Wir verifizieren die Behauptung durch Nachrechnen:
+\begin{align*}
+Q
+&=
+\begin{pmatrix} 0&1 \\ 1&-q_n\end{pmatrix}
+\begin{pmatrix} 0&1 \\ 1&-q_{n-1}\end{pmatrix}
+\cdots
+\begin{pmatrix} 0&1 \\ 1&-q_{0}\end{pmatrix}
+\\
+&=
+\underbrace{
+\begin{pmatrix} 0&1 \\ 1& -4 \end{pmatrix}
+\begin{pmatrix} 0&1 \\ 1& -1 \end{pmatrix}
+}_{}
+\underbrace{
+\begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
+}_{}
+\underbrace{
+\begin{pmatrix} 0&1 \\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0&1 \\ 1& -3 \end{pmatrix}
+}_{}
+\begin{pmatrix} 0&1 \\ 1& -3 \end{pmatrix}
+\\
+&=
+\underbrace{
+\begin{pmatrix} 1 & -1 \\ -4 &  5 \end{pmatrix}
+\begin{pmatrix} 1 & -2 \\ -2 &  5 \end{pmatrix}
+}_{}
+\underbrace{
+\begin{pmatrix} 1 & -2 \\ -3 &  7 \end{pmatrix}
+\begin{pmatrix} 0 &  1 \\  1 & -3 \end{pmatrix}
+}_{}
+\\
+&=
+\begin{pmatrix}  3 &  -7 \\ -14 &  33 \end{pmatrix}
+\begin{pmatrix} -3 &  10 \\   7 & -23 \end{pmatrix}
+=
+\begin{pmatrix} -58 & 191 \\ 273 & -899 \end{pmatrix}.
+%(%i9) Q6 . Q5
+%                                 [  1   - 1 ]
+%(%o9)                            [          ]
+%                                 [ - 4   5  ]
+%(%i10) Q4 . Q3
+%                                 [  1   - 2 ]
+%(%o10)                           [          ]
+%                                 [ - 2   5  ]
+%(%i11) Q2 . Q1
+%                                 [  1   - 3 ]
+%(%o11)                           [          ]
+%                                 [ - 2   7  ]
+%(%i12) Q6 . Q5 . Q4 . Q3
+%                                 [  3    - 7 ]
+%(%o12)                           [           ]
+%                                 [ - 14  33  ]
+%(%i13) Q2 . Q1 . Q0
+%                                 [ - 3   10  ]
+%(%o13)                           [           ]
+%                                 [  7   - 23 ]
+%(%i14) Q6 . Q5 . Q4 . Q3 . Q2 . Q1 . Q0
+%                                [ - 58   191  ]
+%(%o14)                          [             ]
+%                                [ 273   - 899 ]
+\end{align*}
+In der zweiten Zeile findet man Zahlen, die $a$ und $b$ zu 0 kombinieren:
+\[
+273 \cdot 76415 - 899 \cdot 23205 = 0,
+\]
+in der ersten stehen die Zahlen $s=-58$ und $t=191$ und tatsächlich
+ergibt
+\[
+ta+sb = -58\cdot 76415  + 191\cdot 23205 = 85 = g
+\]
+den grössten gemeinsamen Teiler von 76415 und 23205.
+\end{beispiel}
+
+Die Wirkung der Matrix
+\[
+Q(q) = \begin{pmatrix} 0 & 1 \\ 1 & -q \end{pmatrix}
+\]
+lässt sich mit genau einer Multiplikation und einer Addition
+berechnen.
+Dies ist die Art von Matrix, die wir für die Implementation der
+Wavelet-Transformation anstreben.
+
+\subsection{Polynome}
+Der Ring $\mathbb{Q}[X]$ der Polynome in der Variablen $X$ mit rationalen
+Koeffizienten\footnote{Es kann auch ein beliebiger anderer Körper für
+die Koeffizienten verwendet werden.
+Es gelten sogar ähnlich interessante Gesetzmässigkeiten, wenn man für
+die Koeffizienten ganze Zahlen zulässt.
+Dann wird das Problem der Faktorisierung allerdings verkompliziert 
+durch das Problem der Teilbarkeit der Koeffizienten.
+Dieses Problem entfällt, wenn man die Koeffizienten aus einem
+Bereich wählt, in dem Teilbarkeit kein Problem ist, also in einem Körper.}
+verhält
+sich bezüglich Teilbarkeit ganz genau gleich wie die ganzen Zahlen.
+Insbesondere ist der euklidische Algorithmus genauso wie die
+Matrixschreibweise auch für Polynome durchführbar.
+
+\begin{beispiel}
+Wir berechnen als Beispiel den grössten gemeinsamen Teiler 
+der Polynome
+\[
+a = X^4 - 2X^3 -7 X^2 + 8X + 12,
+\qquad
+b = X^4 + X^3 -7X^2 -X + 6.
+\]
+Wir erstellen wieder die Tabelle der Reste
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+k&  a_k&  b_k&   q_k&  r_k\\
+\hline
+0& X^4 - 2X^3 -7 X^2 + 8X + 12& X^4 + X^3 -7X^2 -X + 6&       1&-3X^3+9X+6\\
+1&X^4+X^3-7X^2-X+6            &-3X^3+9X+6             &-\frac13X-\frac13&-4X^2+4X+8\\
+2&-3X^3+9X+6      &-4X^2+4X+8& \frac34 X + \frac34& 0\\
+\hline
+\end{tabular}
+\end{center}
+Daraus kann man ablesen, dass $-4x^2+4x+8$ grösster gemeinsamer Teiler ist.
+Normiert auf einen führenden Koeffizienten $1$ ist dies das Polynom
+$x^2-x+2=(x+2)(x-1)$.
+
+Wir berechnen auch noch die Polynome $s$ und $t$.
+Dazu müssen wir die Matrizen $Q(q_k)$ miteinander multiplizieren:
+\begin{align*}
+Q
+&=Q(q_2) Q(q_1) Q(q_0)
+\\
+&=
+\begin{pmatrix} 0 & 1 \\ 1 & -\frac34(X+1) \end{pmatrix}
+\begin{pmatrix} 0 & 1 \\ 1 & \frac13(X+1) \end{pmatrix}
+\begin{pmatrix} 0 & 1 \\ 1 & -1 \end{pmatrix}
+\\
+&=
+%                        [     x   1         2   x    ]
+%                        [     - + -         - - -    ]
+%                        [     3   3         3   3    ]
+%(%o22)                  [                            ]
+%                        [     2            2         ]
+%                        [    x     x   3  x    x   3 ]
+%                        [ (- --) - - + -  -- - - - - ]
+%                        [    4     2   4  4    4   2 ]
+\begin{pmatrix}
+\frac13(X+1)&-\frac13(X-2)\\
+-\frac14(X^2+2X-3)&\frac14(X^2-X-6)
+\end{pmatrix}.
+\end{align*}
+In der ersten Zeile finden wir die Polynome $t(X)$ und $s(X)$, mit denen
+\begin{align*}
+ta+sb
+&=
+\frac13(X+1)
+(X^4-2X^3-7X^2+8X+12)
+-\frac13(X-2)
+(X^4+X^3-7X^2-X+6)
+\\
+&=
+-4X^2+4X+8
+\end{align*}
+und dies ist tatsächlich der gefundene grösste gemeinsame Teiler.
+Die zweite Zeile von $Q$ gibt uns die Polynomfaktoren, mit denen
+$a$ und $b$ gleich werden:
+\begin{align*}
+q_{21}a+q_{22}b
+&=
+-\frac14(X^2+2X-3)
+(X^4-2X^3-7X^2+8X+12)
++\frac14(X^2-X-6)
+(X^4+X^3-7X^2-X+6)
+\\
+&=0.
+\qedhere
+\end{align*}
+Man kann natürlich den grössten gemeinsamen Teiler auch mit Hilfe einer
+Faktorisierung der Polynome $a$ und $b$ finden:
+\begin{align*}
+&\text{Faktorisierung von $a$:}&
+a  &=         (X-3) (X-2)\phantom{(X-1)}(X+1)         (X+2) \phantom{(X+3)}\\
+&\text{Faktorisierung von $b$:}&
+b  &=\phantom{(X-3)}(X-2)         (X-1) (X+1)\phantom{(X+2)}         (X+3) \\
+&\text{gemeinsame Faktoren:}&
+g  &=\phantom{(X-3)}(X-2)\phantom{(X-1)}(X+1)\phantom{(X+2)}\phantom{(X+3)}
+    = X^2 -X + 2\\
+&&
+v=a/g&=         (X-3)\phantom{(X-2)(X-1)(X+1)} (X+2) \phantom{(X+3)}
+    = X^2-X-6 \\
+&&
+u=b/g&=\phantom{(X-3)(X-2)} (X-1)\phantom{(X+1)(X+2)}(X+3)
+    = X^2+2X-3
+\end{align*}
+Aus den letzten zwei Zeilen folgt
+$ua-vb = ab/g - ab/g = 0$, wie erwartet.
+\end{beispiel}
+
+

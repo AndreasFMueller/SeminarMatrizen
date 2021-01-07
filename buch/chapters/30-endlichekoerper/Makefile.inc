@@ -5,6 +5,7 @@
 #
 
 CHAPTERFILES = $(CHAPTERFILES)						\
+	chapters/30-endlichekoerper/euklid.tex				\
 	chapters/30-endlichekoerper/galois.tex				\
 	chapters/30-endlichekoerper/wurzeln.tex				\
 	chapters/30-endlichekoerper/chapter.tex
