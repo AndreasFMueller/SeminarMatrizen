@@ -1,0 +1,23 @@
+Seien $z$ und $w$  komplexe Zahlen derart, dass $z=e^w$, d.~h.~$w$ ist
+ein Wert des Logarithmus von $z$.
+Zeigen Sie, dass die Zahlen $w+2\pi ik$ für $k\in\mathbb Z$ ebenfalls 
+Logarithmen von $z$ sind.
+Dies zeigt, dass eine komlexe Zahl unendlich viele verschiedene
+Logarithmen haben kann, die Logarithmusfunktion ist im Komplexen
+nicht eindeutig.
+
+\begin{loesung}
+Aus der Eulerschen Formel folgt
+\begin{align*}
+e^{w+2\pi ik}
+&=
+e^w\cdot e^{2\pi ik}
+=
+e^w (\underbrace{\cos 2\pi k}_{\displaystyle=1} + i \underbrace{\sin 2\pi k}_{\displaystyle = 0})
+=
+e^w
+=
+z.
+\qedhere
+\end{align*}
+\end{loesung}

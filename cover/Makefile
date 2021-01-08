@@ -3,9 +3,12 @@
 #
 # (c) 2018 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
-all:	buchcover.png front.pdf back.pdf
+all:	matrix.pdf buchcover.png front.pdf back.pdf
 
-buchcover.pdf:	buchcover.tex
+matrix.pdf:	matrix.tex
+	pdflatex matrix.tex
+
+buchcover.pdf:	buchcover.tex matrix.pdf
 	pdflatex buchcover.tex
 
 buchcover.png:	buchcover.pdf Makefile
