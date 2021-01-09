@@ -1,0 +1,84 @@
+%
+% chapter.tex -- Homologie
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\chapter{Homologie
+\label{buch:chapter:homologie}}
+\lhead{Homologie}
+\rhead{}
+Mit der Inzidenzmatrix war es möglich, einen Graphen zu beschreiben
+und verschiedene interessante Eigenschaften desselben zu berechnen.
+Damit können aber nur eindimensionale Strukturen analysiert werden,
+es ist zum Beispiel nicht möglich, ein Dreieck vom Rand eines
+Dreiecks zu unterscheiden~\ref{buch:homologie:figure:zusammenziehbar}.
+\begin{figure}
+\centering
+\begin{tikzpicture}[>=latex,thick]
+\def\punkt#1{
+	\fill[color=white] #1 circle[radius=0.07];
+	\draw #1 circle[radius=0.07];
+}
+\begin{scope}[xshift=3cm]
+\draw[->] (0,0) -- (3,3);
+\draw[->] (0,0) -- (4,1);
+\draw[->] (4,1) -- (3,3);
+\node at (0,0) [below left] {$P_0$};
+\node at (4,1) [below right] {$P_1$};
+\node at (3,3) [above] {$P_2$};
+\punkt{(0,0)}
+\punkt{(4,1)}
+\punkt{(3,3)}
+\node at (2,0.5) [below] {$k_{01}$};
+\node at (1.5,1.5) [above left] {$k_{02}$};
+\node at (3.5,2) [right] {$k_{12}$};
+\end{scope}
+\begin{scope}[xshift=-3cm]
+\fill[color=gray!40] (0,0) -- (4,1) -- (3,3) -- cycle;
+\draw[->] (0,0) -- (3,3);
+\draw[->] (0,0) -- (4,1);
+\draw[->] (4,1) -- (3,3);
+\node at (0,0) [below left] {$P_0$};
+\node at (4,1) [below right] {$P_1$};
+\node at (3,3) [above] {$P_2$};
+\node at (2,0.5) [below] {$k_{01}$};
+\node at (1.5,1.5) [above left] {$k_{02}$};
+\node at (3.5,2) [right] {$k_{12}$};
+\node at (2.333,1.333) {$\triangle$};
+\punkt{(0,0)}
+\punkt{(4,1)}
+\punkt{(3,3)}
+\end{scope}
+\end{tikzpicture}
+\caption{Ein Dreieck $\triangle$ (rechts) und der Rand des Dreicks
+(links) sind mit den Methoden
+der Graphentheorie nicht unterschiedbar. 
+Als topologische Räume sind das Dreieck und sein Rand aber ganz klar
+unterschiedbar: In einem Dreieck ist jeder geschlossene Pfad in einen 
+Punkt zusammenziehbar, aber die Randkurve ist nicht mehrzusammenziehbar,
+sobald man das innere des Dreiecks entfernt.
+\label{buch:homologie:figure:zusammenziehbar}}
+\end{figure}
+Die Randkurve ist in einem Dreieck zusammenziehbar, aber sobald man
+das innere des Dreiecks entfernt, ist die Randkurve nicht mehr
+zusammenziehbar.
+Dreieck und der Rand des Dreiecks sind also grundsätzlich verschieden.
+
+Die Inzidenzmatrix ordnet jeder Kante ihre beiden Endpunkte zu.
+Die Homologietheorie verallgemeinert diese Idee.
+Der sogenannte Randoperator ordnet jedem Dreieck, Tetraeder oder allgemein
+jedem Simplex seinen Rand zu.
+Damit wird es möglich, das Dreieck vom Rand des Dreiecks zu unterschieden.
+
+\input{chapters/95-homologie/simplex.tex}
+\input{chapters/95-homologie/komplex.tex}
+\input{chapters/95-homologie/homologie.tex}
+\input{chapters/95-homologie/mayervietoris.tex}
+\input{chapters/95-homologie/fixpunkte.tex}
+
+
+
+
+
+
+
