@@ -11,7 +11,7 @@ matrix.pdf:	matrix.tex
 buchcover.pdf:	buchcover.tex matrix.pdf
 	pdflatex buchcover.tex
 
-buchcover.png:	buchcover.pdf Makefile
+buchcover.png:	buchcover.pdf 
 	convert -density 300 -extract 1966x2900+2630+190 buchcover.pdf \
 		buchcover.png
 
