@@ -1,5 +1,5 @@
 %
-% chapter.tex -- Kapitel über eigenwerte und eigenvektoren
+% chapter.tex -- Kapitel über Eigenwerte und Eigenvektoren
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
@@ -8,6 +8,53 @@
 \lhead{Eigenwerte und Eigenvektoren}
 \rhead{}
 
+Matrizen wirken bekanntlich als lineare Abbildungen zwischen endlich-dimensionalen Vektorräumen.
+Ein Vektorraum ist jedoch durch den zugrundeliegenden Körper und seine Dimension bis auf Isomorphie eindeutig bestimmt. %TODO: Beweis oder Verweis
+Den quadratischen Matrizen kommt dadurch eine Sonderstellung zu:
+Sie repräsentieren die linearen Abbildungen aus einem Vektorräumen in sich selbst,
+also lineare Abbildungen der Form
+\[A \colon V \to V \colon \qquad v \mapsto Av.\]
+
+Bei Vektoren aus demselben Vektorraum kann man sich nun fragen,
+ob es Vektoren gibt,
+die durch diese Matrix ``nicht wesentlich'' verändert werden.
+Vektoren, auf denen $A$ lediglich wie ein Skalar wirkt.
+
+\begin{definition}
+  Sei $V$ ein $K$-Vektorraum mit $\dim V = n < \infty$
+  und $A\in K^{n\times n}$ eine quadratische Matrix über dem Körper $K$.
+  Ein Vektor $v \in V \setminus \{0\}$, für den es ein $\lambda \in K$ gibt, so dass
+  \begin{equation}
+    Av = \lambda v \label{buch:eigenvektoren:eigenvektor}
+  \end{equation}
+  gilt, heisst \emph{Eigenvektor von $A$} zum \emph{Eigenwert} $\lambda$.
+\end{definition}
+
+Eigenvektoren gehören also immer zu einem Eigenwert und einer Matrix.
+Aus der linearen Algebra ist bekannt,
+wie man solche Vektoren findet.
+
+\begin{definition}
+  Sei $A$ eine $n\times n$-Matrix über dem Körper $K$.
+  Das Polynom
+  \[ \chi_A(\lambda) = \det (A - \lambda I) \in K^{(n)}[\lambda]\]
+  heisst \emph{charakteristisches Polynom} von $A$.
+  % $\chi_A(\lambda) = 0$ heisst \emph{charakteristische Gleichung}.
+\end{definition}
+
+\begin{satz}
+  Die Eigenwerte von $A$ sind die Lösungen der Gleichung $ \chi_A(\lambda) = 0$.
+\end{satz}
+\begin{proof}
+  Durch Umstellen von Gleichung~\eqref{buch:eigenvektoren:eigenvektor} folgt
+  $(A -\lambda I)v = 0$.
+  Da nach Voraussetzung $v \ne 0$ ist, muss $\det(A-\lambda I) = \chi_A(\lambda) = 0$ gelten.
+  Die Eigenwerte von $A$ sind also gerade die Nullstellen des charakteristischen Polynoms $\chi_A(\lambda)$.
+\end{proof}
+
+Hat man die Eigenwerte, kann man die Eigenvektoren als Lösung des homogenen Gleichungssystems $Bv = 0$ mit $B = A - \lambda I$ finden.
+
+\clearpage
 
 \input{chapters/40-eigenwerte/numerisch.tex}
 \input{chapters/40-eigenwerte/spektralradius.tex}
