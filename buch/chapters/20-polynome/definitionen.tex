@@ -6,7 +6,7 @@
 \section{Definitionen
 \label{buch:section:polynome:definitionen}}
 \rhead{Definitionen}
-In diesem Abschnitt stellen wir einige grundlegende Definitionen für das 
+In diesem Abschnitt stellen wir einige grundlegende Definitionen für das
 Rechnen mit Polynomen zusammen.
 
 %
@@ -26,7 +26,7 @@ unter einer ``Zahl'' vorstellen.
 Wir bezeichnen die Menge, aus der die ``Zahlen'' kommen können mit $R$ und
 nennen sie die Menge der Skalare.
 \index{Skalar}%
-Wenn wir uns vorstellen, dass man die Elemente von $R$ an Stelle von $X$ 
+Wenn wir uns vorstellen, dass man die Elemente von $R$ an Stelle von $X$
 in das Polynom einsetzen kann, dann muss es möglich sein, in $R$ zu
 Multiplizieren und zu Addieren, und es müssen die üblichen Rechenregeln
 der Algebra gelten, $R$ muss also ein Ring sein.
@@ -44,7 +44,7 @@ R[X]
 p(X) = a_nX^n+a_{n-1}X^{n-1} + \dots a_1X+a_0\;|\; a_k\in R, n\in\mathbb{N}
 \}
 \]
-heisst die Menge der {\em Polynome} mit Koeffizienten in $R$ 
+heisst die Menge der {\em Polynome} mit Koeffizienten in $R$
 oder
 {\em Polynome über} $R$.
 \index{Polynome über $R$}%
@@ -77,7 +77,7 @@ Ein Polynom heisst {\em normiert} oder auch {\em monisch}, wenn der
 höchste Koeffizient oder auch {\em Leitkoeffizient} des Polynomus $1$ ist,
 also $a_n=1$.
 \index{Leitkoeffizient}%
-Wann man in $R$ durch $a_n$ dividieren kann, dann kann man aus dem Polynom
+Wenn man in $R$ durch $a_n$ dividieren kann, dann kann man aus dem Polynom
 $p(X)=a_nX^n+\dots$ mit Leitkoeffizient $a_n$ das normierte Polynom
 \[
 \frac{1}{a_n}p(X) = \frac{1}{a_n}(a_nX^n + \dots + a_0)=
@@ -86,9 +86,8 @@ X^n + \frac{a_{n-1}}{a_n}X^{n-1} + \dots + \frac{a_0}{a_n}
 machen.
 Man sagt auch, das Polynom $p(X)$ wurde normiert.
 
-Die Beschreibung der Rechenoperationen wird etwas verkompliziert durch
-die Tatsache, zwei Polynome nicht gleich viele von $0$ verschiedene
-Koeffizienten haben müssen.
+Die Tatsache, dass zwei  Polynome nicht gleich viele von $0$ verschiedene Koeffizienten haben müssen,
+verkompliziert die Beschreibung der Rechenoperationen ein wenig.
 Wir werden daher im Folgenden oft für ein Polynom
 \[
 p(X)
@@ -118,7 +117,7 @@ definiert ist.
 Die Menge $R[X]$ aller Polynome über $R$ wird zu einem Ring, wenn man die
 Rechenoperationen Addition und Multiplikation so definiert, wie man das
 in der Schule gelernt hat.
-Die Summe von zwei Polynomen 
+Die Summe von zwei Polynomen
 \begin{align*}
 p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0\\
 q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
@@ -129,7 +128,7 @@ p(X)+q(X)
 =
 \sum_{k} (a_k+b_k)X^k,
 \]
-wobei die Summe wieder so zu interpretieren ist, über alle Terme 
+wobei die Summe wieder so zu interpretieren ist, über alle Terme
 summiert wird, für die mindestens einer der Summanden von $0$
 verschieden ist.
 
@@ -234,7 +233,7 @@ beweist \eqref{buch:eqn:polynome:gradprodukt}.
 Es könnte aber passieren, dass $a_nb_m=0$ ist, d.~h.~es ist durchaus möglich,
 dass der Grad kleiner ist.
 Schliesslich kann der höchsten Koeffizient von $\lambda p(X)$ nicht grösser
-als der höchste Koeffizient von $p(X)$ sein, was 
+als der höchste Koeffizient von $p(X)$ sein, was
 \eqref{buch:eqn:polynome:gradskalar} beweist.
 \end{proof}
 
@@ -253,7 +252,7 @@ a_nb_m = \begin{pmatrix}0&0\\0&0\end{pmatrix}.
 \end{equation}
 Diese unangehme Situation tritt immer ein, wenn es von Null verschiedene
 Elemente gibt, deren Produkt $0$ ist.
-In Matrizenringen ist das der Normalfall, man kann diesen fall also nicht
+In Matrizenringen ist das der Normalfall, man kann diesen Fall also nicht
 einfach ausschliessen.
 In den Zahlenmengen wie $\mathbb{Z}$, $\mathbb{Q}$ und $\mathbb{R}$ passiert
 das natürlich nie.
@@ -262,13 +261,13 @@ das natürlich nie.
 Ein Ring $R$ heisst {\em nullteilerfrei}, wenn für zwei Elemente
 $a,b\in R$ aus $ab=0$ immer geschlossen werden kann, dass
 $a=0$ oder $b=0$.
-Ein von $0$ verschiedenes Element $a\in R$ heisst ein Nullteiler,
-wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $b=0$.
+Ein von $0$ verschiedenes Element $a\in R$ heisst Nullteiler,
+wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $ab=0$.
 \index{Nullteiler}
 \index{nullteilerfrei}
 \end{definition}
 
-Die beiden Matrizen in 
+Die beiden Matrizen in
 \eqref{buch:eqn:definitionen:nullteilerbeispiel}
 sind Nullteiler im Ring $M_2(\mathbb{Z})$ der $2\times 2$-Matrizen.
 Der Matrizenring $M_2(\mathbb{Z})$ ist also nicht nullteilerfrei.
@@ -294,17 +293,17 @@ Dann gilt
 
 \begin{proof}[Beweis]
 Der Fall, dass der höchste Koeffizient verschwindet, weil $a_n$, $b_m$
-und $\lambda$ Nullteiler sind, kann unter den gegebenen Voraussetzungen
+oder $\lambda$ Nullteiler sind, kann unter den gegebenen Voraussetzungen
 nicht eintreten, daher werden die in
 Lemma~\ref{lemma:rechenregelnfuerpolynomgrad} gefunden Ungleichungen
-exakt für Produkte exakt.
+für Produkte exakt.
 \end{proof}
 
 Die Gleichung
 \eqref{buch:eqn:polynome:gradskalarexakt}
 kann im Fall $\lambda=0$ natürlich nicht gelten.
 Betrachten wir $\lambda$ wieder als ein Polynom, dann folgt aus
-\eqref{buch:eqn:polynome:gradproduktexakt}, dass
+\eqref{buch:eqn:polynome:gradsummeexakt}, dass
 \[
 \begin{aligned}
 \lambda&\ne 0  &&\Rightarrow& \deg (\lambda p) &= \deg\lambda + \deg p = 0+\deg p
@@ -312,13 +311,14 @@ Betrachten wir $\lambda$ wieder als ein Polynom, dann folgt aus
 \lambda&=0     &&\Rightarrow& \deg (0 p) &= \deg 0 + \deg p = \deg 0
 \end{aligned}
 \]
-Diese Gleichung kann also nur aufrechterhalten werden, wenn $\deg 0$ eine
-Zahl ist mit der Eigenschaft, dass man immer noch $\deg 0$ bekommt,
-wenn man irgend eine Zahl $\deg p$ hinzuaddiert.
-So eine Zahl gibt es in den ganzen Zahlen nicht, wenn zu einer ganzen
-Zahl eine andere ganze Zahl hinzuaddiert, ändert sich fast immer etwas.
-Man muss daher $\deg 0 = -\infty$ setzen mit der Festlegung, dass
-$-\infty + n = -\infty$ gilt für beliebige ganze Zahlen $n$.
+Diese Gleichung kann also nur aufrechterhalten werden, wenn die ``Zahl'' $\deg 0$ die Eigenschaft besitzt, dass man immer noch $\deg 0$ bekommt,
+wenn man irgend eine Zahl $\deg p$ hinzuaddiert. Wenn also
+\[\deg 0 + \deg p = \deg 0 \qquad \forall \deg p \in \mathbb Z\]
+gilt.
+So eine Zahl gibt es in den ganzen Zahlen nicht.
+Wenn man zu einer ganzen Zahl eine andere ganze Zahl hinzuaddiert, ändert sich fast immer etwas.
+Man muss daher $\deg 0 = -\infty$ setzen und festlegen, dass
+$-\infty + n = -\infty$ für beliebige ganze Zahlen $n$ gilt.
 
 \begin{definition}
 \label{buch:def:definitionen:polynomfilterung}
@@ -338,18 +338,18 @@ R^{(-\infty)}[X] & \subset
 	& R^{(0)}[X] & \subset
 		& R^{(1)}[X] & \subset & \dots & \subset
 			& R^{(k)}[X] & \subset
-				& R^{(k+1)}[x] & \subset & \dots & \subset
+				& R^{(k+1)}[X] & \subset & \dots & \subset
 					& R[X]\\[3pt]
 \bigg\| &
 	&\bigg\| &
-		&\bigg\| & & & 
+		&\bigg\| & & &
 			&&
 				&& & &
 					&
 \\[3pt]
 \{0\} & \subset
 	& R & \subset
-		& \{ax+b\;|a,b\in R\} & \subset & \dots &
+		& \{a_1X+a_0\;|a_k\in R\} & \subset & \dots &
 \end{array}
 \]
 und ihre Vereinigung ist $R[X]$.
