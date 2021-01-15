@@ -1,0 +1,113 @@
+%
+% rational.tex -- rationale Zahlen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Rationale Zahlen
+\label{buch:section:rationale-zahlen}}
+\rhead{Rationale Zahlen}
+In den ganzen Zahlen sind immer noch nicht alle linearen Gleichungen
+lösbar, es gibt keine ganze Zahl $x$ mit $3x=1$.
+Die nötige Erweiterung der ganzen Zahlen lernen Kinder noch bevor sie
+die negativen Zahlen kennenlernen.
+
+\subsubsection{Brüche}
+Rationale Zahlen sind Paare von ganzen Zahlen $a$ und $b\ne 0$,
+die in der speziellen Schreibweise $\frac{a}{b}$ dargestellt werden.
+Die Rechenregeln für Addition und Multiplikation sind
+\begin{align*}
+\frac{a}{b}+\frac{c}{d}
+&=
+\frac{ad+bc}{bd},
+\\
+\frac{a}{b}\cdot\frac{c}{d}
+&=
+\frac{ac}{bd}.
+\end{align*}
+Die speziellen Brüche $\frac{0}{b}$ und $\frac{1}{1}$ erfüllen die
+Regeln
+\begin{align*}
+\frac{a}{b}+\frac{0}{d} &= \frac{ad}{bd}
+\\
+\frac{a}{b}\cdot \frac{0}{c} &= \frac{0}{bc}
+\\
+\frac{a}{b}\cdot \frac{1}{1} &= \frac{a}{b}.
+\end{align*}
+Wir sind uns gewohnt, die Brüche $\frac{0}{b}$ mit der Zahl $0$ und
+$\frac{1}{1}$ mit der Zahl $1$ zu identifizieren.
+
+\subsubsection{Kürzen}
+Wie bei den ganzen Zahlen entstehen durch die Rechenregeln viele Brüche,
+denen wir den gleichen Wert zuordnen möchten
+Zum Beispiel folgt
+\[
+\frac{ac}{bc} - \frac{a}{b} 
+=
+\frac{abc-abc}{b^2c}
+=
+\frac{0}{b^2c},
+\]
+wir müssen also die beiden Brüche als gleichwertig betrachten.
+Allgemein gelten die zwei Brüche $\frac{a}{b}$ und $\frac{c}{d}$
+als äquivalent, wenn $ad-bc= 0$ gilt.
+
+Die Definition bestätigt, dass die beiden Brüche
+\[
+\frac{ac}{bc} 
+\qquad\text{und}\qquad
+\frac{a}{b}
+\]
+als gleichwertig zu betrachten sind.
+Der Übergang von links nach rechts heisst {\em Kürzen},
+\index{Kürzen}%
+der Übergang von rechts nach links heisst {\em Erweitern}.
+\index{Erweitern}%
+Eine rationale Zahl ist also eine Menge von Brüchen, die durch
+Kürzen und Erweitern ineinander übergeführt werden können.
+
+Die Menge der Äquivalenzklassen von Brüchen ist die Menge $\mathbb{Q}$
+der rationalen Zahlen.
+In $\mathbb{Q}$ sind Addition, Subtraktion und Multiplikation mit den
+gewohnten Rechenregeln, die bereits in $\mathbb{Z}$ gegolten haben,
+uneingeschränkt möglich.
+
+\subsubsection{Kehrwert}
+Zu jedem Bruch $\frac{a}{b}$ lässt sich der Bruch $\frac{b}{a}$,
+der sogenannte {\em Kehrwert}
+\index{Kehrwert}
+konstruieren.
+Er hat die Eigenschaft, dass
+\[
+\frac{a}{b}\cdot\frac{b}{a}
+=
+\frac{ab}{ba}
+=
+1
+\]
+gilt.
+Der Kehrwert ist also das multiplikative Inverse, jede von $0$ verschiedene
+rationale Zahl hat eine Inverse.
+
+\subsubsection{Lösung von linearen Gleichungen}
+Mit dem Kehrwert lässt sich jetzt jede lineare Gleichung lösen.
+Die Gleichung $ax=b$ hat die Lösung
+\[
+ax = \frac{a}{1} \frac{u}{v} = \frac{b}{1}
+\qquad\Rightarrow\qquad
+\frac{1}{a}
+ \frac{a}{1} \frac{u}{v} = \frac{1}{a}\frac{b}{1} 
+\qquad\Rightarrow\qquad
+\frac{u}{v} = \frac{b}{a}.
+\]
+Dasselbe gilt auch für rationale Koeffizienten $a$ und $b$.
+In der Menge $\mathbb{Q}$ kann man also beliebige lineare Gleichungen
+lösen.
+
+\subsubsection{Körper}
+$\mathbb{Q}$ ist ein Beispiel für einen sogenannten {\em Körper}, 
+in dem die arithmetischen Operationen Addition, Subtraktion, Multiplikation
+und Division möglich sind mit der einzigen Einschränkung, dass nicht durch
+$0$ dividiert werden kann.
+Körper sind die natürliche Bühne für die lineare Algebra, da sich lineare
+Gleichungssysteme ausschliesslich mit den Grundoperation lösen lassen.
+

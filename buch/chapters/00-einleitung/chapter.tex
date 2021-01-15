@@ -7,4 +7,234 @@
 \lhead{Einleitung}
 \rhead{}
 \addcontentsline{toc}{chapter}{Einleitung}
+Die Mathematik befasst sich neben dem Rechnen mit Zahlen, der Arithmetik,
+mit einer Vielzahl von Abstraktionen, die oft überhaupt nichts mit 
+Zahlen zu tun haben.
+Die Geometrie studiert zum Beispiel Objekte wie Punkte, Geraden, Kreise
+und deren Beziehungen untereinander, die man definieren kann ganz ohne
+das Wissen, was eine Zahl ist.
+Apollonius von Perga (262--190 BCE) hat in seinem Buch über Kegelschnitte
+als erster einen algebraischen Zusammenhang zwischen Zahlen festgestellt,
+die man also die Vorläufer heutiger Koordinaten eines Punktes ansehen könnte.
+Erst im 16.~Jahrhundert entwickelte sich die Algebra allerdings weit genug,
+dass eine Algebraisierung der Geometrie möglich wurde.
+Pierre de Fermat
+\index{Fermat, Pierre de}%
+und René Descartes
+\index{Descartes, René}%
+schufen die sogenannte {\em analytische Geometrie}. 
+Das rechtwinklige Koordinatensystem, nach Descartes auch karteisches
+Koordinatensystem genannt, beschreibt Punkte als Zahlenpaare $(x,y)$
+und Kurven in der Ebene durch ihre Gleichungen.
+Geraden können als Graphen der Funktion $f(x) = ax+b$ oder als Lösungsmenge
+linearer Gleichungen wie $ax+by=c$ verstanden werden.
+Eine Parabel kann als Graph einer quadratischen Funktion $f(x)=ax^2+bx+c$
+dargestellt werden.
+Die Punkte $(x,y)$ eines Kreises lösen eine Gleichung der Form
+\[
+(x-x_M)^2 + (y-y_M)^2 = r^2.
+\]
+Mit dieser einfachen Idee konnte jedes geometrische Problem in der Ebene
+in ein algebraisches Problem übersetzt werden und umgekehrt.
+
+Die Algebraisierung macht allerdings auch klar, dass dem Aufbau des
+Zahlensystems mehr Beachtung geschenkt werden muss.
+Zum Beispiel beschreibt die Gleichung
+\[
+x^2+(y-1)^2=4
+\]
+einen Kreis mit Radius $2$ um den Punkt $(0,1)$.
+Der Kreis hat natürlich zwei Schnittpunkte mit der $x$-Achse, wie jede
+Gerade, deren Abstand vom Mittelpunkt des Kreises kleiner als der Radius
+ist.
+Die Schnittpunkte haben die Koordinaten $(x_S,0)$ und $x_S$ muss die
+Gleichung
+\[
+x_S^2 + (0-1)^2 = x_S^2+1=4
+\qquad\Rightarrow\qquad
+x_S^2=3
+\]
+erfüllen.
+Eine solche Lösung ist nicht möglich, wenn man sich auf rationale
+Koordinaten $x_S\in\mathbb{Q}$ beschränkt, die Erweiterung auf
+reelle Zahlen ist notwendig.
+
+Kapitel~\ref{buch:chapter:zahlen} übernimmt die Aufgabe, die Zahlensysteme
+klar zu definieren und ihre wichtigsten Eigenschaften zusammenzutragen.
+Sie bilden das Fundament aller folgenden Konstruktionen.
+
+Die reellen Zahlen erweitern die rationalen Zahlen derart, dass damit
+zum Beispiel quaddratische Gleichungen gelöst werden können.
+Dies ist aber nicht die einzige mögliche Vorgehensweise.
+Die Zahl $\alpha=\sqrt{2}$ ist ja nur ein Objekt, mit dem gerechnet werden
+kann wie mit jeder anderen Zahl, welche aber die zusätzliche Rechenregel
+$\alpha^2=2$ erfüllt.
+Die Erweiterung von $\mathbb{R}$ zu den komplexen Zahl verlangt nur,
+dass man der Menge $\mathbb{R}$ ein neues algebraisches Objekt $i$
+hinzufügt, welches als spezielle Eigenschaft die Gleichung $i^2=-1$ hat.
+Bei $\sqrt{2}$ hat die geometrische Anschauung suggeriert, dass es eine
+solche Zahl ``zwischen'' den rationalen Zahlen gibt, aber für $i$
+gibt es keine solche Anschauung.
+Die imaginäre Einheit $i$ erhielt daher auch diesen durchaus 
+abwertend gemeinten Namen.
+
+Die Zahlensysteme lassen sich also verstehen als einfachere Zahlensysteme,
+denen man zusätzliche Objekte mit besonderen algebraischen Eigenschaften
+hinzufügt.
+Doch was sind das für Objekte, gibt es die überhaupt?
+Kann man deren Existenz einfach so postulieren, so wie man das mit $i$ 
+gemacht hat?
+Und was macht man, wenn man sich den nächsten ``algebraischen Wunsch''
+erfüllen will, auch einfach wieder die Existenz des neuen Objektes
+postulieren?
+
+Komplexen Zahlen und Matrizen zeigen, wie das gehen könnte.
+Indem man vier rationale Zahlen als $2\times 2$-Matrix in der Form
+\[
+A=
+\begin{pmatrix}
+a_{11}&a_{12}\\
+a_{21}&a_{22}
+\end{pmatrix}
+\]
+gruppiert und die Rechenoperationen
+\begin{align*}
+A+B
+&
+\begin{pmatrix}
+a_{11}&a_{12}\\
+a_{21}&a_{22}
+\end{pmatrix}
++
+\begin{pmatrix}
+b_{11}&b_{12}\\
+b_{21}&b_{22}
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11}+b_{11}&a_{12}+b_{12}\\
+a_{21}+b_{21}&a_{22}+b_{22}
+\end{pmatrix}
+\\
+AB
+&=
+\begin{pmatrix}
+a_{11}&a_{12}\\
+a_{21}&a_{22}
+\end{pmatrix}
+\begin{pmatrix}
+b_{11}&b_{12}\\
+b_{21}&b_{22}
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11}b_{11} + a_{12}b_{21} & a_{11}b_{21} + a_{12}b_{22} \\
+a_{21}b_{11} + a_{22}b_{21} & a_{21}b_{21} + a_{22}b_{22} 
+\end{pmatrix}
+\end{align*}
+definiert, kann man neue Objekte mit zum Teil bekannten, zum Teil
+aber auch ungewohnten algebraischen Eigenschaften bekommen.
+Die Matrizen der Form
+\[
+A_a
+=
+\begin{pmatrix} a&0\\0&a \end{pmatrix},
+\quad
+a\in\mathbb{Q}
+\]
+zum Beispiel erfüllen alle Regeln für das Rechnen mit rationalen Zahlen.
+$\mathbb{Q}$ kann man also als Teilmenge des neuen Systems ansehen.
+Aber die Matrix
+\[
+J
+=
+\begin{pmatrix} 0&-1\\1&0 \end{pmatrix}
+\]
+hat die Eigenschaft
+\[
+J^2 = 
+\begin{pmatrix} 0&-1\\1&0 \end{pmatrix}
+\begin{pmatrix} 0&-1\\1&0 \end{pmatrix}
+=
+\begin{pmatrix} -1&0\\0&-1\end{pmatrix}
+=
+-E = -A_1.
+\]
+Das neue Objekt $J$ ist ein explizit konstruiertes Objekt, welches
+die genau die rechnerischen Eigenschaften der imaginären Einheit $i$.
+
+Die imaginäre Einheit ist nicht die einzige Grösse, die sich auf diese
+Weise konstruieren lässt.
+Zum Beispiel erfüllt die Matrix
+\[
+W=\begin{pmatrix} 0&2\\1&0 \end{pmatrix}
+\qquad\text{die Gleichung}\qquad
+W^2 = \begin{pmatrix} 2&0\\0&2\end{pmatrix} = A_2,
+\]
+die Menge der Matrizen der 
+\[
+\mathbb{Q}(\sqrt{2})
+=
+\left\{\left.
+\begin{pmatrix} a&2b\\ b&a\end{pmatrix}
+\;\right|\;
+a,b\in\mathbb{Q}
+\right\}
+\]
+verhält sich daher genau so wie die Menge der rationalen Zahlen, denen
+man ein ``imaginäres'' neues Objekt $\sqrt{2}$ hinzugefügt hat.
+
+Matrizen sind also ein Werkzeug, mit dem sich algebraisches Systeme
+mit fast beliebigen Eigenschaften konstruieren lassen.
+Dies führt zu einer Explosion der denkbaren algebraischen Strukturen.
+Kapitel~\ref{buch:chapter:vektoren-und-matrizen} bringt etwas Ordnung
+in diese Vielfalt, indem die grundlegenden Strukturen charakterisiert
+und benannt werden.
+
+In den folgenden Kapiteln sollen dann weitere algebraische Konstrukte
+studiert und mit Matrizen realisiert werden.
+Den Anfang machen in Kapitel~\ref{buch:chapter:polynome} die Polynome.
+Polynome beschreiben grundlegende algebraische Eigenschaften eines
+einzelnen Objektes, sowohl $\sqrt{2}$ wie auch $i$ sind Lösungen einer
+Polynomgleichung.
+
+Eine besondere Rolle spielen in der Mathematik die Symmetrien.
+Eine der frühesten Anwendungen dieses Gedankens in der Algebra war
+die Überlegung, dass sich die Nullstellen einer Polynomgleichung
+permutieren lassen.
+Die Idee der Permutationsgruppe taucht auch in algebraischen Konstruktionen
+wie der Determinanten auf.
+Tatsächlich lassen sich Permutationen auch als Matrizen schreiben
+und die Rechenregeln für Determinanten sind ein direktes Abbild
+gewisser Eigenschaften von Transpositionen.
+Einmal mehr haben Matrizen ermöglicht, ein neues Konzept in einer
+bekannten Sprache auszudrücken.
+
+Die Darstellungstheorie ist das Bestreben, nicht nur Permutationen,
+sondern beliebige Gruppen von Symmetrien als Mengen von Matrizen
+darzustellen.
+Die abstrakten Symmetriegruppen erhalten damit immer konkrete 
+Realisierungen als Matrizenmengen.
+Auch kompliziertere Strukturen wie Ringe, Körper oder Algebren
+lassen sich mit Matrizen realisieren.
+Aber die Idee ist nicht auf die Geometrie beschränkt, auch analytische
+oder kombinatorische Eigenschaften lassen sich in Matrizenstrukturen
+abbilden und damit neuen rechnerischen Behandlungen zugänglich
+machen.
+
+Das Kapitel~\ref{buch:chapter:homologie} illustriert, wie weit dieser
+Plan führen kann.
+Die Konstruktion der Homologiegruppen zeigt, wie sich die Eigenschaften
+der Gestalt gewisser geometrischer Strukturen zunächst mit Matrizen,
+die kombinatorische Eigenschaften beschreiben, ausdrücken lassen.
+Anschliessend können daraus wieder algebraische Strukturen gewonnen
+werden.
+Gestalteigenschaften werden damit der rechnerischen Untersuchung zugänglich.
+
+Die folgenden Kapitel sollen zeigen, wie Matrizen der Schlüssel dafür
+sein können, fast jede denkbare rechnerische Struktur zu verstehen und
+auch zum Beispiel für die Berechnung mit dem Computer zu realisieren.
+
+
+
 

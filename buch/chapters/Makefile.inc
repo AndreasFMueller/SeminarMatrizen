@@ -9,6 +9,7 @@ CHAPTERFILES = 								\
 	chapters/vorwort.tex
 
 include chapters/00-einleitung/Makefile.inc
+include chapters/05-zahlen/Makefile.inc
 include chapters/10-vektorenmatrizen/Makefile.inc
 include chapters/20-polynome/Makefile.inc
 include chapters/30-endlichekoerper/Makefile.inc

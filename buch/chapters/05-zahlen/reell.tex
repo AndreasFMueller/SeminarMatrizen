@@ -1,0 +1,88 @@
+%
+% reell.tex -- reelle Zahlen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Reelle Zahlen
+\label{buch:section:reelle-zahlen}}
+\rhead{Reelle Zahlen}
+In den rationalen Zahlen lassen sich algebraische Gleichungen höheren
+Grades immer noch nicht lösen.
+Dass die Gleichung $x^2=2$ keine rationale Lösung hat, ist schon den
+Pythagoräern aufgefallen.
+Die geometrische Intuition der Zahlengeraden führt uns dazu, nach
+Zahlen zu suchen, die gute Approximationen für $\sqrt{2}$ sind.
+Wir können zwar keine Bruch angeben, dessen Quadrat $2$ ist, aber 
+wenn es eine Zahl $\sqrt{2}$ mit dieser Eigenschaft git, dann können
+wir dank der Ordnungsrelation feststellen, dass sie in all den folgenden,
+kleiner werdenden Intervallen
+\[
+\biggl[1,\frac32\biggr],\;
+\biggl[\frac75,\frac{17}{12}\biggr],\;
+\biggl[\frac{41}{29},\frac{99}{70}\biggr],\;
+\biggl[\frac{239}{169},\frac{577}{408}\biggr],\;
+\dots
+\]
+enthalten sein muss\footnote{Die Näherungsbrüche konvergieren sehr
+schnell, sie sind mit der sogenannten Kettenbruchentwicklung der
+Zahl $\sqrt{2}$ gewonnen.}.
+Jedes der Intervalle enthält auch das nachfolgende Intervall, und
+die intervalllänge konvergiert gegen 0.
+Eine solche Intervallschachtelung beschreibt also genau eine Zahl,
+aber möglicherweise keine, die sich als Bruch schreiben lässt.
+
+Die Menge $\mathbb{R}$ der reellen Zahlen kann auch als die Menge 
+aller Cauchy-Folgen $(a_n)_{n\in\mathbb{N}}$. 
+Eine Folge ist eine Cauchy-Folge, wenn für jedes $\varepsilon>0$
+es eine Zahl $N(\varepsilon)$ gibt derart, dass $|a_n-a_m|<\varepsilon$
+für $n,m>N(\varepsilon)$.
+Ab einer geeigneten Stelle $N(\varepsilon)$ sind die Folgenglieder also
+mit Genauigkeit $\varepsilon$ nicht mehr unterscheidbar.
+
+Nicht jede Cauchy-Folge hat eine rationale Zahl als Grenzwert.
+Da wir für solche Folgen noch keine Zahlen als Grenzwerte haben,
+nehmen wir die Folge als eine mögliche Darstellung der Zahl.
+Die Folge kann man ja auch verstehen als eine Vorschrift, wie man
+Approximationen der Zahl berechnen kann.
+
+Zwei verschiedene Cauchy-Folgen $(a_n)_{n\in\mathbb{N}}$ und
+$(b_n)_{n\in\mathbb{N}}$ 
+können den gleichen Grenzwert haben.
+So sind 
+\[
+\begin{aligned}
+a_n&\colon&&
+1,\frac32,\frac75,\frac{17}{12},\frac{41}{29},\frac{99}{70},\frac{239}{169},
+\frac{577}{408},\dots
+\\
+b_n&\colon&&
+1,1.4,1.41,1.412,1.4142,1.41421,1.414213,1.4142135,\dots
+\end{aligned}
+\]
+beide Folgen, die die Zahl $\sqrt{2}$ approximieren.
+Im Allgemeinen tritt dieser Fall ein, wenn $|a_n-b_n|$ eine
+Folge mit Grenzwert $0$ oder Nullfolge ist.
+Eine reelle Zahl ist also die Menge aller rationalen Cauchy-Folgen,
+deren Differenzen Nullfolgen sind.
+
+Die Menge $\mathbb{R}$ der reellen Zahlen kann man also ansehen
+als bestehend aus Mengen von Folgen, die alle den gleichen Grenzwert
+haben.
+Die Rechenregeln der Analysis 
+\[
+\lim_{n\to\infty} (a_n + b_n)
+=
+\lim_{n\to\infty} a_n +
+\lim_{n\to\infty} b_n
+\qquad\text{und}\qquad
+\lim_{n\to\infty} a_n \cdot b_n
+=
+\lim_{n\to\infty} a_n \cdot
+\lim_{n\to\infty} b_n 
+\]
+stellen sicher, dass sich die Rechenoperationen von den rationalen
+Zahlen auf die reellen Zahlen übertragen lassen.
+
+
+
+
