@@ -276,6 +276,122 @@ komplexen Ebene eine Drehstreckung durch.
 Auf diese geometrische Beschreibung der Multiplikation werden wir zurückkommen,
 wenn wir die komplexen Zahlen als Matrizen beschreiben wollen.
 
+\subsubsection{Algebraische Vollständigkeit}
+Die komplexen Zahlen $\mathbb{C}$ sind als Erweiterung von $\mathbb{R}$
+so konstruiert worden, dass die Gleichung $x^2+1=0$ eine Lösung hat.
+Etwas überraschend ist dagegen, dass in dieser Erweiterung jetzt jede
+beliebige algebraische Gleichung lösbar geworden.
+Dies ist der Inhalt des Fundamentalsatzes der Algebra.
+
+\begin{satz}[Fundamentalsatz der Algebra]
+\index{Fundamentalsatz der Algebra}%
+Jede algebraische Gleichung der Form
+\[
+p(x)=x^n + a_{n-1}x^{n-1}+a_1x+a_0=0,\qquad a_k\in\mathbb{C}
+\]
+mit komplexen Koeffizienten hat $n$ möglicherweise mit Vielfachheit
+gezähle Nullstellen $\alpha_1,\dots,\alpha_m$, d.~h.~das Polynom $p(x)$
+lässt sich in Linearfaktoren
+\[
+p(x)
+=
+(x-\alpha_1)^{k_1}(x-\alpha_2)^{k_2}\cdot\ldots\cdot(x-\alpha_m)^{k_m}
+\]
+zerlegen, wobei $k_1+k_2+\dots+k_m=n$.
+Die Zahlen $k_j$ heisst die {\em Vielfachheit} der Nullstelle $\alpha_j$.
+\end{satz}
+
+Der Fundamentalsatz der Algebra wurde erstmals von Carl Friedrich Gauss
+\index{Gauss, Carl Friedrich}%
+bewiesen.
+Seither sind viele alternative Beweise mit Methoden aus den verschiedensten
+Gebieten der Mathematik gegeben worden.
+Etwas salopp könnten man sagen, dass der Fundamentalsatz ausdrückt, dass
+die Konstruktion der Zahlensysteme mit $\mathbb{C}$ abgeschlossen ist,
+soweit damit die Lösbarkeit beliebiger Gleichungen angestrebt ist.
+
+\subsubsection{Quaternionen und Octonionen}
+Die komplexen Zahlen ermöglichen eine sehr effiziente Beschreibung 
+geometrischer Abbildungen wie Translationen, Spiegelungen und 
+Drehstreckungen in der Ebene.
+Es drängt sich damit die Frage auf, ob sich $\mathbb{C}$ so erweitern
+lässt, dass man damit auch Drehungen im dreidimensionalen Raum
+beschreiben könnte.
+Da Drehungen um verschiedene Achsen nicht vertauschen, kann eine solche
+Erweiterung nicht mehr kommutativ sein.
+
+William Rowan Hamilton propagierte ab 1843 eine Erweiterung von $\mathbb{C}$
+mit zwei zusätzlichen Einheiten $j$ und $k$ mit den nichtkommutativen
+Relationen
+\begin{equation}
+i^2 = j^2 = k^2 = ijk = -1.
+\label{buch:zahlen:eqn:quaternionenregeln}
+\end{equation}
+Er nannte die Menge aller Linearkombinationen 
+\[
+\mathbb{H} = \{ a_0+a_1i+a_2j+a_3k\;|\; a_l\in \mathbb{R}\}
+\]
+die {\em Quaternionen}, die Einheiten $i$, $j$ und $k$ heissen auch
+\index{Quaternionen}%
+Einheitsquaternionen.
+\index{Einheitsquaternionen}%
+Konjugation, Betrag und Division können ganz ähnlich wie bei den
+komplexen Zahlen definiert werden und machen $\mathbb{H}$ zu einer
+sogenannten {\em Divisionsalgebra}.
+\index{Divisionsalgebra}%
+Alle Rechenregeln mit Ausnahme der Kommutativität der Multiplikation
+sind weiterhin gültig und durch jede von $0$ verschiedene Quaternion
+kann auch dividiert werden.
+
+Aus den Regeln für die Quadrate der Einheiten in
+\eqref{buch:zahlen:eqn:quaternionenregeln} folgt zum Beispiel
+$i^{-1}=-i$, $j^{-1}=-j$ und $k^{-1}=-k$.
+Die letzte Bedingung liefert daraus
+\[
+ijk=-1
+\qquad\Rightarrow\qquad
+\left\{
+\quad
+\begin{aligned}
+ij
+&=
+ijkk^{-1}=-1k^{-1}=k
+\\
+i^2jk&=-i=-jk
+\\
+-j^2k&=-ji=k
+\end{aligned}
+\right.
+\]
+Aus den Relationen~\eqref{buch:zahlen:eqn:quaternionenregeln}
+folgt also insbesondere auch, dass $ij=-ji$.
+Ebenso kann abgeleitet werden, dass $jk=-kj$ und $ik=-ki$.
+Man sagt, die Einheiten sind {\em antikommutativ}.
+\index{antikommutativ}%
+
+Die Beschreibung von Drehungen mit Quaternionen ist in der
+Computergraphik sehr beliebt, weil eine Quaternion mit nur vier
+Komponenten $a_0,\dots,a_3$ vollständig beschrieben ist.
+Eine Transformationsmatrix des dreidimensionalen Raumes enthält
+dagegen neun Koeffizienten, die vergleichsweise komplizierte 
+Abhängigkeiten erfüllen müssen.
+Quaternionen haben auch in weiteren Gebieten interessante Anwendungen,
+zum Beispiel in der Quantenmechanik, wo antikommutierende Operatoren
+bei der Beschreibung von Fermionen eine zentrale Rolle spielen.
+
+Aus rein algebraischer Sicht kann man die Frage stellen, ob es eventuell
+auch noch grössere Divisionsalgebren gibt, die $\mathbb{H}$ erweitern.
+Tatsächlich hat Arthur Cayley 1845 eine achtdimensionale Algebra,
+die Oktonionen $\mathbb{O}$, mit vier weiteren Einheiten beschrieben.
+\index{Cayley, Arthur}%
+Allerdings sind die Oktonionen nur beschränkt praktisch anwendbar.
+Grund dafür ist die Tatsache, dass die Multiplikation in $\mathbb{O}$
+nicht mehr assoziativ ist.
+Das Produkt von mehr als zwei Faktoren aus $\mathbb{O}$ ist von der
+Reihenfolge der Ausführung der Multiplikationen abhängig.
+
+
+
 
 
 

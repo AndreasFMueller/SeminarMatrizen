@@ -1,0 +1,81 @@
+%
+% normalformen.tex -- Normalformen einer Matrix
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Normalformen
+\label{buch:section:normalformen}}
+\rhead{Normalformen}
+In den Beispielen im vorangegangenen wurde wiederholt der Trick
+verwendet, den Koeffizientenkörper so zu erweitern, dass das
+charakteristische Polynom in Linearfaktoren zerfällt und 
+für jeden Eigenwert Eigenvektoren gefunden werden können.
+Diese Idee ermöglicht, eine Matrix in einer geeigneten Körpererweiterung
+in eine besonders einfache Form zu bringen, das Problem dort zu lösen.
+Anschliessend kann man sich darum kümmern in welchem Mass die gewonnenen
+Resultate wieder in den ursprünglichen Körper transportiert werden können.
+
+\subsection{Diagonalform}
+Sei $A$ eine beliebige Matrix mit Koeffizienten in $\Bbbk$ und sei $\Bbbk'$
+eine Körpererweiterung von $\Bbbk$ derart, dass das charakteristische
+Polynom in Linearfaktoren
+\[
+\chi_A(x)
+=
+(x-\lambda_1)^{k_1}\cdot (x-\lambda_2)^{k_2}\cdot\dots\cdot (x-\lambda_m)^{k_m}
+\]
+mit Vielfachheiten $k_m$ zerfällt, $\lambda_i\in\Bbbk'$.
+Zu jedem Eigenwert $\lambda_i$ gibt es sicher einen Eigenvektor, wir 
+wollen aber in diesem Abschnitt zusätzlich annehmen, dass es eine Basis
+aus Eigenvektoren gibt.
+In dieser Basis bekommt die Matrix Diagonalform, wobei auf der 
+Diagonalen nur Eigenwerte vorkommen können.
+Man kann die Vektoren so anordnen, dass die Diagonalmatrix in Blöcke
+der Form $\lambda_iE$ zerfällt
+\[
+\def\temp#1{\multicolumn{1}{|c}{\raisebox{0pt}[12pt][7pt]{\phantom{x}$#1$}\phantom{x}}}
+A'
+=\left(
+\begin{array}{cccc}
+\cline{1-1}
+\temp{\lambda_1E} &\multicolumn{1}{|c}{}&        &           \\
+\cline{1-2}
+          &\temp{\lambda_2E}&\multicolumn{1}{|c}{}&           \\
+\cline{2-3}
+          &           &\temp{\ddots}&\multicolumn{1}{|c}{}\\
+\cline{3-4}
+          &           &        &\multicolumn{1}{|c|}{\raisebox{0pt}[12pt][7pt]{\phantom{x}$\lambda_mE$}\phantom{x}}\\
+\cline{4-4}
+\end{array}
+\right)
+\]
+Über die Grösse eines solchen $\lambda_iE$-Blockes können wir zum jetzigen
+Zeitpunkt noch keine Aussagen machen.
+
+Die Matrizen $A-\lambda_kE$ enthalten jeweils einen Block aus lauter
+Nullen.
+Das Produkt all dieser Matrizen  ist daher
+\[
+(A-\lambda_1E)
+(A-\lambda_2E)
+\cdots
+(A-\lambda_mE)
+=
+0.
+\]
+Über dem Körper $\Bbbk'$ gibt es also das Polynom
+$m(x)=(x-\lambda_1)(x-\lambda_2)\cdots(x-\lambda_m)$ mit der Eigenschaft
+$m(A)=0$.
+Dies ist auch das Polynom von kleinstmöglichem Grad, denn für jeden
+Eigenwert muss ein entsprechender Linearfaktor in so einem Polynom vorkommen.
+Das Polynom $m(x)$ ist daher das Minimalpolynom der Matrix $A$.
+Da jeder Faktor in $m(x)$ auch ein Faktor von $\chi_A(x)$ ist,
+folgt wieder $\chi_A(A)=0$.
+Ausserdem ist über dem Körper $\Bbbk'$ das Polynom $m(x)$ ein Teiler
+des charakteristischen Polynoms $\chi_A(x)$.
+
+\subsection{Jordan-Normalform}
+
+\subsection{Reelle Normalform}
+
+\subsection{Obere Hessenberg-Form}

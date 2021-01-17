@@ -6,6 +6,8 @@
 
 CHAPTERFILES = $(CHAPTERFILES)						\
 	chapters/40-eigenwerte/numerisch.tex				\
+	chapters/40-eigenwerte/normalformen.tex				\
+	chapters/40-eigenwerte/grundlagen.tex				\
 	chapters/40-eigenwerte/spektralradius.tex			\
 	chapters/40-eigenwerte/spektraltheorie.tex			\
 	chapters/40-eigenwerte/uebungsaufgaben/4001.tex			\
