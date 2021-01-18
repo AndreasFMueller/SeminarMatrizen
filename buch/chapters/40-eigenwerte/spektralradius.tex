@@ -9,3 +9,431 @@
 % Konvergenz von Matrixreihen
 % Konditionszahl
 
+\begin{definition}
+\index{Norm}%
+Die {\em Norm} einer Matrix $M$ ist
+\[
+\|M\|
+=
+\max\{|Mx|\,|\, x\in\mathbb R^n\wedge |x|=1\}.
+\]
+Für einen Vektor $x\in\mathbb R^n$ gilt $|Mx| \le \|M\|\cdot |x|$.
+\end{definition}
+
+Die Bedingung \eqref{buch:gs:fehler} bedeutet jedoch nicht,
+dass die Norm der Ableitung $<1$ sein muss, es genügt, wenn
+genügend hohe Potenzen der Ableitung eine Norm $<1$ haben.
+\index{Ableitung}%
+
+\begin{beispiel}
+Die Matrix
+\[
+M=\begin{pmatrix}
+0&2\\
+\frac13&0
+\end{pmatrix}
+\]
+hat Norm
+\[
+\|M\|
+=
+\max_{|x|=1} |Mx| 
+=
+\max_{t\in\mathbb R} \sqrt{2^2\cos^2 t +\frac1{3^2}\sin^2t} \ge 2.
+\]
+Da aber
+\[
+M^2 = \begin{pmatrix}
+\frac{2}{3}&0\\
+0&\frac{2}{3}
+\end{pmatrix}
+\qquad\Rightarrow\qquad \|M^2\|=\frac23
+\]
+ist, wird eine Iteration mit Ableitungsmatrix $M$ trotzdem
+konvergieren, weil der Fehler nach jedem zweiten Schritt um den
+Faktor $\frac23$ kleiner geworden ist.
+\end{beispiel}
+
+Dies führt uns auf die Grösse
+\begin{equation}
+\pi(M)
+=
+\limsup_{n\to\infty} \|M^n\|^\frac1n.
+\label{buch:eqn:gelfand-grenzwert}
+\end{equation}
+Ist $\pi(M) > 1$, dann gibt es Anfangsvektoren $v$ für die Iteration,
+für die $M^kv$ über alle Grenzen wächst.
+Ist $\pi(M) < 1$, dann wird jeder Anfangsvektor $v$ zu einer Iterationsfolge
+$M^kv$ führen, die gegen $0$ konvergiert.
+Die Kennzahl $\pi(M)$ erlaubt also zu entscheiden, ob ein
+Iterationsverfahren konvergent ist.
+\index{Konvergenzbedingung}%
+
+Die Berechnung von $\pi(M)$ als Grenzwert ist sehr unhandlich.
+Viel einfacher ist der Begriff des Spektralradius.
+\index{Spektralradius}%
+
+\begin{definition}
+\label{buch:definition:spektralradius}
+Der {\em Spektralradius} der Matrix $M$ ist der Betrag des betragsgrössten
+Eigenwertes.
+\end{definition}
+
+%
+% Gelfand-Radius und Eigenwerte
+%
+\subsection{Gelfand-Radius und Eigenwerte
+\label{buch:subsection:spektralradius}}
+In Abschnitt~\ref{buch:subsection:konvergenzbedingung}
+ist der Gelfand-Radius mit Hilfe eines Grenzwertes definiert worden.
+\index{Gelfand-Radius}%
+Nur dieser Grenzwert ist in der Lage, über die Konvergenz eines 
+Iterationsverfahrens Auskunft zu geben.
+Der Grenzwert ist aber sehr mühsam zu berechnen.
+\index{Grenzwert}%
+Es wurde angedeutet, dass der Gelfand-Radius mit dem Spektralradius
+übereinstimmt, dem Betrag des des betragsgrössten Eigenwertes.
+Dies hat uns ein vergleichsweise einfach auszuwertendes Konvergenzkriterium
+geliefert.
+\index{Konvergenzkriterium}%
+In diesem Abschnitt soll diese Identität zunächst an Spezialfällen
+und später ganz allgemein gezeigt werden.
+
+\subsubsection{Spezialfall: Diagonalisierbare Matrizen}
+Ist eine Matrix $A$ diagonalisierbar, dann kann Sie durch eine Wahl
+einer geeigneten Basis in Diagonalform
+\index{diagonalisierbar}%
+\index{Diagonalform}%
+\[
+A'
+=
+\begin{pmatrix}
+\lambda_1&        0&\dots &0\\
+0        &\lambda_2&\dots &0\\
+\vdots   &         &\ddots&\vdots\\
+0        &        0&\dots &\lambda_n
+\end{pmatrix}
+\]
+gebracht werden, wobei die Eigenwerte $\lambda_i$  möglicherweise auch
+komplex sein können.
+\index{komplex}%
+Die Bezeichnungen sollen so gewählt sein, dass $\lambda_1$ der
+betragsgrösste Eigenwert ist, dass also
+\[
+|\lambda_1| \ge |\lambda_2| \ge \dots \ge |\lambda_n|.
+\]
+Wir nehmen für die folgende, einführende Diskussion ausserdem an, dass
+sogar $|\lambda_1|>|\lambda_2|$ gilt.
+
+Unter den genannten Voraussetzungen kann man jetzt den Gelfand-Radius
+von $A$ berechnen.
+Dazu muss man $|A^nv|$ für einen beliebigen Vektor $v$ und für
+beliebiges $n$ berechnen.
+Der Vektor $v$ lässt sich in der Eigenbasis von $A$ zerlegen, also
+als Summe
+\index{Eigenbasis}%
+\[
+v = v_1+v_2+\dots+v_n
+\]
+schreiben, wobei $v_i$ Eigenvektoren zum Eigenwert $\lambda_i$ sind oder
+Nullvektoren.
+Die Anwendung von $A^k$ ergibt dann
+\[
+A^k v
+=
+A^k v_1 + A^k v_2 + \dots + A^k v_n
+=
+\lambda_1^k v_1 + \lambda_2^k v_2 + \dots + \lambda_n^k v_n.
+\]
+Für den Grenzwert braucht man die Norm von $A^kv$, also
+\begin{align}
+|A^kv|
+&= |\lambda_1^k v_1 + \lambda_2^k v_2 + \dots + \lambda_3 v_3|
+\notag
+\\
+\Rightarrow\qquad
+\frac{|A^kv|}{\lambda_1^k}
+&=
+\biggl|
+v_1 +
+\biggl(\frac{\lambda_2}{\lambda_1}\biggr)^k v_2
++
+\dots
++
+\biggl(\frac{\lambda_n}{\lambda_1}\biggr)^k v_n
+\biggr|.
+\label{buch:spektralradius:eqn:eigenwerte}
+\end{align}
+Da alle Quotienten $|\lambda_i/\lambda_1|<1$ sind für $i\ge 2$,
+konvergieren alle Terme auf der rechten Seite von
+\eqref{buch:spektralradius:eqn:eigenwerte}
+ausser dem ersten gegen $0$.
+Folglich ist
+\[
+\lim_{k\to\infty} \frac{|A^kv|}{|\lambda_1|^k}
+=
+|v_1|
+\qquad\Rightarrow\qquad
+\lim_{k\to\infty} \frac{|A^kv|^\frac1k}{|\lambda_1|}
+=
+\lim_{k\to\infty}|v_1|^{\frac1k}
+=
+1.
+\]
+Dies gilt für alle Vektoren $v$, für die $v_1\ne 0$ ist.
+Der maximale Wert dafür wird erreicht, wenn man für 
+$v$ einen Eigenvektor der Länge $1$ zum Eigenwert $\lambda_1$ einsetzt,
+dann ist $v=v_1$.
+Es folgt dann
+\[
+\pi(A)
+=
+\lim_{k\to\infty} \| A^k\|^\frac1k
+=
+\lim_{k\to\infty} |A^kv|^\frac1k
+=
+|\lambda_1|
+=
+\varrho(A).
+\]
+Damit ist gezeigt, dass im Spezialfall einer diagonalisierbaren Matrix der
+Gelfand-Radius tatsächlich der Betrag des betragsgrössten Eigenwertes ist.
+\index{Gelfand-Radius}%
+
+\subsubsection{Blockmatrizen}
+Wir betrachten jetzt eine $(n+m)\times(n+m)$-Blockmatrix der Form
+\begin{equation}
+A = \begin{pmatrix} B & 0 \\ 0 & C\end{pmatrix}
+\label{buch:spektralradius:eqn:blockmatrix}
+\end{equation}
+mit einer $n\times n$-Matrix $B$ und einer $m\times m$-Matrix $C$.
+Ihre Potenzen haben ebenfalls Blockform:
+\[
+A^k = \begin{pmatrix} B^k & 0 \\ 0 & C^k\end{pmatrix}.
+\]
+Ein Vektor $v$ kann in die zwei Summanden $v_1$ bestehen aus den
+ersten $n$ Komponenten und $v_2$ bestehen aus den letzten $m$ 
+Komponenten zerlegen.
+Dann ist
+\[
+A^kv = B^kv_1 + C^kv_2.
+\qquad\Rightarrow\qquad
+|A^kv|
+\le
+|B^kv_1| + |C^kv_2|
+\le 
+\pi(B)^k |v_1| + \pi(C)^k |v_2|.
+\]
+Insbesondere haben wir das folgende Lemma gezeigt:
+
+\begin{lemma}
+\label{buch:spektralradius:lemma:diagonalbloecke}
+Eine diagonale Blockmatrix $A$ \eqref{buch:spektralradius:eqn:blockmatrix}
+Blöcken $B$ und $C$  hat Gelfand-Radius
+\[
+\pi(A) = \max ( \pi(B), \pi(C) )
+\]
+\end{lemma}
+
+Selbstverständlich lässt sich das Lemma auf Blockmatrizen mit beliebig
+vielen diagonalen Blöcken verallgemeinern.
+\index{Blockmatrix}%
+
+Für Diagonalmatrizen der genannten Art sind aber auch die 
+Eigenwerte leicht zu bestimmen.
+\index{Diagonalmatrix}%
+Hat $B$ die Eigenwerte $\lambda_i^{(B)}$ mit $1\le i\le n$ und $C$ die
+Eigenwerte $\lambda_j^{(C)}$ mit $1\le j\le m$, dann ist das charakteristische
+Polynom der Blockmatrix $A$ natürlich
+\index{charakteristisches Polynom}%
+\index{Polynom!charakteristisch}%
+\[
+\chi_A(\lambda) = \chi_B(\lambda)\chi_C(\lambda),
+\]
+woraus folgt, dass die Eigenwerte von $A$ die Vereinigung der Eigenwerte
+von $B$ und $C$ sind.
+Daher gilt auch für die Spektralradius die Formel
+\[
+\varrho(A) = \max(\varrho(B) , \varrho(C)).
+\]
+
+\subsubsection{Jordan-Blöcke}
+\index{Jordan-Block}%
+Nicht jede Matrix ist diagonalisierbar, die bekanntesten Beispiele sind
+die Matrizen
+\begin{equation}
+J_n(\lambda)
+=
+\begin{pmatrix}
+\lambda &      1&       &       &       &       \\
+        &\lambda&      1&       &       &       \\[-5pt]
+        &       &\lambda&\ddots &       &       \\[-5pt]
+        &       &       &\ddots &      1&       \\
+        &       &       &       &\lambda&      1\\
+        &       &       &       &       &\lambda
+\end{pmatrix},
+\label{buch:spektralradius:eqn:jordan}
+\end{equation}
+wobei $\lambda\in\mathbb C$ eine beliebige komplexe Zahl ist.
+Wir nennen diese Matrizen {\em Jordan-Matrizen}.
+Es ist klar, dass $J_n(\lambda)$ nur den $n$-fachen Eigenwert
+$\lambda$ hat und dass der erste Standardbasisvektor ein
+Eigenvektor zu diesem Eigenwert ist.
+
+In der linearen Algebra lernt man, dass jede Matrix durch Wahl
+\index{lineare!Algebra}%
+einer geeigneten Basis als Blockmatrix der Form
+\[
+A
+=
+\begin{pmatrix}
+J_{n_1}(\lambda_1) &        0         & \dots & 0 \\
+       0         & J_{n_2}(\lambda_2) & \dots & 0 \\[-4pt]
+\vdots           &\vdots            &\ddots &\vdots \\
+       0         &        0         & \dots &J_{n_l}(\lambda_l)
+\end{pmatrix}
+\]
+geschrieben werden kann\footnote{Sofern die Matrix komplexe Eigenwerte
+hat muss man auch komplexe Basisvektoren zulassen.}.
+Die früheren Beobachtungen über den Spektralradius und den
+Gelfand-Radius von Blockmatrizen zeigen uns daher, dass
+nur gezeigt werden muss, dass nur die Gleichheit des Gelfand-Radius
+und des Spektral-Radius von Jordan-Blöcken gezeigt werden muss.
+
+\subsubsection{Iterationsfolgen}
+\begin{satz}
+\label{buch:spektralradius:satz:grenzwert}
+Sei $A$ eine $n\times n$-Matrix mit Spektralradius $\varrho(A)$.
+Dann ist $\varrho(A)<1$ genau dann, wenn
+\[
+\lim_{k\to\infty} A^k = 0.
+\]
+Ist andererseits $\varrho(A) > 1$, dann ist
+\[
+\lim_{k\to\infty} \|A^k\|=\infty.
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Wie bereits angedeutet reicht es, diese Aussagen für einen einzelnen
+Jordan-Block mit Eigenwert $\lambda$ zu beweisen.
+Die $k$-te Potenz von $J_n(\lambda)$ ist
+\[
+J_n(\lambda)^k
+=
+\renewcommand\arraystretch{1.35}
+\begin{pmatrix}
+\lambda^k    & \binom{k}{1} \lambda^{k-1} & \binom{k}{2}\lambda^{k-2}&\dots&
+\binom{k}{n-1}\lambda^{k-n+1}\\
+      0      &\lambda^k & \binom{k}{1} \lambda^{k-1} & \dots &\binom{k}{n-2}\lambda^{k-n+2}\\
+      0     &      0    & \lambda^k & \dots &\binom{k}{n-k+3}\lambda^{k-n+3}\\
+\vdots      & \vdots    &               &\ddots & \vdots\\
+     0      &      0    &      0        &\dots  &\lambda^k
+\end{pmatrix}.
+\]
+Falls $|\lambda| < 1$ ist, gehen alle Potenzen von $\lambda$ exponentiell
+schnell gegen $0$, während die Binomialkoeffizienten nur polynomiell
+schnell anwachsen. 
+\index{Binomialkoeffizient}%
+In diesem Fall folgt also $J_n(\lambda)\to 0$.
+
+Falls $|\lambda| >1$ divergieren bereits die Elemente auf der Diagonalen,
+also ist $\|J_n(\lambda)^k\|\to\infty$ mit welcher Norm auch immer man
+man die Matrix misst.
+\end{proof}
+
+Aus dem Beweis kann man noch mehr ablesen.
+Für $\varrho(A)< 1$ ist die Norm $ \|A^k\| \le M \varrho(A)^k$ für eine
+geeignete Konstante $M$,
+für $\varrho(A) > 1$ gibt es eine Konstante $m$ mit
+$\|A^k\| \ge m\varrho(A)^k$.
+
+\subsubsection{Der Satz von Gelfand}
+Der Satz von Gelfand ergibt sich jetzt als direkte Folge aus dem
+Satz~\ref{buch:spektralradius:satz:grenzwert}.
+
+\begin{satz}[Gelfand]
+\index{Satz von Gelfand}%
+\index{Gelfand!Satz von}%
+\label{buch:satz:gelfand}
+Für jede komplexe $n\times n$-Matrix $A$ gilt
+\[
+\pi(A)
+=
+\lim_{k\to\infty}\|A^k\|^\frac1k
+=
+\varrho(A).
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Der Satz~\ref{buch:spektralradius:satz:grenzwert} zeigt, dass der
+Spektralradius ein scharfes Kriterium dafür ist, ob $\|A^k\|$ 
+gegen 0 oder $\infty$ konvergiert.
+Andererseits ändert ein Faktor $t$ in der Matrix $A$ den Spektralradius
+ebenfalls um den gleichen Faktor, also $\varrho(tA)=t\varrho(A)$.
+Natürlich gilt auch
+\[
+\pi(tA)
+=
+\lim_{k\to\infty} \|t^kA^k\|^\frac1k
+=
+\lim_{k\to\infty} t\|A^k\|^\frac1k
+=
+t\lim_{k\to\infty} \|A^k\|^\frac1k
+=
+t\pi(A).
+\]
+
+Wir betrachten jetzt die Matrix
+\[
+A(\varepsilon) = \frac{A}{\varrho(A) + \varepsilon}.
+\]
+Der Spektralradius von $A(\varepsilon)$ ist
+\[
+\varrho(A(\varepsilon)) = \frac{\varrho(A)}{\varrho(A)+\varepsilon},
+\]
+er ist also $>1$ für negatives $\varepsilon$ und $<1$ für positives
+$\varepsilon$.
+Aus dem Satz~\ref{buch:spektralradius:satz:grenzwert} liest man daher ab,
+dass $\|A(\varepsilon)^k\|$ genau dann gegen $0$ konvergiert, wenn
+$\varepsilon > 0$ ist und divergiert genau dann, wenn $\varepsilon< 0$ ist.
+
+Aus der Bemerkung nach dem Beweis von
+Satz~\ref{buch:spektralradius:satz:grenzwert} schliesst man daher, dass 
+es im Fall $\varepsilon > 0$ eine Konstante $M$ gibt mit
+\begin{align*}
+\|A(\varepsilon) ^k\|\le M\varrho(A(\varepsilon))^k
+\quad&\Rightarrow\quad
+\|A(\varepsilon) ^k\|^\frac1k\le M^\frac1k\varrho(A(\varepsilon))
+\\
+&\Rightarrow\quad
+\pi(A) \le  \varrho(A(\varepsilon))
+\underbrace{\lim_{k\to\infty} M^\frac1k}_{\displaystyle=1}
+=
+\varrho(A(\varepsilon))
+=
+\varrho(A)+\varepsilon.
+\end{align*}
+Dies gilt für beliebige $\varepsilon >0$, es folgt daher
+$\pi(A) \le \varrho(A)$.
+
+Andererseits gibt es für $\varepsilon <0$ eine Konstante $m$ mit
+\begin{align*}
+\|A(\varepsilon) ^k\|\ge m\varrho(A(\varepsilon))^k
+\quad&\Rightarrow\quad
+\|A(\varepsilon) ^k\|^\frac1k\ge m^\frac1k\varrho(A(\varepsilon))
+\\
+&\Rightarrow\quad
+\pi(A) \ge  \varrho(A(\varepsilon))
+\underbrace{\lim_{k\to\infty} m^\frac1k}_{\displaystyle=1}
+=
+\varrho(A(\varepsilon))
+=
+\varrho(A)+\varepsilon.
+\end{align*}
+Dies gilt für beliebige $\varepsilon> 0$, es folgt daher
+$\pi(A) \ge \varrho(A)$.
+Zusammen mit $\pi(A) \le \varrho(A)$ folgt $\pi(A)=\varrho(A)$.
+\end{proof}
+
