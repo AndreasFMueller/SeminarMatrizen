@@ -3,11 +3,22 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswi
 %
-\section{Spektralradius
-\label{buch:section:spektralradius}}
-% Satz von Gelfand
-% Konvergenz von Matrixreihen
-% Konditionszahl
+\section{Funktionen einer Matrix
+\label{buch:section:funktionen-einer-matrix}}
+\rhead{Funktionen einer Matrix}
+
+%
+% Polynom-Funktionen von Matrizen
+%
+\subsection{Polynom-Funktionen
+\label{buch:subsection:polynom-funktionen}}
+
+
+%
+% Approximationen für Funktionswerte f(A)
+%
+\subsection{Approximation von $f(A)$
+\label{buch:subsection:approximation}}
 
 \begin{definition}
 \index{Norm}%
@@ -19,11 +30,6 @@ Die {\em Norm} einer Matrix $M$ ist
 \]
 Für einen Vektor $x\in\mathbb R^n$ gilt $|Mx| \le \|M\|\cdot |x|$.
 \end{definition}
-
-Die Bedingung \eqref{buch:gs:fehler} bedeutet jedoch nicht,
-dass die Norm der Ableitung $<1$ sein muss, es genügt, wenn
-genügend hohe Potenzen der Ableitung eine Norm $<1$ haben.
-\index{Ableitung}%
 
 \begin{beispiel}
 Die Matrix
@@ -53,6 +59,14 @@ ist, wird eine Iteration mit Ableitungsmatrix $M$ trotzdem
 konvergieren, weil der Fehler nach jedem zweiten Schritt um den
 Faktor $\frac23$ kleiner geworden ist.
 \end{beispiel}
+
+%
+% Potenzreihen für Funktionen $f(z)$
+%
+\subsection{Potenzreihen
+\label{buch:subsection:potenzreihen}}
+
+
 
 Dies führt uns auf die Grösse
 \begin{equation}
