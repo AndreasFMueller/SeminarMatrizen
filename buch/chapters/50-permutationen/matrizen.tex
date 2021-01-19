@@ -6,4 +6,191 @@
 \section{Permutationsmatrizen
 \label{buch:section:permutationsmatrizen}}
 \rhead{Permutationsmatrizen}
+Die Eigenschaft, dass eine Vertauschung das Vorzeichen kehrt, ist
+eine wohlebekannte Eigenschaft der Determinanten.
+In diesem Abschnitt soll daher eine Darstellung von Permutationen
+als Matrizen gezeigt werden und die Verbindung zwischen dem
+Vorzeichen einer Permutation und der Determinanten hergestellt
+werden.
+
+\subsection{Matrizen}
+Gegeben sei jetzt eine Permutation $\sigma\in S_n$. 
+Aus $\sigma$ lässt sich eine lineare Abbildung $\Bbbk^n\to\Bbbk^n$
+konstruieren, die die Standardbasisvektoren permutiert, also
+\[
+f_{\sigma}\colon
+\Bbbk^n \to \Bbbk^n
+:
+\left\{
+\begin{aligned}
+e_1&\mapsto e_{\sigma(1)} \\
+e_2&\mapsto e_{\sigma(2)} \\
+\vdots&\\
+e_n&\mapsto e_{\sigma(n)}
+\end{aligned}
+\right.
+\]
+Die Matrix $P_\sigma$ der linearen Abbildung $f_{\sigma}$ hat in Spalte $i$
+genau eine $1$ in der Zeile $\sigma(i)$, also
+\[
+(P_\sigma)_{ij} = \delta_{j\sigma(i)}.
+\]
+
+\begin{beispiel}
+Die zur Permutation
+\[
+\begin{pmatrix}
+1&2&3&4&5&6\\
+2&1&3&5&6&4
+\end{pmatrix}
+\]
+gehörige lineare Abbildung $f_\sigma$ hat die Matrix
+\[
+A_\sigma
+=
+\begin{pmatrix}
+0&1&0&0&0&0\\
+1&0&0&0&0&0\\
+0&0&1&0&0&0\\
+0&0&0&0&0&1\\
+0&0&0&1&0&0\\
+0&0&0&0&1&0
+\end{pmatrix}
+\qedhere
+\]
+\end{beispiel}
+
+\begin{definition}
+Eine Permutationsmatrix ist eine Matrix $P\in M_n(\Bbbk)$ 
+derart, die in jeder Zeile und Spalte genau eine $1$ enhalten,
+während alle anderen Matrixelemente $0$ sind.
+\end{definition}
+
+Es ist klar, dass aus einer Permutationsmatrix auch die Permutation
+der Standardbasisvektoren abgelesen werden kann.
+Die Verknüpfung von Permutationen wird zur Matrixmultiplikation
+von Permutationsmatrizen, die Zuordnung $\sigma\mapsto P_\sigma$
+ist also ein Homomorphismus
+$
+S_n \to M_n(\Bbbk^n),
+$
+es ist $P_{\sigma_1\sigma_2}=P_{\sigma_1}P_{\sigma_2}$.
+
+\subsection{Transpositionen}
+Transpositionen sind Permutationen, die genau zwei Elemente von $[n]$
+vertauschen.
+Wir ermitteln jetzt die Permutationsmatrix der Transposition $\tau=\tau_{ij}$
+\[
+P_{\tau_{ij}}
+=
+\begin{pmatrix}
+1&      & &      &     &      & &      & \\
+ &\ddots& &      &     &      & &      & \\
+ &      &1&      &     &      & &      & \\
+ &      & &0     &\dots&1     & &      & \\
+ &      & &\vdots&     &\vdots& &      & \\
+ &      & &1     &\dots&0     & &      & \\
+ &      & &      &     &      &1&      & \\
+ &      & &      &     &      & &\ddots& \\
+ &      & &      &     &      & &      &1
+\end{pmatrix}
+\qedhere
+\]
+
+Die Permutation $\sigma$ mit dem Zyklus $1\to 2\to\dots\to l-1\to l\to 1$
+der Länge $l$ kann aus aufeinanderfolgenden Transpositionen zusammengesetzt
+werden, die zugehörigen Permutationsmatrizen sind
+\begin{align*}
+P_\sigma
+&=
+P_{\tau_{12}}
+P_{\tau_{23}}
+P_{\tau_{34}}\dots
+P_{\tau_{l-2,l-1}}
+P_{\tau_{l-1,l}}
+\\
+&=
+\begin{pmatrix}
+0&1&0&0&\dots\\
+1&0&0&0&\dots\\
+0&0&1&0&\dots\\
+0&0&0&1&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\begin{pmatrix}
+1&0&0&0&\dots\\
+0&0&1&0&\dots\\
+0&1&0&0&\dots\\
+0&0&0&1&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\begin{pmatrix}
+1&0&0&0&\dots\\
+0&1&0&0&\dots\\
+0&0&0&1&\dots\\
+0&0&1&0&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\dots
+\\
+&=
+\begin{pmatrix}
+0&0&1&0&\dots\\
+1&0&0&0&\dots\\
+0&1&0&0&\dots\\
+0&0&0&1&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\begin{pmatrix}
+1&0&0&0&\dots\\
+0&1&0&0&\dots\\
+0&0&0&1&\dots\\
+0&0&1&0&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\dots
+\\
+&=
+\begin{pmatrix}
+0&0&0&1&\dots\\
+1&0&0&0&\dots\\
+0&1&0&0&\dots\\
+0&0&1&0&\dots\\
+\vdots&\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+\\
+&\vdots\\
+&=
+\begin{pmatrix}
+0&0&0&0&\dots&0&1\\
+1&0&0&0&\dots&0&0\\
+0&1&0&0&\dots&0&0\\
+0&0&1&0&\dots&0&0\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+0&0&0&0&\dots&1&0
+\end{pmatrix}
+\end{align*}
+
+\subsection{Determinante und Vorzeichen}
+Die Transpositionen haben Permutationsmatrizen, die aus der Einheitsmatrix
+entstehen, indem genau zwei Zeilen vertauscht werden.
+Die Determinante einer solchen Permutationsmatrix ist
+\[
+\det P_{\tau} = - \det E = -1 = \operatorname{sgn}(\tau).
+\]
+Nach der Produktregel für die Determinante folgt für eine Darstellung
+der Permutation $\sigma=\tau_1\dots\tau_l$ als Produkt von Transpositionen,
+dass
+\[
+\det P_{\sigma}
+=
+\det P_{\tau_1} \dots \det P_{\tau_l}
+=
+(-1)^l
+=
+\operatorname{sgn}(\sigma).
+\]
+Das Vorzeichen einer Permutation ist also identisch mit der Determinante
+der zugehörigen Permutationsmatrix.
+
 

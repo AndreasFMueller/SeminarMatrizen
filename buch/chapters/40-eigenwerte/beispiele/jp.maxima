@@ -1,0 +1,19 @@
+/*
+ * jp.maxima -- potenzen von Jordan-Blöcken
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+ */
+
+A: matrix(
+[lambda,     1,     0,     0,     0,     0 ],
+[     0,lambda,     1,     0,     0,     0 ],
+[     0,     0,lambda,     1,     0,     0 ],
+[     0,     0,     0,lambda,     1,     0 ],
+[     0,     0,     0,     0,lambda,     1 ],
+[     0,     0,     0,     0,     0,lambda ]
+);
+B: A.A;
+B: B.A;
+B: B.A;
+B: B.A;
+B: B.A;

@@ -6,19 +6,365 @@
 \section{Funktionen einer Matrix
 \label{buch:section:funktionen-einer-matrix}}
 \rhead{Funktionen einer Matrix}
+Eine zentrale Motivation in der Entwicklung der Eigenwerttheorie
+war das Bestreben, Potenzen $A^k$ auch für grosse $k$ effizient
+zu berechnen.
+Mit der Jordan-Normalform ist dies auch gelungen, wenigstens über
+einem Körper, in dem das charakteristische Polynom in Linearfaktoren
+zerfällt.
+Die Berechnung von Potenzen war aber nur der erste Schritt, das Ziel
+in diesem Abschnitt ist, $f(A)$ für eine genügend grosse Klasse von
+Funktionen $f$ berechnen zu können.
 
 %
 % Polynom-Funktionen von Matrizen
 %
 \subsection{Polynom-Funktionen
 \label{buch:subsection:polynom-funktionen}}
+In diesem Abschnitt ist $B\in M_n(\Bbbk)$ und $\Bbbk'\supset\Bbbk$ ein
+Körper, über dem das charakteristische Polynome $\chi_A(x)$ in
+Linearfaktoren
+\[
+\chi_A(x)
+=
+(\lambda_1-x)^{m_1}(\lambda_2-x)^{m_2}\cdot\ldots\cdot(\lambda_p-x)^{m_p}
+\]
+zerfällt.
 
+Für jedes beliebige Polynome $p(X)=\Bbbk[X]$ der Form
+\[
+p(X) = a_nX^n + a_{n-1}X^{n-1} + \dots a_1x + a_0
+\]
+kann man auch
+\[
+p(A) = a_nA^n + a_{n-1}A^{n-1} + \dots a_1A + a_0E
+\]
+berechnen.
+In der Jordan-Normalform können die Potenzen $A^k$ leicht zusammengstellt
+werden, sobald man die Potenzen von Jordan-Blöcken berechnet hat.
+
+\begin{satz}
+Die $k$-te Potenz von $J_n(\lambda)$ ist die Matrix mit
+\begin{equation}
+J_n(\lambda)^k
+=
+\begin{pmatrix}
+\lambda^k
+	& \binom{k}{1}\lambda^{k-1}
+		& \binom{k}{2} \lambda^{k-2}
+			& \binom{k}{3} \lambda^{k-3}
+				& \dots
+					&\binom{k}{n-1}\lambda^{k-n+1}
+\\
+0
+	& \lambda^k
+		& \binom{k}{1}\lambda^{k-1}
+			& \binom{k}{2} \lambda^{k-2}
+				& \dots
+					&\binom{k}{n-2}\lambda^{k-n+2}
+\\
+0
+	& 0
+		& \lambda^k
+			& \binom{k}{1}\lambda^{k-1}
+				& \dots
+					&\binom{k}{n-3}\lambda^{k-n+3}
+\\
+\vdots  &\vdots &\vdots &\vdots &\ddots & \vdots
+\\
+0	& 0	& 0	& 0	& \dots	& \lambda^k
+\end{pmatrix}
+\label{buch:eigenwerte:eqn:Jnkpotenz}
+\end{equation}
+mit den Matrixelementen
+\[
+(J_n(\lambda)^k)_{ij}
+=
+\binom{k}{j-i}\lambda^{k-j+i}
+\]
+Die Binomialkoeffizienten verschwinden für $j<i$ und $j>i+k$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die Herkunft der Binomialkoeffizienten wird klar, wenn man
+\[
+J_n(\lambda) = \lambda E + N_n
+\]
+schreibt, wobei $N_n$ die Matrix \eqref{buch:eigenwerte:eqn:nnilpotent} ist.
+Die Potenzen von $N_n$ haben die Matrix-Elemente
+\[
+(N_n^k)_{ij}
+=
+\delta_{i,j-k}
+=
+\begin{cases}
+1&\qquad j-i=k\\
+0&\qquad\text{sonst,}
+\end{cases}
+\]
+sie haben also Einsen genau dort, wo in der
+\label{buch:eigenwerte:eqn:Jnkpotenz} die Potenz $\lambda^{k}$ steht.
+Die $kt$-te Potenz von $J_n(\lambda)$ kann dann mit dem binomischen
+Satz berechnet werden:
+\[
+J_n(\lambda)^k
+=
+\sum_{l=0}^k \binom{k}{l}\lambda^l N_n^{k-l},
+\]
+dies ist genau die Form \eqref{buch:eigenwerte:eqn:Jnkpotenz}.
+\end{proof}
+
+Wir haben bereits gesehen, dass $\chi_A(A)=0$, ersetzt man also das
+Polynom $p(X)$ durch $p(X)+\chi_A(X)$, dann ändert sich am Wert 
+\[
+(p+\chi_A)(A)
+=
+p(A) + \chi_A(A)
+=
+p(A)
+\]
+nichts.
+Man kann also nicht erwarten, dass verschiedene Polynome 
+$p(X)$ zu verschiedenen Matrizen $p(A)$ führen.
+Doch welche Unterschiede zwischen Polynomen wirken sich genau aus?
+
+\begin{satz}
+Für zwei Polynome $p(X)$ und $q(X)$ ist genau dann $p(A)=q(A)$, wenn
+das Minimalpolynom von $A$ die Differenz $p-q$ teilt.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wenn $p(A)=q(A)$, dann ist $h(X)=p(X)-q(X)$ ein Polynom mit $h(A)=0$,
+daher muss $h(X)$ vom Minimalpolynom geteilt werden.
+Ist andererseits $p(X)-q(X)=m(X)t(X)$, dann ist
+$p(A)-q(A)=m(A)t(A)=0\cdot t(A) = 0$, also $p(A)=q(A)$.
+\end{proof}
+
+Über einem Körper $\Bbbk'\supset\Bbbk$, über dem das charakteristische
+Polynom in Linearfaktoren zerfällt, kann man das Minimalpolynom aus
+der Jordanschen Normalform ableiten.
+Es ist
+\[
+m(X)
+=
+(\lambda_1-X)^{q_1}
+(\lambda_2-X)^{q_2}
+\cdot\ldots
+\cdot
+(\lambda_p-X)^{q_p},
+\]
+wobei $q_i$ die Dimension des grössten Jordan-Blocks ist, der in der
+Jordan-Normalform vorkommt.
+Zwei Polynome $p_1(X)$ und $p_2(X)$ haben genau dann den gleichen Wert,
+wenn die Differenz $p_1(X)-p_2(X)$ genau die Nullstellen
+$\lambda_1,\dots,\lambda_p$ mit Vielfachheiten $q_1,\dots,q_p$ hat.
+
+\begin{beispiel}
+Wir betrachten die Matrix
+\[
+A
+=
+\begin{pmatrix}
+   1&  9& -4\\
+  -1&  3&  0\\
+  -2&  0&  3
+\end{pmatrix}
+\]
+mit dem charakteristischen Polynom
+\[
+\chi_A(x)
+=
+-x^3+7x^2-16 x+12
+=
+-(x-3)(x-2)^2.
+\]
+Daraus kann man bereits ablesen, dass das Minimalpolynom $m(X)$ von $A$ 
+entweder $(X-2)(X-3)$ oder $(X-2)^2(X-3)$ ist.
+Es genügt also nachzuprüfen, ob $p(A)=0$ für das Polynom
+$p(X)=(X-2)(X-3) = X^2-5X+6$ ist.
+Tatsächlich sind die Potenzen von $A$:
+\[
+A^2=
+\begin{pmatrix}
+  0&  36& -16 \\
+ -4&   0&   4 \\
+ -8& -18&  17 
+\end{pmatrix}
+,\qquad
+A^3=
+\begin{pmatrix}
+ -4& 108& -48\\
+-12& -36&  28\\
+-24&-126&  83
+\end{pmatrix}
+\]
+und daraus kann man jetzt $P(A)$ berechnen:
+\begin{equation}
+p(A)
+=
+\begin{pmatrix}
+  0&  36& -16 \\
+ -4&   0&   4 \\
+ -8& -18&  17 
+\end{pmatrix}
+-5
+\begin{pmatrix}
+   1&  9& -4\\
+  -1&  3&  0\\
+  -2&  0&  3
+\end{pmatrix}
++
+6
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+   1& -9&  4\\
+   1& -9&  4\\
+   2&-18&  8
+\end{pmatrix}
+=
+\begin{pmatrix}1\\1\\2\end{pmatrix}
+\begin{pmatrix}1&-9&4\end{pmatrix}
+\label{buch:eigenwerte:eqn:nichtminimalpolynom}
+\end{equation}
+Also ist tatsächlich $(X-2)^2(X-3)$ das Minimalpolynom.
+
+Das Quadrat des Polynoms $p(X)$ ist $p(X)^2 = (X-2)^2(X-3)^2$, es hat
+das Minimalpolynom als Teiler, also muss $p(A)^2=0$ sein.
+Die Gleichung \eqref{buch:eigenwerte:eqn:nichtminimalpolynom} ermöglicht,
+das Quaddrat $p(A)^2$ leichter zu berechnen:
+\[
+p(A)^2
+=
+\begin{pmatrix}1\\1\\2\end{pmatrix}
+\underbrace{
+\begin{pmatrix}1&-9&4\end{pmatrix}
+\begin{pmatrix}1\\1\\2\end{pmatrix}
+}_{\displaystyle = 0}
+\begin{pmatrix}1&-9&4\end{pmatrix}
+=
+0
+,
+\]
+wie zu erwarten war.
+
+Wenn sich zwei Polynome nur um das charakteristische Polynom unterscheiden,
+dann haben sie den gleichen Wert auf $A$.
+Das Polynom $p_1(X)=X^3$ unterschiedet sich vom Polynom $p_2(X)=7X^2-16X+12$ 
+um das charakteristische Polynom, welches wir bereits als das Minimalpolynom
+von $A$ erkannt haben.
+Die dritte Potenz $A^3$ von $A$ muss sich daher auch mit $p_2(X)$ berechnen
+lassen:
+\[
+7
+\begin{pmatrix}
+  0&  36& -16 \\
+ -4&   0&   4 \\
+ -8& -18&  17 
+\end{pmatrix}
+-16
+\begin{pmatrix}
+   1&  9& -4\\
+  -1&  3&  0\\
+  -2&  0&  3
+\end{pmatrix}
++12
+\begin{pmatrix}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+ -4& 108&  -48\\
+-12& -36&   28\\
+-24&-126&   83
+\end{pmatrix}
+=
+A^3.
+\qedhere
+\]
+\end{beispiel}
+
+\begin{satz}
+Wenn $A$ diagonalisierbar ist über einem geeignet erweiterten Körper $\Bbbk'$,
+dann haben zwei Polynome $p(X)$ und $q(X)$ in $\Bbbk[X]$ genau dann
+den gleichen Wert auf $A$, also $p(A)=q(A)$, wenn $p(\lambda) = q(\lambda)$
+für alle Eigenwerte $\lambda$ von $A$.
+\end{satz}
+
+Über dem Körper der komplexen Zahlen ist die Bedingung, dass die Differenz
+$d(X)=p_1(X)-p_2(X)$ vom Minimalpolynom geteilt werden muss, gleichbedeutend
+damit, dass $p_1(X)$ und $p_2(X)$ den gleichen Wert und gleiche Ableitungen
+bis zur Ordnung $q_i-1$ haben in allen Eigenwerten $\lambda_i$, wobei 
+$q_i$ der Exponent von $\lambda_i-X$ im Minimalpolynom von $A$ ist.
+
+Das Beispiel illustriert auch noch ein weiteres wichtiges Prinzip.
+Schreiben wir das Minimalpolynom von $A$ in der Form
+\[
+m(X)
+=
+X^k + a_{k-1}X^{k-1} + \dots + a_1X + a_0,
+\]
+dann kann man wegen $m(A)=0$ die Potenzen $A^i$ mit $i\ge k$ mit der
+Rekursionsformel
+\[
+A^i
+=
+A^{i-k}A^k
+=
+A^{i-k}(-a_{k-1}A^{k-1}+ \dots + a_1 A + a_0E)
+\]
+in einer Linearkombination kleinerer Potenzen reduzieren.
+Jedes Polynom vom Grad $\ge k$ kann also reduizert werden in
+ein Polynom vom Grad $<k$ mit dem gleichen Wert auf $A$.
+
+\begin{satz}
+\label{buch:eigenwerte:satz:reduktion}
+Sei $A$ eine Matrix über $\Bbbk$ mit Minimalpolynom $m(X)$.
+Zu jedem $p(X)\in\Bbbk[X]$ gibt es ein Polynom $q(X)\in\Bbbk[X]$
+vom Grad $\deg q<\deg m$ mit $p(A)=q(A)$.
+\end{satz}
 
 %
 % Approximationen für Funktionswerte f(A)
 %
 \subsection{Approximation von $f(A)$
 \label{buch:subsection:approximation}}
+Die Quadratwurzelfunktion $x\mapsto\sqrt{x}$ lässt sich nicht durch ein
+Polynom darstellen, es gibt also keine direkte Möglichkeit, $\sqrt{A}$
+für eine beliebige Matrix zu definieren.
+Wir können versuchen, die Funktion durch ein Polynom zu approximieren.
+Damit dies geht, müssen wir folgende zwei Fragen klären:
+\begin{enumerate}
+\item
+Wie misst man, ob ein Polynom eine Funktion gut approximiert?
+\item
+Was bedeutet es genau, dass zwei Matrizen ``nahe beeinander'' sind?
+\item
+In welchem Sinne müssen Polynome ``nahe'' beeinander sein, damit
+auch die Werte auf $A$ nahe beeinander sind.
+\end{enumerate}
+
+Wir wissen bereits, dass nur die Werte und gewisse Ableitungen des
+Polynoms $p(X)$ in den Eigenwerten einen Einfluss auf $p(A)$ haben.
+Es genügt also, Approximationspolynome zu verwenden, welche in der Nähe
+der Eigenwerte ``gut genug'' approximieren.
+Solche Polynome gibt es dank dem Satz von Stone-Weierstrass immer:
+
+\begin{satz}[Stone-Weierstrass]
+Ist $I\subset\mathbb{R}$ kompakt, dann lässt sich jede stetige Funktion
+durch eine Folge $p_n(x)$ beliebig genau approximieren.
+\end{satz}
+
+Wir haben schon gezeigt, dass es dabei auf die höheren Potenzen gar nicht
+ankommt, nach Satz~\ref{buch:eigenwerte:satz:reduktion} kann man ein
+approximierendes Polynom immer durch ein Polynom von kleinerem Grad
+als das Minimalpolynom ersetzen.
 
 \begin{definition}
 \index{Norm}%
@@ -58,6 +404,11 @@ M^2 = \begin{pmatrix}
 ist, wird eine Iteration mit Ableitungsmatrix $M$ trotzdem
 konvergieren, weil der Fehler nach jedem zweiten Schritt um den
 Faktor $\frac23$ kleiner geworden ist.
+\end{beispiel}
+
+\begin{beispiel}
+Wir berechnen die Norm eines Jordan-Blocks.
+
 \end{beispiel}
 
 %
