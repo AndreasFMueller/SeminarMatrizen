@@ -6,5 +6,338 @@
 \section{Galois-Körper
 \label{buch:section:galoiskoerper}}
 \rhead{Galois-Körper}
+Ein Körper $\Bbbk$ enthält mindestens die Zahlen $0$ und $1$.
+Die Null ist nötig, damit $\Bbbk$ eine Gruppe bezüglich der
+Addition ist, die immer ein neutrales Element, geschrieben $0$
+enthält.
+Die Eins ist nötig, damit $\Bbbk^*=\Bbbk\setminus\{0\}$ eine
+Gruppe bezüglich der Multiplikation ist, die immer eine neutrales
+Element, geschrieben $1$ enthält.
+Durch wiederholte Addition entstehen auch die Zahlen $2=1+1$, $3=2+1$ 
+und so weiter.
+Es sieht also so aus, als ob ein Körper immer unendliche viele
+Elemente enthalten müsste.
+Wie können also endliche Körper entstehen?
+
+In diesem Abschnitt sollen die sogenannten Galois-Körper $\mathbb{F}_p$
+mit genau $p$ Elementen konstruiert werden, die es für jede Primzahl $p$ gibt.
+Sie sind die Basis für weitere endliche Körper, die eine beliebige
+Primzahlpotenz $p^n$ von Elementen haben und die die Basis wichtiger
+kryptographischer Algorithmen sind.
+
+%
+% Arithmetik module $o$
+%
+\subsection{Arithmetik modulo $p$
+\label{buch:subsection:arithmetik-modulo-p}}
+Damit aus den Zahlen $0, 1, 2, \dots$ ein endlicher Körper werden kann,
+muss die Folge sich wiederholen.
+Schreiben wir $a_0=0,a_1=1,\dots$ für die Folge, dann muss es also
+ein Folgenelement $a_k$ geben und ein $n$ derart, dass $a_{k+n}=a_{k}$.
+Dies bedeutet, dass $k+n = k$ sein muss.
+Subtrahiert man $k$ auf beiden Seiten, dann folgt, dass $n=0$ sein muss.
+Damit ein endlicher Körper entsteht, muss also die Menge
+\begin{align*}
+&\{0,1,2,\dots,n-1\}
+\intertext{eine Gruppe bezüglich der Addition sein, und}
+&\{1,2,\dots,n-1\}
+\end{align*}
+eine Gruppe bezüglich der Multiplikation.
+
+\subsubsection{Restklassenring}
+Wir definieren die Grundoperationen in einer Menge, die mit den
+Zahlen $\{0,1,2,\dots,n-1\}$ identifiziert werden kann.
+
+\begin{definition}
+Die Zahlen $a,b\in\mathbb{Z}$ heissen {\em kongruent modulo $n$},
+geschrieben
+\[
+a\equiv b\mod n,
+\]
+wenn $a-b$ durch $n$ teilbar ist, also $n|(a-b)$.
+\end{definition}
+
+Die Zahlen mit gleichem Rest sind Äquivalenzklassen der Kongruenz modulo $n$.
+Die Zahlen mit Rest $k$ modulo $n$ bilden die {\em Restklasse}
+\[
+\llbracket k\rrbracket=\{\dots,k-2n,k-n,k,k+n,k+2n,\dots\} \subset\mathbb{Z}.
+\]
+Sie bilden eine endliche Menge, die man mit den Resten $0,1,\dots,n-1$
+identifizieren kann.
+
+\begin{definition}
+Die Menge $\mathbb{Z}/n\mathbb{Z}$ besteht aus den Restklassen
+$\llbracket 0\rrbracket,\llbracket 1\rrbracket,\dots,\llbracket n-1\rrbracket$,
+die auch einfach $0,1,\dots,n-1$ geschrieben werden.
+\end{definition}
+
+Beim Rechnen mit Resten modulo $n$ können Vielfache von $n$ ignoriert werden.
+Zum Beispiel gilt 
+\[
+\begin{aligned}
+49&\equiv -1\mod 7& 49&=-1&&\text{in $\mathbb{Z}/7\mathbb{Z}$}
+\\
+3\cdot 5=15&\equiv 1\mod 7 & 3\cdot 5&=1&&\text{in $\mathbb{Z}/7\mathbb{Z}$.}
+\end{aligned}
+\]
+Das Beispiel zeigt, dass man mindestens in $\mathbb{Z}/7\mathbb{Z}$ mit
+Resten ganz ähnlich rechnen kann wie in $\mathbb{Q}$.
+In $\mathbb{Z}/7\mathbb{Z}$ scheinen $3$ und $5$ multiplikative inverse
+zu sein.
+
+Tatsächlich kann man auf den Restklassen eine Ringstruktur definieren.
+Dazu muss man sicherstellen, dass die Auswahl eines Repräsentanten keinen
+Einfluss auf den Rest hat.
+Der Rest $a$ kann jede Zahl der Form $a+kn$ darstellen.
+Ebenso kann der Rest $b$ jede zahl der Form $b+ln$ darstellen.
+Deren Summe ist $a+b+(k+l)n\equiv a+b\mod n$.
+Der Repräsentant des Restes hat also keinen Einfluss auf die Summe.
+
+Ebenso ist das Produkt der beiden Repräsentaten 
+$(a+kn)\cdot(b+ln) = ab + (al+bk)n + kln^2=ab + (al+bk+kln)n\equiv ab\mod n$
+für jede Wahl von $k$ und $l$.
+Auch die Multiplikation ist also unabhängig vom gewählten Repräsentanten.
+
+\begin{definition}
+Die Menge $\mathbb{Z}/n\mathbb{Z}$ ist ein Ring,
+heisst der {\em Restklassenring modulo $n$}.
+\end{definition}
+
+\subsubsection{Division in $\mathbb{Z}/n\mathbb{Z}$}
+Um einen endlichen Körper zu erhalten, muss die Menge
+\[
+\mathbb{Z}/n\mathbb{Z} \setminus \{\llbracket0\rrbracket\}
+=
+\{
+\llbracket 1\rrbracket,
+\llbracket 2\rrbracket,
+\dots
+\llbracket n-q\rrbracket
+\}
+\]
+eine Gruppe bezüglich der Multiplikation sein.
+Insbesondere darf kein Produkt $a\cdot b$ mit Faktoren in 
+$\mathbb{Z}/n\mathbb{Z} \setminus \{\llbracket0\rrbracket\}$
+zu Null werden.
+Für $n=15$ funktioniert dies nicht, das Produkt $3\cdot 5\equiv 0\mod 15$.
+Man nennt von Null verschiedene Faktoren, deren Produkt Null ist, einen
+{\em Nullteiler}.
+Falls sich $n=p_1\cdot p_2$ in zwei Faktoren zerlegen lässt, dann sind
+$p_1$ und $p_2$ Nullteiler in $\mathbb{Z}/n\mathbb{Z}$.
+Ein Körper kann also nur entstehen, wenn $n$ eine Primzahl ist.
+
+\begin{definition}
+Ist $p$ eine Primzahl, dann heisst $\mathbb{F}_p=\mathbb{Z}/p\mathbb{Z}$
+der Galois-Körper der Ordnung $p$.
+\end{definition}
+
+Diese Definition ist nur gerechtfertigt, wenn $\mathbb{F}_p^*$ tatsächlich
+eine Gruppe ist, wenn also jede Zahl zwischen $1$ und $p-1$ ein Inverses
+bezüglich der Multiplikation hat.
+Zu einem Rest $a\in\mathbb{F}_p^*$ muss also ein Rest $b$ gefunden werden,
+so dass $ab\equiv 1\mod p$.
+Dies ist gleichbedeutend mit Zahlen $b$ und $n$ derart, dass
+\begin{equation}
+ab+np=1.
+\label{buch:endliche-koerper:teilerfremd}
+\end{equation}
+In~\eqref{buch:endliche-koerper:teilerfremd} sind $a$ und $p$ gegeben,
+gesucht sind $b$ und $n$.
+
+In Abschnitt~\ref{buch:section:euklid} wurde gezeigt, wie der euklidische
+Algorithmus eine Gleichung der Form~\eqref{buch:endliche-koerper:teilerfremd}
+lösen kann, wenn die beiden gegebenen Zahlen $a$ und $p$ teilerfremd sind.
+Dies ist aber dadurch garantiert, dass $p$ eine Primzahl ist und $1\le a <p$.
+Die multiplikative Inverse von $a$ in $\mathbb{F}_p^*$ kann also mit
+Hilfe des euklidischen Algorithmus effizient gefunden werden.
+
+\begin{beispiel}
+Die kleinste Primzahl grösser als $2021$ ist $p=2063$.
+Was ist die Inverse von $2021$ in $\mathbb{F}_{2063}$?
+
+Wir führen den euklidischen Algorithmus für das Paar $(2063,2021)$ durch
+und erhalten 
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+k&  a_k&  b_k& q_k& r_k\\
+\hline
+0& 2063& 2021&   1&  42\\
+1& 2021&   42&  48&   5\\
+2&   42&    5&   8&   2\\
+3&    5&    2&   2&   1\\
+4&    2&    1&   2&   0\\
+\hline
+\end{tabular}
+\end{center}
+Die gesuchten Faktoren $b$ und $n$ können aus dem Matrizenprodukt
+$Q(q_n)\dots Q(q_0)$ gefunden werden:
+\begin{align*}
+Q
+&=
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -8 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -48 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -1 \end{pmatrix}
+\\
+&=
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -8 \end{pmatrix}
+\begin{pmatrix} 1& -1\\ -48& 49\end{pmatrix}
+\\
+&=
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} -48& 49\\ 385& -393 \end{pmatrix}
+\\
+&=
+\begin{pmatrix} 0& 1\\ 1& -2 \end{pmatrix}
+\begin{pmatrix} 385& -393\\ -818& 835 \end{pmatrix}
+\\
+&=
+\begin{pmatrix} -818&   835\\ 2021& -2063\end{pmatrix}
+\end{align*}
+Daraus können wir ablesen, dass
+\[
+-818\cdot 2021 +835 \cdot 2063=1.
+\]
+Der Rest $ -818\equiv 1245\mod 2063$ ist also die multiplikative
+Inverse von $2021$ in $\mathbb{F}_{2063}$.
+\end{beispiel}
+
+\subsubsection{Der kleine Satz von Fermat}
+In $\mathbb{Z}$ wachsen die Potenzen einer Zahl immer weiter an.
+In einem endlichen Körper kann dies nicht gelten, da nur endlich
+viele Werte zur Verfügung stehen.
+Tatsächlich müssen die Potenzen einer von $0$ verschiedenen Zahl
+$a\in\mathbb{F}_p^*$ alle in $\mathbb{F}_p^*$ liegen.
+Es gibt aber nur $p-1$ Zahlen in $\mathbb{F}_p^*$, spätestens
+die Potenz mit Exponent $p$ muss also mit einer früheren Potenz
+übereinstimmen.
+Der kleine Satz von Fermat sagt etwas genauer: die $p$-te Potenz
+von $a$ ist genau die Zahl $a$:
+
+\begin{satz}[Kleiner Satz von Fermat]
+In $\mathbb{F}_p$ gilt $a^p=a$ für alle $a\in\mathbb{F}_p^*$.
+\end{satz}
+
+Wir beweisen diesen Satz in der folgenden, traditionelleren 
+Formulierung.
+
+\begin{satz}
+Für jede ganze Zahl $a>0$ gilt $p|(a^p-a)$ genau dann, wenn
+$p$ eine Primzahl ist.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir müssen zeigen, dass $p$ ein Teiler ist von $a^p-a$.
+Das nachfolgende kombinatorische Argument wird zum Beispiel
+von Mathologor auf seinem Youtube-Kanal im Video
+\url{https://youtu.be/_9fbBSxhkuA} illustriert.
+
+Zum Beiweis interpretieren wir die vorkommenden Zahlen kombinatorisch.
+Die Zahl $a^p$ ist die Anzahl der verschiedenen Perlenketten der Länge
+$p$, die sich aus Glasperlen mit $a$ verschiedenen Farben herstellen
+lassen.
+Davon bestehen $a$ Perlenketten aus nur einer einzigen Farbe.
+Die Zahl $a^p-a$ ist also die Anzahl der Perlenketten der Länge $p$
+aus Glasperlen mit $a$ verschiedenen Farben, die mindestens zwei
+verschiedene Farben verwenden.
+
+Wir stellen jetzt die Frage nach der Anzahl der geschlossenen
+Perlenketten der Länge $p$ als Glasperlen in $a$ verschiedenen Farben.
+Aus jeder geschlossenen Perlenkette lassen sich $p$ Perlenketten machen,
+indem man sie an einer der $p$ Trennstellen zwischen Perlen aufteilt.
+
+Wir müssen uns noch überlegen, unter welchen Voraussetzungen 
+alle diese möglichen Auftrennungen zu verschiedenen Perlenketten
+führen.
+Zwei Trennstellen, die $k$-Perlen auseinander liegen, führen nur dann
+zur gleichen Perlenkette, wenn die geschlossenen Ketten durch Drehung 
+um $k$ Perlen ineinander umgehen.
+Dies bedeutet aber auch, dass sich das Farbmuster alle $k$-Perlen
+wiederholen muss.
+Folglich ist $k$ ein Teiler von $p$.
+$p$ Verschiedene Perlenketten entstehen also immer genau dann, wenn $p$
+eine Primzahl ist.
+
+Wir schliessen daraus, dass $a^p-a$ durch $p$ teilbar ist, genau dann,
+wenn $p$ eine Primzahl ist.
+\end{proof}
+
+Der kleine Satz von Fermat kann auch dazu verwendet werden, Potenzen 
+in $\mathbb{F}_p$ zu vereinfachen, wie das folgende Beispiel\footnote{%
+Das Beispiel stammt aus dem Video~\url{https://youtu.be/_9fbBSxhkuA},
+welches Mathologer zu Halloween 2018 veröffentlich hat}
+zeigt.
+
+\begin{beispiel}
+Man berechnet in $\mathbb{F}_{13}$ die Potenz $11^{666}$.
+Nach dem kleinen Satz von Fermat ist $11^{13} = 11$ oder $11^{12}=1$,
+man kann also den Exponenten modulo $12$ reduzieren.
+Weil $666=55\cdot 12 + 6$ erhält man $11^{666}= 11^5$.
+Da die Potenzen von $11$ etwas mühsam zu berechnen sind,
+kann man sie wegen $11=-2$ in $\mathbb{F}_{13}$ auch als Potenzen
+von $-2$ bekommen.
+Aber $(-2)^6 = 64 = -1 \in\mathbb{F}_{13}$.
+\end{beispiel}
+
+In der Form $a^{p-1}=1$ in $\mathbb{F}_p$ liefert der kleine Satz
+von Fermat die Inverse von $a$ als $a^{p-2}$.
+Dies bedeutet zum Beispiel, dass in $\mathbb{F}_3$ jede von $0$
+verschiedene Zahl zu sich selbst invers ist: $1\cdot 1=1$ und $2\cdot 2=1$.
+Diese Art, die Inverse zu bestimmen, ist allerdings nicht effizienter
+als der euklidische Algorithmus, aber sie ist manchmal für
+theoretische Überlegungen nützlich.
+
+\subsubsection{Der Satz von Wilson}
+Der Satz von Wilson ermöglicht, die multiplikative Inverse auf eine
+andere Art zu berechnen.
+Sie ist zwar nicht unbedingt einfacher, aber manchmal nützlich für
+theoretische Überlegungen.
+
+\begin{satz}[Wilson]
+Die ganze Zahl $p\ge 2$ ist genau dann eine Primzahl, wenn
+$(p-1)!\equiv -1\mod p$.
+\end{satz}
+
+Mit dem Satz von Wilson kann man die Inverse einer beliebigen Zahl
+$a\in\mathbb{F}_p$ finden.
+Dazu verwendet man, dass $a$ einer der Faktoren in $(p-1)!$ ist.
+Lässt man diesen Faktor weg, erhält man eine Zahl
+\[
+b = 1\cdot 2 \cdot \ldots\cdot \hat{a}\cdot\ldots\cdot (p-1),
+\]
+wobei der Hut bedeutet, dass der Faktor $a$ weggelassen werden soll.
+Nach dem Satz von Wilson ist $ab=-1$ in $\mathbb{F}_p$, also ist
+$-b$ die multiplikative Inverse  von $a$.
+
+\begin{beispiel}
+Die Inverse von $2\in\mathbb{F}_7$ ist
+\begin{align*}
+a^{-1}
+&=
+-\underbrace{1\cdot 3\cdot 4}_{}\cdot \underbrace{5\cdot 6}_{}
+\\
+&=
+-5\cdot 2
+=
+-3
+=4
+\end{align*}
+Tatsächlich ist $2\cdot 4=8\equiv 1\mod 7$.
+\end{beispiel}
+
+%
+% Charakteristik
+%
+\subsection{Charakteristik
+\label{buch:subsection:charakteristik}}
+
+\subsubsection{Frobenius-Homomorphismus}
+
+
 
 
