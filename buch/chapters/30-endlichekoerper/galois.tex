@@ -220,6 +220,7 @@ Der kleine Satz von Fermat sagt etwas genauer: die $p$-te Potenz
 von $a$ ist genau die Zahl $a$:
 
 \begin{satz}[Kleiner Satz von Fermat]
+\label{buch:endliche-koerper:satz:fermat}
 In $\mathbb{F}_p$ gilt $a^p=a$ für alle $a\in\mathbb{F}_p^*$.
 \end{satz}
 
@@ -303,6 +304,40 @@ Die ganze Zahl $p\ge 2$ ist genau dann eine Primzahl, wenn
 $(p-1)!\equiv -1\mod p$.
 \end{satz}
 
+\begin{proof}[Beweis]
+Wenn $p$ keine Primzahl ist, dann lässt sich $p$ in Faktoren
+$p=n_1\cdot n_2=p$ zerlegen.
+Beide Faktoren kommen in der Liste $1,2,\dots,p-1$ vor.
+Insbesondere haben $p=n_1n_2$ und $(p-1)!$ mindestens einen
+der Faktoren $n_1$ oder $n_2$ gemeinsam, wir können annehmen,
+dass $n_1$ dieser Faktor ist.
+Es folgt, dass der grösste gemeinsame Teiler von $p$ und $(p-1)!$
+grösser als $n_1$ ist, auch $(p-1)!$ ein Vielfaches von $n_1$ in
+$\mathbb{F}_p$.
+Insbesondere kann $(p-1)!$ nicht $-1\in\mathbb{F}_p$ sein.
+
+Ist andererseits $p$ eine Primzahl, dann sind die Zahlen $1, 2,\dots,p-1$
+alle invertierbar in $\mathbb{F}_p$.
+Die Zahlen $1$ und $-1\equiv p-1\mod p$ sind zu sich selbst invers,
+da $1\cdot 1=1$ und $(-1)\cdot(-1)=1$.
+Wenn eine Zahl $a$ zu sich selbst invers ist in $\mathbb{F}_p$,
+dann ist $a^2-1=0$ in $\mathbb{F}_p$.
+Daher ist auch $(a+1)(a-1)=0$, in $\mathbb{F}_p$ muss daher einer
+der Faktoren $0$ sein, also $a=-1$ oder $a=1$ in $\mathbb{F}_p$.
+
+Zu jeder Zahl $a\in\{2,\dots,p-2\}$ liegt die Inverse $a^{-1}$
+ebenfalls in diesen Bereich und ist verschieden von $a$: $a^{-1}\ne a$.
+Das Produkt der Zahlen
+$2\cdot 3 \cdot\ldots\cdot (p-2)$ besteht also aus zueinander inversen
+Paaren.
+Es folgt
+\[
+2\cdot 3 \cdot\ldots\cdot (p-2) = 1.
+\]
+Multipliziert man dies mit $p-1=-1\in\mathbb{F}_p$, folgt
+die Behauptung des Satzes.
+\end{proof}
+
 Mit dem Satz von Wilson kann man die Inverse einer beliebigen Zahl
 $a\in\mathbb{F}_p$ finden.
 Dazu verwendet man, dass $a$ einer der Faktoren in $(p-1)!$ ist.
@@ -335,9 +370,128 @@ Tatsächlich ist $2\cdot 4=8\equiv 1\mod 7$.
 %
 \subsection{Charakteristik
 \label{buch:subsection:charakteristik}}
+In diesem Abschnitt zeigen wir, dass jeder Körper $\Bbbk$ eine Erweiterung
+entweder von $\mathbb{Q}$ oder eines endlichen Körpers $\mathbb{F}_p$ ist.
+
+\subsubsection{Primkörper}
+Sei $\Bbbk$ ein Körper.
+Er enthält mindestens die Zahlen $0$ und $1$ und alle Vielfachen davon.
+Wenn alle Vielfachen in $\Bbbk$ von $0$ verschieden sind, dann
+bilden Sie ein Bild der ganzen Zahlen $\mathbb{Z}\subset\Bbbk$.
+Damit müssen dann aber auch alle Brüche in $\Bbbk$ enhalten sein,
+es folgt also, dass $\mathbb{Q}\subset\Bbbk$ sein muss.
+
+Wenn andererseits eines der Vielfachen von $1$ in $\Bbbk$ 
+verschwindet, dann wissen wir aus
+Abschnitt~\ref{buch:subsection:arithmetik-modulo-p}, dass
+der Körper $\mathbb{F}_p$ in $\Bbbk$ enthalten sein muss.
+Dies ist der kleinste Teilkörper, der $\Bbbk$ enthalten ist.
+
+\begin{definition}
+Der kleinste Teilkörper eines Körpers $\Bbbk$ heisst der 
+{\em Primkörper} von $\Bbbk$.
+\end{definition}
+
+Der Primkörper erlaubt jetzt, die Charakteristik eines Körpers $\Bbbk$
+zu definieren.
+
+\begin{definition}
+Die Charakteristik eines Körpers $\Bbbk$ ist $p$, wenn der Primkörper
+$\mathbb{F}_p$ ist.
+Falls der Primkörper $\mathbb{Q}$ ist, ist die Charakteristik $0$.
+\end{definition}
+
+Die Charakteristik hat wichtige Auswirkungen darauf, wie in einem Körper
+gerechnet wird.
+Endliche Körper enthalten immer einen Körper von Primzahl-Ordnung und
+haben damit immer Primcharakteristik.
+Ein Körper mit Charakteristik $0$ enthält immer unendliche viele
+Elemente.
+
+\subsubsection{Teilbarkeit von Binomialkoeffizienten}
+\begin{figure}
+\centering
+%\includegraphics{chapters/30-endlichekoerper/images/binomial2.pdf}
+\caption{Binomialkoeffizienten module $2$ im Pascal-Dreieck.
+Auf Zeilen, die zu Exponenten der Form $2^k$ gehören, sind alle 
+Koeffizienten ausser dem ersten und letzten durch $2$ teilbar.
+\label{buch:endliche-koerper:fig:binomial2}}
+\end{figure}
+Die Abbildung~\ref{buch:endliche-koerper:fig:binomail2} zeigt den
+Rest bei Teilung durch $2$ der Binomialkoeffizienten.
+Man kann daraus ablesen, dass $\binom{n}{m}\equiv 0\mod 2$ für $n=2^k$ 
+und $0<m<n$.
+
+\begin{satz}
+\label{buch:endliche-koerper:satz:binom}
+Sei $p$ eine Primzahl, dann ist
+\[
+\binom{p}{m} \equiv 0\mod p
+\]
+für $0<m<n$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Für den Binomialkoeffizienten gilt
+\[
+\binom{p}{m}
+=
+\frac{p\cdot (p-1)\cdot(p-2)\cdot\ldots\cdot (p-m+1)}{1\cdot 2\cdot 3\cdot\ldots\cdot m}.
+\]
+Für $m<p$ kann keiner der Faktoren im Nenner $p$ sein, der Faktor $p$
+im Zähler kann also nicht weggekürzt werden, so dass der Binomialkoeffizient
+durch $p$ teilbar sein muss.
+\end{proof}
+
+Die Aussage von Satz~\ref{buch:endliche-koerper:satz:binom} kann man 
+auch im Körper $\mathbb{F}_p$ formulieren:
+
+\begin{satz}
+\label{buch:endliche-koerper:satz:binomFp}
+In $\mathbb{F}_p$ gilt
+\[
+\binom{p}{k}=0
+\]
+für $0<k<p$.
+\end{satz}
 
 \subsubsection{Frobenius-Homomorphismus}
+Die Abbildung $x\mapsto x^n$ ist weit davon entfernt, sich mit den
+algebraischen Strukturen zu vertragen.
+Zum Beispiel kann man nicht erwarten, dass $(a+b)^n = a^n + b^n$,
+denn nach der binomischen Formel
+\begin{equation}
+(a+b)^n
+=
+\sum_{k=0}^n \binom{n}{k} a^k b^{n-k}
+=
+a^n + \binom{n}{1}a^{n-1}b + \dots + \binom{n}{n-1}ab^{n-1} + b^n
+\label{buch:endliche-koerper:fig:binomischeformel}
+\end{equation}
+gibt es zwischen den Termen an den Enden des Ausdrucks noch viele
+Zwischenterme, die normalerweise nicht verschwinden.
 
+Ganz anders sieht die Situation aus, wenn $n=p$ ist.
+Nach Satz~\ref{buch:endliche-koerper:satz:binomFp} verschwinden die
+Binomialkoeffizienten der Zwischenterme der Summe
+\eqref{buch:endliche-koerper:fig:binomischeformel}
+als Elemente von $\mathbb{F}_p$.
+Daher gilt
 
+\begin{satz}[Frobenius-Automorphismus]
+In einem Körper $\Bbbk$ der Charakteristik $p$ ist die Abbildung
+$x\mapsto x^p$ ist ein Automorphismus, der den Primkörper 
+$\mathbb{F}_p\subset\Bbbk$ fest lässt.
+\end{satz}
 
+\begin{proof}[Beweis]
+Wir müssen uns nur noch davon überzeugen, dass $\mathbb{F}_p\subset\Bbbk$
+fest bleibt.
+Nach dem kleine Satz von Fermat~\ref{buch:endliche-koerper:satz:fermat}
+ist $a^p=a$ für alle $a\in\mathbb{F}_p$, der Frobenius-Automorphismus
+lässt also alle Elemente von $\mathbb{F}_p$ fest.
+\end{proof}
 
+\begin{definition}
+Der Automorphismus $x\mapsto x^p$ heisst {\em Frobenius-Automorphismus}.
+\end{definition}
