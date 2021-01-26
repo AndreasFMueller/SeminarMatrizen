@@ -3,8 +3,8 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschulen
 #
-all:	dreieck.pdf trenn.pdf vergleich.pdf vergleich.jpg positiv.jpg \
-	diffusion.png diffusion.pdf
+all:	dreieck.pdf trenn.pdf vergleich.pdf vergleich.jpg \
+	positiv.pdf positiv.jpg diffusion.png diffusion.pdf
 
 # Visualisierung diffusion in einer primitiven Matrix
 diffusion.pdf:	diffusion.tex diffusion.jpg
@@ -20,6 +20,9 @@ vektoren.inc:	diffusion.m
 	octave diffusion.m
 
 # Visualizierung positive Matrix
+positiv.pdf:	positiv.tex positiv.jpg
+	pdflatex positiv.tex
+
 positiv.png:	positiv.pov  quadrant.inc
 	povray +A0.1 +W1920 +H1080 -Opositiv.png positiv.pov
 

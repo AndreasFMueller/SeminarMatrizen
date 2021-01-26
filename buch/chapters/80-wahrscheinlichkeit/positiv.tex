@@ -399,6 +399,29 @@ zu einem Eigenwert $\lambda$ mit Betrag $|\lambda|=\varrho(A)$ geben,
 aber a priori wissen wir nicht, ob es einen reellen Eigenwert vom
 Betrag $\varrho(A)$ gibt, und ob der Eigenvektor dazu reell ist.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/positiv.pdf}
+\caption{Die Iteration einer positiven Matrix bildet den positiven Oktanten
+in immer enger werdende Kegel ab, die die Richtung des gesuchten Eigenvektors
+gemeinsam haben.
+\label{buch:wahrscheinlichkeit:figure:positiv}}
+\end{figure}
+
+In Abbildung~\ref{buch:wahrscheinlichkeit:fig:vergleich} kann man sehen,
+dass eine positive Abbildung den positiven Oktanten in einen etwas engeren
+Kegel hinein abbildet.
+Iteriert man dies (Abbildung~\ref{buch:wahrscheinlichkeit:figure:positiv}),
+wird die Bildmenge immer enger, bis sie nur ein
+sehr enger Kegel um die Richtung des Eigenvektors ist.
+Tatsächlich kann man aus dieser Idee auch einen topologischen
+Beweis des untenstehenden Satzes von Perron-Frobenius konstruieren.
+Er beruht darauf, dass eine Abbildung, die Distanzen verkleinert,
+einen Fixpunkt hat.
+Die Konstruktion einer geeigneten Metrik ist allerdings eher 
+kompliziert, weshalb wir im Beweise der nachstehenden Aussagen
+den konventionellen Weg wählen.
+
 Wir beginnen damit zu zeigen, dass für positive Matrizen $A$, 
 nichtnegative Eigenvektoren zu Eigenwerten $\lambda\ne 0$
 automatisch positiv sind.
