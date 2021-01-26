@@ -40,6 +40,10 @@ seine Komponenten nicht negativ sind: $v_i\ge 0\forall i$.
 \index{nichtnegativer Vektor}%
 \end{definition}
 
+Geometrisch kann man sich die Menge der positven Vektoren in zwei Dimensionen
+als die Punkte des ersten Quadranten oder in drei Dimensionen als die
+Vektoren im ersten Oktanten vorstellen.
+
 Aus der Positivität eines Vektors lässt sich jetzt eine Vergleichsrelation
 für beliebige Vektoren ableiten.
 Mit der folgenden Definition wird erreicht, das mit Ungleichungen für Vektoren
@@ -177,6 +181,22 @@ ist, dass die Positivität sich manchmal ``upgraden'' lässt,
 wie im folgenden Satz.
 Er zeigt, dass ein Vektor, der grösser ist als ein anderer, auch
 um einen definierten Faktor $>1$ grösser ist.
+Dies wird geometrisch in 
+Abbildung~\ref{buch:wahrscheinlichkeit:figure:trenn} illustriert.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/trenn.pdf}
+\caption{Die Vektoren $w\le u$ liegen im grauen Rechteck.
+Zwei nichtnegative Vektoren $u$ und $v$ mit $u>v$
+haben keine gleichen Komponenten.
+Daher kann man $v$ mit einer Zahl $\vartheta=1+\varepsilon > 1$
+strecken, so dass der gestreckte Vektor $(1+\varepsilon)v$ gerade noch
+im grauen Rechteck liegt: $u\ge (1+\varepsilon)v$.
+Streckung mit einem grösseren Faktor führt dagegen aus dem Rechteck
+hinaus.
+\label{buch:wahrscheinlichkeit:figure:trenn}}
+\end{figure}
 
 \begin{satz}[Trenntrick]
 \label{buch:wahrscheinlichkeit:satz:trenntrick}
@@ -207,12 +227,26 @@ derart, dass $u_i = (1+\varepsilon)v_i$.
 Diese Komponenten limitiert also, wie stark man $v$ strecken kann,
 so dass er immer noch $\le u$ ist.
 Natürlich folgt aus den der Voraussetzung $u>v$ auch, dass $u$ ein 
-positiver Vektor ist.
+positiver Vektor ist (Abbildung~\ref{buch:wahrscheinlichkeit:figure:trenn}).
+
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/vergleich.pdf}
+\caption{Eine positive Matrix $A$ bildet nichtnegative Vektoren in
+positive Vektoren ab
+(Korollar~\ref{buch:wahrscheinlichkeit:satz:Au>0korollar}).
+Zwei verschiedene Vektoren auf einer Seitenfläche erfüllen $u\ge v$,
+aber nicht $u>v$, da sie sich in der Koordinaten $x_2$ nicht unterscheiden.
+Die Bilder unter $A$ unterscheiden sich dann auch in $x_2$, es gilt
+$Au>Av$ (siehe auch Satz~\ref{buch:wahrscheinlichkeit:satz:vergleichstrick})
+\label{buch:wahrscheinlichkeit:fig:vergleich}}
+\end{figure}
 
 \begin{satz}[Vergleichstrick]
 \label{buch:wahrscheinlichkeit:satz:vergleichstrick}
 Sei $A$ eine positive Matrix und seinen $u$ und $v$ Vektoren
-mit $u\ge v$ und $u\ne v$, dann ist $Au > Av$.
+mit $u\ge v$ und $u\ne v$, dann ist $Au > Av$
+(siehe auch Abbildung~\ref{buch:wahrscheinlichkeit:fig:vergleich}).
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -269,6 +303,21 @@ $t$ mit $u=tv$.
 Wir brauchen eine Verallgemeinerung für eine grössere Zahl von
 Summanden.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/dreieck.pdf}
+\caption{Die verallgemeinerte Dreiecksungleichung von
+Satz~\ref{buch:wahrscheinlichkeit:satz:verallgemeinerte-dreiecksungleichung}
+besagt, dass
+die Länge einer Summe von Vektoren (blau) höchstens so gross ist wie die
+Summe der Längen, mit Gleichheit genau dann, wenn alle Vektoren die
+gleiche Richtung haben (rot).
+Hier dargestellt am Beispiel von Zahlen in der komplexen Zahlenebene.
+In dieser Form wird die verallgemeinerte Dreiecksungleichung in
+Satz~\ref{buch:wahrscheinlichkeit:satz:verallgdreieckC}
+\label{buch:wahrscheinlichkeit:fig:dreieck}}
+\end{figure}
+
 \begin{satz}[Verallgemeinerte Dreiecksungleichung]
 \label{buch:wahrscheinlichkeit:satz:verallgemeinerte-dreiecksungleichung}
 Für $n$ Vektoren $v_i\ne 0$ gilt
@@ -276,7 +325,8 @@ Für $n$ Vektoren $v_i\ne 0$ gilt
 |u_1+\dots+u_n| \le |u_1|+\dots+|u_n|
 \]
 mit Gleichheit genau dann, wenn alle Vektoren nichtnegative Vielfache
-eines gemeinsamen Einheitsvektors $c$ sind: $u_i=|u_i|c$.
+eines gemeinsamen Einheitsvektors $c$ sind: $u_i=|u_i|c$
+(siehe auch Abbildung~\ref{buch:wahrscheinlichkeit:fig:dreieck}).
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -310,6 +360,7 @@ Damit ist der Induktionsschritt vollzogen.
 \end{proof}
 
 \begin{satz}
+\label{buch:wahrscheinlichkeit:satz:verallgdreieckC}
 Seien $a_1,\dots,a_n$ positive Zahlen und $u_i\in\mathbb C$ derart,
 dass 
 \[
@@ -454,7 +505,7 @@ $v$ ein nichtnegativer Eigenvektor.
 \end{proof}
 
 \begin{satz}
-Sei $A$ ein positive Matrix und $v$ ein Eigenvektor zu einem 
+Sei $A$ eine positive Matrix und $v$ ein Eigenvektor zu einem 
 Eigenwert $\lambda$ mit Betrag $|\lambda|=\varrho(A)$.
 Dann ist $\lambda=\varrho(A)$.
 \end{satz}
@@ -609,9 +660,24 @@ bis
 gefundenen Resultate können wir folgt zusammengefasst werden:
 
 \begin{satz}[Perron-Frobenius]
+\label{buch:wahrscheinlichkeit:satz:perron-frobenius}
 Sei $A$ eine positive Matrix mit Spektralradius $\varrho(A)$.
 Dann gibt es einen positiven Eigenvektor zum Eigenwert $\varrho(A)$,
 mit geometrischer und algebraischer Vielfachheit $1$.
 \end{satz}
 
+Der Satz~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}
+von Perron-Frobenius kann auf primitive Matrizen verallgemeinert
+werden.
 
+\begin{satz}
+Sei $A$ ein primitive, nichtnegative Matrix.
+Dann ist $\varrho(A)$ der einzige Eigenwert vom Betrag $\varrho(A)$
+und er hat geometrische und algebraische Vielfachheit $1$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Nach Voraussetzung gibt es ein $n$ derart, dass $A^n>0$.
+Für $A^n$ gelten die Resultate von 
+Satz~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}.
+\end{proof}

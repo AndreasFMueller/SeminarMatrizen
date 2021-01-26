@@ -1,0 +1,44 @@
+%
+% trenn.tex -- Trenntrick graphische Darstellung
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\d{6}
+
+\coordinate (u) at (5,3);
+\coordinate (v) at (3,1);
+\coordinate (ve) at (5,1.666);
+
+\fill[color=gray!40] (0,0) rectangle (u);
+
+\begin{scope}
+\clip (0,0) rectangle (6.1,4.1);
+\draw[color=red] (0,0) -- (9,3);
+\end{scope}
+
+\draw[->] (-0.1,0) -- (6.3,0) coordinate[label={$x_1$}];
+\draw[->] (0,-0.1) -- (0,4.3) coordinate[label={right:$x_2$}];
+
+\fill (u) circle[radius=0.05];
+\node at (u) [above right] {$u$};
+
+\fill (v) circle[radius=0.05];
+\node at (v) [above right] {$v$};
+
+\fill[color=red] (ve) circle[radius=0.05];
+\node[color=red] at (ve) [above,rotate={atan(1/3)}] {$(1+\varepsilon)v$};
+
+\end{tikzpicture}
+\end{document}
+

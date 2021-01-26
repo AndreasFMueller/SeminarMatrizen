@@ -1,0 +1,90 @@
+%
+% dreieck.tex -- verallgemeinerte Dreiecksungleichung
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usepackage{pgf}
+\usetikzlibrary{arrows,intersections,math,calc,hobby}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\coordinate (O) at (0,0);
+
+\input{drei.inc}
+
+\begin{scope}
+\clip (O) rectangle (12.3,8);
+\draw[color=red!40] (O) circle[radius=\r];
+\end{scope}
+
+\draw[->] (-0.1,0) -- (12.3,0) coordinate[label={$\Re z$}];
+\draw[->] (0,-0.1) -- (0,8.3) coordinate[label={right:$\Im z$}];
+
+\fill[color=blue] (A1) circle[radius=0.05];
+\fill[color=blue] (A2) circle[radius=0.05];
+\fill[color=blue] (A3) circle[radius=0.05];
+\fill[color=blue] (A4) circle[radius=0.05];
+\fill[color=blue] (A5) circle[radius=0.05];
+\fill[color=blue] (A6) circle[radius=0.05];
+\fill[color=blue] (A7) circle[radius=0.05];
+\fill[color=blue] (A8) circle[radius=0.05];
+\fill[color=blue] (A9) circle[radius=0.05];
+\fill[color=blue] (A10) circle[radius=0.05];
+\draw[color=blue] (O) -- (A1);
+\draw[color=blue] (A1) -- (A2);
+\draw[color=blue] (A2) -- (A3);
+\draw[color=blue] (A3) -- (A4);
+\draw[color=blue] (A4) -- (A5);
+\draw[color=blue] (A5) -- (A6);
+\draw[color=blue] (A6) -- (A7);
+\draw[color=blue] (A7) -- (A8);
+\draw[color=blue] (A8) -- (A9);
+\draw[color=blue] (A9) -- (A10);
+\draw[->,color=blue!40] (O) -- (A10);
+\node[color=blue] at ($0.5*(A1)$) [left] {$z_1$};
+\node[color=blue] at ($0.5*(A1)+0.5*(A2)$) [left] {$z_2$};
+\node[color=blue] at ($0.5*(A2)+0.5*(A3)$) [above] {$z_3$};
+\node[color=blue] at ($0.5*(A3)+0.5*(A4)$) [above] {$z_4$};
+\node[color=blue] at ($0.5*(A4)+0.5*(A5)$) [below right] {$z_5$};
+\node[color=blue] at ($0.5*(A5)+0.5*(A6)$) [left] {$z_6$};
+\node[color=blue] at ($0.5*(A6)+0.5*(A7)$) [left] {$z_7$};
+\node[color=blue] at ($0.5*(A7)+0.5*(A8)$) [above] {$z_8$};
+\node[color=blue] at ($0.5*(A8)+0.5*(A9)$) [left] {$z_9$};
+\node[color=blue] at ($0.5*(A9)+0.5*(A10)$) [above] {$z_{10}$};
+\node[color=blue] at ($0.8*(A10)$) [rotate=35,below] {$\displaystyle\sum_{i=1}^n z_i$};
+
+\draw[->,color=red] (O) -- (B10);
+\fill[color=red] (B1) circle[radius=0.05];
+\fill[color=red] (B2) circle[radius=0.05];
+\fill[color=red] (B3) circle[radius=0.05];
+\fill[color=red] (B4) circle[radius=0.05];
+\fill[color=red] (B5) circle[radius=0.05];
+\fill[color=red] (B6) circle[radius=0.05];
+\fill[color=red] (B7) circle[radius=0.05];
+\fill[color=red] (B8) circle[radius=0.05];
+\fill[color=red] (B9) circle[radius=0.05];
+\fill[color=red] (B10) circle[radius=0.05];
+
+\node[color=red] at ($0.5*(B1)$) [above] {$|z_1|c$};
+\node[color=red] at ($0.5*(B1)+0.5*(B2)$) [above] {$|z_2|c$};
+\node[color=red] at ($0.5*(B2)+0.5*(B3)$) [above] {$|z_3|c$};
+\node[color=red] at ($0.5*(B3)+0.5*(B4)$) [above] {$|z_4|c$};
+\node[color=red] at ($0.5*(B4)+0.5*(B5)$) [above] {$|z_5|c$};
+\node[color=red] at ($0.5*(B5)+0.5*(B6)$) [above] {$|z_6|c$};
+\node[color=red] at ($0.5*(B6)+0.5*(B7)$) [above] {$|z_7|c$};
+\node[color=red] at ($0.5*(B7)+0.5*(B8)$) [above] {$|z_8|c$};
+\node[color=red] at ($0.5*(B8)+0.5*(B9)$) [above] {$|z_9|c$};
+\node[color=red] at ($0.5*(B9)+0.5*(B10)$) [above] {$|z_{10}|c$};
+
+\node[color=red] at ($0.8*(B10)$) [rotate=20,below] {$\displaystyle c\sum_{i=1}^n |z_i|$};
+
+\end{tikzpicture}
+\end{document}
+
