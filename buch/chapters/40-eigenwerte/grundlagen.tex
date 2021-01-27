@@ -215,7 +215,7 @@ selbst.
 Ein Unterraum $U\subset V$ heisst {\em invarianter Unterraum},
 wenn
 \[
-f(U) = \{ f(x)\;|\; x\in U\} \subset U.
+f(U) = \{ f(x)\;|\; x\in U\} \subset U
 \]
 gilt.
 \end{definition}
@@ -278,7 +278,7 @@ $\mathcal{J}(A)$, muss $\mathcal{J}(A)\cap\mathcal{K}(A)=0$.
 Es folgt, dass $V=\mathcal{J}(A) + \mathcal{K}(A)$.
 
 In $\mathcal{K}(A)$ und $\mathcal{J}(A)$ kann man unabhängig voneinander
-jeweils aine Basis wählen.
+jeweils eine Basis wählen.
 Die Basen von $\mathcal{K}(A)$ und $\mathcal{J}(A)$ zusammen ergeben
 eine Basis von $V$.
 Die Matrix $A'$ in dieser Basis wird die Blockform
@@ -719,8 +719,8 @@ berechnen wir
 =
 b_2.
 \end{align*}
-Dies beweist, dass $\mathcal{J}(A-E)$ invariant ist und man kann ablesen,
-dass in dieser Basis, die von $A-E$ beschriebene lineare Abbildung 
+Dies beweist, dass $\mathcal{J}(A-E)$ invariant ist.
+In dieser Basis hat die von $A-E$ beschriebene lineare Abbildung
 auf $\mathcal{J}(A-E)$ die Matrix
 \[
 A_{\mathcal{J}(A-E)}
@@ -731,7 +731,7 @@ A_{\mathcal{J}(A-E)}
 \end{pmatrix}.
 \]
 
-Für den Kern $\mathcal{K}(A-E)$ 
+Für den Kern $\mathcal{K}(A-E)$ findet man analog
 \[
 \left.
 \begin{aligned}
@@ -749,7 +749,7 @@ A_{\mathcal{K}(A-E)}
 \begin{pmatrix}
 0&-1\\
 0& 0
-\end{pmatrix}
+\end{pmatrix}.
 \]
 In der Basis $\mathcal{B}=\{b_1,b_2,b_3,b_4\}$ hat $A$ die Matrix
 in Blockform
@@ -899,7 +899,7 @@ nicht mehr als einen Eigenvektor (d.~h.~einen eindimensionalen Eigenraum)
 erwarten.
 
 Wenn das charakteristische Polynom von $A$ keine Nullstellen in $\Bbbk$ hat,
-dann kann es auch keine Eigenvektoren in $Bbbk^n$ geben.
+dann kann es auch keine Eigenvektoren in $\Bbbk^n$ geben.
 Gäbe es nämlich einen solchen Vektor, dann müsste eine der Komponenten
 des Vektors von $0$ verschieden sein, wir nehmen an, dass es die Komponente
 in Zeile $k$ ist.
@@ -956,14 +956,14 @@ hat das charakteristische Polynom
 x^2-2.
 \]
 Die Nullstellen sind $\pm\sqrt{2}$ und damit nicht in $\mathbb{Q}$.
-Wir gehen daher über zum Körper $\mathbb{Q}(\sqrt{2})$, in dem 
+Wir gehen daher über zum Körper $\mathbb{Q}(\!\sqrt{2})$, in dem
 sich zwei Nullstellen $\lambda=\pm\sqrt{2}$ finden lassen.
 Zu jedem Eigenwert lässt sich auch ein Eigenvektor
-$v_{\pm\sqrt{2}}\in \mathbb{Q}(\sqrt{2})^2$, und unter Verwendung dieser
-Basis ist bekommt die Matrix $A'=TAT^{-1}$ Diagonalform.
+$v_{\pm\sqrt{2}}\in \mathbb{Q}(\!\sqrt{2})^2$, und unter Verwendung dieser
+Basis bekommt die Matrix $A'=TAT^{-1}$ Diagonalform.
 Die Transformationsmatrix $T$ enthält Matrixelemente aus
-$\mathbb{Q}(\sqrt{2})$, die nicht in $\mathbb{Q}$ liegen.
-Die Matrix $A$ lässt sich also über dem Körper $\mathbb{Q}(\sqrt{2})$
+$\mathbb{Q}(\!\sqrt{2})$, die nicht in $\mathbb{Q}$ liegen.
+Die Matrix $A$ lässt sich also über dem Körper $\mathbb{Q}(\!\sqrt{2})$
 diagonalisieren, nicht aber über dem Körper $\mathbb{Q}$.
 
 Da $A'$ Diagonalform hat mit $\pm\sqrt{2}$ auf der Diagonalen, folgt
@@ -975,9 +975,9 @@ A^{\prime 2}-E= \chi_{A}(A) = 0.
 Dies is ein Spezialfall des Satzes von Cayley-Hamilton~\ref{XXX}
 welcher besagt, dass jede Matrix $A$ eine Nullstelle ihres 
 charakteristischen Polynoms ist: $\chi_A(A)=0$.
-Da in Gleichung~\ref{buch:grundlagen:eqn:cayley-hamilton-beispiel}
-wurde zwar in $\mathbb{Q}(\sqrt{2})$ hergeleitet, aber in ihr kommen
-keine Koeffizienten aus $\mathbb{Q}(\sqrt{2})$ vor, die man nicht auch
+Die Gleichung~\ref{buch:grundlagen:eqn:cayley-hamilton-beispiel}
+wurde zwar in $\mathbb{Q}(\!\sqrt{2})$ hergeleitet, aber in ihr kommen
+keine Koeffizienten aus $\mathbb{Q}(\!\sqrt{2})$ vor, die man nicht auch
 in $\mathbb{Q}$ berechnen könnte.
 Sie gilt daher ganz allgemein.
 \end{beispiel}
@@ -1014,7 +1014,7 @@ Die charakteristische Gleichung $\chi_A(x)=0$ hat in $\mathbb{R}$
 keine Lösungen, daher gehen wir zum Körper $\Bbbk'=\mathbb{C}$ über,
 in dem dank dem Fundamentalsatz der Algebra alle Nullstellen zu finden
 sind, sie sind $\pm i$.
-In $C$ lassen sich dann auch Eigenvektoren finden, man muss dazu die
+In $\mathbb C$ lassen sich dann auch Eigenvektoren finden, man muss dazu die
 folgenden linearen Gleichungssyteme lösen:
 \begin{align*}
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}|}

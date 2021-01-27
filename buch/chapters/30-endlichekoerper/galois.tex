@@ -75,7 +75,7 @@ Beim Rechnen mit Resten modulo $n$ können Vielfache von $n$ ignoriert werden.
 Zum Beispiel gilt 
 \[
 \begin{aligned}
-49&\equiv -1\mod 7& 49&=-1&&\text{in $\mathbb{Z}/7\mathbb{Z}$}
+48&\equiv -1\mod 7& 48&=-1&&\text{in $\mathbb{Z}/7\mathbb{Z}$}
 \\
 3\cdot 5=15&\equiv 1\mod 7 & 3\cdot 5&=1&&\text{in $\mathbb{Z}/7\mathbb{Z}$.}
 \end{aligned}
@@ -278,7 +278,7 @@ zeigt.
 Man berechnet in $\mathbb{F}_{13}$ die Potenz $11^{666}$.
 Nach dem kleinen Satz von Fermat ist $11^{13} = 11$ oder $11^{12}=1$,
 man kann also den Exponenten modulo $12$ reduzieren.
-Weil $666=55\cdot 12 + 6$ erhält man $11^{666}= 11^5$.
+Weil $666=55\cdot 12 + 6$ erhält man $11^{666}= 11^6$.
 Da die Potenzen von $11$ etwas mühsam zu berechnen sind,
 kann man sie wegen $11=-2$ in $\mathbb{F}_{13}$ auch als Potenzen
 von $-2$ bekommen.
@@ -385,7 +385,7 @@ Wenn andererseits eines der Vielfachen von $1$ in $\Bbbk$
 verschwindet, dann wissen wir aus
 Abschnitt~\ref{buch:subsection:arithmetik-modulo-p}, dass
 der Körper $\mathbb{F}_p$ in $\Bbbk$ enthalten sein muss.
-Dies ist der kleinste Teilkörper, der $\Bbbk$ enthalten ist.
+Dies ist der kleinste Teilkörper, der in $\Bbbk$ enthalten ist.
 
 \begin{definition}
 Der kleinste Teilkörper eines Körpers $\Bbbk$ heisst der 
@@ -417,7 +417,7 @@ Auf Zeilen, die zu Exponenten der Form $2^k$ gehören, sind alle
 Koeffizienten ausser dem ersten und letzten durch $2$ teilbar.
 \label{buch:endliche-koerper:fig:binomial2}}
 \end{figure}
-Die Abbildung~\ref{buch:endliche-koerper:fig:binomail2} zeigt den
+Die Abbildung~\ref{buch:endliche-koerper:fig:binomial2} zeigt den
 Rest bei Teilung durch $2$ der Binomialkoeffizienten.
 Man kann daraus ablesen, dass $\binom{n}{m}\equiv 0\mod 2$ für $n=2^k$ 
 und $0<m<n$.
@@ -455,7 +455,7 @@ In $\mathbb{F}_p$ gilt
 für $0<k<p$.
 \end{satz}
 
-\subsubsection{Frobenius-Homomorphismus}
+\subsubsection{Frobenius-Automorphismus}
 Die Abbildung $x\mapsto x^n$ ist weit davon entfernt, sich mit den
 algebraischen Strukturen zu vertragen.
 Zum Beispiel kann man nicht erwarten, dass $(a+b)^n = a^n + b^n$,

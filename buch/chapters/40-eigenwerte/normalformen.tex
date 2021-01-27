@@ -24,7 +24,7 @@ Polynom in Linearfaktoren
 =
 (x-\lambda_1)^{k_1}\cdot (x-\lambda_2)^{k_2}\cdot\dots\cdot (x-\lambda_m)^{k_m}
 \]
-mit Vielfachheiten $k_m$ zerfällt, $\lambda_i\in\Bbbk'$.
+mit Vielfachheiten $k_1$ bis $k_m$ zerfällt, $\lambda_i\in\Bbbk'$.
 Zu jedem Eigenwert $\lambda_i$ gibt es sicher einen Eigenvektor, wir 
 wollen aber in diesem Abschnitt zusätzlich annehmen, dass es eine Basis
 aus Eigenvektoren gibt.
@@ -101,7 +101,7 @@ Nach Satz~\ref{buch:eigenwerte:satz:zerlegung-in-eigenraeume} liefern
 die verallgemeinerten Eigenräume $V_i=\mathcal{E}_{\lambda_i}(A)$ eine
 Zerlegung von $V$ in invariante Eigenräume
 \[
-V=V_1\oplus V_2\oplus \oplus \dots\oplus V_l,
+V=V_1\oplus V_2\oplus \dots\oplus V_l,
 \]
 derart, dass $A-\lambda_iE$ auf $V_i$ nilpotent ist.
 Wählt man in jedem der Unterräume $V_i$ eine Basis, dann zerfällt die
@@ -239,7 +239,7 @@ charakteristischen Polynom $\chi_A(x)$.
 
 
 
-\begin{satz}[Cayley-Hamilton]]
+\begin{satz}[Cayley-Hamilton]
 Ist $A$ eine $n\times n$-Matrix über dem Körper $\Bbbk$, dann gilt
 $\chi_A(A)=0$.
 \end{satz}
@@ -254,7 +254,7 @@ $\chi_A(x)
 \dots
 (\lambda_p-x)^{m_p}$
 zerfällt.
-Im Vektorraum $\Bbbk''$ kann man eine Basis finden, in der die Matrix
+Im Vektorraum $\Bbbk'$ kann man eine Basis finden, in der die Matrix
 $A$ in Jordan-Matrizen $J_1,\dots,J_p$ zerfällt, wobei $J_i$ eine
 $m_i\times m_i$-Matrix ist.
 Für den Block mit der Nummer $i$ erhalten wir
