@@ -34,7 +34,7 @@ $n'\in \mathbb{N}$.
 \item Wenn zwei Zahlen $n,m\in\mathbb{N}$ den gleichen Nachfolger haben,
 $n'=m'$, dann sind sie gleich $n=m$.
 \item Enthält eine Menge $X$ die Zahl $0$ und mit jeder Zahl auch ihren
-Nachfolger, dann ist $X\subset\mathbb{N}$.
+Nachfolger, dann ist $X\subset\mathbb{N}$. %TODO: X = N?...
 \end{enumerate}
 
 \subsubsection{Addition}
@@ -145,7 +145,7 @@ a\cdot(b+c) = ab+ac
 \qquad\text{und}\qquad
 (a+b)c = ac+bc
 \]
-gilt.
+gelten.
 Das Distributivgesetz drückt die wohlbekannte Regel des
 Ausmultiplizierens aus.
 Ein Distributivgesetz ist also grundlegend dafür, dass man mit den
@@ -165,13 +165,14 @@ Lösung in $\mathbb{N}$ hat.
 \index{teilbar}%
 Jede natürlich Zahl $n$ ist durch $1$ teilbar und auch durch sich selbst,
 denn $n\cdot 1 = n$.
-Andere Teiler sind dagegen nicht selbstverständlich, die Zahlen
+Andere Teiler sind dagegen nicht selbstverständlich.
+Die Zahlen
 \[
 \mathbb{P}
 =
-\{2,3,5,7,11,17,19,23,29,\dots\}
+\{2,3,5,7,11,13,17,19,23,29,\dots\}
 \]
-haben keine weiteren Teiler, sie heissen {\em Primzahlen}.
+haben keine weiteren Teiler. Sie heissen {\em Primzahlen}.
 \index{Primzahl}%
 Die Menge der natürlichen Zahlen ist die naheliegende Arena
 für die Zahlentheorie.
@@ -205,7 +206,7 @@ Die natürlichen Zahl sind also nacheinander die Mengen
 \begin{align*}
 0 &= \emptyset 
 \\
-1 &= \emptyset \cup \{\emptyset\} = \{0\}
+1 &= 0 \cup \{0\} = \emptyset \cup \{0\} = \{0\}
 \\
 2 &= 1 \cup \{ 1\} = \{0\}\cup\{1\} = \{0,1\}
 \\
