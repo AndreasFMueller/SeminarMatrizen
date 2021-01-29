@@ -1,0 +1,307 @@
+%
+% hadamard.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Hadamard-Algebra
+\label{buch:section:hadamard-algebra}}
+\rhead{Hadamard-Algebra}
+Das Matrizenprodukt ist nicht die einzige Möglichkeit, ein Produkt auf
+Vektoren oder Matrizen zu definieren.
+In diesem Abschnitt soll das Hadamard-Produkt beschrieben werden,
+welches zu einer kommutativen-Algebra-Struktur führt.
+
+%
+% Definition des Hadamard-Produktes
+%
+\subsection{Hadamard-Produkt
+\label{buch:vektorenmatrizen:subsection:hadamard-produkt}}
+Im Folgenden werden wir $\Bbbk^n =M_{n\times 1}(\Bbbk)$ setzen
+und den Fall der Vektoren nicht mehr separat diskutieren.
+Die Addition und Multiplikation mit Skalaren ist in 
+$M_{m\times n}(\Bbbk)$ komponentenweise definiert.
+Wir können natürlich auch ein Produkt komponentenweise definieren,
+dies ist das Hadamard-Produkt.
+
+\begin{definition}
+Das {\em Hadamard-Produkt} zweier Matrizen
+$A,B\in M_{m\times n}(\Bbbk)$ ist definiert als die Matrix
+$A\odot B$ 
+mit den Komponenten
+\[
+(A\odot B)_{ij} = (A)_{ij} (B)_{ij}.
+\]
+Wir nennen $M_{m\times n}(\Bbbk)$ mit der Multiplikation $\odot$ 
+auch die Hadamard-Algebra $H_{m\times n}(\Bbbk)$.
+\end{definition}
+
+Dies ist jedoch nur interessant, wenn $M_{m\times n}(\Bbbk)$ mit diesem
+Produkt eine interessante algebraische Struktur erhält.
+Dazu müssen die üblichen Verträglichkeitsgesetze zwischen den
+Vektorraumoperationen von $M_{m\times n}(\Bbbk)$ und dem neuen Produkt
+gelten, wir erhalten dann eine Algebra.
+Da alle Operationen elementweise definiert sind, muss man auch alle
+Rechengesetze nur elementweise prüfen.
+Es gilt
+\begin{align*}
+A\odot(B\odot C) &= (A\odot B)\odot C
+&&\Leftrightarrow&
+a_{ij}(b_{ij}c_{ij}) &= (a_{ij}b_{ij})c_{ij}
+\\
+A\odot(B+C) &= A\odot B + A\odot C
+&&\Leftrightarrow&
+a_{ij}(b_{ij}+c_{ij}) &= a_{ij}b_{ij} + a_{ij}c_{ij}
+\\
+(A+B)\odot C&=A\odot C+B\odot C
+&&\Leftrightarrow&
+(a_{ij}+b_{ij})c_{ij}&=a_{ij}c_{ij} + b_{ij}c_{ij}
+\\
+(\lambda A)\odot B &= \lambda (A\odot B)
+&&\Leftrightarrow&
+(\lambda a_{ij})b_{ij}&=\lambda(a_{ij}b_{ij})
+\\
+A\odot(\lambda B)&=\lambda(A\odot B)
+&&\Leftrightarrow&
+a_{ij}(\lambda b_{ij})&=\lambda(a_{ij}b_{ij})
+\end{align*}
+für alle $i,j$.
+
+Das Hadamard-Produkt ist kommutativ, da die Multiplikation in $\Bbbk$
+kommuativ ist.
+Das Hadamard-Produkt kann auch für Matrizen mit Einträgen in einem
+Ring definiert werden, in diesem Fall ist es möglich, dass die entsehende
+Algebra nicht kommutativ ist.
+
+Die Hadamard-Algebra hat auch ein Eins-Elemente, nämlich die Matrix,
+die aus lauter Einsen besteht.
+
+\begin{definition}
+Die sogenannte {\em Einsmatrix} $U$ ist die Matrix
+\[
+U=\begin{pmatrix}
+1&1&\dots&1\\
+\vdots&\vdots&\ddots&\vdots\\
+1&1&\dots&1
+\end{pmatrix}
+\in
+M_{m\times n}(\Bbbk)
+\]
+mit lauter Einträgen $1\in\Bbbk$.
+\end{definition}
+
+Die Hadamard-Algebra ist ein Spezialfall der Algebra der Funktionen
+$\Bbbk^X$.
+Ordnet man dem Vektor $v\in \Bbbk^n$ mit den Komponenten $v_i$ 
+die Abbildung
+\[
+v\colon [n] \to \Bbbk: i \mapsto v_i
+\]
+zu, dann geht die Addition von Vektoren in die Addition von
+Funktionen über, die Multiplikation von Skalaren mit Vektoren
+geht in die Multiplikation von Funktionen mit Skalaren über 
+und die Hadamard-Multiplikation geht über in das Produkt von
+Funktionen.
+
+Auch die Hadamard-Algebra $H_{m\times n}(\Bbbk)$ kann als Funktionenalgebra
+betrachtet werden.
+Einer Matrix $A\in H_{m\times n}(\Bbbk)$ ordnet man die Funktion
+\[
+a\colon [m]\times [n] : (i,j) \mapsto a_{ij}
+\]
+zu.
+Dabei gehen die Algebraoperationen von $H_{m\times n}(\Bbbk)$ über
+in die Algebraoperationen der Funktionenalgebra $\Bbbk^{[m]\times [n]}$.
+Aus der Einsmatrix der Hadamard-Algebra wird dabei zur konstanten
+Funktion $1$ auf $[m]\times[n]$.
+
+\subsection{Hadamard-Produkt und Matrizenalgebra
+\label{buch:vektorenmatrizen:subsection:vertraeglichkeit}}
+Es ist nur in Ausnahmefällen, Hadamard-Produkt und Matrizen-Produkt
+gleichzeitig zu verwenden.
+Das liegt daran, dass die beiden Produkte sich überhaupt nicht 
+vertragen.
+
+\subsubsection{Unverträglichkeit von Hadamard- und Matrizen-Produkt}
+Das Hadamard-Produkt und das gewöhnliche Matrizenprodukt sind
+in keiner Weise kompatibel.
+Die beiden Matrizen 
+\[
+A=\begin{pmatrix}3&4\\4&5\end{pmatrix}
+\qquad\text{und}\qquad
+B=\begin{pmatrix}-5&4\\4&-3\end{pmatrix}
+\]
+sind inverse Matrizen bezüglich des Matrizenproduktes, also
+$AB=E$.
+Für das Hadamard-Produkt gilt dagegen
+\[
+A\odot B
+=
+\begin{pmatrix}
+-15& 16\\
+ 16&-15
+\end{pmatrix}.
+\]
+Die Inverse einer Matrix $A$ Bezüglich des Hadamard-Produktes hat
+die Einträge $a_{ij}^{-1}$.
+Die Matrix $E$ ist bezüglich des gewöhnlichen Matrizenproduktes
+invertierbar, aber sie ist bezüglich des Hadamard-Produktes nicht
+invertierbar.
+
+\subsubsection{Einbettung der Hadamard-Algebra ein eine Matrizenalgebra}
+Hadamard-Algebren können als Unteralgebren einer Matrizenalgebra
+betrachtet werden.
+Der Operator $\operatorname{diag}$ bildet Vektoren ab in Diagonalmatrizen
+nach der Regel
+\[
+\operatorname{diag}
+\colon
+\Bbbk^n \to M_n(\Bbbk)
+:
+\begin{pmatrix}
+v_1\\
+\vdots\\
+v_n
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+v_1&\dots&0\\
+\vdots&\ddots&\vdots\\
+0&\dots&v_n
+\end{pmatrix}
+\]
+Das Produkt von Diagonalmatrizen ist besonders einfach.
+Für zwei Vektoren $a,b\in\Bbbk^n$ 
+\[
+a\odot b
+=
+\begin{pmatrix}
+a_1b_1\\
+\vdots\\
+a_nb_n
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+a_1b_1&\dots&0\\
+\vdots&\ddots&\vdots\\
+0&\dots&a_nb_n
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_1&\dots&0\\
+\vdots&\ddots&\vdots\\
+0&\dots&a_n
+\end{pmatrix}
+\begin{pmatrix}
+b_1&\dots&0\\
+\vdots&\ddots&\vdots\\
+0&\dots&b_n
+\end{pmatrix}.
+\]
+Das Hadamard-Produkt der Vektoren geht also über in das gewöhnliche
+Matrizenprodukt der Diagonalmatrizen.
+
+Für die Hadamard-Matrix ist die Einbettung etwas komplizierter.
+Wir machen aus einer Matrix erst einen Vektor, den wir dann mit
+dem $\operatorname{diag}$ in eine Diagonalmatrix umwandeln:
+\[
+\begin{pmatrix}
+a_{11}&\dots&a_{1n}\\
+\vdots&\ddots&\vdots\\
+a_{m1}&\dots
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+a_{11}\\
+\vdots\\
+a_{1n}\\
+a_{21}\\
+\vdots\\
+a_{2n}\\
+\vdots\\
+a_{nn}
+\end{pmatrix}
+\]
+Bei dieser Abbildung geht die Hadamard-Multiplikation wieder in
+das gewöhnliche Matrizenprodukt über.
+
+% XXX Faltungsmatrizen und Fouriertheorie
+\subsubsection{Beispiel: Faltung und Fourier-Theorie}
+
+\subsection{Weitere Verknüpfungen
+\label{buch:vektorenmatrizen:subsection:weitere}}
+
+\subsubsection{Transposition}
+Das Hadamard-Produkt verträgt sich mit der Transposition:
+\[
+(A\odot B)^t = A^t \odot B^t.
+\]
+Insbesondere ist das Hadamard-Produkt zweier symmetrischer Matrizen auch 
+wieder symmetrisch.
+
+\subsubsection{Frobeniusnorm}
+Das Hadamard-Produkt in der Hadamard-Algebra $H_{m\times n}(\mathbb{R})$
+nimmt keine Rücksicht auf die Dimensionen einer Matrix und ist nicht
+unterscheidbar von $\mathbb{R}^{m\times n}$ mit dem Hadamard-Produkt.
+Daher darf auch der Begriff einer mit den algebraischen Operationen
+verträglichen Norm nicht von von den Dimensionen abhängen.
+Dies führt auf die folgende Definition einer Norm.
+
+\begin{definition}
+Die {\em Frobenius-Norm} einer Matrix $A\in H_{m\times n}\mathbb{R})$
+mit den Einträgen $(a_{ij})=A$ ist
+\[
+\| A\|_F
+=
+\sqrt{
+\sum_{i,j} a_{ij}^2
+}.
+\]
+Das {\em Frobenius-Skalarprodukt} zweier Matrizen
+$A,B\in H_{m\times n}(\mathbb{R})$
+ist
+\[
+\langle A,B\rangle_F
+=
+\sum_{i,j} a_{ij} b_{ij}
+=
+\operatorname{Spur} A^t B
+\]
+und es gilt $\|A\|_F = \sqrt{\langle A,A\rangle}$.
+\end{definition}
+
+Für komplexe Matrizen muss 
+
+\begin{definition}
+Die {\em komplexe Frobenius-Norm} einer Matrix $A\in H_{m\times n}(\mathbb{C})$
+ist
+\[
+\| A\|
+=
+\sqrt{
+\sum_{i,j} |a_{ij}|^2
+}
+=
+\sqrt{
+\sum_{i,u} \overline{a}_{ij} a_{ij}
+}
+\]
+das {\em komplexe Frobenius-Skalarprodukt} zweier Matrizen
+$A,B\in H_{m\times n}(\mathbb{C})$ ist das Produkt
+\[
+\langle A,B\rangle_F
+=
+\sum_{i,j}\overline{a}_{ij} b_{ij}
+=
+\operatorname{Spur} (A^* B)
+\]
+und es gilt $\|A\|_F = \sqrt{\langle A,A\rangle}$.
+\end{definition}
+
+% XXX Frobeniusnorm
+
+\subsubsection{Skalarprodukt}
+
+% XXX Skalarprodukt 
+
+
+

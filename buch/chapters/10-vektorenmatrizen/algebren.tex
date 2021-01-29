@@ -3,5 +3,96 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
-\section{Algebren
-\label{buch:grundlagen:section:algebren}}
+\subsection{Algebren
+\label{buch:grundlagen:subsection:algebren}}
+
+\subsubsection{Die Algebra der Funktionen $\Bbbk^X$}
+Sie $X$ eine Menge und $\Bbbk^X$ die Menge aller Funktionen $X\to \Bbbk$.
+Auf $\Bbbk^X$ kann man Addition, Multiplikation mit Skalaren und
+Multiplikation von Funktionen punktweise definieren.
+Für zwei Funktion $f,g\in\Bbbk^X$ und $\lambda\in\Bbbk$ definiert man
+\[
+\begin{aligned}
+&\text{Summe $f+g$:}
+&
+(f+g)(x) &= f(x)+g(x)
+\\
+&\text{Skalare $\lambda f$:}
+&
+(\lambda f)(x) &= \lambda f(x)
+\\
+&\text{Produkt $f\cdot g$:}
+&
+(f\cdot g)(x) &= f(x) g(x)
+\end{aligned}
+\]
+Man kann leicht nachprüfen, dass die Menge der Funktionen $\Bbbk^X$
+mit diesen Verknüfungen die Struktur einer $\Bbbk$-Algebra erhält.
+
+Die Algebra der Funktionen $\Bbbk^X$ hat auch ein Einselement:
+die konstante Funktion
+\[
+1\colon [a,b] \to \Bbbk : x \mapsto 1
+\]
+mit Wert $1$ erfüllt
+\[
+(1\cdot f)(x) = 1(x) f(x) = f(x)
+\qquad\Rightarrow\qquad 1\cdot f = f,
+\]
+die Eigenschaft einer Eins in der Algebra.
+
+\subsubsection{Die Algebra der stetigen Funktionen $C([a,b])$}
+Die Menge der stetigen Funktionen $C([a,b])$ ist natürlich eine Teilmenge
+aller Funktionen: $C([a,b])\subset \mathbb{R}^{[a,b]}$ und erbt damit
+auch die Algebraoperationen.
+Man muss nur noch sicherstellen, dass die Summe von stetigen Funktionen,
+das Produkt einer stetigen Funktion mit einem Skalar und das Produkt von
+stetigen Funktionen wieder eine stetige Funktion ist.
+Eine Funktion ist genau dann stetig, wenn an jeder Stelle der Grenzwert
+mit dem Funktionswert übereinstimmt.
+Genau dies garantieren die bekannten Rechenregeln für stetige Funktionen.
+Für zwei stetige Funktionen $f,g\in C([a,b])$ und einen Skalar
+$\lambda\in\mathbb{R}$ gilt
+\[
+\begin{aligned}
+&\text{Summe:}
+&
+\lim_{x\to x_0} (f+g)(x)
+&=
+\lim_{x\to x_0} (f(x)+g(x))
+=
+\lim_{x\to x_0} f(x) + \lim_{x\to x_0}g(x)
+=
+f(x_0)+g(x_0) = (f+g)(x_0)
+\\
+&\text{Skalare:}
+&
+\lim_{x\to x_0} (\lambda f)(x)
+&=
+\lim_{x\to x_0} (\lambda f(x)) = \lambda \lim_{x\to x_0} f(x)
+=
+\lambda f(x_0) = (\lambda f)(x_0)
+\\
+&\text{Produkt:}
+&
+\lim_{x\to x_0}(f\cdot g)(x)
+&=
+\lim_{x\to x_0} f(x)\cdot g(x)
+=
+\lim_{x\to x_0} f(x)\cdot
+\lim_{x\to x_0} g(x)
+=
+f(x_0)g(x_0)
+=
+(f\cdot g)(x_0).
+\end{aligned}
+\]
+für jeden Punkt $x_0\in[a,b]$.
+Damit ist $C([a,b])$ eine $\mathbb{R}$-Algebra.
+Die Algebra hat auch eine Eins, da die konstante Funktion $1(x)=1$ 
+stetig ist.
+
+
+
+
+

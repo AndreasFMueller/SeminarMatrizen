@@ -590,6 +590,16 @@ die zu $A$ {\em inverse Matrix}.
 \index{inverse Matrix}
 Sie wird auch $C=A^{-1}$ geschrieben.
 
+Die Definition der inversen Matrix stellt sicher, dass $AA^{-1}=E$ gilt,
+daraus folgt aber noch nicht, dass auch $A^{-1}A=E$ ist.
+Die Eigenschaften der Matrizenmultiplikation stellen jedoch sicher,
+dass die Menge der invertierbaren Matrizen eine Struktur bilden,
+die man Gruppe nennt, die in Abschnitt~\ref{buch:grundlagen:subsection:gruppen}
+genauer untersucht wird.
+In diesem Zusammenhang wird dann auf
+Seite~\pageref{buch:vektorenmatrizen:satz:gruppenregeln}
+die Eigenschaft $A^{-1}A=E$ ganz allgemein gezeigt.
+
 \subsubsection{Determinante}
 
 %
@@ -839,7 +849,7 @@ Das Bild einer $m\times n$-Matrix $A$ ist die Menge
 
 Zwei Vektoren $a,b\in\operatorname{im}$ haben Urbilder $u,w\in V$ mit
 $f(u)=a$ und $f(w)=b$.
-Für Summe und Skalarprodukt folgt
+Für Summe und Multiplikation mit Skalaren folgt
 \[
 \begin{aligned}
 a+b&= f(u)+f(v)=f(u+v) &&\Rightarrow a+b\in\operatorname{im}f\\

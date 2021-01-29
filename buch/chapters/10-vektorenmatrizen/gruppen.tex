@@ -3,6 +3,186 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, Hochschule Rapeprswil
 %
-\section{Gruppen
-\label{buch:grundlagen:setion:gruppen}}
+\subsection{Gruppen
+\label{buch:grundlagen:subsection:gruppen}}
 \rhead{Gruppen}
+Die kleinste sinnvolle Struktur ist die einer Gruppe.
+Eine solche besteht aus einer Menge $G$ mit einer Verknüpfung,
+die additiv
+\begin{align*}
+G\times G \to G&: (g,h) = gh
+\intertext{oder multiplikativ }
+G\times G \to G&: (g,h) = g+h
+\end{align*}
+geschrieben werden kann.
+Ein Element $0\in G$ heisst {\em neutrales Element} bezüglich der additiv
+geschriebenen Verknüpfung falls $0+x=x$ für alle $x\in G$.
+\index{neutrales Element}%
+Ein Element $e\in G$ heisst neutrales Element bezüglich der multiplikativ 
+geschriebneen Verknüpfung, wenn $ex=x$ für alle $x\in G$.
+In den folgenden Definitionen werden wir immer die multiplikative
+Schreibweise verwenden, für Fälle additiv geschriebener siehe auch die
+Beispiele weiter unten.
+
+\begin{definition}
+\index{Gruppe}%
+Ein {\em Gruppe}
+\index{Gruppe}%
+ist eine Menge $G$ mit einer Verknüfung mit folgenden
+Eigenschaften:
+\begin{enumerate}
+\item
+Die Verknüpfung ist assoziativ: $(ab)c=a(bc)$ für alle $a,b,c\in G$.
+\item
+Es gibt ein neutrales Element $e\in G$
+\item
+Für jedes Element $g\in G$ gibt es ein Element $h\in G$ mit 
+$hg=e$.
+\end{enumerate}
+Das Element $h$ heisst auch das Inverse Element zu $g$.
+\end{definition}
+
+Falls nicht jedes Element invertierbar ist, aber wenigstens ein neutrales
+Element vorhanden ist, spricht man von einem {\em Monoid}.
+\index{Monoid}%
+Hat man nur eine Verknüpfung, spricht man oft von einer {\em Halbruppe}.
+\index{Halbgruppe}%
+
+\begin{definition}
+Eine Gruppe $G$ heisst abelsch, wenn $ab=ba$ für alle $a,b\in G$.
+\end{definition}
+
+Additiv geschrieben Gruppen werden immer als abelsch angenommen,
+multiplikativ geschrieben Gruppen können abelsch oder nichtabelsch sein.
+
+\subsubsection{Beispiele von Gruppen}
+
+\begin{beispiel}
+Die Menge $\mathbb{Z}$ mit der Addition ist eine additive Gruppe mit
+dem neutralen Element $0$.
+Das additive Inverse eines Elementes $a$ ist $-a$.
+\end{beispiel}
+
+\begin{beispiel}
+Die von Null verschiedenen Elemente $\Bbbk^*$ eines Zahlekörpers bilden
+bezüglich der Multiplikation eine Gruppe mit neutralem Element $1$.
+Das multiplikative Inverse eines Elementes $a\in \Bbbk$ mit $a\ne 0$
+ist $a^{-1}=\frac1{a}$.
+\end{beispiel}
+
+\begin{beispiel}
+Die Vektoren $\Bbbk^n$ bilden bezüglich der Addition eine Gruppe mit
+dem Nullvektor als neutralem Element.
+Betrachtet man $\Bbbk^n$ als Gruppe, verliert man die Multiplikation
+mit Skalaren aus den Augen.
+$\Bbbk^n$ als Gruppe zu bezeichnen ist also nicht falsch, man
+verliert dadurch aber 
+\end{beispiel}
+
+\begin{beispiel}
+Die Menge aller quadratischen $n\times n$-Matrizen $M_n(\Bbbk)$ ist
+eine Gruppe bezüglich der Addition mit der Nullmatrix als neutralem
+Element.
+Bezügich der Matrizenmultiplikation ist $M_n(\Bbbk)$ aber keine
+Gruppe, da sich die singulären Matrizen nicht inverieren lassen.
+Die Menge der invertierbaren Matrizen
+\[
+\operatorname{GL}_n(\Bbbk)
+=
+\{
+A\in M_n(\Bbbk)\;|\; \text{$A$ invertierbar}
+\}
+\]
+ist bezüglich der Multiplikation eine Gruppe.
+Die Gruppe $\operatorname{GL}_n(\Bbbk)$ ist eine echte Teilmenge 
+von $M_n(\Bbbk)$, die Addition und Multiplikation führen im Allgemeinen
+aus der Gruppe heraus, es gibt also keine Mögichkeit, in der Gruppe
+$\operatorname{GL}_n(\Bbbk)$ diese Operationen zu verwenden.
+\end{beispiel}
+
+\subsubsection{Einige einfache Rechenregeln in Gruppen}
+Die Struktur einer Gruppe hat bereits eine Reihe von
+Einschränkungen zur Folge.
+Zum Beispiel sprach die Definition des neutralen Elements $e$ nur von
+Produkten der Form $ex=x$, nicht von Produkten $xe$.
+Und die Definition des inversen Elements $h$ von $g$ hat nur
+verlangt, dass $gh=e$, es wurde nichts gesagt über das Produkt $hg$.
+
+\begin{satz}
+\label{buch:vektorenmatrizen:satz:gruppenregeln}
+Ist $G$ eine Gruppe mit neutralem Element $e$, dann gilt
+\begin{enumerate}
+\item
+$xe=x$ für alle $x\in G$
+\item
+Es gibt nur ein neutrales Element.
+Wenn also $f\in G$ mit $fx=x$ für alle $x\in G$, ist dann folgt $f=e$.
+\item 
+Wenn $hg=e$ gilt, dann auch $gh=e$ und $h$ ist durch $g$ eindeutig bestimmt.
+\end{enumerate}
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir beweisen als Erstes den ersten Teil der Eigenschaft~3.
+Sei $h$ die Inverse von $g$, also $hg=e$.
+Sei weiter $i$ die Inverse von $h$, also $ih=e$.
+Damit folgt jetzt
+\[
+g
+=
+eg
+=
+(ih)g
+=
+i(hg)
+=
+ie.
+\]
+Wende man dies auf das Produkt $gh$ an, folgt
+\[
+gh
+=
+(ie)h
+=
+i(eh)
+=
+ih
+=
+e
+\]
+Es ist also nicht nur $hg=e$ sondern immer auch $gh=e$.
+
+Für eine Inverse $h$ von $g$ folgt
+\[
+ge
+=
+g(hg)
+=
+(gh)g
+=
+eg
+=
+g,
+\]
+dies ist die Eigenschaft~1.
+
+Sind $f$ und $e$ neutrale Elemente, dann folgt
+\[
+f = fe = e
+\]
+aus der Eigenschaft~1.
+
+Schliesslich sei $x$ ein beliebiges Inverses von $g$, dann ist
+$xg=e$, dann folgt
+$x=xe=x(gh)=(xg)h = eh = h$, es gibt also nur ein Inverses von $g$.
+\end{proof}
+
+Diesem Problem sind wir zum Beispiel auch in
+Abschnitt~\ref{buch:grundlagen:subsection:gleichungssyteme}
+begegnet, wo wir nur gezeigt haben, dass $AA^{-1}=E$ ist.
+Da aber die invertierbaren Matrizen eine Gruppe
+bilden, folgt jetzt aus dem Satz automatisch, dass auch $A^{-1}A=E$.
+
+
+
+
