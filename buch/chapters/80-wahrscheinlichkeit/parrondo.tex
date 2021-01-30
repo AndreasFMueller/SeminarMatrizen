@@ -205,7 +205,7 @@ G=\begin{pmatrix}
 \end{pmatrix}
 \]
 gibt die Gewinne an, die bei einem Übergang anfallen.
-Die Matrixelemente $g_{ij}b_{ij}$ des elementweisen Produktes 
+Die Matrixelemente $g_{ij}b_{ij}$ des Hadamard-Produktes 
 $G\odot B$
 von $G$ mit $B$ enthält in den Spalten die Gewinnerwartungen
 für die einzelnen Übergänge aus einem Zustand.
@@ -218,7 +218,7 @@ E(Y|K\equiv j)
 für einen Übergang aus dem Zustand $j$.
 Man kann dies auch als einen Zeilenvektor schreiben, der durch Multiplikation
 der Matrix $G\odot B$ mit dem Zeilenvektor
-$\begin{pmatrix}1&1&1\end{pmatrix}$
+$U^t=\begin{pmatrix}1&1&1\end{pmatrix}$
 entsteht:
 \[
 \begin{pmatrix}
@@ -227,7 +227,7 @@ E(Y|K\equiv 1)&
 E(Y|K\equiv 2)
 \end{pmatrix}
 =
-\begin{pmatrix}1&1&1\end{pmatrix}
+U^t
 G\odot B.
 \]
 Die Gewinnerwartung ist dann das Produkt
@@ -237,7 +237,7 @@ E(Y)
 \sum_{i=0}^2
 E(Y|K\equiv i) p_i
 =
-\begin{pmatrix}1&1&1\end{pmatrix}
+U^t
 (G\odot B)p.
 \]
 Tatsächlich ist
@@ -250,7 +250,7 @@ G\odot B
 -\frac9{10} & \frac34 & 0
 \end{pmatrix}
 \quad\text{und}\quad
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot B
+U^t G\odot B
 =
 \begin{pmatrix}-\frac{8}{10}&\frac12&\frac12\end{pmatrix}.
 \]
@@ -260,10 +260,10 @@ Dies stimmt mit den Erwartungswerten in
 Die gesamte Geinnerwartung ist dann
 \begin{equation}
 (G\odot B)
-\begin{pmatrix}\frac13&\frac13&\frac13\end{pmatrix}
+\begin{pmatrix}\frac13\\\frac13\\\frac13\end{pmatrix}
 =
 \begin{pmatrix}-\frac{8}{10}&\frac12&\frac12\end{pmatrix}
-\begin{pmatrix}\frac13&\frac13&\frac13\end{pmatrix}
+\frac13U
 =
 \frac13\biggl(-\frac{8}{10}+\frac12+\frac12\biggr)
 =
@@ -433,6 +433,27 @@ berechnen können.
 Gewinn und Verlust sind also gleich wahrscheinlich, das Spiel $B$ ist also
 ebenfalls fair.
 
+Auch diese Gewinnwahrscheinlichkeit kann etwas formeller mit dem
+Hadamard-Produkt berechnet werden:
+\[
+U^t (G\odot B) p
+=
+\begin{pmatrix}-\frac{8}{10}&\frac12&\frac12\end{pmatrix}
+\frac{1}{13}
+\begin{pmatrix}
+5\\2\\6
+\end{pmatrix}
+=
+-\frac{8}{10}\cdot\frac{5}{13}
++\frac{1}{2} \cdot\frac{2}{13}
++\frac{1}{2} \cdot\frac{6}{13}
+=
+\frac{1}{26}(-8 + 2+ 6)
+=
+0,
+\]
+wie erwartet.
+
 \subsubsection{Das modifizierte Spiel $B$}
 \begin{figure}
 \centering
@@ -545,18 +566,18 @@ E(Y|K\equiv 1)&
 E(Y|K\equiv 2)
 \end{pmatrix}
 &=
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot \tilde{B}
+U^t (G\odot \tilde{B})
 \\
 &=
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot B
+U^t (G\odot B)
 +
 \varepsilon
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot F
+U^t (G\odot F)
 \\
 &=
 \begin{pmatrix} -\frac{8}{10}&\frac12&\frac12 \end{pmatrix}
 +
-\varepsilon\begin{pmatrix}2&2&2\end{pmatrix}
+2\varepsilon U^t
 \\
 &=
 \begin{pmatrix} -\frac{8}{10}+2\varepsilon&\frac12+2\varepsilon&\frac12+2\varepsilon \end{pmatrix}.
@@ -566,20 +587,22 @@ erhält man die Gewinnerwartung
 \begin{align*}
 E(Y)
 &=
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot \tilde{B}
+U^t(G\odot \tilde{B})
 \begin{pmatrix}
-\frac13&
-\frac13&
+\frac13\\
+\frac13\\
 \frac13
 \end{pmatrix}
 \\
 &=
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot B
-\begin{pmatrix} \frac13& \frac13& \frac13 \end{pmatrix}
+U^t
+(G\odot B)
+\frac13 U
 +
 \varepsilon
-\begin{pmatrix}1&1&1\end{pmatrix} G\odot F
-\begin{pmatrix} \frac13& \frac13& \frac13 \end{pmatrix}
+U^t
+(G\odot F)
+\frac13 U
 \\
 &=
 \frac1{15}
@@ -696,37 +719,169 @@ Dazu braucht man das Hadamard-Produkt
 \[
 G\odot \tilde{B}
 =
+G=\begin{pmatrix}
+ 0&-1& 1\\
+ 1& 0&-1\\
+-1& 1& 0
+\end{pmatrix}
+\odot
+\begin{pmatrix}
+0                        &\frac14+\varepsilon & \frac34-\varepsilon \\
+\frac{1}{10}-\varepsilon & 0                  & \frac14+\varepsilon \\
+\frac{9}{10}+\varepsilon &\frac34-\varepsilon & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+ 0                        &-\frac14-\varepsilon & \frac34-\varepsilon \\
+ \frac{1}{10}-\varepsilon & 0                   &-\frac14-\varepsilon \\
+-\frac{9}{10}-\varepsilon & \frac34-\varepsilon & 0
+\end{pmatrix}
 \]
-Wie früher ist
+Wie früher ist der erwartete Gewinn
 \begin{align*}
 E(Y)
 &=
-e^t (G\odot \tilde{B}) p
+U^t (G\odot \tilde{B}) p_{\varepsilon}
 \\
 &=
 \begin{pmatrix}
+-\frac{3}{10}-2\varepsilon & \frac12-2\varepsilon & \frac12-2\varepsilon
 \end{pmatrix}
-p
+p_{\varepsilon}
+\\
+%                               3             2
+%                    480 epsilon  - 48 epsilon  + 294 epsilon
+%(%o50)            - ----------------------------------------
+%                                   2
+%                        240 epsilon  - 16 epsilon + 169
+&=
+-
+\varepsilon\cdot
+\frac{
+294-48\varepsilon+480\varepsilon^2
+}{
+169-16\varepsilon+240\varepsilon^2
+}
 =
+-\frac{294}{169}\varepsilon + O(\varepsilon^2).
 \end{align*}
+Insbesondere ist also die Gewinnerwartung negativ für nicht zu grosse 
+$\varepsilon>0$.
+Das Spiel ist also ein Verlustspiel.
 
 %
 % Die Kombination
 %
 \subsection{Kombination der Spiele
 \label{buch:subsection:kombination}}
+Jetzt werden die beiden Spiele $A$ und $B$ zu einem neuen
+Spiel kombiniert.
+Für das Spiel $A$ haben wir bis jetzt keine Übergansmatrix aufgestellt,
+da das Kapital darin keine Rolle spielt.
+Um die beiden Spiele kombinieren zu können brauchen wir aber die Übergansmatrix
+für die drei Zustände $K\equiv 0,1,2$.
+Sie ist
+\[
+A=\begin{pmatrix}
+0&\frac12&\frac12\\
+\frac12&0&\frac12\\
+\frac12&\frac12&0
+\end{pmatrix}.
+\]
 
-%
-% Gewinn-Erwartung
-%
-\subsection{Gewinnerwartung
-\label{buch:subsection:gewinnerwartung}}
+\subsubsection{Das Spiel $C$}
+In jeder Durchführung des Spiels wird mit einem Münzwurf entschieden,
+ob Spiel $A$ oder Spiel $B$ gespielt werden soll.
+Mit je Wahrscheinlichkeit $\frac12$ werden also die Übergansmatrizen
+$A$ oder $B$ verwendet:
+\[
+P(K\equiv i|K\equiv j)
+=
+A\cdot P(\text{Münzwurf Kopf})
++
+B\cdot P(\text{Münzwurf Kopf})
+=
+\frac12(A+B)
+=
+\begin{pmatrix}
+0            & \frac{3}{8} & \frac{5}{8} \\
+\frac{3}{10} & 0           & \frac{3}{8} \\
+\frac{7}{10} & \frac{5}{8} & 0
+\end{pmatrix}
+\]
+Die Gewinnerwartung in einem Einzelspiel ist
+\begin{align*}
+E(Y)
+&=
+U^t
+(G\odot C)
+\frac13U
+\\
+&=
+U^t
+\begin{pmatrix}
+ 0            &-\frac{3}{8} & \frac{5}{8} \\
+ \frac{3}{10} & 0           &-\frac{3}{8} \\
+-\frac{7}{10} & \frac{5}{8} & 0
+\end{pmatrix}
+\frac13U
+\\
+&=
+\begin{pmatrix}
+-\frac{2}{5} & \frac{1}{4} & \frac{1}{4}
+\end{pmatrix}
+\frac13U
+=
+\frac13\biggl(-\frac{2}{5}+\frac{1}{4}+\frac{1}{4}\biggr)
+=
+-\frac{1}{30}
+\end{align*}
+Das Einzelspiel ist also ein Verlustspiel.
 
-%
-% Gleichgewichtszustand
-%
-\subsection{Gleichgewichtszustand
-\label{buch:subsection:gleichgewichtszustand}}
+\subsubsection{Das iterierte Spiel $C$}
+Für das iterierte Spiel muss man wieder den Eigenvektor von $C$ zum
+Eigenwert $1$ finden, die Rechnung mit dem Gauss-Algorithmus liefert
+\[
+p=
+\frac{1}{709}
+\begin{pmatrix}
+245\\180\\84
+\end{pmatrix}.
+\]
+Damit kann man jetzt die Gewinnwahrscheinlichkeit im iterierten Spiel
+berechnen, es ist
+\begin{align*}
+E(Y)
+&=
+U^t
+(G\odot C) p
+\\
+&=
+\begin{pmatrix}
+-\frac{2}{5} & \frac{1}{4} & \frac{1}{4}
+\end{pmatrix}
+\frac{1}{709}
+\begin{pmatrix}
+245\\180\\84
+\end{pmatrix}
+\\
+&=
+\frac{
+-2\cdot 49 + 45 + 71
+}{709}
+=
+\frac{18}{709},
+\end{align*}
+Das iteriert Spiel $B$ ist also ein Gewinnspiel!
+Obwohl die Spiele $A$ und $B$ für sich alleine in der iterierten Form
+keine Gewinnspiele sind, ist das kombinierte Spiel, wo man zufällig
+die beiden Spiel verbindet immer ein Gewinnspiel.
+
+Man kann statt des Spiels $B$ auch das modifizierte Spiel $\tilde{B}$ 
+verwenden, welches für kleine $\varepsilon>0$ ein Verlustspiel ist.
+Die Analyse lässt sich in der gleichen Weise durchführen und liefert
+wieder, dass für nicht zu grosses $\varepsilon$ das kombinierte Spiel
+ein Gewinnspiel ist.
 
 
 
