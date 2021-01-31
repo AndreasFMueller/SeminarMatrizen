@@ -358,7 +358,7 @@ Da sich die Wahrscheinlichkeiten im Vektor $p$ zu $1$ summieren, gilt
 \begin{pmatrix}
 1&1&\dots&1
 \end{pmatrix}
-}_{\displaystyle = u^t}
+}_{\displaystyle = U^t}
 \begin{pmatrix}
 P(S_1)\\
 P(S_2)\\
@@ -369,12 +369,12 @@ P(S_N)
 P(S_1)+P(S_2)+\dots+P(S_N)=1.
 \]
 Man erhält also die Wirkung der gewünschte Matrix $A$, indem man $p$
-erst mit dem Zeilenvektor $u^t$ und das Resultat mit $q$ multipliziert.
+erst mit dem Zeilenvektor $U^t$ und das Resultat mit $q$ multipliziert.
 Es gilt daher
 \[
-Ap = qu^tp
+Ap = qU^tp
 \qquad\Rightarrow\qquad
-A=qu^t.
+A=qU^t.
 \]
 Ausmultipliziert ist dies die Matrix
 \[
@@ -385,11 +385,11 @@ q_2&q_2&\dots&q_2\\
 q_N&q_N&\dots&q_N
 \end{pmatrix}.
 \]
-Im Fall $q=\frac1Nu$ kann dies zu
+Im Fall $q=\frac1NU$ kann dies zu
 \[
 A
 =
-\frac1N uu^t
+\frac1N uU^t
 =
 \frac1N
 \begin{pmatrix}
@@ -409,13 +409,13 @@ G
 \alpha H
 +
 \frac{1-\alpha}{N}
-uu^t
+UU^t
 \qquad\text{oder}\qquad
 G
 =
 \alpha H
 +
-(1-\alpha)qu^t
+(1-\alpha)qU^t
 \]
 heisst die
 {\em Google-Matrix}.
