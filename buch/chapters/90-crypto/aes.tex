@@ -6,4 +6,30 @@
 \section{Advanced Encryption Standard -- AES
 \label{buch:section:aes}}
 \rhead{Advanced Encryption Standard}
+Eine wichtige Forderung bei der Konzeption des damals neuen
+Advanced Encryption Standard war, dass darin keine ``willkürlich''
+erscheinenden Operationen geben darf, bei denen der Verdacht
+entstehen könnte, dass sich dahinter noch offengelegtes Wissen
+über einen möglichen Angriff auf den Verschlüsselungsalgorithmus
+verbergen könnte.
+Dies war eine Schwäche des vor AES üblichen DES Verschlüsselungsalgorithmus.
+In seiner Definition kommt eine Reihe von Konstanten vor, über deren
+Herkunft nichts bekannt war.
+Die Gerüchteküche wollte wissen, dass die NSA die Konstanten aus dem
+ursprünglichen Vorschlag abgeändert habe, und dass dies geschehen sei,
+um den Algorithmus durch die NSA angreifbar zu machen.
+
+Eine weiter Forderung war, dass die Sicherheit des neuen
+Verschlüsselungsstandards ``skalierbar'' sein soll, dass man also
+die Schlüssellänge mit der Zeit von 128~Bit auf 196 oder sogar 256~Bit
+steigern kann.
+Der Standard wird dadurch langlebiger und gleichzeitig entsteht die
+Möglichkeit, Sicherheit gegen Rechenleistung einzutauschen.
+Weniger leistungsfähige Systeme können den Algorithmus immer noch
+nutzen, entweder mit geringerer Verschlüsselungsrate oder geringerer
+Sicherheit.
+
+In diesem Abschnitt soll gezeigt werde, wie sich die AES
+spezifizierten Operationen als mit der Arithmetik der
+endlichen Körper beschreiben lassen.
 

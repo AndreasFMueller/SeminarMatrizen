@@ -7,3 +7,212 @@
 \section{Kryptographie und endliche Körper
 \label{buch:section:kryptographie-und-endliche-koerper}}
 \rhead{Kryptographie und endliche Körper}
+
+\subsection{Potenzen in $\mathbb{F}_p$ und diskreter Logarithmus
+\label{buch:subsection:potenzen-diskreter-logarithmus}}
+Für kryptographische Anwendungen wird eine einfach zu berechnende
+Funktion benötigt,
+die ohne zusätzliches Wissen, üblicherweise der Schlüssel genannt,
+nicht ohne weiteres umkehrbar ist.
+Die arithmetischen Operationen in einem endlichen Körper sind
+mit geringem Aufwand durchführbar.
+Für die ``schwierigste'' Operation, die Division, steht der
+euklidische Algorithmus zur Verfügung.
+
+Die nächstschwierigere Operation ist die Potenzfunktion.
+Für $g\in \Bbbk$ und $a\in\mathbb{N}$ ist die Potenz $g^a\in\Bbbk$
+natürlich durch die wiederholte Multiplikation definiert.
+In der Praxis werden aber $g$ und $a$ Zahlen mit vielen Binärstellen
+sein, die die wiederholte Multiplikation ist daher sicher nicht
+effizient, das Kriterium der einfachen Berechenbarkeit scheint
+also nicht erfüllt.
+Der folgende Algorithmus berechnet die Potenz in $O(\log_2 a$
+Multiplikationen.
+
+\begin{algorithmus}[Divide-and-conquer]
+\label{buch:crypto:algo:divide-and-conquer}
+Sei $a=a_0 + a_12^1 + a_22^2 + \dots + a_k2^k$ die Binärdarstellung
+der Zahl $a$.
+\begin{enumerate}
+\item setze $f=g$, $x=1$, $i=0$
+\label{divide-and-conquer-1}
+\item solange $i\ge k$ ist, führe aus
+\label{divide-and-conquer-2}
+\begin{enumerate}
+\item
+\label{divide-and-conquer-3}
+falls $a_i=1$ setze $x \coloneqq x \cdot f$
+\item
+\label{divide-and-conquer-4}
+$i \coloneqq i+1$ und $f\coloneqq f\cdot f$
+\end{enumerate}
+\end{enumerate}
+Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
+berechnet werden.
+\end{algorithmus}
+
+\begin{proof}[Beweis]
+Die Initalisierung in Schritt~\ref{divide-and-conquer-1} stellt sicher,
+dass $x$ den Wert $g^0$ hat. 
+Schritt~\ref{divide-and-conquer-4} stellt sicher,
+dass die Variable $f$ immer den Wert $g^{2^i}$ hat.
+Im Schritt~\ref{divide-and-conquer-3} wird zu $x$ die Potenz
+$g^{a_i2^i}$ hinzumultipliziert.
+Am Ende des Algorithmus hat daher $x$ den Wert
+\[
+x = g^{a_02^0} \cdot g^{a_12^1} \cdot g^{a_22^2} \cdot\ldots\cdot 2^{a_k2^k}
+=
+g^{a_0+a_12+a_22^2+\dots+a_k2^k}
+=
+g^a.
+\]
+Die Schleife wird $\lfloor1+\log_2ab\rfloor$ mal durchlaufen.
+In jedem Fall wird auf jeden Fall die Multiplikation in 
+Schritt~\ref{divide-and-conquer-4} durchgeführt
+und im schlimmsten Fall auch noch die Multiplikation in
+Schritt~\ref{divide-and-conquer-3}.
+Es werden also nicht mehr als $2\lfloor 1+\log_2a\rfloor=O(\log_2a)$
+Multiplikationen durchgeführt.
+\end{proof}
+
+\begin{beispiel}
+Man berechne die Potenz $7^{2021}$ in $\mathbb{F}_p$.
+Die Binärdarstellung von 2021 ist $2021_{10}=\texttt{11111100101}_2$.
+Wir stellen die nötigen Operationen des
+Algorithmus~\ref{buch:crypto:algo:divide-and-conquer} in der folgenden
+Tabelle
+\begin{center}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+ i&   f& a_i&    x\\
+\hline
+ 0&   7&   1&    7\\
+ 1&  49&   0&    7\\
+ 2&1110&   1&   24\\
+ 3& 486&   0&   24\\
+ 4&1234&   0&   24\\
+ 5& 667&   1&  516\\
+ 6& 785&   1&  977\\
+ 7& 418&   1&  430\\
+ 8& 439&   1&  284\\
+ 9& 362&   1&  819\\
+10& 653&   1&  333\\
+\hline
+\end{tabular}
+\end{center}
+Daraus liest man ab, dass $7^{2021}=333\in\mathbb{F}_{1291}$.
+\end{beispiel}
+
+Die Tabelle suggeriert, dass die Potenzen von $g$ ``wild'', also
+scheinbar ohne System in $\mathbb{F}_p$ herumspringen.
+Dies deutet an, dass die Umkehrung der Exponentialfunktion in $\mathbb{F}_p$
+schwierig ist.
+Die Umkehrfunktion der Exponentialfunktion, die Umkehrfunktion von 
+$x\mapsto g^x$ in $\mathbb{F}_p$ heisst der {\em diskrete Logarithmus}.
+\index{diskreter Logarithmus}%
+Tatsächlich ist der diskrete Logarithmus ähnlich schwierig zu bestimmen
+wie das Faktorisieren von Zahlen, die das Produkt grosser
+Primafaktoren ähnlicher Grössenordnung wie $p$ sind.
+Die Funktion $x\mapsto g^x$ ist die gesuchte, schwierig zu invertierende
+Funktion.
+
+\subsection{Diffie-Hellman-Schlüsseltausch
+\label{buch:subsection:diffie-hellman}}
+Eine Grundaufgabe der Verschlüsselung im Internet ist, dass zwei
+Kommunikationspartner einen gemeinsamen Schlüssel für die Verschlüsselung
+der Daten aushandeln können müssen.
+Es muss davon ausgegangen werden, dass die Kommunikation abgehört wird.
+Trotzdem soll es für einen Lauscher nicht möglich sein, den 
+ausgehandelten Schlüssel zu ermitteln.
+
+% XXX Historisches zu Diffie und Hellman
+
+Die beiden Partner $A$ und $B$ einigen sich zunächst auf eine Zahl $g$,
+die öffentlich bekannt sein darf.
+Weiter erzeugen sie eine zufällige Zahl $a$ und $b$, die sie geheim
+halten.
+Das Verfahren soll aus diesen beiden Zahlen einen Schlüssel erzeugen,
+den beide Partner berechnen können, ohne dass sie $a$ oder $b$ 
+übermitteln müssen.
+Die beiden Zahlen werden daher auch die privaten Schlüssel genannt.
+
+Die Idee von Diffie und Hellman ist jetzt, die Werte $x=g^a$ und $y=g^b$
+zu übertragen.
+In $\mathbb{R}$ würden dadurch natürlich dem Lauscher auch $a$ offenbart,
+er könnte einfach $a=\log_g x$ berechnen.
+Ebenso kann auch $b$ als $b=\log_g y$ erhalten werden, die beiden
+privaten Schlüssel wären also nicht mehr privat.
+Statt der Potenzfunktion in $\mathbb{R}$ muss also eine Funktion
+verwendet werden, die nicht so leicht umgekehrt werden kann.
+Die Potenzfunktion in $\mathbb{F}_p$ erfüllt genau diese Eigenschaft.
+Die Kommunikationspartner einigen sich also auch noch auf die (grosse)
+Primzahl $p$ und übermitteln $x=g^a\in\mathbb{F}_p$ und
+$y=g^b\in\mathbb{F}_p$.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[>=latex,thick]
+\def\l{2.5}
+\fill[color=blue!20] (-7,-6.5) rectangle (7,0.5);
+\fill[color=red!20] (-\l,-6.5) rectangle (\l,0.501);
+\node[color=red] at (0,-1.5) {öffentliches Netzwerk};
+\node[color=blue] at (-7,0.2) [right] {privat};
+\node[color=blue] at (7,0.2) [left] {privat};
+\coordinate (A) at (-\l,-2.5);
+\coordinate (C) at (\l,-5.5);
+\coordinate (B) at (\l,-2.5);
+\coordinate (D) at (-\l,-5.5);
+\node at (0,0) {$p\in\mathbb{N},g\in\mathbb{F}_p$ aushandeln};
+\fill[color=white] (-\l,-0.7) circle[radius=0.3];
+\draw (-\l,-0.7) circle[radius=0.3];
+\fill[color=white] (\l,-0.7) circle[radius=0.3];
+\draw (\l,-0.7) circle[radius=0.3];
+\node at (-\l,-0.7) {$A$};
+\node at (\l,-0.7) {$B$};
+\node at (-\l,-1.5) [left] {$a$ auswählen};
+\node at (-\l,-2.0) [left] {$x=g^a\in\mathbb{F}_p$ auswählen};
+\node at (\l,-1.5) [right] {$b$ auswählen};
+\node at (\l,-2.0) [right] {$y=g^b\in\mathbb{F}_p$ auswählen};
+\draw[->] (-\l,-1) -- (-\l,-6);
+\draw[->] (\l,-1) -- (\l,-6);
+\draw[->] (A) -- (C);
+\draw[->] (B) -- (D);
+\fill (A) circle[radius=0.08];
+\fill (B) circle[radius=0.08];
+\node at ($0.8*(A)+0.2*(C)$) [above right] {$x=g^a$};
+\node at ($0.8*(B)+0.2*(D)$) [above left] {$y=g^b$};
+\node at (-\l,-5.5) [left] {$s=g^{ab}=y^a\in\mathbb{F}_p$ ausrechnen};
+\node at (\l,-5.5) [right] {$s=g^{ab}=x^b\in\mathbb{F}_p$ ausrechnen};
+\fill[rounded corners=0.3cm,color=darkgreen!20] ({-\l-1},-7) rectangle ({\l+1},-6);
+\draw[rounded corners=0.3cm] ({-\l-1},-7) rectangle ({\l+1},-6);
+\node at (0,-6.5) {$A$ und $B$ haben den gemeinsamen Schlüssel $s$};
+\end{tikzpicture}
+\caption{Schlüsselaustausch nach Diffie-Hellman.
+Die Kommunikationspartner $A$ und $B$ einigen sich öffentlich auf
+$p\in\mathbb{N}$ und $g\in\mathbb{F}_p$.
+$A$ wählt dann einen privaten Schlüssel $a\in\mathbb{N}$ und
+$B$ wählt $b\in\mathbb{N}$, sie tauschen dann $x=g^a$ und $y=g^b$
+aus.
+$A$ erhält den gemeinsamen Schlüssel aus $y^a$, $B$ erhält ihn
+aus $x^b$.
+\label{buch:crypto:fig:dh}}
+\end{figure}
+
+Aus $x$ und $y$ muss jetzt der gemeinsame Schlüssel abgeleitet werden.
+$A$ kennt $y=g^b$ und $a$, $B$ kennt $x=g^a$ und $b$.
+Beide können die Zahl $s=g^{ab}\in\mathbb{F}_p$ berechnen.
+$A$ macht das, indem er $y^a=(g^b)^a = g^{ab}$ rechnet,
+$B$ rechnet $x^b = (g^a)^b = g^{ab}$, beide natürlich in $\mathbb{F}_p$.
+Der Lauscher kann aber $g^{ab}$ nicht ermitteln, dazu müsste er
+$a$ oder $b$ ermitteln können.
+Die Zahl $s=g^{ab}$ kann also als gemeinsamer Schlüssel verwendet
+werden.
+
+
+
+\subsection{Elliptische Kurven
+\label{buch:subsection:elliptische-kurven}}
+Das Diffie-Hellman-Verfahren basiert auf der Schwierigkeit, in einem 
+Körper $\mathbb{F}_p$ die Gleichung $a^x=b$ nach $x$ aufzulösen.
+
+
