@@ -439,6 +439,17 @@ Das Problem, die stationären Verteilungen von $T$ zu finden, ist
 auf die Untermatrizen $T_i$ reduziert worden.
 
 \subsubsection{Die konvexe Menge der stationären Verteilungen}
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/konvex.pdf}
+\caption{Die Konvexe Kombination von Vektoren $\vec{p}_1,\dots,\vec{p}_n$ ist
+eine Summe der Form $\sum_{i=1}^n t_i\vec{p}_i$ wobei die $t_i\ge 0$
+sind mit $\sum_{i=1}^nt_i=1$.
+Für zwei Punkte bilden die konvexen Kombinationen die Verbindungsstrecke
+zwischen den Punkten, für drei Punkte in drei Dimensionen spannen die
+konvexen Kombinationen ein Dreieck auf.
+\label{buch:wahrscheinlichkeit:fig:konvex}}
+\end{figure}
 Die stationären Verteilungen
 \[
 \operatorname{Stat}(T)
@@ -674,6 +685,7 @@ E&R\\
 \right).
 \]
 Die Matrix $R$ beschreibt die Wahrscheinlichkeiten, mit denen man
+ausgehend von einem transienten Zustand
 in einem bestimmten absorbierenden Zustand landet.
 Die Matrix $Q$ beschreibt die Übergänge, bevor dies passiert.
 Die Potenzen von $T$ sind
@@ -698,7 +710,7 @@ E&R+RQ+RQ^2 \\
 \end{array}
 \right),
 \;
-\dots
+\dots,
 \;
 T^k
 =
@@ -740,9 +752,90 @@ Wenn der Prozess genau im Schritt $k$ zum ersten Mal Zustand $i$
 ankommt, dann ist $E(k)$ die mittlere Wartezeit.
 Der Prozess verbringt also zunächst $k-1$ Schritte in transienten
 Zuständen, bevor er in einen absorbierenden Zustand wechselt.
-Die Wahrscheinlichkeit ausgehend vom transjenten Zustand $j$ in
-genau $k$ Schritten im absorbierenden Zustand zu landen ist
-das Matrix-Element $(i,j)$ der Matrix $RQ^{k-1}$.
+
+Wir brauchen die Wahrscheinlichkeit für einen Entwicklung des Zustandes
+ausgehend vom Zustand $j$, die nach $k-1$ Schritten im Zustand $l$
+landet, von wo er in den absorbierenden Zustand wechselt.
+Diese Wahrscheinlichkeit ist
+\[
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
+=
+\sum_{i_1,\dots,i_{k-2}}
+r_{il} q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}
+\]
+Von den Pfaden, die zur Zeit $k-1$ im Zustand $l$ ankommen gibt es
+aber auch einige, die nicht absorbiert werden.
+Für die Berechnung der Wartezeit möchten wir nur die Wahrscheinlichkeit
+innerhalb der Menge der Pfade, die auch tatsächlich absorbiert werden,
+das ist die bedingte Wahrscheinlichkeit
+\begin{equation}
+\begin{aligned}
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j|X_k=i)
+&=
+\frac{
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
+}{
+P(X_k=i)
+}
+\\
+&=
+\sum_{i_1,\dots,i_{k-2}}
+q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}.
+\end{aligned}
+\label{buch:wahrscheinlichkeit:eqn:ankunftswahrscheinlichkeit}
+\end{equation}
+Auf der rechten Seite steht das Matrixelement $(l,j)$ von $Q^{k-1}$.
+
+% XXX Differenz 
+
+Für die Berechnung der erwarteten Zeit ist müssen wir die
+Wahrscheinlichkeit mit $k$ multiplizieren und summieren:
+\begin{align}
+E(k)
+&=
+\sum_{k=0}^\infty
+k(
+q^{(k)}_{lj} 
+-
+q^{(k-1)}_{lj} 
+)
+\notag
+\\
+&=
+\dots
++
+(k+1)(
+q^{(k)}_{lj} 
+-
+q^{(k+1)}_{lj} 
+)
++
+k(
+q^{(k-1)}_{lj} 
+-
+q^{(k)}_{lj} 
+)
++
+\dots
+\label{buch:wahrscheinlichkeit:eqn:telescope}
+\\
+&=
+\dots
++
+q^{(k-1)}_{lj}
++
+\dots
+=
+\sum_{k} q^{(k)}_{lj}.
+\notag
+\end{align}
+In zwei benachbarten Termen in 
+\eqref{buch:wahrscheinlichkeit:eqn:telescope}
+heben sich die Summanden $kq^{(k)}_{lj}$ weg, man spricht von
+einer teleskopischen Reihe.
+Die verbleibenden Terme sind genau die Matrixelemente der Fundamentalmatrix $N$.
+Die Fundamentalmatrix enthält also im Eintrag $(l,j)$ die Wartezeit
+bis zur Absorption über den Zustand $l$.
 
 \subsubsection{Wartezeit}
 % XXX Mittlere Zeit bis zu einem bestimmten Zustand

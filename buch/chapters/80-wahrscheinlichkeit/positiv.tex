@@ -689,6 +689,18 @@ Dann gibt es einen positiven Eigenvektor zum Eigenwert $\varrho(A)$,
 mit geometrischer und algebraischer Vielfachheit $1$.
 \end{satz}
 
+\begin{beispiel}
+In der Google-Matrix mit freiem Willen
+nach
+\eqref{buch:wahrscheinlichkeit:eqn:google-matrix}
+enthält den Term $((1-\alpha)/N)UU^t$.
+Die Matrix $UU^t$ ist eine Matrix aus lauter Einsen, der Term
+ist also für $\alpha < 1$ eine positive Matrix.
+Die Google-Matrix ist daher eine positive Matrix.
+Nach dem Satz von Perron-Frobenius ist die Grenzverteilung
+eindeutig bestimmt.
+\end{beispiel}
+
 Der Satz~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}
 von Perron-Frobenius kann auf primitive Matrizen verallgemeinert
 werden.
@@ -704,4 +716,6 @@ und er hat geometrische und algebraische Vielfachheit $1$.
 Nach Voraussetzung gibt es ein $n$ derart, dass $A^n>0$.
 Für $A^n$ gelten die Resultate von 
 Satz~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}.
+
+XXX TODO
 \end{proof}

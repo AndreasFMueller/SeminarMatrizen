@@ -5,6 +5,41 @@
 %
 \subsection{Algebren
 \label{buch:grundlagen:subsection:algebren}}
+Die Skalar-Multiplikation eines Vektorraums ist in einem Ring nicht
+vorhanden.
+Die Menge der Matrizen $M_n(\Bbbk)$ ist sowohl ein Ring als auch
+ein Vektorraum.
+Man nennt eine {\em $\Bbbk$-Algebra} oder {\em Algebra über $\Bbbk$}
+ein Ring $A$, der auch eine $\Bbbk$-Vektorraum ist.
+Die Multiplikation des Ringes muss dazu mit der Skalarmultiplikation
+verträglich sein.
+Dazu müssen Assoziativgesetze
+\[
+\lambda(\mu a) = (\lambda \mu) a
+\qquad\text{und}\qquad
+\lambda(ab) = (\lambda a) b
+\]
+für $a,b\in A$ und $\lambda,\mu\in\Bbbk$
+und eine Regel der Form
+\begin{equation}
+a(\lambda b) = \lambda (ab)
+\label{buch:vektorenmatrizen:eqn:algebrakommutativ}
+\end{equation}
+gelten.
+Die Bedingung \eqref{buch:vektorenmatrizen:eqn:algebrakommutativ} ist
+eine Folge der Forderung, dass die Multiplikation 
+eine lineare Abbildung sein soll.
+Dies bedeutet, dass
+\begin{equation}
+a(\lambda b+\mu c) = \lambda (ab) + \mu (ac),
+\label{buch:vektorenmatrizen:eqn:algebralinear}
+\end{equation}
+woraus 
+\eqref{buch:vektorenmatrizen:eqn:algebrakommutativ}
+für $\mu=0$ folgt.
+Die Regel \eqref{buch:vektorenmatrizen:eqn:algebralinear}
+beinhaltet aber auch das Distributivgesetz.
+$M_n(\Bbbk)$ ist eine Algebra.
 
 \subsubsection{Die Algebra der Funktionen $\Bbbk^X$}
 Sie $X$ eine Menge und $\Bbbk^X$ die Menge aller Funktionen $X\to \Bbbk$.

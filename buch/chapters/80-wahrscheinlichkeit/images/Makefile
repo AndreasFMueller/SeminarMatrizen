@@ -4,7 +4,8 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschulen
 #
 all:	dreieck.pdf trenn.pdf vergleich.pdf vergleich.jpg \
-	positiv.pdf positiv.jpg diffusion.png diffusion.pdf
+	positiv.pdf positiv.jpg diffusion.png diffusion.pdf \
+	konvex.pdf
 
 # Visualisierung diffusion in einer primitiven Matrix
 diffusion.pdf:	diffusion.tex diffusion.jpg
@@ -53,3 +54,7 @@ dreieck.pdf:	dreieck.tex drei.inc
 
 drei.inc:	dreieck.m
 	octave dreieck.m
+
+# Konvex
+konvex.pdf:	konvex.tex
+	pdflatex konvex.tex

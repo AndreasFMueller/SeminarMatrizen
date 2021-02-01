@@ -592,7 +592,14 @@ Sie wird auch $C=A^{-1}$ geschrieben.
 
 Die Definition der inversen Matrix stellt sicher, dass $AA^{-1}=E$ gilt,
 daraus folgt aber noch nicht, dass auch $A^{-1}A=E$ ist.
-Die Eigenschaften der Matrizenmultiplikation stellen jedoch sicher,
+Diese Eigenschaft kann man jedoch wie folgt erhalten.
+Sei $C$ die inverse Matrix von $A$, also $AC=E$.
+Sei weiter $D$ die inverse Matrix von $C$, also $CD=E$.
+Dann ist zunächst $A=AE=A(CD)=(AC)D=ED=D$ und weiter
+$CA=CD=E$.
+Mit der Bezeichnung $C=A^{-1}$ erhalten wir also auch $A^{-1}A=E$.
+
+Die Eigenschaften der Matrizenmultiplikation stellen sicher,
 dass die Menge der invertierbaren Matrizen eine Struktur bilden,
 die man Gruppe nennt, die in Abschnitt~\ref{buch:grundlagen:subsection:gruppen}
 genauer untersucht wird.
