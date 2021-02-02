@@ -116,6 +116,44 @@ Primafaktoren ähnlicher Grössenordnung wie $p$ sind.
 Die Funktion $x\mapsto g^x$ ist die gesuchte, schwierig zu invertierende
 Funktion.
 
+Auf dern ersten Blick scheint der
+Algorithmus~\ref{buch:crypto:algo:divide-and-conquer}
+den Nachteil zu haben, dass erst die Binärdarstellung der Zahl $a$ 
+ermittelt werden muss.
+In einem Computer ist dies aber normalerweise kein Problem, da $a$
+im Computer ohnehin binär dargestellt ist.
+Die Binärziffern werden in der Reihenfolge vom niederwertigsten zum
+höchstwertigen Bit benötigt.
+Die folgende Modifikation des Algorithmus ermittelt laufend
+auch die Binärstellen von $a$.
+Die dazu notwendigen Operationen sind im Binärsystem besonders
+effizient implementierbar, die Division durch 2 ist ein Bitshift, der
+Rest ist einfach das niederwertigste Bit der Zahl.
+
+\begin{algorithmus}
+\label{buch:crypto:algo:divide-and-conquer2}
+\begin{enumerate}
+\item
+Setze $f=g$, $x=1$, $i=0$
+\item
+Solange $a>0$ ist, führe aus
+\begin{enumerate}
+\item
+Verwende den euklidischen Algorithmus um $r$ und $b$ zu bestimmen mit $a=2b+r$
+\item
+Falls $r=1$ setze $x \coloneqq x \cdot f$
+\item
+$i \coloneqq i+1$, $a = b$ und $f\coloneqq f\cdot f$
+\end{enumerate}
+\end{enumerate}
+Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
+berechnet werden.
+\end{algorithmus}
+
+
+%
+% Diffie-Hellman Schlüsseltausch
+%
 \subsection{Diffie-Hellman-Schlüsseltausch
 \label{buch:subsection:diffie-hellman}}
 Eine Grundaufgabe der Verschlüsselung im Internet ist, dass zwei
@@ -151,42 +189,7 @@ $y=g^b\in\mathbb{F}_p$.
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[>=latex,thick]
-\def\l{2.5}
-\fill[color=blue!20] (-7,-6.5) rectangle (7,0.5);
-\fill[color=red!20] (-\l,-6.5) rectangle (\l,0.501);
-\node[color=red] at (0,-1.5) {öffentliches Netzwerk};
-\node[color=blue] at (-7,0.2) [right] {privat};
-\node[color=blue] at (7,0.2) [left] {privat};
-\coordinate (A) at (-\l,-2.5);
-\coordinate (C) at (\l,-5.5);
-\coordinate (B) at (\l,-2.5);
-\coordinate (D) at (-\l,-5.5);
-\node at (0,0) {$p\in\mathbb{N},g\in\mathbb{F}_p$ aushandeln};
-\fill[color=white] (-\l,-0.7) circle[radius=0.3];
-\draw (-\l,-0.7) circle[radius=0.3];
-\fill[color=white] (\l,-0.7) circle[radius=0.3];
-\draw (\l,-0.7) circle[radius=0.3];
-\node at (-\l,-0.7) {$A$};
-\node at (\l,-0.7) {$B$};
-\node at (-\l,-1.5) [left] {$a$ auswählen};
-\node at (-\l,-2.0) [left] {$x=g^a\in\mathbb{F}_p$ auswählen};
-\node at (\l,-1.5) [right] {$b$ auswählen};
-\node at (\l,-2.0) [right] {$y=g^b\in\mathbb{F}_p$ auswählen};
-\draw[->] (-\l,-1) -- (-\l,-6);
-\draw[->] (\l,-1) -- (\l,-6);
-\draw[->] (A) -- (C);
-\draw[->] (B) -- (D);
-\fill (A) circle[radius=0.08];
-\fill (B) circle[radius=0.08];
-\node at ($0.8*(A)+0.2*(C)$) [above right] {$x=g^a$};
-\node at ($0.8*(B)+0.2*(D)$) [above left] {$y=g^b$};
-\node at (-\l,-5.5) [left] {$s=g^{ab}=y^a\in\mathbb{F}_p$ ausrechnen};
-\node at (\l,-5.5) [right] {$s=g^{ab}=x^b\in\mathbb{F}_p$ ausrechnen};
-\fill[rounded corners=0.3cm,color=darkgreen!20] ({-\l-1},-7) rectangle ({\l+1},-6);
-\draw[rounded corners=0.3cm] ({-\l-1},-7) rectangle ({\l+1},-6);
-\node at (0,-6.5) {$A$ und $B$ haben den gemeinsamen Schlüssel $s$};
-\end{tikzpicture}
+\includegraphics{chapters/90-crypto/images/dh.pdf}
 \caption{Schlüsselaustausch nach Diffie-Hellman.
 Die Kommunikationspartner $A$ und $B$ einigen sich öffentlich auf
 $p\in\mathbb{N}$ und $g\in\mathbb{F}_p$.
@@ -214,5 +217,144 @@ werden.
 \label{buch:subsection:elliptische-kurven}}
 Das Diffie-Hellman-Verfahren basiert auf der Schwierigkeit, in einem 
 Körper $\mathbb{F}_p$ die Gleichung $a^x=b$ nach $x$ aufzulösen.
+Die Addition in $\mathbb{F}_p$ wird dazu nicht benötigt.
+Es reicht, eine Menge mit einer Multiplikation zu haben, in der das
+die Gleichung $a^x=b$ schwierig zu lösen ist.
+Ein Gruppe wäre also durchaus ausreichend.
 
+Ein Kandidat für eine solche Gruppe könnte der Einheitskreis
+$S^1=\{z\in\mathbb{C}\;|\; |z|=1\}$ in der komplexen Ebene sein.
+Wählt man eine Zahl $g=e^{i\alpha}$, wobei $\alpha$ ein irrationales
+Vielfaches von $\pi$ ist, dann sind alle Potenzen $g^n$ für natürliche
+Exponenten voneinander verschieden.
+Wäre nämlich $g^{n_1}=g^{n_2}$, dann wäre $e^{i\alpha(n_1-n_2)}=1$ und
+somit müsste $\alpha=2k\pi/(n_1-n_2)$ sein.
+Damit wäre aber $\alpha$ ein rationales Vielfaches von $\pi$, im Widerspruch
+zur Voraussetzung.
+Die Abbildung $n\mapsto g^n\in S^1$ ist auf den ersten Blick etwa ähnlich
+undurchschaubar wie die Abbildung $n\mapsto g^n\in\mathbb{F}_p$.
+Es gibt zwar die komplexe Logarithmusfunktion, mit der man $n$ bestimmen
+kann, dazu muss man aber den Wert von $g^n$ mit beliebiger Genauigkeit
+kennen, denn die Werte von $g^n$ können beliebig nahe beieinander liegen.
+
+Der Einheitskreis ist die Lösungsmenge der Gleichung $x^2+y^2=1$ für
+reelle Koordinaten $x$ und $y$,
+doch Rundungsunsicherheiten verunmöglichen den Einsatz in einem 
+Verfahren ähnlich dem Diffie-Hellman-Verfahren.
+Dieses Problem kann gelöst werden, indem für die Variablen Werte
+aus einem endlichen Körper verwendet werden.
+Gesucht ist also eine Gleichung in zwei Variablen, deren Lösungsmenge
+in einem endlichen Körper eine Gruppenstruktur trägt.
+Die Lösungsmenge ist eine ``Kurve'' von Punkten mit
+Koordinaten in einem endlichen Körper.
+
+In diesem Abschnitt wird gezeigt, dass sogenannte elliptische Kurven
+über endlichen Körpern genau die verlangen Eigenschaften haben.
+
+\subsubsection{Elliptische Kurven}
+Elliptische Kurven sind Lösungen einer Gleichung der Form
+\begin{equation}
+Y^2+XY=X^3+aX+b
+\label{buch:crypto:eqn:ellipticcurve}
+\end{equation}
+mit Werten von $X$ und $Y$ in einem geeigneten Körper.
+Die Koeffizienten $a$ und $b$ müssen so gewählt werden, dass die
+Gleichung~\eqref{buch:crypto:eqn:ellipticcurve} genügend viele
+Lösungen hat.
+Über den komplexen Zahlen hat die Gleichung natürlich für jede Wahl von
+$X$ drei Lösungen.
+Für einen endlichen Körper können wir dies im allgemeinen nicht erwarten,
+aber wenn wir genügend viele Wurzeln zu $\mathbb{F}$ hinzufügen können wir
+mindestens erreichen, dass die Lösungsmenge so viele Elemente hat, 
+dass ein Versuch, die Gleichung $g^x=b$ mittels Durchprobierens zu
+lösen, zum Scheitern verurteil ist.
+
+\begin{definition}
+\label{buch:crypto:def:ellipticcurve}
+Die {\em elliptische Kurve} $E_{a,b}(\Bbbk)$ über dem Körper $\Bbbk$ ist 
+die Menge
+\[
+E_{a,b}(\Bbbk)
+=
+\{(X,Y)\in\Bbbk^2\;|\;Y^2+XY=X^3+aX+b\},
+\]
+für $a,b\in\Bbbk$.
+\end{definition}
+
+Um die Anschauung zu vereinfachen, werden wir elliptische Kurven über
+dem Körper $\mathbb{R}$ visualisieren.
+Die daraus gewonnenen geometrischen Einsichten werden wir anschliessend
+algebraisch umsetzen.
+In den reellen Zahlen kann man die
+Gleichung~\eqref{buch:crypto:eqn:ellipticcurve}
+noch etwas vereinfachen.
+Indem man in \eqref{buch:crypto:eqn:ellipticcurve} 
+quadratisch ergänzt, bekommt man
+\begin{align}
+Y^2 + XY + \frac14X^2 &= X^3+\frac14 X^2 +aX+b
+\notag
+\\
+\Rightarrow\qquad
+v^2&=X^3+\frac14X^2+aX+b,
+\label{buch:crypto:eqn:ell2}
+\end{align}
+indem man $v=Y+\frac12X$ setzt.
+Man beachte, dass man diese Substition nur machen kann, wenn $\frac12$
+definiert ist.
+In $\mathbb{R}$ ist dies kein Problem, aber genau über den Körpern
+mit Charakteristik $2$, die wir für die Computer-Implementation
+bevorzugen, ist dies nicht möglich.
+Es geht hier aber nur um die Visualisierung.
+
+Auch die Form \eqref{buch:crypto:eqn:ell2} lässt sich noch etwas 
+vereinfachen.
+Setzt man $X=u-\frac1{12}$, dann verschwindet nach einiger Rechnung,
+die wir hier nicht durchführen wollen, der quadratische Term
+auf der rechten Seite.
+Die interessierenden Punkte sind Lösungen der einfacheren Gleichung
+\begin{equation}
+v^2
+=
+u^3+\biggl(a-\frac{1}{48}\biggr)u + b-\frac{a}{12}+\frac{1}{864}
+=
+u^3+Au+B.
+\label{buch:crypto:ellvereinfacht}
+\end{equation}
+In dieser Form ist mit $(u,v)$ immer auch $(u,-v)$ eine Lösung,
+die Kurve ist symmetrisch bezüglich der $u$-Achse.
+Ebenso kann man ablesen, dass nur diejenigen $u$-Werte möglich sind,
+für die das kubische Polynom $u^3+Au+B$ auf der rechten Seite von
+\eqref{buch:crypto:ellvereinfacht}
+nicht negativ ist.
+
+Sind $u_1$, $u_2$ und $u_3$ die Nullstellen des kubischen Polynoms
+auf der rechten Seite von~\eqref{buch:crypto:ellvereinfacht}, folgt
+\[
+v^2
+=
+(u-u_1)(u-u_2)(u-u_3)
+=
+u^3
+-(u_1+u_2+u_3)u^2
++(u_1u_2+u_1u_3+u_2u_3)u
+-
+u_1u_2u_3.
+\]
+Durch Koeffizientenvergleich sieht man, dass $u_1+u_2+u_3=0$ sein muss.
+\begin{figure}
+\centering
+\includegraphics{chapters/90-crypto/images/elliptic.pdf}
+\caption{Elliptische Kurve in $\mathbb{R}$ in der Form
+$v^2=u^3+Au+B$ mit Nullstellen $u_1$, $u_2$ und $u_3$ des
+kubischen Polynoms auf der rechten Seite.
+Die blauen Punkte und Geraden illustrieren die Definition der
+Gruppenoperation in der elliptischen Kurve.
+\label{buch:crypto:fig:elliptischekurve}}
+\end{figure}
+Abbildung~\ref{buch:crypto:fig:elliptischekurve}
+zeigt eine elliptische Kurve in der Ebene.
+
+\subsubsection{Gruppenoperation}
+
+\subsubsection{Beispiele}
 
