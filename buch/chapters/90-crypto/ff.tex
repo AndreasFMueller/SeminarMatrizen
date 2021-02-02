@@ -354,7 +354,303 @@ Gruppenoperation in der elliptischen Kurve.
 Abbildung~\ref{buch:crypto:fig:elliptischekurve}
 zeigt eine elliptische Kurve in der Ebene.
 
-\subsubsection{Gruppenoperation}
+\subsubsection{Geometrische Definition der Gruppenoperation}
+In der speziellen Form \ref{buch:crypto:ellvereinfacht} ist die
+elliptische Kurve symmetrisch unter Spiegelung an der $u$-Achse.
+Die Spiegelung ist eine Involution, zweimalige Ausführung führt auf
+den ursprünglichen Punkt zurück.
+Die Inverse in einer Gruppe hat diese Eigenschaft auch, es ist
+daher naheliegend, den gespiegelten Punkt als die Inverse eines
+Elementes zu nehmen.
+
+Eine Gerade durch zwei Punkte der
+in Abbildung~\ref{buch:crypto:fig:elliptischekurve}
+dargestellten Kurve schneidet die Kurve ein drittes Mal.
+Die Gruppenoperation wird so definiert, dass drei Punkte der Kurve
+auf einer Geraden das Gruppenprodukt $e$ haben.
+Da aus $g_1g_2g_3=e$ folgt $g_3=(g_1g_2)^{-1}$ oder
+$g_1g_2=g_3^{-1}$, erhält man das Gruppenprodukt zweier Elemente
+auf der elliptischen Kurve indem erst den dritten Schnittpunkt
+ermittelt und diesen dann an der $u$-Achse spiegelt.
+
+Die geometrische Konstruktion schlägt fehl, wenn $g_1=g_2$ ist.
+In diesem Fall kann man die Tangente im Punkt $g_1$ an die Kurve 
+verwenden.
+Dieser Fall tritt zum Beispiel auch in den drei Punkten 
+$(u_1,0)$, $(u_2,0)$ und $(u_3,0)$ ein.
+
+Um das neutrale Element der Gruppe zu finden, können wir 
+zwei Punkte $g$ und $g^{-1}$ miteinander verknüpfen.
+Die Gerade durch $g$ und $g^{-1}$ schneidet aber die Kurve
+kein drittes Mal.
+Ausserdem sind alle Geraden durch $g$ und $g^{-1}$ für verschiedene
+$g$ parallel.
+Das neutrale Element entspricht also einem unendlich weit entfernten Punkt.
+Das neutrale Element entsteht immer dann als Produkt, wenn zwei
+Punkte die gleiche $u$-Koordinaten haben.
+
+\subsubsection{Gruppenoperation, algebraische Konstruktion}
+Nach den geometrischen Vorarbeiten zur Definition der Gruppenoperation
+kann können wir die Konstruktion jetzt algebraisch umsetzen.
+
+Zunächst überlegen wir uns wieder eine Involution, welche als Inverse
+dienen kann.
+Dazu beachten wir, dass die linke Seite der definierenden Gleichung
+\begin{equation}
+Y^2+XY=X^3-aX+b.
+\label{buch:crypto:eqn:grupopgl}
+\end{equation}
+auch als $Y(Y+X)$ geschrieben werden kann.
+Die Abbildung $Y\mapsto -X-Y$ macht daraus
+\[
+(-X-Y)(-X-Y+X)=(X+Y)Y,
+\]
+dies ist also die gesuchte Involution.
+
+Seien also $g_1=(x_1,y_1)$ und $g_2=(x_2,y_2)$ zwei verschiedene Lösungen
+der Gleichung \eqref{buch:crypto:eqn:grupopgl}
+Als erstes brauchen wir eine Gleichung für die Gerade durch die beiden
+Punkte.
+Sei also $l(X,Y)$ eine Linearform derart, dass $l(g_1)=d$ und $l(g_2)=d$
+für ein geeignetes $d\in\Bbbk$.
+Dann gilt auch für die Punkte
+\[
+g(t) = tg_1 + (1-t)g_2
+\qquad\Rightarrow\qquad
+l(g(t))
+=
+tl(g_1) + (1-t)l(g_2)
+=
+tc+(1-t)c
+=
+(t+1-t)c
+=c,
+\]
+jeder Punkt der Geraden durch $g_1$ und $g_2$ lässt sich in dieser Form
+schreiben.
+
+Setzt man jetzt $g(t)$ in die Gleichung ein, erhält man eine kubische
+Gleichung in $t$, von der wir bereits zwei Nullstellen kennen, nämlich 
+$0$ und $1$.
+Die kubische Gleichung muss also durch $t$ und $(t-1)$ teilbar sein.
+Diese Berechnung kann man einfach in einem Computeralgebrasystem
+durchführen.
+Das Polynom ist
+\[
+p(t)
+=
+\]
+Nach Division durch $t(t-1)$ erhält man als den Quotienten
+\begin{align*}
+q(t)
+&=
+(y_2-y_1)^2 
++
+(y_2-y_1) (x_2-x_1)
++
+t(x_2-x_1)^3
+-
+2x_2^3+3x_1x_2^2-x_1^3
+\end{align*}
+und den Rest
+\[
+r(t)
+=
+t(y_1^2+x_1y_1-x_1^3-ax_1-b)
++
+(1-t)(y_2^2+x_2y_2-x_2^3-ax_2-b).
+\]
+Die Klammerausdrücke verschwinden, da die sie gleichbedeutend damit sind,
+dass die Punkte Lösungen von \eqref{buch:crypto:eqn:grupopgl} sind.
+
+Für den dritten Punkt auf der Geraden muss $t$ so gewählt werden, dass
+$q(t)=0$ ist.
+Dies ist aber eine lineare Gleichung mit der Lösung
+\begin{align*}
+t
+&=
+-\frac{
+(y_1-y_2)^2
++
+(y_2-y_1)(x_2-x_1)
+-2x_2^3+3x_1x_2^2-x_1^3
+}{(x_2-x_1)^3}
+.
+\end{align*}
+Setzt man dies $g(t)$ ein, erhält man für die Koordinaten des dritten
+Punktes $g_3$ die Werte
+\begin{align}
+x_3
+&=
+\frac{
+(y_2-y_1)^2(x_2-x_1) + (y_2-y_1)(x_2-x_1)^2
+-(x_2^4+x_1^4)
+}{
+(x_2-x_1)^3
+}
+\label{buch:crypto:eqn:x3}
+\\
+y_3
+&=
+\frac{
+(y_2-y_1)^3
++(x_2-x_1)(y_2-y_1)^2
+-(x_{2}-x_{1})^3 ( y_{2} - y_{1})
+-(x_{2}-x_{1})^2 ( x_{1} y_{2}- x_{2} y_{1})
+}{
+(x_2-x_1)^3
+}
+\label{buch:crypto:eqn:y3}
+\end{align}
+Die Gleichungen 
+\eqref{buch:crypto:eqn:x3}
+und
+\eqref{buch:crypto:eqn:y3}
+ermöglichen also, das Element $g_1g_2^{-1}$ zu berechnen.
+Interessant daran ist, dass in den Formeln die Konstanten $a$ und $b$ 
+gar nicht vorkommen.
+
+Es bleibt noch der wichtige Fall des Quadrierens in der Gruppe zu
+behandeln, also den Fall $g_1=g_2$.
+In diese Fall sind die Formeln
+\eqref{buch:crypto:eqn:x3}
+und
+\eqref{buch:crypto:eqn:y3}
+ganz offensichtlich nicht anwendbar.
+Die geometrische Anschauung hat nahegelegt, die Tangent an die Kurve
+im Punkt $g_1$ zu nehmen.
+In $\mathbb{R}$ würde man dafür einen Grenzübergang $g_2\to g_1$ machen,
+aber in einem endlichen Körper ist dies natürlich nicht möglich.
+
+Wir schreiben die Gerade als Parameterdarstellung in der Form
+\(
+t\mapsto g(t)= (x_1+ut, y_1+vt)
+\)
+für beliebige Parameter in $\Bbbk$.
+Die Werte $u_1$ und $u_2$ müssen so gewählt werden, dass $g(t)$ eine
+Tangente wird.
+Setzt man $g(t)$ in die Gleichung~\eqref{buch:crypto:eqn:grupopgl} ein,
+entsteht ein kubische Gleichung, die genau dann eine doppelte Nullstelle
+bei $0$ hat, wenn $u,v$ die Tangentenrichtung beschreiben.
+Einsetzen von $g(t)$ in \eqref{buch:crypto:eqn:grupopgl}
+ergibt die Gleichung
+\begin{align}
+0
+&=
+-u^3t^3
++
+(-3u^2x_{1}+v^2+uv)t^2
++
+(2vy_1+uy_1-3ux_1^2+vx_1-au)t
++
+(y_1^2+x_1y_1-x_1^3-ax_1-b)
+\label{buch:crypto:eqn:tangente1}
+\end{align}
+Damit bei $t=0$ eine doppelte Nullstelle mussen die letzten beiden
+Koeffizienten verschwinden, dies führt auf die Gleichungen
+\begin{align}
+y_1^2+x_1y_1&=x_1^3+ax_1+b
+\label{buch:crypto:eqn:rest1}
+\\
+(2y_1
++x_1)v
++(y_1
+-3x_1^2
+-a)u
+&=0
+\label{buch:crypto:eqn:rest2}
+\end{align}
+Die erste Gleichung \eqref{buch:crypto:eqn:rest1} drückt aus,
+dass $g_1$ ein Punkt der Kurve ist, sie ist automatisch erfüllt.
+
+Die zweite Gleichung
+\eqref{buch:crypto:eqn:rest2}
+legt das Verhältnis von $u$ und $v$, also die
+\label{buch:crypto:eqn:rest2}
+Tangentenrichtung fest.
+Eine mögliche Lösung ist
+\begin{equation}
+\begin{aligned}
+u &= x_1+2y_1
+\\
+v &= -y_1+3x_1^2+a.
+\end{aligned}
+\label{buch:crypto:eqn:uv}
+\end{equation}
+
+Der Quotient ist ein lineares Polynom in $t$, die Nullstelle parametrisiert
+den Punkt, der $(g_1)^{-2}$ entspricht.
+Der zugehörige Wert von $t$ ist
+\begin{equation}
+t=-\frac{3u^2x_1-v^2-uv}{u^3}.
+\label{buch:crypto:eqn:t}
+\end{equation}
+
+
+Setzt man
+\label{buch:crypto:eqn:t}
+und
+\eqref{buch:crypto:eqn:uv}
+in $g(t)$ ein, erhält man sehr komplizierte Ausdrücke für den dritten Punkt.
+Wir verzichten darauf, diese Ausdrücke hier aufzuschreiben.
+In der Praxis wird man in einem Körper der Charakteristik 2 arbeiten.
+In diesem Körper werden alle geraden Koeffizienten zu $0$, alle ungeraden
+Koeffizienten werden unabhängig vom Vorzeichen zu $1$.
+Damit bekommt man die folgenden, sehr viel übersichtlicheren Ausdrücke
+für den dritten Punkt:
+\begin{equation}
+\begin{aligned}
+x
+&=
+-\frac{
+y_1^2+x_1y_1+x_1^4+x_1^3+ax_1-a^2
+ }{
+x_1^2
+}
+\\
+y
+&=
+\frac{
+y_1^3+(x_1^2+x_1+a)y_1^2+(x_1^4 +a^2)y_1+x_1^6+ax_1^4+ax_1^3+a^2x_1^2+a^2x_1+a^3
+}{
+ x_1^3
+}
+\end{aligned}
+\label{buch:crypto:eqn:tangentechar2}
+\end{equation}
+Damit haben wir einen vollständigen Formelsatz für die Berechnung der
+Gruppenoperation in der elliptischen Kurve mindestens für den praktisch
+relevanten Fall einer Kurve über einem Körper der Charakteristik $2$.
+
+\begin{satz}
+Die elliptische Kurve
+\[
+E_{a,b}(\mathbb{F}_{p^l})
+=
+\{
+(X,Y)\in\mathbb{F}_{p^l}
+\;|\;
+Y^2+XY = X^3-aX-b
+\}
+\]
+trägt eine Gruppenstruktur, die wie folgt definiert ist:
+\begin{enumerate}
+\item Der Punkt $(0,0)$ entspricht dem neutralen Element.
+\item Das inverse Element von $(x,y)$ ist $(-x,-y-x)$.
+\item Für zwei verschiedene Punkte $g_1$ und $g_2$ kann $g_3=(g_1g_2)^{-1}$
+mit Hilfe der Formeln
+\eqref{buch:crypto:eqn:x3}
+und
+\eqref{buch:crypto:eqn:y3}
+gefunden werden.
+\item Für einen Punkt $g_1$ kann $g_3=g_1^{-2}$ in Charakteristik $2$ mit
+Hilfe der Formeln
+\eqref{buch:crypto:eqn:tangentechar2}
+gefunden werden.
+\end{enumerate}
+Diese Operationen machen $E_{a,b}(\mathbb{F}_{p^l})$ zu einer endlichen
+abelschen Gruppe.
+\end{satz}
 
 \subsubsection{Beispiele}
 
