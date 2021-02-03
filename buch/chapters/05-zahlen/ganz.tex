@@ -3,11 +3,13 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
+% !TeX spellcheck = de_CH
 \section{Ganze Zahlen
 \label{buch:section:ganze-zahlen}}
 \rhead{Ganze Zahlen}
-Die Menge der ganzen Zahlen löst das Problem, dass nicht jede ganzzahlige
-Gleichung der Form $x+a=b$ eine Lösung hat.
+Die Menge der ganzen Zahlen löst das Problem, dass nicht jede
+Gleichung der Form $x+a=b$ mit $a, b \in \mathbb N$
+eine Lösung $x \in \mathbb N$ hat.
 Dazu ist erforderlich, den natürlichen Zahlen die negativen Zahlen
 hinzuzufügen, also wieder die Existenz neuer Objekte zu postulieren,
 die die Rechenregeln weiterhin erfüllen.
@@ -15,9 +17,9 @@ die die Rechenregeln weiterhin erfüllen.
 \subsubsection{Paare von natürlichen Zahlen}
 Die ganzen Zahlen können konstruiert werden als Paare $(u,v)$ von 
 natürlichen Zahlen $u,v\in\mathbb{N}$.
-Die Paare der Form $(u,0)$ entsprechen den natürlichn Zahlen, die
+Die Paare der Form $(u,0)$ entsprechen den natürlichen Zahlen, die
 Paare $(0,v)$ sind die negativen Zahlen.
-Die Rechenoperatioen sind wie folgt definiert:
+Die Rechenoperationen sind wie folgt definiert:
 \begin{equation}
 \begin{aligned}
 (a,b)+(u,v) &= (a+u,b+v)
@@ -30,8 +32,8 @@ Die Rechenoperatioen sind wie folgt definiert:
 \subsubsection{Äquivalenzrelation}
 Die Definition~\eqref{buch:zahlen:ganze-rechenregeln}
 erzeugt neue Paare, die wir noch nicht interpretieren können.
-Zum Beispiel ist $0=1+(-1) = (1,0) + (0,1) = (1,1)$, die Paare $(u,u)$ 
-müssen daher alle mit der ganzen Zahl $0$ identifiziert werden.
+Zum Beispiel ist $0=1+(-1) = (1,0) + (0,1) = (1,1)$.
+Die Paare $(u,u)$ müssen daher alle mit $0$ identifiziert werden.
 Es folgt dann auch, dass alle Paare von natürlichen Zahlen mit 
 ``gleicher Differenz'' den gleichen ganzzahligen Wert darstellen,
 allerdings können wir das nicht so formulieren, da ja die Differenz
@@ -40,7 +42,7 @@ Stattdessen gelten zwei Paare als äquivalent, wenn
 \begin{equation}
 (a,b) \sim (c,d)
 \qquad\Leftrightarrow\qquad
-a+d = c+d
+a+d = c+b
 \label{buch:zahlen:ganz-aquivalenz}
 \end{equation}
 gilt.

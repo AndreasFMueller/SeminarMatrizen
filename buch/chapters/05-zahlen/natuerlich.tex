@@ -3,6 +3,7 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
+% !TeX spellcheck = de_CH
 \section{Natürlich Zahlen
 \label{buch:section:natuerliche-zahlen}}
 \rhead{Natürliche Zahlen}
@@ -42,7 +43,7 @@ Aus der Nachfolgereigenschaft lässt sich durch wiederholte Anwendung
 die vertrautere Addition konstruieren.
 \index{Addition!in $\mathbb{N}$}%
 Um die Zahl $n\in\mathbb{N}$ um $m\in\mathbb{N}$ zu vermehren, also
-$n+m$ auszurechnen, kann man rekursiven Regeln
+$n+m$ auszurechnen, kann man rekursive Regeln
 \begin{align*}
 n+0&=n\\
 n+m'&=(n+m)'
@@ -102,7 +103,7 @@ legen jedes Produkt von natürlichen Zahlen fest, zum Beispiel
 5 + 5 + 5.
 \]
 Doch auch bezüglich der Multiplikation ist $\mathbb{N}$ unvollständig,
-die Beispielgleichung $3x=1$ hat eine Lösung in $\mathbb{N}$.
+die Beispielgleichung $3x=1$ hat keine Lösung in $\mathbb{N}$.
 
 \subsubsection{Rechenregeln}
 Aus den Definitionen lassen sich auch die Rechenregeln ableiten,
@@ -146,24 +147,27 @@ a\cdot(b+c) = ab+ac
 (a+b)c = ac+bc
 \]
 gelten.
-Das Distributivgesetz drückt die wohlbekannte Regel des
+Bei einem nicht-kommutativen Produkt ist es hierbei notwendig,
+zwischen Links- und Rechts-Distributivgesetz zu unterscheiden.
+
+Die Distributivgesetze drücken die wohlbekannte Regel des
 Ausmultiplizierens aus.
 Ein Distributivgesetz ist also grundlegend dafür, dass man mit den
 Objekten so rechnen kann, wie man das in der elementaren Algebra 
 gelernt hat.
-Auch das Distributivgesetz ist daher eine Rechenregel, die wir in
+Auch die Distributivgesetze sind daher Rechenregeln, die wir in
 Zukunft immer dann fordern werden, wenn Addition und Multiplikation
 definiert sind.
-Es gilt immer für Matrizen.
+Sie gelten immer für Matrizen.
 
 \subsubsection{Teilbarkeit}
 Die Lösbarkeit von Gleichungen der Form $ax=b$ mit $a,b\in\mathbb{N}$
-gibt aber Anlass zu dem sehr nützlichen Konzept der Teilbarkeit.
+gibt Anlass zum sehr nützlichen Konzept der Teilbarkeit.
 \index{Teilbarkeit}%
 Die Zahl $b$ heisst teilbar durch $a$, wenn die Gleichung $ax=b$ eine
 Lösung in $\mathbb{N}$ hat.
 \index{teilbar}%
-Jede natürlich Zahl $n$ ist durch $1$ teilbar und auch durch sich selbst,
+Jede natürlich Zahl $n$ ist durch $1$ und durch sich selbst teilbar,
 denn $n\cdot 1 = n$.
 Andere Teiler sind dagegen nicht selbstverständlich.
 Die Zahlen
@@ -183,11 +187,13 @@ Die Peano-Axiome postulieren, dass es natürliche Zahlen gibt.
 Es werden keine Anstrengungen unternommen, die natürlichen Zahlen
 aus noch grundlegenderen mathematischen Objekten zu konstruieren.
 Die Mengenlehre bietet eine solche Möglichkeit.
+
 Da die natürlichen Zahlen das Konzept der Anzahl der Elemente einer
 Menge abstrahieren, gehört die leere Menge zur Zahl $0$.
 Die Zahl $0$ kann also durch die leere Menge $\emptyset = \{\}$
-wiedergegeeben werden.
-Der Nachfolger muss jetzt als eine Menge mit zwei Elementen konstruiert
+wiedergegeben werden.
+
+Der Nachfolger muss jetzt als eine Menge mit einem Element konstruiert
 werden.
 Das einzige mit Sicherheit existierende Objekt, das für diese Menge
 zur Verfügung steht, ist $\emptyset$.
@@ -195,22 +201,23 @@ Zur Zahl $1$ gehört daher die Menge $\{\emptyset\}$, eine Menge mit
 genau einem Element.
 Stellt die Menge $N$ die Zahl $n$ dar, dann können wir die zu $n+1$
 gehörige Menge $N'$ dadurch konstruieren, dass wir zu den Elemente
-von $N$ in zusätzliches Element hinzufügen, das noch nicht in $N$ ist,
-zum Beispiel $N$:
+von $N$ ein zusätzliches Element hinzufügen, das noch nicht in $N$ ist,
+zum Beispiel $\{N\}$:
 \[
 N' = N \cup \{ N \}.
 \]
+
 Die natürlichen Zahlen existieren also, wenn wir akzeptieren, dass es
 Mengen gibt.
-Die natürlichen Zahl sind also nacheinander die Mengen
+Die natürlichen Zahlen sind dann nacheinander die Mengen
 \begin{align*}
 0 &= \emptyset 
 \\
 1 &= 0 \cup \{0\} = \emptyset \cup \{0\} = \{0\}
 \\
-2 &= 1 \cup \{ 1\} = \{0\}\cup\{1\} = \{0,1\}
+2 &= 1 \cup \{1\} = \{0\}\cup\{1\} = \{0,1\}
 \\
-3 &= 2 \cup \{ 2\} = \{0,1\}\cup \{2\} = \{0,1,2\}
+3 &= 2 \cup \{2\} = \{0,1\}\cup \{2\} = \{0,1,2\}
 \\
 &\phantom{n}\vdots
 \\
