@@ -66,7 +66,7 @@ t\vec{p} + (1-t) \vec{q}
 t_0 \vec{p} + t_1\vec{q},
 \end{equation}
 wobei die beiden positiven reellen Zahlen $t_0,t_1\in\mathbb{R}$ die
-Bedingung $t_0+t_1$ erfüllen.
+Bedingung $t_0 + t_1 = 1$ erfüllen.
 Für ein eindimensionales Objekt brauchen wir also zwei Punkte und zwei
 positive Parameter, die sich zu $1$ summieren.
 Die Mengen $\triangle_1=\{ (t_0,t_1)\,|t_i\ge 0, t_0+t_1=1\}$ kann also
@@ -195,8 +195,9 @@ und hat in den oben beschriebenden Basen die Matrix
 
 \subsubsection{Rand eines Simplex}
 Einem Simplex muss auch der Rand zugeordnet werden können.
-Setzt man in $\triangle_2$ den Parameter $t_k=0$, dann erhalt man die Kante,
-die der Ecke mit der Nummer $k$ gegenüberliegt.
+Setzt man in $\triangle_2$ den Parameter $t_k=0$, dann erhält
+man die Kante,
+die der Ecke mit Nummer $k$ gegenüberliegt.
 Für jedes $k$ gibt es also eine Abbildung
 \[
 i_k
@@ -207,19 +208,20 @@ i_k
 \mapsto
 (t_0,\dots,t_{k-1},0,t_{k},\dots,t_n),
 \]
-die die Kante gegenüber der Ecke $e_k$.
+in die Kante gegenüber der Ecke $e_k$.
 Dies ist auch die Art, wie Kanten des Dreiecks $\triangle$ 
 in Abbildung~\ref{buch:homologie:figure:zusammenziehbar}
 orientiert wurden.
 
 Für den Rand des $2$-Simplexes mussten die Kanten mit alternierenden
 Vorzeichen zugeordnet werden.
-Damit wird erreicht, dass jeder Punkt sowohl Endpunkt einer Kante ist und
-ausserdem Anfangspunkt der nächsten kannte ist.
+Damit wird erreicht, dass jeder Punkt sowohl Endpunkt einer 
+Kante und
+ausserdem Anfangspunkt der nächsten Kannte ist.
 Diese Eigenschaft soll auch in höheren Dimensionen erhalten bleiben.
-Die vier Dreiecke, die den Rand eines $3$-Simplex ausmachen, müssen 
-derart müssen so orientiert werden, dass jede Kante in beiden Richtungen
-durchlaufen wird.
+Die vier Dreiecke, die den Rand eines $3$-Simplex ausmachen,
+müssen so orientiert werden,
+dass jede Kante in beiden Richtungen durchlaufen wird.
 
 \begin{definition}
 \label{buch:def:randoperator}

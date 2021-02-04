@@ -17,7 +17,7 @@ dann Beziehungen zwischen diesen Objekten.
 \label{subsection:definition-von-graphen}}
 In der Einleitung zu diesem Abschnitt wurde bereits eine informelle
 Beschreibung des Konzeptes eines Graphen gegeben.
-Um zu einer Beschreibung mit Hilfe von Matrizen kommen können,
+Um zu einer Beschreibung mit Hilfe von Matrizen zu kommen,
 wird eine exakte Definition benötigt.
 Dabei werden sich einige Feinheiten zeigen, die für Anwendungen wichtig
 sind und sich in Unterschieden in der Definition der zugehörigen Matrix 
@@ -29,7 +29,7 @@ auch {\em Vertices} genannt.
 \index{Knoten}%
 \index{Vertex}%
 Die Unterschiede zeigen sich in der Art und Weise, wie die Knoten
-mit sogenannten die Kanten 
+mit sogenannten Kanten
 \index{Kante}%
 verbunden werden.
 Bei einen ungerichteten Graphen sind die beiden Endpunkte einer Kante
@@ -63,9 +63,10 @@ durch die Widerstände ab.
 Will man Spannungen und Ströme in einem solchen Netzwerk berechnen,
 ist auch das Fehlen von Schleifen, die von $a$ zu $a$ führen, kein
 Verlust.
-Die Endpunkte solcher Widerstände wären immer auf gleichem Potential,
-es würde daher kein Strom fliessen, sie haben daher keinen Einfluss auf
-das Verhalten des Netzwerkes und können weggelassen werden.
+Die Endpunkte solcher Widerstände wären immer auf dem gleichen Potential.
+Folglich würde kein Strom fliessen und sie hätten keinen Einfluss auf
+das Verhalten des Netzwerkes.
+Sie können einfach weggelassen werden.
 
 \subsubsection{Gerichtete Graphen}
 In vielen Anwendungen sind die Endpunkte einer Kante nicht austauschbar.
@@ -98,7 +99,7 @@ In einem gerichteten Graphen gehört also zu jeder Kante auch eine Richtung
 und die Unterscheidung von Anfangs- und Endpunkt einer Kante ist sinnvoll
 geworden.
 Ausderdem ist eine Kante $(a,a)$ wohldefiniert, also eine Kante, die vom
-Knoten $a$ wieder zu $a$ zurückführen.
+Knoten $a$ wieder zu $a$ zurückführt.
 
 Man kann einen ungerichteten Graphen in einen gerichteten Graphen
 verwandeln, indem wir jede Kante $\{a,b\}$ durch zwei Kanten 
@@ -115,11 +116,11 @@ E'
 \{a,e\}\in E
 \}.
 \end{equation*}
-Eine umgekehrte Zuordnung eines ungerichteten Graphen zu einem gerichteten
-Graphen ist nicht möglich, da eine ``Schleife'' $(a,a)$ nicht in Kante
+Eine umgekehrte Zuordnung eines gerichteten zu einem ungerichteten
+Graphen ist nicht möglich, da eine ``Schleife'' $(a,a)$ nicht in eine Kante
 des ungerichteten Graphen abgebildet werden kann.
 
-In einem gerichteten Graphen kann man sinnvoll von gerichteten Pfad
+In einem gerichteten Graphen kann man sinnvoll von gerichteten Pfaden
 sprechen.
 \index{Pfad}%
 Ein {\em Pfad} $\gamma$ in einem gerichteten Graphen $(V,E)$ ist eine Folge
@@ -158,7 +159,7 @@ Der gerichtete Graph $([n],E)$ werde beschrieben durch die Matrix $G$.
 Dann gibt das Element in Zeile $j$ und Spalte $i$ von $G^n$ die Anzahl
 der Wege der Länge $n$ an, die von Knoten $i$ zu Knoten $j$ führen.
 Insbesondere kann man die Definition~\eqref{buch:graphen:eqn:linkmatrix}
-formulieruen als in Zeile $j$ und Spalte $i$ der Matrix steht die Anzahl
+formulieren als: In Zeile $j$ und Spalte $i$ der Matrix steht die Anzahl
 der Pfade der Länge $1$, die $i$ mit $j$ verbinden.
 \end{satz}
 
@@ -334,10 +335,10 @@ Die Beschreibung mit der Matrix~\eqref{buch:graphen:eqn:linkmatrix}
 Knoten herstellt.
 Damit ist sie keine geeignete Grundlage, um beschriftete Graphen einer
 Matrixbeschreibung zuzuführen.
-Eine solche muss eine Matrix verwenden, nicht nur das Vorhandensein einer
+Eine solche muss eine Matrix verwenden, die nicht nur das Vorhandensein einer
 Verbindung wiedergibt, sondern ausdrückt, welche Kante welche beiden
 Knoten miteinander verbindet.
-Dies führt auf die sogenannte Ajazenz-Matrix.
+Dies führt zur sogenannten Adjazenz-Matrix.
 
 \begin{definition}
 \label{buch:def:adjazenz-matrix}
@@ -358,11 +359,11 @@ a_{ik}
 \end{equation}
 \end{definition}
 
-Der wesentliche Unterschied dieser Definition von der Matrix $H$ 
+Der wesentliche Unterschied dieser Definition von der Matrix $G$
 liegt in der Bedeutung der Einträge.
-Für $H$ drückt ein nicht verschwindendes Matrixelement das Vorhandensein
+Für $G$ drückt ein nicht verschwindendes Matrixelement das Vorhandensein
 einer Kante aus, in $A$ ist es die Tatsache, dass in diesem Knoten
-eine Kante endet.
+eine Kante beginnt oder endet.
 
 Es ist natürlich möglich, aus der Adjazenz-Matrix auch die Link-Matrix
 zu rekonstruieren.
