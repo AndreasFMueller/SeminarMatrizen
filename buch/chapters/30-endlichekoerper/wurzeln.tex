@@ -388,8 +388,63 @@ A=\begin{pmatrix}
 \]
 Die Inverse kann man bestimmen, indem man den
 Gauss-Algorithmus in $\mathbb{F}_{17}$ durchführt.
-Man bekommt
+\begin{align*}
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 1& 6& 1& 0& 0\\
+ 2& 4& 5& 0& 1& 0\\
+ 2& 5& 1& 0& 0& 1\\
+\hline
+\end{tabular}
+&\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 1& 6& 1& 0& 0\\
+ 0& 2& 0& 5& 1& 0\\
+ 0& 3& 3& 5& 0& 1\\
+\hline
+\end{tabular}
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 1& 6& 1& 0& 0\\
+ 0& 1& 0& 6& 4& 0\\
+ 0& 0& 3& 1& 2& 1\\
+\hline
+\end{tabular}
+\\
+&\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 1& 6& 1& 0& 0\\
+ 0& 1& 0& 6& 4& 0\\
+ 0& 0& 1& 5& 3& 5\\
+\hline
+\end{tabular}
+\\
+&\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 1& 0& 6& 3& 5\\
+ 0& 1& 0& 6& 4& 0\\
+ 0& 0& 1& 5& 3& 5\\
+\hline
+\end{tabular}
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+ 1& 0& 0& 0& 6& 5\\
+ 0& 1& 0& 6& 4& 0\\
+ 0& 0& 1& 5& 3& 5\\
+\hline
+\end{tabular}
+\end{align*}
+Für die Durchführung braucht man die Inversen in $\mathbb{F}_7$
+der Pivot-Elemente, sie sind $2^{-1}=4$ und $3^{-1}=5$.
+Im rechten Teil des Tableau steht jetzt die inverse Matrix
 \[
+A^{-1}
+=
 B=\begin{pmatrix}
  0& 6& 5\\
  6& 4& 0\\
@@ -425,6 +480,9 @@ $2m(X)$ subtrahieren:}
 das Element $b(\alpha)=6\alpha+5\alpha^2$ ist also das Inverse Element von
 $a(\alpha)=1+2\alpha+2\alpha^2$ in $\mathbb{F}_7(\alpha)$.
 \end{beispiel}
+
+Die Matrixrealisation von $\Bbbk(\alpha)$ führt also auf eine effiziente
+Berechnungsmöglichkeit für das Inverse eines Elements von $\Bbbk(\alpha)$.
 
 \subsubsection{Rechnen in $\Bbbk(\alpha)$}
 
