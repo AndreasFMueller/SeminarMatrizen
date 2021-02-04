@@ -20,11 +20,28 @@
 \pgfmathparse{\s/2}
 \xdef\xs{\pgfmathresult}
 
+%
+% #1 = n
+% #2 = k
+%
 \def\dreieck#1#2{
 	\fill[color=black] ({\xs*(-#1+2*#2)},{-\ys*#1})
 		-- ({\xs*(-#1+2*#2-1)},{-\ys*(#1+1)})
 		-- ({\xs*(-#1+2*#2+1)},{-\ys*(#1+1)}) -- cycle;
 }
+\def\zeile#1{
+	\fill[color=red!40]
+	({\xs*(-#1)},{-\ys*#1})
+		-- ({\xs*(-#1-1)},{-\ys*(#1+1)})
+		-- ({\xs*(#1+1)},{-\ys*(#1+1)})
+		-- ({\xs*(#1)},{-\ys*#1}) -- cycle;
+}
+
+\zeile{2}
+\zeile{4}
+\zeile{8}
+\zeile{16}
+\zeile{32}
 
 \dreieck{0}{0}
 
