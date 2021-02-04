@@ -371,20 +371,19 @@ das Inverse von $a(\alpha)$ sein.
 \begin{beispiel}
 Wir betrachten das Polynom 
 \[
-m(X) = X^3 + 2X^2 + 2X + 3 \in \mathbb{F}_{7}
+m(X) = X^3 + 2X^2 + 2X + 3 \in \mathbb{F}_{7}[X],
 \]
 es irreduzibel.
 Sei $\alpha$ eine Nullstelle von $m$, wir suchen das inverse Element zu
 \[
-a(\alpha)=1+2\alpha+2\alpha^2+\alpha^3\in\mathbb{F}_{7}(\alpha).
+a(\alpha)=1+2\alpha+2\alpha^2\in\mathbb{F}_{7}(\alpha).
 \]
 Die Matrix $a(M_\alpha)$ bekommt die Form
 \[
 A=\begin{pmatrix}
- 1& 4& 4& 3\\
- 2& 6& 2& 6\\
- 2& 0& 4& 4\\
- 1& 1& 6& 5
+ 1& 1& 6\\
+ 2& 4& 5\\
+ 2& 5& 1
 \end{pmatrix}.
 \]
 Die Inverse kann man bestimmen, indem man den
@@ -392,17 +391,39 @@ Gauss-Algorithmus in $\mathbb{F}_{17}$ durchführt.
 Man bekommt
 \[
 B=\begin{pmatrix}
- 1& 6& 0& 2\\
- 0& 5& 6& 6\\
- 5& 4& 5& 5\\
- 5& 0& 4& 1
+ 0& 6& 5\\
+ 6& 4& 0\\
+ 5& 3& 5
 \end{pmatrix}.
 \]
 Daraus können wir jetzt das inverse Element
 \[
-b(\alpha) = 1 + 5\alpha^2 + 5\alpha^3
+b(\alpha) = 6\alpha+5\alpha^2
 \]
 ablesen.
+Das Produkt $b(X)\cdot a(X)$ ist
+\begin{align*}
+(1+2X+2X^2)(6X+5X^2)
+&=
+10X^4 + 22X^3 + 17X^2 + 6X
+\\
+&=
+3X^4+X^3+3X^2+6X
+\intertext{
+Diese Polynom muss jetzt mit dem Minimalpolynom $m(X)$ reduziert
+werden, wir subtrahieren dazu $3Xm(X)$ und erhalten}
+&=
+-5X^3-3X^2-3X
+\\
+&=
+2X^3+4X^2+4X
+\intertext{Die vollständige Reduktion wird erreicht, indem wir nochmals
+$2m(X)$ subtrahieren:}
+&=
+-6 \equiv 1\mod 7,
+\end{align*}
+das Element $b(\alpha)=6\alpha+5\alpha^2$ ist also das Inverse Element von
+$a(\alpha)=1+2\alpha+2\alpha^2$ in $\mathbb{F}_7(\alpha)$.
 \end{beispiel}
 
 \subsubsection{Rechnen in $\Bbbk(\alpha)$}
