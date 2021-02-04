@@ -31,10 +31,12 @@
 	\fill[color=farbe#3] ({\xs*(-#1+2*#2)},{-\ys*#1})
 		-- ({\xs*(-#1+2*#2-1)},{-\ys*(#1+1)})
 		-- ({\xs*(-#1+2*#2+1)},{-\ys*(#1+1)}) -- cycle;
-	\node[color=gray] at ( ({\xs*(-#1+2*#2)},{-\ys*(#1+0.5)-0.03}) {$\scriptstyle #3$};
+	\node[color=white] at ( ({\xs*(-#1+2*#2)},{-\ys*(#1+0.5)-0.03}) {$\scriptstyle #3$};
 }
+
+\definecolor{gelb}{rgb}{1,0.8,0.2}
 \def\zeile#1{
-	\fill[color=gray!40]
+	\fill[color=gelb]
 	({\xs*(-#1)},{-\ys*#1})
 		-- ({\xs*(-#1-1)},{-\ys*(#1+1)})
 		-- ({\xs*(#1+1)},{-\ys*(#1+1)})

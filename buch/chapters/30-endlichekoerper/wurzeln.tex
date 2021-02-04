@@ -11,13 +11,403 @@ ziehen.
 Das Problem haben wir in Abschnitt~\ref{buch:section:reelle-zahlen}
 dadurch gelöst, dass wir $\mathbb{Q}$ zu den reellen Zahlen
 erweitert haben.
-Es ist aber auch möglich, nur die Zahl $\sqrt{2}$ hinzuzufügen.
+Es ist aber auch möglich, nur die Zahl $\sqrt{2}$ hinzuzufügen,
+so entsteht der Körper $\mathbb{Q}(\sqrt{2})$.
 In diesem Abschnitt zeigen wir, wie man einem Körper beliebige 
-Nullstellen eines Polynoms hinzufügen kann.
+Nullstellen $\alpha$ eines Polynoms $f\in\Bbbk[X]$ hinzufügen und
+so den Körper $\Bbbk(\alpha)$ konstruieren kann.
 
-\subsection{Irreduzible Polynome}
+\subsection{Irreduzible Polynome
+\label{buch:subsection:irreduziblepolynome}}
+Die Zahlen, die man dem Körper hinzufügen möchte, müssen Nullstellen
+eines Polynoms sein.
+Wir gehen daher davon aus, dass $f\in \Bbbk[X]$ ein Polynom mit
+Koeffizienten in $\Bbbk$ ist, dessen Nullstelle $\alpha$ hinzugefügt
+werden sollen.
+Das Ziel ist natürlich, dass diese Erweiterung vollständig beschrieben
+werden kann durch das Polynom, ganz ohne Bezug zum Beispiel auf einen
+numerischen Wert der Nullstelle, der ohnehin nur in $\mathbb(C)$ sinnvoll
+wäre.
+
+Nehmen wir jetzt an, dass sich das Polynom $f$ faktorisieren lässt.
+Dann gibt es Polynome $g,h\in\Bbbk[X]$ derart, dass $f=g\cdot h$.
+Die Polynome $g$ und $h$ haben geringeren Grad als $f$. 
+Setzt man die Nullstelle $\alpha$ ein, erhält man
+$0=f(\alpha)=g(\alpha)h(\alpha)$, daher muss einer der Faktoren
+verschwinden, also $g(\alpha)=0$ oder $h(\alpha)=0$.
+Ohne Beschränkung der Allgemeinheit kann angenommen werden, dass
+$g(\alpha)=0$.
+Die Operation des Hinzufügens der Nullstelle $\alpha$ von $f$
+muss also genauso gut mit $g$ ausgeführt werden.
+Indem wir diese Überlegung auf $g$ anwenden können wir schliessen,
+dass es ein Polynom $m\in\Bbbk[X]$ kleinstmöglichen Grades geben muss,
+welches $\alpha$ als Nullstelle hat.
+Zusätzlich kann verlangt werden, dass das Polynom normiert ist.
+
+\begin{definition}
+Ein Polynom $f\in \Bbbk[X]$ heisst {\em irreduzibel}, wenn es sich nicht
+in zwei Faktoren $g,h\in \Bbbk[X]$ mit $f=gh$ zerlegen lässt.
+\index{irreduzibles Polynom}%
+\end{definition}
+
+Für die Konstruktion des Körpers $\Bbbk(\alpha)$ muss daher ein irreduzibles
+Polynom verwendet werden.
+
+\begin{beispiel}
+Das Polynom $f(X)=X^2-2$ ist in $\mathbb{Q}[X]$, es hat die beiden
+Nullstellen $\sqrt{2}$ und $-\sqrt{2}$.
+Beide Nullstellen haben die exakt gleichen algebraischen Eigenschaften,
+sie sind mit algebraischen Mitteln nicht zu unterscheiden.
+Nur die Vergleichsrelation ermöglicht, die negative Wurzel von der
+positiven zu unterscheiden.
+Das Polynom kann in $\mathbb{Q}$ nicht faktorisiert werden, denn die
+einzig denkbare Faktorisierung ist $(X-\sqrt{2})(X+\sqrt{2})$, die
+Faktoren sind aber keine Polynome in $\mathbb{Q}[X]$.
+Also ist ein irreduzibles Polynom über $X^2-2$.
+
+Man kann das Polynom aber auch als Polynom in $\mathbb{F}_{23}[X]$
+betrachten.
+Im Körper $\mathbb{F}_{23}$ kann man durch probieren zwei Nullstellen
+finden:
+\begin{align*}
+5^2 &= 25\equiv 2\mod 23
+\\
+\text{und}\quad
+18^2 &=324 \equiv 2 \mod 23.
+\end{align*}
+Und tatsächlich ist in $\mathbb{F}_{23}[X]$
+\[
+(X-5)(X-18) = X^2 -23X+90
+\equiv
+X^2 -2 \mod 23,
+\]
+über $\mathbb{F}_{23}$ ist das Polynom $X^2-2$ also reduzibel.
+\end{beispiel}
+
+\begin{beispiel}
+Die Zahl 
+\[
+\alpha = \frac{1+i\sqrt{3}}2
+\]
+ist eine Nullstelle des Polynoms $f(X)=X^3-1\in\mathbb{Z}[X]$.
+$\alpha$ enthält aber nur Quadratwurzeln, man würde also eigentlich
+erwarten, dass $\alpha$ Nullstelle eines quadratischen Polynoms ist.
+Tatsächlich ist $f(X)$ nicht irreduzibel,  es ist nämlich
+\[
+X^3-1 = (X-1)(X^2+X+1).
+\]
+Da $\alpha$ nicht Nullstelle des ersten Faktors ist, muss es Nullstelle
+des Polynoms $m(X)=X^2+X+1$ sein.
+Der zweite Faktor ist irreduzibel.
+
+Das Polynom $m(X)$ kann man aber auch als Polynom in $\mathbb{F}_7$ 
+ansehen.
+Dann kann man aber zwei Nullstellen finden,
+\[
+\begin{aligned}
+X&=2&&\Rightarrow& 2^2+2+1=4+2+1&\equiv 0\mod 7
+\\
+X&=4&&\Rightarrow& 4^2+4+1=16+4+1=21&\equiv 0\mod 7.
+\end{aligned}
+\]
+Dies führt auf die Faktorisierung
+\[
+(X-2)(X-4)
+\equiv
+(X+5)(X+3)
+=
+X^2+8X+15
+\equiv
+X^2+X+1\mod 7.
+\]
+Das Polynom $X^2+X+1$ ist daher über $\mathbb{F}_7$ reduzibel und
+das Polynom $X^3-1\in\mathbb{F}_7$ zerfällt daher in Linearfaktoren
+$X^3-1=(X+6)(X+3)(X+5)$.
+\end{beispiel}
+
 
 \subsection{Körpererweiterungen}
+Nach den Vorbereitungen von
+Abschnitt~\ref{buch:subsection:irreduziblepolynome}
+können wir jetzt definieren, wie die Körpererweiterung
+konstruiert werden soll.
+
+\subsubsection{Erweiterung mit einem irreduziblen Polynom}
+Sei $m\in\Bbbk[X]$ ein irreduzibles Polynome über $\Bbbk$ mit dem Grad
+$\deg m=n$,
+wir dürfen es als normiert annehmen und schreiben es in der Form
+\[
+m(X)
+=
+m_0+m_1X+m_2X^2 + \dots m_{n-1}X^{n-1}+X^n.
+\]
+Wir möchten den Körper $\Bbbk$ um eine Nullstelle $\alpha$ von $m$
+erweitern.
+Da es in $\Bbbk$ keine Nullstelle von $m$ gibt, konstruieren wir
+$\Bbbk(\alpha)$ auf abstrakte Weise, ganz so wie das mit der imaginären
+Einheit $i$ gemacht wurde.
+Die Zahl $\alpha$ ist damit einfach ein neues Symbol, mit dem man
+wie in der Algebra üblich rechnen kann.
+Die einzige zusätzliche Eigenschaft, die von $\alpha$ verlangt wird,
+ist dass $m(\alpha)=0$.
+Unter diesen Bedingungen können beliebige Ausdrücke der Form
+\begin{equation}
+a_0 + a_1\alpha + a_2\alpha^2 + \dots a_k\alpha^k
+\label{buch:endlichekoerper:eqn:ausdruecke}
+\end{equation}
+gebildet werden.
+Aus der Bedingung $m(\alpha)=0$ folgt aber, dass
+\begin{equation}
+\alpha^n = -a_{n-1}\alpha^{n-1} -\dots - a_2\alpha^2  - a_1\alpha-a_0.
+\label{buch:endlichekoerper:eqn:reduktion}
+\end{equation}
+Alle Potenzen mit Exponenten $\ge n$ in
+\eqref{buch:endlichekoerper:eqn:ausdruecke}
+können daher durch die rechte Seite von
+\eqref{buch:endlichekoerper:eqn:reduktion}
+ersetzt werden.
+Als Menge ist daher
+\[
+\Bbbk(\alpha)
+=
+\{
+a_0+a_1\alpha+a_2\alpha^2+\dots+a_{n-1}\alpha^{n-1}\;|\; a_i\in\Bbbk\}.
+\}
+\]
+Die Addition von solchen Ausdrücken und die Multiplikation mit Skalaren
+aus $\Bbbk$ machen $\Bbbk(\alpha)\simeq \Bbbk^n$ zu einem Vektorraum,
+die Operationen können auf den Koeffizienten komponentenweise ausgeführt
+werden.
+
+\subsubsection{Matrixrealisierung der Multiplikation mit $\alpha$}
+Die schwierige Operation ist die Multiplikation mit $\alpha$.
+Dazu stellen wir zusammen, wie die Multiplikation mit $\alpha$ auf den
+Basisvektoren von $\Bbbk(\alpha)$ wirkt:
+\[
+\alpha\cdot\colon
+\Bbbk^n\to\Bbbk
+:
+\left\{
+\begin{aligned}
+     1  &\mapsto \alpha   \\
+\alpha  &\mapsto \alpha^2 \\
+\alpha^2&\mapsto \alpha^3 \\
+        &\phantom{m}\vdots\\
+\alpha^{n-2}&\mapsto \alpha^{n-1}\\
+\alpha^{n-1}&\mapsto \alpha^n = -m_0-m_1\alpha-m_2\alpha^2-\dots-m_{n-1}\alpha^{n-1}
+\end{aligned}
+\right.
+\]
+Diese lineare Abbildung hat die Matrix
+\[
+M_{\alpha}
+=
+\begin{pmatrix}
+0   &    &    &      &   &-m_0    \\
+1   & 0  &    &      &   &-m_1    \\
+    & 1  & 0  &      &   &-m_2    \\
+    &    & 1  &\ddots&   &-m_3    \\
+    &    &    &\ddots& 0 &\vdots  \\
+    &    &    &      & 1 &-m_{n-2}\\
+    &    &    &      &   &-m_{n-1}
+\end{pmatrix}
+\]
+Aufgrund der Konstruktion die Lineare Abbildung $m(M_\alpha)$,
+die man erhält, wenn
+man die Matrix $M_\alpha$ in das Polynom $m$ einsetzt, jeden Vektor
+in $\Bbbk(\alpha)$ zu Null machen.
+Als Matrix muss daher $m(M_\alpha)=0$ sein.
+Dies kann man auch mit einem Computeralgebra-System nachprüfen.
+
+\begin{beispiel}
+In einem früheren Beispiel haben wir gesehen, dass
+$\alpha=\frac12(-1+\sqrt{3})$ 
+eine Nullstelle des irreduziblen Polynomes $m(X)=X^2+X+1$ ist.
+Die zugehörige Matrix $M_\alpha$ ist
+\[
+M_{\alpha}
+=
+\begin{pmatrix}
+0&-1\\
+1&-1
+\end{pmatrix}
+\qquad\Rightarrow\qquad
+M_{\alpha}^2
+=
+\begin{pmatrix}
+-1& 1\\
+-1& 0
+\end{pmatrix},\quad
+M_{\alpha}^3
+=
+\begin{pmatrix}
+ 1& 0\\
+ 0& 1
+\end{pmatrix}.
+\]
+Wir können auch verifizieren, dass
+\[
+m(M_\alpha)
+=
+M_\alpha^2+M_\alpha+I
+=
+\begin{pmatrix}
+-1& 1\\
+-1& 0
+\end{pmatrix}
++
+\begin{pmatrix}
+0&-1\\
+1&-1
+\end{pmatrix}
++
+\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+0&0\\
+0&0
+\end{pmatrix}.
+\]
+Die Matrix ist also eine mögliche Realisierung für das ``mysteriöse''
+Element $\alpha$.
+Es hat alle algebraischen Eigenschaften von $\alpha$.
+\end{beispiel}
+
+Die Menge $\Bbbk(\alpha)$ kann durch die Abbildung $\alpha\mapsto M_\alpha$
+mit der Menge aller Matrizen
+\[
+\Bbbk(M_\alpha)
+=
+\left\{
+\left.
+a_0I+a_1M_\alpha+a_2M_\alpha^2+\dots+a_{n-1}M_\alpha^{n-1}\;\right|\; a_i\in\Bbbk
+\right\}
+\]
+in eine Eins-zu-eins-Beziehung gebracht werden.
+Diese Abbildung ist ein Algebrahomomorphismus.
+Die Menge $\Bbbk(M_\alpha)$ ist also das Bild des
+Körpers $\Bbbk(\alpha)$ in der Matrizenalgebra $M_n(\Bbbk)$.
+
+\subsubsection{Inverse}
+Im Moment wissen wir noch nicht, wie wir $\alpha^{-1}$ berechnen sollten.
+Wir können aber auch die Matrizendarstellung verwenden können.
+Für Matrizen wissen wir selbstverständlich, wie Matrizen invertiert
+werden können.
+Tatsächlich kann man die Matrix $M_\alpha$ direkt invertieren:
+\[
+M_\alpha^{-1}
+=
+\frac{1}{m_0}
+\begin{pmatrix}
+   -m_1 &m_0&   &      &      &   \\
+   -m_2 & 0 &m_0&      &      &   \\
+   -m_3 &   & 0 &   m_0&      &   \\
+ \vdots &   &   &\ddots&\ddots&   \\
+-m_{n-1}& 0 & 0 &      &  0   &m_0\\
+    -1  & 0 & 0 &      &  0   & 0
+\end{pmatrix},
+\]
+wie man durch Ausmultiplizieren überprüfen kann:
+\[
+\frac{1}{m_0}
+\begin{pmatrix}
+   -m_1 &m_0&   &      &      &   \\
+   -m_2 & 0 &m_0&      &      &   \\
+   -m_3 &   & 0 &   m_0&      &   \\
+ \vdots &   &   &\ddots&\ddots&   \\
+-m_{n-1}& 0 & 0 &      &  0   &m_0\\
+    -1  & 0 & 0 &      &  0   & 0
+\end{pmatrix}
+\begin{pmatrix}
+0   &    &    &      &   &-m_0    \\
+1   & 0  &    &      &   &-m_1    \\
+    & 1  & 0  &      &   &-m_2    \\
+    &    & 1  &\ddots&   &-m_3    \\
+    &    &    &\ddots& 0 &\vdots  \\
+    &    &    &      & 1 &-m_{n-2}\\
+    &    &    &      &   &-m_{n-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&0&0&\dots&0&0\\
+0&1&0&\dots&0&0\\
+0&0&1&\dots&0&0\\
+\vdots&\vdots&\vdots&\vdots&\vdots\\
+0&0&0&\dots&1&0\\
+0&0&0&\dots&0&1
+\end{pmatrix}
+\]
+Die Invertierung in $\Bbbk(M_\alpha)$ ist damit zwar geklärt, aber
+es wäre viel einfacher, wenn man die Inverse auch in $\Bbbk(\alpha)$
+bestimmen könnte.
+
+Die Potenzen von $M_\alpha^k$ haben in der ersten Spalte genau in
+Zeile $k+1$ eine $1$, alle anderen Einträge in der ersten Spalte
+sind $0$.
+Die erste Spalte eines Elementes
+$a(\alpha)=a_0+a_1\alpha+a_2\alpha^2 +a_{n-1}\alpha^{n-1}$
+besteht daher genau aus den Elementen $a_i$.
+Die Inverse des Elements $a$ kann daher wie folgt gefunden werden.
+Zunächst wird die Matrix $a(M_\alpha)$ gebildet und invertiert.
+Wir schreiben $B=a(M_\alpha)^{-1}$.
+Aus den Einträgen der ersten Spalte kann man jetzt die Koeffizienten
+\[
+b_0=(B)_{11},
+b_1=(B)_{21},
+b_2=(B)_{11},\dots,
+b_{n-1}=(B)_{n,1}
+\]
+ablesen und daraus das Element
+\[
+b(\alpha) = b_0+b_1\alpha+b_2\alpha^2 + \dots + b_{n-1}\alpha^{n-1}
+\]
+bilden.
+Da $b(M_\alpha)=B$ die inverse Matrix von $a(M_\alpha)$ ist, muss $b(\alpha)$
+das Inverse von $a(\alpha)$ sein.
+
+\begin{beispiel}
+Wir betrachten das Polynom 
+\[
+m(X) = X^3 + 2X^2 + 2X + 3 \in \mathbb{F}_{7}
+\]
+es irreduzibel.
+Sei $\alpha$ eine Nullstelle von $m$, wir suchen das inverse Element zu
+\[
+a(\alpha)=1+2\alpha+2\alpha^2+\alpha^3\in\mathbb{F}_{7}(\alpha).
+\]
+Die Matrix $a(M_\alpha)$ bekommt die Form
+\[
+A=\begin{pmatrix}
+ 1& 4& 4& 3\\
+ 2& 6& 2& 6\\
+ 2& 0& 4& 4\\
+ 1& 1& 6& 5
+\end{pmatrix}.
+\]
+Die Inverse kann man bestimmen, indem man den
+Gauss-Algorithmus in $\mathbb{F}_{17}$ durchführt.
+Man bekommt
+\[
+B=\begin{pmatrix}
+ 1& 6& 0& 2\\
+ 0& 5& 6& 6\\
+ 5& 4& 5& 5\\
+ 5& 0& 4& 1
+\end{pmatrix}.
+\]
+Daraus können wir jetzt das inverse Element
+\[
+b(\alpha) = 1 + 5\alpha^2 + 5\alpha^3
+\]
+ablesen.
+\end{beispiel}
+
+\subsubsection{Rechnen in $\Bbbk(\alpha)$}
+
+\subsubsection{Algebraische Konstruktion}
 
 \subsection{Zerfällungskörper}
 
