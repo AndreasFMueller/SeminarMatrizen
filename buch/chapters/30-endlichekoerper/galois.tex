@@ -417,10 +417,33 @@ Auf den rot hinterlegten Zeilen, die zu Exponenten der Form $2^k$ gehören,
 sind alle Koeffizienten ausser dem ersten und letzten durch $2$ teilbar.
 \label{buch:endliche-koerper:fig:binomial2}}
 \end{figure}
+\bgroup
+\input{chapters/30-endlichekoerper/images/farben.tex}
+\begin{figure}
+\centering
+\includegraphics{chapters/30-endlichekoerper/images/binomial5.pdf}
+\caption{Binomialkoeffizienten module $5$ im Pascal-Dreieck.
+Die von $0$ verschiedenen Reste werden durch Farben dargestellt:
+$1=\text{schwarz}$,
+$2=\text{\color{farbe2}rot}$,
+$3=\text{\color{farbe3}grün}$,
+$4=\text{\color{farbe4}blau}$.
+Auf den grau hinterlegten Zeilen, die zu Exponenten der Form $5^k$ gehören,
+sind alle Koeffizienten ausser dem ersten und letzten durch $5$ teilbar.
+\label{buch:endliche-koerper:fig:binomial5}}
+\end{figure}
+\egroup
 Die Abbildung~\ref{buch:endliche-koerper:fig:binomial2} zeigt den
 Rest bei Teilung durch $2$ der Binomialkoeffizienten.
 Man kann daraus ablesen, dass $\binom{n}{m}\equiv 0\mod 2$ für $n=2^k$ 
 und $0<m<n$.
+Abbildung~\ref{buch:endliche-koerper:fig:binomial5} zeigt das Pascal-Dreieck
+auch noch für $p=5$.
+Hier ist auch schön die Selbstähnlichkeit des Pascal-Dreiecks erkennbar.
+Ersetzt man die ``5er-Dreiecke'' durch ein volles Dreieck mit der Farbe
+des kleinen Dreiecks an seiner Spitze, entsteht wieder das ursprüngliche
+Pascal-Dreieck.
+Dabei gehen die Zeilen aus lauter Nullen ausser an den Enden ineinander über.
 
 \begin{satz}
 \label{buch:endliche-koerper:satz:binom}
@@ -443,16 +466,58 @@ im Zähler kann also nicht weggekürzt werden, so dass der Binomialkoeffizient
 durch $p$ teilbar sein muss.
 \end{proof}
 
-Die Aussage von Satz~\ref{buch:endliche-koerper:satz:binom} kann man 
+\begin{satz}
+\label{buch:endliche-koerper:satz:binomk}
+Sei $p$ eine Primzahl, dann ist
+\begin{equation}
+\binom{p^k}{m} \equiv 0\mod p
+\label{buch:endliche-koerper:eqn:a+b^p^k}
+\end{equation}
+für $0<m<p^k$
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir wissen aus Satz \ref{buch:endliche-koerper:satz:binom}, dass 
+\begin{equation}
+(a+b)^p = a^p+b^p.
+\label{buch:endliche-koerper:eqn:a+b^p}
+\end{equation}
+Wir müssen zeigen, dass $(a+b)^{p^k}=a^{p^k}+b^{p^k}$ gilt.
+Wir verwenden vollständige Induktion, 
+\eqref{buch:endliche-koerper:eqn:a+b^p} ist die Induktionsverankerung.
+Wir nehmen jetzt im Sinne der Induktionsannahme, dass
+\eqref{buch:endliche-koerper:eqn:a+b^p^k} für ein bestimmtes $k$ gilt.
+Dann ist
+\[
+(a+b)^{p^{k+1}}
+=
+(a+b)^{p^k\cdot p}
+=
+\bigl((a+b)^{p^k}\bigr)^p
+=
+(a^{p^k}+b^{p^k})^p
+=
+a^{p^k\cdot p}+b^{p^k\cdot p}
+=
+a^{p^{k+1}}
++
+b^{p^{k+1}},
+\]
+also die Behauptung für $k+1$.
+Damit ist
+\eqref{buch:endliche-koerper:eqn:a+b^p^k} für alle $k$ bewiesen.
+\end{proof}
+
+Die Aussage von Satz~\ref{buch:endliche-koerper:satz:binomk} kann man 
 auch im Körper $\mathbb{F}_p$ formulieren:
 
 \begin{satz}
 \label{buch:endliche-koerper:satz:binomFp}
 In $\mathbb{F}_p$ gilt
 \[
-\binom{p}{k}=0
+\binom{p^k}{m}=0
 \]
-für $0<k<p$.
+für beliebige $k>0$ und $0<m<p$.
 \end{satz}
 
 \subsubsection{Frobenius-Automorphismus}
