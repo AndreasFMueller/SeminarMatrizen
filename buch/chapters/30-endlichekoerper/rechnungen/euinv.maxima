@@ -1,0 +1,31 @@
+m: X^3 +2*X^2 + 2*X + 3;
+f: 2*X^2 + 2*X + 1;
+
+q0: 4*X+4;
+r0: 4*X+6;
+expand(q0*f+r0);
+
+q1: 4*X+5;
+r1: 6;
+expand(q1*r0+r1);
+
+q2: 3*X+1;
+r2: 0;
+expand(q2*r1+r2);
+
+Q0: matrix([ 0, 1 ], [ 1, (7*X+7)-q0 ]);
+Q1: matrix([ 0, 1 ], [ 1, (7*X+7)-q1 ]);
+Q2: matrix([ 0, 1 ], [ 1, (7*X+7)-q2 ]);
+
+Q: expand(Q1 . Q0);
+s: Q[1,1];
+t: Q[1,2];
+expand(s*m+t*f);
+
+Q: expand(Q2 . Q);
+
+s: Q[1,1];
+t: Q[1,2];
+
+expand(s*m+t*f);
+

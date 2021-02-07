@@ -175,7 +175,7 @@ a_0+a_1\alpha+a_2\alpha^2+\dots+a_{n-1}\alpha^{n-1}\;|\; a_i\in\Bbbk\}.
 \}
 \]
 Die Addition von solchen Ausdrücken und die Multiplikation mit Skalaren
-aus $\Bbbk$ machen $\Bbbk(\alpha)\simeq \Bbbk^n$ zu einem Vektorraum,
+aus $\Bbbk$ machen $\Bbbk(\alpha)\cong \Bbbk^n$ zu einem Vektorraum,
 die Operationen können auf den Koeffizienten komponentenweise ausgeführt
 werden.
 
@@ -479,14 +479,213 @@ $2m(X)$ subtrahieren:}
 \end{align*}
 das Element $b(\alpha)=6\alpha+5\alpha^2$ ist also das Inverse Element von
 $a(\alpha)=1+2\alpha+2\alpha^2$ in $\mathbb{F}_7(\alpha)$.
+\label{buch:endlichekoerper:beispiel:inversemitmatrix}
 \end{beispiel}
 
 Die Matrixrealisation von $\Bbbk(\alpha)$ führt also auf eine effiziente
 Berechnungsmöglichkeit für das Inverse eines Elements von $\Bbbk(\alpha)$.
 
-\subsubsection{Rechnen in $\Bbbk(\alpha)$}
-
 \subsubsection{Algebraische Konstruktion}
+Die Matrixdarstellung von $\alpha$ ermöglicht eine rein algebraische
+und für die Rechnung besser geeignete Konstruktion.
+Für jedes Polynom $f\in\Bbbk[X]$ ist $f(M_\alpha)\in M_n(\Bbbk)$.
+Dies definiert einen Homomorphismus
+\[
+\varphi\colon \Bbbk[X] \to M_n(\Bbbk) : f \mapsto f(M_\alpha).
+\]
+Wir haben früher schon gesehen, dass das Bild dieses Homomorphismus
+genau die Menge $\Bbbk(M_\alpha)$ ist.
+Allerdings ist $\varphi$ nicht injektiv, das Polynom $m$ wird zum
+Beispiel auf $\varphi(m) = m(M_\alpha) = 0$ abgebildet.
+
+Der Kern von $\varphi$ besteht aus allen Polynomen $p\in\Bbbk[X]$,
+für die $p(M_\alpha)=0$ gilt.
+Da aber alle Matrizen $E,M_\alpha,\dots,M_\alpha^{n-1}$ linear
+unabhängig sind, muss ein solches Polynom den gleichen Grad haben
+we $m$, und damit ein Vielfaches von $m$ sein.
+Der Kern besteht daher genau aus den Vielfachen von $m(X)$,
+$\ker\varphi = m(X)\Bbbk[X]$.
+
+Es ist nicht a priori klar, dass der Quotient $R/I$ für ein
+Ideal $I\subset R$ ein Körper ist.
+Hier spielt es eine Rolle, dass das von $m$ erzeugte Ideal
+maximal ist im folgenden Sinne.
+
+\begin{definition}
+Ein Ideal $I\subset R$ heisst {\em maximal}, wenn für jedes andere Ideal
+$J$ mit $I\subset J\subset R$ entweder $I=J$ oder $J=R$ gilt.
+\end{definition}
+
+\begin{beispiel}
+Die Ideale $p\mathbb{Z}\subset \mathbb{Z}$ sind maximal genau dann, wenn
+$p$ eine Primzahl ist.
+
+TODO: XXX Begründung
+\end{beispiel}
+
+\begin{satz}
+Der Ring $R/I$ ist genau dann ein Körper, wenn $I$ ein maximales Ideal ist.
+\end{satz}
+
+\begin{proof}[Beweis]
+\end{proof}
+
+Ein irreduzibles Polynom $m\in\Bbbk[X]$ erzeugt ein maximales Ideal,
+somit ist $\Bbbk[X]/m\Bbbk[X]\cong \Bbbk(M_\alpha) \cong \Bbbk(\alpha)$.
+
+\subsubsection{Rechnen in $\Bbbk(\alpha)$}
+Die algebraische Konstruktion hat gezeigt, dass die arithmetischen
+Operationen im Körper $\Bbbk(\alpha)$ genau die Operationen 
+in $\Bbbk[X]/m\Bbbk[X]$ sind.
+Eine Zahl in $\Bbbk(\alpha)$ wird also durch ein Polynom vom 
+$n-1$ dargestellt.
+Addieren und Subtrahieren erfolgen Koeffizientenweise in $\Bbbk$.
+Bei der Multiplikation entsteht möglicherwise ein Polynom grösseren
+Grades, mit dem Polynomdivisionsalgorithmus kann der Rest bei Division
+durch $m$ ermittelt werden.
+
+\begin{beispiel}
+XXX: Reduktionsbeispiel
+\end{beispiel}
+
+Die schwierigste Operation ist die Division.
+Wie bei der Berechnung der Inversion in einem Galois-Körper $\mathbb{F}_p$
+kann dafür der euklidische Algorithmus verwendet werden.
+Sei also $f\in\Bbbk[X]$ ein Polynom vom Grad $\deg f <\deg m$, es soll
+das multiplikative Inverse gefunden werden.
+Da $m$ ein irreduzibles Polynom ist, müssen $f$ und $m$ teilerfremd sein.
+Der euklidische Algorithmus liefert zwei Polynome $a,b\in\Bbbk[X]$ derart,
+dass
+\[
+af+bm=1.
+\]
+Reduzieren wir modulo $m$, wird daraus $af=1$ in $\Bbbk[X]/m\Bbbk[X]$.
+Das Polynom $a$, reduziert module $m$, ist also die multiplikative
+Inverse von $f$.
+
+\begin{beispiel}
+% XXX verweise auf das frühere Beispiel
+Wir berechnen die multiplikative Inverse von
+$f=2X^2+2X+1\in\mathbb{F}_7[X]/m\mathbb{F}_7[X]$ 
+mit $m = X^3 + 2X^2 + 2X + 3$.
+
+Zunächst müssen wir den euklidischen Algorithmus für die beiden Polynome
+$f$ und $m$ durchführen.
+Der Quotient $m:f$ ist:
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcr}
+  X^3&+&2X^2&+&2X&+&3&:&2X^2&+&2X&+&1&=&4X&+&4\rlap{$\mathstrut=q_0$}\\
+\llap{$-($}X^3&+& X^2&+&4X\rlap{$)$}& & & &    & &  & & & &  & & \\ \cline{1-5}
+     & & X^2&+&5X&+&3& &    & &  & & & &  & & \\
+     &&\llap{$-(\phantom{2}$}X^2&+& X&+&4\rlap{$)$}& &    & &  & & & &  & & \\ \cline{3-7}
+     & &    & &4X&+&6\rlap{$\mathstrut=r_0$}& &    & &  & & & &  & &
+\end{array}
+\]
+Jetzt muss der Quotient $f:r_0$ berechnet werden:
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcr}
+  2X^2&+&2X&+&1&:&4X&+&6&=&4X&+&5\rlap{$\mathstrut=q_1$}\\
+\llap{$-($}2X^2&+&3X\rlap{$)$}& & & &  & & & &  \\ \cline{1-3}
+      & &6X&+&1& &  & & & &  \\
+      & &\llap{$-($}6X&+&2\rlap{$)$}& &  & & & &  \\ \cline{3-5}
+      & &  & &6\rlap{$\mathstrut=r_1$}& & & &  & & & &
+\end{array}
+\]
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcr}
+4X&+&6&:&6&=&3X&+&1\rlap{$\mathstrut=q_2$} \\
+\llap{$-($}4X\rlap{$)$}& & & & & &  & &  \\ \cline{1-1}
+ 0&+&6& & & &  & & \\
+  & &\llap{$-($}6\rlap{$)$}& & & &  & &\\ \cline{3-3}
+  & &0\rlap{$\mathstrut=r_2$}& & & &  & &
+\end{array}
+\]
+Die nächste Division ergibt natürlich den Rest $0$ und $6=-1$ ist der
+erwartete grösste gemeinsame Teiler.
+Durch Ausmultiplizieren der Matrizen können wir jetzt auch die 
+Faktoren $a$ und $b$ finden.
+\begin{align*}
+Q&= Q(q_2)Q(q_1)Q(q_0)
+=
+\begin{pmatrix}0&1\\1&-q_2\end{pmatrix}
+\begin{pmatrix}0&1\\1&-q_1\end{pmatrix}
+\begin{pmatrix}0&1\\1&-q_0\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+0&1\\
+1&4X+6
+\end{pmatrix}
+\begin{pmatrix}
+0&1\\
+1&3X+2
+\end{pmatrix}
+\begin{pmatrix}
+0&1\\
+1&3X+3
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+0&1\\
+1&4X+6
+\end{pmatrix}
+\begin{pmatrix}
+   1&3X+3\\
+3X+2&2X^2 + X
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+3X+2           &2X^2+X\\
+1+(4X+6)(3X+2) &3X+3 + (4X+6)(2X^2+X)
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+     3X+2 & 2X^2     +X\\
+5X^2+5X+6 &  X^3+2X^2+2X+6
+\end{pmatrix}
+\end{align*}
+Daraus liest man
+\[
+a
+=
+3X+2
+\qquad\text{und}\qquad
+b
+=
+2X^2+X
+\]
+ab.
+Wir überprüfen, ob die Koeffizienten der ersten Zeile tatsächlich $m$ und $f$
+zu $1$ kombinieren.
+Es ist
+\begin{align*}
+(3X+2)\cdot m + (2X^2+X)\cdot f
+&= 
+(3X+2)
+(X^3+3X^2+X+2)
++
+(2X^2+X)
+(2X^2+2X+1)
+\\
+&=
+6
+\end{align*}
+Die multiplikative Inverse ist daher
+$-(2X^2 + X) = 5X^2+6X$,
+was mit dem Beispiel von
+Seite~\pageref{buch:endlichekoerper:beispiel:inversemitmatrix}
+übereinstimmt.
+\end{beispiel}
+
+Besonders einfach ist die Rechung für $\Bbbk=\mathbb{F}_2$.
+
+TODO: XXX Arithmetik in $\mathbb{F}_2$ erklären
 
 \subsection{Zerfällungskörper}
 
