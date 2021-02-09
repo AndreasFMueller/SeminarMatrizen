@@ -21,31 +21,7 @@ Element} der Gruppe $S_n$ und wir auch mit $e$ bezeichnet.
 \subsection{Permutationen als $2\times n$-Matrizen}
 Eine Permutation kann als $2\times n$-Matrix geschrieben werden:
 \begin{center}
-\begin{tikzpicture}[>=latex,thick]
-\def\sx{0.8}
-\def\sy{1}
-\begin{scope}[xshift=-3cm]
-\foreach \x in {1,...,6}{
-	\node at ({(\x-1)*\sx},\sy) [above] {$\tiny\x$};
-	\fill ({(\x-1)*\sx},\sy) circle[radius=0.05];
-	\fill ({(\x-1)*\sx},0) circle[radius=0.05];
-}
-\draw[->] (0,\sy) to[out=-70,in=110] (\sx,0);
-\draw[<-] (0,0) to[out=70,in=-110] (\sx,\sy);
-\draw[->] ({2*\sx},\sy) -- ({2*\sx},0);
-\draw[->] ({3*\sx},\sy) to[out=-70,in=110] ({4*\sx},0);
-\draw[->] ({4*\sx},\sy) to[out=-70,in=110] ({5*\sx},0);
-\draw[->] ({5*\sx},\sy) to[out=-110,in=70] ({3*\sx},0);
-\end{scope}
-\node at (2.4,{\sy/2}) {$\mathstrut=\mathstrut$};
-\node at (5,{\sy/2}) {$\displaystyle
-\renewcommand{\arraystretch}{1.4}
-\begin{pmatrix}
-1&2&3&4&5&6\\
-2&1&3&5&6&4
-\end{pmatrix}
-$};
-\end{tikzpicture}
+\includegraphics{chapters/50-permutationen/images/permutation.pdf}
 \end{center}
 Das neutrale Element hat die Matrix
 \[
@@ -64,43 +40,7 @@ Permutation angeordnet.
 Die zusammengesetzte Permutation kann dann in der zweiten Zeile
 der zweiten Permutation abgelesen werden:
 \begin{center}
-\begin{tikzpicture}[>=latex,thick]
-\begin{scope}[xshift=-4.5cm]
-\node at (0,0) {$\displaystyle
-\sigma_1=\begin{pmatrix}
-1&2&3&4&5&6\\
-2&1&3&5&6&4
-\end{pmatrix}$};
-\node at (0,-1) {$\displaystyle
-\sigma_2=\begin{pmatrix}
-1&2&3&4&5&6\\
-3&4&5&6&1&2
-\end{pmatrix}
-$};
-\end{scope}
-\begin{scope}
-\node at (0,0) {$\displaystyle
-\begin{pmatrix}
-1&2&3&4&5&6\\
-2&1&3&5&6&4
-\end{pmatrix}$};
-\node at (0,-1) {$\displaystyle
-\begin{pmatrix}
-2&1&3&5&6&4\\
-4&3&5&1&2&6
-\end{pmatrix}
-$};
-
-\end{scope}
-\begin{scope}[xshift=4.5cm]
-\node at (0,-0.5) {$\displaystyle
-\sigma_2\sigma_1=\begin{pmatrix}
-1&2&3&4&5&6\\
-4&3&5&1&2&6
-\end{pmatrix}
-$};
-\end{scope}
-\end{tikzpicture}
+\includegraphics{chapters/50-permutationen/images/komposition.pdf}
 \end{center}
 Die Inverse einer Permutation kann erhalten werden, indem die beiden
 Zeilen vertauscht werden und dann die Spalten wieder so angeordnet werden,
@@ -130,47 +70,7 @@ Eine Permutation $\sigma\in S_n$ kann auch mit sogenanten Zyklenzerlegung
 analysiert werden.
 Zum Beispiel:
 \begin{center}
-\begin{tikzpicture}[>=latex,thick]
-\begin{scope}[xshift=-3cm]
-\node at (0,0) {$\displaystyle
-\sigma=\begin{pmatrix}
-{\color{red}1}&{\color{red}2}&{\color{darkgreen}3}&{\color{blue}4}&{\color{blue}5}&{\color{blue}6}\\
-{\color{red}2}&{\color{red}1}&{\color{darkgreen}3}&{\color{blue}5}&{\color{blue}6}&{\color{blue}4}
-\end{pmatrix}$};
-\end{scope}
-\node at (0,0) {$\mathstrut=\mathstrut$};
-\begin{scope}[xshift=1.5cm]
-\coordinate (A) at (0,0.5);
-\coordinate (B) at (0,-0.5);
-\draw[->,color=red] (A) to[out=-20,in=20] (0,-0.5);
-\draw[->,color=red] (B) to[out=160,in=-160] (0,0.5);
-\node at (A) [above] {$\tiny 1$};
-\node at (B) [below] {$\tiny 2$};
-\fill (A) circle[radius=0.05];
-\fill (B) circle[radius=0.05];
-
-\coordinate (C) at (1.5,0.25);
-\node at (C) [above] {$\tiny 3$};
-\draw[->,color=darkgreen] ({1.5+0.01},0.25) to[out=-10,in=-170] ({1.5-0.01},0.25);
-\draw[color=darkgreen] (1.5,{0.25-0.3}) circle[radius=0.3];
-\fill (C) circle[radius=0.05];
-
-\def\r{0.5}
-\coordinate (D) at ({3.5+\r*cos(90)},{0+\r*sin(90)});
-\coordinate (E) at ({3.5+\r*cos(210)},{0+\r*sin(210)});
-\coordinate (F) at ({3.5+\r*cos(330)},{0+\r*sin(330)});
-\node at (D) [above] {$\tiny 4$};
-\node at (E) [below left] {$\tiny 5$};
-\node at (F) [below right] {$\tiny 6$};
-\draw[->,color=blue] (D) to[out=180,in=120] (E);
-\draw[->,color=blue] (E) to[out=-60,in=-120] (F);
-\draw[->,color=blue] (F) to[out=60,in=0] (D);
-\fill (D) circle[radius=0.05];
-\fill (E) circle[radius=0.05];
-\fill (F) circle[radius=0.05];
-
-\end{scope}
-\end{tikzpicture}
+\includegraphics{chapters/50-permutationen/images/zyklenzerlegung.pdf}
 \end{center}
 
 \begin{definition}

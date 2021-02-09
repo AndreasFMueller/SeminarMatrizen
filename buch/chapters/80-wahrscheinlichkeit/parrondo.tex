@@ -61,48 +61,7 @@ Fälle recht gross, in einem Fall aber sehr klein.
 \subsubsection{Übergangsmatrix im Spiel $B$}
 \begin{figure}
 \centering
-\begin{tikzpicture}[>=latex,thick]
-\def\R{2}
-\def\r{0.5}
-\coordinate (A) at (0,\R);
-\coordinate (B) at ({\R*sqrt(3)/2},{-0.5*\R});
-\coordinate (C) at ({-\R*sqrt(3)/2},{-0.5*\R});
-
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (B);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (C);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) -- (B);
-
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=90,in=-30] (A);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) to[out=90,in=-150] (A);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=-150,in=-30] (C);
-
-\pgfmathparse{0.93*\R}
-\xdef\Rgross{\pgfmathresult}
-
-\node at (30:\Rgross) {$\frac34$};
-\node at (150:\Rgross) {$\frac14$};
-\node at (-90:\Rgross) {$\frac14$};
-
-\pgfmathparse{0.33*\R}
-\xdef\Rklein{\pgfmathresult}
-
-\node at (-90:\Rklein) {$\frac34$};
-\node at (30:\Rklein) {$\frac9{10}$};
-\node at (150:\Rklein) {$\frac1{10}$};
-
-\fill[color=white] (A) circle[radius=\r];
-\draw (A) circle[radius=\r];
-\node at (A) {$0$};
-
-\fill[color=white] (B) circle[radius=\r];
-\draw (B) circle[radius=\r];
-\node at (B) {$2$};
-
-\fill[color=white] (C) circle[radius=\r];
-\draw (C) circle[radius=\r];
-\node at (C) {$1$};
-
-\end{tikzpicture}
+\includegraphics{chapters/80-wahrscheinlichkeit/images/spielB.pdf}
 \caption{Zustandsdiagramm für das Spiel $B$, Zustände sind die
 Dreierreste des Kapitals.
 \label{buch:wahrscheinlichkeit:fig:spielB}}
@@ -454,51 +413,10 @@ U^t (G\odot B) p
 \]
 wie erwartet.
 
-\subsubsection{Das modifizierte Spiel $B$}
+\subsubsection{Das modifizierte Spiel $\tilde{B}$}
 \begin{figure}
 \centering
-\begin{tikzpicture}[>=latex,thick]
-\def\R{2.5}
-\def\r{0.5}
-\coordinate (A) at (0,\R);
-\coordinate (B) at ({\R*sqrt(3)/2},{-0.5*\R});
-\coordinate (C) at ({-\R*sqrt(3)/2},{-0.5*\R});
-
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (B);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (C);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) -- (B);
-
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=90,in=-30] (A);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) to[out=90,in=-150] (A);
-\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=-150,in=-30] (C);
-
-\pgfmathparse{0.93*\R}
-\xdef\Rgross{\pgfmathresult}
-
-\node at (30:\Rgross) {$\frac34-\varepsilon$};
-\node at (150:\Rgross) {$\frac14+\varepsilon$};
-\node at (-90:\Rgross) {$\frac14+\varepsilon$};
-
-\pgfmathparse{0.32*\R}
-\xdef\Rklein{\pgfmathresult}
-
-\node at (-90:\Rklein) {$\frac34-\varepsilon$};
-\node at (30:\Rklein) {$\frac9{10}+\varepsilon$};
-\node at (150:\Rklein) {$\frac1{10}-\varepsilon$};
-
-\fill[color=white] (A) circle[radius=\r];
-\draw (A) circle[radius=\r];
-\node at (A) {$0$};
-
-\fill[color=white] (B) circle[radius=\r];
-\draw (B) circle[radius=\r];
-\node at (B) {$2$};
-
-\fill[color=white] (C) circle[radius=\r];
-\draw (C) circle[radius=\r];
-\node at (C) {$1$};
-
-\end{tikzpicture}
+\includegraphics{chapters/80-wahrscheinlichkeit/images/spielBtilde.pdf}
 \caption{Zustandsdiagramm für das modifizerte Spiel $\tilde{B}$,
 Zustände sind die Dreierreste des Kapitals.
 Gegenüber dem Spiel $B$

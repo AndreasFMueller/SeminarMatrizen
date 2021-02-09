@@ -236,26 +236,7 @@ sind.
 \begin{beispiel}
 \begin{figure}
 \centering
-\begin{tikzpicture}[>=latex,thick]
-\def\l{0.25}
-\def\r{1}
-\def\punkt#1{({\r*sin(((#1)-1)*72)},{\r*cos(((#1)-1)*72)})}
-\def\R{2}
-\def\Punkt#1{({\R*sin(((#1)-6)*72)},{\R*cos(((#1)-6)*72)})}
-\draw \Punkt{6} -- \Punkt{7} -- \Punkt{8} -- \Punkt{9} -- \Punkt{10} -- cycle;
-\draw \punkt{1} -- \punkt{3} -- \punkt{5} -- \punkt{2} -- \punkt{4} -- cycle;
-\foreach \k in {1,...,5}{
-	\draw \punkt{\k} -- \Punkt{(\k+5)};
-	\fill[color=white] \punkt{\k} circle[radius=\l];
-	\node at \punkt{\k} {$\k$};
-	\draw \punkt{\k} circle[radius=\l];
-}
-\foreach \k in {6,...,10}{
-	\fill[color=white] \Punkt{\k} circle[radius=\l];
-	\node at \Punkt{\k} {$\k$};
-	\draw \Punkt{\k} circle[radius=\l];
-}
-\end{tikzpicture}
+\includegraphics{chapters/70-graphen/images/peterson.pdf}
 \caption{Peterson-Graph mit zehn Knoten.
 \label{buch:figure:peterson}}
 \end{figure}

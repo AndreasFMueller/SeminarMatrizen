@@ -5,7 +5,8 @@
 #
 all:	dreieck.pdf trenn.pdf vergleich.pdf vergleich.jpg \
 	positiv.pdf positiv.jpg diffusion.png diffusion.pdf \
-	konvex.pdf internet.pdf markov.pdf markov2.pdf markov3.pdf
+	konvex.pdf internet.pdf markov.pdf markov2.pdf markov3.pdf \
+	spielB.pdf spielBtilde.pdf
 
 # Visualisierung diffusion in einer primitiven Matrix
 diffusion.pdf:	diffusion.tex diffusion.jpg
@@ -71,3 +72,8 @@ markov2.pdf:	markov2.tex
 markov3.pdf:	markov3.tex
 	pdflatex markov3.tex
 
+spielB.pdf:	spielB.tex
+	pdflatex spielB.tex
+
+spielBtilde.pdf:	spielBtilde.tex
+	pdflatex spielBtilde.tex

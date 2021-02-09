@@ -1,0 +1,39 @@
+%
+% komplex.tex -- Betrag und Argument einer komplexen Zahl
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1.5}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\pgfmathparse{atan(2/3)}
+\xdef\winkel{\pgfmathresult}
+\fill[color=blue!20] (0,0) -- (1.5,0) arc (0:\winkel:1.5) -- cycle;
+\draw[->] (-1,0) -- (4,0) coordinate[label={$\Re z$}];
+\draw[->] (0,-1) -- (0,3) coordinate[label={right:$\Im z$}];
+\draw[line width=0.5pt] (3,0) -- (3,2);
+\node at (3,1) [right] {$\Im z=b$};
+\node at (1.5,0) [below] {$\Re z=a$};
+\draw[->,color=red,line width=1.4pt] (0,0) -- (3,2);
+\node at (3,2) [above right] {$z=a+bi$};
+\def\punkt#1{
+	\fill[color=white] #1 circle[radius=0.04];
+	\draw #1 circle[radius=0.04];
+}
+\punkt{(0,0)}
+\punkt{(3,2)}
+\node[color=red] at (1.5,1) [rotate=\winkel,above] {$r=|z|$};
+\node[color=blue] at ({\winkel/2}:1.0)
+	[rotate={\winkel/2}] {$\varphi=\operatorname{arg}z$};
+
+\end{tikzpicture}
+\end{document}
+

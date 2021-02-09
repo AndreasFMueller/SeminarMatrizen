@@ -1,0 +1,59 @@
+%
+% spielBtilde.tex -- Zustandsdiagramm des modifzierten Spiels
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\R{2.5}
+\def\r{0.5}
+\coordinate (A) at (0,\R);
+\coordinate (B) at ({\R*sqrt(3)/2},{-0.5*\R});
+\coordinate (C) at ({-\R*sqrt(3)/2},{-0.5*\R});
+
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (B);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (A) -- (C);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) -- (B);
+
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=90,in=-30] (A);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (C) to[out=90,in=-150] (A);
+\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (B) to[out=-150,in=-30] (C);
+
+\pgfmathparse{0.93*\R}
+\xdef\Rgross{\pgfmathresult}
+
+\node at (30:\Rgross) {$\frac34-\varepsilon$};
+\node at (150:\Rgross) {$\frac14+\varepsilon$};
+\node at (-90:\Rgross) {$\frac14+\varepsilon$};
+
+\pgfmathparse{0.32*\R}
+\xdef\Rklein{\pgfmathresult}
+
+\node at (-90:\Rklein) {$\frac34-\varepsilon$};
+\node at (30:\Rklein) {$\frac9{10}+\varepsilon$};
+\node at (150:\Rklein) {$\frac1{10}-\varepsilon$};
+
+\fill[color=white] (A) circle[radius=\r];
+\draw (A) circle[radius=\r];
+\node at (A) {$0$};
+
+\fill[color=white] (B) circle[radius=\r];
+\draw (B) circle[radius=\r];
+\node at (B) {$2$};
+
+\fill[color=white] (C) circle[radius=\r];
+\draw (C) circle[radius=\r];
+\node at (C) {$1$};
+
+\end{tikzpicture}
+\end{document}
+
