@@ -9,13 +9,55 @@
 Im Körper $\mathbb{Q}$ kann man zum Beispiel die Wurzel aus $2$ nicht 
 ziehen.
 Das Problem haben wir in Abschnitt~\ref{buch:section:reelle-zahlen}
-dadurch gelöst, dass wir $\mathbb{Q}$ zu den reellen Zahlen
+dadurch gelöst, dass wir $\mathbb{Q}$ zu den reellen Zahlen $\mathbb{R}$
 erweitert haben.
 Es ist aber auch möglich, nur die Zahl $\sqrt{2}$ hinzuzufügen,
 so entsteht der Körper $\mathbb{Q}(\sqrt{2})$.
-In diesem Abschnitt zeigen wir, wie man einem Körper beliebige 
-Nullstellen $\alpha$ eines Polynoms $f\in\Bbbk[X]$ hinzufügen und
-so den Körper $\Bbbk(\alpha)$ konstruieren kann.
+Das Problem dabei ist, was denn eigentlich $\sqrt{2}$ überhaupt ist.
+Solange man die reellen Zahlen nicht hat, hat man auch $\sqrt{2}$ nicht.
+Das Problem wird akut bei den endlichen Körpern wie zum Beispiel
+$\mathbb{F}_3$,
+da man diese nicht in $\mathbb{R}$ einbetten kann, also keine
+bekannte Menge von Zahlen existiert, in der wir die Wurzel $\sqrt{2}$
+finden könnte.
+
+Im Altertum fiel dieses Problem zunächst den Pythagoreern auf.
+Wenn $\sqrt{2}$ kein Bruch ist, was ist es dann?
+Im 15.~Jahrhundert stellte sich dieses Problem bei den Versuchen, die
+kubische Gleichung allgemein zu lösen, erneut.
+Hier war es die Wurzel $\sqrt{-1}$, die den reellen Zahlen hinzuzufügen
+war.
+In $\mathbb{R}$ hat $\sqrt{-1}$ sicher keinen Platz, also wo existert
+es denn überhaupt?
+Auch der von Descartes eingeführte, eher unglückliche Begriff
+``imaginäre Zahl'' illustriert dieses Dilemma.
+
+Inzwischen hat man sich daran gewöhnt, dass man einfach ein neues Symbol
+wählt, die algebraischen Regeln postuliert, nach denen damit zu rechnen
+ist, und dann hofft oder besser beweist, dass keine Widersprüche auftreten.
+Auf diese Weise kann man einem Körper $\Bbbk$ eine beliebige 
+Nullstelle $\alpha$ eines Polynoms $f\in\Bbbk[X]$ mit Koeffizienten
+in $\Bbbk$ hinzufügen und so den Körper $\Bbbk(\alpha)$ konstruieren.
+Trotzdem bleibt die Frage offen: was {\em ist} denn eigentlich $\alpha$?
+
+In diesem Abschnitt werden Wurzeln wie folgt konstruiert.
+Zunächst wird in Abschnitt~\ref{buch:subsection:koerpererweiterungen}
+gezeigt, dass man immer eine Matrix $M_\alpha$ finden kann, welche
+genau die algebraischen Eigenschaften einer Nullstelle $\alpha$ eines
+Polynoms hat.
+Die Frage ``Was ist $\alpha$?'' erhält also die Antwort ``Eine Matrix''.
+Mit diesem Bild lassen sich alle Körperoperationen realisieren, die
+Inverse kann zum Beispiel als die inverse Matrix mit dem
+Gauss-Algorithmus berechnet werden.
+In einem zweiten Schritt zeigen wir dann, dass man die Rechnung noch
+etwas vereinfachen kann, wenn man in Polynomringen arbeitet.
+Schliesslich zeigen wir dann im
+Abschnitt~\ref{buch:subsection:zerfaellungskoerper}, wie man 
+den Prozess iterieren kann und so für beliebige Polynome immer einen
+Körper finden kann, der alle Nullstellen enthält.
+Wir beginnen in Abschnitt~\ref{buch:subsection:irreduziblepolynome}
+damit, die Polynome, die für die Konstruktion in Frage kommen, etwas
+genauer zu charakterisieren.
 
 \subsection{Irreduzible Polynome
 \label{buch:subsection:irreduziblepolynome}}
@@ -126,7 +168,8 @@ $X^3-1=(X+6)(X+3)(X+5)$.
 \end{beispiel}
 
 
-\subsection{Körpererweiterungen}
+\subsection{Körpererweiterungen
+\label{buch:subsection:koerpererweiterungen}}
 Nach den Vorbereitungen von
 Abschnitt~\ref{buch:subsection:irreduziblepolynome}
 können wir jetzt definieren, wie die Körpererweiterung
