@@ -784,6 +784,9 @@ Jetzt muss der Quotient $f:r_0$ berechnet werden:
       & &  & &6\rlap{$\mathstrut=r_1$}& & & &  & & & &
 \end{array}
 \]
+Da der Rest $r_1\in\mathbb{F}_7^*$ liegt, gibt die nächste Division
+natürlich den Rest $0$ und der letzte nicht verschwindende Rest ist
+$r_{1}=6$:
 \[
 \arraycolsep=1.4pt
 \begin{array}{rcrcrcrcr}
@@ -794,13 +797,16 @@ Jetzt muss der Quotient $f:r_0$ berechnet werden:
   & &0\rlap{$\mathstrut=r_2$}& & & &  & &
 \end{array}
 \]
-Die nächste Division ergibt natürlich den Rest $0$ und
-der letzte nicht verschwindende Rest ist $r_{1}=6$.
+Damit ist der euklidische Algorithmus abgeschlossen.
 
-Durch Ausmultiplizieren der Matrizen können wir jetzt auch die 
-Faktoren $a$ und $b$ finden.
+Durch Ausmultiplizieren der Matrizen $Q(-q_i)$ können wir jetzt auch die 
+Faktoren $s$ und $t$ finden.
 \begin{align*}
-Q&= Q(q_2)Q(q_1)Q(q_0)
+Q=\begin{pmatrix}
+s&t\\
+*&*
+\end{pmatrix}
+&= Q(q_2)Q(q_1)Q(q_0)
 =
 \begin{pmatrix}0&1\\1&-q_2\end{pmatrix}
 \begin{pmatrix}0&1\\1&-q_1\end{pmatrix}

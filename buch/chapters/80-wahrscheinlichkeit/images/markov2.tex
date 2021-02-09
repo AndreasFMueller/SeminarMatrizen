@@ -1,0 +1,113 @@
+%
+% markov.tex -- Illustration markov-Kette
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\punkt#1#2#3{
+	\fill[color=white] #1 circle[radius=0.10];
+	\fill[color=#2] #1 circle[radius=0.13];
+	\node[color=white] at #1 {$\scriptstyle #3$};
+}
+
+\def\xs{2.5}
+\def\ys{1}
+
+\foreach \x in {0,...,5}{
+	\draw[color=red,line width=0.5pt] 
+		({\x*\xs},{-0.7*\ys}) -- ({\x*\xs},{-8.5*\ys});
+}
+
+\def\dotradius{0.04}
+
+\def\dotrow#1#2{
+	\punkt{({#1*\xs},{-1*\ys})}{#2}{1}
+	\punkt{({#1*\xs},{-2*\ys})}{#2}{2}
+	\fill[color=#2] ({#1*\xs},{-3*\ys-0.3}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-3*\ys-0.15}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-3*\ys}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-3*\ys+0.15}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-3*\ys+0.3}) circle[radius=\dotradius];
+	\punkt{({#1*\xs},{-4*\ys})}{#2}{7}
+	\punkt{({#1*\xs},{-5*\ys})}{#2}{8}
+	\punkt{({#1*\xs},{-6*\ys})}{#2}{9}
+	\fill[color=#2] ({#1*\xs},{-7*\ys-0.3}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-7*\ys-0.15}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-7*\ys}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-7*\ys+0.15}) circle[radius=\dotradius];
+	\fill[color=#2] ({#1*\xs},{-7*\ys+0.3}) circle[radius=\dotradius];
+	\punkt{({#1*\xs},{-8*\ys})}{#2}{s}
+}
+
+\def\fan#1#2{
+	\foreach \x in {1,2,4}{
+		\foreach \y in {1,2,4}{
+			\draw[->,shorten >= 2mm,shorten <= 2mm,color=#2]
+				({#1*\xs},{-\x*\ys})
+				--
+				({(#1+1)*\xs},{-\y*\ys});
+		}
+	}
+	\foreach \x in {5,6,8}{
+		\foreach \y in {5,6,8}{
+			\draw[->,shorten >= 2mm,shorten <= 2mm,color=#2]
+				({#1*\xs},{-\x*\ys})
+				--
+				({(#1+1)*\xs},{-\y*\ys});
+		}
+	}
+}
+
+\begin{scope}
+\clip (-0.5,{-8.5*\ys}) rectangle ({5*\xs+0.5},-0.5);
+\fan{-1}{gray}
+\fan{0}{gray}
+\fan{1}{gray}
+\fan{2}{black}
+\fan{3}{gray}
+\fan{4}{gray}
+\fan{5}{gray}
+\end{scope}
+
+\dotrow{0}{gray}
+\dotrow{1}{gray}
+\dotrow{2}{black}
+\dotrow{3}{black}
+\dotrow{4}{gray}
+\dotrow{5}{gray}
+
+\def\ty{-0.5}
+\node[color=gray] at ({0.5*\xs},{\ty*\ys}) {$T(n-1,n-2)$};
+\node[color=gray] at ({1.5*\xs},{\ty*\ys}) {$T(n,n-1)$};
+\node[color=black] at ({2.5*\xs},{\ty*\ys}) {$T(n+1,n)$};
+\node[color=gray] at ({3.5*\xs},{\ty*\ys}) {$T(n+2,n+1)$};
+\node[color=gray] at ({4.5*\xs},{\ty*\ys}) {$T(n+3,n+2)$};
+
+\draw[->,color=red] (-0.7,{-8.5*\ys}) -- ({5*\xs+0.7},{-8.5*\ys}) coordinate[label={$t$}];
+
+\foreach \x in {0,...,5}{
+	\draw[color=red]
+		({\x*\xs},{-8.5*\ys-0.05})
+		--
+		({\x*\xs},{-8.5*\ys+0.05});
+}
+\node[color=red] at ({0*\xs},{-8.5*\ys}) [below] {$n-2\mathstrut$};
+\node[color=red] at ({1*\xs},{-8.5*\ys}) [below] {$n-1\mathstrut$};
+\node[color=red] at ({2*\xs},{-8.5*\ys}) [below] {$n\mathstrut$};
+\node[color=red] at ({3*\xs},{-8.5*\ys}) [below] {$n+1\mathstrut$};
+\node[color=red] at ({4*\xs},{-8.5*\ys}) [below] {$n+2\mathstrut$};
+\node[color=red] at ({5*\xs},{-8.5*\ys}) [below] {$n+3\mathstrut$};
+
+\end{tikzpicture}
+\end{document}
+

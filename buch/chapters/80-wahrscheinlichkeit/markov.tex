@@ -171,6 +171,9 @@ heisst die {\em Pfadwahrscheinlichkeit} für genannten Pfad.
 \index{Pfadwahrscheinlichkeit}%
 \end{definition}
 
+%
+% Diskrete Markov-Kette
+%
 \subsection{Diskrete Markov-Kette}
 % XXX Diskrete Zeit, Endliche Zustandsmenge
 Die Markov-Eigenschaft besagt, dass man keine Information verliert,
@@ -195,9 +198,18 @@ P(X_{n+1}=x_{n+1}|X_n=x_n)
 hat.
 \end{definition}
 
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov.pdf}
+\caption{Diskrete Markovkette mit Zuständen $\mathcal{S}=\{1,2,3,\dots,s\}$
+und Übergangsmatrizen $T(n+1,n)$.
+\label{buch:wahrscheinlichkeit:fig:diskretemarkovkette}}
+\end{figure}
+
 Die transienten Übergangswahrscheinlichkeiten zwischen aufeinanderfolgenden
 Zeitpunkten stellen jetzt die vollständige Information über die
-zeitliche Entwicklung dar.
+zeitliche Entwicklung dar
+(Abbildung~\ref{buch:wahrscheinlichkeit:fig:diskretemarkovkette}).
 Aus der Matrix
 \[
 T(n+1,n)
@@ -384,12 +396,28 @@ kommunizieren.
 \index{irreduzible Markov-Kette}
 \end{definition}
 
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov2.pdf}
+\caption{Diese Markov-Kette zerfällt in verschiedene irreduzible
+Markov-Ketten, dere Zustandsmengen nicht miteinander kommunizieren.
+Solche Markov-Ketten können unabhängig voneinander studiert werden.
+\label{buch:wahrscheinlichkeit:fig:markovzerfall}}
+\end{figure}
+
 Die Bedingung der Irreduzibilität ist gleichbedeutend damit,
 dass für genügend grosses $n$ alle Matrixelemente von $T^n$ positiv sind.
 Solche Matrizen nennt man positiv, 
 in Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
 wird gezeigt, dass positive Matrizen immer eine eindeutige
 stationäre Verteilung haben.
+In Abbildung~\ref{buch:wahrscheinlichkeit:fig:markovzerfall}
+ist eine reduzible Markov-Kette dargestellt, die Zustandsmenge
+zerfällt in zwei Teilmengen von Zuständen, die nicht miteinander
+kommunizieren.
+Ein irreduzible Markov-Kette liegt vor, wenn sich ähnlich wie
+in Abbildung~\ref{buch:wahrscheinlichkeit:fig:diskretemarkovkette}
+jeder Zustand von jedem anderen aus erreichen lässt.
 
 Wenn sich der Vektorraum $\mathbb{R}^n$ in zwei unter $T$ invariante
 Unterräme zerlegen lässt, dann hat nach Wahl von Basen in den Unterräumen
@@ -671,7 +699,17 @@ Nicht absorbierende Zustände heissen {\em transient}
 \index{transienter Zustand}%
 \end{definition}
 
-Eine Markov-Kette kann mehrere absorbierende Zustände haben.
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov3.pdf}
+\caption{Markov-Kette mit absorbierenden Zuständen (blau hinterlegt).
+Erreicht die Markov-Kette einen absorbierenden Zustand, dann verbleibt
+sie für alle zukünftigen Zustände in diesem Zustand.
+\label{buch:wahrscheinlichkeit:fig:abs}}
+\end{figure}
+
+Eine Markov-Kette kann mehrere absorbierende Zustände haben, wie in
+Abbildung~\ref{buch:wahrscheinlichkeit:fig:abs} dargestellt.
 Indem man die absorbierenden Zustände zuerst auflistet, bekommt die 
 Übergangsmatrix die Form
 \[

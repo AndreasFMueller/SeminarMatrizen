@@ -1,0 +1,58 @@
+%
+% internet.tex -- Modellinternet
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\foreach \x in {0,3,6,9}{
+	\foreach \y in {0,3}{
+		\fill[color=white] ({\x},{\y}) circle[radius=0.3];
+		\draw ({\x},{\y}) circle[radius=0.3];
+	}
+}
+\node at (0,3) {$1$};
+\node at (0,0) {$2$};
+\node at (3,3) {$3$};
+\node at (3,0) {$4$};
+\node at (6,3) {$5$};
+\node at (6,0) {$6$};
+\node at (9,3) {$7$};
+\node at (9,0) {$8$};
+% 1
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,3) -- (3,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,3) -- (0,0);
+% 2
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (0,0) to[out=-20,in=-160] (3,0);
+% 3
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,3) -- (6,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,3) -- (0,0);
+% 4
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) -- (6,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) -- (6,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (3,0) to[out=160,in=20] (0,0);
+% 5
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (9,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (9,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,3) -- (6,0);
+% 6
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (6,0) to[out=20,in=160] (9,0);
+% 7
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,3) .. controls (7.5,4) .. (6,4) -- (3,4) .. controls (1.5,4) .. (0,3);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,3) to[out=-110,in=110] (9,0);
+% 8
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,0) to[out=-160,in=-20] (6,0);
+\draw[->,shorten >= 0.3cm, shorten <= 0.3cm] (9,0) to[out=70,in=-70] (9,3);
+
+\end{tikzpicture}
+\end{document}
+

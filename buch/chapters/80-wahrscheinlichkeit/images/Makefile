@@ -5,7 +5,7 @@
 #
 all:	dreieck.pdf trenn.pdf vergleich.pdf vergleich.jpg \
 	positiv.pdf positiv.jpg diffusion.png diffusion.pdf \
-	konvex.pdf
+	konvex.pdf internet.pdf markov.pdf markov2.pdf markov3.pdf
 
 # Visualisierung diffusion in einer primitiven Matrix
 diffusion.pdf:	diffusion.tex diffusion.jpg
@@ -58,3 +58,16 @@ drei.inc:	dreieck.m
 # Konvex
 konvex.pdf:	konvex.tex
 	pdflatex konvex.tex
+
+internet.pdf:	internet.tex
+	pdflatex internet.tex
+
+markov.pdf:	markov.tex
+	pdflatex markov.tex
+
+markov2.pdf:	markov2.tex
+	pdflatex markov2.tex
+
+markov3.pdf:	markov3.tex
+	pdflatex markov3.tex
+
