@@ -416,7 +416,7 @@ Wir betrachten das Polynom
 \[
 m(X) = X^3 + 2X^2 + 2X + 3 \in \mathbb{F}_{7}[X],
 \]
-es irreduzibel.
+es ist irreduzibel.
 Sei $\alpha$ eine Nullstelle von $m$, wir suchen das inverse Element zu
 \[
 a(\alpha)=1+2\alpha+2\alpha^2\in\mathbb{F}_{7}(\alpha).
@@ -430,7 +430,52 @@ A=\begin{pmatrix}
 \end{pmatrix}.
 \]
 Die Inverse kann man bestimmen, indem man den
-Gauss-Algorithmus in $\mathbb{F}_{17}$ durchführt.
+Gauss-Algorithmus in $\mathbb{F}_{7}$ durchführt.
+Die Arithmetik in $\mathbb{F}_{7}$ ist etwas ungewohnt, insbesondere
+die Pivot-Division ist etwas mühsam, daher sind in
+Abbildung~\label{buch:endlichekoerper:fig:additionmultiplikation}
+die Additions- und Multiplikationstabellen zusammengestellt.
+\begin{figure}
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
++&0&1&2&3&4&5&6\\
+\hline
+0&0&1&2&3&4&5&6\\
+1&1&2&3&4&5&6&0\\
+2&2&3&4&5&6&0&1\\
+3&3&4&5&6&0&1&2\\
+4&4&5&6&0&1&2&3\\
+5&5&6&0&1&2&3&4\\
+6&6&0&1&2&3&4&5\\
+\hline
+\end{tabular}
+\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
+\hline
+\cdot
+ &0&1&2&3&4&5&6\\
+\hline
+0&0&0&0&0&0&0&0\\
+1&0&1&2&3&4&5&6\\
+2&0&2&4&6&1&3&5\\
+3&0&3&6&2&5&1&4\\
+4&0&4&1&5&2&6&3\\
+5&0&5&3&1&6&4&2\\
+6&0&6&5&4&3&2&1\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Additions- und Multiplikationstabelle für das Rechnen im
+Galois-Körper $\mathbb{F}_7$.
+Die multiplikative Inverse eines Elements in $a\in\mathbb{F}_7^*$
+findet man, indem man in der Multiplikationstabelle in der Zeile
+$a$ die Spalte mit der $1$ sucht, diese Spalte ist mit der multiplikativen
+Inversen von $a$ angeschrieben.
+\label{buch:endlichekoerper:fig:additionmultiplikation}}
+\end{figure}
+Mit dieser Rechenhilfe kann jetzt der Gaussalgorithmus leicht durchgeführt
+werden:
 \begin{align*}
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
 \hline
@@ -576,7 +621,7 @@ Der Ring $R/I$ ist genau dann ein Körper, wenn $I$ ein maximales Ideal ist.
 Ein irreduzibles Polynom $m\in\Bbbk[X]$ erzeugt ein maximales Ideal,
 somit ist $\Bbbk[X]/m\Bbbk[X]\cong \Bbbk(M_\alpha) \cong \Bbbk(\alpha)$.
 
-\subsubsection{Rechnen in $\Bbbk(\alpha)$}
+\subsubsection{Reduktion modulo $m$}
 Die algebraische Konstruktion hat gezeigt, dass die arithmetischen
 Operationen im Körper $\Bbbk(\alpha)$ genau die Operationen 
 in $\Bbbk[X]/m\Bbbk[X]$ sind.
@@ -588,29 +633,132 @@ Grades, mit dem Polynomdivisionsalgorithmus kann der Rest bei Division
 durch $m$ ermittelt werden.
 
 \begin{beispiel}
-XXX: Reduktionsbeispiel
+Das Polyonom $f=X^5+X^4+X^3+X^2+X^1+1\in\mathbb{F}_7[X]$ soll modulo
+$m(X)=X^3+2X^2+2X^2+3$ reduziert werden.
+Wir führen die Polynomdivision in $\mathbb{F}_7[X]$ durch, die
+Multiplikationstabelle von $\mathbb{F}_7$ in
+Abbildung~\ref{buch:endlichekoerper:fig:additionmultiplikation}
+ist dabei wieder hilfreich.
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcrcrcrcrcr}
+X^5&+& X^4&+& X^3&+& X^2&+& X&+&1&:&X^3&+&2X^2&+&2X&+&3&=&X^2&+&6X&+&1\rlap{$\mathstrut=q$}\\
+\llap{$-($}X^5&+&2X^4&+&2X^3&+&3X^2\rlap{$)$}& &  & & & &   & &    & &  & & & &   & &  & & \\
+\cline{1-7}
+   & &6X^4&+&6X^3&+&5X^2&+& X& & & &   & &    & &  & & & &   & &  & & \\
+   & &\llap{$-($}6X^4&+&5X^3&+&5X^2&+&4X\rlap{$)$}& & & &   & &    & &  & & & &   & &  & & \\
+\cline{3-9}
+   & &    & & X^3& &    &+&4X&+&1& &   & &    & &  & & & &   & &  & & \\
+   & &    & &\llap{$-($}X^3&+&2X^2&+&2X&+&3\rlap{$)$}& &   & &    & &  & & & &   & &  & & \\
+\cline{5-11}
+   & &    & &    & &5X^2&+&2X&+&5\rlap{$\mathstrut=r$}& &   & &    & &  & & & &   & &  & & \\
+\end{array}
+\]
+Die Kontrolle
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcr}
+\llap{$($}X^2&+&  6X&+&   1\rlap{$)$}&\cdot&\llap{$($} X^3&+&2X^2&+&2X&+&3\rlap{$)$}\\
+\cline{1-13}
+   & &    & &    &     & X^3&+&2X^2&+&2X&+&3\\
+   & &    & &6X^4&  +  &5X^3&+&5X^2&+&4X& & \\
+   & & X^5&+&2X^4&  +  &2X^3&+&3X^2& &  & & \\
+\cline{3-13}
+   & & X^5&+& X^4&  +  & X^3&+&3X^2&+&6X&+&3\rlap{$\phantom{)}=q\cdot m$}\\
+   & &    & &    &     &    & &\llap{$+($}5X^2&+&2X&+&5\rlap{$)=r$}\\
+\cline{3-13}
+   & & X^5&+& X^4&  +  & X^3&+& X^2&+& X&+&1\\
+\cline{3-13}
+\end{array}
+\]
+zeigt $f=qm+r$ und damit die Korrektheit der Rechnung.
 \end{beispiel}
 
-Die schwierigste Operation ist die Division.
+Die Identität $m(\alpha)=0$ kann aber auch wie folgt interpretiert werden.
+Sei der Grad von $f$ mindestens so gross wie der von $m$, also
+$l=\deg f\ge \deg m=n$.
+Indem man mit $\alpha^{l-n}$ multipliziert, erhält man die Relation
+\[
+\alpha^l + m_{n-1}\alpha^{l-1} + m_{n-2}\alpha^{l-2}+\dots +a_1\alpha^{l-n+1} + a_0\alpha^{-l-n} = 0.
+\]
+
+Ist $f_l$ der führende Koeffizient des Polynoms $f$, dann ist
+$f-f_0mX^{n-l}$ ein Polynom vom Grad $l-1$, welches modulo $m$
+mit $f$ übereinstimmt.
+Indem man dies wiederholt, kann man also die Reduktion finden, ohne
+den Polynomdivisionsalgorithmus durchzuführen.
+Man erhält auf diese Weise zwar den Quotienten $q$ nicht, aber den
+Rest $r$ kann man trotzdem bekommen.
+
+\begin{beispiel}
+Wir wenden den eben beschriebenen Algorithmus wieder auf das
+Polynom $f=X^5+X^4+X^3+X^2+X+1$ an und erhalten:
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcr}
+X^5&+& X^4&+& X^3&+& X^2&+& X&+&1\\
+\llap{$-($}X^5&+&2X^4&+&2X^3&+&3X^2\rlap{$\mathstrut =X^2m)$}& &  & & \\
+\cline{1-11}
+   & &6X^4&+&6X^3&+&5X^2&+& X&+&1\\
+   & &\llap{$-($}6X^4&+&5X^3&+&5X^2&+&4X\rlap{$\mathstrut =6Xm)$}& & \\
+\cline{3-11}
+   & &    & & X^3& &    &+&4X&+&1\\
+   & &    & & \llap{$-($}X^3&+&2X^2&+&2X&+&3\rlap{$\mathstrut =m)$}\\
+\cline{5-11}
+   & &    & &    & &5X^2&+&2X&+&5\rlap{$\mathstrut =r$}\\
+\end{array}
+\]
+Dies ist derselbe Rest wie wir mit dem Divisionsalgorithmus
+gefunden haben.
+\end{beispiel}
+
+Diese Form des Reduktionsalgorithmus ist besonders leicht durchzuführen
+in einem Körper $\mathbb{F}_2$, da dort die Addition und die Subtraktion
+der Koeffizienten dasselbe ist.
+Die Multiplikation mit $X$ ist nichts anders als ein Shift der
+Koeffizienten.
+
+\subsubsection{Multiplikative Inverse}
+Die schwierigste Operation in $\Bbbk(\alpha)$ ist die Division.
 Wie bei der Berechnung der Inversion in einem Galois-Körper $\mathbb{F}_p$
 kann dafür der euklidische Algorithmus verwendet werden.
 Sei also $f\in\Bbbk[X]$ ein Polynom vom Grad $\deg f <\deg m$, es soll
 das multiplikative Inverse gefunden werden.
 Da $m$ ein irreduzibles Polynom ist, müssen $f$ und $m$ teilerfremd sein.
-Der euklidische Algorithmus liefert zwei Polynome $a,b\in\Bbbk[X]$ derart,
+Der euklidische Algorithmus liefert zwei Polynome $s,t\in\Bbbk[X]$ derart,
 dass
 \[
-af+bm=1.
+sf+tm=1.
 \]
 Reduzieren wir modulo $m$, wird daraus $af=1$ in $\Bbbk[X]/m\Bbbk[X]$.
 Das Polynom $a$, reduziert module $m$, ist also die multiplikative
 Inverse von $f$.
 
+Bei der praktischen Durchführung des euklidischen Algorithmus ist der 
+letzte Rest $r_{n-1}$ oft nicht $1$ sondern ein anderes Element von
+$\mathbb{F}_p^*$.
+Die Linearkombination von $f$ und $m$ mit den berechneten Faktoren
+$s$ und $t$ ist daher auch nicht $1$, sondern 
+\[
+sf+tm=r_{n-1}.
+\]
+Da aber alle Elemente in $\mathbb{F}_p^*$ invertierbar sind, kann man
+durch $r_{n-1}$ dividieren, was
+\[
+r_{n-1}^{-1}sf+r_{n-1}^{-1}tm=1
+\]
+ergibt.
+Also ist $r_{n-1}^{-1}s$ die gesuchte Inverse in $\mathbb{F}_p(\alpha)$,
+dies passiert auch im folgenden Beispiel.
+
 \begin{beispiel}
-% XXX verweise auf das frühere Beispiel
-Wir berechnen die multiplikative Inverse von
+Auf 
+Seite~\pageref{buch:endlichekoerper:beispiel:inversemitmatrix}
+haben wir die multiplikative Inverse von
 $f=2X^2+2X+1\in\mathbb{F}_7[X]/m\mathbb{F}_7[X]$ 
-mit $m = X^3 + 2X^2 + 2X + 3$.
+mit $m = X^3 + 2X^2 + 2X + 3$
+mit Hilfe von Matrizen berechnet, hier soll sie jetzt nochmals
+mit dem euklidischen Algorithmus berechnet werden.
 
 Zunächst müssen wir den euklidischen Algorithmus für die beiden Polynome
 $f$ und $m$ durchführen.
@@ -646,8 +794,9 @@ Jetzt muss der Quotient $f:r_0$ berechnet werden:
   & &0\rlap{$\mathstrut=r_2$}& & & &  & &
 \end{array}
 \]
-Die nächste Division ergibt natürlich den Rest $0$ und $6=-1$ ist der
-erwartete grösste gemeinsame Teiler.
+Die nächste Division ergibt natürlich den Rest $0$ und
+der letzte nicht verschwindende Rest ist $r_{1}=6$.
+
 Durch Ausmultiplizieren der Matrizen können wir jetzt auch die 
 Faktoren $a$ und $b$ finden.
 \begin{align*}
@@ -695,17 +844,17 @@ Q&= Q(q_2)Q(q_1)Q(q_0)
 \end{align*}
 Daraus liest man
 \[
-a
-=
-3X+2
-\qquad\text{und}\qquad
-b
+s
 =
 2X^2+X
+\qquad\text{und}\qquad
+t
+=
+3X+2
 \]
 ab.
 Wir überprüfen, ob die Koeffizienten der ersten Zeile tatsächlich $m$ und $f$
-zu $1$ kombinieren.
+zu $r_1=6$ kombinieren.
 Es ist
 \begin{align*}
 (3X+2)\cdot m + (2X^2+X)\cdot f
@@ -715,22 +864,32 @@ Es ist
 +
 (2X^2+X)
 (2X^2+2X+1)
-\\
-&=
-6
+=
+6=r_1
 \end{align*}
 Die multiplikative Inverse ist daher
-$-(2X^2 + X) = 5X^2+6X$,
+$
+r_1^{-1}(2X^2 + X)
+=
+6^{-1}
+(2X^2 + X)
+=
+6
+(2X^2 + X)
+=
+5X^2+6X$,
 was mit dem Beispiel von
 Seite~\pageref{buch:endlichekoerper:beispiel:inversemitmatrix}
 übereinstimmt.
 \end{beispiel}
 
 Besonders einfach ist die Rechung für $\Bbbk=\mathbb{F}_2$.
+Dieser Spezialfall ist für die praktische Anwendung in der Kryptographie
+von besonderer Bedeutung, daher wird er im 
+In Kapitel~\ref{buch:chapter:kryptographie} genauer untersucht.
 
-TODO: XXX Arithmetik in $\mathbb{F}_2$ erklären
-
-\subsection{Zerfällungskörper}
+\subsection{Zerfällungskörper
+\label{buch:subsection:zerfaellungskoerper}}
 
 
 
