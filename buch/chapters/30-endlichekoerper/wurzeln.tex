@@ -3,6 +3,7 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
+% !TeX spellcheck = de_CH
 \section{Wurzeln
 \label{buch:section:wurzeln}}
 \rhead{Wurzeln}
@@ -68,7 +69,7 @@ Koeffizienten in $\Bbbk$ ist, dessen Nullstelle $\alpha$ hinzugefügt
 werden sollen.
 Das Ziel ist natürlich, dass diese Erweiterung vollständig beschrieben
 werden kann durch das Polynom, ganz ohne Bezug zum Beispiel auf einen
-numerischen Wert der Nullstelle, der ohnehin nur in $\mathbb(C)$ sinnvoll
+numerischen Wert der Nullstelle, der ohnehin nur in $\mathbb{C}$ sinnvoll
 wäre.
 
 Nehmen wir jetzt an, dass sich das Polynom $f$ faktorisieren lässt.
@@ -80,7 +81,7 @@ verschwinden, also $g(\alpha)=0$ oder $h(\alpha)=0$.
 Ohne Beschränkung der Allgemeinheit kann angenommen werden, dass
 $g(\alpha)=0$.
 Die Operation des Hinzufügens der Nullstelle $\alpha$ von $f$
-muss also genauso gut mit $g$ ausgeführt werden.
+muss also genauso gut mit $g$ ausgeführt werden können.
 Indem wir diese Überlegung auf $g$ anwenden können wir schliessen,
 dass es ein Polynom $m\in\Bbbk[X]$ kleinstmöglichen Grades geben muss,
 welches $\alpha$ als Nullstelle hat.
@@ -105,7 +106,7 @@ positiven zu unterscheiden.
 Das Polynom kann in $\mathbb{Q}$ nicht faktorisiert werden, denn die
 einzig denkbare Faktorisierung ist $(X-\sqrt{2})(X+\sqrt{2})$, die
 Faktoren sind aber keine Polynome in $\mathbb{Q}[X]$.
-Also ist ein irreduzibles Polynom über $X^2-2$.
+Also ist $f(X) = X^2 - 2$ ein irreduzibles Polynom über $\mathbb Q$.
 
 Man kann das Polynom aber auch als Polynom in $\mathbb{F}_{23}[X]$
 betrachten.
@@ -201,7 +202,7 @@ a_0 + a_1\alpha + a_2\alpha^2 + \dots a_k\alpha^k
 gebildet werden.
 Aus der Bedingung $m(\alpha)=0$ folgt aber, dass
 \begin{equation}
-\alpha^n = -a_{n-1}\alpha^{n-1} -\dots - a_2\alpha^2  - a_1\alpha-a_0.
+\alpha^n = -m_{n-1}\alpha^{n-1} -\dots - m_2\alpha^2  - m_1\alpha - m_0.
 \label{buch:endlichekoerper:eqn:reduktion}
 \end{equation}
 Alle Potenzen mit Exponenten $\ge n$ in
@@ -214,9 +215,9 @@ Als Menge ist daher
 \Bbbk(\alpha)
 =
 \{
-a_0+a_1\alpha+a_2\alpha^2+\dots+a_{n-1}\alpha^{n-1}\;|\; a_i\in\Bbbk\}.
-\}
+a_0+a_1\alpha+a_2\alpha^2+\dots+a_{n-1}\alpha^{n-1}\;|\; a_i\in\Bbbk\}
 \]
+ausreichend.
 Die Addition von solchen Ausdrücken und die Multiplikation mit Skalaren
 aus $\Bbbk$ machen $\Bbbk(\alpha)\cong \Bbbk^n$ zu einem Vektorraum,
 die Operationen können auf den Koeffizienten komponentenweise ausgeführt
@@ -227,8 +228,8 @@ Die schwierige Operation ist die Multiplikation mit $\alpha$.
 Dazu stellen wir zusammen, wie die Multiplikation mit $\alpha$ auf den
 Basisvektoren von $\Bbbk(\alpha)$ wirkt:
 \[
-\alpha\cdot\colon
-\Bbbk^n\to\Bbbk
+\alpha\colon
+\Bbbk^n\to\Bbbk^n
 :
 \left\{
 \begin{aligned}
@@ -249,12 +250,12 @@ M_{\alpha}
 0   &    &    &      &   &-m_0    \\
 1   & 0  &    &      &   &-m_1    \\
     & 1  & 0  &      &   &-m_2    \\
-    &    & 1  &\ddots&   &-m_3    \\
-    &    &    &\ddots& 0 &\vdots  \\
-    &    &    &      & 1 &-m_{n-2}\\
-    &    &    &      &   &-m_{n-1}
-\end{pmatrix}
+    &    & 1  &\ddots&   &\vdots  \\
+    &    &    &\ddots& 0 &-m_{n-2}\\
+    &    &    &      & 1 &-m_{n-1}
+\end{pmatrix}.
 \]
+%TODO: Was ist hier die Aussage?
 Aufgrund der Konstruktion die Lineare Abbildung $m(M_\alpha)$,
 die man erhält, wenn
 man die Matrix $M_\alpha$ in das Polynom $m$ einsetzt, jeden Vektor
@@ -336,7 +337,7 @@ Körpers $\Bbbk(\alpha)$ in der Matrizenalgebra $M_n(\Bbbk)$.
 
 \subsubsection{Inverse}
 Im Moment wissen wir noch nicht, wie wir $\alpha^{-1}$ berechnen sollten.
-Wir können aber auch die Matrizendarstellung verwenden können.
+Wir können aber auch die Matrizendarstellung verwenden.
 Für Matrizen wissen wir selbstverständlich, wie Matrizen invertiert
 werden können.
 Tatsächlich kann man die Matrix $M_\alpha$ direkt invertieren:
@@ -365,20 +366,19 @@ wie man durch Ausmultiplizieren überprüfen kann:
     -1  & 0 & 0 &      &  0   & 0
 \end{pmatrix}
 \begin{pmatrix}
-0   &    &    &      &   &-m_0    \\
-1   & 0  &    &      &   &-m_1    \\
-    & 1  & 0  &      &   &-m_2    \\
-    &    & 1  &\ddots&   &-m_3    \\
-    &    &    &\ddots& 0 &\vdots  \\
-    &    &    &      & 1 &-m_{n-2}\\
-    &    &    &      &   &-m_{n-1}
+  0   &    &    &      &   &-m_0    \\
+  1   & 0  &    &      &   &-m_1    \\
+      & 1  & 0  &      &   &-m_2    \\
+      &    & 1  &\ddots&   &\vdots  \\
+      &    &    &\ddots& 0 &-m_{n-2}\\
+      &    &    &      & 1 &-m_{n-1}
 \end{pmatrix}
 =
 \begin{pmatrix}
 1&0&0&\dots&0&0\\
 0&1&0&\dots&0&0\\
 0&0&1&\dots&0&0\\
-\vdots&\vdots&\vdots&\vdots&\vdots\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
 0&0&0&\dots&1&0\\
 0&0&0&\dots&0&1
 \end{pmatrix}
@@ -400,7 +400,7 @@ Aus den Einträgen der ersten Spalte kann man jetzt die Koeffizienten
 \[
 b_0=(B)_{11},
 b_1=(B)_{21},
-b_2=(B)_{11},\dots,
+b_2=(B)_{31},\dots,
 b_{n-1}=(B)_{n,1}
 \]
 ablesen und daraus das Element
@@ -433,7 +433,7 @@ Die Inverse kann man bestimmen, indem man den
 Gauss-Algorithmus in $\mathbb{F}_{7}$ durchführt.
 Die Arithmetik in $\mathbb{F}_{7}$ ist etwas ungewohnt, insbesondere
 die Pivot-Division ist etwas mühsam, daher sind in
-Abbildung~\label{buch:endlichekoerper:fig:additionmultiplikation}
+Abbildung~\ref{buch:endlichekoerper:fig:additionmultiplikation}
 die Additions- und Multiplikationstabellen zusammengestellt.
 \begin{figure}
 \begin{center}
@@ -679,7 +679,7 @@ Sei der Grad von $f$ mindestens so gross wie der von $m$, also
 $l=\deg f\ge \deg m=n$.
 Indem man mit $\alpha^{l-n}$ multipliziert, erhält man die Relation
 \[
-\alpha^l + m_{n-1}\alpha^{l-1} + m_{n-2}\alpha^{l-2}+\dots +a_1\alpha^{l-n+1} + a_0\alpha^{-l-n} = 0.
+\alpha^l + m_{n-1}\alpha^{l-1} + m_{n-2}\alpha^{l-2}+\dots +a_1\alpha^{l-n+1} + a_0\alpha^{l-n} = 0.
 \]
 
 Ist $f_l$ der führende Koeffizient des Polynoms $f$, dann ist
@@ -714,7 +714,7 @@ gefunden haben.
 
 Diese Form des Reduktionsalgorithmus ist besonders leicht durchzuführen
 in einem Körper $\mathbb{F}_2$, da dort die Addition und die Subtraktion
-der Koeffizienten dasselbe ist.
+der Koeffizienten übereinstimmen.
 Die Multiplikation mit $X$ ist nichts anders als ein Shift der
 Koeffizienten.
 
