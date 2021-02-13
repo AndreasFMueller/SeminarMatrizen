@@ -687,7 +687,7 @@ Für ein Gleichungssystem $Ax=b$ mit Schlusstableau
      0&     0&\dots &        0&          0&     0&\dots &     1&c_{i_2,j_2}  &\dots &c_{i_2j_k}   &d_{i_2}  \\
      0&     0&\dots &        0&          0&     0&\dots &     0&            0&\dots &c_{i_2+1,j_k}&d_{i_2+1}\\[-2pt]
 \vdots&\vdots&\ddots&\vdots   &\vdots     &\vdots&\ddots&\vdots&\vdots       &\ddots&\vdots       &\vdots   \\
-     0&     0&\dots &        0&          0&     0&\dots &     0&            0&\dots &c_{mj_k}     &d_{m}    \\
+     0&     0&\dots &        0&          0&     0&\dots &     0&            0&\dots &            0&d_{m}    \\
 \hline
 \end{tabular}
 \end{equation}
@@ -717,7 +717,7 @@ d_{m}
 -c_{2j_1}\\
 \vdots\\
 -c_{i_1,j_1}\\
-1\\
+{\color{darkgreen}1}\\
 \vdots\\
 0\\
 0\\
@@ -734,7 +734,7 @@ d_{m}
 -c_{j_1+1,j_2}\\
 \vdots\\
 -c_{i_2,j_2}\\
-1\\
+{\color{darkgreen}1}\\
 \vdots\\
 0\\
 \end{pmatrix}
@@ -752,7 +752,7 @@ d_{m}
 -c_{i_2,j_k}\\
 -c_{i_2+1,j_k}\\
 \vdots\\
--c_{m,j_k}\\
+0\\
 \end{pmatrix}
 \;
 \right|
@@ -837,6 +837,7 @@ Seite~\pageref{buch:vektorenmatrizen:satz:gruppenregeln}
 die Eigenschaft $A^{-1}A=I$ ganz allgemein gezeigt.
 
 \subsubsection{Determinante}
+XXX TODO
 
 %
 % Lineare Abbildungen
@@ -1131,4 +1132,4 @@ n-\operatorname{def}A.
 \end{satz}
 
 \subsubsection{Quotient}
-TODO
+TODO: $\operatorname{im} A \simeq \Bbbk^m/\ker A$
