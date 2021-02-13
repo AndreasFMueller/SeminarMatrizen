@@ -1,0 +1,253 @@
+%
+% rref.tex -- Visualisierung des Gauss-Algorithmus
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math,calc}
+\begin{document}
+\def\skala{0.21}
+\def\r{0.4}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\pivot#1#2{
+	\fill[color=red!20] ({#1-0.5},{-#2+0.5}) circle[radius=\r];
+	\draw[color=red] ({#1-0.5},{-#2+0.5}) circle[radius=\r];
+}
+
+\def\spalteoben#1#2#3{
+	\fill[color=blue!20] ({(#1)-0.5+\r},{-(#3)})
+		-- ({(#1)-0.5+\r},{-(#2)+0.5}) arc (0:180:\r)
+		-- ({(#1)-0.5-\r},{-(#3)}) -- cycle;
+	\draw[color=blue] ({(#1)-0.5+\r},{-(#3)})
+		-- ({(#1)-0.5+\r},{-(#2)+0.5}) arc (0:180:\r)
+		-- ({(#1)-0.5-\r},{-(#3)});
+}
+
+\def\spalteunten#1#2#3{
+	\fill[color=blue!20] ({(#1)-0.5-\r},{-(#2)+1})
+		-- ({(#1)-0.5-\r},{-(#3)+0.5}) arc (-180:0:\r)
+		-- ({(#1)-0.5+\r},{-(#2)+1});
+	\draw[color=blue] ({(#1)-0.5-\r},{-(#2)+1})
+		-- ({(#1)-0.5-\r},{-(#3)+0.5}) arc (-180:0:\r)
+		-- ({(#1)-0.5+\r},{-(#2)+1});
+}
+
+\def\fuellung{
+	\fill[color=gray!50] (0,0) rectangle (8,-6);
+}
+\def\rahmen{
+	\draw (0,0) rectangle (8,-6);
+	\draw (7,0) -- (7,-6);
+}
+
+\def\eins#1#2{
+	\fill[color=gray] ({#1-1},{-#2}) rectangle ({#1},{-#2+1});
+}
+
+\def\null#1#2#3{
+	\fill[color=white] ({#1-1-0.01},{-#3-0.01})
+		rectangle ({#1+0.01},{-#2+1+0.01});
+}
+
+\fill[color=darkgreen!20] (-1.0,-10.81) rectangle (67.0,5);
+\fill[color=orange!20] (-1.0,-27) rectangle (67.0,-11.94);
+
+\node at (33,2) [above] {Vorwärtsreduktion};
+\node at (33,-24) [below] {Rückwärtseinsetzen};
+
+\draw[->] (9,-3.375)--(11,-3.375);
+\draw[->] (21,-3.375)--(23,-3.375);
+\draw[->] (33,-3.375)--(35,-3.375);
+\draw[->] (45,-3.375)--(47,-3.375);
+
+\draw[->] (57,-3.375) .. controls (62,-3.375) .. (62,-7.5);
+\draw[->] (62,-15.375) .. controls (62,-19.375) .. (57,-19.375);
+
+\draw[<-] (9,-19.375)--(11,-19.375);
+\draw[<-] (21,-19.375)--(23,-19.375);
+\draw[<-] (33,-19.375)--(35,-19.375);
+\draw[<-] (45,-19.375)--(47,-19.375);
+
+\begin{scope}[xshift=-0.5cm,scale=1.125]
+\fuellung
+\pivot{1}{1} 
+\spalteoben{1}{2}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=11.5cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\pivot{2}{2}
+\spalteoben{2}{3}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=23.54cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\pivot{3}{3}
+\spalteoben{3}{4}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=35.5cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\pivot{5}{4}
+\spalteoben{5}{5}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=47.5cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\pivot{7}{5}
+\spalteoben{7}{6}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=57.5cm,yshift=-8cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=47.5cm,yshift=-16cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\spalteunten{7}{1}{4}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=35.5cm,yshift=-16cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\null{7}{1}{4}
+\spalteunten{5}{1}{3}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=23.5cm,yshift=-16cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\null{7}{1}{4}
+\null{5}{1}{3}
+\spalteunten{3}{1}{2}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=11.5cm,yshift=-16cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\null{7}{1}{4}
+\null{5}{1}{3}
+\null{3}{1}{2}
+\spalteunten{2}{1}{1}
+\rahmen
+\end{scope}
+
+\begin{scope}[xshift=-0.5cm,yshift=-16cm,scale=1.125]
+\fuellung
+\eins{1}{1}
+\null{1}{2}{6}
+\eins{2}{2}
+\null{2}{3}{6}
+\eins{3}{3}
+\null{3}{4}{6}
+\null{4}{4}{6}
+\eins{5}{4}
+\null{5}{5}{6}
+\null{6}{5}{6}
+\eins{7}{5}
+\null{7}{6}{6}
+\null{7}{1}{4}
+\null{5}{1}{3}
+\null{3}{1}{2}
+\null{2}{1}{1}
+\rahmen
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+
