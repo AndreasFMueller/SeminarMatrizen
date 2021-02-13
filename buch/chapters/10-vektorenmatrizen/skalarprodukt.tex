@@ -15,12 +15,320 @@ Das Skalarprodukt passt in den algebraischen Rahmen der
 linearen Algebra, bringt aber auch einen Abstandsbegriff hervor,
 der genau der geometrischen Intuition entspricht.
 
-\subsection{Bilinearformen
+\subsection{Bilinearformen und Skalarprodukte
 \label{buch:subsection:bilinearformen}}
+Damit man mit einem Skalarprodukt rechnen kann wie mit jedem anderen
+Produkt, müssen man auf beiden Seiten des Zeichesn ausmultiplizieren können:
+\begin{align*}
+(\lambda x_1 + \mu x_2)\cdot y &= \lambda x_1\cdot y + \mu x_2\cdot y\\
+x\cdot (\lambda y_1 + \mu x_2) &= \lambda x\cdot y_1 + \mu x\cdot y_2.
+\end{align*}
+Man kann dies interpretieren als Linearität der Abbildungen 
+$x\mapsto x\cdot y$ und $y\mapsto x\cdot y$.
+Dies wird Bilinearität genannt und wie folgt definiert.
+
 % XXX Bilinearität
-% XXX Polarformel
+\begin{definition}
+Seien $U,V,W$ $\Bbbk$-Vektorräume.
+Eine Abbildung $f\colon U\times V\to W$  heisst {\em bilinear},
+\index{bilinear}%
+wenn die partiellen Abbildungen $U\to W:x\mapsto f(x,y_0)$ und
+$V\to W:y\mapsto f(x_0,y)$
+linear sind für alle $x_0\in U$ und $y_0\in V$, d.~h.
+\begin{align*}
+f(\lambda x_1 + \mu x_2,y) &= \lambda f(x_1,y) + \mu f(x_2,y)
+\\
+f(x,\lambda y_1 + \mu y_2) &= \lambda f(x,y_1) + \mu f(x,y_2)
+\end{align*}
+Eine bilineare Funktion mit Werten in $\Bbbk$ heisst auch {\em Bilinearform}.
+\index{Bilinearform}%
+\end{definition}
+
+\subsubsection{Symmetrische bilineare Funktionen}
+Das Skalarprodukt hängt nicht von der Reihenfolge der Faktoren ab.
+In Frage dafür kommen daher nur Bilnearformen $f\colon V\times V\to\Bbbk$,
+die zusätzlich $f(x,y)=f(y,x)$ erfüllen.
+Solche Bilinearformen heissen symmetrisch.
+Für eine symmetrische Bilinearform gilt die binomische Formel
+\begin{align*}
+f(x+y,x+y)
+&=
+f(x,x+y)+f(y,x+y)
+=
+f(x,x)+f(x,y)+f(y,x)+f(y,y)
+\\
+&=
+f(x,x)+2f(x,y)+f(y,y)
+\end{align*}
+wegen $f(x,y)=f(y,x)$.
+
+\subsubsection{Positiv definite Bilinearformen und Skalarprodukt}
+Bilinearität alleine genügt nicht, um einen Vektorraum mit einem
+nützlichen Abstandsbegriff auszustatten.
+Dazu müssen die berechneten Abstände vergleichbar sein, es muss also
+eine Ordnungsrelation definiert sein, wie wir sie nur in $\mathbb{R}$
+kennen.
+Wir sind daher gezwungen uns auf $\mathbb{R}$- oder
+$\mathbb{Q}$-Vektorräume zu beschränken.
+
+Man lernt in der Vektorgeometrie, dass sich mit einer Bilinearform
+$f\colon V\times V\to\mathbb{R}$ 
+die Länge eines definieren lässt, indem man $\|x\|^2 = f(x,x)$
+setzt.
+Ausserdem muss $f(x,x)\ge 0$ sein für alle $x$, was die Bilinearität
+allein nicht garantieren kann.
+Verschiedene Punkte in einem Vektorraum sollen in dem aus der Bilinearform
+abgeleiteten Abstandsbegriff immer unterscheidbar sein.
+Dazu muss jeder von $0$ verschiedene Vektor positive Länge haben.
+
 % XXX Positiv definite Form
+\begin{definition}
+Eine Bilinearform $f\colon V\times V\to\mathbb{R}$
+heisst {\em positiv definit}, wenn
+\index{positiv definit}%
+\[
+f(x,x) > 0\qquad\forall x\in V\setminus\{0\}.
+\]
+Das zugehörige {\em Skalarprodukt} wird $f(x,y)=\langle x,y\rangle$
+geschrieben.
+\index{Skalarprodukt}%
+Die {\em $l^2$-Norm} $\|x\|_2$ eines Vektors ist definiert durch
+$\|x\|_2^2 = \langle x,x\rangle$.
+\end{definition}
+
+\subsubsection{Dreiecksungleichung}
+% XXX Dreiecksungleichung
+Damit man sinnvoll über Abstände sprechen kann, muss die Norm
+$\|\;\cdot\;\|_2$ der geometrischen Intuition folgen, die durch
+die Dreiecksungleichung ausgedrückt wird.
+In diesem Abschnitt soll gezeigt werden, dass die $l^2$-Norm
+diese immer erfüllt.
+Dazu sei $V$ ein $\mathbb{R}$-Vektorraum mit Skalarprodukt
+$\langle\;,\;\rangle$.
+
+\begin{satz}[Cauchy-Schwarz-Ungleichung]
+Für $x,y\in V$ gilt
+\[
+|\langle x,y\rangle |
+\le
+\| x\|_2\cdot \|y\|_2
+\]
+mit Gleichheit genau dann, wenn $x$ und $y$ linear abhängig sind.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir die Norm von $z=x-ty$:
+\begin{align}
+\|x-ty\|_2^2
+&=
+\|x\|_2^2 -2t\langle x,y\rangle +t^2\|y\|_2^2 \ge 0.
+\notag
+\end{align}
+Sie nimmt den kleinsten Wert genau dann an, wenn es ein $t$ gibt derart,
+dass $x=ty$.
+Die rechte Seite ist ein quadratischer Ausdruck in $t$,
+er hat sein Minimum bei
+\begin{align*}
+t&=-\frac{-2\langle x,y\rangle}{2\|y\|_2^2}
+&&\Rightarrow&
+\biggl\|
+x  - \frac{\langle x,y\rangle}{\|y\|_2^2}y
+\biggr\|_2^2
+&=
+\|x\|_2^2 
+-
+2\frac{(\langle x,y\rangle)^2}{\|y\|_2^2}
++
+\frac{(\langle x,y\rangle)^2}{\|y\|_2^4} \|y\|_2^2
+\\
+&&&&
+&=
+\|x\|_2^2 
+-
+\frac{(\langle x,y\rangle)^2}{\|y\|_2^2}
+=
+\frac{
+\|x\|_2^2\cdot\|y\|_2^2 - (\langle x,y\rangle)^2
+}{
+\|y\|_2^2
+}
+\ge 0
+\intertext{Es folgt}
+&&&\Rightarrow&
+\|x\|_2^2\cdot\|y\|_2^2 - (\langle x,y\rangle)^2 &\ge 0
+\\
+&&&\Rightarrow&
+\|x\|_2\cdot\|y\|_2 &\ge |\langle x,y\rangle |
+\end{align*}
+mit Gleichheit genau dann, wenn es ein $t$ gibt mit $x=ty$.
+\end{proof}
+
+\begin{satz}[Dreiecksungleichung]
+Für $x,y\in V$ ist
+\[
+\| x + y \|_2 \le \|x\|_2 + \|y\|_2
+\]
+mit Gleichheit genau dann, wenn $x=ty$ ist für ein $t\ge 0$.
+\end{satz}
+
+\begin{proof}[Beweis]
+\begin{align*}
+\|x+y\|_2^2
+&=
+\langle x+y,x+y\rangle
+=
+\langle x,x\rangle
++
+2\langle x,y\rangle
++
+\langle y,y\rangle
+\\
+&=
+\|x\|_2^2
++
+2\langle x,y\rangle
++
+\|y\|_2^2
+=
+\|x\|_2^2 + 2\langle x,y\rangle + \|y\|_2^2
+\le
+\|x\|_2^2 + 2\|x\|_2\cdot\|y\|_2 + \|y\|_2^2
+\\
+&=
+(\|x\|_2 + \|y\|_2)^2
+\\
+\|x\|_2 + \|y\|_2
+&\le \|x\|_2 + \|y\|_2,
+\end{align*}
+Gleichheit tritt genau dann ein, wenn 
+$\langle x,y\rangle=\|x\|_2\cdot \|y\|_2$.
+Dies tritt genau dann ein, wenn die beiden Vektoren linear abhängig sind.
+\end{proof}
+
+\subsubsection{Polarformel}
+% XXX Polarformel
+Auf den ersten Blick scheint die Norm $\|x\|_2$ weniger Information 
+zu beinhalten, als die symmetrische Bilinearform, aus der sie
+hervorgegangen ist.
+Dem ist aber nicht so, denn die Bilinearform lässt sich aus der
+Norm zurückgewinnen.
+Dies ist der Inhalt der sogenannte Polarformel.
+
+\begin{satz}[Polarformel]
+Ist $\|\;\cdot\;\|_2$ eine Norm, die aus einer symmetrischen Bilinearform
+$\langle\;,\;\rangle$ hervorgegangen ist, dann kann die Bilinearform
+mit Hilfe der Formel
+\begin{equation}
+\langle x,y\rangle
+=
+\frac12(
+\|x+y\|_2^2
+-
+\|x\|_2^2
+-
+\|y\|_2^2
+)
+\label{buch:grundlagen:eqn:polarformel}
+\end{equation}
+für $x,y\in V$ wiedergewonnen werden.
+\end{satz}
+
+\begin{proof}[Beweis]
+Die binomischen Formel
+\begin{align*}
+\|x+y\|_2^2
+&=
+\|x\|_2^2 + 2\langle x,y\rangle + \|y\|_2^2
+\intertext{kann nach $\langle x,y\rangle$ aufgelöst werden, was}
+\langle x,y\rangle &= \frac12 (
+\|x+y\|_2^2 - \|x\|_2^2 - \|y\|_2^2
+)
+\end{align*}
+ergibt.
+Damit ist die
+Polarformel~\eqref{buch:grundlagen:eqn:polarformel}
+bewiesen.
+\end{proof}
+
+\subsubsection{Komplexe Vektorräume uns Sesquilinearformen}
 % XXX Sesquilinearform
+Eine Bilinearform auf einem komplexen Vektorraum führt nicht
+auf eine Grösse, die sich als Norm eignet.
+Selbst wenn $\langle x,x\rangle >0$ ist,
+\[
+\langle ix,iy\rangle = i^2 \langle x,y\rangle
+=
+-\langle x,y\rangle < 0.
+\]
+Dies kann verhindert werden, wenn verlangt wird, dass der Faktor
+$i$ im ersten Faktor der Bilinearform als $-i$ aus der Bilinearform
+herausgenommen werden muss.
+
+\begin{definition}
+Seien $U,V,W$ komplexe Vektorräume.
+Eine Abbildung $f\colon U\times V\to W$ heisst
+{\em sesquilinear}\footnote{Das lateinische Wort {\em sesqui} bedeutet
+eineinhalb, eine Sesquilinearform ist also eine Form, die in einem 
+Faktor (dem zweiten) linear ist, und im anderen nur halb linear.}
+\index{sesquilinear}
+wenn gilt
+\begin{align*}
+f(\lambda x_1+\mu x_2,y) &= \overline{\lambda}f(x_1,y) + \overline{\mu}f(x_2,y)
+\\
+f(x,\lambda y_1+\mu y_2) &= \lambda f(x,y_1) + \mu f(x,y_2)
+\end{align*}
+\end{definition}
+
+Für die Norm $\|x\|_2^2=\langle x,x\rangle$ bedeutet dies jetzt
+\[
+\|\lambda x\|_2^2
+=
+\langle \lambda x,\lambda x\rangle
+=
+\overline{\lambda}\lambda \langle x,x\rangle
+=
+|\lambda|^2 \|x\|_2^2
+\qquad\Rightarrow\qquad
+\|\lambda x\|_2 = |\lambda|\, \|x\|_2.
+\]
+
+\subsection{Orthognormalbasis
+\label{buch:subsection:orthonormalbasis}}
+\index{orthonormierte Basis}%
+
+\subsubsection{Gram-Schmidt-Orthonormalisierung}
+Mit Hilfe des Gram-Schmidtschen Orthonormalisierungsprozesses kann aus
+einer beliebige Basis $\{a_1,a_2,\dots,a_n\}\subset V$ eines Vektorraums
+mit einem SKalarprodukt eine orthonormierte Basis 
+$\{b_1,b_2,\dots,b_n\}$ gefunden werden derart, dass für alle $k$
+$\langle b_1,\dots,b_k\rangle = \langle a_1,\dots ,a_k\rangle$.
+\index{Gram-Schmidt-Orthonormalisierung}%
+Der Zusammenhang zwischen den Basisvektoren $b_i$ und $a_i$ ist
+gegeben durch
+\begin{align*}
+b_1&=\frac{a_1}{\|a_1\|_2}
+\\
+b_2&=\frac{a_2-b_1\langle b_1,a_2\rangle}{\|a_2-b_1\langle b_1,a_2\rangle\|_2}
+\\
+b_3&=\frac{a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle}{\|a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle\|_2}
+\\
+&\phantom{n}\vdots\\
+b_n
+&=
+\frac{
+a_n-b_1\langle b_1,a_n\rangle-b_2\langle b_2,a_n\rangle
+-\dots-b_{n-1}\langle b_{n-1},a_n\rangle
+}{
+\|
+a_n-b_1\langle b_1,a_n\rangle-b_2\langle b_2,a_n\rangle
+-\dots-b_{n-1}\langle b_{n-1},a_n\rangle
+\|_2
+}.
+\end{align*}
+
+\subsection{Symmetrische und selbstadjungierte Matrizen
+\label{buch:subsection:symmetrisch-und-selbstadjungiert}}
+%
 
 \subsection{Orthogonale und unitäre Matrizen
 \label{buch:subsection:orthogonale-und-unitaere-matrizen}}
