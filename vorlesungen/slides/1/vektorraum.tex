@@ -1,0 +1,54 @@
+%
+% vektorraum.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Vektorraum}
+\vspace{-10pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Operationen}
+Addition:
+\[
+\begin{pmatrix}a_1\\\vdots\\a_n \end{pmatrix}
++
+\begin{pmatrix}b_1\\\vdots\\b_n \end{pmatrix}
+=
+\begin{pmatrix}a_1+b_1\\\vdots\\a_n+b_n \end{pmatrix}
+\]
+Skalarmultiplikation:
+\[
+\lambda\begin{pmatrix}a_1\\\vdots\\a_n \end{pmatrix}
+=
+\begin{pmatrix}\lambda a_1\\\vdots\\\lambda a_n \end{pmatrix}
+\]
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Additive Gruppe}
+$\mathbb{R}^n$ ist eine Gruppe bezüglich der Addition
+mit 
+\[
+0=\begin{pmatrix}0\\\vdots\\0\end{pmatrix},
+\qquad
+-a
+=
+-\begin{pmatrix}a_1\\\vdots\\a_n\end{pmatrix}
+=
+\begin{pmatrix}-a_1\\\vdots\\-a_n\end{pmatrix}
+\]
+\end{block}}
+\vspace{-5pt}
+\uncover<3->{%
+\begin{block}{Skalarmultiplikation}
+Distributivgesetz
+\begin{align*}
+(\lambda+\mu)a&=\lambda a + \mu a\\
+\lambda (a+b)&=\lambda a + \lambda b
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

@@ -8,6 +8,7 @@ chapter0 =								\
 	../slides/0/intro.tex						\
 	../slides/0/resourcen.tex					\
 	../slides/0/latextipps.tex					\
+	../slides/0/nextsteps.tex					\
 	../slides/0/themen.tex						\
 	../slides/0/chapter.tex
 
