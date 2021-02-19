@@ -5,6 +5,7 @@
 # (c) 20920 Prof Dr Andreas Müller, Hochschule Rapperswil
 #
 chapter0 =								\
+	../slides/0/was.tex						\
 	../slides/0/intro.tex						\
 	../slides/0/resourcen.tex					\
 	../slides/0/latextipps.tex					\
