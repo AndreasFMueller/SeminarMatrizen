@@ -130,14 +130,36 @@ Dies bedeutet, dass der Endpunkt jeder Kante mit dem Anfangspunkt der
 nachfolgenden Kante übereinstimmt.
 Die {\em Länge} des Pfades $\gamma=(k_1,\dots,k_r)$ ist $|\gamma|=r$.
 
-Eine naheliegende Beschreibung eines gerichteten Graphen mit Hilfe einer
+\subsubsection{Adjazenzmatrix}
+Eine naheliegende Beschreibung eines Graphen mit Hilfe einer
 Matrix kann man wie folgt erhalten.
 Zunächst werden die Knoten aus der Menge $V$ durch die Zahlen
 $1,\dots,n$ mit $n=|V|$ ersetzt.
 Diese Zahlen werden dann als Zeilen- uns Spaltenindizes interpretiert.
-Die zum Graphen gehörige Matrix enthält die Einträge
+Die zum Graphen gehörige sogenannte {\em Adjazenzmatrix} $A(G)$
+enthält die Einträge
 \begin{equation}
-g_{ij}
+a_{ij}
+=
+\begin{cases}
+1&\qquad  \{j,i\} \in E\\
+0&\qquad  \text{sonst.}
+\end{cases}
+\label{buch:graphen:eqn:linkmatrix}
+\end{equation}
+Die Matrix hat also genau dann einen von Null verschiedenen Eintrag
+in Zeile $i$ und Spalte $j$, wenn die beiden Knoten $i$ und $j$
+im Graphen verbunden sind.
+Die Adjazenzmatrix eines ungerichteten Graphen ist immer symmetrisch.
+
+Die Adjazenzmatrix kann auch für einen gerichteten Graphen definiert
+werden.
+Ihre Einträge sind in diesem Fall definiert mit Hilfe der 
+gerichteten Kanten als
+\begin{equation}
+A(G)_{ij}
+=
+a_{ij}
 =
 \begin{cases}
 1&\qquad  (j,i) \in E\\
@@ -145,18 +167,22 @@ g_{ij}
 \end{cases}
 \label{buch:graphen:eqn:linkmatrix}
 \end{equation}
-Die Matrix $G$ hat also genau dann einen nicht verschwindenden
+Die Matrix $A(G)$ hat also genau dann einen nicht verschwindenden
 Matrixeintrag in Zeile $i$ und Spalte $j$, wenn es eine Verbindung
 von Knoten $j$ zu Knoten $i$ gibt.
+
 % XXX Abbildung Graph und Verbindungs-Matrix
-Die Beschreibung des Graphen mit der Matrix $G$ nach
+
+\subsubsection{Adjazenzmatrix und die Anzahl der Pfade}
+Die Beschreibung des Graphen mit der Adjazenzmatrix $A=A(G)$ nach
 \eqref{buch:graphen:eqn:linkmatrix} ermöglicht bereits, eine interessante
 Aufgabe zu lösen.
 
 \begin{satz}
 \label{buch:graphen:pfade-der-laenge-n}
-Der gerichtete Graph $([n],E)$ werde beschrieben durch die Matrix $G$.
-Dann gibt das Element in Zeile $j$ und Spalte $i$ von $G^n$ die Anzahl
+Der gerichtete Graph $G=([n],E)$ werde beschrieben durch die Adjazenzmatrix
+$A=A(G)$.
+Dann gibt das Element in Zeile $j$ und Spalte $i$ von $A^n$ die Anzahl
 der Wege der Länge $n$ an, die von Knoten $i$ zu Knoten $j$ führen.
 Insbesondere kann man die Definition~\eqref{buch:graphen:eqn:linkmatrix}
 formulieren als: In Zeile $j$ und Spalte $i$ der Matrix steht die Anzahl
@@ -164,56 +190,48 @@ der Pfade der Länge $1$, die $i$ mit $j$ verbinden.
 \end{satz}
 
 \begin{proof}[Beweis]
-Es ist klar, dass $G^1$ die genannte Eigenschaft hat.
-Wir beweisen, dass $G^n$ Pfade der Länge $n$ zählt, mit Hilfe von
+Es ist klar, dass $A^1$ die genannte Eigenschaft hat.
+Wir beweisen, dass $A^n$ Pfade der Länge $n$ zählt, mit Hilfe von
 vollständiger Induktion.
-Zur Unterscheidung schreiben wir $G^{(n)}$ für die Matrix, die in Zeile
+Zur Unterscheidung schreiben wir $A^{(n)}$ für die Matrix, die in Zeile
 $j$ und Spalte $i$ die Anzahl der Pfade der Länge $n$ von $i$ nach $j$
 enhält.
-Die zugehörigen Matrixelemente schreiben wir $g_{ji}^{n}$ bzw.~$g_{ji}^{(n)}$.
-Wir haben also zu zeigen, dass $G^n = G^{(n)}$.
+Die zugehörigen Matrixelemente schreiben wir $a_{ji}^{n}$ bzw.~$a_{ji}^{(n)}$.
+Wir haben also zu zeigen, dass $A^n = A^{(n)}$.
 
 Wir nehmen daher an, dass bereits bewiesen ist, dass das Element in Zeile
-$j$ und Spalte $i$ von $G^{n-1}$ die Anzahl der Pfade der Länge $n-1$
-zählt, dass also $G^{n-1}=G^{(n-1)}$.
+$j$ und Spalte $i$ von $A^{n-1}$ die Anzahl der Pfade der Länge $n-1$
+zählt, dass also $A^{n-1}=A^{(n-1)}$.
 Dies ist die Induktionsannahme.
 
 Wir bilden jetzt alle Pfade der Länge $n$ von $i$ nach $k$.
 Ein Pfad der Länge besteht aus einem Pfad der Länge $n-1$, der von $i$ zu
 einem beliebigen Knoten $j$ führt, gefolgt von einer einzelnen Kante,
 die von $j$ nach $k$ führt.
-Ob es eine solche Kante gibt, zeigt das Matrixelement $g_{kj}$ an.
-Das Element in Zeile $j$ und Spalte $i$ der Matrix $G^{(n-1)}$ gibt
+Ob es eine solche Kante gibt, zeigt das Matrixelement $a_{kj}$ an.
+Das Element in Zeile $j$ und Spalte $i$ der Matrix $A^{(n-1)}$ gibt
 die Anzahl der Wege von $i$ nach $j$ an.
-Es gibt also $g_{kj}\cdot g_{ji}^{(n-1)}$ Wege der Länge $n$, die von $i$
+Es gibt also $a_{kj}\cdot a_{ji}^{(n-1)}$ Wege der Länge $n$, die von $i$
 nach $k$ führen, aber als zweitletzten Knoten über den Knoten $j$ führen.
 Die Gesamtzahl der Wege der Länge $n$ von $i$ nach $k$ ist daher
 \[
-g_{ki}^{(n)}
+a_{ki}^{(n)}
 =
-\sum_{j=1}^n g_{kj} g_{ji}^{(n-1)}.
+\sum_{j=1}^n a_{kj} a_{ji}^{(n-1)}.
 \]
 In Matrixschreibweise bedeutet dies
 \[
-G^{(n)}
+A^{(n)}
 =
-G\cdot G^{(n-1)}
+A\cdot A^{(n-1)}
 =
-G\cdot G^{n-1}
+A\cdot A^{n-1}
 =
-G^n.
+A^n.
 \]
 Beim zweiten Gleichheitszeichen haben wir die Induktionsannahme
 verwendet.
 \end{proof}
-
-Die Definition~\eqref{buch:graphen:eqn:linkmatrix} der Matrix, die den
-Graphen beschreibt, lässt sich natürlich auch auf einen ungerichteten
-Graphen verallgemeinern.
-Die entstehende Matrix hat dann aber die zusätzlichen Eigenschaften, dass
-alle Diagonalelemente $0$ sind und dass die Matrix symmetrisch ist.
-Auch im Fall eines ungerichteten Graphen kann die Matrix dazu verwendet
-werden, die Anzahl der Pfade zu zählen.
 
 Der Satz~\ref{buch:graphen:pfade-der-laenge-n} ermöglicht auch, einen 
 Algorithmus für den sogenannten Durchmesser eines Graphen zu formulieren.
@@ -226,11 +244,11 @@ es zwischen zwei beliebigen Knoten einen Pfad der Länge $\le d$ gibt.
 \end{definition}
 
 Der Durchmesser $d$ eines Graphen ist der kleinste Exponent derart,
-dass $G^d$ keine ausserdiagonalen Einträge $0$ hat.
-Die Diagonalelemente von $G^n$ zählen die Anzahl der geschlossenen Pfade
+dass $A^d$ keine ausserdiagonalen Einträge $0$ hat.
+Die Diagonalelemente von $A^n$ zählen die Anzahl der geschlossenen Pfade
 der Länge $n$, die durch einen Knoten führen.
 Diese können für den Durchmesser ignoriert werden.
-Man kann also Potenzen $G^n$ berechnen bis keine Einträge $0$ mehr vorhanden
+Man kann also Potenzen $A^n$ berechnen bis keine Einträge $0$ mehr vorhanden
 sind.
 
 \begin{beispiel}
@@ -240,7 +258,7 @@ sind.
 \caption{Peterson-Graph mit zehn Knoten.
 \label{buch:figure:peterson}}
 \end{figure}
-Der Peterson-Graph hat die Matrix
+Der Peterson-Graph hat die Adjazenzmatrix
 \[
 G
 =
@@ -309,7 +327,110 @@ eines gerichteten oder ungerichteten Graphen $G=(V,E)$
 ist eine Abbildung $l\colon E\to L$.
 \end{definition}
 
-\subsection{Die Adjazenz-Matrix und Laplace-Matrix
+\subsection{Inzidenzmatrix}
+Die Adjazenzmatrix kann zusätzliche Information, die möglicherweise
+mit den Kanten verbunden ist, nicht mehr darstellen.
+Dies tritt zum Beispiel in der Informatik bei der Beschreibung
+endlicher Automaten auf, wo zu jeder gerichteten Kante auch noch
+Buchstaben gehören, für die der Übergang entlang dieser Kante
+möglich ist.
+
+Die {\em Inzidenzmatrix} löst dieses Problem.
+Dazu werden zunächst die Kanten numeriert $1,\dots,m$
+numeriert.
+Die Matrixeinträge
+\[
+a_{ij} = \begin{cases}
+1\qquad&\text{Knoten $i$ ist ein Endpunkt von Kante $j$}
+\\
+0\qquad&\text{sonst}
+\end{cases}
+\]
+stellen die Beziehung zwischen Kanten und Knoten her.
+
+\subsubsection{Beschriftete Graphen}
+Die Inzidenzmatrix kann auch einen erweiterten Graphenbegriff abbilden,
+in dem zwischen zwei Kanten mehrere Verbindungen möglich sind.
+Graphen mit beschrifteten Kanten gehören dazu.
+
+\begin{definition}
+Ein gerichteter Graph mit beschrifteten Kanten ist eine Menge $V$ von 
+Knoten und eine Menge von beschrifteten Kanten der Form
+\[
+E \{ (a,b,l)\in V^2\times L\;|\; \text{Eine Kante mit Beschriftung $l$ führt von $a$ nach $b$}\}.
+\]
+\end{definition}
+
+Für einen gerichteten Graphen wird in der Inzidenzmatrix für
+den Anfangspunkt einer Kante $-1$ eingetragen und für den
+Endpunkt $+1$.
+% XXX Beispiel
+
+\subsubsection{Inzidenzmatrix und Adjazenzmatrix}
+Sei $B(G)$ die Inzidenzmatrix eines Graphen $G$. 
+Die Spalten von $B(G)$ sind mit den Kanten des Graphen indiziert.
+Die Matrix $B(G)B(G)^t$ ist eine quadratische Matrix, deren
+Zeilen und Spalten mit den Knoten des Graphen indiziert sind.
+In dieser Matrix geht die Informatione über die individuellen
+Kanten wieder verloren.
+Sie hat für $i\ne j$ die Einträge
+\begin{align*}
+(B(G)B(G)^t)_{ij}
+&=
+\sum_{\text{$k$ Kante}} b_{ik}b_{jk}
+\\
+&=\text{Anzahl der Kanten, die $i$ mit $j$ verbinden}
+\\
+&=a_{ij}
+\end{align*}
+Die Adjazenzmatrix eines Graphen lässt sich also aus der
+Inzidenzmatrix berechnen.
+
+\subsubsection{Gradmatrix}
+Die Diagonale von $B(G)B(G)^t$ enthält die Werte
+\begin{align*}
+(B(G)B(G)^t)_{ii}
+&=
+\sum_{\text{$k$ Kante}} b_{ik}^2
+=
+\text{Anzahl Kanten, die im Knoten $i$ enden}
+\end{align*}
+Der {\em Grad} eines Knoten eines Graphen ist die Anzahl der
+\index{Grad eines Knotens}%
+Kanten, die in diesem Knoten enden.
+Die Diagonalmatrix die aus den Graden der Knoten besteht, heisst die
+Gradmatrix $D(G)$ des Graphen.
+Es gilt daher $B(G)B(G)^t = A(G) + D(G)$.
+
+\subsubsection{Gerichtete Graphen}
+Für einen gerichteten Graphen ändert sich an der Diagonalen
+der Matrix $B(G)B(G)^t$ nichts.
+Da es in einem gerichteten Graphen nur eine einzige Kante $k$ gibt, die zwei
+Knoten $i$ und $j$ verbinden kann, muss das zugehörige 
+Ausserdiagonalelement
+\[
+a_{ij}
+=b_{ik}b_{jk}
+=
+-1
+\]
+sein.
+Für einen gerichteten Graphen sind daher alle Ausserdiagonalelemente
+negativ und es gilt $B(G)B(G)^t = D(G)-A(G)$.
+
+\subsubsection{Anwendung: Netlist}
+Eine natürliche Anwendung eines gerichteten und beschrifteten Graphen
+ist eine eletronische Schaltung.
+Die Knoten des Graphen sind untereinander verbundene Leiter, sie werden
+auch {\em nets} genannt. 
+Die beschrifteten Kanten sind die elektronischen Bauteile, die solche
+Nets miteinander verbinden.
+Die Inzidenzmatrix beschreibt, welche Anschlüsse eines Bauteils mit
+welchen Nets verbunden werden müssen.
+Die Informationen in der Inzidenzmatrix werden also in einer
+Applikation zum Schaltungsentwurf in ganz natürlicher Weise erhoben.
+
+\subsection{Die Adjazenzmatrix und Laplace-Matrix
 \label{subsection:adjazenz-und-laplace-matrix}}
 Die Beschreibung mit der Matrix~\eqref{buch:graphen:eqn:linkmatrix}
 ``vergisst'' den ``Namen'' der Kante, die eine Verbindung zwischen zwei
@@ -319,12 +440,12 @@ Matrixbeschreibung zuzuführen.
 Eine solche muss eine Matrix verwenden, die nicht nur das Vorhandensein einer
 Verbindung wiedergibt, sondern ausdrückt, welche Kante welche beiden
 Knoten miteinander verbindet.
-Dies führt zur sogenannten Adjazenz-Matrix.
+Dies führt zur sogenannten Adjazenzmatrix.
 
 \begin{definition}
 \label{buch:def:adjazenz-matrix}
 Ist $G=(V,E)$ ein gerichteter Graph mit $n=|G|$ Vertizes und $m=|E|$ Kanten,
-dann ist die zugehörige {\em Adjazenz-Matrix} $A=A(G)$ eine $n\times m$-Matrix.
+dann ist die zugehörige {\em Adjazenzmatrix} $A=A(G)$ eine $n\times m$-Matrix.
 In der Spalte $k$ wird der Anfangspunkt der Kante $k$ mit $-1$, der Endpunkt
 mit $+1$ angezeigt, die übrigen Einträge sind $0$.
 $A$ hat also die Matrixelemente
@@ -346,7 +467,7 @@ Für $G$ drückt ein nicht verschwindendes Matrixelement das Vorhandensein
 einer Kante aus, in $A$ ist es die Tatsache, dass in diesem Knoten
 eine Kante beginnt oder endet.
 
-Es ist natürlich möglich, aus der Adjazenz-Matrix auch die Link-Matrix
+Es ist natürlich möglich, aus der Adjazenzmatrix auch die Link-Matrix
 zu rekonstruieren.
 Dazu muss für jedes Paar $(j,i)$ von Knoten festgestellt werden,
 ob die Adjazenzmatrix eine entsprechende Verbindung enthält, also ob der
