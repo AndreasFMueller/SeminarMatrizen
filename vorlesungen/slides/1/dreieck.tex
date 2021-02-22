@@ -30,21 +30,25 @@ U&=
 \end{block}
 \end{column}
 \begin{column}{0.31\textwidth}
+\uncover<2->{%
 \begin{block}{Nilpotente Matrix}
 \[
 N=
 \begin{pmatrix}
-*&*&*&\dots&*\\
 0&*&*&\dots&*\\
 0&0&*&\dots&*\\
+0&0&0&\dots&*\\
 \vdots&\vdots&\vdots&\ddots&\vdots\\
-0&0&0&\dots&*
+0&0&0&\dots&0
 \end{pmatrix}
 \]
+\uncover<3->{%
 $\Rightarrow N^n=0$
-\end{block}
+}
+\end{block}}
 \end{column}
 \begin{column}{0.31\textwidth}
+\uncover<4->{%
 \begin{block}{Jordan-Matrix}
 \[
 J_\lambda=\begin{pmatrix}
@@ -55,8 +59,10 @@ J_\lambda=\begin{pmatrix}
 0&0&0&\dots&\lambda
 \end{pmatrix}
 \]
+\uncover<5->{%
 $\Rightarrow J_\lambda -\lambda I$ ist nilpotent
-\end{block}
+}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
