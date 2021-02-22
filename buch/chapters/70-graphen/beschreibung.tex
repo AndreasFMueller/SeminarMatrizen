@@ -134,7 +134,7 @@ Die {\em Länge} des Pfades $\gamma=(k_1,\dots,k_r)$ ist $|\gamma|=r$.
 \begin{figure}
 \centering
 \includegraphics{chapters/70-graphen/images/adjazenzu.pdf}
-\caption{Adjazenz- und Inzidenzmatrix eines ungerichteten
+\caption{Adjazenz-, Inzidenz- und Gradmatrix eines ungerichteten
 Graphen mit $5$ Knoten und $7$ Kanten.
 \label{buch:graphen:fig:adjazenzu}}
 \end{figure}
@@ -161,8 +161,16 @@ Die Adjazenzmatrix eines ungerichteten Graphen ist immer symmetrisch.
 Ein Beispiel ist in Abbildung~\ref{buch:graphen:fig:adjazenzu}
 dargestellt.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/70-graphen/images/adjazenzd.pdf}
+\caption{Adjazenz-, Inzidenz- und Gradmatrix eines gerichteten
+Graphen mit $5$ Knoten und $7$ Kanten.
+\label{buch:graphen:fig:adjazenzd}}
+\end{figure}
 Die Adjazenzmatrix kann auch für einen gerichteten Graphen definiert
-werden.
+werden wie dies in in Abbildung~\ref{buch:graphen:fig:adjazenzu}
+illustriert ist.
 Ihre Einträge sind in diesem Fall definiert mit Hilfe der 
 gerichteten Kanten als
 \begin{equation}
@@ -334,6 +342,7 @@ Dies ist, was eine Beschriftung einer Kante bewerkstelligt.
 Eine Beschriftung mit Elementen der Menge $L$
 eines gerichteten oder ungerichteten Graphen $G=(V,E)$ 
 ist eine Abbildung $l\colon E\to L$.
+\index{Beschriftung}%
 \end{definition}
 
 \subsection{Inzidenzmatrix}
@@ -345,6 +354,7 @@ Buchstaben gehören, für die der Übergang entlang dieser Kante
 möglich ist.
 
 Die {\em Inzidenzmatrix} löst dieses Problem.
+\index{Inzidenzmatrix}%
 Dazu werden zunächst die Kanten numeriert $1,\dots,m$
 numeriert.
 Die Matrixeinträge
@@ -368,6 +378,7 @@ Knoten und eine Menge von beschrifteten Kanten der Form
 \[
 E \{ (a,b,l)\in V^2\times L\;|\; \text{Eine Kante mit Beschriftung $l$ führt von $a$ nach $b$}\}.
 \]
+Die Menge $L$ enthält die möglichen Beschriftungen der Kanten.
 \end{definition}
 
 Für einen gerichteten Graphen wird in der Inzidenzmatrix für
@@ -396,6 +407,7 @@ Die Adjazenzmatrix eines Graphen lässt sich also aus der
 Inzidenzmatrix berechnen.
 
 \subsubsection{Gradmatrix}
+\index{Gradmatrix}%
 Die Diagonale von $B(G)B(G)^t$ enthält die Werte
 \begin{align*}
 (B(G)B(G)^t)_{ii}

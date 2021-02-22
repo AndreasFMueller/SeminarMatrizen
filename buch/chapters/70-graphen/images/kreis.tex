@@ -1,0 +1,47 @@
+%
+% tikztemplate.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\r{3}
+
+\foreach \w in {0,20,...,340}{
+	\draw (\w:\r) circle[radius=0.2];
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (\w:\r) -- ({\w+20}:\r);
+}
+
+\foreach \x in {1,...,15}{
+	\node at ({20*(\x-1)}:\r) {$\scriptstyle \x$};
+}
+\node at (340:\r) {$\scriptstyle n$};
+\node at (320:\r) {$\scriptstyle \dots$};
+\node at (300:\r) {$\scriptstyle \dots$};
+
+\begin{scope}[xshift=4cm]
+\node at (0,0) [right] {$\displaystyle
+L=\begin{pmatrix*}[r]
+ 2&-1& 0& 0&\dots& 0&-1\\
+-1& 2&-1& 0&\dots& 0& 0\\
+ 0&-1& 2&-1&\dots& 0& 0\\
+ 0& 0&-1& 2&\dots& 0& 0\\
+\vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+ 0& 0& 0& 0&\dots& 2&-1\\
+-1& 0& 0& 0&\dots&-1& 2
+\end{pmatrix*}$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+
