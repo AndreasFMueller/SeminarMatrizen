@@ -1,0 +1,73 @@
+%
+% algebrastruktur.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\begin{frame}[t]
+\frametitle{Algebra über $\Bbbk$}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\pgfmathparse{atan(7/4)}
+\xdef\a{\pgfmathresult}
+\fill[color=red!40,opacity=0.5]
+	({-4-2.5},{2+1.0})
+	--
+	({-2.5},{-3-1.0})
+	--
+	({2.5},{-3-1.0})
+	--
+	({-4+2.5},{2+1.0})
+	-- cycle;
+\fill[color=blue!40,opacity=0.5]
+	({4-2.5},{2+1.0})
+	--
+	({-2.5},{-3-1.0})
+	--
+	({2.5},{-3-1.0})
+	--
+	({4+2.5},{2+1.0})
+	-- cycle;
+\fill[color=darkgreen!40,opacity=0.5]
+	({-4-2.5},{2+1.0})
+	-- 
+	({-4-2.5+2*(4/7)},{2-1})
+	-- 
+	({+4+2.5-2*(4/7)},{2-1})
+	-- 
+	({+4+2.5},{2+1})
+	--
+	cycle;
+\node at ({-3-0.5},2) {Skalarmultiplikation};
+
+\node at (3.5,2.2) {Multiplikation};
+\node at (3.5,1.8) {\tiny Halbgruppe};
+
+\node at (0,-2.8) {Addition};
+\node at (0,-3.2) {\tiny Gruppe};
+
+\node[color=blue] at (4.8,-0.5) [rotate=\a] {Ring\strut};
+\node[color=red] at (-4.8,-0.5) [rotate=-\a] {Vektorraum\strut};
+
+\node[color=darkgreen] at (0,2.6) {$(\lambda a)b=\lambda(ab)$};
+
+\node[color=red] at (-2.5,-0.5) {$\displaystyle
+\begin{aligned}
+\lambda(a+b)&=\lambda a + \lambda b\\
+(\lambda+\mu)a&=\lambda a +\mu a
+\end{aligned}$};
+
+\node[color=blue] at (2.5,-0.5) {$\displaystyle
+\begin{aligned}
+a(b+c)&=ab+ac\\
+(a+b)c&=ac+bc
+\end{aligned}$};
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\egroup

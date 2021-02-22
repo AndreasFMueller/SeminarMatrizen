@@ -1,0 +1,62 @@
+%
+% dreieck.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Dreiecksmatrizen}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.31\textwidth}
+\begin{block}{Dreiecksmatrix}
+\begin{align*}
+R&=
+\begin{pmatrix}
+*&*&*&\dots&*\\
+0&*&*&\dots&*\\
+0&0&*&\dots&*\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\dots&*
+\end{pmatrix}
+\\
+U&=
+\begin{pmatrix}
+1&*&*&\dots&*\\
+0&1&*&\dots&*\\
+0&0&1&\dots&*\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\dots&1
+\end{pmatrix}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.31\textwidth}
+\begin{block}{Nilpotente Matrix}
+\[
+N=
+\begin{pmatrix}
+*&*&*&\dots&*\\
+0&*&*&\dots&*\\
+0&0&*&\dots&*\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\dots&*
+\end{pmatrix}
+\]
+$\Rightarrow N^n=0$
+\end{block}
+\end{column}
+\begin{column}{0.31\textwidth}
+\begin{block}{Jordan-Matrix}
+\[
+J_\lambda=\begin{pmatrix}
+\lambda&1&0&\dots&0\\
+0&\lambda&1&\dots&0\\
+0&0&\lambda&\dots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&\dots&\lambda
+\end{pmatrix}
+\]
+$\Rightarrow J_\lambda -\lambda I$ ist nilpotent
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}

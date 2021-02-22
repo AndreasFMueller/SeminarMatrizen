@@ -378,7 +378,94 @@ R^{(k+l)}[X].
 %
 \subsection{Teilbarkeit
 \label{buch:subsection:polynome:teilbarkeit}}
-XXX TODO
+XXX Beispiel für Polynomdivision?
+
+\subsubsection{Euklidische Ringe und Faktorzerlegung}
+Der Polynomring $R[X]$ hat noch eine weitere Eigenschaft, die ihn
+von einem gewöhnlichen Ring unterschiedet.
+Der Polynomdivisionsalgorithmus findet zu zwei Polynomen $f,g\in R[X]$
+den Quotienten $q\in R[X]$ und den Rest $r\in R[X]$ mit
+$f=qg+r$, wobei ausserdem $\deg r<\deg g$ ist.
+
+\begin{definition}
+Ein {\em euklidischer Ring} $R$ ist ein nullteilerfreier Ring mit einer
+Gradfunktion $\deg\colon R\setminus\{0\}\to\mathbb{N}$ mit folgenden
+Eigenschaften
+\begin{enumerate}
+\item Für $x,y\in R$ gilt $\deg(xy) \ge \deg(x)$.
+\item Für alle $x,y\in R$ gibt es $q,r\in R$ mit $x=qy+r$ mit
+$\deg(y)>\deg(x)$
+\label{buch:20-polynome:def:euklidischerring-2}
+\end{enumerate}
+Bedingung~\ref{buch:20-polynome:def:euklidischerring-2} ist die
+{\em Division mit Rest}.
+\index{Gradfunktion}%
+\index{Division mit Rest}%
+\index{euklidischer Ring}%
+\end{definition}
+
+Die ganzen Zahlen $\mathbb{Z}$ bilden einen euklidischen Ring mit der 
+Gradfunktion $\deg(z)=|z|$ für $z\in \mathbb{Z}$.
+Aus dem Divisionsalgorithmus für ganze Zahlen leiten sich alle grundlegenden
+Eigenschaften über Teilbarkeit und Primzahlen ab.
+Eine Zahl $x$ ist teilbar durch $y$, wenn $x=qy$ mit $q\in \mathbb{Z}$,
+es gibt Zahlen $p\in\mathbb{Z}$, die keine Teiler haben und jede Zahl
+kann auf eindeutige Art und Weise in ein Produkt von Primfaktoren
+zerlegt werden.
+
+\subsubsection{Irreduzible Polynome}
+Das Konzept der Primzahl lässt sich wie folgt in den Polynomring übertragen.
+
+\begin{definition}
+Ein Polynom $f\in R[X]$ heisst irreduzibel, es keine Faktorisierung $f=gh$
+in Faktoren $g,h\in R[X]$ mit $\deg(g)>0$ und $\deg(h) >0$.
+\end{definition}
+
+\begin{beispiel}
+Polynome ersten Grades $aX+b$ sind immer irreduzibel, da sie bereits
+minimalen Grad haben.
+
+Sei jetzt $f=X^2+bX+c$ ein quadratisches Polynom in $\mathbb{Q}[X]$.
+Wenn es faktorisierbar sein soll, dann müssen die Faktoren Polynome
+ersten Grades sein, also $f=(X-x_1)(X-x_2)$ mit $x_i\in\mathbb{Q}$.
+Die Zahlen $x_i$ die einzigen möglichen Lösungen für $x_i$ können mit
+der Lösungsformel für die quadratische Gleichung
+\[
+x_i = -\frac{b}2\pm\sqrt{\frac{b^2}{4}-c}
+\]
+gefunden werden.
+Die Faktorisierung ist also genau dann möglich, wenn $b^2/4-c$ ein 
+Quadrat in $\mathbb{Q}$.
+In $\mathbb{R}$ ist das Polynom faktorisierbar, wenn $b^2-4c\ge 0$ ist.
+In $\mathbb{C}$ gibt es keine Einschränkung, die Wurzel zu ziehen,
+in $\mathbb{C}$ gibt es also keine irreduziblen Polynome im Grad $2$.
+\end{beispiel}
+
+\subsubsection{Faktorisierung in einem Polynomring}
+Ein Polynomring ist ganz offensichtlich auch ein euklidischer Ring.
+Wir erwarten daher die entsprechenden Eigenschaften auch in einem
+Polynomring.
+Allerdings ist eine Faktorzerlegung nicht ganz eindeutig.
+Wenn das Polynom $f\in\mathbb{Z}[X]$ die Faktorisierung
+$f=g\cdot h$ mit $g,h\mathbb{Z}[X]$ hat, dann
+ist $rg\cdot r^{-1}h$ ebenfalls eine Faktorisierung für jedes $r =\pm1$.
+Dasselbe gilt in $\mathbb{Q}$ für jedes $r\in \mathbb{Q}^*$.
+Faktorisierung ist also nur eindeutig bis auf Elemente der
+Einheitengruppe des Koeffizientenringes.
+Diese Mehrdeutigkeit kann in den Polynomringen $\Bbbk[X]$ 
+überwunden werden, indem die Polynome normiert werden.
+
+\begin{satz}
+Ein normiertes Polynom $f\in \Bbbk[X]$ kann in
+normierte Faktoren $g_1,\dots,g_k\in\Bbbk[X]$ zerlegt werden, so dass
+$f=g_1\cdot\ldots\cdot g_k$, wobei die Faktoren irreduzibel sind.
+Zwei solche Faktorisierungen unterscheiden sich nur durch die Reihenfolge
+der Faktoren.
+Ein Polynom $f\in \Bbbk[X]$ kann in ein Produkt $a_n g_1\cdot\ldots\cdot g_k$
+zerlegt werden, wobei die normierten Faktoren $g_i$ bis auf die Reihenfolge
+eindeutig sind.
+\end{satz}
+
 
 %
 % Abschnitt über formale Potenzreihen

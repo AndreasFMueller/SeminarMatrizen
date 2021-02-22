@@ -1,0 +1,51 @@
+%
+% hadamard.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Hadamard-Algebra}
+\begin{block}{Alternatives Produkt: Hadamard-Produkt}
+\[
+\begin{pmatrix}
+a_{11}&\dots&a_{1n}\\
+\vdots&\ddots&\vdots\\
+a_{m1}&\dots&a_{mn}\\
+\end{pmatrix}
+\odot
+\begin{pmatrix}
+b_{11}&\dots&b_{1n}\\
+\vdots&\ddots&\vdots\\
+b_{m1}&\dots&b_{mn}\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_{11}b_{11}&\dots&a_{1n}b_{1n}\\
+\vdots&\ddots&\vdots\\
+a_{m1}b_{m1}&\dots&a_{mn}b_{mn}\\
+\end{pmatrix}
+\]
+\end{block}
+\vspace{-10pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.58\textwidth}
+\uncover<2->{%
+\begin{block}{Algebra}
+\begin{itemize}
+\item<3-> $M_{mn}(\Bbbk)$ ist eine Algebra mit
+$\odot$ als Produkt
+\item<4-> Neutrales Element $U$: Matrix aus lauter Einsen
+\item<5-> Anwendung: Wahrscheinlichkeitsmatrizen
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.38\textwidth}
+\uncover<6->{%
+\begin{block}{Nicht so interessant}
+Die Hadamard-Algebra ist kommutativ 
+\uncover<7->{$\Rightarrow$ 
+kann ``keine'' interessanten algebraischen Relationen darstellen}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

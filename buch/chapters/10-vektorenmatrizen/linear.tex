@@ -450,10 +450,10 @@ besagt also, dass das Element $c_{ij}$ entsteht als das Produkt
 der Zeile $i$ von $A$ mit der Spalte $j$ von $C$.
 
 \subsubsection{Einheitsmatrix}
-Welche $m\times m$-Matrix $E\in M_{m}(\Bbbk)$ hat die Eigenschaft, dass
-$EA=A$ für jede beliebige Matrix $A\in M_{m\times n}(\Bbbk)$.
-Wir bezeichnen die Koeffizienten von $E$ mit $\delta_{ij}$.
-Die Bedingung $EA=A$ bedeutet
+Welche $m\times m$-Matrix $I\in M_{m}(\Bbbk)$ hat die Eigenschaft, dass
+$IA=A$ für jede beliebige Matrix $A\in M_{m\times n}(\Bbbk)$.
+Wir bezeichnen die Einträge von $I$ mit $\delta_{ij}$.
+Die Bedingung $IA=A$ bedeutet
 \[
 a_{ij} = \delta_{i1}a_{1j} + \dots + \delta_{im}a_{mj},
 \]
@@ -473,15 +473,15 @@ Die Zahlen $\delta_{ij}$ heissen auch das {\em Kronecker-Symbol} oder
 {\em Kronecker-Delta}.
 \index{Kronecker-$\delta$}%
 \index{Kronecker-Symbol}%
-Die Matrix $E$ hat die Einträge $\delta_{ij}$ und heisst die
+Die Matrix $I$ hat die Einträge $\delta_{ij}$ und heisst die
 {\em Einheitsmatrix}
 \index{Einheitsmatrix}%
 \[
-E
+I
 =
 \begin{pmatrix}
 1     &0     &\dots &0     \\
-0     &1     &\dots &0     \\
+0     &1     &\dots &0     \\[-2pt]
 \vdots&\vdots&\ddots&\vdots\\
 0     &0     &\dots &1  
 \end{pmatrix}.
@@ -504,13 +504,14 @@ Mit Hilfe der Vektorform eines linearen Gleichungssystems wurde
 gezeigt, dass die Lösung genau dann eindeutig ist, wenn die Spaltenvektoren
 der Koeffizientenmatrix linear unabhängig sind.
 Dies bedeutet, dass das Gleichungssystem
-\[
+\begin{equation}
 \begin{linsys}{3}
 a_{11}x_1 &+& \dots &+& a_{1n}x_n &=& 0      \\
 \vdots    & & \ddots& & \vdots    & & \vdots \\
 a_{m1}x_1 &+& \dots &+& a_{mn}x_n &=& 0
 \end{linsys}
-\]
+\label{buch:grundlagen:eqn:homogenessystem}
+\end{equation}
 eine nichttriviale Lösung haben muss.
 Das Gleichungssystem $Ax=b$ ist also genau dann eindeutig lösbar, wenn
 das homogene Gleichungssystem $Ax=0$ nur die Nulllösung hat.
@@ -531,7 +532,235 @@ eindeutig, wenn das zugehörige homogene Gleichungssystem eine nichttriviale
 Lösung hat.
 
 \subsubsection{Gauss-Algorithmus}
+Der Gauss-Algorithmus oder genauer Gausssche Eliminations-Algorithmus
+löst ein lineare Gleichungssystem der
+Form~\eqref{buch:vektoren-und-matrizen:eqn:vektorform}.
+Die Koeffizienten werden dazu in das Tableau 
+\[
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+a_{11}&\dots &a_{1n}&b_1   \\[-2pt]
+\vdots&\ddots&\vdots&\vdots\\
+a_{m1}&\dots &a_{mn}&b_m   \\
+\hline
+\end{tabular}
+\]
+geschrieben.
+Die vertikale Linie erinnert an die Position des Gleichheitszeichens.
+Es beinhaltet alle Informationen zur Durchführung des Algorithmus.
+Der Algorithmus is so gestaltet, dass er nicht mehr Speicher als
+das Tableau benötigt, alle Schritte operieren direkt auf den Daten
+des Tableaus.
 
+In jedem Schritt des Algorithmus wird zunächst eine Zeile $i$ und 
+Spalte $j$ ausgewählt, das Elemente $a_{ij}$ heisst das Pivotelement.
+\index{Pivotelement}%
+Die {\em Pivotdivision}
+\[
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+a_{11}&\dots &a_{1j}&\dots &a_{1n}&b_1   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{i1}&\dots &{\color{red}a_{ij}}&\dots &a_{in}&b_i   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{m1}&\dots &a_{mj}&\dots &a_{mn}&b_m   \\
+\hline
+\end{tabular}
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+a_{11}&\dots &a_{1j}&\dots &a_{1n}&b_1   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+{\color{red}\frac{a_{i1}}{a_{ij}}}&\dots &{\color{red}1}&\dots &{\color{red}\frac{a_{in}}{a_{ij}}}&{\color{red}\frac{b_i}{a_{ij}}}\\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{m1}&\dots &a_{mj}&\dots &a_{mn}&b_m   \\
+\hline
+\end{tabular}
+\]
+stellt sicher, dass das Pivot-Element zu $1$ wird.
+\index{Pivotdivision}
+Dies ist gleichbedeutend mit der Auflösung der Gleichung $i$ noch der
+Variablen $x_j$.
+Mit der {\em Zeilensubtraktion} auf Zeile $k\ne i$ können die Einträge in der
+Spalte $j$ zu Null gemacht werden.
+Dazu wird das $a_{kj}$-fache der Zeile $i$ von Zeile $k$ subtrahiert:
+\[
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{i1}&\dots &{\color{red}1}&\dots &a_{in}&b_i   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{k1}&\dots &a_{kj}&\dots &a_{kn}&b_m   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+\hline
+\end{tabular}
+\rightarrow
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+a_{i1}&\dots &{\color{red}1}&\dots &a_{in}&b_i   \\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+{\color{blue}a_{k1}-a_{kj}a_{i1}}&\dots &{\color{blue}0}&\dots &{\color{blue}a_{kn}-a_{kj}a_{in}}&{\color{blue}b_m-a_{kj}b_{n}}\\[-2pt]
+\vdots&      &\vdots&\ddots&\vdots&\vdots\\
+\hline
+\end{tabular}
+\]
+Typischerweise werden nach jeder Pivotdivision mehrer Zeilensubtraktionen
+durchgeführt um alle anderen Elemente der Pivotspalte ausser dem
+Pivotelement zu $0$ zu machen.
+Beide Operationen können in einem Durchgang durchgeführt werden.
+
+Die beiden Operationen Pivotdivision und Zeilensubtraktion werden jetzt
+kombiniert um im linken Teil des Tableaus möglichst viele Nullen und
+Einsen zu erzeugen.
+Im Idealfall wird ein Tableau der Form
+\[
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+     1&     0&\dots &     0&u_1   \\
+     0&     1&\dots &     0&u_2   \\[-2pt]
+\vdots&\vdots&\ddots&\vdots&\vdots\\
+     0&     0&\dots &     1&u_m   \\
+\hline
+\end{tabular}
+\]
+erreicht, was natürlich nur $m=n$ möglich ist.
+Interpretiert man die Zeilen dieses Tableaus wieder als Gleichungen,
+dann liefert die Zeile $i$ den Wert $x_i=u_i$ für die Variable $i$.
+Die Lösung kann also in der Spalte rechts abgelesen werden.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/10-vektorenmatrizen/images/rref.pdf}
+\caption{Zweckmässiger Ablauf der Berechnung des Gauss-Algorithmus.
+Falls in einer Spalte kein weiteres von $0$ verschiedenes Pivotelement
+zur Verfügung steht, wird die Zeile übersprungen.
+Weisse Felder enthalten $0$, dunkelgraue $1$.
+Die roten Kreise bezeichnen Pivot-Elemente, die blauen Felder
+die mit einer Zeilensubtraktion zu $0$ gemacht werden sollen.
+\label{buch:grundlagen:fig:gaussalgorithmus}}
+\end{figure}
+Die effizienteste Strategie für die Verwendung der beiden Operationen
+ist in Abbildung~\ref{buch:grundlagen:fig:gaussalgorithmus} dargestellt.
+In der Phase der {\em Vorwärtsreduktion} werden Pivotelemente von links
+nach rechts möglichst auf der Diagonale gewählt und mit Zeilensubtraktionen
+die darunterliegenden Spalten freigeräumt.
+\index{Vorwärtsreduktion}%
+Während des Rückwärtseinsetzens werden die gleichen Pivotelemente von 
+rechts nach links genutzt, um mit Zeilensubtraktionen auch die
+Spalten über den Pivotelemnten frei zu räumen.
+\index{Rückwärtseinsetzen}%
+Wenn in einer Spalte kein von $0$ verschiedenes Element als Pivotelement
+zur Verfügung steht, wird diese Spalte übersprungen.
+Die so erzeuge Tableau-Form heisst auch die {\em reduzierte Zeilenstufenform}
+({\em reduced row echelon form}, RREF).
+\index{reduzierte Zeilenstufenform}%
+\index{reduced row echelon form}%
+
+Da der Ablauf des Gauss-Algorithmus vollständig von den Koeffizienten der
+Matrix $A$ bestimmt ist, kann er gleichzeitig für mehrere Spalten auf der
+rechten Seite oder ganz ohne rechte Seite durchgeführt werden.
+
+\subsubsection{Lösungsmenge}
+\index{Lösungsmenge}%
+Die Spalten, in denen im Laufe des Gauss-Algorithmus kein Pivotelement
+gefunden werden kann, gehören zu Variablen, nach denen sich das
+Gleichungssystem nicht auflösen lässt.
+Diese Variablen sind daher nicht bestimmt, sie können beliebig gewählt
+werden.
+Alle anderen Variablen sind durch diese frei wählbaren Variablen
+bestimmt.
+
+Für ein Gleichungssystem $Ax=b$ mit Schlusstableau
+\index{Schlusstableau}%
+\begin{equation}
+\begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
+\hline
+   x_1&   x_2&\dots &x_{j_i-1}&{\color{darkgreen}x_{j_1}}&x_{j_1+1}&\dots &x_{j_2-1}&{\color{darkgreen}x_{j_2}}&\dots&{\color{darkgreen}x_{j_k}}& \\
+\hline
+     1&     0&\dots &        0&c_{1j_1}   &     0&\dots &     0&c_{1j_2}     &\dots &c_{1j_k}     &d_1      \\
+     0&     1&\dots &        0&c_{2j_1}   &     0&\dots &     0&c_{2j_2}     &\dots &c_{1j_k}     &d_2      \\[-2pt]
+\vdots&\vdots&\ddots&\vdots   &\vdots     &\vdots&\ddots&\vdots&\vdots       &\ddots&\vdots       &\vdots   \\
+     0&     0&\dots &        1&c_{i_1,j_1}&     0&\dots &     0&c_{i_1,j_2}  &\dots &c_{i_1j_k}   &d_{i_1}  \\
+     0&     0&\dots &        0&          0&     1&\dots &     0&c_{i_1+1,j_2}&\dots &c_{i_1+1,j_k}&d_{i_1+1}\\[-2pt]
+\vdots&\vdots&\ddots&\vdots   &\vdots     &\vdots&\vdots&\vdots&\vdots       &\ddots&\vdots       &\vdots   \\
+     0&     0&\dots &        0&          0&     0&\dots &     1&c_{i_2,j_2}  &\dots &c_{i_2j_k}   &d_{i_2}  \\
+     0&     0&\dots &        0&          0&     0&\dots &     0&            0&\dots &c_{i_2+1,j_k}&d_{i_2+1}\\[-2pt]
+\vdots&\vdots&\ddots&\vdots   &\vdots     &\vdots&\ddots&\vdots&\vdots       &\ddots&\vdots       &\vdots   \\
+     0&     0&\dots &        0&          0&     0&\dots &     0&            0&\dots &            0&d_{m}    \\
+\hline
+\end{tabular}
+\end{equation}
+mit den $k$ frei wählbaren Variablen
+$x_{j_1}, x_{j_2},\dots, x_{j_k}$ kann die Lösungsmenge als
+\[
+\mathbb{L}
+=
+\left\{
+\left.
+\begin{pmatrix}
+d_1\\
+d_2\\
+\vdots\\
+d_{i_1}\\
+d_{i_1+1}\\
+\vdots\\
+d_{i_2}\\
+d_{i_2+1}\\
+\vdots\\
+d_{m}
+\end{pmatrix}
++
+{\color{darkgreen}x_{j_1}}
+\begin{pmatrix}
+-c_{1j_1}\\
+-c_{2j_1}\\
+\vdots\\
+-c_{i_1,j_1}\\
+{\color{darkgreen}1}\\
+\vdots\\
+0\\
+0\\
+\vdots\\
+0\\
+\end{pmatrix}
++
+{\color{darkgreen}x_{j_1}}
+\begin{pmatrix}
+-c_{1j_2}\\
+-c_{2j_2}\\
+\vdots\\
+-c_{j_1,j_2}\\
+-c_{j_1+1,j_2}\\
+\vdots\\
+-c_{i_2,j_2}\\
+{\color{darkgreen}1}\\
+\vdots\\
+0\\
+\end{pmatrix}
++
+\dots
++
+{\color{darkgreen}x_{j_k}}
+\begin{pmatrix}
+-c_{1j_k}\\
+-c_{2j_k}\\
+\vdots\\
+-c_{j_1,j_k}\\
+-c_{j_1+1,j_k}\\
+\vdots\\
+-c_{i_2,j_k}\\
+-c_{i_2+1,j_k}\\
+\vdots\\
+0\\
+\end{pmatrix}
+\;
+\right|
+{\color{darkgreen}x_{i_1}},{\color{darkgreen}x_{i_2}},\dots,{\color{darkgreen}x_{i_k}}\in\Bbbk
+\right\}
+\]
+geschrieben werden.
+Insbesondere ist die Lösungsmenge $k$-dimensional.
 
 \subsubsection{Inverse Matrix}
 Zu jeder quadratischen Matrix $A\in M_n(\Bbbk)$ kann man versuchen, die
@@ -541,7 +770,7 @@ Ac_1 = e_1,\quad Ac_2 = e_2, \dots, Ac_n = e_n
 \]
 mit den Standardbasisvektoren $e_i$ als rechten Seiten zu lösen, wobei
 die $c_i$ Vektoren in $\Bbbk^n$ sind.
-Diese Vektoren kann man mit Hilfe des Gaussalgorithmus finden:
+Diese Vektoren kann man mit Hilfe des Gauss-Algorithmus finden:
 \[
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
 \hline
@@ -590,14 +819,14 @@ die zu $A$ {\em inverse Matrix}.
 \index{inverse Matrix}
 Sie wird auch $C=A^{-1}$ geschrieben.
 
-Die Definition der inversen Matrix stellt sicher, dass $AA^{-1}=E$ gilt,
-daraus folgt aber noch nicht, dass auch $A^{-1}A=E$ ist.
+Die Definition der inversen Matrix stellt sicher, dass $AA^{-1}=I$ gilt,
+daraus folgt aber noch nicht, dass auch $A^{-1}A=I$ ist.
 Diese Eigenschaft kann man jedoch wie folgt erhalten.
-Sei $C$ die inverse Matrix von $A$, also $AC=E$.
-Sei weiter $D$ die inverse Matrix von $C$, also $CD=E$.
-Dann ist zunächst $A=AE=A(CD)=(AC)D=ED=D$ und weiter
-$CA=CD=E$.
-Mit der Bezeichnung $C=A^{-1}$ erhalten wir also auch $A^{-1}A=E$.
+Sei $C$ die inverse Matrix von $A$, also $AC=I$.
+Sei weiter $D$ die inverse Matrix von $C$, also $CD=I$.
+Dann ist zunächst $A=AE=A(CD)=(AC)D=ID=D$ und weiter
+$CA=CD=I$.
+Mit der Bezeichnung $C=A^{-1}$ erhalten wir also auch $A^{-1}A=I$.
 
 Die Eigenschaften der Matrizenmultiplikation stellen sicher,
 dass die Menge der invertierbaren Matrizen eine Struktur bilden,
@@ -605,9 +834,10 @@ die man Gruppe nennt, die in Abschnitt~\ref{buch:grundlagen:subsection:gruppen}
 genauer untersucht wird.
 In diesem Zusammenhang wird dann auf
 Seite~\pageref{buch:vektorenmatrizen:satz:gruppenregeln}
-die Eigenschaft $A^{-1}A=E$ ganz allgemein gezeigt.
+die Eigenschaft $A^{-1}A=I$ ganz allgemein gezeigt.
 
 \subsubsection{Determinante}
+XXX TODO
 
 %
 % Lineare Abbildungen
@@ -874,5 +1104,32 @@ Das Bild der Matrix $A$ ist der Unterraum
 \]
 von $\Bbbk^m$, aufgespannt von den Spaltenvektoren $a_i$ von $A$.
 
+\subsubsection{Rang und Defekt}
+Die Dimensionen von Bild und Kern sind wichtige Kennzahlen einer Matrix.
+\begin{definition}
+Sei $A$ eine Matrix $A\in M_{m\times n}(\Bbbk)$.
+Der {\em Rang} der Matrix $A$ ist die Dimension des Bildraumes von $A$:
+$\operatorname{rank}A=\dim\operatorname{im} A$.
+\index{Rang einer Matrix}%
+Der {\em Defekt} der Matrix $A$ ist die Dimension des Kernes von $A$:
+$\operatorname{def}A=\dim\ker A$.
+\index{Defekt einer Matrix}%
+\end{definition}
+
+Da der Kern mit Hilfe des Gauss-Algorithmus bestimmt werden kann,
+können Rang und Defekt aus dem Schlusstableau 
+eines homogenen Gleichungssystems mit $A$ als Koeffizientenmatrix
+abgelesen werden.
+
+\begin{satz}
+Ist $A\in M_{m\times n}(\Bbbk)$ eine $m\times n$-Matrix,
+dann gilt
+\[
+\operatorname{rank}A
+=
+n-\operatorname{def}A.
+\]
+\end{satz}
+
 \subsubsection{Quotient}
-TODO
+TODO: $\operatorname{im} A \simeq \Bbbk^m/\ker A$
