@@ -1,0 +1,106 @@
+%
+% motivation.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Motivation}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.24\textwidth}
+\begin{block}{Imaginäre Einheit}
+\vspace{-15pt}
+\begin{align*}
+J &= \begin{pmatrix} 0&-1\\1&0\end{pmatrix}
+\\
+p(X) &= X^2 + 1
+\\
+p(J) &= J^2 + I = 0
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.25\textwidth}
+\uncover<2->{%
+\begin{block}{Wurzel $\sqrt{2}$}
+\vspace{-15pt}
+\begin{align*}
+W&=\begin{pmatrix}0&2\\1&0\end{pmatrix}
+\\
+p(X) &= X^2-2
+\\
+p(W) &= W^2-2I=0
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.41\textwidth}
+\uncover<3->{%
+\begin{block}{Drehmatrix}
+\vspace{-15pt}
+\begin{align*}
+D&=\begin{pmatrix}
+\cos \frac{\pi}{1291} & -\sin\frac{\pi}{1291}\\
+\sin \frac{\pi}{1291} &  \cos\frac{\pi}{1291}
+\end{pmatrix}
+\\
+p(X)&= \only<-3>{X^{1291}+1\phantom{+\frac{\mathstrut}{\mathstrut}}}
+\only<4->{X^2-2X\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
+\\
+p(D) &= \only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}
+\only<4->{D^2-2D\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\vspace{-20pt}
+\uncover<5->{
+\begin{block}{3D-Beispiel}
+$p(x) = -x^3-5x^2+5x+1$
+\[
+\only<5-8>{
+A=
+\begin{pmatrix*}[r]
+-5&-1&1\\
+-5&-2&3\\
+-1&-1&2
+\end{pmatrix*}}
+\only<6-8>{
+\quad\Rightarrow\quad}
+\uncover<6->{
+-
+\only<-9>{A^3}\only<10->{
+\begin{pmatrix*}[r]
+-169&-35&35\\
+-185&-39&40\\
+ -45&-10&11
+\end{pmatrix*}}
+-5
+\only<-8>{A^2}\only<9->{
+\begin{pmatrix*}[r]
+29&6&-6\\
+32&6&-5\\
+ 8&1& 0
+\end{pmatrix*}}
++5
+\only<-7>{A}\only<8->{
+\begin{pmatrix*}[r]
+-5&-1&1\\
+-5&-2&3\\
+-1&-1&2
+\end{pmatrix*}}
++
+\only<-6>{I}\only<7->{
+\begin{pmatrix*}[r]
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{pmatrix*}}
+}
+\uncover<11->{=0}
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<12->{%
+{\usebeamercolor[fg]{title}$\Rightarrow$
+Rechenregeln von Matrizen können durch Polynome ausgedrückt werden}
+}
+\end{frame}
