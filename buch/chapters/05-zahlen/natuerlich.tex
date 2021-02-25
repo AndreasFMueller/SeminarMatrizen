@@ -237,7 +237,40 @@ n+1&= n \cup \{n\} = \{0,\dots,n-1\} \cup \{n\} = \{0,1,\dots,n\}
 &\phantom{n}\vdots
 \end{align*}
 
+\subsubsection{Natürliche Zahlen als Äquivalenzklassen}
+Im vorangegangenen Abschnitt haben wir die natürlichen Zahlen aus
+der leeren Menge schrittweise sozusagen ``von unten'' aufgebaut.
+Wir können aber auch eine Sicht ``von oben'' einnehmen.
+Dazu definieren wir, was eine endliche Menge ist und was es heisst,
+dass endliche Mengen gleiche Mächtigkeit haben.
 
+\begin{definition}
+Eine Menge $A$ heisst {\em endlich}, wenn es jede injektive Abbildung
+$A\to A$ auch surjektiv ist.
+\index{endlich}%
+Zwei endliche Mengen $A$ und $B$ heissen {\em gleich mächtig},
+\index{gleich mächtig}%
+in Zeichen $A\sim B$, wenn es eine Bijektion
+$A\to B$ gibt.
+\end{definition}
 
+Der Vorteil dieser Definition ist, dass sie die früher definierten 
+natürlichen Zahlen nicht braucht, diese werden jetzt erst konstruiert.
+Dazu fassen wir in der Menge aller endlichen Mengen die gleich mächtigen
+Mengen zusammen, bilden also die Äquivalenzklassen der Relation $\sim$.
 
+Der Vorteil dieser Sichtweise ist, dass die natürlichen Zahlen ganz
+explizit als die Anzahlen von Elementen einer endlichen Menge entstehen.
+Eine natürlich Zahl ist also eine Äquivalenzklasse
+$\llbracket A\rrbracket$, die alle endlichen Mengen enthält,  die die
+gleiche Mächtigkeit wie $A$ haben.
+Zum Beispiel gehört dazu auch die Menge, die im vorangegangenen
+Abschnitt aus der leeren Menge aufgebaut wurde.
+
+Die Mächtigkeit einer endlichen Menge $A$ ist die Äquivalenzklasse, in der
+die Menge drin ist: $|A| = \llbracket A\rrbracket\in \mathbb{N}$ nach 
+Konstruktion von $\mathbb{N}$.
+Aus logischer Sicht etwas problematisch ist allerdings, dass wir 
+von der ``Menge aller endlichen Mengen'' sprechen ohne uns zu versichern,
+dass dies tatsächlich eine zulässige Konstruktion ist.
 

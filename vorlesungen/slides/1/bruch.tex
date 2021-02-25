@@ -1,0 +1,72 @@
+%
+% bruch.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Brüche}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\vspace{-8pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Division}
+Nicht für alle $a,b\in\mathbb{Z}$ hat die Gleichung
+\[
+ax=b
+\uncover<2->{
+\;\Rightarrow\;
+x=\frac{b}{a}}
+\]
+eine Lösung in $\mathbb{Z}$\uncover<2->{, nämlich wenn $b\nmid a$}
+\end{block}
+\uncover<3->{%
+\begin{block}{Brüche}
+Idee: $\displaystyle\frac{b}{a} = (b,a)$
+\begin{enumerate}
+\item<4-> $(b,a)\in\mathbb{Z}\times\mathbb{Z}$
+\item<5-> Äquivalenzrelation
+\[
+(b,a)\sim (d,c)
+\only<5>{
+\Leftrightarrow
+\text{``
+$\displaystyle
+\frac{b}{a}=\frac{d}{c}
+$
+''}
+}
+\only<6->{
+\Leftrightarrow
+bc=ad
+}
+\]
+\end{enumerate}
+\vspace{-15pt}
+\uncover<7->{%
+$\Rightarrow$ alle Quotienten
+}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<9->{%
+\begin{block}{Gruppe}
+$\mathbb{Q}^* = \mathbb{Q}\setminus\{0\}$ ist eine multiplikative Gruppe:
+\begin{enumerate}
+\item<10-> Neutrales Element: $1\in \mathbb{Q}^*$
+\item<11-> Inverses Element $q=\frac{b}{a}\in\mathbb{Q}
+\Rightarrow
+q^{-1}=\frac{a}{b}\in\mathbb{Q}$
+\end{enumerate}
+\end{block}
+}
+\uncover<8->{%
+\begin{block}{Rationale Zahlen}
+Alle Brüche, gleiche Werte zusammengefasst:
+\[
+\mathbb{Q} = \mathbb{Z}\times\mathbb{Z}/\sim
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
