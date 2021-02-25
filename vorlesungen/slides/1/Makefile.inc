@@ -9,6 +9,8 @@ chapter1 =								\
 	../slides/1/peano.tex						\
 	../slides/1/ganz.tex						\
 	../slides/1/bruch.tex						\
+	../slides/1/ring.tex						\
+	../slides/1/schwierigkeiten.tex					\
 	../slides/1/strukturen.tex					\
 	../slides/1/j.tex						\
 	../slides/1/vektorraum.tex					\

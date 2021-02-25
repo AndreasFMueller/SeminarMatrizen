@@ -1,0 +1,58 @@
+%
+% ring.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\frametitle{Ring\only<15->{/Körper}}
+\vspace{-10pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Addition und Multiplikation}
+$\mathbb{Z}$ und $\mathbb{Q}$
+haben zwei Verknüpfungen:
+\begin{enumerate}
+\item<2-> Addition
+\[
+a,b\in R\Rightarrow a+b\in R
+\]
+\item<3-> Multiplikation
+\[
+a,b\in R\Rightarrow a\cdot b=ab\in R
+\]
+\end{enumerate}
+\vspace{-5pt}
+\uncover<4->{%
+Gilt auch für
+\begin{itemize}
+\item<5-> Polynome
+\item<6-> $M_{n}(\mathbb{R})$
+\item<7-> $\mathbb{R}^3$ mit Vektorprodukt
+\end{itemize}}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{%
+\begin{block}{Definition}
+Ein Ring\only<15->{/{\color{red}Körper}} ist eine Menge $R$ mit zwei
+Verknüpfungen $+$ und $\cdot$:
+\begin{enumerate}
+\item<9->
+$R$ mit $+$ ist eine abelsche Gruppe
+\item<10->
+$R$ mit $\cdot$ ist ein Monoid\only<15->{/{\color{red}eine Gruppe}}
+\item<11->
+Verträglichkeit: Distributivgesetz
+\begin{align*}
+\uncover<12->{a(b+c)&=ab+bc}
+\\
+\uncover<13->{(a+b)c&=ac+bc}
+\end{align*}
+\uncover<14->{(Ausmultiplizieren)}
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
