@@ -1,0 +1,35 @@
+#! /bin/bash
+#
+# setup -- prepare a new topic
+#
+if [ $# -lt 2 ]
+then
+	echo "not enough arguments"
+	echo "usage: setup number topic"
+	echo "Files will be in <number>_<topic>, <topic>-handout, MathSem-<number>-<topic>.tex"
+	exit 1
+fi
+
+topic=${2}
+number=`printf %02d ${1}`
+directory=${number}_${topic}
+
+if [ -d ${directory} ]
+then
+	echo ${directory} already exists
+	exit 1
+fi
+
+mkdir ${directory}
+
+cp 00_template/common.tex ${directory}
+cp 00_template/slides.tex ${directory}
+
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 00_template/Makefile \
+	> ${directory}/Makefile
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 00_template/handout.tex \
+	> ${directory}/${topic}-handout.tex
+sed -e "s/xxx/${topic}/g" -e "s/yyy/${number}/g" 00_template/presentation.tex \
+	> ${directory}/MathSem-${number}-${topic}.tex
+
+
