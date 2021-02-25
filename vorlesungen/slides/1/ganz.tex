@@ -31,10 +31,11 @@ Idee: $b-a = (b,a)$
 \item<5-> Äquivalenzrelation
 \[
 (b,a)\sim (d,c)
+\ifthenelse{\boolean{presentation}}{
 \only<6>{\Leftrightarrow
 \text{``\strut}
 b-a=c-d
-\text{\strut''}}
+\text{\strut''}}}{}
 \only<7->{
 \Leftrightarrow
 b+d=c+a}
@@ -61,15 +62,16 @@ $\Rightarrow$ alle Differenzen in $\mathbb{Z}$}
 \setlength{\belowdisplayskip}{5pt}
 \uncover<11->{%
 \begin{block}{Gruppe}
-Halbgruppe $\only<11>{\mathbb{Z}}\only<12->{G}$ mit inversem Element
+Halbgruppe $\ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}$ mit inversem Element
 \[
-a\in \only<11>{\mathbb{Z}}\only<12->{G}
+a\in \ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}\only<12->{G}
 \Rightarrow
-\only<11>{-a\in\mathbb{Z}}\only<12->{a^{-1}\in G}
+\ifthenelse{\boolean{presentation}}{\only<11>{-a\in\mathbb{Z}}}{}\only<12->{a^{-1}\in G}
 \text{ mit }
+\ifthenelse{\boolean{presentation}}{
 \only<11>{
 a+(-a)=0
-}
+}}{}
 \only<12->{
 \left\{
 \begin{aligned}
