@@ -378,13 +378,118 @@ R^{(k+l)}[X].
 %
 \subsection{Teilbarkeit
 \label{buch:subsection:polynome:teilbarkeit}}
-XXX Beispiel für Polynomdivision?
+Im Ring der ganzen Zahlen sind nicht alle Divisionen ohne Rest
+ausführbar, so entsteht das Konzept der Teilbarkeit.
+Der Divisionsalgorithmus, den man in der Schule lernt, liefert
+zu beliebigen ganzen Zahlen $a,b\in\mathbb{Z}$ den Quotienten
+$q$ und den Rest $r$ derart, dass $a=qb+r$.
+Der Algorithmus basiert auf der Zehnersystemdarstellung 
+\begin{align*}
+a &= a_n10^{n} + a_{n-1}10^{n-1} + \dots + a_110^{1} + a_0
+\\
+b &= b_m10^{n} + b_{m-1}10^{n-1} + \dots + b_110^{1} + b_0
+\end{align*}
+und ermittelt den Quotienten, indem er mit den einzelnen Stellen
+$a_k$ und $b_k$ arbeitet.
+Er ist also eigentlich ein Algorithmus für die Polynome
+\begin{align*}
+a &= a_nX^{n} + a_{n-1}X^{n-1} + \dots + a_1X^{1} + a_0
+\\
+b &= b_mX^{n} + b_{m-1}X^{n-1} + \dots + b_1X^{1} + b_0,
+\end{align*}
+mit dem einzigen Unterschied, dass statt $X$ mit der festen Zahl $X=10$
+gearbeitet wird.
+Der Teilungsalgorithmus für Polynome lässt sich aber leicht
+rekonstruieren.
+
+\subsubsection{Polynomdivision}
+Wir zeigen den Polynomdivisionsalgorithmus an einem konkreten Beispiel.
+Gesucht sind Quotient $q\in \mathbb{Z}[X]$ und Rest $r\in\mathbb{Z}[X]$
+der beiden Polynome
+\begin{equation}
+\begin{aligned}
+a(X) &= X^4 - X^3 -7X^2 + X + 6\\
+b(X) &= X^2+X+1,
+\end{aligned}
+\label{buch:polynome:eqn:divisionsaufgabe}
+\end{equation}
+für die also gilt $a=bq+r$.
+Die Division ergibt
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+X^4&-& X^3&-&7X^2&+& X&+&6&:&X^2&+&X&+&1&=&X^2&-&2X&-&6=q\\
+\llap{$-($}X^4&+& X^3&+& X^2\rlap{$)$}& &  & & & &   & & & & & &   & &  & & \\ \cline{1-5}
+   &-&2X^3&-&8X^2&+& X& & & &   & & & & & &   & &  & & \\
+   &\llap{$-($}-&2X^3&-&2X^2&-&2X\rlap{$)$}& & & &   & & & & & &   & &  & & \\ \cline{2-7}
+   & &    &-&6X^2&+&3X&+&6& &   & & & & & &   & &  & & \\
+   & &    &\llap{$-($}-&6X^2&-&6X&-&6\rlap{$)$}& &   & & & & & &   & &  & & \\ \cline{4-9}
+   & &    & &    & &9X&+&12\rlap{$\mathstrut=r$}& &   & & & & & &   & &  & & \\ \cline{7-9}
+\end{array}
+\]
+Durch nachrechnen kann man überprüfen, dass tatsächlich
+\begin{align*}
+bq
+&=
+X^4-X^3-7X^2-8X-6
+\\
+bq+r&=
+X^4-X^3-7X^2+X+6 = a
+\end{align*}
+gilt.
+
+Das Beispiel~\eqref{buch:polynome:eqn:divisionsaufgabe} war besonders
+einfach, weil der führende Koeffizient des Divisorpolynomes $1$ war.
+Für $b=2X^2+X+1$ funktioniert der Algorithmus dagegen nicht mehr.
+Jedes für $q$ in Frage kommende Polynom vom Grad $2$ muss von der
+Form $q=q_2X^2+q_1X+q_0$ sein.
+Multipliziert man mit $b$, erhält man $bq=2q_2X^4 + (2q_1+q_2)X^3+\dots$.
+Insbesondere ist es nicht möglich mit ganzzahligen Quotienten
+$q_k\in\mathbb{Z}$ auch nur der ersten Koeffizienten von $a$ zu
+erhalten.
+Dazu müsste nämlich $a_n = 1 = 2q_2$ oder $q_2 = \frac12\not\in\mathbb{Z}$
+sein.
+Der Divisionsalgorithmus funktioniert also nur dann, wenn die 
+Division durch den führenden Koeffizienten des Divisorpolynomes $b$ 
+immer ausführbar ist.
+Im Beispiel~\eqref{buch:polynome:eqn:divisionsaufgabe} war das der
+Fall, weil der führende Koeffizient $1$ war.
+Für beliebige Polynome $b\in R[X]$ ist das aber nur der Fall,
+wenn die Koeffizienten in Tat und Wahrheit einem Körper entstammen.
+
+Im Folgenden betrachten wir daher nur noch Polynomringe mit Koeffizienten
+in einem Körper $\Bbbk$.
+In $\mathbb{Q}[X]$ ist die Division $a:b$ für die Polynome
+\begin{equation}
+\begin{aligned}
+a(X) &= X^4 - X^3 -7X^2 + X + 6\\
+b(X) &= X^2+X+1,
+\end{aligned}
+\label{buch:polynome:eqn:divisionsaufgabe}
+\end{equation}
+problemlos durchführbar:
+\[
+\arraycolsep=1.4pt
+\renewcommand{\arraystretch}{1.2}
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+X^4&-&       X^3&-&         7X^2&+&          X&+&           6&:&2X^2&+&X&+&1&=&\frac12X^2&-&\frac34X&-\frac{27}{8} = q\\
+\llap{$-($}X^4&+&\frac12X^3&+&   \frac12X^2\rlap{$)$}& &           & &            & &    & & & & & &          & &        &             \\ \cline{1-5}
+   &-&\frac32X^3&-&\frac{15}2X^2&+&          X& &            & &    & & & & & &          & &        &             \\
+   &\llap{$-($}-&\frac32X^3&-&\frac{ 3}4X^2&-&\frac{ 3}4X\rlap{$)$}& &            & &    & & & & & &          & &        &             \\\cline{2-7}
+   & &          &-&\frac{27}4X^2&+&\frac{ 7}4X&+&           6& &    & & & & & &          & &        &             \\
+   & &          &\llap{$-($}-&\frac{27}4X^2&-&\frac{27}8X&-&\frac{27}{8}\rlap{$)$}& &    & & & & & &          & &        &             \\\cline{4-9}
+   & &          & &             & &\frac{41}8X&+&\frac{75}{8}\rlap{$\mathstrut=r$}& &    & & & & & &          & &        &             \\
+\end{array}
+\]
+Der Algorithmus funktioniert selbstverständlich genauso in $\mathbb{R}[X]$
+oder $\mathbb{C}[X]$, und ebenso in den in
+Kapitel~\ref{buch:chapter:endliche-koerper} studierten endlichen Körpern.
 
 \subsubsection{Euklidische Ringe und Faktorzerlegung}
-Der Polynomring $R[X]$ hat noch eine weitere Eigenschaft, die ihn
+Der Polynomring $\Bbbk[X]$ hat noch eine weitere Eigenschaft, die ihn
 von einem gewöhnlichen Ring unterschiedet.
-Der Polynomdivisionsalgorithmus findet zu zwei Polynomen $f,g\in R[X]$
-den Quotienten $q\in R[X]$ und den Rest $r\in R[X]$ mit
+Der Polynomdivisionsalgorithmus findet zu zwei Polynomen $f,g\in\Bbbk[X]$
+den Quotienten $q\in\Bbbk[X]$ und den Rest $r\in\Bbbk[X]$ mit
 $f=qg+r$, wobei ausserdem $\deg r<\deg g$ ist.
 
 \begin{definition}
