@@ -62,9 +62,9 @@ $\Rightarrow$ alle Differenzen in $\mathbb{Z}$}
 \setlength{\belowdisplayskip}{5pt}
 \uncover<11->{%
 \begin{block}{Gruppe}
-Halbgruppe $\ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}$ mit inversem Element
+Monoid $\ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}$ mit inversem Element
 \[
-a\in \ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}\only<12->{G}
+a\in \ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}
 \Rightarrow
 \ifthenelse{\boolean{presentation}}{\only<11>{-a\in\mathbb{Z}}}{}\only<12->{a^{-1}\in G}
 \text{ mit }
@@ -95,7 +95,7 @@ a+b=b+a
 \uncover<14->{%
 \begin{block}{Beispiele}
 \begin{itemize}
-\item<15-> Brüche reelle Zahlen
+\item<15-> Brüche, reelle Zahlen
 \item<16-> invertierbare Matrizen: $\operatorname{GL}_n(\mathbb{R})$
 \item<17-> Drehmatrizen: $\operatorname{SO}(n)$
 \item<18-> Matrizen mit Determinante $1$: $\operatorname{SL}_n(\mathbb R)$
