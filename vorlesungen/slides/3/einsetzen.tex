@@ -1,0 +1,50 @@
+%
+% einsetzen.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Matrix in ein Polynom einsetzen}
+\vspace{-10pt}
+\[
+\begin{array}{rcrcrcrcrcrcr}
+p(X)&=&a_nX^n&+&a_{n-1}X^{n-1}&+&\dots&+&a_2X^2&+&a_1X&+&a_0\phantom{I}\\
+\bigg\downarrow\hspace*{4pt}      & &
+\bigg\downarrow\hspace*{4pt}      & &
+\bigg\downarrow\hspace*{10pt}                   & &     & &
+\bigg\downarrow\hspace*{4pt}           & &
+\bigg\downarrow\hspace*{2pt}         & &
+\bigg\downarrow\hspace*{0pt}                   \\
+p(A)&=&a_nA^n&+&a_{n-1}A^{n-1}&+&\dots&+&a_2A^2&+&a_1A&+&a_0         I
+\end{array}
+\]
+\vspace{-10pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Nilpotente Matrizen}
+$p(X) = (X-a)^n$
+\[
+p(A) = 0
+\quad\Rightarrow\quad
+\text{$A$ ist nilpotent}
+\]
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Eigenwerte}
+$p(X) = (X-\lambda_1)(X-\lambda_2)$,\\
+$A$ eine $2\times 2$-Matrix
+\[
+p(A)=0\quad\Rightarrow\quad
+\left\{
+\begin{aligned}
+&\text{$A-\lambda_1I$ ist singulär}\\
+&\text{$A-\lambda_2I$ ist singulär}
+\end{aligned}
+\right.
+\]
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}

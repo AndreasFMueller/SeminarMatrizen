@@ -1,0 +1,70 @@
+%
+% drehfaktorisierung.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\frametitle{Faktorisierung von $X^2+X+1$}
+\vspace{-3pt}
+$X^2+X+1$ kann faktorisiert werden, wenn man $i\sqrt{3}$
+hinzufügt
+\[
+\biggl(X+\frac12+\frac{i\sqrt{3}}2\biggr)
+\biggl(X+\frac12-\frac{i\sqrt{3}}2\biggr)
+=
+X^2+X+\frac14
++
+\frac34
+=
+X^2+X+1
+\]
+\vspace{-10pt}
+\begin{block}{Was ist $i\sqrt{3}$?}
+Matrix mit Minimalpolynom $X^2+3$:
+\[
+W=\begin{pmatrix}0&-3\\1&0\end{pmatrix}
+\qquad\Rightarrow\qquad
+W^2=\begin{pmatrix}3&0\\0&3\end{pmatrix} = -3I
+\qquad\Rightarrow\qquad
+W^2+3I=0
+\]
+\end{block}
+\vspace{-10pt}
+\begin{block}{Faktorisierung von $X^2+X+1$}
+\vspace{-10pt}
+\begin{align*}
+B_\pm
+&=
+-\frac12I\pm\frac12W
+&
+&\Rightarrow
+&
+(X+B_+)(X+B-)
+&=
+(X+\frac12I+\frac12W)
+(X+\frac12I-\frac12W)
+\\
+&=
+\smash{
+{\textstyle\begin{pmatrix}-\frac12&-\frac32\\\frac12&-\frac12\end{pmatrix}}
+}
+&
+&
+&
+&=
+X^2+X + \frac14I - \frac14W^2
+\\
+&
+&
+&%\Rightarrow
+&
+&=
+X^2+X + \frac14I + \frac34I
+=
+X^2+X+I
+\end{align*}
+\end{block}
+
+\end{frame}

@@ -1,0 +1,29 @@
+%
+% division.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Polynomdivision}
+\begin{block}{Aufgabe}
+Finde Quotient und Rest für
+$a= X^4- X^3-7X^2+ X+6\in\mathbb{Z}[X]$
+und
+$b= X^2+X+1\in\mathbb{Z}[X]$
+\end{block}
+\begin{block}{Lösung}
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+X^4&-& X^3&-&7X^2&+& X&+&6&:&X^2&+&X&+&1&=&X^2&-&2X&-&6=q\\
+\llap{$-($}X^4&+& X^3&+& X^2\rlap{$)$}& &  & & & &   & & & & & &   & &  & & \\ \cline{1-5}
+   &-&2X^3&-&8X^2&+& X& & & &   & & & & & &   & &  & & \\
+   &\llap{$-($}-&2X^3&-&2X^2&-&2X\rlap{$)$}& & & &   & & & & & &   & &  & & \\ \cline{2-7}
+   & &    &-&6X^2&+&3X&+&6& &   & & & & & &   & &  & & \\
+   & &    &\llap{$-($}-&6X^2&-&6X&-&6\rlap{$)$}& &   & & & & & &   & &  & & \\ \cline{4-9}
+   & &    & &    & &9X&+&12\rlap{$\mathstrut=r$}& &   & & & & & &   & &  & & \\ \cline{7-9}
+\end{array}
+\]
+Funktioniert weil $b$ normiert ist!
+\end{block}
+\end{frame}

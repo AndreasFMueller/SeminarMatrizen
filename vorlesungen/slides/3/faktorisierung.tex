@@ -1,0 +1,42 @@
+%
+% faktorisierung.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Faktorisierung}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Primzahlen\strut}
+Eine Zahl $p\in\mathbb{Z}$, $p>1$ heisst Primzahl, wenn sie nicht als Produkt
+$p=ab$ mit $a,b\in\mathbb{Z},a>1, b>1$ geschrieben werden kann.
+\begin{align*}
+p&=7
+\\
+2021 &= 43 \cdot 47
+\\
+4095667&=2021\cdot 2027
+\\
+p&=43, 47, 1291, 2017, 2027
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Irreduzible Polynome in $\mathbb{Q}[X]$}
+Ein Polynome $p\in\mathbb{Q}[X]$, $\deg p>0$ wenn es nicht als Produkt
+$p=ab$ mit $a,b\in\mathbb{Q}[X]$, $\deg a>0$, $\deg b>0$ geschrieben
+werden kann.
+\begin{align*}
+p&=X-9
+\\
+X^2-1&= (X+1)(X-1)
+\\
+X^2-2&\text{\; irreduzibel}
+\\
+X^2-2&=(X-\sqrt{2})(X+\sqrt{2})
+\end{align*}
+aber: $X\pm\sqrt{2}\not\in\mathbb{Q}[X]$
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}

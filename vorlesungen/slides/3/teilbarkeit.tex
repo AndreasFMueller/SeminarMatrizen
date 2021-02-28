@@ -1,0 +1,44 @@
+%
+% teilbarkeit.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Teilen}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Teilen in $\mathbb{Z}$}
+Zu zwei Zahlen $a,b\in \mathbb{Z}$, $a>b$ gibt es
+immer genau ein Paar $q,r\in\mathbb{Z}$ derart, dass
+\begin{align*}
+a&=bq+r
+\\
+r&< b
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Teilen in $\mathbb{Q}[X]$}
+Zu zwei Polynomen $a,b\in\mathbb{Q}[X]$, $\deg a > \deg b$
+gibt es 
+immer genau ein Paar $q,r\in\mathbb{Q}[X]$ derart, dass
+\begin{align*}
+a&=bq+r
+\\
+\deg r&< \deg b
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\begin{block}{Allgmein: euklidischer Ring}
+Nullteilerfreier Ring $R$ mit einer Funktion
+$d\colon R\setminus{0}\to\mathbb{N}$ mit
+\begin{itemize}
+\item Für $x,y\in R$ gilt $d(xy) \ge d(x)$.
+\item Für $x,y\in R$ gibt es $q,r\in R$ derart
+$x=qy +r$ mit $d(y)>d(r)$
+\end{itemize}
+Euklidische Ringe haben ähnliche Eigenschaften wie Polynomringe
+\end{block}
+\end{frame}

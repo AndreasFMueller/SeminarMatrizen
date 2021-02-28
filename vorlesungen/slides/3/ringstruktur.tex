@@ -1,0 +1,50 @@
+%
+% ringstruktur.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Ringstruktur}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.46\textwidth}
+\begin{block}{Ring}
+Menge $R$ mit zwei zweistelligen Verknüfpungen $+$ und $\cdot$
+mit
+\begin{enumerate}
+\item<3->
+$R$ ist abelsche Gruppe bezüglich $+$
+\item<5->
+$R\setminus\{0\}$ ist ein Monoid bezüglich $\cdot$
+\item<7->
+Für alle $a,b,c\in R$
+\begin{align*}
+a(b+c) &= ab+ac
+\\
+(a+b)c &= ac+bc
+\end{align*}
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.50\textwidth}
+\uncover<2->{%
+\begin{block}{Polynomring}
+$R$ ein Ring, $R[X]$ ``erbt'' Addition und Multiplikation mit
+\begin{enumerate}
+\item<4->
+$R[X]$ ist abelsche Gruppe bezüglich $+$
+\item<6->
+$R[X]\setminus\{0\}$ ist ein Monoid bezüglich $\cdot$
+\item<8->
+Für alle $a,b,c\in R[X]$
+\begin{align*}
+a(b+c) &= ab+ac
+\\
+(a+b)c &= ac+bc
+\end{align*}
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
