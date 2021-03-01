@@ -42,10 +42,11 @@ D&=\begin{pmatrix}
 \sin \frac{\pi}{1291} &  \cos\frac{\pi}{1291}
 \end{pmatrix}
 \\
-p(X)&= \ifthenelse{\boolean{presentation}\only<-3>{X^{1291}+1\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
+p(X)&=
+\ifthenelse{\boolean{presentation}}{\only<-3>{X^{1291}+1\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{X^2-2X\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
 \\
-p(D) &= \ifthenelse{\boolean{presentation}\only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
+p(D) &= \ifthenelse{\boolean{presentation}}{\only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{D^2-2D\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
 \end{align*}
 \end{block}}
