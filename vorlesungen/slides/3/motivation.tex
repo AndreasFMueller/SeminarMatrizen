@@ -42,10 +42,10 @@ D&=\begin{pmatrix}
 \sin \frac{\pi}{1291} &  \cos\frac{\pi}{1291}
 \end{pmatrix}
 \\
-p(X)&= \only<-3>{X^{1291}+1\phantom{+\frac{\mathstrut}{\mathstrut}}}
+p(X)&= \ifthenelse{\boolean{presentation}\only<-3>{X^{1291}+1\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{X^2-2X\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
 \\
-p(D) &= \only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}
+p(D) &= \ifthenelse{\boolean{presentation}\only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{D^2-2D\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
 \end{align*}
 \end{block}}
@@ -56,6 +56,7 @@ p(D) &= \only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}
 \begin{block}{3D-Beispiel}
 $p(x) = -x^3-5x^2+5x+1$
 \[
+\ifthenelse{\boolean{presentation}}{
 \only<5-8>{
 A=
 \begin{pmatrix*}[r]
@@ -64,7 +65,7 @@ A=
 -1&-1&2
 \end{pmatrix*}}
 \only<6-8>{
-\quad\Rightarrow\quad}
+\quad\Rightarrow\quad}}{}
 \uncover<6->{
 -
 \only<-9>{A^3}\only<10->{

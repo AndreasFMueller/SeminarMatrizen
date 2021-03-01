@@ -48,10 +48,10 @@ D&=\begin{pmatrix}
 \sin \frac{\pi}{1291} &  \cos\frac{\pi}{1291}
 \end{pmatrix}
 \\
-0 &= \only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}
+0 &= \ifthenelse{\boolean{presentation}}{\only<-3>{D^{1291}+I\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{D^2-2D\cos\frac{\pi\mathstrut}{1291\mathstrut}+I}
 \\
-0 &= \only<-3>{D^{1290}+D^{-1}\phantom{+\frac{\mathstrut}{\mathstrut}}}
+0 &= \ifthenelse{\boolean{presentation}}{\only<-3>{D^{1290}+D^{-1}\phantom{+\frac{\mathstrut}{\mathstrut}}}}{}
 \only<4->{D-2\cos\frac{\pi\mathstrut}{1291\mathstrut}+D^{-1}}
 \\
 D^{-1}
