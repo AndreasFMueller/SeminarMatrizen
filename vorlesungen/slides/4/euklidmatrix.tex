@@ -4,6 +4,90 @@
 % (c) 2021 Prof Dr Andreas Müller, OST Ostscheizer Fachhochschule
 %
 \begin{frame}[t]
-\frametitle{Matrixform}
+\frametitle{Matrixform des euklidischen Algorithmus}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.52\textwidth}
+\begin{block}{Einzelschritt}
+\vspace{-10pt}
+\[
+a_k = b_kq_k + r_k
+\;\Rightarrow\;
+\left\{
+\begin{aligned}
+a_{k+1} &= b_k = \phantom{a_k-q_k}\llap{$-\mathstrut$}b_k \\
+b_{k+1} &= \phantom{b_k}\llap{$r_k$} = a_k - q_kb_k 
+\end{aligned}
+\right.
+\]
+\end{block}
+\end{column}
+\begin{column}{0.44\textwidth}
+\begin{block}{Matrixschreibweise}
+\vspace{-10pt}
+\begin{align*}
+\begin{pmatrix}
+a_{k+1}\\
+b_{k+1}
+\end{pmatrix}
+&=
+\begin{pmatrix}
+b_k\\r_k
+\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}0&1\\1&-q_k\end{pmatrix}}_{\displaystyle =Q(q_k)}
+\begin{pmatrix}
+a_k\\b_k
+\end{pmatrix}
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\vspace{-10pt}
+\begin{block}{Ende des Algorithmus}
+\vspace{-10pt}
+\begin{align*}
+\begin{pmatrix}
+a_{n+1}\\
+b_{n+1}\\
+\end{pmatrix}
+&=
+\begin{pmatrix}
+r_{n-1}\\
+r_{n}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\operatorname{ggT}(a,b) \\
+0
+\end{pmatrix}
+=
+\underbrace{Q(q_n)
+\dots
+Q(q_1)
+Q(q_0)}_{\displaystyle =Q}
+\begin{pmatrix} a_0\\ b_0\end{pmatrix}
+=
+Q\begin{pmatrix}a\\b\end{pmatrix}
+\end{align*}
+\end{block}
+\begin{block}{Konsequenzen}
+\[
+Q=\begin{pmatrix}
+q_{11}&q_{12}\\
+a_{21}&q_{22}
+\end{pmatrix}
+\quad\Rightarrow\quad
+\left\{
+\quad
+\begin{aligned}
+\operatorname{ggT}(a,b) &= q_{11}a + q_{12}b \\
+                      0 &= q_{21}a + q_{22}b
+\end{aligned}
+\right.
+\]
+\end{block}
 
 \end{frame}

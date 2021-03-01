@@ -6,5 +6,8 @@
 #
 chapter4 =								\
 	../slides/4/ggt.tex						\
+	../slides/4/euklidmatrix.tex					\
+	../slides/4/euklidbeispiel.tex					\
+	../slides/4/fp.tex						\
 	../slides/4/chapter.tex
 

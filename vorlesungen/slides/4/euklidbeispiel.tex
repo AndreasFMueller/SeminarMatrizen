@@ -1,0 +1,44 @@
+%
+% euklidmatrix.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostscheizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\frametitle{Beispiel}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\vspace{-0pt}
+\begin{block}{Finde $\operatorname{ggT}(25,15)$}
+\vspace{-12pt}
+\begin{align*}
+a_0&=25 & b_0 &= 15 &25&=15 \cdot {\color{red}      1} + 10 &q_0 &= {\color{red}1} & r_0 &= 10\\
+a_1&=15 & b_1 &= 10 &15&=10 \cdot {\color{darkgreen}1} + \phantom{0}5  &q_1 &= {\color{darkgreen}1} & r_1 &= \phantom{0}5 \\
+a_2&=10 & b_2 &= \phantom{0}5 &10&=\phantom{0}5  \cdot {\color{blue}     2} + \phantom{0}0  &q_2 &= {\color{blue}2} & r_2 &= \phantom{0}0 
+\end{align*}
+\end{block}
+\vspace{-5pt}
+\begin{block}{Matrix-Operationen}
+\begin{align*}
+Q
+&=
+Q({\color{blue}2}) Q({\color{darkgreen}1}) Q({\color{red}1})
+=
+\begin{pmatrix}0&1\\1&-{\color{blue}2}\end{pmatrix}
+\begin{pmatrix}0&1\\1&-{\color{darkgreen}1}\end{pmatrix}
+\begin{pmatrix}0&1\\1&-{\color{red}1}\end{pmatrix}
+=\begin{pmatrix}
+-1&2\\3&-5
+\end{pmatrix}
+\end{align*}
+\end{block}
+\vspace{-5pt}
+\begin{block}{Relationen ablesen}
+\begin{align*}
+\operatorname{ggT}({\usebeamercolor[fg]{title}25},{\usebeamercolor[fg]{title}15}) &= 5 = -1\cdot {\usebeamercolor[fg]{title}25} + 2\cdot {\usebeamercolor[fg]{title}15} \\
+ 0                        &= \phantom{5=-}3\cdot {\usebeamercolor[fg]{title}25} -5\cdot {\usebeamercolor[fg]{title}15}
+\end{align*}
+\end{block}
+
+\end{frame}
