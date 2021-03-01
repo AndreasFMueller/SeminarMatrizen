@@ -22,5 +22,6 @@ chapter3 =								\
 	../slides/3/drehfaktorisierung.tex				\
 	../slides/3/operatoren.tex					\
 	../slides/3/adjunktion.tex					\
+	../slides/3/adjalgebra.tex					\
 	../slides/3/chapter.tex
 

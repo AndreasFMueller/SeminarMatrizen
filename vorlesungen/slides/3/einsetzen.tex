@@ -9,41 +9,45 @@
 \[
 \begin{array}{rcrcrcrcrcrcr}
 p(X)&=&a_nX^n&+&a_{n-1}X^{n-1}&+&\dots&+&a_2X^2&+&a_1X&+&a_0\phantom{I}\\
-\bigg\downarrow\hspace*{4pt}      & &
-\bigg\downarrow\hspace*{4pt}      & &
-\bigg\downarrow\hspace*{10pt}                   & &     & &
-\bigg\downarrow\hspace*{4pt}           & &
-\bigg\downarrow\hspace*{2pt}         & &
-\bigg\downarrow\hspace*{0pt}                   \\
-p(A)&=&a_nA^n&+&a_{n-1}A^{n-1}&+&\dots&+&a_2A^2&+&a_1A&+&a_0         I
+\uncover<2->{\bigg\downarrow\hspace*{4pt}}  & &
+\uncover<3->{\bigg\downarrow\hspace*{4pt}}  & &
+\uncover<4->{\bigg\downarrow\hspace*{10pt}} & &     & &
+\uncover<5->{\bigg\downarrow\hspace*{4pt}}  & &
+\uncover<6->{\bigg\downarrow\hspace*{2pt}}  & &
+\uncover<7->{\bigg\downarrow\hspace*{0pt}}  \\
+\uncover<2->{p(A)}&\uncover<3->{=&a_nA^n}&\uncover<4->{+&a_{n-1}A^{n-1}}&\uncover<5->{+&\dots&+&a_2A^2}&\uncover<6->{+&a_1A}&\uncover<7->{+&a_0         I}
 \end{array}
 \]
 \vspace{-10pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<8->{%
 \begin{block}{Nilpotente Matrizen}
 $p(X) = (X-a)^n$
 \[
-p(A) = 0
+\uncover<9->{p(A) = 0}
+\uncover<10->{
 \quad\Rightarrow\quad
-\text{$A$ ist nilpotent}
+\text{$A-aI$ ist nilpotent}}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<11->{%
 \begin{block}{Eigenwerte}
 $p(X) = (X-\lambda_1)(X-\lambda_2)$,\\
 $A$ eine $2\times 2$-Matrix
 \[
-p(A)=0\quad\Rightarrow\quad
+\uncover<12->{p(A)=0}
+\uncover<13->{\quad\Rightarrow\quad
 \left\{
 \begin{aligned}
 &\text{$A-\lambda_1I$ ist singulär}\\
 &\text{$A-\lambda_2I$ ist singulär}
 \end{aligned}
-\right.
+\right.}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 

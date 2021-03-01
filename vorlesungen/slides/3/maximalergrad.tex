@@ -13,55 +13,60 @@ Der Ring $M_{n}(\Bbbk)$ ist ein $n^2$-dimensionaler Vektorraum mit
 Basis
 {\tiny
 \begin{align*}
-&\begin{pmatrix}
+&\uncover<2->{\begin{pmatrix}
 1&0&\dots&0\\
 0&0&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 &
-&\begin{pmatrix}
+&\uncover<3->{\begin{pmatrix}
 0&1&\dots&0\\
 0&0&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 &
-&\dots
+&\uncover<4->{\dots}
 &
-&\begin{pmatrix}
+&\uncover<5->{\begin{pmatrix}
 0&0&\dots&1\\
 0&0&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 \\
-&\begin{pmatrix}
+&\uncover<6->{\begin{pmatrix}
 0&0&\dots&0\\
 1&0&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 &
-&\begin{pmatrix}
+&\uncover<7->{\begin{pmatrix}
 0&0&\dots&0\\
 0&1&\dots&0\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 &
-&\dots
+&\uncover<8->{\dots}
 &
-&\begin{pmatrix}
+&\uncover<9->{\begin{pmatrix}
 0&0&\dots&0\\
 0&0&\dots&1\\
 \vdots&\vdots&\ddots&\vdots\\
-\end{pmatrix}
+\end{pmatrix}}
 \end{align*}}
 \end{block}
 \vspace{-10pt}
+\uncover<10->{%
 \begin{block}{Potenzen von $A$}
 Die $n^2+1$ Matrizen $I,A,A^2,\dots,A^{n^2-1},A^{n^2}$ müssen linear abhängig
 sein:
 \[
+\uncover<11->{
 a_0I+a_1A+a_2A^2+\dots+a_{n^2-1}A^{n^2-1}+a_{n^2}A^{n^2} = 0
+}
 \]
-d.~h.~$p(X) = a_0+a_1X+a_2X^2+\dots +a_{n^2-1}X^{n^2-1}+a_{n^2}A^{n^2}\in\Bbbk[X]$ ist ein Polynom mit $p(A)=0$.
-\end{block}
+\uncover<12->{d.~h.~$p(X) = a_0+a_1X+a_2X^2+\dots +a_{n^2-1}X^{n^2-1}+a_{n^2}A^{n^2}\in\Bbbk[X]$ ist ein Polynom mit $p(A)=0$.}
+\end{block}}
+\uncover<13->{%
 $\Rightarrow$ $A$ über die Eigenschaften (Faktorisierung) von $p$ studieren
+}
 \end{frame}

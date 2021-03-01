@@ -9,29 +9,32 @@
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
 \begin{block}{Teilen in $\mathbb{Z}$}
-Zu zwei Zahlen $a,b\in \mathbb{Z}$, $a>b$ gibt es
-immer genau ein Paar $q,r\in\mathbb{Z}$ derart, dass
+Zu zwei Zahlen $a,b\in \mathbb{Z}$, \only<3->{{\color<3-4>{red}$a>b$}, }gibt es
+immer \only<3->{{\color<3-4>{red}genau}} ein Paar $q,r\in\mathbb{Z}$ derart, dass
 \begin{align*}
 a&=bq+r
 \\
-r&< b
+\uncover<3->{{\color<3-4>{red}r}&{\color<3-4>{red}< b}}
 \end{align*}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
 \begin{block}{Teilen in $\mathbb{Q}[X]$}
-Zu zwei Polynomen $a,b\in\mathbb{Q}[X]$, $\deg a > \deg b$
+Zu zwei Polynomen $a,b\in\mathbb{Q}[X]$, \only<4->{{\color<4>{red}$\deg a > \deg b$},}
 gibt es 
-immer genau ein Paar $q,r\in\mathbb{Q}[X]$ derart, dass
+immer \only<4->{{\color<4>{red}bis auf eine Einheit genau }}%
+ein Paar $q,r\in\mathbb{Q}[X]$ derart, dass
 \begin{align*}
 a&=bq+r
 \\
-\deg r&< \deg b
+\uncover<4->{{\color<4>{red}\deg r}&{\color<4>{red}< \deg b}}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
-\begin{block}{Allgmein: euklidischer Ring}
+\uncover<5->{%
+\begin{block}{Allgemein: euklidischer Ring}
 Nullteilerfreier Ring $R$ mit einer Funktion
 $d\colon R\setminus{0}\to\mathbb{N}$ mit
 \begin{itemize}
@@ -40,5 +43,5 @@ $d\colon R\setminus{0}\to\mathbb{N}$ mit
 $x=qy +r$ mit $d(y)>d(r)$
 \end{itemize}
 Euklidische Ringe haben ähnliche Eigenschaften wie Polynomringe
-\end{block}
+\end{block}}
 \end{frame}
