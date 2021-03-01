@@ -6,6 +6,7 @@
 #
 chapter3 =								\
 	../slides/3/motivation.tex					\
+	../slides/3/inverse.tex						\
 	../slides/3/polynome.tex					\
 	../slides/3/division.tex					\
 	../slides/3/division2.tex					\
