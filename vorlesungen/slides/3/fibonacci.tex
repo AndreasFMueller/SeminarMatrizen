@@ -1,0 +1,71 @@
+%
+% fibonacci.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+
+\begin{frame}[t]
+\frametitle{Fibonacci}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{block}{Fibonacci-Rekursion}
+$x_i$ Fibonacci-Zahlen\uncover<2->{, d.~h.~$x_{n+1\mathstrut}=x_{n\mathstrut}+x_{n-1\mathstrut}$}
+\[
+\uncover<3->{
+v_n
+=
+\begin{pmatrix}
+x_{n+1}\\
+x_n
+\end{pmatrix}}
+\uncover<4->{
+\quad\Rightarrow\quad
+v_n = 
+\underbrace{
+\begin{pmatrix}
+1&1\\
+1&0
+\end{pmatrix}
+}_{\displaystyle=\Phi}
+v_{n-1}}
+\uncover<5->{
+\quad\Rightarrow\quad
+v_n
+=
+\Phi^n
+v_0}\uncover<6->{,
+\;
+v_0 = \begin{pmatrix} 1\\0\end{pmatrix}}
+\]
+\end{block}
+\vspace{-5pt}
+\uncover<7->{%
+\begin{block}{Rekursionsformel für $\Phi$}
+\vspace{-12pt}
+\begin{align*}
+v_{n}&=v_{n-1}+v_{n-2}
+&&\uncover<8->{\Rightarrow&
+\Phi^n v_0 &= \Phi^{n-1} v_0 + \Phi^{n-2}v_0}
+&&\uncover<9->{\Rightarrow&
+\Phi^{n-2}(\Phi^2-\Phi-I)v_0&=0}
+\\
+\end{align*}
+\vspace{-22pt}%
+
+\uncover<10->{$\Phi$ ist $\chi_\Phi(X)=m_\Phi(X) = X^2-X-1$, irreduzibel}
+\end{block}}
+
+\uncover<11->{%
+\begin{block}{Faktorisierung}
+\vspace{-12pt}
+\[
+(X-\Phi)(X-(I-\Phi))
+\uncover<12->{=
+X^2-X +\Phi(I-\Phi)}
+\uncover<13->{=
+X^2-X -\underbrace{\Phi^2-\Phi}_{\displaystyle=I}
+}
+\]
+\end{block}}
+
+\end{frame}

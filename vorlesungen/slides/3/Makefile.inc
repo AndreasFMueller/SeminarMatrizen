@@ -17,6 +17,7 @@ chapter3 =								\
 	../slides/3/einsetzen.tex					\
 	../slides/3/maximalergrad.tex					\
 	../slides/3/minimalbeispiel.tex					\
+	../slides/3/fibonacci.tex					\
 	../slides/3/minimalpolynom.tex					\
 	../slides/3/drehmatrix.tex					\
 	../slides/3/drehfaktorisierung.tex				\
