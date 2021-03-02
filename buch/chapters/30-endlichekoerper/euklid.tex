@@ -16,6 +16,9 @@ In diesem Abschnitt soll der Algorithmus zunächst für ganze Zahlen
 vorgestellt werden, bevor er auf Polynome verallgemeinert und dann
 in Matrixform niedergeschrieben wird.
 
+%
+% Der euklidische Algorithmus für ganze Zahlen
+%
 \subsection{Ganze Zahlen}
 Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
 dass $a\ge b$.
@@ -59,6 +62,7 @@ Der letzte nicht verschwindende Rest $r_n$ muss daher der grösste gemeinsame
 Teiler sein: $g=r_n$.
 
 \begin{beispiel}
+\label{buch:endlichekoerper:beispiel1}
 Wir bestimmen den grössten gemeinsamen Teiler von $76415$ und $23205$
 mit Hilfe des eben beschriebenen Algorithmus.
 Wir schreiben die gefundenen Zahlen in eine Tabelle:
@@ -116,7 +120,11 @@ die Zahlen $t=-58$ und $s=191$ sind also genau die eingangs versprochenen
 Faktoren.
 \end{beispiel}
 
-\subsection{Matrixschreibweise}
+%
+% Matrixschreibeweise für den euklidischen Algorithmus
+%
+\subsection{Matrixschreibweise
+\label{buch:endlichekoerper:subsection:matrixschreibweise}}
 Die Durchführung des euklidischen Algorithmus lässt sich besonders elegant
 in Matrixschreibweise dokumentieren.
 In jedem Schritt arbeitet man mit zwei ganzen Zahlen $a_k$ und $b_k$, die wir
@@ -263,8 +271,7 @@ Q
 \begin{pmatrix} 1 & -2 \\ -3 &  7 \end{pmatrix}
 \begin{pmatrix} 0 &  1 \\  1 & -3 \end{pmatrix}
 }_{}
-\\
-&=
+\\ &=
 \begin{pmatrix}  3 &  -7 \\ -14 &  33 \end{pmatrix}
 \begin{pmatrix} -3 &  10 \\   7 & -23 \end{pmatrix}
 =
@@ -315,6 +322,186 @@ berechnen.
 Dies ist die Art von Matrix, die wir für die Implementation der
 Wavelet-Transformation anstreben.
 
+%
+% Vereinfachte Durchführung des euklidischen Algorithmus
+%
+\subsection{Vereinfachte Durchführung
+\label{buch:endlichekoerper:subsection:matrixschreibweise}}
+Die Durchführung des euklidischen Algorithmus mit Hilfe der Matrizen
+$Q(q_k)$ ist etwas unhandlich.
+In diesem Abschnitt sollen die Matrizenprodukte daher in einer Form
+dargestellt werden, die leichter als Programm zu implementieren ist.
+
+In Abschnitt~\ref{buch:endlichekoerper:subsection:matrixschreibweise}
+wurde gezeigt, dass das Produkt der aus den Quotienten $q_k$ gebildeten
+Matrizen $Q(q_k)$ berechnet werden müssen.
+Dazu beachten wir zunächst, dass die Multiplikation mit der Matrix
+$Q(q_k)$ die zweite Zeile in die erste Zeile verschiebt:
+\[
+Q(q_k)
+\begin{pmatrix}
+u&v\\
+c&d\\
+\end{pmatrix}
+=
+\begin{pmatrix}0&1\\1&-q_k\end{pmatrix}
+\begin{pmatrix}
+u&v\\
+c&d
+\end{pmatrix}
+=
+\begin{pmatrix}
+c&d\\
+u-q_kc&v-q_kd
+\end{pmatrix}.
+\]
+Die Matrizen
+\[
+Q_k = Q(q_k)Q(q_{k-1})\dots Q(q_0)
+\]
+haben daher jeweils für aufeinanderfolgende Werte vo $k$ eine Zeile
+gemeinsam.
+Wir bezeichnen die Einträge der ersten Zeile der Matrix $Q_k$ mit
+$c_k$ und $d_k$.
+Es gilt dann
+\[
+Q_k
+=
+\begin{pmatrix}
+c_{k}  &d_{k}  \\
+c_{k+1}&d_{k+1}
+\end{pmatrix}
+=
+Q(q_k)
+\begin{pmatrix}
+c_{k-1}&d_{k-1}\\
+c_{k}  &d_{k}
+\end{pmatrix}
+\]
+Daraus ergeben sich die Rekursionsformeln
+\begin{equation}
+\begin{aligned}
+c_{k+1}&=c_{k-1}-q_kc_k\\
+d_{k+1}&=d_{k-1}-q_kd_k.
+\end{aligned}
+\label{buch:endlichekoerper:eqn:cdrekursion}
+\end{equation}
+Die Auswertung des Matrizenproduktes von links nach rechts beginnt mit
+der Einheitsmatrix, es ist
+\[
+Q_0
+=
+Q(q_0) I
+=
+\begin{pmatrix}
+0&1\\
+1&-q_0
+\end{pmatrix}
+\begin{pmatrix}
+1&0\\0&1\end{pmatrix},
+\]
+woraus man ablesen kann, dass
+\begin{equation}
+Q_{-1}
+=
+\begin{pmatrix}
+c_{-1}&d_{-1}\\
+c_0&d_0
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix}
+\label{buch:endlichekoerper:eqn:cdinitial}
+\end{equation}
+gesetzt werden muss.
+
+Mit diesen Notationen kann man den Algorithmus jetzt in der früher
+verwendeten Tabelle durchführen, die man um die zwei
+Spalten $c_k$ und $d_k$ hinzufügt und die Werte in dieser
+Spalte mit Hilfe der
+Rekursionsformeln~\eqref{buch:endlichekoerper:eqn:cdrekursion}
+aus den initialen Werten~\eqref{buch:endlichekoerper:eqn:cdinitial}
+berechnet.
+
+\begin{beispiel}
+Wir erweitern das Beispiel von Seite~\pageref{buch:endlichekoerper:beispiel1}
+zur Bestimmung des grössten gemeinsamen Teilers von $76415$ und $23205$
+zur Berechnung der Koeffizienten $c_k$ und $d_k$
+Wir schreiben die gefundenen Zahlen in eine Tabelle:
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
+\hline
+k&   a_k&   b_k&    q_k&  r_k&     c_k&     d_k\\
+\hline
+ &      &      &       &     &       1&       0\\
+0& 76415& 23205&      3& 6800&       0&       1\\
+1& 23205&  6800&      3& 2805&       1&      -3\\
+2&  6800&  2805&      2& 1190&      -3&      10\\
+3&  2805&  1190&      2&  425&       7&     -23\\
+4&  1190&   425&      2&  340&     -17&      56\\
+5&   425&   340&      1&   85&      41&    -135\\
+6&   340&    85&      4&    0&     -58&     191\\
+7&    85&     0&       &     &     273&    -899\\
+\hline
+\end{tabular}
+\end{center}
+Aus den letzten zwei Spalten der Tabelle kann man ablesen, dass
+\begin{align*}
+-58\cdot 76415 + 191\cdot 23205 &= 85\\
+273\cdot 76415 - 899\cdot 23205 &= 0,
+\end{align*}
+wie erwartet.
+Die gesuchten Zahlen $s$ und $t$ sind also $s=-58$ und $t=191$.
+\end{beispiel}
+
+Die Matrizen $Q_k$ kann man auch as der Tabelle ablesen, sie bestehen
+aus den vier Elementen in den Zeilen $k$ und $k+1$ in den
+Spalten $c_k$ und $d_k$.
+Auf jeder Zeile gilt $b_k = c_ka_0 + d_kb_0$, für $k>0$ ist dies
+$c_ka_0+d_kb_0=r_{k-1}$.
+
+Bis jetzt gingen wir immer davon aus, dass $a>b$ ist.
+Dies ist jedoch nicht nötig, wie die Durchführung des Algorithmus
+für das obige Beispiel mit vertauschten Werten von $a$ und $b$ zeigt.
+Wir bezeichnen die Elemente zur Unterscheidung von der ursprünglichen
+Durchführung mit einem Strich:
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
+\hline
+k&  a_k'&  b_k'&   q_k'&  r_k'&    c_k'&    d_k'\\
+\hline
+ &      &      &       &      &       1&       0\\
+0& 23205& 76415&      0& 23205&       0&       1\\
+1& 76415& 23205&      3&  6800&       1&       0\\
+2& 23205&  6800&      3&  2805&      -3&       1\\
+3&  6800&  2805&      2&  1190&      10&      -3\\
+4&  2805&  1190&      2&   425&     -23&       7\\
+5&  1190&   425&      2&   340&      56&     -17\\
+6&   425&   340&      1&    85&    -135&      41\\
+7&   340&    85&      4&     0&     191&     -58\\
+8&    85&     0&       &      &    -899&     273\\
+\hline
+\end{tabular}
+\end{center}
+Da für $a<b$ der erste Quotient $q_0'=0$ ist, werden die ersten neuen
+Elemente $c_1'=1=d_0$ und $d_1'=0=c_0$ sein.
+Die nachfolgenden Quotienten sind genau die gleichen, also $q_k = q_{k+1}'$
+und damit werden auch
+\[
+c_{k}=d_{k+1}' \qquad\text{und}\qquad d_{k} = c_{k+1}'
+\]
+sein.
+Man findet also die gleichen Einträge in einer Tabelle, die eine Zeile
+mehr hat und in der die letzten zwei Spalten gegenüber der ursprünglichen
+Tabelle vertauscht wurden.
+
+%
+% Der euklidische Algorithmus für Polynome
+%
 \subsection{Polynome}
 Der Ring $\mathbb{Q}[X]$ der Polynome in der Variablen $X$ mit rationalen
 Koeffizienten\footnote{Es kann auch ein beliebiger anderer Körper für
