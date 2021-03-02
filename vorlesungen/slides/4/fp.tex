@@ -13,6 +13,13 @@
 \def\rot#1#2{
 	\fill[color=red!20] ({#1-0.5},{5-#2-0.5}) rectangle ({#1+0.5},{5-#2+0.5});
 }
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\gruen#1#2{
+	\fill[color=darkgreen!20] ({#1-0.5},{6-#2-0.5}) rectangle ({#1+0.5},{6-#2+0.5});
+}
+\def\inverse#1#2{
+	\node at (9,{6-#1}) {$#1^{-1}=#2\mathstrut$};
+}
 \begin{frame}[t]
 \frametitle{Galois-Körper}
 \vspace{-20pt}
@@ -53,7 +60,9 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \vspace{-20pt}
 \begin{center}
 \begin{tikzpicture}[>=latex,thick,scale=0.45]
-\begin{scope}[xshift=-7cm]
+\fill[color=white] (-12,0) circle[radius=0.1];
+\fill[color=white] (12,0) circle[radius=0.1];
+\begin{scope}[xshift=-8cm]
 \rot{2}{3}
 \rot{4}{3}
 \rot{3}{2}
@@ -98,7 +107,13 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \feld{4}{5}{2} \feld{5}{4}{2}
 \feld{5}{5}{1}
 \end{scope}
-\begin{scope}[xshift=7cm]
+\begin{scope}[xshift=6cm]
+\gruen{1}{1}
+\gruen{2}{4}
+\gruen{3}{5}
+\gruen{4}{2}
+\gruen{5}{3}
+\gruen{6}{6}
 \fill[color=gray!40] (-0.5,6.5) rectangle (6.5,7.5);
 \fill[color=gray!40] (-1.5,-0.5) rectangle (-0.5,6.5);
 \foreach \x in {-0.5,6.5}{
@@ -143,6 +158,12 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \geld{5}{5}{4}
 \geld{6}{5}{2} \geld{5}{6}{2}
 \geld{6}{6}{1}
+\inverse{1}{1}
+\inverse{2}{4}
+\inverse{3}{5}
+\inverse{4}{2}
+\inverse{5}{3}
+\inverse{6}{6}
 \end{scope}
 \end{tikzpicture}
 \end{center}
