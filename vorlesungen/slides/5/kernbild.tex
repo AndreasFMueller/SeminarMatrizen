@@ -1,0 +1,68 @@
+%
+% kernbild.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Kern und Bild}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Kern}
+Lineare Abbildung $f\colon V\to V$
+\[
+\ker f = \mathcal{K}(F) = \{v\in V\;|\; f(v)=0\}
+\]
+\end{block}
+\begin{block}{Kern von $A^k$}
+\[
+\mathcal{K}^k(f) = \operatorname{ker} f^k
+\]
+\begin{align*}
+\mathcal{K}^k(f)
+&=
+\{v\in V\;|\; f^{k}(v)=0\}
+\\
+&\subset
+\{v\in V\;|\; f^{k+1}(v)=0\}
+\\
+&=\mathcal{K}^{k+1}(f)
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Bild}
+Lineare Abbildung $f\colon V\to V$
+\[
+\operatorname{im}f
+=
+\mathcal{J}(f)
+=
+\{f(v)\;|\; v\in V\}
+\]
+\end{block}
+\begin{block}{Bild von $A^k$}
+\[
+\mathcal{J}^k(f) = \operatorname{im}f^k
+\]
+\begin{align*}
+\mathcal{J}^k(f)
+&=
+\operatorname{im}f^k
+=
+\operatorname{im}(f^{k}\circ f)
+\\
+&=
+\{f^{k-1} w\;|\; w = f(v)\}
+\\
+&\subset
+\{f^{k-1} w\;|\; w \in V\}
+\\
+&\mathcal{J}^{k-1}(f)
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}

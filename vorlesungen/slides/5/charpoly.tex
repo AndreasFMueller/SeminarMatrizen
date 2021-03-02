@@ -1,0 +1,68 @@
+%
+% charpoly.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Charakteristisches Polynom über $\mathbb{C}$}
+\vspace{-18pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Eigenwerte}
+Nur diejenigen $\mu$ kommen in Frage, für die
+$A-\mu I$ singulär ist:
+\[
+\chi_{A}(\mu)
+=
+\det (A-\mu I) = 0
+\]
+$\Rightarrow$ $\mu$ ist Nullstelle von $\chi_{A}(X)\in\mathbb{C}[X]$
+\end{block}
+\begin{block}{Zerlegung in Linearfaktoren}
+$\mu_1,\dots,\mu_n$ die Nullstellen von $\chi_A(X)$:
+\[
+\chi_A(X)
+=
+(X-\mu_1)\dots (X-\mu_n)
+\]
+\end{block}
+\begin{block}{Fundamentalsatz der Algebra}
+Über $\mathbb{C}$ zerfällt jedes Polynom in $\mathbb{C}[X]$ in
+Linearfaktoren
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Minimalpolynom}
+Alle Nullstellen von $\chi_A(X)$ müssen in $m_A(X)$ vorkommen
+\end{block}
+\begin{proof}[Beweis]
+\begin{enumerate}
+\item
+$m_A(X) = (X-\lambda) \prod_{i\in I}(X-\mu_i)$
+\item
+$A-\lambda I$ ist regulär
+\end{enumerate}
+\begin{align*}
+&\Rightarrow&
+m_A(A)&=0
+\\
+&&
+(A-\lambda)^{-1}m_A(A) &=0
+\\
+&&
+\prod_{i\in I}(A-\mu_i)&=0,
+\end{align*}
+d.~h.~\(
+\displaystyle
+\overline{m}_A(X)
+=
+\prod_i{i\in I}(X-\mu_i)
+\in
+\mathbb{C}[X]
+\)
+\end{proof}
+\end{column}
+\end{columns}
+\end{frame}

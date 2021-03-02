@@ -1,0 +1,78 @@
+%
+% ketten.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Ketten von Unterräumen}
+\begin{block}{Schachtelung}
+Die Unterräume $\mathcal{J}^k(f)$ und $\mathcal{K}^k(f)$ sind geschachtelt:
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcccc}
+0       &=&\mathcal{K}^0(f)
+	&\subset&\mathcal{K}^1(f)
+	&\subset&\dots
+	&\subset&\mathcal{K}^k(f)
+	&\subset&\mathcal{K}^{k+1}(f)
+	&\subset&\dots
+	&\subset&\displaystyle\bigcup_{k=0}^\infty \mathcal{K}^k(f)
+	&=:&\mathcal{K}(f)
+\\[14pt]
+\Bbbk^n &=&\mathcal{J}^0(f)
+	&\supset&\mathcal{J}^1(f)
+	&\supset&\dots
+	&\supset&\mathcal{J}^{k}(f)
+	&\supset&\mathcal{J}^{k+1}(f)
+	&\supset&\dots
+	&\supset&\displaystyle\bigcap_{k=0}^\infty \mathcal{J}^k(f)
+	&=:&\mathcal{J}(f)
+\end{array}
+\]
+\end{block}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Abildung der Kerne}
+\vspace{-10pt}
+\begin{align*}
+f \mathcal{K}^k(f)
+&=
+\{f(v)\;|\; f^k(v) = 0\}
+\\
+&\subset
+\{ v\;|\; f^{k+1}(v)=0\}
+\\
+&=
+\mathcal{K}^{k+1}(f)
+\\
+\Rightarrow
+f\mathcal{K}(f)&= f\mathcal{K}(f)
+\quad\text{invariant}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Abbildung der Bild}
+\vspace{-10pt}
+\begin{align*}
+f\mathcal{J}^k(f)
+&=
+\{f(f^{k}(v))\;|\; v\in V\}
+\\
+&=
+\{f^{k+1}(v)\;|\; v\in V\}
+\\
+&=
+\mathcal{J}^{k+1}(f)
+\\
+\Rightarrow
+f\mathcal{J}(f)&= \mathcal{J}(f)
+\quad\text{invariant}
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
