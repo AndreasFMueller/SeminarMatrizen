@@ -16,5 +16,6 @@ chapter5 =								\
 	../slides/5/eigenraeume.tex					\
 	../slides/5/zerlegung.tex					\
 	../slides/5/normalnilp.tex					\
+	../slides/5/jordan.tex						\
 	../slides/5/chapter.tex
 
