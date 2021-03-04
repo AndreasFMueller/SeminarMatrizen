@@ -10,29 +10,38 @@
 \vspace{-15pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<1->{%
 \begin{block}{Kern}
 Lineare Abbildung $f\colon V\to V$
 \[
 \ker f = \mathcal{K}(F) = \{v\in V\;|\; f(v)=0\}
 \]
-\end{block}
+\end{block}}
+\uncover<3->{%
 \begin{block}{Kern von $A^k$}
 \[
 \mathcal{K}^k(f) = \operatorname{ker} f^k
 \]
 \begin{align*}
+\uncover<5->{
 \mathcal{K}^k(f)
 &=
 \{v\in V\;|\; f^{k}(v)=0\}
+}
 \\
+\uncover<6->{
 &\subset
 \{v\in V\;|\; f^{k+1}(v)=0\}
+}
 \\
+\uncover<7->{
 &=\mathcal{K}^{k+1}(f)
+}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
 \begin{block}{Bild}
 Lineare Abbildung $f\colon V\to V$
 \[
@@ -42,27 +51,36 @@ Lineare Abbildung $f\colon V\to V$
 =
 \{f(v)\;|\; v\in V\}
 \]
-\end{block}
+\end{block}}
+\uncover<4->{%
 \begin{block}{Bild von $A^k$}
 \[
 \mathcal{J}^k(f) = \operatorname{im}f^k
 \]
 \begin{align*}
+\uncover<8->{
 \mathcal{J}^k(f)
 &=
 \operatorname{im}f^k
 =
 \operatorname{im}(f^{k}\circ f)
+}
 \\
+\uncover<9->{
 &=
 \{f^{k-1} w\;|\; w = f(v)\}
+}
 \\
+\uncover<10->{
 &\subset
 \{f^{k-1} w\;|\; w \in V\}
+}
 \\
-&\mathcal{J}^{k-1}(f)
+\uncover<11->{
+&=\mathcal{J}^{k-1}(f)
+}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

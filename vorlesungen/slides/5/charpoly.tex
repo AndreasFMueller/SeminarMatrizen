@@ -20,6 +20,7 @@ $A-\mu I$ singulär ist:
 \]
 $\Rightarrow$ $\mu$ ist Nullstelle von $\chi_{A}(X)\in\mathbb{C}[X]$
 \end{block}
+\uncover<2->{%
 \begin{block}{Zerlegung in Linearfaktoren}
 $\mu_1,\dots,\mu_n$ die Nullstellen von $\chi_A(X)$:
 \[
@@ -27,33 +28,42 @@ $\mu_1,\dots,\mu_n$ die Nullstellen von $\chi_A(X)$:
 =
 (X-\mu_1)\dots (X-\mu_n)
 \]
-\end{block}
+\end{block}}
+\uncover<3->{%
 \begin{block}{Fundamentalsatz der Algebra}
 Über $\mathbb{C}$ zerfällt jedes Polynom in $\mathbb{C}[X]$ in
 Linearfaktoren
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<4->{%
 \begin{block}{Minimalpolynom}
 Alle Nullstellen von $\chi_A(X)$ müssen in $m_A(X)$ vorkommen
-\end{block}
+\end{block}}
+\uncover<5->{%
 \begin{proof}[Beweis]
 \begin{enumerate}
-\item
+\item<6->
 $m_A(X) = (X-\lambda) \prod_{i\in I}(X-\mu_i)$
-\item
+\item<7->
 $A-\lambda I$ ist regulär
 \end{enumerate}
+\uncover<8->{%
 \begin{align*}
 &\Rightarrow&
 m_A(A)&=0
 \\
 &&
+\uncover<9->{
 (A-\lambda)^{-1}m_A(A) &=0
+}
 \\
 &&
+\uncover<10->{
 \prod_{i\in I}(A-\mu_i)&=0,
-\end{align*}
+}
+\end{align*}}
+\uncover<11->{%
 d.~h.~\(
 \displaystyle
 \overline{m}_A(X)
@@ -61,8 +71,8 @@ d.~h.~\(
 \prod_i{i\in I}(X-\mu_i)
 \in
 \mathbb{C}[X]
-\)
-\end{proof}
+\)}
+\end{proof}}
 \end{column}
 \end{columns}
 \end{frame}

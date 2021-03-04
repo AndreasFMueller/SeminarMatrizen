@@ -13,6 +13,7 @@
 Matrix $A$ mit Minimalpolynom $m_A(X)$ vom
 Grad $s$
 \end{block}
+\uncover<2->{%
 \begin{block}{Faktorisieren}
 Minimalpolynom faktorisieren
 \[
@@ -20,7 +21,8 @@ m_A(X)
 =
 (X-\mu_1)(X-\mu_2)\dots(X-\mu_s)
 \]
-\end{block}
+\end{block}}
+\uncover<3->{%
 \begin{block}{Vertauschen}
 $\sigma\in S_s$ eine Permutation von $1,\dots,s$
 ist
@@ -39,16 +41,18 @@ m_A(X)
 \dots
 (A-\mu_{\sigma(s)})
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<4->{%
 \begin{block}{Bedingung für $\mu_k$}
 Permutation wählen so dass $\mu_k$ an erster Stelle steht:
 \[
 0=(A-\mu_k) \prod_{i\ne k}(A-\mu_i) v
 \]
 für alle $v\in\Bbbk^n$.
-\end{block}
+\end{block}}
+\uncover<5->{%
 \begin{block}{Eigenwerte}
 Nur diejenigen ${\color{red}\mu}$ sind möglich, für die es $v\in\Bbbk^n$
 gibt mit
@@ -57,7 +61,7 @@ gibt mit
 \Rightarrow Av = {\color{red}\mu} v
 \]
 Eigenwertbedingung
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
