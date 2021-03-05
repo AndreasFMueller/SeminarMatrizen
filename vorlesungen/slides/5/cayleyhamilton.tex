@@ -1,0 +1,91 @@
+%
+% cayleyhamilton.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Satz von Cayley-Hamilton}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Ein Eigenwert $\lambda$\strut}
+$A$ besteht aus
+$b$ Blöcken $J_\lambda$ mit maximaler Dimension $l$:
+\phantom{blubb\strut}
+\begin{align*}
+\uncover<2->{
+\chi_{A}(X)
+&=
+\det (A-XI) = (\lambda-X)^n
+}
+\\
+\uncover<3->{
+m_{A}(X)
+&=
+(\lambda-X)^l
+}
+\\
+\uncover<4->{
+b&= \ker A
+}
+\end{align*}
+\uncover<5->{%
+Wegen $l \le n$ folgt
+\[
+m_A(X) | \chi_A(X)
+\uncover<6->{\quad\Rightarrow\quad
+\chi_A(A) = 0}
+\]}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<7->{%
+\begin{block}{$A=A_1\oplus\dots\oplus A_k$}
+\uncover<8->{%
+$A_i\in M_{n_i}(\Bbbk)$ mit EW $\lambda_i$,
+$A_i$ besteht aus
+$b_i$ Blöcken $J_{\lambda_i}$ mit max.~Dimension $l_i$\strut:}
+\begin{align*}
+\uncover<9->{
+\chi_A(X)
+&=
+(\lambda_1-X)^{n_1}
+\dots
+(\lambda_k-X)^{n_k}
+}
+\\
+\uncover<10->{
+m_A(X)
+&=
+(\lambda_1-X)^{l_1}
+\dots
+(\lambda_k-X)^{l_k}
+}
+\\
+\uncover<11->{
+b_i &= \ker (A-\lambda_iI)
+}
+\end{align*}
+\uncover<12->{%
+$A=A_1\oplus\dots\oplus A_k$}
+\begin{align*}
+\uncover<13->{
+\chi_{A_i}(A_i)&=0\;\forall i
+}
+\\
+\uncover<14->{%
+\chi_A(A) &=
+\chi_{A_1}(A)\dots\chi_{A_k}(A)
+ = 0}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<15->{%
+\begin{block}{Satz}
+Für jede Matrix $A\in M_n(\Bbbk)$ gilt
+$m_A(X) | \chi_A(X)$ oder $\chi_A(A)=0$
+\end{block}}
+\end{frame}

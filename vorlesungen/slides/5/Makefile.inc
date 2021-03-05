@@ -19,6 +19,7 @@ chapter5 =								\
 	../slides/5/bloecke.tex						\
 	../slides/5/jordanblock.tex					\
 	../slides/5/jordan.tex						\
+	../slides/5/reellenormalform.tex				\
 	../slides/5/cayleyhamilton.tex					\
 	../slides/5/chapter.tex
 

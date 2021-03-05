@@ -1,0 +1,68 @@
+%
+% jordanblock.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+
+\def\NL{
+\ifthenelse{\boolean{presentation}}{
+\only<-8>{\phantom{\lambda}\llap{$0$}}\only<9->{\lambda}
+}{
+\lambda
+}
+}
+
+\begin{frame}[t]
+\frametitle{Jordan-Block}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Gegeben}
+Matrix $A\in M_n(\Bbbk)$ derart, dass
+\begin{itemize}
+\item<2->
+$A-\lambda I$ nilpotent
+\item<5->
+$A^{n-1}\ne 0$
+\end{itemize}
+\end{block}
+\vspace{-5pt}
+\uncover<3->{
+\begin{block}{Folgerungen}
+Es gibt eine Basis derart, dass
+\begin{enumerate}
+\item<4->
+$A-\lambda I$ hat Normalform einer nilpotenten Matrix
+\item<6->
+Es gibt nur einen Block, da $\dim\ker(A-\lambda I)=1$
+\end{enumerate}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{\ifthenelse{\boolean{presentation}}{\only<-8>{Normalform einer nilpotenten Matrix\strut}}{}\only<9->{Normalform: genau ein Eigenwert\strut}}
+\[
+A\uncover<-8>{-\lambda I}=\begin{pmatrix}
+\NL &1& & & & & & & \\
+ &\NL &1& & & & & & \\
+ & &\NL &\uncover<7->{{\color<7>{red}1}}& & & & & \\
+ & & &\NL &1& & & & \\
+ & & & &\NL &1& & & \\
+ & & & & &\NL &1& & \\
+ & & & & & &\NL &\uncover<7->{{\color<7>{red}1}}& \\
+ & & & & & & &\NL &\uncover<7->{{\color<7>{red}1}}\\
+ & & & & & & & &\NL
+\end{pmatrix}
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\vspace{-5pt}
+\uncover<8->{%
+\begin{block}{Jordan-Normalform}
+In dieser Basis hat $A$ Jordan-Normalform
+\end{block}}
+\end{frame}
+
+\egroup
