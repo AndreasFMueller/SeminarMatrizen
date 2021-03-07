@@ -1,0 +1,37 @@
+%
+% divisionpoly.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Polynomdivision in $\mathbb{F}_3[X]$}
+Rechenregeln in $\mathbb{F}_3$: $1+2=0$, $2\cdot 2 = 1$
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcrcrc}
+\llap{$ ($}X^4&+&X^3&+& X^2&+& X&+&1\rlap{$)$}&\;\;:&(X^2&+&X&+&2)&=&\uncover<2->{X^2}&\uncover<5->{+&2=q}\\
+\uncover<3->{\llap{$-($}X^4&+&X^3&+&2X^2\rlap{$)$}}& & & &           &     &    & & & &  & &   & &  &   \\
+\uncover<4->{              & &   & &2X^2&+& X&+& 1}        &     &    & & & &  & &   & &   \\
+\uncover<6->{              & &   & &\llap{$-($}2X^2&+&2X&+&          2\rlap{$)$}}&     &    & & & &  & &   & &   \\
+\uncover<7->{              & &   & &    & &2X&+&2\rlap{$\mathstrut=r$}&     &    & & & &  & &  &  &}
+\end{array}
+\]
+\uncover<8->{%
+Kontrolle:
+\[
+\arraycolsep=1.4pt
+\begin{array}{rclcrcr}
+(\underbrace{X^2+2}_{\displaystyle=q})
+(X^2+X+2)
+              &=&\rlap{$\uncover<9->{X^4+X^3+2X^2}\uncover<10->{ + 2X^2+2X+2}$}
+\\
+\uncover<11->{&=& X^4+X^3+X^2&+&2X&+&2}
+\\
+\uncover<12->{& &            &&\llap{$r=\mathstrut$}2X&+&2}
+\\
+\uncover<13->{&=& X^4+X^3+X^2&+&1X&+&1}
+\end{array}
+\]
+}
+
+\end{frame}
