@@ -1,5 +1,28 @@
 Der Körper $\mathbb{F}_2$ ist besonders einfach, da er nur zwei Elemente
 $0$ und $1$ enthält.
+\begin{teilaufgaben}
+\item
+Bestimmen Sie die Additions- und Multiplikationstabelle für $\mathbb{F}_2$.
+\item
+Lösen Sie das lineare Gleichungssystem
+\[
+\begin{linsys}{4}
+x_1&+& x_2& &   & &   &=& 0\\
+   & & x_2&+&x_3&+&x_4&=& 1\\
+x_1&+& x_2&+&x_3&+&x_4&=& 1\\
+   & & x_2&+&x_3& &   &=& 0\\
+\end{linsys}
+\]
+über dem Körper $\mathbb{F}_2$ mit dem Gauss-Algorithmus.
+\item Bestimmen Sie die Inverse $A^{-1}\in \operatorname{GL}_2(\mathbb{F}_2)$
+der Koeffizientenmatrix $A$ des Gleichungssystems.
+\item Kontrollieren Sie das Resultat durch Ausmultiplizieren des Produktes
+$AA^{-1}$.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
 Die Additions- und Multiplikationstabellen sind
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
@@ -17,7 +40,7 @@ Die Additions- und Multiplikationstabellen sind
 	\node at \punkt{0}{1} {$0$};
 	\node at \punkt{0}{2} {$0$};
 }
-\begin{scope}[xshift=-3cm]
+\begin{scope}[xshift=-2cm]
 	\tabelle
 	\node at (0,0) {$+$};
 	\node at \punkt{1}{1} {$0$};
@@ -25,7 +48,7 @@ Die Additions- und Multiplikationstabellen sind
 	\node at \punkt{1}{2} {$1$};
 	\node at \punkt{2}{2} {$0$};
 \end{scope}
-\begin{scope}[xshift=3cm]
+\begin{scope}[xshift=2cm]
 	\tabelle
 	\node at (0,0) {$\cdot$};
 	\node at \punkt{1}{1} {$0$};
@@ -36,27 +59,7 @@ Die Additions- und Multiplikationstabellen sind
 \end{tikzpicture}
 \end{center}
 Betrachtet als Bitoperationen entspricht die Addition dem XOR, die
-Multiplikation dem UND.
-\begin{teilaufgaben}
-\item
-Lösen Sie das lineare Gleichungssystem
-\[
-\begin{linsys}{4}
-x_1&+& x_2& &   & &   &=& 0\\
-   & & x_2&+&x_3&+&x_4&=& 1\\
-x_1&+& x_2&+&x_3&+&x_4&=& 1\\
-   & & x_2&+&x_3& &   &=& 0\\
-\end{linsys}
-\]
-über dem Körper $\mathcal{F}_2$ mit dem Gauss-Algorithmus.
-\item Bestimmen Sie die Inverse $A^{-1}\in \operatorname{GL}_2(\mathbb{F}_2)$
-der Koeffizientenmatrix $A$ des Gleichungssystems.
-\item Kontrollieren Sie das Resultat durch Ausmultiplizieren des Produktes
-$AA^{-1}$.
-\end{teilaufgaben}
-
-\begin{loesung}
-\begin{teilaufgaben}
+Multiplikation dem AND.
 \item
 Die Gauss-Tableaux sind
 \begin{align*}
