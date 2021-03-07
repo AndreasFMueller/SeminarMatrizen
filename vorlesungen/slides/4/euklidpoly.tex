@@ -1,0 +1,47 @@
+%
+% euklidpoly.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Euklidischer Algorithmus in $\mathbb{F}_2[X]$}
+Gegeben: $m(X)=X^4+X+1$, $b(X) = {\color{blue}X^2+1}$
+\\
+\uncover<2->{Berechne $s,t\in\mathbb{F}_2[X]$ derart, dass $sm+tb=1$}
+\uncover<3->{%
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|}
+\hline
+k&    a_k&  b_k&  q_k&r_k&  c_k&    d_k\\
+\hline
+ &       &     &     &   &    1&      0\\
+0&X^4+X+1&{\color{blue}X^2+1}&\uncover<4->{X^2+1}&\uncover<4->{X}&    0&      1\\
+1&\uncover<5->{X^2+1 }&\uncover<5->{X}&\uncover<5->{X}&\uncover<5->{1}&\uncover<5->{1}&\uncover<5->{X^2+1}\\
+2&\uncover<6->{X     }&\uncover<6->{1}&\uncover<6->{X}&\uncover<6->{0}&\uncover<6->{{\color{red}X}}&\uncover<6->{{\color{red}X^3+X+1}}\\
+3&\uncover<7->{1     }&\uncover<7->{0}&&&\uncover<7->{X^2+1}&\uncover<7->{X^4+X+1} \\
+\hline
+\end{tabular}
+\end{center}}
+\ifthenelse{\boolean{presentation}}{
+\only<8->{%
+\begin{block}{Kontrolle}
+\vspace{-10pt}
+\begin{align*}
+{\color{red}X}\cdot (X^4+X+1) + ({\color{red}X^3+X+1})({\color{blue}X^2+1})
+&\uncover<9->{=
+(X^5+X^2+X)}\\
+&\qquad \uncover<10->{+ (X^5+X^3+X^2+X^3+X+1)}
+\\
+&\uncover<11->{=(X^5+X^2+X) + (X^5+X^2+X+1)}
+\\
+&\uncover<12->{=1}
+\end{align*}
+\end{block}}}{}
+\begin{block}{Rechenregeln in $\mathbb{F}_2$}
+$1+1=0$,
+$2=0$, $+1=-1$.
+\end{block}
+
+\end{frame}

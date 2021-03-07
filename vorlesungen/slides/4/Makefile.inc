@@ -14,6 +14,7 @@ chapter4 =								\
 	../slides/4/gauss.tex						\
 	../slides/4/dh.tex						\
 	../slides/4/divisionpoly.tex					\
+	../slides/4/euklidpoly.tex					\
 	../slides/4/polynomefp.tex					\
 	../slides/4/chapter.tex
 
