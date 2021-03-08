@@ -13,26 +13,28 @@
 \begin{block}{Inverse {\bf berechnen}}
 Gegeben $a\in\mathbb{F}_p$, finde $b=a^{-1}\in\mathbb{F}_p$
 \begin{align*}
-&& a{\color{red}b} &\equiv 1 \mod p
+\uncover<2->{&& a{\color{blue}b} &\equiv 1 \mod p}
 \\
-&\Leftrightarrow& a{\color{red}b}&=1 + {\color{red}n}p
+\uncover<3->{&\Leftrightarrow& a{\color{blue}b}&=1 + {\color{blue}n}p}
 \\
-&&a{\color{red}b}-{\color{red}n}p&=1
+\uncover<4->{&&a{\color{blue}b}-{\color{blue}n}p&=1}
 \end{align*}
-Wegen
+\uncover<5->{Wegen
 $\operatorname{ggT}(a,p)=1$ gibt es
 $s$ und $t$ mit
 \[
-sa+tb=1
+{\color{red}s}a+{\color{red}t}p=1
 \Rightarrow
-{\color{red}b}=s,\;
-{\color{red}n}=-t
-\]
+{\color{blue}b}={\color{red}s},\;
+{\color{blue}n}=-{\color{red}t}
+\]}
+\uncover<6->{%
 $\Rightarrow$ Die Inverse kann mit dem euklidischen Algorithmus
-berechnet werden
+berechnet werden}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<7->{%
 \begin{block}{Beispiel in $\mathbb{F}_{1291}$}
 Finde $47^{-1}\in\mathbb{F}_{1291}$
 %\vspace{-10pt}
@@ -42,21 +44,22 @@ Finde $47^{-1}\in\mathbb{F}_{1291}$
 k& a_k& b_k&q_k&  c_k& d_k\\
 \hline
  &    &    &   &    1&   0\\
-0&  47&1291&  0&    0&   1\\
-1&1291&  47& 27&    1&   0\\
-2&  47&  22&  2&  -27&   1\\
-3&  22&   3&  7&   55&  -2\\
-4&   3&   1&  3&{\color{red}-412}&{\color{red}15}\\
-5&   1&   0&   & 1291& -47\\
+0&  47&1291&\uncover<8->{  0}&    0&   1\\
+1&\uncover<9->{ 1291&  47}&\uncover<11->{ 27}&\uncover<10->{    1&   0}\\
+2&\uncover<12->{  47&  22}&\uncover<14->{  2}&\uncover<13->{  -27&   1}\\
+3&\uncover<15->{  22&   3}&\uncover<17->{  7}&\uncover<16->{   55&  -2}\\
+4&\uncover<18->{   3&   1}&\uncover<20->{  3}&\uncover<19->{{\color{red}-412}&{\color{red}15}}\\
+5&\uncover<21->{   1&   0}&   &\uncover<22->{ 1291& -47}\\
 \hline
 \end{tabular}
 \end{center}
+\uncover<23->{%
 \[
 {\color{red}-412}\cdot 47 +{\color{red}15}\cdot 1291 = 1
-\;\Rightarrow\;
-47^{-1}={\color{red}879}
-\]
-\end{block}
+\uncover<24->{\;\Rightarrow\;
+47^{-1}={\color{red}879}}
+\]}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

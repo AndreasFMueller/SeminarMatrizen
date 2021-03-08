@@ -16,5 +16,7 @@ chapter4 =								\
 	../slides/4/divisionpoly.tex					\
 	../slides/4/euklidpoly.tex					\
 	../slides/4/polynomefp.tex					\
+	../slides/4/schieberegister.tex					\
+	../slides/4/alpha.tex						\
 	../slides/4/chapter.tex
 

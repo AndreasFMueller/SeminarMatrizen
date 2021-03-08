@@ -8,22 +8,29 @@
 \setlength{\belowdisplayskip}{5pt}
 \frametitle{Durchführung des euklidischen Algorithmus}
 Problem: Berechnung der Produkte $Q(q_k)\cdots Q(q_1)Q(q_0)$ für $k=0,1,\dots,n$
+\uncover<2->{%
 \begin{block}{Multiplikation mit $Q(q_k)$}
 \vspace{-12pt}
 \begin{align*}
 Q(q_k)
-%\begin{pmatrix}
-%0&1\\1&-q_k
-%\end{pmatrix}
+\ifthenelse{\boolean{presentation}}{
+\only<-3>{
 \begin{pmatrix}
 u&v\\c&d
 \end{pmatrix}
-&=
+=\begin{pmatrix}
+0&1\\1&-q_k
+\end{pmatrix}
+}}{}
+\begin{pmatrix}
+u&v\\c&d
+\end{pmatrix}
+&\uncover<3->{=
 \begin{pmatrix}
 c&d\\
 u-q_kc&v-q_kd
-\end{pmatrix}
-&&\Rightarrow&
+\end{pmatrix}}
+&&\uncover<5->{\Rightarrow&
 \begin{pmatrix}
 c_k&d_k\\c_{k+1}&d_{k+1}
 \end{pmatrix}
@@ -34,31 +41,33 @@ Q(q_k)
 %\end{pmatrix}
 \begin{pmatrix}
 c_{k-1}&d_{k-1}\\c_{k}&d_{k}
-\end{pmatrix}
+\end{pmatrix}}
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-10pt}
+\uncover<6->{%
 \begin{equation*}
 \begin{tabular}{|>{\tiny$}r<{$}|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|}
 \hline
 k  &q_k    &                     c_k    &                     d_k    \\
 \hline
 -1 &       &                     1      &                     0      \\
- 0 &q_0    &                     0      &                     1      \\
- 1 &q_1    &c_{-1} -q_0    \cdot c_0    &d_{-1} -q_0    \cdot d_0    \\
- 2 &q_2    &c_0    -q_1    \cdot c_1    &d_0    -q_1    \cdot d_1    \\
-\vdots&\vdots&\vdots                    &\vdots                      \\
- n &q_n    &c_{n-2}-q_{n-1}\cdot c_{n-1}&d_{n-2}-q_{n-1}\cdot d_{n-1}\\
-n+1&       &c_{n-1}-q_{n}  \cdot c_{n}  &d_{n-1}-q_{n}  \cdot d_{n}  \\
+ 0 &\uncover<7->{q_0    }&                     0      &                     1      \\
+ 1 &\uncover<9->{q_1    }&\uncover<8->{c_{-1} -q_0    \cdot c_0    &d_{-1} -q_0    \cdot d_0    }\\
+ 2 &\uncover<11->{q_2    }&\uncover<10->{c_0    -q_1    \cdot c_1    &d_0    -q_1    \cdot d_1    }\\
+\vdots&\uncover<12->{\vdots}&\uncover<12->{\vdots                    &\vdots                      }\\
+ n &\uncover<14->{q_n    }&\uncover<13->{{\color{red}c_{n-2}-q_{n-1}\cdot c_{n-1}}&{\color{red}d_{n-2}-q_{n-1}\cdot d_{n-1}}}\\
+n+1&       &\uncover<15->{c_{n-1}-q_{n}  \cdot c_{n}  &d_{n-1}-q_{n}  \cdot d_{n}  }\\
 \hline
 \end{tabular}
+\uncover<16->{
 \Rightarrow
 \left\{
 \begin{aligned}
-\rlap{$c_{n}$}\phantom{c_{n+1}} a + \rlap{$d_n$}\phantom{d_{n+1}}b &= \operatorname{ggT}(a,b)
+\rlap{${\color{red}c_{n}}$}\phantom{c_{n+1}} a + \rlap{${\color{red}d_n}$}\phantom{d_{n+1}}b &= \operatorname{ggT}(a,b)
 \\
 c_{n+1} a + d_{n+1} b &= 0
 \end{aligned}
-\right.
-\end{equation*}
+\right.}
+\end{equation*}}
 \end{frame}

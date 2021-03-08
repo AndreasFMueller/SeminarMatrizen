@@ -30,6 +30,7 @@ $\mathbb{Z}/n\mathbb{Z}
 =\{ \llbracket r\rrbracket\;|\; 0\le r < n \} \mathstrut$
 ist ein Ring
 \end{block}
+\uncover<2->{%
 \begin{block}{Nullteiler}
 Falls $n=n_1n_2$, dann sind $\llbracket n_1\rrbracket$ und
 $\llbracket n_2\rrbracket$ Nullteiler in $\mathbb{Z}/n\mathbb{Z}$:
@@ -43,18 +44,22 @@ $\llbracket n_2\rrbracket$ Nullteiler in $\mathbb{Z}/n\mathbb{Z}$:
 =
 \llbracket 0 \rrbracket
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
 \begin{block}{Galois-Körper $\mathbb{F}_p\mathstrut$}
 $\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}\mathstrut$
-\end{block}
+\end{block}}
+\uncover<4->{%
 \begin{block}{$n$ prim}
 Für $n=p$ prim ist $\mathbb{Z}/n\mathbb{Z}$ nullteilerfrei
 \medskip
 
+\uncover<5->{
 $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
-\end{block}
+}
+\end{block}}
 \end{column}
 \end{columns}
 \vspace{-20pt}
@@ -62,6 +67,7 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \begin{tikzpicture}[>=latex,thick,scale=0.45]
 \fill[color=white] (-12,0) circle[radius=0.1];
 \fill[color=white] (12,0) circle[radius=0.1];
+\uncover<3->{
 \begin{scope}[xshift=-8cm]
 \rot{2}{3}
 \rot{4}{3}
@@ -106,14 +112,15 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \feld{4}{4}{4}
 \feld{4}{5}{2} \feld{5}{4}{2}
 \feld{5}{5}{1}
-\end{scope}
+\end{scope}}
+\uncover<6->{
 \begin{scope}[xshift=6cm]
-\gruen{1}{1}
-\gruen{2}{4}
-\gruen{3}{5}
-\gruen{4}{2}
-\gruen{5}{3}
-\gruen{6}{6}
+\uncover<7->{ \gruen{1}{1} }
+\uncover<8->{ \gruen{4}{2} }
+\uncover<9->{ \gruen{5}{3} }
+\uncover<10->{ \gruen{2}{4} }
+\uncover<11->{ \gruen{3}{5} }
+\uncover<12->{ \gruen{6}{6} }
 \fill[color=gray!40] (-0.5,6.5) rectangle (6.5,7.5);
 \fill[color=gray!40] (-1.5,-0.5) rectangle (-0.5,6.5);
 \foreach \x in {-0.5,6.5}{
@@ -158,13 +165,13 @@ $\Rightarrow \quad \mathbb{F}_p$ ist ein Körper
 \geld{5}{5}{4}
 \geld{6}{5}{2} \geld{5}{6}{2}
 \geld{6}{6}{1}
-\inverse{1}{1}
-\inverse{2}{4}
-\inverse{3}{5}
-\inverse{4}{2}
-\inverse{5}{3}
-\inverse{6}{6}
-\end{scope}
+\uncover<7->{ \inverse{1}{1} }
+\uncover<8->{ \inverse{2}{4} }
+\uncover<9->{ \inverse{3}{5} }
+\uncover<10->{ \inverse{4}{2} }
+\uncover<11->{ \inverse{5}{3} }
+\uncover<12->{ \inverse{6}{6} }
+\end{scope}}
 \end{tikzpicture}
 \end{center}
 \end{frame}
