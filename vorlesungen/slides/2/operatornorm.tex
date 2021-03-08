@@ -1,0 +1,59 @@
+%
+% operatorname.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Operatornorm}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Lineare Operatoren}
+$A\colon U\to V$ lineare Abbildung mit $U$, $V$ normiert
+\end{block}}
+\uncover<3->{%
+\begin{block}{Operatornorm}
+eines linearen Operators $A$:
+\[
+\|A\| 
+=
+\sup_{\|x\|_U\le 1} \|Ax\|_V
+\]
+\uncover<4->{$\Rightarrow \|Ax\| \le \| A \|\cdot \|x\|$}
+\end{block}}
+\uncover<5->{%
+\begin{block}{Stetigkeit}
+Wenn $\|A\|<\infty$, dann ist $A$ stetig, d.~h.
+\[
+\lim_{n\to\infty} Ax_n
+=
+A\lim_{n\to\infty} x_n
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Algebranorm}
+$A$ ein normierter Raum, der auch ein Algebra ist.
+Dann heisst $A$ eine normierte Algebra, wenn
+\[
+\| ab\| \le \| a\|\cdot \|b\|
+\quad\forall a,b\in A
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<7->{%
+\begin{block}{Operatoralgebra}
+$U$ ein normierter Raum, dann ist die Algebra der linearen Operatoren
+$A\colon U\to U$ mit der Operatornorm eine normierte Algebra
+\end{block}}
+\uncover<8->{%
+\begin{block}{Banach-Algebra}
+Ein Banach-Raum, der auch eine normierte Algebra ist
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

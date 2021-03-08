@@ -9,5 +9,6 @@ chapter2 =								\
 	../slides/2/skalarprodukt.tex					\
 	../slides/2/cauchyschwarz.tex					\
 	../slides/2/polarformel.tex					\
+	../slides/2/operatornorm.tex					\
 	../slides/2/chapter.tex
 
