@@ -1,0 +1,93 @@
+%
+% skalarprodukt.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Skalarprodukt}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Positiv definite, symmetrische Bilinearform}
+$\langle \;\,,\;\rangle\colon V\times V\to \mathbb{R}$
+\begin{itemize}
+\item
+Bilinear:
+\begin{align*}
+\langle \alpha u+\beta v,w\rangle
+&=
+\alpha\langle u,w\rangle
++
+\beta\langle v,w\rangle
+\\
+\langle u,\alpha v+\beta w\rangle
+&=
+\alpha\langle u,v\rangle
++
+\beta\langle u,w\rangle
+\end{align*}
+\item
+Symmetrisch: $\langle u,v\rangle = \langle v,u\rangle$
+\item
+$\langle x,x\rangle >0 \quad\forall x\ne 0$
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Positive definite, hermitesche Sesquilinearform}
+$\langle \;\,,\;\rangle\colon V\times V\to \mathbb{C}$
+\begin{itemize}
+\item
+Sesquilinear:
+\begin{align*}
+\langle \alpha u+\beta v,w\rangle
+&=
+\overline{\alpha}\langle u,w\rangle
++
+\overline{\beta}\langle v,w\rangle
+\\
+\langle u,\alpha v+\beta w\rangle
+&=
+\alpha\langle u,v\rangle
++
+\beta\langle u,w\rangle
+\end{align*}
+\item
+Hermitesch: $\langle u,v\rangle = \overline{\langle v,u\rangle}$
+\item
+$\langle x,x\rangle >0 \quad\forall x\ne 0$
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.28\textwidth}
+\begin{block}{$2$-Norm}
+$\|v\|_2^2 = \langle v,v\rangle$
+\\
+$\|v\|_2 = \sqrt{\langle v,v\rangle}$
+\end{block}
+\end{column}
+\begin{column}{0.78\textwidth}
+\begin{itemize}
+\item $\|v\|_2 = \sqrt{\langle v,v\rangle} > 0\quad\forall v\ne 0$
+\item $\| \lambda v \|_2
+=
+\sqrt{\langle \lambda v,\lambda v\rangle\mathstrut}
+=
+\sqrt{\overline{\lambda}\lambda\langle v,v\rangle}
+=
+|\lambda|\cdot \|v\|_2$
+\item
+\raisebox{-8pt}{
+$\begin{aligned}
+\|u+v\|_2^2 &= \|u\|_2^2 + 2{\color{red}\operatorname{Re}\langle u,v\rangle} + \|v\|_2^2
+\\
+(\|u\|_2+\|v\|_2)^2 &= \|u\|_2^2 + 2{\color{red}\|u\|_2\|v\|_2} + \|v\|_2^2
+\end{aligned}$}
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
