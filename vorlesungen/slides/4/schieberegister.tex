@@ -5,6 +5,7 @@
 %
 \bgroup
 \def\ds{0.7}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 \def\punkt#1#2{({(#1)*\ds},{(#2)*\ds})}
 \def\rahmen{
 	\draw ({-0.5*\ds},{-0.5*\ds}) rectangle ({7.5*\ds},{0.5*\ds});
@@ -23,17 +24,25 @@
 	\node at \punkt{7}{0} {$#8$};
 }
 \begin{frame}[t]
-\frametitle{Schieberegister}
-Rechnen mit Polynomen in $\mathbb{F}_2(\alpha)$ ist speziell einfach
+\frametitle{Implementation der Multiplikation in $\mathbb{F}_2(\alpha)$\uncover<10->{: Schieberegister}}
+Rechnen in $\mathbb{F}_2[X]$\only<5->{ und $\mathbb{F}_2(\alpha)$}
+ist speziell einfach
 \\
-Minimalpolynom von $\alpha$: $m(X) = X^8 + X^4+X^3+X+1$ (aus dem AES Standard)
+Minimalpolynom von $\alpha$: ${\color{darkgreen}m(X) = X^8 + X^4+X^3+X+1}$
+(aus dem AES Standard)
 
 \begin{center}
 \begin{tikzpicture}[>=latex,thick]
 
+\uncover<4->{
+	\fill[color=blue!20]
+		\punkt{-0.5}{-0.5} rectangle \punkt{7.5}{0.5};
+}
+
 \uncover<2->{
 \begin{scope}
 	\rahmen
+	\node at \punkt{-0.5}{1} [left] {$p(X)=\mathstrut$};
 	\node at \punkt{0}{1} {$X^7$\strut};
 	\node at \punkt{2.5}{1}{$+$\strut};
 	\node at \punkt{3}{1} {$X^4$\strut};
@@ -48,10 +57,20 @@ Minimalpolynom von $\alpha$: $m(X) = X^8 + X^4+X^3+X+1$ (aus dem AES Standard)
 	\draw[->] ({7.7*\ds},-0.2) to[out=-45,in=45] ({7.7*\ds},-1.8);
 	\node at ({8*\ds},-1) [right] {$\mathstrut\cdot X = \text{Shift}$};
 }
+\uncover<4->{
+	\foreach \x in {0,...,7}{
+		\draw[->,color=blue!40]
+			({\x*\ds},{-0.6*\ds}) -- ({(\x-1)*\ds},{-2+0.6*\ds});
+	}
+}
+
+\fill[color=white] (-4.65,0) circle[radius=0.01];
 
 \uncover<3->{
 	\begin{scope}[yshift=-2cm]
 		\uncover<4->{
+			\fill[color=blue!20]
+				\punkt{-1.5}{-0.5} rectangle \punkt{6.5}{0.5};
 			\rahmen
 			\polynom00101010
 		}
@@ -62,7 +81,7 @@ Minimalpolynom von $\alpha$: $m(X) = X^8 + X^4+X^3+X+1$ (aus dem AES Standard)
 		\node at \punkt{6}{1} {$X$\strut};
 		\begin{scope}[xshift=0.4cm]
 			\node at \punkt{-1}{1} [left]
-				{$\uncover<5->{X^4+X^3+X+1=}X^8$\strut};
+				{$\uncover<5->{{\color{darkgreen}\alpha^4+\alpha^3+\alpha+1=\alpha^8}}\only<-4>{X^8}$\strut};
 		\end{scope}
 		\node at \punkt{-1}{0} {$1$\strut};
 	\end{scope}
@@ -70,11 +89,13 @@ Minimalpolynom von $\alpha$: $m(X) = X^8 + X^4+X^3+X+1$ (aus dem AES Standard)
 
 \uncover<6->{
 	{\color<8->{red}
-		\draw[->] (-3,-1.5) to[out=-90,in=180] (-0.5,-2.7);
+		\draw[->] (-2.5,-1.5) to[out=-90,in=180] (-0.5,-2.7);
 	}
 	\begin{scope}[yshift=-2.7cm]
 		\rahmen
-		\polynom00011011
+		{\color{darkgreen}
+			\polynom00011011
+		}
 	\end{scope}
 }
 
@@ -83,12 +104,13 @@ Minimalpolynom von $\alpha$: $m(X) = X^8 + X^4+X^3+X+1$ (aus dem AES Standard)
 
 	\begin{scope}[yshift=-4.2cm]
 	\rahmen
-	\polynom00110111
+	\polynom00110001
+	\node at \punkt{7.6}{0} [right] {$\mathstrut=\alpha\cdot p(\alpha)$};
 	\end{scope}
 }
 
 \uncover<8->{
-	\node[color=red] at (-3.5,-2.7) {Feedback};
+	\node[color=red] at (-3.0,-2.5) {Feedback};
 }
 
 \end{tikzpicture}
