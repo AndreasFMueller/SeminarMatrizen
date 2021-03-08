@@ -10,5 +10,6 @@ chapter2 =								\
 	../slides/2/cauchyschwarz.tex					\
 	../slides/2/polarformel.tex					\
 	../slides/2/operatornorm.tex					\
+	../slides/2/frobeniusnorm.tex					\
 	../slides/2/chapter.tex
 
