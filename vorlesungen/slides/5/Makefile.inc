@@ -24,5 +24,7 @@ chapter5 =								\
 									\
 	../slides/5/stoneweierstrass.tex				\
 	../slides/5/potenzreihenmethode.tex				\
+	../slides/5/logarithmusreihe.tex				\
+	../slides/5/exponentialfunktion.tex				\
 	../slides/5/chapter.tex
 

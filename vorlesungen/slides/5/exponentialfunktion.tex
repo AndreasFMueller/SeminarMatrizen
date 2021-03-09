@@ -1,0 +1,125 @@
+%
+% exponentialfunktion.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Exponentialfunktion}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\only<1-6>{%
+\begin{column}{0.48\textwidth}
+\begin{block}{$x(t) \in\mathbb{R}$}
+\vspace{-10pt}
+\begin{align*}
+\frac{d}{dt}x(t) &= ax(t) &a&\in\mathbb{R}
+\\
+x(0) &= c&&\in\mathbb{R}
+\intertext{\uncover<2->{Lösung:}}
+\uncover<2->{x(t) &= ce^{at}}
+\end{align*}
+\end{block}
+\end{column}}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{$X(t) \in M_n(\mathbb{R})$}
+\vspace{-10pt}
+\begin{align*}
+\frac{d}{dt}X(t)
+&=
+A
+X(t)&A&\in M_n(\mathbb{R})
+\\
+X(0)&=C&&\in M_n(\mathbb{R})
+\intertext{\uncover<4->{gekoppelte Differentialgleichung für
+vier Funktionen $x_{ij}(t)$}}
+\uncover<5->{\dot{x}_{11} &= \rlap{$a_{11} x_{11}(t) + a_{12} x_{21}(t)$}}\\
+\uncover<5->{\dot{x}_{12} &= \rlap{$a_{11} x_{12}(t) + a_{12} x_{22}(t)$}}\\
+\uncover<5->{\dot{x}_{21} &= \rlap{$a_{21} x_{11}(t) + a_{22} x_{21}(t)$}}\\
+\uncover<5->{\dot{x}_{22} &= \rlap{$a_{21} x_{12}(t) + a_{22} x_{22}(t)$}}\\
+\intertext{\uncover<6->{Lösung:}}
+\uncover<6->{X(t) &= \exp(At) C}
+\end{align*}
+\end{block}}
+\end{column}
+\only<7-9>{%
+\begin{column}{0.48\textwidth}
+\begin{block}{Beispiel: Diagonalmatrix}
+%$D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)$
+\begin{align*}
+\frac{d}{dt}X&=DX &&\uncover<8->{\Rightarrow &\dot{x}_{ij}(t) &= \lambda_i x_{ij}(t)}
+\\
+X(0)&=C
+&&\uncover<8->{\Rightarrow&x_{ij}(t)&=c_{ij}}
+\end{align*}
+\uncover<9->{%
+Lösung:
+\[
+x_{ij}(t) =c_{ij}e^{\lambda_i t}
+\]}
+\end{block}
+\end{column}}
+\uncover<10->{%
+\begin{column}{0.48\textwidth}
+\begin{block}{Beispiel: Jordan-Block}
+\vspace{-10pt}
+\begin{align*}
+A&=\begin{pmatrix}\lambda&1\\0&\lambda\end{pmatrix}
+\rlap{$\displaystyle,\;
+X(t)
+=
+\only<22>{
+	e^{\lambda t}
+	\begin{pmatrix} 1&t/\lambda\\ 0&1 \end{pmatrix}
+}
+\only<23>{
+	\frac{e^{\lambda t}}{\lambda}
+	\begin{pmatrix} \lambda&t\\ 0&\lambda \end{pmatrix}
+}
+C
+$}
+\\
+\uncover<11->{
+\dot{x}_{1i}(t)&=\lambda x_{1i}(t) + \phantom{\lambda}x_{2i}(t),&&x_{1i}(0)&=c_{1i}
+}
+\\
+\uncover<12->{
+\dot{x}_{2i}(t)&=\phantom{\lambda x_{1i}(t)+\mathstrut}\lambda x_{2i}(t),&&x_{2i}(0)&=c_{2i}
+}
+\end{align*}
+\uncover<13->{%
+Lösung:}
+\begin{align*}
+\uncover<14->{
+x_{2i}(t)&=c_{2i}e^{\lambda t}
+}
+\\
+\uncover<15->{
+\dot{x}_{1i}(t)&=\lambda x_{1i}(t) + c_{2i}e^{\lambda t}
+}
+\\
+\only<16-17>{x_{1i\only<16>{,h}}(t)}
+\only<18->{\dot{x}_{1i}(t)}
+&
+\only<16-17>{=c\only<17>{(t)}\lambda e^{\lambda t}}
+\only<18>{=\dot{c}(t)\lambda e^{\lambda t}
++
+c(t)\lambda^2 e^{\lambda t}}
+\only<19->{=\lambda x_{1i}(t) + \dot{c}(t)\lambda e^{\lambda t}}
+\\
+\uncover<20->{\Rightarrow
+\dot{c}(t)&= c_{2i}/\lambda
+\Rightarrow
+c(t) = c_{2i}(0) +tc_{2i}/\lambda
+}
+\\
+\uncover<21->{
+x_{1i}(t) & =c_{1i}e^{\lambda t} + t(c_{2i}/\lambda)e^{\lambda t}
+}
+\end{align*}
+\end{block}
+\end{column}}
+\end{columns}
+\end{frame}

@@ -1,0 +1,53 @@
+%
+% logarithmus.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Logarithmusreihe}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Integralgleichung}
+\vspace{-5pt}
+\begin{align*}
+\log(1+x)&=\int_0^x \frac{1}{1+t}\,dt
+\\
+&\uncover<5->{=
+\int_0^x
+1-t+t^2-t^3+\dots\,dt
+}
+\\
+\uncover<6->{
+&=
+x-\frac{x^2}2+\frac{x^3}{3}-\frac{x^4}{4}+\dots
+}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Geometrische Reihe}
+\vspace{-5pt}
+\begin{align*}
+\frac{1}{1-q}&=1+q+q^2+q^3+\dots
+\\
+\uncover<3->{
+\frac{1}{1+q}&=1-q+q^2-q^3+\dots
+}
+\end{align*}
+\uncover<4->{Konvergenzradius $1$}
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<7->{%
+\begin{block}{Matrix-Logarithmus}
+Für $\operatorname{Sp}(A)\subset \{z\in\mathbb{C}\;|\;|z-1|<1\}$ konvergiert
+\[
+\log A
+=
+(A-I) - \frac12(A-I)^2 + \frac13(A-I)^3 - \frac14(A-I)^4 + \dots
+\]
+\end{block}}
+\end{frame}
