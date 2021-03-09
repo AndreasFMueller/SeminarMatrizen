@@ -23,5 +23,6 @@ chapter5 =								\
 	../slides/5/cayleyhamilton.tex					\
 									\
 	../slides/5/stoneweierstrass.tex				\
+	../slides/5/potenzreihenmethode.tex				\
 	../slides/5/chapter.tex
 
