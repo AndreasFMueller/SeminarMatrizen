@@ -1,0 +1,76 @@
+%
+% linearformnormen.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Linearformen}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Linearformen $\varphi\colon L^1\to\mathbb{R}$}
+Beispiel: $g\in C([a,b])$
+\[
+\varphi(f)
+=
+\int_a^b g(x)f(x)\,dx
+\]
+\uncover<2->{%
+erfüllt
+\begin{align*}
+|\varphi(f)|
+&=
+\biggl|\int_a^b g(x)f(x)\,dx\biggr|
+\\
+\uncover<3->{
+&\le \|g\|_\infty\cdot \|f\|_1
+}
+\end{align*}}
+\uncover<4->{%
+und hat daher die Operatornorm
+\[
+\|\varphi\|_{C([a,b])^*}
+=
+\|g\|_\infty
+\]}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Linearformen $\varphi\colon L^2\to\mathbb{R}$}
+\uncover<5->{%
+Darstellungssatz von Riesz: $\exists g\in L^2$
+\[
+\varphi(f) = \langle g,f\rangle
+\]}
+\uncover<6->{%
+erfüllt Cauchy-Schwarz}
+\begin{align*}
+\uncover<7->{
+|\varphi(f)|
+&=
+|\langle g,f\rangle|}
+\\
+\uncover<8->{
+&\le
+\|g\|_2 \cdot \|f\|_2
+}
+\end{align*}
+\uncover<9->{%
+und hat daher die Operatornorm
+\[
+\|\varphi\|_{L^2([a,b])^*}
+= \|g\|_2
+\]}
+\end{block}
+\end{column}
+\end{columns}
+
+\vspace{8pt}
+{\usebeamercolor[fg]{title}
+\uncover<10->{%
+$\Rightarrow$
+Operatornorm hängt von den Vektorraumnormen ab}
+}
+\end{frame}

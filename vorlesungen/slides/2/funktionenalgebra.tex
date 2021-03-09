@@ -1,0 +1,88 @@
+%
+% funktionenalgebra.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Funktionenalgebra}
+\vspace{-17pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Algebra $C([0,1])$}
+Funktionenraum
+\[
+C([0,1])
+=
+\{f\colon[0,1]\to\mathbb{C}\;|\;\text{$f$ stetig}\}
+\]
+mit Supremum-Norm\uncover<2->{ und punktweisem Produkt
+\[
+(f\cdot g)(x)
+=
+f(x)\cdot g(x)
+\]}
+\end{block}
+\vspace{-8pt}
+\uncover<3->{%
+\begin{block}{Algebranorm}
+\vspace{-12pt}
+\begin{align*}
+\|f\cdot g\|_\infty
+&=
+\sup_{x\in[0,1]} f(x)g(x)
+\\
+\uncover<4->{
+&\le
+\sup_{x\in[0,1]}f(x)
+\sup_{y\in[0,1]}g(y)
+}
+\\
+\uncover<5->{
+&=
+\|f\|_\infty \cdot \|g\|_\infty
+}
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Faltungs-Algebra $L^2([0,1])$}
+Funktionenraum
+\[
+L^2=\{f\colon \mathbb{R}\to\mathbb{C}\;|\;\text{$f$ $1$-periodisch}\}
+\]
+mit $L^2$-Skalarprodukt\uncover<7->{ und Faltungsprodukt
+\[
+f*g(x)
+=
+\int_0^1
+\underbrace{f(x-t)}_{(=\gamma_x\check{f})(t)} g(t)\,dx
+\]}
+\end{block}}
+\vspace{-21pt}
+\uncover<8->{%
+\begin{block}{Norm}
+\vspace{-12pt}
+\begin{align*}
+\|f*g\|_2^2
+&\uncover<9->{=\int_0^1 |
+\langle \gamma_x\check{f},g\rangle
+|^2\,dx}
+\\
+\uncover<10->{
+&\le
+\int_0^1
+\|\gamma_t\check{f}\|_2^2
+\|g\|_2^2
+\,dx}
+\\
+\uncover<11->{
+&=\|f\|_2^2\cdot \|g\|_2^2
+}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

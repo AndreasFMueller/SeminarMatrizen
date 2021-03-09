@@ -21,5 +21,7 @@ chapter5 =								\
 	../slides/5/jordan.tex						\
 	../slides/5/reellenormalform.tex				\
 	../slides/5/cayleyhamilton.tex					\
+									\
+	../slides/5/stoneweierstrass.tex				\
 	../slides/5/chapter.tex
 
