@@ -1,0 +1,190 @@
+%
+% spektralgelfand.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\eigenwert#1#2{
+	\fill[color=blue!30] (#1:#2) circle[radius=0.05];
+	\draw[color=blue] (#1:#2) circle[radius=0.05];
+}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Spektral- und Gelfand-Radius}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth] \begin{column}{0.48\textwidth}
+\begin{block}{Spektralradius}
+\vspace{-10pt}
+\[
+\varrho(A)
+=
+\sup\{|\lambda|\;|\; \text{{\color{blue}$\lambda$} ist EW von $A$}\}
+\]
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\uncover<5->{
+	\fill[color=red!30] (0,0) circle[radius=2.2];
+	\draw[color=red] (0,0) circle[radius=2.2];
+}
+
+\uncover<3->{
+	\eigenwert{190.46}{1.3365}
+	%\eigenwert{52.663}{2.1819}
+	\eigenwert{281.94}{1.7305}
+	\eigenwert{21.29}{1.0406}
+	\eigenwert{69.511}{1.56}
+	\eigenwert{63.365}{1.3535}
+	\eigenwert{281.43}{0.31994}
+	\eigenwert{313.1}{1.5419}
+	\eigenwert{118.14}{1.1966}
+	\eigenwert{195.75}{0.41156}
+	\eigenwert{233.42}{1.5613}
+	\eigenwert{25.203}{1.1936}
+	\eigenwert{53.375}{1.4886}
+	\eigenwert{346.13}{2.1073}
+	\eigenwert{246.47}{1.124}
+	\eigenwert{35.451}{1.99}
+	\eigenwert{212.43}{1.9708}
+	\eigenwert{58.479}{0.61602}
+	\eigenwert{344.37}{1.6107}
+	\eigenwert{305.42}{1.7075}
+	\eigenwert{29.693}{0.28791}
+	\eigenwert{195.82}{0.63079}
+	\eigenwert{209.71}{0.25669}
+	\eigenwert{51.355}{0.7247}
+	\eigenwert{356.43}{1.0867}
+	\eigenwert{33.119}{0.7328}
+	\eigenwert{73.131}{1.5021}
+	\eigenwert{345.67}{0.37564}
+	\eigenwert{76.52}{0.71763}
+	%\eigenwert{197.04}{2.1431}
+	\eigenwert{217.87}{1.7704}
+	\eigenwert{172.93}{1.1204}
+	\eigenwert{339.19}{1.5305}
+	\eigenwert{272.86}{2.04}
+	\eigenwert{168.8}{1.6289}
+	\eigenwert{248.68}{0.70879}
+	\eigenwert{237.98}{0.71097}
+	\eigenwert{81.411}{1.8461}
+	\eigenwert{224.65}{1.0827}
+	\eigenwert{357.54}{0.291}
+	\eigenwert{325.26}{1.2778}
+	\eigenwert{150.97}{0.32358}
+	\eigenwert{260.68}{1.4077}
+	\eigenwert{116.29}{1.0715}
+	\eigenwert{358.25}{0.99667}
+	\eigenwert{276.2}{0.077375}
+	\eigenwert{316.16}{0.77763}
+	\eigenwert{69.398}{1.2818}
+	\eigenwert{353.5}{0.74099}
+	\eigenwert{4.7935}{1.391}
+	\eigenwert{136.98}{1.7572}
+	\eigenwert{45.62}{1.9649}
+	\eigenwert{299.96}{0.19199}
+	\eigenwert{187.32}{0.63805}
+	\eigenwert{272.88}{1.1467}
+	\eigenwert{231.85}{1.5763}
+	\eigenwert{124.24}{0.77024}
+	\eigenwert{196.24}{2.0375}
+	\eigenwert{186.33}{1.0656}
+	%\eigenwert{22.812}{2.1616}
+	\eigenwert{37.982}{0.038956}
+	\eigenwert{142.36}{1.7944}
+	\eigenwert{56.863}{1.8952}
+	\eigenwert{4.6281}{1.1857}
+	\eigenwert{71.674}{0.07642}
+	\eigenwert{94.049}{1.8985}
+	\eigenwert{97.294}{0.23412}
+	\eigenwert{84.739}{0.31209}
+	\eigenwert{147.42}{1.8434}
+	\eigenwert{160.67}{0.76956}
+	\eigenwert{292.5}{0.85697}
+	\eigenwert{308.1}{1.7061}
+	\eigenwert{68.669}{2.111}
+	\eigenwert{86.866}{1.1271}
+	\eigenwert{124.72}{1.3019}
+	\eigenwert{267.36}{0.7462}
+	\eigenwert{295.78}{1.0425}
+	\eigenwert{44.972}{0.65363}
+	\eigenwert{34.534}{1.2817}
+	\eigenwert{357.78}{2.0592}
+	\eigenwert{147.52}{0.020535}
+	%\eigenwert{28.502}{2.1964}
+	\eigenwert{343.48}{2.0968}
+	\eigenwert{129.96}{0.80371}
+	\eigenwert{254.75}{1.5775}
+	\eigenwert{89.91}{0.88605}
+	\eigenwert{20.35}{0.66065}
+	\eigenwert{60.382}{1.7585}
+	\eigenwert{158.87}{0.68399}
+	\eigenwert{328.44}{1.504}
+	\eigenwert{189.41}{0.33879}
+	\eigenwert{273.47}{0.11109}
+	\eigenwert{285.99}{0.66704}
+	\eigenwert{311.42}{2.0266}
+	\eigenwert{32.636}{0.5713}
+	\eigenwert{221.35}{2.1329}
+	\eigenwert{50.983}{1.1957}
+	\eigenwert{53.298}{1.2982}
+	\eigenwert{101.4}{1.9051}
+	\eigenwert{71.999}{0.25671}
+}
+
+\uncover<2->{
+	\draw[->] (-2.4,0) -- (2.7,0)
+		coordinate[label={$\operatorname{Re}z$}];
+	\draw[->] (0,-2.4) -- (0,2.5)
+		coordinate[label={right:$\operatorname{Im}z$}];
+}
+\uncover<4->{
+	\fill[color=darkgreen] (0,0) circle[radius=0.05];
+	\draw[->,color=darkgreen,shorten >= 0.05cm] (0,0) -- (150:2.2);
+	\node[color=darkgreen] at ($(150:1.85)+(0.4,0)$)
+		[below left] {$\varrho(A)$};
+}
+\uncover<3->{
+	\eigenwert{150}{2.2}
+}
+\end{tikzpicture}
+\end{center}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Gelfand-Radius}
+\[
+\pi(A)
+=
+\lim_{k\to\infty} \|A^k\|^{\frac{1}{k}}
+\]
+\end{block}}
+\vspace{-8pt}
+\uncover<7->{%
+\begin{block}{Konvergenz der Neumann-Reihe}
+$
+\uncover<8->{t<1/\pi(A)\;}
+\uncover<10->{\Rightarrow\; \exists q}
+\uncover<11->{,N}$
+\begin{align*}
+\uncover<9->{ t\pi(A) & \only<10->{< q} < 1 }
+\\
+\uncover<11->{ \|(tA)^k\|^{\frac1k} &\le q }
+\\
+\uncover<12->{
+\|(tA)^k\|
+&\le
+(t\pi(A))^k<q^k
+}
+\end{align*}
+\uncover<11->{für $k>N$.}
+\uncover<13->{
+$\Rightarrow$
+$(1-tA)^{-1}=\displaystyle\sum_{k=0}^\infty (tA)^k$ konvergiert für $t<1/\pi(A)$
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

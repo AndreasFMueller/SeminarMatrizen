@@ -22,6 +22,8 @@ chapter5 =								\
 	../slides/5/reellenormalform.tex				\
 	../slides/5/cayleyhamilton.tex					\
 									\
+	../slides/5/spektralgelfand.tex					\
+									\
 	../slides/5/stoneweierstrass.tex				\
 	../slides/5/potenzreihenmethode.tex				\
 	../slides/5/logarithmusreihe.tex				\
