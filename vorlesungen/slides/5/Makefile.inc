@@ -22,6 +22,8 @@ chapter5 =								\
 	../slides/5/reellenormalform.tex				\
 	../slides/5/cayleyhamilton.tex					\
 									\
+	../slides/5/spektrum.tex					\
+									\
 	../slides/5/konvergenzradius.tex				\
 	../slides/5/krbeispiele.tex					\
 	../slides/5/spektralgelfand.tex					\
