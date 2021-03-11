@@ -10,6 +10,7 @@
 \vspace{-15pt}
 \begin{columns}[t,onlytextwidth]
 \only<1-6>{%
+\ifthenelse{\boolean{presentation}}{
 \begin{column}{0.48\textwidth}
 \begin{block}{$x(t) \in\mathbb{R}$}
 \vspace{-10pt}
@@ -21,7 +22,7 @@ x(0) &= c&&\in\mathbb{R}
 \uncover<2->{x(t) &= ce^{at}}
 \end{align*}
 \end{block}
-\end{column}}
+\end{column}}{}}
 \begin{column}{0.48\textwidth}
 \uncover<3->{%
 \begin{block}{$X(t) \in M_n(\mathbb{R})$}
@@ -45,6 +46,7 @@ vier Funktionen $x_{ij}(t)$}}
 \end{block}}
 \end{column}
 \only<7-9>{%
+\ifthenelse{\boolean{presentation}}{
 \begin{column}{0.48\textwidth}
 \begin{block}{Beispiel: Diagonalmatrix}
 %$D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)$
@@ -60,7 +62,7 @@ Lösung:
 x_{ij}(t) =c_{ij}e^{\lambda_i t}
 \]}
 \end{block}
-\end{column}}
+\end{column}}{}}
 \uncover<10->{%
 \begin{column}{0.48\textwidth}
 \begin{block}{Beispiel: Jordan-Block}
@@ -70,10 +72,11 @@ A&=\begin{pmatrix}\lambda&1\\0&\lambda\end{pmatrix}
 \rlap{$\displaystyle,\;
 X(t)
 =
+\ifthenelse{\boolean{presentation}}{
 \only<22>{
 	e^{\lambda t}
 	\begin{pmatrix} 1&t/\lambda\\ 0&1 \end{pmatrix}
-}
+}}{}
 \only<23>{
 	\frac{e^{\lambda t}}{\lambda}
 	\begin{pmatrix} \lambda&t\\ 0&\lambda \end{pmatrix}
@@ -100,13 +103,16 @@ x_{2i}(t)&=c_{2i}e^{\lambda t}
 \dot{x}_{1i}(t)&=\lambda x_{1i}(t) + c_{2i}e^{\lambda t}
 }
 \\
-\only<16-17>{x_{1i\only<16>{,h}}(t)}
+\ifthenelse{\boolean{presentation}}{
+\only<16-17>{x_{1i\only<16>{,h}}(t)}}{}
 \only<18->{\dot{x}_{1i}(t)}
 &
+\ifthenelse{\boolean{presentation}}{
 \only<16-17>{=c\only<17>{(t)}\lambda e^{\lambda t}}
 \only<18>{=\dot{c}(t)\lambda e^{\lambda t}
 +
 c(t)\lambda^2 e^{\lambda t}}
+}{}
 \only<19->{=\lambda x_{1i}(t) + \dot{c}(t)\lambda e^{\lambda t}}
 \\
 \uncover<20->{\Rightarrow
