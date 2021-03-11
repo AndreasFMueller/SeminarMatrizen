@@ -1,0 +1,59 @@
+%
+% Aiteration.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Iteration von $A$}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.34\textwidth}
+\begin{block}{$\varrho(A) > 1\uncover<4->{\Rightarrow \|A^k\|\to\infty}$}
+\uncover<2->{%
+Eigenvektor $v$, $\|v\|=1$, zum Eigenwert $\lambda$ mit $|\lambda| > 1$}
+\uncover<3->{%
+\[
+\|A^kv\| = |\lambda|^k\to \infty
+\]}
+\uncover<4->{$\Rightarrow \|A\|^k\to\infty$}
+
+\end{block}
+\end{column}
+\begin{column}{0.63\textwidth}
+\begin{block}{$\varrho(A) < 1\uncover<12->{\Rightarrow \|A\|^k\to 0}$}
+\uncover<5->{%
+$A$ setzt sich zusammen aus Jordanblöcken:
+\[
+J(\lambda)^k
+=
+\renewcommand{\arraystretch}{1.2}
+\begin{pmatrix}
+\lambda^k&\binom{k}{1}\lambda^{k-1}&\binom{k}{2}\lambda^{k-2}
+	&\dots&\binom{k}{n-1}\lambda^{k-n+1}\\
+    0    &\lambda^k&\binom{k}{1}\lambda^{k-1}
+	&\dots&\binom{k}{n-2}\lambda^{k-n+2}\\
+    0    &    0    &\lambda^k&\dots  &\binom{k}{n-3}\lambda^{k-n+3}\\
+ \vdots  & \vdots  & \vdots  &\ddots &\vdots\\
+    0    &    0    &    0    &\dots  &\lambda^k
+\end{pmatrix}
+\]}
+\uncover<6->{Alle Matrixelemente konvergieren gegen $0$:}
+\[
+\uncover<7->{\binom{k}{s} \le k^s}
+\uncover<8->{\Rightarrow
+\underbrace{\binom{k}{s}}_{\text{\uncover<9->{polynomiell $\to \infty$}}}
+\underbrace{\lambda^{k-s}}_{\text{\uncover<10->{exponentiell $\to 0$}}}
+}
+\uncover<11->{\to 0}
+\]
+\end{block}
+\end{column}
+\end{columns}
+\uncover<13->{%
+{\usebeamercolor[fg]{title}Folgerung:}
+Es gibt $m,M$ derart, dass
+$m\varrho(A)^k \le \|A^k\|  \le M \varrho(A)^k$
+}
+\end{frame}

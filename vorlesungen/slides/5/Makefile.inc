@@ -23,6 +23,8 @@ chapter5 =								\
 	../slides/5/cayleyhamilton.tex					\
 									\
 	../slides/5/spektralgelfand.tex					\
+	../slides/5/Aiteration.tex					\
+	../slides/5/satzvongelfand.tex					\
 									\
 	../slides/5/stoneweierstrass.tex				\
 	../slides/5/potenzreihenmethode.tex				\
