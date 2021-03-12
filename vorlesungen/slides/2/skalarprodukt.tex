@@ -13,7 +13,7 @@
 \begin{block}{Positiv definite, symmetrische Bilinearform}
 $\langle \;\,,\;\rangle\colon V\times V\to \mathbb{R}$
 \begin{itemize}
-\item
+\item<2->
 Bilinear:
 \begin{align*}
 \langle \alpha u+\beta v,w\rangle
@@ -28,18 +28,19 @@ Bilinear:
 +
 \beta\langle u,w\rangle
 \end{align*}
-\item
+\item<3->
 Symmetrisch: $\langle u,v\rangle = \langle v,u\rangle$
-\item
+\item<4->
 $\langle x,x\rangle >0 \quad\forall x\ne 0$
 \end{itemize}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
 \begin{block}{Positive definite, hermitesche Sesquilinearform}
 $\langle \;\,,\;\rangle\colon V\times V\to \mathbb{C}$
 \begin{itemize}
-\item
+\item<6->
 Sesquilinear:
 \begin{align*}
 \langle \alpha u+\beta v,w\rangle
@@ -54,40 +55,42 @@ Sesquilinear:
 +
 \beta\langle u,w\rangle
 \end{align*}
-\item
+\item<7->
 Hermitesch: $\langle u,v\rangle = \overline{\langle v,u\rangle}$
-\item
+\item<8->
 $\langle x,x\rangle >0 \quad\forall x\ne 0$
 \end{itemize}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.28\textwidth}
+\uncover<9->{%
 \begin{block}{$2$-Norm}
 $\|v\|_2^2 = \langle v,v\rangle$
 \\
 $\|v\|_2 = \sqrt{\langle v,v\rangle}$
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.78\textwidth}
+\uncover<10->{%
 \begin{itemize}
-\item $\|v\|_2 = \sqrt{\langle v,v\rangle} > 0\quad\forall v\ne 0$
-\item $\| \lambda v \|_2
+\item<11-> $\|v\|_2 = \sqrt{\langle v,v\rangle} > 0\quad\forall v\ne 0$
+\item<12-> $\| \lambda v \|_2
 =
 \sqrt{\langle \lambda v,\lambda v\rangle\mathstrut}
 =
 \sqrt{\overline{\lambda}\lambda\langle v,v\rangle}
 =
 |\lambda|\cdot \|v\|_2$
-\item
+\item<13->
 \raisebox{-8pt}{
 $\begin{aligned}
 \|u+v\|_2^2 &= \|u\|_2^2 + 2{\color{red}\operatorname{Re}\langle u,v\rangle} + \|v\|_2^2
 \\
 (\|u\|_2+\|v\|_2)^2 &= \|u\|_2^2 + 2{\color{red}\|u\|_2\|v\|_2} + \|v\|_2^2
 \end{aligned}$}
-\end{itemize}
+\end{itemize}}
 \end{column}
 \end{columns}
 \end{frame}

@@ -1,0 +1,100 @@
+%
+% dgraph.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}
+\frametitle{Gerichteter Graph}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.44\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\r{2.4}
+
+\coordinate (A) at ({\r*cos(0*72)},{\r*sin(0*72)});
+\coordinate (B) at ({\r*cos(1*72)},{\r*sin(1*72)});
+\coordinate (C) at ({\r*cos(2*72)},{\r*sin(2*72)});
+\coordinate (D) at ({\r*cos(3*72)},{\r*sin(3*72)});
+\coordinate (E) at ({\r*cos(4*72)},{\r*sin(4*72)});
+
+\uncover<3->{
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (C);
+	\draw[color=white,line width=5pt] (B) -- (D);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (D);
+
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (B);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (C);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (C) -- (D);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (E);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (E) -- (A);
+}
+
+\uncover<2->{
+	\draw (A) circle[radius=0.2];
+	\draw (B) circle[radius=0.2];
+	\draw (C) circle[radius=0.2];
+	\draw (D) circle[radius=0.2];
+	\draw (E) circle[radius=0.2];
+
+	\node at (A) {$1$};
+	\node at (B) {$2$};
+	\node at (C) {$3$};
+	\node at (D) {$4$};
+	\node at (E) {$5$};
+}
+\node at (0,0) {$G$};
+
+\uncover<3->{
+	\node at ($0.5*(A)+0.5*(B)-(0.1,0.1)$) [above right] {$\scriptstyle 1$};
+	\node at ($0.5*(B)+0.5*(C)+(0.05,-0.07)$) [above left] {$\scriptstyle 2$};
+	\node at ($0.5*(C)+0.5*(D)+(0.05,0)$) [left] {$\scriptstyle 3$};
+	\node at ($0.5*(D)+0.5*(E)$) [below] {$\scriptstyle 4$};
+	\node at ($0.5*(E)+0.5*(A)+(-0.1,0.1)$) [below right] {$\scriptstyle 5$};
+	\node at ($0.6*(A)+0.4*(C)$) [above] {$\scriptstyle 6$};
+	\node at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 7$};
+}
+
+\uncover<7->{
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=red]
+                (E) to[out=-18,in=-126,distance=2cm] (E);
+}
+
+\uncover<9->{
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm,color=darkgreen]
+		(D) to[out=120,in=-120] (C);
+}
+
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{block}{Definition}
+Ein gerichteter Graph $G=(V,E)$ ist
+\begin{enumerate}
+\item<2-> Eine Menge $V$ von Knoten (Vertizes)
+$V=\{v_1,v_2,\dots\}$
+\item<3->
+Eine Menge $E$ von gerichteten Kanten
+(Edges)
+\[
+E\subset \{ (v_1,v_2)\;|\; v_i\in V\}
+\]
+\end{enumerate}
+\end{block}
+\vspace{-30pt}
+\uncover<6->{%
+\begin{block}{Achtung}
+\begin{itemize}
+\item<6-> Kanten sind {\em geordnete} Paare
+\uncover<7->{$\Rightarrow$ {\color{red}Schleifen} sind möglich}
+\item<8-> Kanten sind immer ``Einbahnstrassen''
+\item<9-> {\color{darkgreen}Gegenrichtung explizit angeben}
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
