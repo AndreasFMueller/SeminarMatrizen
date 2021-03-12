@@ -1,0 +1,131 @@
+%
+% inzidenz.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\frametitle{Inzidenz- und Adjazenzmatrix}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\r{2.2}
+
+\coordinate (A) at ({\r*cos(0*72)},{\r*sin(0*72)});
+\coordinate (B) at ({\r*cos(1*72)},{\r*sin(1*72)});
+\coordinate (C) at ({\r*cos(2*72)},{\r*sin(2*72)});
+\coordinate (D) at ({\r*cos(3*72)},{\r*sin(3*72)});
+\coordinate (E) at ({\r*cos(4*72)},{\r*sin(4*72)});
+
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (C);
+\draw[color=white,line width=5pt] (B) -- (D);
+\draw[color=darkgreen,shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (D);
+
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (B);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (C);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (C) -- (D);
+%\draw[shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (E);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (E) -- (A);
+
+\fill[color=red!20] (B) circle[radius=0.2];
+
+\draw (A) circle[radius=0.2];
+\draw (B) circle[radius=0.2];
+\draw (C) circle[radius=0.2];
+\draw (D) circle[radius=0.2];
+\draw (E) circle[radius=0.2];
+
+\node at (A) {$1$};
+\node at (B) {$2$};
+\node at (C) {$3$};
+\node at (D) {$4$};
+\node at (E) {$5$};
+\node at (0,0) {$G$};
+
+\node at ($0.5*(A)+0.5*(B)-(0.1,0.1)$) [above right] {$\scriptstyle 1$};
+\node at ($0.5*(B)+0.5*(C)+(0.05,-0.07)$) [above left] {$\scriptstyle 2$};
+\node at ($0.5*(C)+0.5*(D)+(0.05,0)$) [left] {$\scriptstyle 3$};
+\node at ($0.5*(E)+0.5*(A)+(-0.1,0.1)$) [below right] {$\scriptstyle 4$};
+\node at ($0.6*(A)+0.4*(C)$) [above] {$\scriptstyle 5$};
+\node[color=darkgreen] at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 6$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{-10pt}
+\begin{block}{Definition}
+\vspace{-15pt}
+\begin{align*}
+B(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante $j$ endet in Knoten $i$}\\
+A(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante zwischen Knoten $i$ und $j$}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\dy{0.48}
+\def\dx{0.54}
+
+
+\begin{scope}
+\fill[color=red!20] (1.8,1.8) rectangle (4.75,2.15);
+\fill[color=darkgreen!40,opacity=0.5] (4.46,0.36) rectangle (4.79,2.65);
+\foreach \y in {1,...,5}{
+	\node[color=gray] at (5.3,{2.45-(\y-1)*\dy}) {\tiny $\y$};
+}
+\foreach \y in {1,...,6}{
+	\node[color=gray] at ({1.92+(\y-1)*\dx},2.90) {\tiny $\y$};
+}
+\draw[color=gray] (1.8,2.75) -- (4.7,2.75);
+\draw[color=gray] (5.2,2.55) -- (5.2,0.45);
+\node[color=gray] at ({1.92+2.5*\dx},3.1) {\tiny Kanten};
+\node[color=gray] at (5.3,{2.45-2*\dy}) [above,rotate=-90] {\tiny Knoten};
+\end{scope}
+
+\begin{scope}
+\fill[color=red!20] (1.8,-1.16) rectangle (4.25,-0.77);
+\fill[color=red!20] (2.3,-2.6) rectangle (2.63,-0.29);
+\foreach \y in {1,...,5}{
+	\node[color=gray] at (4.7,{-0.5-(\y-1)*\dy}) {\tiny $\y$};
+	\node[color=gray] at ({1.92+(\y-1)*\dx},-0.1) {\tiny $\y$};
+}
+\draw[color=gray] (1.8,-0.22) -- (4.2,-0.22);
+\draw[color=gray] (4.6,-0.4) -- (4.6,-2.55);
+\node[color=gray] at ({1.92+2*\dx},0.1) {\tiny Knoten};
+\node[color=gray] at (4.7,{-0.5-2*\dy}) [above,rotate=-90] {\tiny Knoten};
+\end{scope}
+
+\node (0,0) [right] {$\displaystyle
+\begin{aligned}
+B(G)
+&=
+\begin{pmatrix}
+1&0&0&1&1&0\\
+1&1&0&0&0&1\\
+0&1&1&0&1&0\\
+0&0&1&0&0&0\\
+0&0&0&1&0&1
+\end{pmatrix}
+\\[12pt]
+A(G)
+&=
+\begin{pmatrix}
+0&1&1&0&1\\
+1&0&1&1&0\\
+1&1&0&1&0\\
+0&1&1&0&0\\
+1&0&0&0&0
+\end{pmatrix}
+\end{aligned}$};
+
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
