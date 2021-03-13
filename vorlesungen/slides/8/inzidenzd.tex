@@ -61,7 +61,7 @@
 \begin{align*}
 B(G)_{ij}&=-1&&\Leftrightarrow&&\text{Kante $j$ von $i$}\\
 B(G)_{kj}&=+1&&\Leftrightarrow&&\text{Kante $j$ nach $k$}\\
-A(G)_{ij}&=\pm 1&&\Leftrightarrow&&\text{Kante von $i$ nach $j$}
+A(G)_{ij}&=\phantom{-}1&&\Leftrightarrow&&\text{Kante von $i$ nach $j$}
 \end{align*}
 \end{block}
 \end{column}
@@ -91,6 +91,8 @@ rectangle
 }
 \draw[color=gray] (-0.1,-0.28) -- (-0.1,-2.4);
 \node[color=gray] at ({-0.67-(7-4)*\dx},0.04) [above] {\tiny Kanten};
+\node[color=gray] at ({0.00},{-0.38-(3-1)*\dy})
+	[above,rotate=-90] {\tiny Knoten};
 \end{scope}
 
 \begin{scope}[xshift=2.32cm,yshift=-0.24cm]
@@ -121,21 +123,21 @@ rectangle
 B(G)
 &=
 \begin{pmatrix*}[r]
--1& 0& 0& 0& 1&-1& 0\\
- 1&-1& 0& 0& 0& 0&-1\\
- 0& 1&-1& 0& 0& 1& 0\\
- 0& 0& 1&-1& 0& 0& 1\\
- 0& 0& 0& 1&-1& 0& 0
+-1& 0& 0& 0&+1&-1& 0\\
++1&-1& 0& 0& 0& 0&-1\\
+ 0&+1&-1& 0& 0&+1& 0\\
+ 0& 0&+1&-1& 0& 0&+1\\
+ 0& 0& 0&+1&-1& 0& 0
 \end{pmatrix*}
 \\[20pt]
 A(G)
 &=
 \begin{pmatrix*}[r]
- 0&-1&-1& 0&-1\\
--1& 0&-1&-1& 0\\
--1&-1& 0&-1& 0\\
- 0&-1&-1& 0&-1\\
--1& 0& 0&-1& 0
+ 0&\phantom{-}1&\phantom{-}1& 0&\phantom{-}1\\
+\phantom{-}1& 0&\phantom{-}1&\phantom{-}1& 0\\
+\phantom{-}1&\phantom{-}1& 0&\phantom{-}1& 0\\
+ 0&\phantom{-}1&\phantom{-}1& 0&\phantom{-}1\\
+\phantom{-}1& 0& 0&\phantom{-}1& 0
 \end{pmatrix*}
 \end{aligned}$};
 \end{tikzpicture}
