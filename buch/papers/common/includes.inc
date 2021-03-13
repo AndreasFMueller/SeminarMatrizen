@@ -7,6 +7,7 @@ include papers/mceliece/Makefile.inc
 include papers/clifford/Makefile.inc
 include papers/spannung/Makefile.inc
 include papers/erdbeben/Makefile.inc
+include papers/munkres/Makefile.inc
 
 TEXFILES = \
 	$(dependencies-verkehr) \
@@ -18,4 +19,5 @@ TEXFILES = \
 	$(dependencies-clifford) \
 	$(dependencies-spannung) \
 	$(dependencies-erdbeben) \
+	$(dependencies-munkres) \
 

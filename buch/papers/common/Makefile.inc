@@ -17,6 +17,7 @@ PAPERFILES = \
 	papers/clifford/main.tex \
 	papers/spannung/main.tex \
 	papers/erdbeben/main.tex \
+	papers/munkres/main.tex \
 	
 buch1-blx.bbl:	buch1-blx.aux
 	bibtex buch1-blx
@@ -48,6 +49,9 @@ buch9-blx.bbl:	buch9-blx.aux
 buch10-blx.bbl:	buch10-blx.aux
 	bibtex buch10-blx
 
+buch11-blx.bbl:	buch11-blx.aux
+	bibtex buch11-blx
+
 BLXFILES = buch.bbl \
 	buch1-blx.bbl \
 	buch2-blx.bbl \
@@ -59,6 +63,7 @@ BLXFILES = buch.bbl \
 	buch8-blx.bbl \
 	buch9-blx.bbl \
 	buch10-blx.bbl \
+	buch11-blx.bbl \
 
 PAPER_DIRECTORIES = \
 	verkehr \
@@ -70,6 +75,7 @@ PAPER_DIRECTORIES = \
 	clifford \
 	spannung \
 	erdbeben \
+	munkres \
 	
 PAPER_MAKEFILEINC = \
 	papers/verkehr/Makefile.inc \
@@ -81,4 +87,5 @@ PAPER_MAKEFILEINC = \
 	papers/clifford/Makefile.inc \
 	papers/spannung/Makefile.inc \
 	papers/erdbeben/Makefile.inc \
+	papers/munkres/Makefile.inc \
 	

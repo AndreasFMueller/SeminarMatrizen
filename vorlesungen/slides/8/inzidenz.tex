@@ -23,7 +23,9 @@
 
 \draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (C);
 \draw[color=white,line width=5pt] (B) -- (D);
-\draw[color=darkgreen,shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (D);
+{\color<2->{darkgreen}
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (D);
+}
 
 \draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (B);
 \draw[shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (C);
@@ -31,7 +33,12 @@
 %\draw[shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (E);
 \draw[shorten >= 0.2cm,shorten <= 0.2cm] (E) -- (A);
 
+\only<-2>{
+\fill[color=white] (B) circle[radius=0.2];
+}
+\only<3->{
 \fill[color=red!20] (B) circle[radius=0.2];
+}
 
 \draw (A) circle[radius=0.2];
 \draw (B) circle[radius=0.2];
@@ -51,18 +58,21 @@
 \node at ($0.5*(C)+0.5*(D)+(0.05,0)$) [left] {$\scriptstyle 3$};
 \node at ($0.5*(E)+0.5*(A)+(-0.1,0.1)$) [below right] {$\scriptstyle 4$};
 \node at ($0.6*(A)+0.4*(C)$) [above] {$\scriptstyle 5$};
-\node[color=darkgreen] at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 6$};
+{\color<2->{darkgreen}
+\node at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 6$};
+}
 
 \end{tikzpicture}
 \end{center}
 \vspace{-10pt}
+\uncover<5->{%
 \begin{block}{Definition}
 \vspace{-15pt}
 \begin{align*}
 B(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante $j$ endet in Knoten $i$}\\
 A(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante zwischen Knoten $i$ und $j$}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
 \begin{center}
@@ -73,8 +83,12 @@ A(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante zwischen Knoten $i$ und $j$}
 
 
 \begin{scope}
+\uncover<3->{
 \fill[color=red!20] (1.8,1.8) rectangle (4.75,2.15);
+}
+\uncover<2->{
 \fill[color=darkgreen!40,opacity=0.5] (4.46,0.36) rectangle (4.79,2.65);
+}
 \foreach \y in {1,...,5}{
 	\node[color=gray] at (5.3,{2.45-(\y-1)*\dy}) {\tiny $\y$};
 }
@@ -87,9 +101,12 @@ A(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante zwischen Knoten $i$ und $j$}
 \node[color=gray] at (5.3,{2.45-2*\dy}) [above,rotate=-90] {\tiny Knoten};
 \end{scope}
 
+\uncover<4->{
 \begin{scope}
+\uncover<3->{
 \fill[color=red!20] (1.8,-1.16) rectangle (4.25,-0.77);
 \fill[color=red!20] (2.3,-2.6) rectangle (2.63,-0.29);
+}
 \foreach \y in {1,...,5}{
 	\node[color=gray] at (4.7,{-0.5-(\y-1)*\dy}) {\tiny $\y$};
 	\node[color=gray] at ({1.92+(\y-1)*\dx},-0.1) {\tiny $\y$};
@@ -99,6 +116,7 @@ A(G)_{ij}&=1&&\Leftrightarrow&&\text{Kante zwischen Knoten $i$ und $j$}
 \node[color=gray] at ({1.92+2*\dx},0.1) {\tiny Knoten};
 \node[color=gray] at (4.7,{-0.5-2*\dy}) [above,rotate=-90] {\tiny Knoten};
 \end{scope}
+}
 
 \node (0,0) [right] {$\displaystyle
 \begin{aligned}
@@ -112,6 +130,7 @@ B(G)
 0&0&0&1&0&1
 \end{pmatrix}
 \\[12pt]
+\uncover<4->{
 A(G)
 &=
 \begin{pmatrix}
@@ -121,7 +140,7 @@ A(G)
 0&1&1&0&0\\
 1&0&0&0&0
 \end{pmatrix}
-\end{aligned}$};
+\end{aligned}}$};
 
 \end{tikzpicture}
 \end{center}

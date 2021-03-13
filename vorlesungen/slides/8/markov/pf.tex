@@ -1,0 +1,53 @@
+%
+% pf.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Perron-Frobenius-Theorie}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Positive Matrizen und Vektoren}
+$P\in M_{m\times n}(\mathbb{R})$ 
+\begin{itemize}
+\item<2->
+$P$ heisst positiv, $P>0$, wenn $p_{ij}>0\;\forall i,j$
+\item<3->
+$P\ge 0$, wenn $p_{ij}\ge 0\;\forall i,j$
+\end{itemize}
+\end{block}
+\uncover<4->{%
+\begin{block}{Beispiele}
+\begin{itemize}
+\item<5->
+Adjazenzmatrix $A(G)$
+\item<6->
+Gradmatrix $D(G)$
+\item<7->
+Wahrscheinlichkeitsmatrizen
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{%
+\begin{block}{Satz}
+Es gibt einen positiven Eigenvektor $p$ von $P$ zum Eigenwert $1$
+\end{block}}
+\uncover<9->{%
+\begin{block}{Satz}
+$P$ irreduzible Matrix, $P\ge 0$, hat einen Eigenvektor $p$, $p\ge 0$,
+zum Eigenwert $1$
+\end{block}}
+\uncover<10->{%
+\begin{block}{Potenzmethode}
+Falls $P\ge 0$ einen eindeutigen Eigenvektor $p$ hat\uncover<11->{,
+dann konveriert die rekursiv definierte Folge
+\[
+p_{n+1}=\frac{Pp_n}{\|Pp_n\|}, p_0 \ge 0, p_0\ne 0
+\]}%
+\uncover<12->{$\displaystyle\lim_{n\to\infty} p_n = p$}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

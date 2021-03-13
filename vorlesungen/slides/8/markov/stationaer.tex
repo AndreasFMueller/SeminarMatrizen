@@ -1,0 +1,57 @@
+%
+% stationaer.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Stationäre Verteilung}
+%\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Zeitentwicklung}
+\begin{itemize}
+\item<2->
+$P$ eine Wahrscheinlichkeitsmatrix
+\item<3->
+$p_0\in\mathbb{R}^n$ Verteilung zur Zeit $t=0$ bekannt
+\item<4->
+$p_k\in\mathbb{R}^n$ Verteilung zur Zeit $t=k$
+\end{itemize}
+\uncover<5->{%
+Entwicklungsgesetz
+\begin{align*}
+P(i,t=k)
+&=
+\sum_{j=1}^n P_{ij} P(j,t=k-1)
+\\
+\uncover<6->{
+p_k &= Pp_{k-1}
+}
+\end{align*}}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<7->{%
+\begin{block}{Stationär}
+Bedingung: $p_{k\mathstrut} = p_{k-1}$
+\uncover<8->{
+\begin{align*}
+\Rightarrow
+Pp &= p
+\end{align*}}\uncover<9->{%
+Eigenvektor zum Eigenwert $1$}
+\end{block}}
+\uncover<10->{%
+\begin{block}{Fragen}
+\begin{enumerate}
+\item<11->
+Gibt es eine stationäre Verteilung?
+\item<12->
+Gibt es einen Eigenvektor mit Einträgen $\ge 0$?
+\item<13->
+Gibt es mehr als eine Verteilung?
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
