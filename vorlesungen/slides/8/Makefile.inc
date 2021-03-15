@@ -12,6 +12,7 @@ chapter8 =								\
 	../slides/8/inzidenzd.tex					\
 	../slides/8/diffusion.tex					\
 	../slides/8/laplace.tex						\
+	../slides/8/produkt.tex						\
 	../slides/8/fourier.tex						\
 	../slides/8/spanningtree.tex					\
 	../slides/8/pfade/adjazenz.tex					\
