@@ -1,0 +1,64 @@
+%
+% maximalideal.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Maximale Ideale}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Teilbarkeit}
+$a|b$
+\uncover<2->{$\Rightarrow$
+$b\in aR$}
+\uncover<3->{$\Rightarrow$
+$bR\subset aR$}
+\end{block}
+\uncover<4->{%
+\begin{block}{Nicht mehr teilbar}
+$a\in R$ nicht faktorisierbar
+\\
+\uncover<5->{$\Rightarrow$
+\\
+es gibt kein Ideal zwischen $aR$ und $R$}
+\\
+\uncover<6->{$\Leftrightarrow$
+\\
+$J$ ein Ideal
+$aR \subset J \subset R$, dann ist
+$J=aR$ oder $J=R$}
+\end{block}}
+\uncover<7->{
+\begin{block}{maximales Ideal}
+$I\subset R$ heisst maximal, wenn für jedes Ideal $J$
+mit $I\subset J\subset R$ gilt
+$I=J$ oder $J=R$
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{
+\begin{block}{Beispiele}
+\begin{itemize}
+\item Primzahlen $p$ erzeugen maximale Ideale in $\mathbb{Z}$
+\item<9-> Irreduzible Polynome erzeugen maximale Ideale in $\Bbbk[X]$
+\end{itemize}
+\end{block}}
+\uncover<10->{%
+\begin{block}{Körper}
+$M\subset R$ ein maximales Ideal, dann ist
+$R/M$ ein Körper
+\end{block}}
+\uncover<11->{%
+\begin{block}{Beispiel}
+\begin{itemize}
+\item
+$\mathbb{F}_p = \mathbb{Z}/p\mathbb{Z}$
+\item<12->
+$m$ ein irreduzibles Polynom:
+$\Bbbk[X]/ (m)$ ist ein Körper
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
