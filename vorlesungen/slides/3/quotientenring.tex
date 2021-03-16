@@ -1,0 +1,59 @@
+%
+% Quotientenring.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Quotientenring}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Quotientenring}
+$I\subset R$ ein Ideal
+\\
+\uncover<2->{
+$R/I$ hat eine Ringstruktur:
+\begin{align*}
+\uncover<3->{\pi(s)&=s+I}
+\\
+\uncover<4->{\pi(s)\pi(r)&= (s+I)(r+I)}\\
+            &\uncover<5->{= sr +\underbrace{sI + rI}_{\subset RI\subset I} + II = sr+I}
+\\
+\uncover<6->{\pi(s)+\pi(r)&= (s+I)+(r+I)}\\
+	     &\uncover<7->{=s+r+I=\pi(s+r)}
+\end{align*}}
+\end{block}
+\vspace{-15pt}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<7->{%
+\begin{block}{Beispiele}
+\begin{itemize}
+\item
+$\mathbb{Z}/(n)=\mathbb{Z}/n\mathbb{Z}$,
+$\mathbb{F}_p=\mathbb{Z}/(p)=\mathbb{Z}/p\mathbb{Z}$
+\item<8->
+$p\in\Bbbk[X]$
+$\Rightarrow$
+$\Bbbk[X]/(p)$ ist ein Ring
+\end{itemize}
+\end{block}}
+\uncover<9->{%
+\begin{block}{Algebraideal}
+$I\subset A$
+\begin{itemize}
+\item<10->
+$I$ ein Unterraum von $A$ als Vektorraum
+\item<11->
+$I$ ein Ideal von $A$ als Ring
+\end{itemize}
+\end{block}}
+\uncover<12->{%
+\begin{block}{Quotientenalgebra}
+$A/I$ ist eine Algebra
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

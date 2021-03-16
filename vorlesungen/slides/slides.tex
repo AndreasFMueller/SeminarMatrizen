@@ -3,19 +3,77 @@
 %
 % (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\title[Intro]{Intro}
-\section{Intro}
+\def\titel{
+% title slide for this chapter
 \begin{frame}
 \titlepage
 \end{frame}
+\ifthenelse{\boolean{presentation}}{}{
+% add an empty slide for alignment in the slide catalog
+\begin{frame}
+\end{frame}
+}
+}
+
+\title[MathSem]{Mathematisches Seminar: Matrizen}
+\section{Intro}
+\titel
+\author[]{}
 \subtitle{}
 \input{0/chapter.tex}
 
 \title[Grundlagen]{Grundlagen}
 \section{Grundlagen}
-\begin{frame}
-\titlepage
-\end{frame}
-\subtitle{}
+\titel
 \input{1/chapter.tex}
+
+\title[Vektoren/Matrizen]{Vektoren und Matrizen}
+\section{Vektoren und Matrizen}
+\titel
+\input{2/chapter.tex}
+
+\title[Polynome]{Polynome}
+\section{Polynome}
+\titel
+\input{3/chapter.tex}
+
+\title[Endliche Körper]{Endliche Körper}
+\section{Endliche Körper}
+\titel
+\input{4/chapter.tex}
+
+\title[EW/EV]{Eigenwerte und Eigenvektoren}
+\section{Eigenwerte und Eigenvektoren}
+\titel
+\input{5/chapter.tex}
+
+%\title[Permutationen]{Permutationen}
+%\section{Permutationen}
+%\titel
+%\input{6/chapter.tex}
+
+%\title[Matrizengruppen]{Matrizengruppen}
+%\section{Matrizengruppen}
+%\titel
+%\input{7/chapter.tex}
+
+\title[Graphen]{Graphen}
+\section{Graphen}
+\titel
+\input{8/chapter.tex}
+
+\title[Wahrscheinlichkeit]{Wahrscheinlichkeitsmatrizen}
+\section{Wahrscheinlichkeitsmatrizen}
+\titel
+\input{9/chapter.tex}
+
+%\title[Krypto]{Anwendungen in Kryptographie und Codierungstheorie}
+%\section{Krypto}
+%\titel
+%\input{a/chapter.tex}
+
+%\title[Homologie]{Homologie}
+%\section{Homologie}
+%\titel
+%\input{b/chapter.tex}
 

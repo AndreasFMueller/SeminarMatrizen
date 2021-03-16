@@ -12,6 +12,8 @@ chapter3 =								\
 	../slides/3/division2.tex					\
 	../slides/3/ringstruktur.tex					\
 	../slides/3/teilbarkeit.tex					\
+	../slides/3/ideal.tex						\
+	../slides/3/quotientenring.tex					\
 	../slides/3/faktorisierung.tex					\
 	../slides/3/faktorzerlegung.tex					\
 	../slides/3/einsetzen.tex					\

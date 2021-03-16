@@ -10,7 +10,8 @@ include ../slides/3/Makefile.inc
 include ../slides/4/Makefile.inc
 include ../slides/5/Makefile.inc
 include ../slides/8/Makefile.inc
+include ../slides/9/Makefile.inc
 
 slides = 								\
 	$(chapter0) $(chapter1) $(chapter2) $(chapter3) $(chapter4)	\
-	$(chapter5) $(chapter8)
+	$(chapter5) $(chapter8) $(chapter9)

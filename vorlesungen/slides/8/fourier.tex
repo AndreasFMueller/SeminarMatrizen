@@ -1,0 +1,83 @@
+%
+% fourier.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Fourier-Transformation}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Algebra}
+Die Laplace-Matrix eines Graphen ist symmetrisch
+\uncover<2->{%
+
+$\Rightarrow$
+Es gibt eine Basis aus Eigenvektoren $g_i\in\mathbb{R}^n$ von $L(G)$:
+\begin{align*}
+L(G)g_i&=\lambda_i g_i
+\end{align*}}
+\end{block}
+\uncover<12->{%
+\vspace{-20pt}
+\begin{block}{Fourier-Transformation}
+Jedes $f\in\mathbb{R}^n$ kann durch die $g_i$ ausgedrückt werden
+\begin{align*}
+\uncover<13->{
+f&= a_1 g_1 + \dots + a_n g_n
+}
+\\
+\uncover<14->{
+&= \hat{f}_1 g_1 + \dots + \hat{f}_ng_n = \sum_{k=1}^n \hat{f}_kg_k
+}
+\end{align*}
+\uncover<15->{%
+Zerlegung nach Zeitkonstante $\lambda_i$
+}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{Anwendung}
+Wärmeleitungsgleichung
+\begin{align*}
+\uncover<4->{
+\frac{d}{dt}f &= L(G) f
+}
+\intertext{\uncover<5->{{\usebeamercolor[fg]{title}Ansatz:}}}
+\uncover<6->{
+f&=a_1g_1T_1(t)+\dots + a_ng_nT_n(t)
+}
+\\
+\uncover<7->{
+\frac{d}{dt}f
+&=
+a_1g_1\dot{T}_1(t) + \dots + a_1g_1 \dot{T}_n(t)
+}
+\\
+\uncover<8->{
+&=
+a_1Lg_1 + \dots + a_nLg_n
+}
+\\
+\uncover<9->{
+&=
+a_1\lambda_1 g_1 + \dots + a_n\lambda_n g_n
+}
+\\
+\uncover<10->{
+\dot{T}_i(t) &= \lambda_i T_i(t)
+}
+\uncover<11->{
+\quad
+\Rightarrow
+\quad
+T_i(t) = e^{\lambda_it} \uncover<-9>{T_i(0)}
+}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

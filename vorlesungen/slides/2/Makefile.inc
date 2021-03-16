@@ -15,5 +15,7 @@ chapter2 =								\
 	../slides/2/funktionenalgebra.tex				\
 	../slides/2/frobeniusnorm.tex					\
 	../slides/2/frobeniusanwendung.tex				\
+	../slides/2/quotient.tex					\
+	../slides/2/quotientv.tex					\
 	../slides/2/chapter.tex
 

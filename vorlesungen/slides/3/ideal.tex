@@ -1,0 +1,63 @@
+%
+% ideal.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Ideal}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Voraussetzungen}
+$R$ ein Ring, $r\in R$
+\end{block}
+\uncover<2->{%
+\begin{block}{Vielfache\uncover<4->{ = Hauptideal}}
+Die Menge aller Elemente, die durch $r$ teilbar sind\uncover<3->{:
+\[
+(r)=rR
+\]}
+\uncover<4->{heisst {\em Hauptideal}}
+\end{block}}
+\uncover<5->{%
+\begin{block}{Ideal}
+$I\subset R$ mit
+\(RI\subset I\), \(I+I\subset I\)
+\end{block}}
+\uncover<6->{%
+\begin{block}{Hauptidealring}
+Jedes Ideal von $R$ ist ein Hauptideal
+\\
+\uncover<7->{{\usebeamercolor[fg]{title}Beispiele:}
+$\mathbb{Z}$,
+$\Bbbk[X]$}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{%
+\begin{block}{Grösster gemeinsamer Teiler}
+$a,b\in R$
+\begin{align*}
+\uncover<9->{(a) + (b)
+&= aR + bR}
+\intertext{\uncover<10->{ist eine Ideal }\uncover<11->{$\Rightarrow$ ein Hauptideal}}
+&\uncover<12->{= cR}\uncover<13->{ = \operatorname{ggT}(a,b)R}
+\end{align*}
+\uncover<14->{Existenz des $\operatorname{ggT}(a,b)$ ist eine
+gemeinsame Eigenschaft}
+\end{block}}
+\uncover<15->{%
+\begin{block}{Allgemein}
+\begin{itemize}
+\item<16->
+Alle euklidischen Ringe sind Hauptidealringe
+\item<17->
+Alle solchen Ringe verwenden den gleichen Algorithmus
+für $\operatorname{ggT}(a,b)$
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

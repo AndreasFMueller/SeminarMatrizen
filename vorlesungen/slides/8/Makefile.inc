@@ -28,10 +28,5 @@ chapter8 =								\
 	../slides/8/tokyo/bahn0.tex					\
 	../slides/8/tokyo/bahn1.tex					\
 	../slides/8/tokyo/bahn2.tex					\
-	../slides/8/markov/google.tex					\
-	../slides/8/markov/markov.tex					\
-	../slides/8/markov/irreduzibel.tex				\
-	../slides/8/markov/stationaer.tex				\
-	../slides/8/markov/pf.tex					\
 	../slides/8/chapter.tex
 
