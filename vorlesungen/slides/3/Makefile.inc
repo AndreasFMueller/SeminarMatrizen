@@ -31,5 +31,7 @@ chapter3 =								\
 	../slides/3/adjunktion.tex					\
 	../slides/3/adjalgebra.tex					\
 	../slides/3/wurzel2.tex						\
+	../slides/3/phi.tex						\
+	../slides/3/multiplikation.tex					\
 	../slides/3/chapter.tex
 
