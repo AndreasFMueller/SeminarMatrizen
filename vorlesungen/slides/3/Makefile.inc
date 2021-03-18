@@ -13,6 +13,8 @@ chapter3 =								\
 	../slides/3/ringstruktur.tex					\
 	../slides/3/teilbarkeit.tex					\
 	../slides/3/ideal.tex						\
+	../slides/3/nichthauptideal.tex					\
+	../slides/3/nichthauptideal2.tex				\
 	../slides/3/idealverband.tex					\
 	../slides/3/maximalideal.tex					\
 	../slides/3/quotientenring.tex					\
