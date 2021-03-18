@@ -30,10 +30,6 @@
 	{\includegraphics[width=7cm]{../slides/3/images/ring.jpg}};
 	\end{scope}
 	\node[color=orange] at (1.9,0.1) [right] {$\mathbb{Z}[X]$};
-	\fill[color=white,opacity=0.5] (1.5,-0.6) circle[radius=0.2];
-	\node at (1.5,-0.6) {$1$};
-	\fill[color=white,opacity=0.5] (-0.4,1.7) circle[radius=0.2];
-	\node at (-0.4,1.7) {$X$};
 \end{scope}
 }
 
@@ -84,6 +80,13 @@
 
 \draw[color=gray!50] (-6.6,0) -- (6.4,0);
 \draw[color=gray!50] (0,-3.8) -- (0,3.8);
+
+\begin{scope}[xshift=3.0cm,yshift=1.9cm]
+	\fill[color=white,opacity=0.5] (1.5,-0.6) circle[radius=0.2];
+	\node at (1.5,-0.6) {$1$};
+	\fill[color=white,opacity=0.5] (-0.4,1.7) circle[radius=0.2];
+	\node at (-0.4,1.7) {$X$};
+\end{scope}
 
 \end{tikzpicture}
 \end{center}
