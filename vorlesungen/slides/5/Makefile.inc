@@ -5,8 +5,11 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
 chapter5 =								\
+	../slides/5/verzerrung.tex					\
 	../slides/5/motivation.tex					\
 	../slides/5/charpoly.tex					\
+	../slides/5/kernbildintro.tex					\
+	../slides/5/kernbilder.tex					\
 	../slides/5/kernbild.tex					\
 	../slides/5/ketten.tex						\
 	../slides/5/dimension.tex					\

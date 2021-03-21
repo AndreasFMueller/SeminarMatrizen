@@ -47,7 +47,8 @@ fprintf(f, "#declare j12 = < %.5f, %.5f, %.5f>;\n", E1(1,2), E1(2,2), E1(3,2));
 fprintf(f, "\n");
 
 # k = 2
-D = rref(E1 * E1);
+E12 = E1 * E1
+D = rref(E12);
 K2 = [
 	-D(1,2), -D(1,3);
 	      1,       0;
@@ -60,7 +61,7 @@ K2
 fprintf(f, "// Kern und Bild von (C - %.3f I)^2\n", lambda2);
 fprintf(f, "#declare k21 = < %.5f, %.5f, %.5f>;\n", K2(1,1), K2(2,1), K2(3,1));
 fprintf(f, "#declare k22 = < %.5f, %.5f, %.5f>;\n", K2(1,2), K2(2,2), K2(3,2));
-fprintf(f, "#declare j21 = < %.5f, %.5f, %.5f>;\n", E2(1,1), E2(2,1), E2(3,1));
+fprintf(f, "#declare j21 = < %.5f, %.5f, %.5f>;\n", E12(1,1), E12(2,1), E12(3,1));
 fprintf(f, "\n");
 
 fclose(f);

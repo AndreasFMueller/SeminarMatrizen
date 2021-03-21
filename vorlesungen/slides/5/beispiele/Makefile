@@ -3,7 +3,7 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	kern bild kb kombiniert.jpg
+all:	kern bild kb kombiniert.jpg leer.jpg drei.jpg
 
 kern:	kern1.jpg kern2.jpg
 bild:	bild1.jpg bild2.jpg
@@ -19,6 +19,8 @@ bild2.png:	JK1.inc common.inc bild2.pov
 kern1.png:	JK1.inc common.inc kern1.pov
 kern2.png:	JK1.inc common.inc kern2.pov
 kombiniert.png:	JK1.inc common.inc kombiniert.pov
+leer.png:	JK1.inc common.inc leer.pov
+drei.png:	JK1.inc common.inc drei.pov
 
 %.png:	%.pov 
 	povray +A0.1 -W1920 -H1080 -O$@ $<
