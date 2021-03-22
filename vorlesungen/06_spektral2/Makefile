@@ -26,8 +26,10 @@ thumbnail.jpg:	thumbnail.pdf
 
 fix1.pdf:	MathSem-06-spektral2.pdf
 	pdfjam --outfile fix1.pdf --papersize '{16cm,9cm}' \
-		MathSem-06-spektral2.pdf 1
+		MathSem-06-spektral2.pdf 65
 fix1.jpg:	fix1.pdf
 	convert -density 300 fix1.pdf \
                 -resize 1920x1080 -units PixelsPerInch fix1.jpg
 
+spektralradius.jpg:	fix1.jpg Makefile
+	convert -extract 660x620+300+400 fix1.jpg spektralradius.jpg
