@@ -1,0 +1,113 @@
+%
+% polarformel.tex
+%
+% (c) 2021 Prod Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkcolor}{rgb}{0,0.6,0}
+\def\yone{-2.1}
+\def\ytwo{-3.55}
+\def\ythree{-5.0}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Polarformel}
+\vspace{-5pt}
+\begin{block}{Aufgabe}
+$\langle x,y\rangle$ aus Werten von $\|\cdot\|_2$ rekonstruieren:
+
+\end{block}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\node at (0,0) {$
+\begin{aligned}
+\uncover<2->{
+\|x+ty\|_2^2
+&=
+\|x\|_2^2
++t\langle x,y\rangle
++\overline{t}\langle y,x\rangle
++ \|y\|_2^2}
+\\
+\uncover<3->{
+&=
+\|x\|_2^2
++t\langle x,y\rangle
++\overline{t\langle x,y\rangle}
++ \|y\|_2^2}
+\\
+\uncover<4->{
+&=
+\|x\|_2^2
++2\operatorname{Re}(t\langle x,y\rangle)
++ \|y\|_2^2}
+\end{aligned}$};
+
+\uncover<5->{
+	\draw[->] (-1,-0.9) -- (-3.3,{\yone+0.25});
+	\node at (-3.5,\yone) {$
+	\|x\pm y\|_2^2
+	=
+	\|x\|_2^2
+	\pm2\operatorname{Re}\langle x,y\rangle
+	+
+	\|y\|_2^2
+	$};
+}
+
+\uncover<8->{
+	\draw[->] (1,-0.9) -- (3.3,{\yone+0.25});
+	\node at (3.5,\yone) {$
+	\|x\pm iy\|_2^2
+	=
+	\|x\|_2^2
+	\pm2i\operatorname{Im}\langle x,y\rangle
+	+
+	\|y\|_2^2
+	$};
+}
+
+\uncover<6->{
+	\draw[->] (-3.5,{\yone-0.2}) -- (-3.5,{\ytwo+0.2});
+	\node at (-3.5,\ytwo) {$\operatorname{Re}\langle x,y\rangle
+	=
+	\frac12\bigl(
+	\|x+y\|_2^2-\|x-y\|_2^2
+	\bigr)
+	$};
+}
+
+\uncover<9->{
+	\draw[->] (3.5,{\yone-0.2}) -- (3.5,{\ytwo+0.2});
+	\node at (3.5,\ytwo) {$
+	\operatorname{Im}\langle x,y\rangle
+	=
+	\frac1{2i}\bigl(
+	\|x+iy\|_2^2-\|x-iy\|_2^2
+	\bigr)
+	$};
+}
+
+\uncover<7->{
+	\draw[->] (-3.3,{\ytwo-0.25}) -- (-1.5,{\ythree+0.25});
+	\node at (0,\ythree) {$
+	\langle x,y\rangle
+	=
+	\frac12\bigl(
+	\|x+y\|_2^2-\|x-y\|_2^2
+	\uncover<10->{
+		+
+		\|x+iy\|_2^2-\|x-iy\|_2^2
+	}
+	\bigr)$};
+}
+
+\uncover<10->{
+	\draw[->] (3.3,{\ytwo-0.25}) -- (1.5,{\ythree+0.25});
+}
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup

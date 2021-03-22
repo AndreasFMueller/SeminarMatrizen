@@ -1,0 +1,72 @@
+%
+% peano.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Natürliche Zahlen\uncover<2->{: Peano}}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Zählen}
+Mit den natürlichen Zahlen zählt man: 
+\[
+\mathbb{N}
+=
+\left\{
+\begin{minipage}{5cm}
+\raggedright
+Äquivalenzklassen von gleich mächtigen
+endlichen Mengen
+\end{minipage}
+\right\}
+\]
+\end{block}
+\vspace{-10pt}
+\uncover<2->{%
+\begin{block}{Peano-Axiome}
+\begin{enumerate}
+\item<3-> $0\in\mathbb{N}$
+\item<4-> $n\in\mathbb{N}\Rightarrow \text{Nachfolger }n'\in\mathbb{N}$
+\item<5-> $0$ ist nicht Nachfolger
+\item<6-> $n,m\in\mathbb{N}\wedge n'=m'\Rightarrow n=m$
+\item<7-> $X\subset \mathbb{N}\wedge 0\in X\wedge \forall n\in X(n'\in X)
+\Rightarrow
+\mathbb{N}=X
+$
+\end{enumerate}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{%
+\begin{block}{Monoid}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+Menge $\only<8-10>{\mathbb{N}}\only<11->{M}$ mit einer
+zweistelligen Verknüpfung $a\only<8-10>{+}\only<11->{*}b$
+\begin{enumerate}
+\item<9-> Assoziativ: $a,b,c\in M$
+\[
+(a\only<8-10>{+}\only<11->{*}b)\only<8-10>{+}\only<11->{*}c=a\only<8-10>{+}\only<11->{*}(b\only<8-10>{+}\only<11->{*}c)
+\]
+\item<10-> Neutrales Element: $\only<8-10>{0}\only<11->{e}\in M$
+\[
+\only<8-10>{0+}\only<11->{e*} a
+=
+a \only<8-10>{+0}\only<11->{*e}
+\]
+\end{enumerate}
+\end{block}}%
+\vspace{-15pt}
+\uncover<12->{%
+\begin{block}{Axiom 5 = Vollständige Induktion}
+$X=\{n\in\mathbb{N}\;|\; \text{$P(n)$ ist wahr}\}$
+\begin{enumerate}
+\item<13-> Verankerung: $0\in X$
+\item<14-> Induktionsannahme: $n\in X$
+\item<15-> Induktionsschritt: $n'\in X$
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

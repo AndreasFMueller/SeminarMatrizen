@@ -1,0 +1,90 @@
+%
+% schwierigkeiten.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\frametitle{Schwierigkeiten}
+\vspace{-15pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Nullteiler}
+Elemente $a,b$ mit $ab=0$
+$\Rightarrow$ nicht invertierbar
+\begin{itemize}
+\item<3-> Projektionen
+\[
+\begin{pmatrix}
+1&0\\0&0
+\end{pmatrix}
+\begin{pmatrix}
+0&0\\0&1
+\end{pmatrix}
+=
+0
+\]
+\item<4-> Nilpotente Matrizen
+\[
+\begin{pmatrix}
+0&1&0\\
+0&0&1\\
+0&0&0
+\end{pmatrix}^3
+=0
+\]
+\item<5->
+In $\mathbb{Z}/15\mathbb{Z}$ (modulo 15):
+\[
+3\cdot 5 = 15 \equiv 0\mod 15
+\]
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Invertierbarkeit}
+\begin{itemize}
+\item<7->
+$7\in\mathbb{Z}$, aber $7^{-1}\not\in\mathbb{Z}$, $7^{-1}\in\mathbb{Q}$
+\item<8->
+$A$ regulär heisst nicht $A^{-1}\in M_n(\mathbb{Z})$
+\[
+A=\begin{pmatrix}
+1&-1\\
+1&1
+\end{pmatrix}
+\;\Rightarrow\;
+A^{-1}
+=
+\begin{pmatrix}
+\frac12&\frac12\\
+-\frac12&\frac12
+\end{pmatrix}
+\]
+\item<9->
+$A\in\operatorname{SL}_n(\mathbb{Z})$ invertierbar in
+$M_n(\mathbb{Z})$:
+\[
+A=
+\begin{pmatrix}
+5&4\\4&3
+\end{pmatrix}
+\;
+\Rightarrow
+\;
+A^{-1}=
+\begin{pmatrix}
+-3&4\\4&-5
+\end{pmatrix}
+\]
+\end{itemize}
+\uncover<10->{%
+Invertierbarkeit erreichen durch ``vergrössern'' des Ringes
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

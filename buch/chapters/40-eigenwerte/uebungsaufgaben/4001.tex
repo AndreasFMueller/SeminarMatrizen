@@ -1,0 +1,76 @@
+Verwenden Sie die Matrixdarstellung komplexer Zahlen, um $i^i$ zu
+berechnen.
+
+\begin{hinweis}
+Verwenden Sie die eulersche Formel um $\log J$ zu bestimmen.
+\end{hinweis}
+
+\begin{loesung}
+Wir berechnen $J^J$ mit Hilfe des Logarithmus als
+$J^J = \exp(J\log J)$.
+Zunächst erinnern wir an die Eulersche Formel
+\[
+\exp tJ
+=
+\sum_{k=0}^\infty \frac{t^k J^k}{k!}
+=
+\sum_{i=0}^\infty \frac{t^{2i}(-1)^i}{(2i)!}\cdot E
++
+\sum_{i=0}^\infty \frac{t^{2i+1}(-1)^i}{(2i+1)!}\cdot J
+=
+\cos t\cdot E
++
+\sin t\cdot J.
+\]
+Daraus liest man ab, dass 
+\[
+\log \begin{pmatrix}
+\cos t&-\sin t\\
+\sin t& \cos t
+\end{pmatrix}
+=
+tJ
+\]
+gilt.
+Für die Matrix $J$ heisst das
+\begin{equation}
+J = \begin{pmatrix}
+0&-1\\1&0
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\frac{\pi}2&-\sin\frac{\pi}2\\
+\sin\frac{\pi}2& \cos\frac{\pi}2
+\end{pmatrix}
+\qquad\Rightarrow\qquad
+\log J = \frac{\pi}2 J.
+\label{4001:logvalue}
+\end{equation}
+Als nächstes müssen wir $J\log J$ berechnen.
+Aus \eqref{4001:logvalue} folgt
+\[
+J\log J = J\cdot \frac{\pi}2J = - \frac{\pi}2 \cdot E.
+\]
+Darauf ist die Exponentialreihe auszuwerten, also
+\[
+J^J
+=
+\exp (J\log J)
+=
+\exp(-\frac{\pi}2 E)
+=
+\exp
+\begin{pmatrix}
+-\frac{\pi}2&0\\
+0&-\frac{\pi}2
+\end{pmatrix}
+=
+\begin{pmatrix}
+e^{-\frac{\pi}2}&0\\
+0&e^{-\frac{\pi}2}
+\end{pmatrix}
+=
+e^{-\frac{\pi}2} E.
+\]
+Als komplexe Zahlen ausgedrückt folgt also $i^i = e^{-\frac{\pi}2}$.
+\end{loesung}

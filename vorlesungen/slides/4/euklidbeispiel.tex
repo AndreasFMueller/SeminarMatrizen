@@ -1,0 +1,78 @@
+%
+% euklidmatrix.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostscheizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\frametitle{Euklidischer Algorithmus: Beispiel}
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\vspace{-0pt}
+\begin{block}{Finde $\operatorname{ggT}(25,15)$}
+\vspace{-12pt}
+\begin{align*}
+a_0&=25 & b_0 &= 15 &\uncover<2->{25&=15 \cdot {\color{orange}      1} + 10 &q_0 &= {\color{orange}1} & r_0 &= 10}\\
+\uncover<3->{a_1&=15 & b_1 &= 10}&\uncover<4->{15&=10 \cdot {\color{darkgreen}1} + \phantom{0}5  &q_1 &= {\color{darkgreen}1} & r_1 &= \phantom{0}5}\\
+\uncover<5->{a_2&=10 & b_2 &= \phantom{0}5}&\uncover<6->{10&=\phantom{0}5  \cdot {\color{blue}     2} + \phantom{0}0  &q_2 &= {\color{blue}2} & r_2 &= \phantom{0}0 }
+\end{align*}
+\end{block}
+\vspace{-5pt}
+\uncover<7->{%
+\begin{block}{Matrix-Operationen}
+\begin{align*}
+Q
+&=
+\uncover<9->{Q({\color{blue}2})}
+\uncover<8->{Q({\color{darkgreen}1})}
+Q({\color{orange}1})
+=
+\uncover<9->{
+\begin{pmatrix*}[r]0&1\\1&-{\color{blue}2}\end{pmatrix*}
+}
+\uncover<8->{
+\begin{pmatrix*}[r]0&1\\1&-{\color{darkgreen}1}\end{pmatrix*}
+}
+\begin{pmatrix*}[r]0&1\\1&-{\color{orange}1}\end{pmatrix*}
+=
+\ifthenelse{\boolean{presentation}}{
+\only<7>{
+\begin{pmatrix*}[r]\phantom{-}0&1\\1&-1\end{pmatrix*}
+}
+\only<8>{
+\begin{pmatrix*}[r]
+1&-1\\-1&2
+\end{pmatrix*}
+}
+}{}
+\only<9->{
+\begin{pmatrix*}[r]
+{\color{red}-1}&{\color{red}2}\\3&-5
+\end{pmatrix*}}
+\end{align*}
+\end{block}}
+\vspace{-5pt}
+\uncover<10->{%
+\begin{block}{Relationen ablesen}
+\[
+\begin{pmatrix}
+\operatorname{ggT}(a,b)\\0
+\end{pmatrix}
+=
+Q
+\begin{pmatrix}a\\b\end{pmatrix}
+\uncover<11->{%
+\quad
+\Rightarrow\quad
+\left\{
+\begin{aligned}
+\operatorname{ggT}({\usebeamercolor[fg]{title}25},{\usebeamercolor[fg]{title}15}) &= 5 =
+{\color{red}-1}\cdot {\usebeamercolor[fg]{title}25} + {\color{red}2}\cdot {\usebeamercolor[fg]{title}15} \\
+ 0                        &= \phantom{5=-}3\cdot {\usebeamercolor[fg]{title}25} -5\cdot {\usebeamercolor[fg]{title}15}
+\end{aligned}
+\right.}
+\]
+\end{block}}
+
+\end{frame}

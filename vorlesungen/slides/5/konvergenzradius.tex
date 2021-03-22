@@ -1,0 +1,109 @@
+%
+% konvergenzradius.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\setbeamercolor{column}{bg=blue!20}
+\def\punkt#1{
+	\fill[color=blue!30] #1 circle[radius=0.05];
+	\draw[color=blue] #1 circle[radius=0.05];
+}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Konvergenzradius}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Potenzreihen}
+$f\colon\mathbb{C}\to\mathbb{C}$ (komplex differenzierbar)
+\begin{equation}
+f(z) = \sum_{k=0}^\infty a_kz^k
+\label{reihe}
+\end{equation}
+\end{block}
+\vspace{-8pt}
+\uncover<2->{%
+\begin{block}{Konvergenz}
+\eqref{reihe} konvergiert für $|z| < {\color{darkgreen}R}$,
+\[
+\frac{1}{{\color{darkgreen}R}}
+=
+\limsup_{k\to\infty} |a_k|^{\frac1k}
+\]
+\end{block}}
+\uncover<3->{%
+\begin{block}{Polstellen}
+{\color{darkgreen}$R$} ist der Radius des grössten Kreises um $O$,
+auf dessen Rand eine
+{\color{blue}Polstelle} der Funktion $f(z)$ liegt
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\r{2.5}
+\uncover<2->{
+	\fill[color=red!20] (0,0) circle[radius=\r];
+	\draw[color=red] (0,0) circle[radius=\r];
+}
+\draw[->] (-2.6,0) -- (2.9,0) coordinate[label={$\operatorname{Re}z$}];
+\draw[->] (0,-2.6) -- (0,2.9) coordinate[label={$\operatorname{Im}z$}];
+
+\uncover<2->{
+	\draw[->,color=darkgreen,shorten >= 0.05cm] (0,0) -- (100:\r);
+	\draw[->,color=darkgreen,shorten >= 0.05cm] (0,0) -- (220:\r);
+	\node[color=darkgreen] at ($0.5*(100:\r)$) [left] {$R$};
+	\node[color=darkgreen] at ($0.5*(220:\r)+(-0.1,0.1)$)
+		[below right] {$R$};
+
+	\fill[color=white] (0,0) circle[radius=0.05];
+	\draw (0,0) circle[radius=0.05];
+}
+
+\node at (2.8,2.8) {$\mathbb{C}$};
+
+\uncover<3->{
+	\punkt{(100:\r)}
+	\punkt{(220:\r)}
+
+	\begin{scope}
+		\clip (-2.6,-2.6) rectangle (2.9,2.9);
+
+		\punkt{(144.2527:2.7232)}
+		%\punkt{(226.1822:2.5164)}
+		\punkt{(173.7501:3.4140)}
+		\punkt{(267.4103,2.7668)}
+		\punkt{(137.7328:3.1683)}
+		%\punkt{(30.1155:3.3629)}
+		%\punkt{(139.1036:2.5366)}
+		\punkt{(167.4964:3.0503)}
+		\punkt{(289.2650:3.4324)}
+		\punkt{(120.1911:3.2966)}
+		%\punkt{(292.3422:2.7550)}
+		\punkt{(141.4877:2.6494)}
+		\punkt{(70.8326:2.9005)}
+		\punkt{(56.0758:3.2098)}
+		\punkt{(99.0585:3.2340)}
+		\punkt{(299.7242:2.5990)}
+		\punkt{(158.8802:2.6539)}
+		\punkt{(235.2721:2.9476)}
+		\punkt{(108.0584:2.8344)}
+		\punkt{(220.0117:2.7679)}
+
+	\end{scope}
+
+	\begin{scope}[yshift=-3.2cm,xshift=-1.0cm]
+		\punkt{(0,-0.05)}
+		\node at (0,0) [right] {$=$ Polstelle};
+	\end{scope}
+}
+
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

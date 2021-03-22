@@ -1,0 +1,70 @@
+%
+% funktionenraum.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Funktionenraum}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Supremum-Norm}
+Vektorraum
+\[
+C([a,b])
+=
+\{f\colon[a,b]\to\mathbb{R}\;|\; \text{$f$ stetig}\}
+\]
+\only<2->{wird Banachraum }%
+mit der Norm
+\(\displaystyle
+\|f\|
+=
+\|f\|_{\infty}
+=
+\sup_{x\in[a,b]} |f(x)|
+\)
+\end{block}
+\uncover<3->{%
+\begin{block}{$L^1$-Norm}
+Vektorraum
+\[
+L^1([a,b])
+=
+\{f\colon[a,b]\;|\;\text{$f$ integrierbar}\}
+\]
+\only<4->{wird Banachraum }%
+mit der Norm
+\[
+\|f\|_1
+=
+\int_a^b |f(x)|\,dx
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<5->{%
+\begin{block}{$L^2$-Norm}
+Vektorraum
+\[
+L^2([a,b])
+=
+\{f\colon[a,b]\to\mathbb{R}\;|\; \|f\|_2^2<\infty\}
+\]
+mit Skalarprodukt
+\begin{align*}
+\langle f,g\rangle
+&=
+\int_a^b \overline{f}(x)g(x)\,dx
+\\
+\|f\|_2^2
+&=
+\int_a^b |f(x)|^2\,dx
+\end{align*}
+\uncover<6->{ist ein Banachraum}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

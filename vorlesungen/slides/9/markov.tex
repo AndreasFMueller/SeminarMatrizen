@@ -1,0 +1,111 @@
+%
+% markov.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{frame}[t]
+\frametitle{Markovketten}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\r{2.2}
+
+\coordinate (A) at ({\r*cos(0*72)},{\r*sin(0*72)});
+\coordinate (B) at ({\r*cos(1*72)},{\r*sin(1*72)});
+\coordinate (C) at ({\r*cos(2*72)},{\r*sin(2*72)});
+\coordinate (D) at ({\r*cos(3*72)},{\r*sin(3*72)});
+\coordinate (E) at ({\r*cos(4*72)},{\r*sin(4*72)});
+
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black!40]
+	(A) -- (C);
+\draw[color=white,line width=8pt] (B) -- (D);
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black!80]
+	(B) -- (D);
+
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black!60]
+	(A) -- (B);
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black!20]
+	(B) -- (C);
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black]
+	(C) -- (D);
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black]
+	(D) -- (E);
+\draw[->,shorten >= 0.1cm,shorten <= 0.1cm,line width=4pt,color=black]
+	(E) -- (A);
+
+\fill[color=white] (A) circle[radius=0.2];
+\fill[color=white] (B) circle[radius=0.2];
+\fill[color=white] (C) circle[radius=0.2];
+\fill[color=white] (D) circle[radius=0.2];
+\fill[color=white] (E) circle[radius=0.2];
+
+\draw (A) circle[radius=0.2];
+\draw (B) circle[radius=0.2];
+\draw (C) circle[radius=0.2];
+\draw (D) circle[radius=0.2];
+\draw (E) circle[radius=0.2];
+
+\node at (A) {$1$};
+\node at (B) {$2$};
+\node at (C) {$3$};
+\node at (D) {$4$};
+\node at (E) {$5$};
+
+\node at ($0.5*(A)+0.5*(B)-(0.1,0.1)$) [above right] {$\scriptstyle 0.6$};
+\node at ($0.5*(B)+0.5*(C)+(0.05,-0.07)$) [above left] {$\scriptstyle 0.2$};
+\node at ($0.5*(C)+0.5*(D)+(0.05,0)$) [left] {$\scriptstyle 1$};
+\node at ($0.5*(D)+0.5*(E)$) [below] {$\scriptstyle 1$};
+\node at ($0.5*(E)+0.5*(A)+(-0.1,0.1)$) [below right] {$\scriptstyle 1$};
+\node at ($0.6*(A)+0.4*(C)$) [above] {$\scriptstyle 0.4$};
+\node at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 0.8$};
+
+\end{tikzpicture}
+\end{center}
+\vspace{-10pt}
+\uncover<7->{%
+\begin{block}{Verteilung}
+\begin{itemize}
+\item<8->
+Welche stationäre Verteilung auf den Knoten stellt sich ein?
+\item<9->
+$P(i)=?$
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{\strut\mbox{Übergang\only<3->{s-/Wahrscheinlichkeit}smatrix}}
+$P_{ij} = P(i | j)$, Wahrscheinlichkeit, in den Zustand $i$ überzugehen,
+\begin{align*}
+P
+&=
+\begin{pmatrix}
+   &   & & &1\phantom{.0}\\
+0.6&   & & & \\
+0.4&0.2& & & \\
+   &0.8&1\phantom{.0}& & \\
+   &   & &1\phantom{.0}& 
+\end{pmatrix}
+\end{align*}
+\end{block}}
+\vspace{-10pt}
+\uncover<4->{%
+\begin{block}{Eigenschaften}
+\begin{itemize}
+\item<5-> $P_{ij}\ge 0\;\forall i,j$
+\item<6-> Spaltensumme:
+\(
+\displaystyle
+\sum_{i=1}^n P_{ij} = 1\;\forall j
+\)
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

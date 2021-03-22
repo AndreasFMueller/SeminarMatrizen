@@ -1,0 +1,66 @@
+%
+% drehmatrix.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Analyse einer Drehung um $120^\circ$}
+$D$ eine Drehung des $\mathbb{R}^3$ um $120^\circ$
+\begin{enumerate}
+\item<2->
+Drehwinkel = $120^\circ\quad\Rightarrow\quad D^3 = I$
+\uncover<3->{
+$\quad\Rightarrow\quad \chi_D(X)=X^3-1$
+}
+\item<4->
+$m_D(X)=X^3-1$
+\item<5->
+$m_D$ ist nicht irreduzibel, weil $m_D(1)=0$:
+$
+m_D(X) = (X-1)(X^2+X+1)
+$
+\item<6->
+Welche Matrix hat $X^2+X+1$ als Minimalpolynom?
+\uncover<7->{%
+\[
+\arraycolsep=1.4pt
+W
+=
+\biggl(\begin{array}{cc}
+-\frac12          & -\frac{\sqrt{3}}2 \\
+ \frac{\sqrt{3}}2 & -\frac12
+\end{array}\biggr)
+\quad\Rightarrow\quad
+W^2+W+I
+=
+\biggl(\begin{array}{cc}
+-\frac12          & -\frac{\sqrt{3}}2 \\
+ \frac{\sqrt{3}}2 & -\frac12
+\end{array}\biggr)
++
+\biggl(\begin{array}{cc}
+-\frac12          & \frac{\sqrt{3}}2 \\
+ -\frac{\sqrt{3}}2 & -\frac12
+\end{array}\biggr)
++
+\biggl(\begin{array}{cc}
+1&0\\0&1
+\end{array}\biggr)
+=0
+\]}
+\item<8-> In einer geeigneten Basis hat $D$ die Form
+\[
+D=\begin{pmatrix}
+1&0&0\\
+0&-\frac12 & -\frac{\sqrt{3}}2 \\
+0&\frac{\sqrt{3}}2 & -\frac12
+\end{pmatrix}
+\uncover<9->{=
+\begin{pmatrix}
+1&0&0\\
+0&\cos 120^\circ & -\sin 120^\circ\\
+0&\sin 120^\circ & \cos 120^\circ
+\end{pmatrix}}
+\]
+\end{enumerate}
+\end{frame}

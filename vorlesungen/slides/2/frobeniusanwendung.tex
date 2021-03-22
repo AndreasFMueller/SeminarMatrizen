@@ -1,0 +1,80 @@
+%
+% frobeniusanwendung.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Anwendung der Frobenius-Norm}
+\vspace{-18pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Ableitung nach $X\in M_{m\times n}(\mathbb{R})$}
+Die Ableitung $Df=\partial f/\partial X$ der Funktion
+$f\colon M_{m\times n}(\mathbb{R})\to \mathbb{R}$ ist die Matrix
+mit Einträgen
+\begin{align*}
+\biggl(
+\frac{\partial f}{\partial X}
+\biggr)_{ij}
+&=
+\frac{\partial f}{\partial x_{ij}}
+=
+D_{ij}f
+\end{align*}
+\end{block}
+\uncover<2->{%
+\begin{block}{Richtungsableitung}
+\uncover<5->{Die Matrix $Df$ ist ein Gradient:}
+\begin{align*}
+\frac{\partial}{\partial t}f(X+tY)\bigg|_{t=0}
+&=\uncover<3->{
+\sum_{i,j}
+D_{ij} f(X) \cdot y_{ij}}
+\\
+&\uncover<4->{=
+\langle D_{ij}f(X), Y\rangle_F}
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Quadratische Minimalprobleme}
+$A=A^t,B,X\in M_n(\mathbb{R})$, Minimum von
+\begin{align*}
+f(X)&=\langle X,AX\rangle_F + \langle B,X\rangle_F
+\intertext{\uncover<7->{Folgerungen:}}
+\uncover<8->{
+\langle X,AY\rangle_F&=\langle AX,Y\rangle_F
+}
+\\
+\uncover<9->{
+D\langle B,\mathstrut\cdot\mathstrut\rangle_F
+&=
+B
+}
+\\
+\uncover<10->{
+D_X\langle X, AY\rangle_F
+&=AY
+}
+\\
+\uncover<11->{
+D_Y\langle X, AY\rangle_F
+&=AX
+}
+\\
+\uncover<12->{
+Df &= 2AX + B
+}
+\intertext{\uncover<13->{Minimum:}}
+\uncover<14->{
+X&=-\frac12 A^{-1}B
+}
+\end{align*}
+\uncover<15->{(Kalman-Filter)}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

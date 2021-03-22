@@ -1,0 +1,59 @@
+%
+% langepfade.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\bgroup
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}
+\frametitle{Wieviele Pfade der Länge $k$?}
+\begin{definition}
+Anzahl Pfade der Länge $k$ zwischen zwei Knoten
+\[
+a_{{\color{darkred}i}{\color{blue}j}}^{(k)} 
+=
+\#\{\text{Pfade der Länge $k$ von $\color{blue}j$ nach $\color{darkred}i$}\},
+\qquad
+A^{(k)}
+=
+\left(
+a_{{\color{darkred}i}{\color{blue}j}}^{(k)}
+\right)
+\]
+\end{definition}
+\uncover<2->{
+{\usebeamercolor[fg]{title}Spezialfall:} $A^{(1)}=A$.
+}
+
+\uncover<3->{
+\begin{block}{Rekursionsformel}
+\vspace{-25pt}
+\begin{align*}
+a_{{\color{darkred}i}{\color{blue}{\color{blue}j}}}^{(k)}
+&\uncover<4->{=
+\sum_{{\color{darkgreen}l}=1}^n
+\#\{\text{Pfade der Länge $1$ von $\color{darkgreen}l$ nach $\color{darkred}i$}\}}
+\\[-11pt]
+&\uncover<4->{\qquad\qquad\times
+\#\{\text{Pfade der Länge $k-1$ von $\color{blue}j$ nach $\color{darkgreen}l$}\}}
+\\
+&\uncover<5->{=
+\sum_{{\color{darkgreen}l}=1}^n
+a_{{\color{darkred}i}{\color{darkgreen}l}}^{(1)}
+\cdot
+a_{{\color{darkgreen}l}{\color{blue}j}}^{(k-1)}}
+\\
+\uncover<6->{
+\Rightarrow\qquad
+A^{(k)}}
+&\uncover<6->{=
+A\;A^{(k-1)}}
+\uncover<7->{
+\qquad\Rightarrow\qquad
+A^{(k)} = A^k}
+\end{align*}
+\end{block} }
+
+\end{frame}
+\egroup

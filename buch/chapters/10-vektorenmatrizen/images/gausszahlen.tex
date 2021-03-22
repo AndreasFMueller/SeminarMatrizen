@@ -1,0 +1,48 @@
+%
+% gausszahlen.tex -- Ganze Gausssche Zahlen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usepackage{color}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{tikzpicture}[>=latex,thick,scale=0.8]
+\draw[->] (-8.5,0) -- (8.5,0) coordinate[label={$\Re z$}];
+\draw[->] (0,-4.5) -- (0,4.5) coordinate[label={right:$\Im z$}];
+\foreach \x in {-8,...,8}{
+	\foreach \y in {-4,...,4}{
+		\fill (\x,\y) circle[radius=0.05];
+	}
+}
+
+
+\coordinate (O) at (0,0);
+\coordinate (A) at (2,2);
+\coordinate (B) at (-3,1);
+\coordinate (C) at (-8,-4);
+\coordinate (D) at (-1,3);
+\draw[line width=0.5pt] (A)--(D)--(B);
+\draw[->,color=red] (O) -- (A);
+\draw[->,color=red] (O) -- (B);
+\draw[->,color=blue] (O) -- (C);
+\draw[->,color=darkgreen] (O) -- (D);
+\fill[color=red] (A) circle[radius=0.08];
+\fill[color=red] (B) circle[radius=0.08];
+\fill[color=blue] (C) circle[radius=0.08];
+\fill[color=darkgreen] (D) circle[radius=0.08];
+\fill[color=black] (O) circle[radius=0.08];
+\node[color=red] at (A) [above right] {$z$};
+\node[color=red] at (B) [above left] {$w$};
+\node[color=darkgreen] at (D) [above] {$z+w$};
+\node[color=blue] at (C) [below right] {$z\cdot w$};
+
+\end{tikzpicture}
+\end{document}
+

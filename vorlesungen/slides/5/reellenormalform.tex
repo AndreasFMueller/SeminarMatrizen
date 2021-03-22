@@ -1,0 +1,115 @@
+%
+% reellenormalform.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Reelle Normalform}
+$A\in M_n(\mathbb{R})\subset M_n(\mathbb{C})$ hat reelle und Paare von
+konjugiert komplexen Eigenwerten
+\medskip
+
+$\Rightarrow$ Konjugiert komplexe Eigenvektoren $v$ und $\overline{v}$,
+$x=\operatorname{Re}v$ und $y=\operatorname{Im}v$
+\begin{align*}
+\only<-2>{
+\begin{pmatrix}
+Av\\
+A\overline v
+\end{pmatrix}
+=
+\begin{pmatrix}
+Ax+Ay J \\
+Ax-Ay J
+\end{pmatrix}
+&=
+\begin{pmatrix}
+\lambda v\\
+\overline{\lambda}\overline{v}
+\end{pmatrix}
+=
+\begin{pmatrix}
+a+bJ & 0 \\
+  0  & a-bJ
+\end{pmatrix}
+\begin{pmatrix}
+x+ yJ\\
+x- yJ
+\end{pmatrix}
+\\
+}
+\only<2-3>{
+\begin{pmatrix}
+Ax&-Ay\\
+Ay& Ax\\
+Ax& Ay\\
+-Ay&Ax
+\end{pmatrix}
+&=
+\begin{pmatrix}
+a&-b& 0& 0\\
+b& a& 0& 0\\
+0& 0& a& b\\
+0& 0&-b& a
+\end{pmatrix}
+\begin{pmatrix}
+x&-y\\
+y& x\\
+x& y\\
+-y&x
+\end{pmatrix}
+\\
+}
+\only<3-4>{
+\ifthenelse{\boolean{presentation}}{
+\begin{pmatrix}
+Ax&-Ay\\
+Ax& Ay\\
+Ay& Ax\\
+-Ay&Ax
+\end{pmatrix}
+&
+=
+\begin{pmatrix}
+a& 0&-b& 0\\
+0& a& 0& b\\
+b& 0& a& 0\\
+0&-b& 0& a
+\end{pmatrix}
+\begin{pmatrix}
+x&-y\\
+x& y\\
+y& x\\
+-y&x
+\end{pmatrix}
+\Rightarrow
+\\
+}{}
+}
+\only<4->{
+Ax &= ax -by \\
+Ay &= bx +ay
+}
+\end{align*}
+\uncover<5->{%
+D.h. in Basis $x=\operatorname{Re}v,y=\operatorname{Im}v$ hat $A$ die Matrix
+$\begin{pmatrix}a&-b\\b&a\end{pmatrix}$}
+\uncover<6->{%
+\[
+\text{
+Reeller
+Jordan-Block:
+}
+\qquad
+J_{\lambda,\overline{\lambda}}
+=
+\begin{pmatrix}
+a&-b&1& 0&0& 0\\
+b& a&0& 1&0& 0\\
+ &  &a&-b&1& 0\\
+ &  &b& a&0& 1\\
+ &  & &  &a&-b\\
+ &  & &  &b& a
+\end{pmatrix}
+\]}
+\end{frame}

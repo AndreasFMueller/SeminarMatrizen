@@ -1,0 +1,124 @@
+%
+% ganz.tex -- Ganze Zahlen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+% !TeX spellcheck = de_CH
+\section{Ganze Zahlen
+\label{buch:section:ganze-zahlen}}
+\rhead{Ganze Zahlen}
+Die Menge der ganzen Zahlen löst das Problem, dass nicht jede
+Gleichung der Form $x+a=b$ mit $a, b \in \mathbb N$
+eine Lösung $x \in \mathbb N$ hat.
+Dazu ist erforderlich, den natürlichen Zahlen die negativen Zahlen
+hinzuzufügen, also wieder die Existenz neuer Objekte zu postulieren,
+die die Rechenregeln weiterhin erfüllen.
+
+\subsubsection{Paare von natürlichen Zahlen}
+Die ganzen Zahlen können konstruiert werden als Paare $(u,v)$ von 
+natürlichen Zahlen $u,v\in\mathbb{N}$.
+Die Paare der Form $(u,0)$ entsprechen den natürlichen Zahlen, die
+Paare $(0,v)$ sind die negativen Zahlen.
+Die Rechenoperationen sind wie folgt definiert:
+\begin{equation}
+\begin{aligned}
+(a,b)+(u,v) &= (a+u,b+v)
+\\
+(a,b)\cdot (u,v) &= (au+bv,av+bu)
+\end{aligned}
+\label{buch:zahlen:ganze-rechenregeln}
+\end{equation}
+Die Darstellung ganzer Zahlen als Paare von natürlichen Zahlen
+findet man auch in der Buchhaltung, wo man statt eines Vorzeichen
+{\em Soll} und {\em Haben} verwendet.
+Dabei kommt es nur auf die Differenz der beiden Positionen an.
+Fügt man beiden Positionen den gleichen Betrag hinzu, ändert sich
+nichts.
+Viele der Paare $(a,b)$ müssen also als äquivalent angesehen
+werden.
+
+\subsubsection{Äquivalenzrelation}
+Die Definition~\eqref{buch:zahlen:ganze-rechenregeln}
+erzeugt neue Paare, die wir noch nicht interpretieren können.
+Zum Beispiel ist $0=1+(-1) = (1,0) + (0,1) = (1,1)$.
+Die Paare $(u,u)$ müssen daher alle mit $0$ identifiziert werden.
+Es folgt dann auch, dass alle Paare von natürlichen Zahlen mit 
+``gleicher Differenz'' den gleichen ganzzahligen Wert darstellen,
+allerdings können wir das nicht so formulieren, da ja die Differenz
+noch gar nicht definiert ist.
+Stattdessen gelten zwei Paare als äquivalent, wenn
+\begin{equation}
+(a,b) \sim (c,d)
+\qquad\Leftrightarrow\qquad
+a+d = c+b
+\label{buch:zahlen:ganz-aquivalenz}
+\end{equation}
+gilt.
+Diese Bedingung erhält man, indem man zu $a-b=c-d$ die Summe $b+d$ 
+hinzuaddiert.
+Ein ganzen Zahl $z$ ist daher eine Menge von Paaren von natürlichen
+Zahlen mit der Eigenschaft
+\[
+(a,b)\in z\;\wedge (a',b')\in z
+\qquad\Leftrightarrow\qquad
+(a,b)\sim(a',b')
+\qquad\Leftrightarrow\qquad
+a+b' = a'+b.
+\]
+Man nennt eine solche Menge eine {\em Äquivalenzklasse} der Relation $\sim$.
+
+Die Menge $\mathbb{Z}$ der {\em ganzen Zahlen} ist die Menge aller solchen
+Äquivalenzklassen.
+Die Menge der natürlichen Zahlen $\mathbb{N}$ ist in evidenter Weise
+darin eingebettet als die Menge der Äquivalenzklassen von Paaren der
+Form $(n,0)$.
+
+\subsubsection{Entgegengesetzter Wert}
+Zu jeder ganzen Zahl $z$ dargestellt durch das Paar $(a,b)$ 
+stellt das Paar $(b,a)$ eine ganze Zahl dar mit der Eigenschaft
+\begin{equation}
+z+(b,a)
+=
+(a,b) + (b+a) = (a+b,a+b) \sim (0,0) = 0.
+\label{buch:zahlen:eqn:entgegengesetzt}
+\end{equation}
+Die von $(b,a)$ dargestellte ganze Zahl wird mit $-z$ bezeichnet,
+die Rechnung~\eqref{buch:zahlen:eqn:entgegengesetzt} lässt sich damit
+abgekürzt als $z+(-z)=0$ schreiben.
+
+\subsubsection{Lösung von Gleichungen}
+Gleichungen der Form $a=x+b$ können jetzt für beliebige ganze Zahlen
+immer gelöst werden.
+Dazu schreibt man $a,b\in\mathbb{N}$ als Paare und sucht die
+Lösung in der Form $x=(u,v)$.
+Man erhält
+\begin{align*}
+(a,0) &= (u,v) + (b,0)
+\\
+(a+b,b) &= (u+b,v)
+\end{align*}
+Das Paar $(u,v) = (a,b)$ ist eine Lösung, die man normalerweise als
+$a-b = (a,0) + (-(b,0)) = (a,0) + (0,b) = (a,b)$ schreibt.
+
+\subsubsection{Ring}
+\index{Ring}%
+Die ganzen Zahlen sind ein Beispiel für einen sogenannten Ring,
+eine algebraische Struktur in der Addition, Subtraktion und
+Multiplikation definiert sind.
+Weitere Beispiel werden später vorgestellt,
+der Ring der Polynome $\mathbb{Z}[X]$ in Kapitel~\ref{buch:chapter:polynome}
+und
+der Ring der $n\times n$-Matrizen in
+Kapitel~\ref{buch:chapter:vektoren-und-matrizen}.
+In einem Ring wird nicht verlangt, dass die Multiplikation kommutativ
+ist, Matrizenringe sind nicht kommutativ.
+$\mathbb{Z}$ ist ein kommutativer Ring ebenso sind die Polynomringe 
+kommutativ.
+Die Theorie der nicht kommutativen Ringe ist sehr viel reichhaltiger
+und leider auch komplizierter als die kommutative Theorie.
+\index{Ring!kommutativer}%
+
+
+
+
+

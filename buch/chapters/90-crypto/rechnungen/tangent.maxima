@@ -1,0 +1,67 @@
+/*
+ * tangent.maxima
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule 
+ */
+
+p: Y^2+X*Y - X^3 - a*X -b;
+
+x: x1 + u * t;
+y: y1 + v * t;
+
+q: subst(x,X,p);
+q: subst(y,Y,q);
+q: ratsimp(expand(q));
+tex(q);
+tex(coeff(expand(q), t, 3));
+tex(coeff(expand(q), t, 2));
+tex(coeff(expand(q), t, 1));
+tex(coeff(expand(q), t, 0));
+qr: divide(q,t^2,t);
+r: qr[2];
+s: solve(qr[1] = 0, t);
+tex(s);
+
+T: subst(s, t);
+
+U: x1+2*y1;
+V: y1-3*x1^2-a;
+X: subst(U, u, x);
+Y: subst(V, v, y);
+T: subst(U, u, T);
+T: subst(V, v, T);
+ratsimp(expand(T));
+
+q: subst(U, u, q);
+q: subst(V, v, q);
+
+qr: divide(q,t^2,t);
+r: qr[2];
+q: qr[1];
+tex(q);
+
+tex(coeff(r, t, 3));
+tex(coeff(r, t, 2));
+tex(coeff(r, t, 1));
+tex(coeff(r, t, 0));
+
+subst(0,t,r);
+subst(0,t,diff(r,t));
+
+tex(r);
+
+polydecomp(qr[2], t);
+
+s: solve(q = 0, t);
+tex(s);
+
+/*
+x3: ratsimp(expand(subst(s, -X)));
+y3: ratsimp(expand(subst(s, -Y-X)));
+*/
+
+x3: ratsimp(expand(subst(s, X)));
+y3: ratsimp(expand(subst(s, Y)));
+
+tex(x3);
+tex(y3);

@@ -1,0 +1,96 @@
+%
+% frobeniusnorm.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Frobenius-Norm}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Skalarprodukt}
+$A,B\in M_{m\times n}(\mathbb{C})$
+\begin{align*}
+\langle A,B\rangle_F
+&\uncover<2->{=
+\sum_{i,j} \overline{a}_{ik}b_{ik}}
+\uncover<3->{=
+\operatorname{Spur} A^*B}
+\\
+\uncover<4->{
+\|A\|_F^2
+&=
+\langle A,A\rangle}
+\uncover<5->{=
+\sum_{i,k} |a_{ik}|^2}
+\end{align*}
+\uncover<6->{%
+$\Rightarrow M_{m\times n}(\mathbb{C})$ ist ein normierter Raum}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<12->{%
+\begin{block}{Singulärwertzerlegung}
+\vspace{-12pt}
+\begin{align*}
+\uncover<13->{
+A
+&=
+U\Sigma V^*}
+\\
+\uncover<14->{
+A^*A
+&=
+V\Sigma^*U^*U\Sigma V^*}
+\uncover<15->{=
+V\Sigma^*\Sigma V^*}
+\\
+\uncover<16->{%
+\operatorname{Spur}{A^*A}
+&=
+\operatorname{Spur}V\Sigma^*\Sigma V^*}
+\\
+\uncover<17->{%
+&=
+\operatorname{Spur}V^*V\Sigma^*\Sigma}
+\\
+\uncover<18->{%
+&=
+\operatorname{Spur}\Sigma^*\Sigma}
+\uncover<19->{=
+\sum_{i} |\sigma_i|^2}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<7->{%
+\begin{block}{Produkt}
+\vspace{-10pt}
+\begin{align*}
+\|AB\|_F
+\uncover<8->{=
+\sum_{i,j}
+\biggl|
+\sum_{k}
+a_{ik}b_{kj}
+\biggr|^2}
+&\uncover<9->{\le
+\sum_{i,j}
+\biggl(
+\sum_k  |a_{ik}|^2
+\biggr)
+\biggl(
+\sum_l  |b_{lj}|^2
+\biggr)}
+\\
+\uncover<10->{
+&=
+\sum_{i,k} |a_{ik}|^2
+\sum_{l,j} |b_{lj}|^2}
+\uncover<11->{=
+\|A\|_F\cdot \|B\|_F}
+\end{align*}
+\end{block}}
+\end{frame}

@@ -1,0 +1,53 @@
+%
+% dh.tex -- diffie hellmann key exchange
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math,calc,hobby}
+\begin{document}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+\def\l{2.5}
+\fill[color=blue!20] (-7,-6.5) rectangle (7,0.5);
+\fill[color=red!20] (-\l,-6.5) rectangle (\l,0.501);
+\node[color=red] at (0,-1.5) {öffentliches Netzwerk};
+\node[color=blue] at (-7,0.2) [right] {privat};
+\node[color=blue] at (7,0.2) [left] {privat};
+\coordinate (A) at (-\l,-2.5);
+\coordinate (C) at (\l,-5.5);
+\coordinate (B) at (\l,-2.5);
+\coordinate (D) at (-\l,-5.5);
+\node at (0,0) {$p\in\mathbb{N},g\in\mathbb{F}_p$ aushandeln};
+\fill[color=white] (-\l,-0.7) circle[radius=0.3];
+\draw (-\l,-0.7) circle[radius=0.3];
+\fill[color=white] (\l,-0.7) circle[radius=0.3];
+\draw (\l,-0.7) circle[radius=0.3];
+\node at (-\l,-0.7) {$A$};
+\node at (\l,-0.7) {$B$};
+\node at (-\l,-1.5) [left] {$a$ auswählen};
+\node at (-\l,-2.0) [left] {$x=g^a\in\mathbb{F}_p$ auswählen};
+\node at (\l,-1.5) [right] {$b$ auswählen};
+\node at (\l,-2.0) [right] {$y=g^b\in\mathbb{F}_p$ auswählen};
+\draw[->] (-\l,-1) -- (-\l,-6);
+\draw[->] (\l,-1) -- (\l,-6);
+\draw[->] (A) -- (C);
+\draw[->] (B) -- (D);
+\fill (A) circle[radius=0.08];
+\fill (B) circle[radius=0.08];
+\node at ($0.8*(A)+0.2*(C)$) [above right] {$x=g^a$};
+\node at ($0.8*(B)+0.2*(D)$) [above left] {$y=g^b$};
+\node at (-\l,-5.5) [left] {$s=g^{ab}=y^a\in\mathbb{F}_p$ ausrechnen};
+\node at (\l,-5.5) [right] {$s=g^{ab}=x^b\in\mathbb{F}_p$ ausrechnen};
+\fill[rounded corners=0.3cm,color=darkgreen!20] ({-\l-1},-7) rectangle ({\l+1},-6);
+\draw[rounded corners=0.3cm] ({-\l-1},-7) rectangle ({\l+1},-6);
+\node at (0,-6.5) {$A$ und $B$ haben den gemeinsamen Schlüssel $s$};
+\end{tikzpicture}
+\end{document}
+

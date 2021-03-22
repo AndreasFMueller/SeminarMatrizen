@@ -1,0 +1,38 @@
+/*
+ * multiplikation.maxima
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+ */
+
+Malpha: matrix(
+[   0,   0,   0,   0,   0,   0, -m0 ],
+[   1,   0,   0,   0,   0,   0, -m1 ],
+[   0,   1,   0,   0,   0,   0, -m2 ],
+[   0,   0,   1,   0,   0,   0, -m3 ],
+[   0,   0,   0,   1,   0,   0, -m4 ],
+[   0,   0,   0,   0,   1,   0, -m5 ],
+[   0,   0,   0,   0,   0,   1, -m6 ]
+);
+
+Malpha2: expand(Malpha . Malpha);
+Malpha3: expand(Malpha . Malpha2);
+Malpha4: expand(Malpha . Malpha3);
+Malpha5: expand(Malpha . Malpha4);
+Malpha6: expand(Malpha . Malpha5);
+Malpha7: expand(Malpha . Malpha6);
+Malpha8: expand(Malpha . Malpha7);
+
+p: m0 * identfor(Malpha)
++ m1 * Malpha
++ m2 * Malpha2
++ m3 * Malpha3
++ m4 * Malpha4
++ m5 * Malpha5
++ m6 * Malpha6
++ Malpha7;
+expand(p);
+
+
+m(X) := m0 + m1*X + m2*X^2 + m3*X^3 + m4*X^4 + m5*X^5 + m6*X^6 + X^7;
+
+invert(Malpha);

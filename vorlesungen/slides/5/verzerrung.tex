@@ -1,0 +1,121 @@
+%
+% verzerrung.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\def\r{1.10}
+\def\s{1.12}
+\def\q{1.23}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\frametitle{Verzerrung}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.49\textwidth}
+\begin{block}{Abbildung $A\colon v\mapsto Av$}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=2.5]
+\draw[color=blue,line width=1.2pt] (0,0) circle[radius=1];
+
+\coordinate (a1) at (0.974,0.171);
+\coordinate (a2) at (0.037,1.018);
+
+\coordinate (v1) at (-0.5216,0.8532);
+\coordinate (v2) at (-0.3343,-0.9425);
+
+\foreach \a in {0,5,...,355}{
+	\draw[color=red,line width=1.2pt] 
+		($cos(\a)*(a1)+sin(\a)*(a2)$) --
+		($cos(\a+5)*(a1)+sin(\a+5)*(a2)$);
+}
+\foreach \a in {1,...,144}{
+	\only<\a>{
+		\fill[color=red,line width=1.4pt]
+			($cos(\a*5)*(a1)+sin(\a*5)*(a2)$) circle[radius=0.03];
+		\draw[->,color=red,line width=1.4pt] (0,0) --
+			($cos(\a*5)*(a1)+sin(\a*5)*(a2)$);
+		\draw[->,color=blue,line width=1.4pt] (0,0) -- ({5*\a}:1);
+		\fill[color=blue] ({5*\a}:1) circle[radius=0.03];
+		\node[color=blue] at ({5*\a}:\r) {$v$};
+		\node[color=red] at ($\s*cos(\a*5)*(a1)+\s*sin(\a*5)*(a2)$)
+			{$Av$};
+	}
+}
+
+\begin{scope}
+\clip (-1.2,-1.1) rectangle (1.2,1.1);
+\draw[color=darkgreen,line width=0.7pt] ($-2*(v1)$) -- ($2*(v1)$);
+\draw[color=darkgreen,line width=0.7pt] ($-2*(v2)$) -- ($2*(v2)$);
+\draw[->,color=darkgreen,line width=1.5pt] (0,0) -- (v1);
+\draw[->,color=darkgreen,line width=1.5pt] (0,0) -- (v2);
+\end{scope}
+
+\draw[->] (-\q,0) -- (1.2,0) coordinate[label={$x$}];
+\draw[->] (0,-1.2) -- (0,1.2) coordinate[label={right:$y$}];
+
+\node[color=darkgreen] at (v1) [above left] {$v_1$};
+\node[color=darkgreen] at (v2) [below left] {$v_2$};
+
+\end{tikzpicture}
+\end{center}
+\end{block}
+\end{column}
+\begin{column}{0.49\textwidth}
+\uncover<73->{%
+\begin{block}{Abbildung $A\colon v\mapsto (A-\lambda)v$}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=2.5]
+\draw[color=blue,line width=1.2pt] (0,0) circle[radius=1];
+
+\coordinate (a1) at (0.121,0.343);
+\coordinate (a2) at (0.074,0.209);
+
+\coordinate (v1) at (-0.5216,0.8532);
+\coordinate (v2) at (-0.3343,-0.9425);
+
+\begin{scope}
+\clip (-1.2,-1.2) rectangle (1.2,1.2);
+\draw[color=darkgreen,line width=0.7pt] ($-2*(v1)$) -- ($2*(v1)$);
+\draw[color=darkgreen,line width=0.7pt] ($-2*(v2)$) -- ($2*(v2)$);
+\end{scope}
+
+\foreach \a in {0,5,...,355}{
+	\draw[color=red!60,line width=4pt] 
+		($cos(\a)*(a1)+sin(\a)*(a2)$) --
+		($cos(\a+5)*(a1)+sin(\a+5)*(a2)$);
+}
+\foreach \a in {73,...,144}{
+	\only<\a>{
+		\fill[color=red,line width=1.4pt]
+			($cos(\a*5)*(a1)+sin(\a*5)*(a2)$) circle[radius=0.03];
+		\draw[->,color=red,line width=1.4pt] (0,0) --
+			($cos(\a*5)*(a1)+sin(\a*5)*(a2)$);
+		\draw[->,color=blue,line width=1.4pt] (0,0) -- ({5*\a}:1);
+		\fill[color=blue] ({5*\a}:1) circle[radius=0.03];
+		\node[color=blue] at ({5*\a}:\r) {$v$};
+		\node[color=red] at ($\s*cos(\a*5)*(a1)+\s*sin(\a*5)*(a2)$)
+			{$(A-\lambda)v$};
+	}
+}
+
+\begin{scope}
+\clip (-1.2,-1.1) rectangle (1.2,1.1);
+\draw[->,color=darkgreen,line width=1.5pt] (0,0) -- (v1);
+\draw[->,color=darkgreen,line width=1.5pt] (0,0) -- (v2);
+\end{scope}
+
+\draw[->] (-\q,0) -- (1.2,0) coordinate[label={$x$}];
+\draw[->] (0,-1.2) -- (0,1.2) coordinate[label={right:$y$}];
+
+\node[color=darkgreen] at (v1) [above left] {$v_1$};
+\node[color=darkgreen] at (v2) [below left] {$v_2$};
+
+\end{tikzpicture}
+\end{center}
+
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

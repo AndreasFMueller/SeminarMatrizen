@@ -1,0 +1,35 @@
+%
+% adjunktion.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\frametitle{Adjunktion einer Nullstelle von $m(X)$}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+Sei $m(X)=m_0+m_1X+\dots + X^n\in \Bbbk[X]$ ein irreduzibles Polynom.
+\uncover<2->{%
+\[
+X^n = -m_{n-1}X^{n-1} - \dots - m_1X - m_0
+\]
+}%
+\uncover<3->{%
+Nullstelle $W$ als Operator betrachten:
+\[
+W = \begin{pmatrix}
+     0&     0&     0&\dots &     0&   -m_0\\
+     1&     0&     0&\dots &     0&   -m_1\\
+     0&     1&     0&\dots &     0&   -m_2\\
+     0&     0&     1&\dots &     0&   -m_3\\
+\vdots&\vdots&\vdots&\ddots&\vdots& \vdots\\
+     0&     0&     0&\dots &     1&-m_{n-1}
+\end{pmatrix}
+\]}
+\uncover<4->{%
+Man kann nachrechnen, dass immer $m(W)=0$.
+}
+\medskip
+
+\uncover<5->{$\Rightarrow \Bbbk(W) = \{p(W)\;|\;p\in\Bbbk[X], \deg p<\deg m\}$
+ist ein Körper, in dem $m(X)$ faktorisiert werden kann $m(X) = (X-W)q(X)$.}
+\end{frame}

@@ -1,0 +1,177 @@
+%
+% rational.tex -- rationale Zahlen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+% !TeX spellcheck = de_CH
+\section{Rationale Zahlen
+\label{buch:section:rationale-zahlen}}
+\rhead{Rationale Zahlen}
+In den ganzen Zahlen sind immer noch nicht alle linearen Gleichungen
+lösbar, es gibt keine ganze Zahl $x$ mit $3x=1$.
+Die nötige Erweiterung der ganzen Zahlen lernen Kinder noch bevor sie
+die negativen Zahlen kennenlernen.
+
+Wir können hierbei denselben Trick anwenden,
+wie schon beim Übergang von den natürlichen zu den ganzen Zahlen.
+Wir kreieren wieder Paare $(z, n)$, deren Elemente nennen wir \emph{Zähler} und
+\emph{Nenner}, wobei $z, n \in \mathbb Z$ und zudem $n \ne 0$.
+Die Rechenregeln für Addition und Multiplikation lauten
+\[
+(a, b) + (c, d)
+=
+(ad + bc, bd)
+\qquad \text{und} \qquad
+(a, b) \cdot (c, d)
+=
+(ac, bd)
+.
+\]
+Die ganzen Zahlen lassen sich als in dieser Darstellung als
+$z \mapsto (z, 1)$ einbetten.
+
+Ähnlich wie schon bei den ganzen Zahlen ist diese Darstellung
+aber nicht eindeutig.
+Zwei Paare sind äquivalent, wenn sich deren beide Elemente um denselben Faktor
+unterscheiden,
+\[
+(a, b)
+\sim
+(c, d)
+\quad \Leftrightarrow \quad
+\exists \lambda \in \mathbb Z \colon
+\lambda a = c
+\wedge
+\lambda b = d
+.
+\]
+Dass es sich hierbei wieder um eine Äquivalenzrelation handelt, lässt sich
+einfach nachprüfen.
+
+Durch die neuen Regen gibt es nun zu jedem Paar $(a, b)$ mit $a \ne 0$
+ein Inverses $(b, a)$ bezüglich der Multiplikation,
+wie man anhand der folgenden Rechnung sieht,
+\[
+(a, b) \cdot (b, a)
+=
+(a \cdot b, b \cdot a)
+=
+(a \cdot b, a \cdot b)
+\sim
+(1, 1)
+.
+\]
+
+\subsubsection{Brüche}
+Rationale Zahlen sind genau die Äquivalenzklassen dieser Paare $(a, b)$ von
+ganzen Zahlen $a$ und $b\ne 0$.
+Da diese Schreibweise recht unhandlich ist, wird normalerweise die Notation
+als Bruch $\frac{a}{b}$ verwendet.
+Die Rechenregeln werden dadurch zu den wohlvertrauten
+\[
+\frac{a}{b}+\frac{c}{d}
+=
+\frac{ad+bc}{bd},
+\qquad\text{und}\qquad
+\frac{a}{b}\cdot\frac{c}{d}
+=
+\frac{ac}{bd}
+\]
+und die speziellen Brüche $\frac{0}{b}$ und $\frac{1}{1}$ erfüllen die
+Regeln
+\[
+\frac{a}{b}+\frac{0}{d} = \frac{ad}{bd} \sim \frac{a}{b},
+\qquad
+\frac{a}{b}\cdot \frac{0}{c} = \frac{0}{bc}
+\qquad\text{und}\qquad
+\frac{a}{b}\cdot \frac{1}{1} = \frac{a}{b}.
+\]
+Wir sind uns gewohnt, die Brüche $\frac{0}{b}$ mit der Zahl $0$ und
+$\frac{1}{1}$ mit der Zahl $1$ zu identifizieren.
+
+\subsubsection{Kürzen}
+Wie bei den ganzen Zahlen entstehen durch die Rechenregeln viele Brüche,
+denen wir den gleichen Wert zuordnen möchten.
+Zum Beispiel folgt
+\[
+\frac{ac}{bc} - \frac{a}{b} 
+=
+\frac{abc-abc}{b^2c}
+=
+\frac{0}{b^2c},
+\]
+wir müssen also die beiden Brüche als gleichwertig betrachten.
+Allgemein gelten die zwei Brüche $\frac{a}{b}$ und $\frac{c}{d}$
+als äquivalent, wenn $ad-bc= 0$ gilt.
+Dies ist gleichbedeutend mit der früher definierten Äquivalenzrelation
+und bestätigt, dass die beiden Brüche
+\[
+\frac{ac}{bc} 
+\qquad\text{und}\qquad
+\frac{a}{b}
+\]
+als gleichwertig zu betrachten sind.
+Der Übergang von links nach rechts heisst {\em Kürzen},
+\index{Kürzen}%
+der Übergang von rechts nach links heisst {\em Erweitern}.
+\index{Erweitern}%
+Eine rationale Zahl ist also eine Menge von Brüchen, die durch
+Kürzen und Erweitern ineinander übergeführt werden können.
+
+Die Menge der Äquivalenzklassen von Brüchen ist die Menge $\mathbb{Q}$
+der rationalen Zahlen.
+In $\mathbb{Q}$ sind Addition, Subtraktion und Multiplikation mit den
+gewohnten Rechenregeln, die bereits in $\mathbb{Z}$ gegolten haben,
+uneingeschränkt möglich.
+
+\subsubsection{Kehrwert}
+Zu jedem Bruch $\frac{a}{b}$ lässt sich der Bruch $\frac{b}{a}$,
+der sogenannte {\em Kehrwert}
+\index{Kehrwert}
+konstruieren.
+Er hat die Eigenschaft, dass
+\[
+\frac{a}{b}\cdot\frac{b}{a}
+=
+\frac{ab}{ba}
+=
+1
+\]
+gilt.
+Der Kehrwert ist also das multiplikative Inverse, jede von $0$ verschiedene
+rationale Zahl hat eine Inverse.
+
+\subsubsection{Lösung von linearen Gleichungen}
+Mit dem Kehrwert lässt sich jetzt jede lineare Gleichung lösen.
+\index{lineares Gleichungssystem}%
+Die Gleichung $ax=b$ hat die Lösung
+\[
+ax = \frac{a}{1} \frac{u}{v} = \frac{b}{1}
+\qquad\Rightarrow\qquad
+\frac{1}{a}
+ \frac{a}{1} \frac{u}{v} = \frac{1}{a}\frac{b}{1} 
+\qquad\Rightarrow\qquad
+\frac{u}{v} = \frac{b}{a}.
+\]
+Dasselbe gilt auch für rationale Koeffizienten $a$ und $b$.
+In der Menge $\mathbb{Q}$ kann man also beliebige lineare Gleichungen
+lösen.
+
+\subsubsection{Körper}
+$\mathbb{Q}$ ist ein Beispiel für einen sogenannten {\em Körper}, 
+\index{Körper}%
+in dem die arithmetischen Operationen Addition, Subtraktion, Multiplikation
+und Division möglich sind mit der einzigen Einschränkung, dass nicht durch
+$0$ dividiert werden kann.
+Körper sind die natürliche Bühne für die lineare Algebra, da sich lineare
+Gleichungssysteme ausschliesslich mit den Grundoperation lösen lassen.
+
+Wir werden im Folgenden für verschiedene Anwendungszwecke weitere Körper
+konstruieren, zum Beispiel die reellen Zahlen $\mathbb{R}$ und die
+rationalen Zahlen $\mathbb{C}$.
+Wann immer die Wahl des Körpers keine Rolle spielt, werden wir den
+Körper mit $\Bbbk$ bezeichnen.
+\index{$\Bbbk$}%
+
+
+

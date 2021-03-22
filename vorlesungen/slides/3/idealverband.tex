@@ -1,0 +1,78 @@
+%
+% idealverband.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Idealverband}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\node at (0,0) {$\mathbb{Z}$};
+
+\uncover<2->{
+\node at (-6,-2) {$2\mathbb{Z}$};
+\node at (-2,-2) {$3\mathbb{Z}$};
+\node at (2,-2) {$5\mathbb{Z}$};
+\node at (6,-2) {$7\mathbb{Z}$};
+\node at (7,-2) {$\dots$};
+}
+
+\uncover<3->{
+\node at (-4,-4) {$6\mathbb{Z}$};
+\node at (-2,-4) {$10\mathbb{Z}$};
+\node at (0,-4) {$15\mathbb{Z}$};
+\node at (2,-4) {$21\mathbb{Z}$};
+\node at (4,-4) {$35\mathbb{Z}$};
+\node at (6,-4) {$\dots$};
+}
+
+\uncover<4->{
+\node at (-2,-6) {$30\mathbb{Z}$};
+\node at (0,-6) {$70\mathbb{Z}$};
+\node at (2,-6) {$105\mathbb{Z}$};
+}
+
+\uncover<5->{
+	\node at (-5,-6) {$\dots$};
+	\node at (5,-6) {$\dots$};
+}
+
+\uncover<2->{
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,0) -- (-6,-2);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,0) -- (-2,-2);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,0) -- (2,-2);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,0) -- (6,-2);
+}
+
+\uncover<3->{
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-6,-2) -- (-4,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-6,-2) -- (-2,-4);
+
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-2) -- (-4,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-2) -- (0,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-2) -- (2,-4);
+
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-2) -- (-2,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-2) -- (0,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-2) -- (4,-4);
+
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (6,-2) -- (2,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (6,-2) -- (4,-4);
+}
+
+\uncover<4->{
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-6) -- (-4,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-6) -- (-2,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (-2,-6) -- (0,-4);
+
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,-6) -- (-2,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (0,-6) -- (4,-4);
+
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-6) -- (0,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-6) -- (2,-4);
+\draw[shorten >= 0.4cm, shorten <=0.4cm] (2,-6) -- (4,-4);
+}
+
+\end{tikzpicture}
+\end{center}
+\end{frame}

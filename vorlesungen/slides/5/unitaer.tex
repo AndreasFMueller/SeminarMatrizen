@@ -1,0 +1,75 @@
+%
+% unitaer.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Unitäre Matrizen}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Eigenwerte}
+$U$ unitär lässt das Skalarprodukt invariant
+\[
+\langle Ux,Uy\rangle
+=
+\langle x,y\rangle
+\]
+\uncover<2->{%
+$\lambda$ ein Eigenwert mit Eigenvektor $v$:
+\begin{align*}
+\langle v,v\rangle
+&=
+\langle Uu,Uv\rangle
+\uncover<3->{= \langle \lambda v,\lambda v\rangle}
+\uncover<4->{= |\lambda|^2 \langle v,v\rangle}
+\\
+\uncover<5->{\Rightarrow\;|\lambda|&=1}
+\end{align*}}
+\end{block}
+\uncover<6->{%
+\begin{block}{Diagonalisierbar}
+Unitäre Matrizen sind über $\mathbb{C}$ diagonalisierbar
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Grosse Jordan-Blöcke?}
+Falls es Vektoren $v,w$ gibt mit
+\begin{align*}
+\uncover<7->{ Uv&=\lambda v}
+\\
+\uncover<8->{ Uw&=\lambda w + v}
+\intertext{\uncover<9->{Skalarprodukt:}}
+\uncover<10->{
+\langle v,w\rangle
+&=
+\langle Uv,Uw\rangle}
+\\
+\uncover<11->{
+&=
+\langle \lambda v,\lambda w\rangle
++
+\langle\lambda v,v\rangle}
+\\
+\uncover<12->{
+&=
+|\lambda|^2 \langle v,w\rangle
++
+\langle\lambda v,v\rangle}
+\\
+\uncover<13->{
+&=
+\langle v,w\rangle
++
+\lambda \| v\|^2}
+\\
+\uncover<14->{
+\Rightarrow\quad
+0&=\|v\|^2\quad\Rightarrow\quad \|v\|=0}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

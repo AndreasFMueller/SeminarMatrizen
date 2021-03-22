@@ -26,7 +26,7 @@ then
 fi
 
 FILES="Makefile.inc Makefile main.tex packages.tex references.bib"
-SECTIONS="einleitung.tex problemstellung.tex loesung.tex folgerungen.tex"
+SECTIONS="teil0.tex teil1.tex teil2.tex teil3.tex"
 
 for file in ${FILES} ${SECTIONS}
 do

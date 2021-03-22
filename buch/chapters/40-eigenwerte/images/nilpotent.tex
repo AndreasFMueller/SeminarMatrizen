@@ -1,0 +1,76 @@
+%
+% nilpotent.tex -- Produkt nilpotenter Matrizen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\usepackage[many]{tcolorbox}
+
+\begin{document}
+\def\skala{1}
+
+\newtcbox{\myboxA}{blank,boxsep=0mm,
+clip upper,minipage,
+width=31.0mm,height=17.0mm,nobeforeafter,
+borderline={0.0pt}{0.0pt}{white},
+}
+
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\cx{1.8}
+\def\cy{1.2}
+
+\draw[line width=0.3pt] (-3,2.5) -- (6,2.5);
+
+\begin{scope}[xshift=-4cm]
+\node at (1.5,1.53) {$\left(\myboxA{}\right)$};
+\fill[color=red!30] (0.5,3) -- (3,0.5) -- (3,3) -- cycle;
+\draw (0,0) rectangle (3,3);
+\draw (0,3) -- (3,0);
+\node at ({\cx+0.5*0.5},{\cy+0.5*0.5}) [rotate=-45] {$k$};
+\draw[color=blue,line width=1.4pt] (0,2.5) -- (1.0,2.5);
+\draw[color=red,line width=1.4pt] (1.0,2.5) -- (3,2.5);
+\node at (1,1) {$B$};
+\node at (-0.3,2.5) [left] {$i$};
+\node at (1,2.5) [above right] {$i+k$};
+\end{scope}
+
+\node at (-0.5,1.5) {$\mathstrut\cdot\mathstrut$};
+
+\begin{scope}
+\node at (1.5,1.53) {$\left(\myboxA{}\right)$};
+\fill[color=red!30] (1.0,3) -- (3,1.0) -- (3,3) -- cycle;
+\draw (0,0) rectangle (3,3);
+\draw (0,3) -- (3,0);
+\node at ({\cx+1.0*0.5},{\cy+1.0*0.5}) [rotate=-45] {$l$};
+\draw[color=red,line width=1.4pt] (2,3)--(2,2);
+\draw[color=blue,line width=1.4pt] (2,2)--(2,0);
+\node at (1,1) {$C$};
+\node at (2,3) [above] {$j$};
+\node at (2,2) [above right] {$j-l$};
+\end{scope}
+
+\node at (3.5,1.5) {$\mathstrut=\mathstrut$};
+
+\begin{scope}[xshift=4cm]
+\node at (1.5,1.53) {$\left(\myboxA{}\right)$};
+\fill[color=red!30] (1.5,3) -- (3,1.5) -- (3,3) -- cycle;
+\draw (0,0) rectangle (3,3);
+\draw (0,3) -- (3,0);
+\node at ({\cx+1.5*0.5},{\cy+1.5*0.5}) [rotate=-45] {$k+l$};
+\fill[color=red!50!blue] (2,2.5) circle[radius=0.1];
+\draw[line width=0.3pt] (2,3) -- (2,2.5);
+\node at (2,3) [above] {$j$};
+\node at (1,1) {$D$};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}
+

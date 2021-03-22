@@ -1,0 +1,58 @@
+%
+% norm.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Norm}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Wozu}
+Ziel: Konvergenz von Folgen, Grenzwert in einem Vektorraum
+\end{block}
+\uncover<7->{%
+\begin{block}{Cauchy-Folge}
+Eine Folge $(x_n)_{n\in\mathbb{N}}$ von Vektoren in $V$ heisst
+{\em Cauchy-Folge},
+wenn es für alle $\varepsilon >0$ ein $N$ gibt mit
+\[
+\|x_n-x_m\| < \varepsilon\; \forall n,m>N
+\]
+\end{block}}
+\vspace{-8pt}
+\uncover<8->{%
+\begin{block}{Grenzwert}
+$x\in V$ heisst Grenzwert der Folge $x_n$, wenn es für alle $\varepsilon>0$
+ein $N$ gibt mit
+\[
+\| x-x_n\| < \varepsilon \;\forall n>N
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Definition}
+$V$ ein $\mathbb{R}$-Vektorraum.
+Eine Funktion
+\[
+\|\cdot\| \colon V \to \mathbb{R}_{\ge 0} : v \mapsto \|v\|
+\]
+heisst eine {\em Norm}, wenn
+\begin{itemize}
+\item<3-> $\| v \|>0$ für $v\ne 0$
+\item<4-> $\|\lambda v\| = |\lambda|\cdot\|v\|$
+\item<5-> $\| u + v \| \le \|u\| + \|v\|$ (Dreiecksungleichung)
+\end{itemize}
+\uncover<6->{%
+Ein Vektorraum mit einer Norm heisst {\em normierter Raum}}
+\end{block}}
+\uncover<9->{%
+\begin{block}{Banach-Raum}
+Normierter Raum, in dem jede Cauchy-Folge einen Grenwzert hat
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

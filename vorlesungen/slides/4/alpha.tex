@@ -1,0 +1,54 @@
+%
+% alpha.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\frametitle{Was ist $\alpha$?}
+$m(X)$ ein irreduzibles Polynome in $\mathbb{F}_2[X]$
+
+Beispiel: $m(X) = X^8{\color{red}\mathstrut+X^4+X^3+X^2+1}\in\mathbb{F}_2[X]$
+\begin{columns}[t]
+\begin{column}{0.40\textwidth}
+\uncover<2->{%
+\begin{block}{Abstrakt}
+$\alpha$ ist ein ``imaginäres''
+Objekt mit der Rechenregel $m(\alpha)=0$
+\begin{align*}
+\alpha^8 &= {\color{red}\alpha^4+\alpha^3+\alpha^2+1}\\
+\uncover<3->{
+\alpha^9 &= \alpha^5+\alpha^4+\alpha^3+\alpha}\\
+\uncover<4->{
+\alpha^{10}&= \alpha^6+\alpha^5+\alpha^4+\alpha^2}\\
+\uncover<5->{
+\alpha^{11}&= \alpha^7+\alpha^6+\alpha^5+\alpha^3}\\
+\uncover<6->{
+\alpha &= \alpha^7+\alpha^3+\alpha^2+\alpha}
+\\
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.54\textwidth}
+\uncover<7->{%
+\begin{block}{Matrix}
+Eine konkretes Element in $M_n(\mathbb{F}_2)$
+\[
+\alpha
+=
+\begin{pmatrix}
+0& 0& 0& 0& 0& 0& 0& {\color{red}1}\\
+1& 0& 0& 0& 0& 0& 0& {\color{red}0}\\
+0& 1& 0& 0& 0& 0& 0& {\color{red}1}\\
+0& 0& 1& 0& 0& 0& 0& {\color{red}1}\\
+0& 0& 0& 1& 0& 0& 0& {\color{red}1}\\
+0& 0& 0& 0& 1& 0& 0& {\color{red}0}\\
+0& 0& 0& 0& 0& 1& 0& {\color{red}0}\\
+0& 0& 0& 0& 0& 0& 1& {\color{red}0}
+\end{pmatrix}
+\]
+\end{block}}
+\end{column}
+\end{columns}
+
+\end{frame}

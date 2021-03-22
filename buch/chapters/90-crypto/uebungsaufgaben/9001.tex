@@ -1,0 +1,31 @@
+$A$ und $B$ einigen sich darauf, das Diffie-Hellman-Verfahren für
+$p=2027$ durchzuführen und mit $g=3$ zu arbeiten.
+$A$ verwenden $a=49$ als privaten Schlüssel und erhält von $B$
+den öffentlichen Schlüssel $y=1772$.
+Welchen gemeinsamen Schlüssel verwenden $A$ und $B$?
+
+\begin{loesung}
+Der zu verwendende gemeinsame Schlüssel ist
+$g^{ab}=(g^b)^a = y^a\in\mathbb{F}_2027$.
+Diese Potenz kann man mit dem Divide-and-Conquer-Algorithmus effizient
+berechnen.
+Die Binärdarstellung des privaten Schlüssels von $A$ ist
+$a=49_{10}=\texttt{110001}_2$.
+Der Algorithmus verläuft wie folgt:
+\begin{center}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+i&g^{2^i}&a_i&     x\\
+\hline
+0&      3&  1&     3\\
+1&      9&  0&     3\\
+2&     81&  0&     3\\
+3&    480&  0&     3\\
+4&   1349&  1&  2020\\
+5&   1582&  1&  1088\\
+\hline
+\end{tabular}
+\end{center}
+Der gemeinsame Schlüssel ist daher $s=1088$.
+\end{loesung}
+

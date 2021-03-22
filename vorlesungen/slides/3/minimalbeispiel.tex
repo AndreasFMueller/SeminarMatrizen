@@ -1,0 +1,36 @@
+%
+% minimalbeispiel.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Beispiel für $p(A)=0$}
+\begin{block}{Potenzen einer $2\times 2$-Matrix $A$}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\vspace{-10pt}
+\[
+I  ={\tiny\begin{pmatrix}  1 &  0 \\  0 &  1 \end{pmatrix}},\quad
+A  ={\tiny\begin{pmatrix}  3 &  2 \\ -1 & -2 \end{pmatrix}},\quad
+\uncover<2->{A^2={\tiny\begin{pmatrix}  7 &  2 \\ -1 &  2 \end{pmatrix}}}
+\uncover<3->{,\quad A^3={\tiny\begin{pmatrix} 19 & 10 \\ -5 & -6 \end{pmatrix}}}
+\uncover<4->{,\quad A^4={\tiny\begin{pmatrix} 47 & 18 \\ -9 &  2 \end{pmatrix}}}
+\]
+\end{block}
+\vspace{-5pt}
+\uncover<5->{%
+\begin{block}{linear abhängig}
+Bereits die ersten $3$ sind linear abhängig:
+\[
+-4I - A + A^2
+=
+-4\begin{pmatrix}  1 &  0 \\  0 &  1 \end{pmatrix}
+-\begin{pmatrix}  3 &  2 \\ -1 & -2 \end{pmatrix}
++\begin{pmatrix}  7 &  2 \\ -1 &  2 \end{pmatrix}
+= 
+\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+\]
+\uncover<6->{$p(X) = X^2 - X - 4 \in \mathbb{Q}[X]$ hat die Eigenschaft
+$p(A)=0$}
+\end{block}}
+\end{frame}

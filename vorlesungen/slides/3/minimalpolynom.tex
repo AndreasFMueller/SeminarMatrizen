@@ -1,0 +1,30 @@
+%
+% minimalpolynom.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Minimalpolynom}
+\begin{block}{Definition}
+Zu jeder $n\times n$-Matrix $A$
+gibt es ein Polynom $m_A(X)\in\Bbbk[X]$ minimalen Grades $\deg m_A\le n^2$
+derart, dass $m_A(A)=0$.
+\end{block}
+\uncover<2->{%
+\begin{block}{Strategie}
+Das Minimalpolynom ist eine ``Invariante'' der Matrix $A$
+\end{block}}
+\uncover<3->{%
+\begin{block}{Satz von Cayley-Hamilton}
+Für jede $n\times n$-Matrix $A\in M_n(\Bbbk)$ gilt $\chi_A(A)=0$
+\uncover<4->{%
+\[
+\Downarrow
+\]
+Das Minimalpolynom $m_A\in \Bbbk[X]$ ist ein Teiler
+des charakteristischen Polynoms $\chi_A\in \Bbbk[X]$}
+\\
+\uncover<5->{$\Rightarrow $
+Faktorzerlegung on $\chi_A(X)$ ermitteln!}
+\end{block}}
+\end{frame}

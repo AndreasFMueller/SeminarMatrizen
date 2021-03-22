@@ -1,0 +1,62 @@
+%
+% faktorzerlegung.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Faktorzerlegung}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{in $\mathbb{Z}$}
+Jede Zahl kann eindeutig in Primfaktoren zerlegt werden:
+\[
+z = p_1^{n_1}\cdot p_2^{n_2} \cdot\dots\cdot p_k^{n_k}
+\]
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{in $\mathbb{Q}[X]$}
+Jedes Polynom $p\in\mathbb{Q}[X]$
+kann eindeutig faktorisiert werden in irreduzible, normierte Polynome
+\[
+p
+=
+a_n
+p_1^{n_1}
+\cdot
+p_2^{n_2}
+\cdot
+\dots
+\cdot
+p_k^{n_k}
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<3->{%
+\begin{block}{Polynomfaktorisierung hängt vom Koeffizientenring ab}
+Ist $X^2-2$ irreduzibel?
+\vspace{-5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{in $\mathbb{Q}[X]$}
+\[
+X^2-2\quad\text{ist irreduzibel}
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<5->{%
+\begin{block}{in $\mathbb{R}[X]$}
+\[
+X^2-2 = (X-\sqrt{2})(X+\sqrt{2})
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\end{block}}
+\end{frame}

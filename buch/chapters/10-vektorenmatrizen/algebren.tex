@@ -3,5 +3,131 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
-\section{Algebren
-\label{buch:grundlagen:section:algebren}}
+\subsection{Algebren
+\label{buch:grundlagen:subsection:algebren}}
+Die Skalar-Multiplikation eines Vektorraums ist in einem Ring nicht
+vorhanden.
+Die Menge der Matrizen $M_n(\Bbbk)$ ist sowohl ein Ring als auch
+ein Vektorraum.
+Man nennt eine {\em $\Bbbk$-Algebra} oder {\em Algebra über $\Bbbk$}
+ein Ring $A$, der auch eine $\Bbbk$-Vektorraum ist.
+Die Multiplikation des Ringes muss dazu mit der Skalarmultiplikation
+verträglich sein.
+Dazu müssen Assoziativgesetze
+\[
+\lambda(\mu a) = (\lambda \mu) a
+\qquad\text{und}\qquad
+\lambda(ab) = (\lambda a) b
+\]
+für $a,b\in A$ und $\lambda,\mu\in\Bbbk$
+und eine Regel der Form
+\begin{equation}
+a(\lambda b) = \lambda (ab)
+\label{buch:vektorenmatrizen:eqn:algebrakommutativ}
+\end{equation}
+gelten.
+Die Bedingung \eqref{buch:vektorenmatrizen:eqn:algebrakommutativ} ist
+eine Folge der Forderung, dass die Multiplikation 
+eine lineare Abbildung sein soll.
+Dies bedeutet, dass
+\begin{equation}
+a(\lambda b+\mu c) = \lambda (ab) + \mu (ac),
+\label{buch:vektorenmatrizen:eqn:algebralinear}
+\end{equation}
+woraus 
+\eqref{buch:vektorenmatrizen:eqn:algebrakommutativ}
+für $\mu=0$ folgt.
+Die Regel \eqref{buch:vektorenmatrizen:eqn:algebralinear}
+beinhaltet aber auch das Distributivgesetz.
+$M_n(\Bbbk)$ ist eine Algebra.
+
+\subsubsection{Die Algebra der Funktionen $\Bbbk^X$}
+Sie $X$ eine Menge und $\Bbbk^X$ die Menge aller Funktionen $X\to \Bbbk$.
+Auf $\Bbbk^X$ kann man Addition, Multiplikation mit Skalaren und
+Multiplikation von Funktionen punktweise definieren.
+Für zwei Funktion $f,g\in\Bbbk^X$ und $\lambda\in\Bbbk$ definiert man
+\[
+\begin{aligned}
+&\text{Summe $f+g$:}
+&
+(f+g)(x) &= f(x)+g(x)
+\\
+&\text{Skalare $\lambda f$:}
+&
+(\lambda f)(x) &= \lambda f(x)
+\\
+&\text{Produkt $f\cdot g$:}
+&
+(f\cdot g)(x) &= f(x) g(x)
+\end{aligned}
+\]
+Man kann leicht nachprüfen, dass die Menge der Funktionen $\Bbbk^X$
+mit diesen Verknüfungen die Struktur einer $\Bbbk$-Algebra erhält.
+
+Die Algebra der Funktionen $\Bbbk^X$ hat auch ein Einselement:
+die konstante Funktion
+\[
+1\colon [a,b] \to \Bbbk : x \mapsto 1
+\]
+mit Wert $1$ erfüllt
+\[
+(1\cdot f)(x) = 1(x) f(x) = f(x)
+\qquad\Rightarrow\qquad 1\cdot f = f,
+\]
+die Eigenschaft einer Eins in der Algebra.
+
+\subsubsection{Die Algebra der stetigen Funktionen $C([a,b])$}
+Die Menge der stetigen Funktionen $C([a,b])$ ist natürlich eine Teilmenge
+aller Funktionen: $C([a,b])\subset \mathbb{R}^{[a,b]}$ und erbt damit
+auch die Algebraoperationen.
+Man muss nur noch sicherstellen, dass die Summe von stetigen Funktionen,
+das Produkt einer stetigen Funktion mit einem Skalar und das Produkt von
+stetigen Funktionen wieder eine stetige Funktion ist.
+Eine Funktion ist genau dann stetig, wenn an jeder Stelle der Grenzwert
+mit dem Funktionswert übereinstimmt.
+Genau dies garantieren die bekannten Rechenregeln für stetige Funktionen.
+Für zwei stetige Funktionen $f,g\in C([a,b])$ und einen Skalar
+$\lambda\in\mathbb{R}$ gilt
+\[
+\begin{aligned}
+&\text{Summe:}
+&
+\lim_{x\to x_0} (f+g)(x)
+&=
+\lim_{x\to x_0} (f(x)+g(x))
+=
+\lim_{x\to x_0} f(x) + \lim_{x\to x_0}g(x)
+=
+f(x_0)+g(x_0) = (f+g)(x_0)
+\\
+&\text{Skalare:}
+&
+\lim_{x\to x_0} (\lambda f)(x)
+&=
+\lim_{x\to x_0} (\lambda f(x)) = \lambda \lim_{x\to x_0} f(x)
+=
+\lambda f(x_0) = (\lambda f)(x_0)
+\\
+&\text{Produkt:}
+&
+\lim_{x\to x_0}(f\cdot g)(x)
+&=
+\lim_{x\to x_0} f(x)\cdot g(x)
+=
+\lim_{x\to x_0} f(x)\cdot
+\lim_{x\to x_0} g(x)
+=
+f(x_0)g(x_0)
+=
+(f\cdot g)(x_0).
+\end{aligned}
+\]
+für jeden Punkt $x_0\in[a,b]$.
+Damit ist $C([a,b])$ eine $\mathbb{R}$-Algebra.
+Die Algebra hat auch eine Eins, da die konstante Funktion $1(x)=1$ 
+stetig ist.
+
+
+
+
+

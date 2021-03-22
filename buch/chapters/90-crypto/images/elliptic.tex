@@ -1,0 +1,97 @@
+%
+% elliptic.tex -- elliptic curve
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{4}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\uone{-1.1}
+\def\utwo{0.3}
+\pgfmathparse{-(\uone+\utwo)}
+\xdef\uthree{\pgfmathresult}
+\xdef\r{0.017}
+
+\def\gone{-1.05}
+\def\gtwo{0.2}
+\def\gthree{1.105}
+
+\pgfmathparse{-sqrt((\gone-\uone)*(\gone-\utwo)*(\gone-\uthree))}
+\xdef\yone{\pgfmathresult}
+\pgfmathparse{sqrt((\gtwo-\uone)*(\gtwo-\utwo)*(\gtwo-\uthree))}
+\xdef\ytwo{\pgfmathresult}
+\pgfmathparse{sqrt((\gthree-\uone)*(\gthree-\utwo)*(\gthree-\uthree))}
+\xdef\ythree{\pgfmathresult}
+
+\begin{scope}
+\clip (-1.5,-1.5) rectangle (1.5,1.5);
+\draw[color=blue]
+	({\gone-(\gtwo-\gone)},{\yone-(\ytwo-\yone)})
+	--
+	({\gone+2*(\gtwo-\gone)},{\yone+2*(\ytwo-\yone)});
+\draw[color=blue] (\gthree,-2) -- (\gthree,2);
+\end{scope}
+
+\draw[line width=1.4pt,color=red]
+	(\uone,0) --
+	plot[domain={\uone+0.001}:{\utwo-0.001},samples=100]
+		(\x,{sqrt((\x-\uone)*(\x-\utwo)*(\x-\uthree))})
+	-- (\utwo,0);
+\draw[line width=1.4pt,color=red]
+	(\uone,0) --
+	plot[domain={\uone+0.001}:{\utwo-0.001},samples=100]
+		(\x,{-sqrt((\x-\uone)*(\x-\utwo)*(\x-\uthree))})
+	-- (\utwo,0);
+
+\draw[line width=1.4pt,color=red]
+	(\uthree,0) --
+	plot[domain={\uthree}:1.5,samples=100]
+		(\x,{sqrt((\x-\uone)*(\x-\utwo)*(\x-\uthree))}) ;
+\draw[line width=1.4pt,color=red]
+	(\uthree,0) --
+	plot[domain={\uthree}:1.5,samples=100]
+		(\x,{-sqrt((\x-\uone)*(\x-\utwo)*(\x-\uthree))}) ;
+
+\draw[->] (-1.5,0) -- (1.5,0) coordinate[label={$u$}];
+\draw[->] (0,-1.5) -- (0,1.5) coordinate[label={right:$v$}];
+\node at (0,0) [below left] {$O$};
+
+\fill[color=white] (\uone,0) circle[radius=\r];
+\draw (\uone,0) circle[radius=\r];
+\node at ({\uone+0.01},-0.01) [above left] {$u_1$};
+
+\fill[color=white] (\utwo,0) circle[radius=\r];
+\draw (\utwo,0) circle[radius=\r];
+\node at ({\utwo-0.01},-0.01) [above right] {$u_2$};
+
+\fill[color=white] (\uthree,0) circle[radius=\r];
+\draw (\uthree,0) circle[radius=\r];
+\node at ({\uthree+0.01},-0.01) [above left] {$u_3$};
+
+\fill[color=white] (\gone,\yone) circle[radius=\r];
+\draw[color=blue] (\gone,\yone) circle[radius=\r];
+
+\fill[color=white] (\gtwo,\ytwo) circle[radius=\r];
+\draw[color=blue] (\gtwo,\ytwo) circle[radius=\r];
+
+\fill[color=white] (\gthree,\ythree) circle[radius=\r];
+\draw[color=blue] (\gthree,\ythree) circle[radius=\r];
+\fill[color=white] (\gthree,-\ythree) circle[radius=\r];
+\draw[color=blue] (\gthree,-\ythree) circle[radius=\r];
+
+\node[color=blue] at (\gone,{\yone-0.03}) [above left] {$g_1$};
+\node[color=blue] at ({\gtwo+0.03},{\ytwo+0.01}) [above] {$g_2$};
+\node[color=blue] at (\gthree,{\ythree+0.02}) [below right] {$g_3$};
+\node[color=blue] at (\gthree,{-\ythree+0.03}) [below left] {$g_1g_2=g_3^{-1}$};
+
+\end{tikzpicture}
+\end{document}
+

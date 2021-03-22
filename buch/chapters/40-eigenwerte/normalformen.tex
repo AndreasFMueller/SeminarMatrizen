@@ -1,0 +1,338 @@
+%
+% normalformen.tex -- Normalformen einer Matrix
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\section{Normalformen
+\label{buch:section:normalformen}}
+\rhead{Normalformen}
+In den Beispielen im vorangegangenen wurde wiederholt der Trick
+verwendet, den Koeffizientenkörper so zu erweitern, dass das
+charakteristische Polynom in Linearfaktoren zerfällt und 
+für jeden Eigenwert Eigenvektoren gefunden werden können.
+Diese Idee ermöglicht, eine Matrix in einer geeigneten Körpererweiterung
+in eine besonders einfache Form zu bringen, das Problem dort zu lösen.
+Anschliessend kann man sich darum kümmern in welchem Mass die gewonnenen
+Resultate wieder in den ursprünglichen Körper transportiert werden können.
+
+\subsection{Diagonalform}
+Sei $A$ eine beliebige Matrix mit Koeffizienten in $\Bbbk$ und sei $\Bbbk'$
+eine Körpererweiterung von $\Bbbk$ derart, dass das charakteristische
+Polynom in Linearfaktoren
+\[
+\chi_A(x)
+=
+(x-\lambda_1)^{k_1}\cdot (x-\lambda_2)^{k_2}\cdot\dots\cdot (x-\lambda_m)^{k_m}
+\]
+mit Vielfachheiten $k_1$ bis $k_m$ zerfällt, $\lambda_i\in\Bbbk'$.
+Zu jedem Eigenwert $\lambda_i$ gibt es sicher einen Eigenvektor, wir 
+wollen aber in diesem Abschnitt zusätzlich annehmen, dass es eine Basis
+aus Eigenvektoren gibt.
+In dieser Basis bekommt die Matrix Diagonalform, wobei auf der 
+Diagonalen nur Eigenwerte vorkommen können.
+Man kann die Vektoren so anordnen, dass die Diagonalmatrix in Blöcke
+der Form $\lambda_iE$ zerfällt
+\[
+\def\temp#1{\multicolumn{1}{|c}{\raisebox{0pt}[12pt][7pt]{\phantom{x}$#1$}\phantom{x}}}
+A'
+=\left(
+\begin{array}{cccc}
+\cline{1-1}
+\temp{\lambda_1E} &\multicolumn{1}{|c}{}&        &           \\
+\cline{1-2}
+          &\temp{\lambda_2E}&\multicolumn{1}{|c}{}&           \\
+\cline{2-3}
+          &           &\temp{\ddots}&\multicolumn{1}{|c}{}\\
+\cline{3-4}
+          &           &        &\multicolumn{1}{|c|}{\raisebox{0pt}[12pt][7pt]{\phantom{x}$\lambda_mE$}\phantom{x}}\\
+\cline{4-4}
+\end{array}
+\right)
+\]
+Über die Grösse eines solchen $\lambda_iE$-Blockes können wir zum jetzigen
+Zeitpunkt noch keine Aussagen machen.
+
+Die Matrizen $A-\lambda_kE$ enthalten jeweils einen Block aus lauter
+Nullen.
+Das Produkt all dieser Matrizen  ist daher
+\[
+(A-\lambda_1E)
+(A-\lambda_2E)
+\cdots
+(A-\lambda_mE)
+=
+0.
+\]
+Über dem Körper $\Bbbk'$ gibt es also das Polynom
+$m(x)=(x-\lambda_1)(x-\lambda_2)\cdots(x-\lambda_m)$ mit der Eigenschaft
+$m(A)=0$.
+Dies ist auch das Polynom von kleinstmöglichem Grad, denn für jeden
+Eigenwert muss ein entsprechender Linearfaktor in so einem Polynom vorkommen.
+Das Polynom $m(x)$ ist daher das Minimalpolynom der Matrix $A$.
+Da jeder Faktor in $m(x)$ auch ein Faktor von $\chi_A(x)$ ist,
+folgt wieder $\chi_A(A)=0$.
+Ausserdem ist über dem Körper $\Bbbk'$ das Polynom $m(x)$ ein Teiler
+des charakteristischen Polynoms $\chi_A(x)$.
+
+\subsection{Jordan-Normalform
+\label{buch:subsection:jordan-normalform}}
+Die Eigenwerte einer Matrix $A$ können als Nullstellen des 
+charakteristischen Polynoms gefunden werden.
+Da der Körper $\Bbbk$ nicht unbedingt algebraische abgeschlossen ist,
+zerfällt das charakteristische Polynom nicht unbedingt in Linearfaktoren,
+die Nullstellen sind nicht unbedingt in $\Bbbk$.
+Wir können aber immer zu einem grösseren Körper $\Bbbk'$ übergehen,
+in dem das charakteristische Polynom in Linearfaktoren zerfällt.
+Wir nehmen im Folgenden an, dass 
+\[
+\chi_A(x)
+=
+(x-\lambda_1)^{k_1}
+\cdot
+(x-\lambda_2)^{k_2}
+\cdot
+\dots
+\cdot
+(x-\lambda_l)^{k_l}
+\]
+ist mit $\lambda_i\in\Bbbk'$.
+
+Nach Satz~\ref{buch:eigenwerte:satz:zerlegung-in-eigenraeume} liefern
+die verallgemeinerten Eigenräume $V_i=\mathcal{E}_{\lambda_i}(A)$ eine
+Zerlegung von $V$ in invariante Eigenräume
+\[
+V=V_1\oplus V_2\oplus \dots\oplus V_l,
+\]
+derart, dass $A-\lambda_iE$ auf $V_i$ nilpotent ist.
+Wählt man in jedem der Unterräume $V_i$ eine Basis, dann zerfällt die
+Matrix $A$ in Blockmatrizen
+\begin{equation}
+\def\temp#1{\multicolumn{1}{|c}{\raisebox{0pt}[17pt][12pt]{\phantom{x}$#1\mathstrut$}\phantom{x}}}
+A'
+=\left(
+\begin{array}{cccc}
+\cline{1-1}
+\temp{A_{1}} &\multicolumn{1}{|c}{}&        &           \\
+\cline{1-2}
+          &\temp{A_{2}}&\multicolumn{1}{|c}{}&           \\
+\cline{2-3}
+          &           &\temp{\ddots}&\multicolumn{1}{|c}{}\\
+\cline{3-4}
+          &           &        &\multicolumn{1}{|c|}{\raisebox{0pt}[17pt][12pt]{\phantom{x}$A_{l}$}\phantom{x}}\\
+\cline{4-4}
+\end{array}
+\right)
+\label{buch:eigenwerte:eqn:allgnilpotent}
+\end{equation}
+wobei, $A_i$ Matrizen mit dem einzigen Eigenwert $\lambda_i$ sind.
+
+Nach Satz~\ref{buch:eigenwerte:satz:allgnilpotent}
+kann man in den Unterräume die Basis zusätzlich so wählen, dass 
+die entstehenden Blöcke $A_i-\lambda_i E$ spezielle nilpotente Matrizen
+aus lauter Null sind, die höchstens unmittelbar über der Diagonalen
+Einträge $1$ haben kann.
+Dies bedeutet, dass sich immer eine Basis so wählen lässt, dass die
+Matrix $A_i$ zerfällt in sogenannte Jordan-Blöcke.
+
+\begin{definition}
+Ein $m$-dimensionaler {\em Jordan-Block} ist eine $m\times m$-Matrix
+\index{Jordan-Block}%
+der Form
+\[
+J_m(\lambda)
+=
+\begin{pmatrix}
+\lambda &    1    &         &        &         &         \\
+        & \lambda &    1    &        &         &         \\
+        &         & \lambda &        &         &         \\
+        &         &         & \ddots &         &         \\
+        &         &         &        & \lambda &     1   \\
+        &         &         &        &         & \lambda 
+\end{pmatrix}.
+\]
+Eine {\em Jordan-Matrix} ist eine Blockmatrix Matrix
+\[
+J
+=
+\def\temp#1{\multicolumn{1}{|c}{\raisebox{0pt}[17pt][12pt]{\phantom{x}$#1\mathstrut$}\phantom{x}}}
+\left(
+\begin{array}{cccc}
+\cline{1-1}
+\temp{J_{m_1}(\lambda)} &\multicolumn{1}{|c}{}&        &           \\
+\cline{1-2}
+          &\temp{J_{m_2}(\lambda)}&\multicolumn{1}{|c}{}&           \\
+\cline{2-3}
+          &           &\temp{\ddots}&\multicolumn{1}{|c}{}\\
+\cline{3-4}
+          &           &        &\multicolumn{1}{|c|}{\raisebox{0pt}[17pt][12pt]{\phantom{x}$J_{m_p}(\lambda)$}\phantom{x}}\\
+\cline{4-4}
+\end{array}
+\right)
+\]
+mit $m_1+m_2+\dots+m_p=m$.
+\index{Jordan-Matrix}%
+\end{definition}
+
+Da Jordan-Blöcke obere Dreiecksmatrizen sind, ist
+das charakteristische Polynom eines Jordan-Blocks oder einer Jordan-Matrix
+besonders einfach zu berechnen.
+Es gilt
+\[
+\chi_{J_m(\lambda)}(x)
+=
+\det (J_m(\lambda) - xE)
+=
+(\lambda-x)^m
+\]
+für einen Jordan-Block $J_m(\lambda)$.
+Für eine $m\times m$-Jordan-Matrix $J$ mit Blöcken $J_{m_1}(\lambda)$
+bis $J_{m_p}(\lambda)$ ist
+\[
+\chi_{J(\lambda)}(x)
+=
+\chi_{J_{m_1}(\lambda)}(x)
+\chi_{J_{m_2}(\lambda)}(x)
+\cdot
+\dots
+\cdot
+\chi_{J_{m_p}(\lambda)}(x)
+=
+(\lambda-x)^{m_1}
+(\lambda-x)^{m_2}
+\cdot\dots\cdot
+(\lambda-x)^{m_p}
+=
+(\lambda-x)^m.
+\]
+
+\begin{satz}
+\label{buch:eigenwerte:satz:jordannormalform}
+Über einem Körper $\Bbbk'\supset\Bbbk$, über dem das charakteristische
+Polynom $\chi_A(x)$ in Linearfaktoren zerfällt, lässt sich immer
+eine Basis finden derart, dass die Matrix $A$ zu einer Blockmatrix wird,
+die aus lauter Jordan-Matrizen besteht.
+Die Dimension der Jordan-Matrix zum Eigenwert $\lambda_i$ ist die
+Vielfachheit des Eigenwerts im charakteristischen Polynom.
+\end{satz}
+
+\begin{proof}[Beweis]
+Es ist nur noch die Aussage über die Dimension der Jordan-Blöcke zu
+beweisen.
+Die Jordan-Matrizen zum Eigenwert $\lambda_i$ werden mit $J_i$
+bezeichnet und sollen $m_i\times m_i$-Matrizen sein.
+Das charakteristische Polynom jedes Jordan-Blocks ist dann
+$\chi_{J_i}(x)=(\lambda_i-x)^{m_i}$.
+Das charakteristische Polynom der Blockmatrix mit diesen Jordan-Matrizen
+als Blöcken ist das Produkt
+\[
+\chi_A(x)
+=
+(\lambda_1-x)^{m_1}
+(\lambda_2-x)^{m_2}
+\cdots
+(\lambda_p-x)^{m_p}
+\]
+mit $m_1+m_2+\dots+m_p$.
+Die Blockgrösse $m_i$ ist also auch die Vielfachheit von $\lambda_i$ im
+charakteristischen Polynom $\chi_A(x)$.
+\end{proof}
+
+
+
+\begin{satz}[Cayley-Hamilton]
+Ist $A$ eine $n\times n$-Matrix über dem Körper $\Bbbk$, dann gilt
+$\chi_A(A)=0$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Zunächst gehen wir über zu einem Körper $\Bbbk'\supset\Bbbk$, indem
+das charakteristische Polynom $\chi_A(x)$ in Linearfaktoren
+$\chi_A(x)
+=
+(\lambda_1-x)^{m_1}
+(\lambda_2-x)^{m_2}
+\dots
+(\lambda_p-x)^{m_p}$
+zerfällt.
+Im Vektorraum $\Bbbk'$ kann man eine Basis finden, in der die Matrix
+$A$ in Jordan-Matrizen $J_1,\dots,J_p$ zerfällt, wobei $J_i$ eine
+$m_i\times m_i$-Matrix ist.
+Für den Block mit der Nummer $i$ erhalten wir
+$(J_i - \lambda_i E)^{m_i} = 0$.
+Setzt man also den Block $J_i$ in das charakteristische Polynom
+$\chi_A(x)$ ein, erhält man
+\[
+\chi_A(J_i)
+=
+(\lambda_1E - J_1)^{m_1}
+\cdot
+\ldots
+\cdot
+\underbrace{
+(\lambda_iE - J_i)^{m_i}
+}_{\displaystyle=0}
+\cdot
+\ldots
+\cdot
+(\lambda_iE - J_p)^{m_p}
+=
+0.
+\]
+Jeder einzelne Block $J_i$ wird also zu $0$, wenn man ihn in das
+charakteristische Polynome $\chi_A(x)$ einsetzt.
+Folglich gilt auch $\chi_A(A)=0$.
+
+Die Rechnung hat zwar im Körper $\Bbbk'$ stattgefunden, aber die Berechnung
+$\chi_A(A)$ kann in $\Bbbk$ ausgeführt werden, also ist $\chi_A(A)=0$.
+\end{proof}
+
+Aus dem Beweis kann man auch noch eine strengere Bedingung ableiten.
+Auf jedem verallgemeinerten Eigenraum $\mathcal{E}_{\lambda_i}(A)$
+ist $A_i-\lambda_i$ nilpotent, es gibt also einen minimalen Exponenten
+$q_i$ derart, dass $(A_i-\lambda_iE)^{q_i}=0$ ist.
+Wählt man eine Basis in jedem verallgemeinerten Eigenraum derart,
+dass $A_i$ eine Jordan-Matrix ist, kann man wieder zeigen, dass
+für das Polynom
+\[
+m_A(x)
+=
+(x-\lambda_1x)^{q_1}
+(x-\lambda_2x)^{q_2}
+\cdot
+\ldots
+\cdot
+(x-\lambda_px)^{q_p}
+\]
+gilt $m_A(A)=0$.
+$m_A(x)$ ist das {\em Minimalpolynom} der Matrix $A$.
+\index{Minimalpolynom einer Matrix}%
+
+\begin{satz}[Minimalpolynom]
+Über dem Körper $\Bbbk'\subset\Bbbk$, über dem das charakteristische
+Polynom $\chi_A(x)$ in Linearfaktoren zerfällt, ist das Minimalpolynom
+von $A$ das Polynom
+\[
+m(x)
+=
+(x-\lambda_1)^{q_1}
+(x-\lambda_2)^{q_2}
+\cdots
+\ldots
+\cdots
+(x-\lambda_p)^{q_p}
+\]
+wobei $q_i$ der kleinste Index ist, für den die $q_i$-te Potenz
+derEinschränkung von $A-\lambda_i E$ auf den verallgemeinerten Eigenraum
+$\mathcal{E}_{\lambda_i}(A)$ verschwindet.
+Es ist das Polynom geringsten Grades über $\Bbbk'$, welches $m(A)=0$ erfüllt.
+\end{satz}
+
+
+\subsection{Reelle Normalform
+\label{buch:subsection:reelle-normalform}}
+
+\subsection{Obere Hessenberg-Form
+\label{buch:subsection:obere-hessenberg-form}}
+
+
+

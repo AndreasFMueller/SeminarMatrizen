@@ -1,0 +1,106 @@
+%
+% ganz.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[t]
+\frametitle{Ganze Zahlen: Gruppe}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{block}{Subtrahieren}
+Nicht für alle $a,b\in \mathbb{N}$ hat die 
+Gleichung
+\[
+a+x=b
+\uncover<2->{
+\quad
+\Rightarrow
+\quad
+x=b-a}
+\]
+eine Lösung in $\mathbb{N}$\uncover<2->{, nämlich wenn $a>b$}%
+\end{block}
+\uncover<3->{%
+\begin{block}{Ganze Zahlen = Paare}
+Idee: $b-a = (b,a)$
+\begin{enumerate}
+\item<4-> $(b,a)=\mathbb{N}\times\mathbb{N}$
+\item<5-> Äquivalenzrelation
+\[
+(b,a)\sim (d,c)
+\ifthenelse{\boolean{presentation}}{
+\only<6>{\Leftrightarrow
+\text{``\strut}
+b-a=c-d
+\text{\strut''}}}{}
+\only<7->{
+\Leftrightarrow
+b+d=c+a}
+\]
+\end{enumerate}
+\vspace{-10pt}
+\uncover<8->{%
+Ganze Zahlen:
+\(
+\mathbb{Z}
+=
+\mathbb{N}\times\mathbb{N}/\sim
+\)}
+\\
+\uncover<9->{%
+$z\in\mathbb{Z}$, $z=\mathstrut$ Paare $(u,v)$ mit 
+``gleicher Differenz''}
+\uncover<10->{%
+$\Rightarrow$ alle Differenzen in $\mathbb{Z}$}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\uncover<11->{%
+\begin{block}{Gruppe}
+Monoid $\ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}$ mit inversem Element
+\[
+a\in \ifthenelse{\boolean{presentation}}{\only<11>{\mathbb{Z}}}{}\only<12->{G}
+\Rightarrow
+\ifthenelse{\boolean{presentation}}{\only<11>{-a\in\mathbb{Z}}}{}\only<12->{a^{-1}\in G}
+\text{ mit }
+\ifthenelse{\boolean{presentation}}{
+\only<11>{
+a+(-a)=0
+}}{}
+\only<12->{
+\left\{
+\begin{aligned}
+aa^{-1}&=e
+\\
+a^{-1}a&=e
+\end{aligned}
+\right.
+}
+\]
+\end{block}}
+\vspace{-15pt}
+\uncover<13->{%
+\begin{block}{Abelsche Gruppe}
+Verknüpfung ist kommutativ:
+\[
+a+b=b+a
+\]
+\end{block}}
+\vspace{-12pt}
+\uncover<14->{%
+\begin{block}{Beispiele}
+\begin{itemize}
+\item<15-> Brüche, reelle Zahlen
+\item<16-> invertierbare Matrizen: $\operatorname{GL}_n(\mathbb{R})$
+\item<17-> Drehmatrizen: $\operatorname{SO}(n)$
+\item<18-> Matrizen mit Determinante $1$: $\operatorname{SL}_n(\mathbb R)$
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

@@ -1,0 +1,34 @@
+%
+% division2.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Division in $\Bbbk[X]$}
+\vspace{-5pt}
+\begin{block}{Aufgabe}
+Finde Quotienten und Rest der Polynome
+$a(X) = X^4-X^3-7X^2+X+6$
+und
+$b(X) = 2X^2+X+1$
+\end{block}
+\uncover<2->{%
+\begin{block}{Lösung}
+\vspace{-15pt}
+\[
+\arraycolsep=1.4pt
+\renewcommand{\arraystretch}{1.2}
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+\llap{$($}X^4&-&       X^3&-&         7X^2&+&          X&+&           6\rlap{$)$}&\mathstrut\;:\mathstrut&(2X^2&+&X&+&1)&=&\uncover<3->{\frac12X^2}&\uncover<7->{-&\frac34X}&\uncover<11->{-\frac{27}{8}} = q\\
+\uncover<4->{\llap{$-($}X^4&+&\frac12X^3&+&   \frac12X^2\rlap{$)$}}& &           & &            & &    & & & & & &          & &        &             \\
+   &\uncover<5->{-&\frac32X^3&-&\frac{15}2X^2}&\uncover<6->{+&          X}& &            & &    & & & & & &          & &        &             \\
+   &\uncover<8->{\llap{$-($}-&\frac32X^3&-&\frac{ 3}4X^2&-&\frac{ 3}4X\rlap{$)$}}& &            & &    & & & & & &          & &        &             \\
+   & &          &\uncover<9->{-&\frac{27}4X^2&+&\frac{ 7}4X}&\uncover<10->{+&           6}& &    & & & & & &          & &        &             \\
+   & &          &\uncover<12->{\llap{$-($}-&\frac{27}4X^2&-&\frac{27}8X&-&\frac{27}{8}\rlap{$)$}}& &    & & & & & &          & &        &             \\
+   & &          & &             & &\uncover<13->{\frac{41}8X&+&\frac{75}{8}\rlap{$\mathstrut=r$}}& &    & & & & & &          & &        &             \\
+\end{array}
+\]
+Funktioniert, weil man in $\Bbbk[X]$ immer normieren kann
+\end{block}}
+
+\end{frame}

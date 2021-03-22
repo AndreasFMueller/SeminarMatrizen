@@ -1,0 +1,60 @@
+%
+% zyklenzerlegung.tex -- Zerlegung einer Permutation in Zyklen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\begin{scope}[xshift=-3cm]
+\node at (0,0) {$\displaystyle
+\sigma=\begin{pmatrix}
+{\color{red}1}&{\color{red}2}&{\color{darkgreen}3}&{\color{blue}4}&{\color{blue}5}&{\color{blue}6}\\
+{\color{red}2}&{\color{red}1}&{\color{darkgreen}3}&{\color{blue}5}&{\color{blue}6}&{\color{blue}4}
+\end{pmatrix}$};
+\end{scope}
+\node at (0,0) {$\mathstrut=\mathstrut$};
+\begin{scope}[xshift=1.5cm]
+\coordinate (A) at (0,0.5);
+\coordinate (B) at (0,-0.5);
+\draw[->,color=red] (A) to[out=-20,in=20] (0,-0.5);
+\draw[->,color=red] (B) to[out=160,in=-160] (0,0.5);
+\node at (A) [above] {$\tiny 1$};
+\node at (B) [below] {$\tiny 2$};
+\fill (A) circle[radius=0.05];
+\fill (B) circle[radius=0.05];
+
+\coordinate (C) at (1.5,0.25);
+\node at (C) [above] {$\tiny 3$};
+\draw[->,color=darkgreen] ({1.5+0.01},0.25) to[out=-10,in=-170] ({1.5-0.01},0.25);
+\draw[color=darkgreen] (1.5,{0.25-0.3}) circle[radius=0.3];
+\fill (C) circle[radius=0.05];
+
+\def\r{0.5}
+\coordinate (D) at ({3.5+\r*cos(90)},{0+\r*sin(90)});
+\coordinate (E) at ({3.5+\r*cos(210)},{0+\r*sin(210)});
+\coordinate (F) at ({3.5+\r*cos(330)},{0+\r*sin(330)});
+\node at (D) [above] {$\tiny 4$};
+\node at (E) [below left] {$\tiny 5$};
+\node at (F) [below right] {$\tiny 6$};
+\draw[->,color=blue] (D) to[out=180,in=120] (E);
+\draw[->,color=blue] (E) to[out=-60,in=-120] (F);
+\draw[->,color=blue] (F) to[out=60,in=0] (D);
+\fill (D) circle[radius=0.05];
+\fill (E) circle[radius=0.05];
+\fill (F) circle[radius=0.05];
+
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

@@ -1,0 +1,62 @@
+%
+% sp.tex -- template for standalon tikz images
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{2.33}
+\input{sppaths.tex}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\xdef\sx{1}
+\xdef\sy{1}
+
+% add image content here
+\begin{scope}
+\begin{scope}
+\clip (0,0) rectangle (3,2.1);
+\richardson
+\end{scope}
+\draw[->] (-0.1,0) -- (3.15,0) coordinate[label={$\tau$}];
+\draw[->] (0,-0.1) -- (0,2.3) coordinate[label={right:$\varrho(\frac1\tau A-E)$}];
+\draw (1,{-0.1/\skala}) -- (1,{0.1/\skala});
+\draw (2,{-0.1/\skala}) -- (2,{0.1/\skala});
+\draw (3,{-0.1/\skala}) -- (3,{0.1/\skala});
+\node at (1,{-0.1/\skala}) [below] {1};
+\node at (2,{-0.1/\skala}) [below] {2};
+\node at (3,{-0.1/\skala}) [below] {3};
+\draw ({-0.1/\skala},1) -- ({0.1/\skala},1);
+\draw ({-0.1/\skala},2) -- ({0.1/\skala},2);
+\node at ({-0.1/\skala},1) [left] {1};
+\node at ({-0.1/\skala},2) [left] {2};
+\end{scope}
+
+\xdef\sy{1}
+
+\begin{scope}[xshift=3.5cm]
+\begin{scope}
+\clip (0,0) rectangle (2,2);
+\sor
+\end{scope}
+\draw[->] (-0.1,0) -- (2.15,0) coordinate[label={$\omega$}];
+\draw[->] (0,-0.1) -- (0,2.3) coordinate[label={right:$\varrho(B_\omega^{-1}C_\omega)$}];
+\draw (1,{-0.1/\skala}) -- (1,{0.1/\skala});
+\draw (2,{-0.1/\skala}) -- (2,{0.1/\skala});
+\node at (1,{-0.1/\skala}) [below] {1};
+\node at (2,{-0.1/\skala}) [below] {2};
+\draw ({-0.1/\skala},1) -- ({0.1/\skala},1);
+\draw ({-0.1/\skala},2) -- ({0.1/\skala},2);
+\node at ({-0.1/\skala},1) [left] {1};
+\node at ({-0.1/\skala},2) [left] {2};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

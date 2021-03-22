@@ -1,0 +1,35 @@
+/*
+ * inverse.maxima
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+ */
+n: 5;
+m: X^5 + 15*X^3 - 30*X^2 + 45;
+
+M: matrix(
+	[ 0, 0, 0, 0, -45 ],
+	[ 1, 0, 0, 0,   0 ],
+	[ 0, 1, 0, 0,  30 ],
+	[ 0, 0, 1, 0, -15 ],
+	[ 0, 0, 0, 1,   0 ]
+);
+M2: M.M;
+M3: M.M2;
+M4: M.M3;
+
+y: a0 + a1*X + a2*X^2 + a3*X^3 + a4*X^4;
+Y: a0*identfor(M) + a1*M + a2*M2 + a3*M3 + a4*M4;
+
+B: invert(Y);
+
+b0: B[1,1];
+b1: B[2,1];
+b2: B[3,1];
+b3: B[4,1];
+b4: B[5,1];
+
+Z: b0*identfor(M) + b1*M + b2*M2 + b3*M3 + b4*M4;
+z: b0 + b1*X + b2*X^2 + b3*X^3 + b4*X^4;
+
+w: expand(y*z);
+remainder(w, m, X);

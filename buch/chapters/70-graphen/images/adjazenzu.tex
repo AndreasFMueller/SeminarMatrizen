@@ -1,0 +1,98 @@
+%
+% adjazenzu.tex -- Adjazenz-Matrix für einen ungerichten Graphen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math,calc}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\r{1.8}
+
+\begin{scope}
+\coordinate (A) at ({\r*cos(0*72)},{\r*sin(0*72)});
+\coordinate (B) at ({\r*cos(1*72)},{\r*sin(1*72)});
+\coordinate (C) at ({\r*cos(2*72)},{\r*sin(2*72)});
+\coordinate (D) at ({\r*cos(3*72)},{\r*sin(3*72)});
+\coordinate (E) at ({\r*cos(4*72)},{\r*sin(4*72)});
+
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (C);
+\draw[color=white,line width=5pt] (B) -- (D);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (D);
+
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (B);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (C);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (C) -- (D);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (E);
+\draw[shorten >= 0.2cm,shorten <= 0.2cm] (E) -- (A);
+
+\draw (A) circle[radius=0.2];
+\draw (B) circle[radius=0.2];
+\draw (C) circle[radius=0.2];
+\draw (D) circle[radius=0.2];
+\draw (E) circle[radius=0.2];
+
+\node at (A) {$1$};
+\node at (B) {$2$};
+\node at (C) {$3$};
+\node at (D) {$4$};
+\node at (E) {$5$};
+\node at (0,0) {$G$};
+
+\node at ($0.5*(A)+0.5*(B)-(0.1,0.1)$) [above right] {$\scriptstyle 1$};
+\node at ($0.5*(B)+0.5*(C)+(0.05,-0.07)$) [above left] {$\scriptstyle 2$};
+\node at ($0.5*(C)+0.5*(D)+(0.05,0)$) [left] {$\scriptstyle 3$};
+\node at ($0.5*(D)+0.5*(E)$) [below] {$\scriptstyle 4$};
+\node at ($0.5*(E)+0.5*(A)+(-0.1,0.1)$) [below right] {$\scriptstyle 5$};
+\node at ($0.6*(A)+0.4*(C)$) [above] {$\scriptstyle 6$};
+\node at ($0.4*(B)+0.6*(D)$) [left] {$\scriptstyle 7$};
+
+\end{scope}
+
+\begin{scope}[xshift=3cm,yshift=-1.1cm]
+\node at (0,0) [right] {$\displaystyle
+B(G)
+=
+\begin{pmatrix}
+1&0&0&0&1&0&0\\
+1&1&0&0&0&1&0\\
+0&1&1&0&0&0&1\\
+0&0&1&1&0&1&0\\
+0&0&0&1&1&0&1
+\end{pmatrix}$};
+\end{scope}
+
+\begin{scope}[xshift=3cm,yshift=1.1cm]
+\node at (0,0) [right] {$\displaystyle
+A(G)
+=
+\begin{pmatrix}
+0&1&1&0&1\\
+1&0&1&1&0\\
+1&1&0&1&0\\
+0&1&1&0&1\\
+1&0&0&1&0
+\end{pmatrix},
+\quad
+D(G)
+=
+\begin{pmatrix}
+3&0&0&0&0\\
+0&3&0&0&0\\
+0&0&3&0&0\\
+0&0&0&3&0\\
+0&0&0&0&2
+\end{pmatrix}
+$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

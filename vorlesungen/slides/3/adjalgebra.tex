@@ -1,0 +1,43 @@
+%
+% adjalgebra.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Adjunktion einer Nullstelle, abstrakt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+Sei $m(X)=m_0+m_1X+\dots + X^n\in \Bbbk[X]$ ein irreduzibles Polynom.
+
+\uncover<2->{%
+\begin{block}{Existenz}
+Es gibt ein ``Objekt'' $\alpha$ mit
+\(
+m(\alpha) = 0
+\)
+\end{block}}
+
+\uncover<3->{%
+\begin{block}{Körpererweiterung}
+Der kleinste Körper, der $\Bbbk$ und $\alpha$ enthält ist
+\[
+\Bbbk(\alpha)
+=
+\left
+\{ p(\alpha)
+\;\left|\;
+\begin{minipage}{8cm}\raggedright
+$p\in\Bbbk[X]$ ein Polynom vom Grad
+$\deg p<\deg m$
+\end{minipage}
+\right.
+\right\}
+\]
+\uncover<4->{Das Polynom $m$ definiert, wie mit $\alpha$ gerechnet werden
+muss:
+\[
+\alpha^n = -m_0-m_1\alpha-m_2\alpha^2 - \dots - m_{n-1}\alpha^{n-1}
+\]}
+\end{block}}
+
+\end{frame}

@@ -1,0 +1,62 @@
+%
+% polynomefp.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Polynome über $\mathbb{F}_p[X]$}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Polynomring}
+$\mathbb{F}_p[X]$ sind Polynome
+\[
+p(X)
+=
+a_0+a_1X+\dots+a_nX^n
+\]
+mit $a_i\in\mathbb{F}_p$.
+\uncover<2->{ObdA: $a_n=1$}%
+
+\end{block}
+\uncover<3->{%
+\begin{block}{Irreduzible Polynome}
+$m(X)$ ist irreduzibel, wenn es keine Faktorisierung
+$m(X)=p(X)q(X)$ mit $p,q\in\mathbb{F}_p[X]$ gibt
+\end{block}}
+\uncover<4->{%
+\begin{block}{Rest modulo $m(X)$}
+$X^{n+k}$ kann immer reduziert werden:
+\[
+X^{n+k} = -(a_0+a_1X+\dots+a_{n-1}X^{n-1})X^k
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<5->{%
+\begin{block}{Körper $\mathbb{F}_p/(m(X))$}
+Wenn $m(X)$ irreduzibel ist, dann ist
+$\mathbb{F}_p[X]$ nullteilerfrei.
+\medskip
+
+\uncover<6->{$a\in \mathbb{F}_p[X]$ mit $\deg a < \deg m$, dann ist}
+\begin{enumerate}
+\item<7->
+$\operatorname{ggT}(a,m) = 1$
+\item<8->
+Es gibt $s,t\in\mathbb{F}_p[X]$ mit
+\[
+s(X)m(X)+t(X)a(X) = 1
+\]
+(aus dem euklidischen Algorithmus)
+\item<9->
+$a^{-1} = t(X)$
+\end{enumerate}
+\uncover<9->{$\Rightarrow$ $\mathbb{F}_p[X]/(m(X))$ ist ein Körper
+mit genau $p^n$ Elementen}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

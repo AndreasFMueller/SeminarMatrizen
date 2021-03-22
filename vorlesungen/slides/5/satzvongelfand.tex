@@ -1,0 +1,89 @@
+%
+% satzvongelfand.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setbeamercolor{block body}{bg=blue!20}
+\setbeamercolor{block title}{bg=blue!20}
+\frametitle{Satz von Gelfand}
+{\usebeamercolor[fg]{title}Behauptung:} $\varrho(A)=\pi(A)$\uncover<2->{,
+$A(\varepsilon) = \displaystyle\frac{A}{\varrho(A)+\varepsilon}$}\uncover<3->{,
+$\varrho(A(\varepsilon))=\displaystyle\frac{\varrho(A)}{\varrho(A)+\varepsilon}
+\uncover<4->{=\frac{1}{1+\varepsilon/\varrho(A)}}$}
+
+\uncover<5->{%
+%{\usebeamercolor[fg]{title}Beweisidee:}
+%$\displaystyle\pi\biggl(\frac{A}{\varrho(A)+\epsilon}\biggr)
+%=
+%\frac{\pi(A)}{\varrho(A)+\epsilon}$ berechnen
+\vspace{-5pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{$\varepsilon < 0$}
+\vspace{-10pt}
+\begin{align*}
+\uncover<6->{
+\varrho(A(\varepsilon))&>1}\uncover<7->{\quad\Rightarrow\quad \|A(\varepsilon)^k\|\to \infty}
+\\
+\uncover<8->{\|A(\varepsilon)^k\| &\ge m\varrho(A(\varepsilon))^k}
+\\
+\uncover<9->{\|A(\varepsilon)^k\|^{\frac1k} &\ge m^{\frac1k} \varrho(A(\varepsilon))}
+\\
+\uncover<10->{\pi(A) &\ge \lim_{k\to\infty}m^{\frac1k}\varrho(A(\varepsilon))}
+\\
+&\uncover<11->{= \varrho(A(\varepsilon))}\uncover<12->{ > 1}
+\\
+\uncover<13->{\frac{ \pi(A(\varepsilon))}{\varrho(A)+\varepsilon} &> 1}
+\\
+\uncover<14->{
+\pi(A) &> \varrho(A)+\varepsilon
+}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{$\varepsilon > 0$}
+\vspace{-10pt}
+\begin{align*}
+\uncover<16->{
+\varrho(A(\varepsilon)) &<1}
+\uncover<17->{\quad\Rightarrow\quad \|A(\varepsilon)^k\| \to 0}
+\\
+\uncover<18->{\|A(\varepsilon)^k\|
+&\le M\varrho(A(\varepsilon))^k}
+\\
+\uncover<19->{
+\|A(\varepsilon)^k\|^{\frac1k}
+&\le M^{\frac1k}\varrho(A(\varepsilon))
+}
+\\
+\uncover<20->{
+\pi(A(\varepsilon))
+&\le
+\varrho(A(\varepsilon)) \lim_{k\to\infty} M^{\frac1k}
+}
+\\
+&\uncover<21->{= \varrho(A(\varepsilon))}
+\uncover<22->{ < 1}
+\\
+\uncover<23->{\frac{\pi(A)}{\varrho(A)+\varepsilon}&< 1}
+\\
+\uncover<24->{\pi(A)&< \varrho(A) + \varepsilon}
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}}
+\uncover<15->{%
+\vspace{2pt}
+{\usebeamercolor[fg]{title}Folgerung:}
+$\varrho(A)-\varepsilon < \pi(A) \uncover<25->{< \varrho(A)+\varepsilon}\quad\forall\varepsilon>0
+\uncover<26->{
+\qquad\Rightarrow\qquad
+\varrho(A)=\pi(A)}$
+}
+\end{frame}
+\egroup

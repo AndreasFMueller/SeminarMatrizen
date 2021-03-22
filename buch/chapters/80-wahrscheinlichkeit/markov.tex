@@ -6,5 +6,919 @@
 \section{Diskrete Markov-Ketten und Wahrscheinlichkeitsmatrizen
 \label{buch:section:diskrete-markov-ketten}}
 \rhead{Diskrete Markov-Ketten}
+Die einführend im Abschnitt~\ref{buch:section:google-matrix}
+vorgestellte Google-Matrix ist nur ein Beispiel für ein
+Modell eines stochastischen Prozesses, der mit Hilfe von Matrizen
+modelliert werden kann.
+In diesem Abschnitt soll diese Art von Prozessen etwas formalisiert
+werden.
+
+%
+% Beschreibung der Markov-Eigenschaft
+% 
+\subsection{Markov-Eigenschaft}
+% XXX Notation, Zustände, Übergangswahrscheinlichkeit
+Ein stochastischer Prozess ist eine Familie von Zustandsvariablen
+$X_t$ mit Werten in einer Menge $\mathcal{S}$ von Zuständen.
+Der Parameter $t$ wird üblicherweise als die Zeit interpretiert,
+er kann beliebige reelle Werte oder diskrete Werte annahmen, im letzten
+Fall spricht man von einem Prozess mit diskreter Zeit.
+
+Das Ereignis $\{X_t=x\}$ wird gelesen als ``zur Zeit $t$ befindet sich
+der Prozess im Zustand $x$''.
+Mit $P(X_t = x)$ wir die Wahrscheinlichkeit bezeichnet, dass sich
+der Prozess zur Zeit $t$ im Zustand $x$ befindet.
+Die Funktion $t\mapsto X_t$ beschreiben also den zeitlichen Ablauf
+der vom Prozess durchlaufenen Zustände.
+Dies ermöglicht, Fragen nach dem Einfluss früherer Zustände,
+also des Eintretens eines Ereignisses $\{X_{t_0}=x\}$ auf das Eintreten eines
+Zustands $s\in\mathcal{S}$ zu einem späteren Zeitpunkt $t_1>t_0$
+zu studieren.
+Das Ereignis $\{X_t = x\}$ kann man sich als abhängig von der Vorgeschichte
+vorstellen.
+Die Vorgeschichte besteht dabei aus dem Eintreten gewisser Ereignisse
+\[
+\{X_0=x_0\},
+\{X_1=x_1\},
+\{X_2=x_2\},
+\dots,
+\{X_n=x_n\}
+\]
+zu früheren Zeiten $t_0<t_1<\dots<t_n<t$.
+Die bedingte Wahrscheinlichkeit
+\begin{equation}
+P(X_t = x|
+X_{t_n}=x_n\wedge X_{t_{n-1}}=x_{n-1}\wedge\dots\wedge X_{t_1}=x_1\wedge
+X_{t_0}=x_0)
+\label{buch:wahrscheinlichkeit:eqn:historybedingt}
+\end{equation}
+ist die Wahrscheinlichkeit dafür, dass der Prozess zur Zeit $t$ den
+Zustand $x$ erreicht, wenn er zu den Zeitpunkten $t_0,t_1,\dots,t_n$
+die Zustände $x_0,x_1,\dots,x_n$ durchlaufen hat.
+
+\subsubsection{Gedächtnislosigkeit}
+% XXX Gedächtnislösigkeit, Markov-Eigenschaft
+In vielen Fällen ist nur der letzte durchlaufene Zustand wichtig.
+Die Zustände in den Zeitpunkten $t_0<\dots<t_{n-1}$ haben dann keinen
+Einfluss auf die Wahrscheinlichkeit.
+Auf die bedingte
+Wahrscheinlichkeit~\eqref{buch:wahrscheinlichkeit:eqn:historybedingt}
+sollten also die Ereignisse $\{X_{t_0}=x_0\}$ bis $\{X_{t_{n-1}}=x_{n-1}\}$
+keinen Einfluss haben.
+
+\begin{definition}
+Ein stochastischer Prozess erfüllt die Markov-Eigenschaft, wenn 
+für jede Folge von früheren Zeitpunkten $t_0<t_1<\dots <t_n<t$ und Zuständen
+$x_0,\dots,x_n,x\in \mathcal{S}$ die 
+Wahrscheinlichkeit~\eqref{buch:wahrscheinlichkeit:eqn:historybedingt}
+nicht von der Vorgeschichte abhängt, also
+\[
+P(X_t = x|
+X_{t_n}=x_n\wedge X_{t_{n-1}}=x_{n-1}\wedge\dots\wedge X_{t_1}=x_1\wedge
+X_{t_0}=x_0)
+=
+P(X_t = x|
+X_{t_n}=x_n).
+\]
+\index{Markov-Eigenschaft}
+\end{definition}
+
+Die Wahrscheinlichkeiten $P(X_t=x|X_s=y)$ mit $t>s$ bestimmen das
+zeitliche Verhalten der Wahrscheinlichkeiten vollständig.
+Wir schreiben daher auch
+\[
+p_{xy}(t, s)
+=
+P(X_t = x|X_s=y)
+\]
+für die sogenannte {\em transiente Übergangswahrscheinlichkeit}.
+Für eine endliche Menge von Zuständen, können die transienten
+Übergangswahrscheinlichkeiten auch als zeitabhängige 
+quadratische Matrix $P(s,t)$ geschrieben werden, deren
+Einträge
+\[
+(P(s,t))_{xy}
+=
+p_{xy}(t,s)
+\]
+mit den Zuständen $x,y\in\mathcal{S}$ indiziert sind.
+
+\subsubsection{Die Chapman-Kolmogorov-Gleichung}
+% XXX Chapman-Kolmogorov-Gleichung
+Man beachte, dass in der Definition der Markov-Eigenschaft
+keine Voraussetzungen darüber gemacht werden, wie nahe
+am Zeitpunkt $t$ der letzte Zeitpunkt $t_n$ der Vorgeschichte liegt.
+Die transienten Übergangswahrscheinlichkeiten $p_{xy}(s,t)$ werden
+aber im allgemeinen davon abhängen, wie weit in der Vergangenheit
+der Zeitpunkt $s<t$ liegt.
+Für eine näheren Zeitpunkt $\tau$ mit $s<\tau <t$ muss es daher
+einen Zusammenhang zwischen den transienten Übergangswahrscheinlichkeiten
+$p_{xy}(s,\tau)$, $p_{xy}(\tau,t)$ und $p_{xy}(s,t)$ geben.
+
+\begin{satz}[Chapman-Kolmogorov]
+Hat der Prozess die Markov-Eigenschaft und ist $s<\tau <t$, dann gilt
+\[
+p_{xy}(t,s) = \sum_{z\in\mathcal{S}} p_{xz}(t,\tau) p_{zy}(\tau,s),
+\]
+was in Matrixform auch als
+\[
+P(t,s) = P(t,\tau)P(\tau,s)
+\]
+geschrieben werden kann.
+\end{satz}
+
+Auch hier spielt es keine Rolle, wie nahe an $t$ der Zwischenzeitpunkt
+$\tau$ liegt.
+Die Formel von Chapman-Kolmogoroff kann natürlich für zusätzliche
+Zwischenpunkte $s<t_1<t_2<\dots< t_n< t$ formuliert werden.
+In Matrix-Notation gilt
+\[
+P(t,s) = P(t,t_n)P(t_n,t_{n-1})\dots P(t_2,t_1)P(t_1,s),
+\]
+was ausgeschrieben zu
+\[
+p_{xy}(t,s)
+=
+\sum_{x_1,\dots,x_n\in\mathcal{S}}
+p_{xx_n}(t,t_n)
+p_{x_nx_{n-1}}(t_n,t_{n-1})
+\dots
+p_{x_2x_1}(t_2,t_1)
+p_{x_1y}(t_1,s)
+\]
+wird.
+Jeder Summand auf der rechten Seite beschreibt einen Weg des Prozesses
+derart, dass er zu den Zwischenzeitpunkten bestimmte 
+Zwischenzustände durchläuft.
+
+% XXX Pfadwahrscheinlichkeit
+\begin{definition}
+Die Wahrscheinlichkeit, dass der stochastische Prozess zwischen Zeitpunkten
+$t_0$ und $t_n$ die Zwischenzustände $x_i$ zu Zeiten $t_i$ durchläuft ist
+das Produkt
+\[
+\sum_{x_1,\dots,x_n\in\mathcal{S}}
+p_{x_{n+1}x_n}(t_{n+1},t_n)
+p_{x_nx_{n-1}}(t_n,t_{n-1})
+\dots
+p_{x_2x_1}(t_2,t_1)
+p_{x_1x_0}(t_1,s)
+=
+\prod_{i=0}^{n}
+p_{x_{i+1}x_i}(t_{i+1}t_i)
+\]
+heisst die {\em Pfadwahrscheinlichkeit} für genannten Pfad.
+\index{Pfadwahrscheinlichkeit}%
+\end{definition}
+
+%
+% Diskrete Markov-Kette
+%
+\subsection{Diskrete Markov-Kette}
+% XXX Diskrete Zeit, Endliche Zustandsmenge
+Die Markov-Eigenschaft besagt, dass man keine Information verliert,
+wenn man die Vorgeschichte eines Zeitpunktes ignoriert.
+Insbesondere kann man eine Menge von geeigneten diskreten
+Zeitpunkten wählen, ohne viel Information über den Prozess zu
+verlieren.
+Eine {\em diskrete Markov-Kette} ist eine stochastischer Prozess,
+für den die Menge der Zeitpunkte $t$ diskret ist.
+Es ist üblich, für die Zeitpunkte ganze oder natürliche Zahlen zu
+verwenden.
+
+\begin{definition}
+Eine diskrete Markov-Kette ist ein stochastischer Prozess
+$(X_t)_{t\in\mathbb{N}}$ mit Werten in $\mathcal{S}$, der die
+Markov-Eigenschaft
+\[
+P(X_{n+1}=x_{n+1}|X_n=x_n\wedge\dots X_0=x_0)
+=
+P(X_{n+1}=x_{n+1}|X_n=x_n)
+\]
+hat.
+\end{definition}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov.pdf}
+\caption{Diskrete Markovkette mit Zuständen $\mathcal{S}=\{1,2,3,\dots,s\}$
+und Übergangsmatrizen $T(n+1,n)$.
+\label{buch:wahrscheinlichkeit:fig:diskretemarkovkette}}
+\end{figure}
+
+Die transienten Übergangswahrscheinlichkeiten zwischen aufeinanderfolgenden
+Zeitpunkten stellen jetzt die vollständige Information über die
+zeitliche Entwicklung dar
+(Abbildung~\ref{buch:wahrscheinlichkeit:fig:diskretemarkovkette}).
+Aus der Matrix
+\[
+T(n+1,n)
+=
+\begin{pmatrix}
+p_{11}(n+1,n) & \dots  & p_{1s}(n+1,n)\\
+\vdots        & \ddots & \vdots       \\
+p_{11}(n+1,n) & \dots  & p_{1s}(n+1,n)
+\end{pmatrix},
+\]
+auch die $1$-Schritt Übergangswahrscheinlichkeit genannt, kann man jetzt
+auch die Matrix der Überganswahrscheinlichkeiten für mehrere Schritte
+\[
+T(n+m,n)
+=
+T(n+m,n+m-1)
+T(n+m-1,n+m-2)
+\dots
+T(n+1,n)
+\]
+mit der Chapman-Komogorov-Formel bestimmen.
+Die Markov-Eigenschaft stellt also sicher, dass man nur die 
+$1$-Schritt-Übergangswahrscheinlichkeiten kennen muss.
+
+Eine Matrix $T$ kann als Matrix der Übergangswahrscheinlichkeiten
+verwendet werden, wenn sie zwei Bedingungen erfüllt:
+\begin{enumerate}
+\item Die Einträge von $T$ müssen als Wahrscheinlichkeiten interpretiert
+werden können, sie müssen also alle zwischen $0$ und $1$ sein:
+$0\le t_{ij}\le 1$ für $i,j\in\mathcal{S}$
+\item Die Matrix muss alle möglichen Fälle erfassen.
+Dazu ist notwendig, dass sich die Wahrscheinlichkeiten aller Übergänge
+aus einem Zustand $j$ zu $1$ summieren, also
+\[
+\sum_{i\in\mathcal{S}} p_{ij} = 1.
+\]
+Die Summe der Elemente einer Spalte 
+\end{enumerate}
+
+\begin{beispiel}
+Die Permutationsmatrix einer Permutation $\sigma\in S_n$ 
+(Abschnitt~\label{buch:section:permutationsmatrizen})
+ist eine Matrix mit Einträgen $0$ und $1$, so dass die erste Bedingung
+erfüllt ist.
+In jeder Zeile oder Spalte kommt genau eine $1$ vor, so dass auch die
+zweite Bedingung erfüllt ist.
+Eine Permutationsmatrix beschreibt einen stochastischen Prozess, dessen
+Übergänge deterministisch sind.
+\end{beispiel}
+
+\subsubsection{Zustandswahrscheinlichkeiten}
+% XXX Zustandswahrscheinlichkeit
+Die Wahrscheinlichkeit, mit der sich der Prozess zum Zeitpunkt $n$
+im Zustand $i\in\mathcal{S}$ befindet, wird
+\[
+p_i(n)
+=
+P(X_i=n)
+\]
+geschrieben, die auch in einem Vektor $p(n)$ zusammengefasst
+werden können.
+Die Matrix der Übergangswahrscheinlichkeiten erlaubt, die Verteilung
+$p(n+1)$ aus der Verteilung $p(n)$ zu berechnen.
+Nach dem Satz von der totalen Wahrscheinlichkeit ist nämlich
+\[
+P(X_{n+1}=x)
+=
+\sum_{y\in\mathcal{S}} 
+P(X_{n+1}=x|X_n=y) P(X_n=y)
+\qquad\text{oder}\qquad
+p^{(n+1)} = T(n+1,n) p^{(n)}
+\]
+in Matrixform.
+Die Zeitentwicklung kann also durch Multiplikation mit der Übergangsmatrix
+berechnet werden.
+
+\subsubsection{Zeitunabhängige Übergangswahrscheinlichkeiten}
+% XXX Übergangswahrscheinlichkeit
+Besonderes einfach wird die Situation, wenn die Übergangsmatrix $T(n+1,n)$
+nicht von der Zeit abhängt.
+In diesem Fall ist $T(n+1,n) = T$ für alle $n$.
+Eine solche Markov-Kette heisst {\em homogen}.
+\index{homogene Markov-Kette}%
+Die Mehrschritt-Übergangswahrscheinlichkeiten sind dann gegeben
+durch die Matrix-Potenzen $T(n+m,n)=T^m$.
+Im Folgenden gehen wir immer von einer homogenen Markov-Kette aus.
+
+\subsubsection{Stationäre Verteilung}
+% XXX stationäre Verteilung
+Im Beispiel der Google-Matrix erwarten wir intuitiv, dass sich mit
+der Zeit eine Verteilung einstellt,  die sich über die Zeit nicht
+mehr ändert.
+Ein solche Verteilung heisst stationär.
+
+\begin{definition}
+Eine Verteilungsvektor $p$ heisst {\em stationär} für die
+homogene Markov-Kette mit Übergangsmatrix $T$, wenn $Tp=p$.
+\index{stationäre Verteilung}%
+\end{definition}
+
+Eine stationäre Verteilung ist offenbar ein Eigenvektor der Matrix
+$T$  zum Eigenwert $1$.
+Gefunden werden kann er als Lösung des Gleichungssystems $Tp=p$.
+Dazu muss die Matrix $T-E$ singulär sein.
+Die Summe einer Spalte von $T$ ist aber immer ein, da $E$ in jeder Spalte
+genau eine $1$ enthält, ist die Summe der Einträge einer Spalte von
+$T-E$ folglich $0$.
+Die Summe aller Zeilen von $T-E$ ist also $0$, die Matrix $T-E$ 
+ist singulär.
+Dies garantiert aber noch nicht, dass alle Einträge in diesem
+Eigenvektor auch tatsächlich nichtnegativ sind.
+Die Perron-Frobienus-Theorie von
+Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
+beweist, dass sich immer ein Eigenvektor mit nichtnegativen
+Einträgen finden lässt.
+
+Es ist aber nicht garantiert, dass eine stationäre Verteilung
+auch eindeutig bestimmt ist.
+Dieser Fall tritt immer ein, wenn die geometrische Vielfachheit
+des Eigenwerts $1$ grösser ist als $1$.
+In Abschnitt~\ref{buch:subsection:elementare-eigenschaften}
+werden Bedingungen an eine Matrix $T$ untersucht, die garantieren,
+dass der Eigenraum zum Eigenvektor $1$ einedeutig bestimmt ist.
+
+\begin{beispiel}
+Als Beispiel dafür betrachten wir eine Permutation $\sigma\in S_n$
+und die zugehörige Permutationsmatrix $P$,
+wie sie in Abschnitt~\label{buch:section:permutationsmatrizen}
+beschrieben worden ist.
+Wir verwenden die 
+Zyklenzerlegung (Abschnitt~\ref{buch:subsection:zyklenzerlegung})
+\(
+[n] = \{ Z_1, Z_2,\dots \}
+\)
+der Permutation $\sigma$, ist ist also $\sigma(Z_i) = Z_i$ für alle
+Zyklen.
+
+Jede Verteilung $p$, die auf jedem Zyklus konstant ist, ist eine
+stationäre Verteilung.
+Ist nämlich $i\in Z_k$, dann ist natürlich auch $\sigma(i)\in Z_k$,
+und damit ist $p_{\sigma(i)}=p_i$.
+
+Für jede Wahl von nichtnegativen Zahlen $z_i$ für $i=1,\dots,k$
+mit der Eigenschaft $z_1+\dots+z_k=1$ kann man eine stationäre
+Verteilung $p(z)$ konstruieren, indem man
+\[
+p_i(z)
+=
+\frac{z_i}{|Z_r|}
+\qquad\text{wenn}\quad i\in Z_r
+\]
+setzt.
+Die Konstruktion stellt sicher, dass sich die Komponenten zu $1$
+summieren.
+Wir können aus dem Beispiel auch ableiten, dass die geometrische
+Vielfachheit des Eigenvektors $1$ mindestens so gross ist wie die
+Anzahl der Zyklen der Permutation $\sigma$.
+\end{beispiel}
+
+\subsubsection{Irreduzible Markov-Ketten}
+Die Zyklen-Zerlegung einer Permutation bilden voneinander isolierte
+Mengen von Zuständen, es gibt keine Möglichkeit eines Übergangs zu
+einem anderen Zyklus.
+Die Zyklen können daher unabhängig voneinander studiert werden.
+Diese Idee kann auf allgemeine Markov-Ketten verallgemeinert werden.
+
+\begin{definition}
+Zwei Zustände $i,j\in\mathcal{S}$ kommunizieren, wenn die
+Übergangswahrscheinlichkeiten $T_{ij}(n) \ne 0$ und $T_{ij}(n)\ne 0$ sind
+für $n$ gross genug.
+\end{definition}
+
+Die Zustände, die zu verschiedenen Zyklen einer Permutation gehören,
+kommunizieren nicht.
+Gerade deshalb waren auch die verschiedenen stationären Verteilungen
+möglich.
+Eine eindeutige stationäre Verteilung können wir also nur erwarten,
+wenn alle Zustände miteinander kommunizieren.
+
+% XXX irreduzible Markov-Ketten
+\begin{definition}
+Eine homogene Markov-Kette heisst {\em irreduzibel}, alle Zustände miteinander
+kommunizieren.
+\index{irreduzible Markov-Kette}
+\end{definition}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov2.pdf}
+\caption{Diese Markov-Kette zerfällt in verschiedene irreduzible
+Markov-Ketten, dere Zustandsmengen nicht miteinander kommunizieren.
+Solche Markov-Ketten können unabhängig voneinander studiert werden.
+\label{buch:wahrscheinlichkeit:fig:markovzerfall}}
+\end{figure}
+
+Die Bedingung der Irreduzibilität ist gleichbedeutend damit,
+dass für genügend grosses $n$ alle Matrixelemente von $T^n$ positiv sind.
+Solche Matrizen nennt man positiv, 
+in Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
+wird gezeigt, dass positive Matrizen immer eine eindeutige
+stationäre Verteilung haben.
+In Abbildung~\ref{buch:wahrscheinlichkeit:fig:markovzerfall}
+ist eine reduzible Markov-Kette dargestellt, die Zustandsmenge
+zerfällt in zwei Teilmengen von Zuständen, die nicht miteinander
+kommunizieren.
+Ein irreduzible Markov-Kette liegt vor, wenn sich ähnlich wie
+in Abbildung~\ref{buch:wahrscheinlichkeit:fig:diskretemarkovkette}
+jeder Zustand von jedem anderen aus erreichen lässt.
+
+Wenn sich der Vektorraum $\mathbb{R}^n$ in zwei unter $T$ invariante
+Unterräme zerlegen lässt, dann hat nach Wahl von Basen in den Unterräumen
+die Matrix $T$ die Form
+\[
+\left(
+\begin{array}{c|c}
+T_1&0\\
+\hline
+0&T_2
+\end{array}
+\right).
+\]
+Insbesondere kann man stationäre Verteilungen von $T_1$ und $T_2$ 
+unabhängig voneinander suchen.
+Ist $p_i$ eine stationäre Verteilung von $T_i$, dann ist
+\[
+T
+\left(
+\begin{array}{c}
+g_1p_1\\
+\hline g_2p_2
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+g_1T_1p_1\\
+\hline
+g_2T_2p_2
+\end{array}
+\right)
+=
+\left(
+\begin{array}{c}
+g_1p_1\\
+\hline
+g_2p_2
+\end{array}
+\right),\qquad
+\text{ für $g_i\in\mathbb{R}$.}
+\]
+Durch Wahl der Gewichte $g_i\ge 0$ mit $g_1+g_2=1$ lassen sich so
+die stationären Verteilungen für $T$ aus den stationären Verteilungen
+der $T_i$ ermitteln.
+Das Problem, die stationären Verteilungen von $T$ zu finden, ist
+auf die Untermatrizen $T_i$ reduziert worden.
+
+\subsubsection{Die konvexe Menge der stationären Verteilungen}
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/konvex.pdf}
+\caption{Die Konvexe Kombination von Vektoren $\vec{p}_1,\dots,\vec{p}_n$ ist
+eine Summe der Form $\sum_{i=1}^n t_i\vec{p}_i$ wobei die $t_i\ge 0$
+sind mit $\sum_{i=1}^nt_i=1$.
+Für zwei Punkte bilden die konvexen Kombinationen die Verbindungsstrecke
+zwischen den Punkten, für drei Punkte in drei Dimensionen spannen die
+konvexen Kombinationen ein Dreieck auf.
+\label{buch:wahrscheinlichkeit:fig:konvex}}
+\end{figure}
+Die stationären Verteilungen
+\[
+\operatorname{Stat}(T)
+=
+\{
+p\in\mathbb R_+^n\;|\; \text{$Tp=p $ und $\|p\|_1=1$}
+\}
+\]
+bilden was man eine konvexe Menge nennt.
+Sind nämlich $p$ und $q$ stationäre Verteilungen, dann gilt zunächst
+$Tp=p$ und $Tq=q$.
+Wegen der Linearität gilt aber auch $T(tp+(1-t)q)=tTp + (1-t)Tq
+=tp+(1-t)q$.
+Jede Verteilung auf der ``Verbindungsstrecke'' zwischen den beiden
+Verteilungen ist auch wieder stationär.
+
+\begin{definition}
+Eine {\em konvexe Kombination} von Vektoren $v_1,\dots,v_k\in\mathbb{R^n}$
+ist ein Vektor der Form
+\[
+v=t_1v_1+\dots + t_kv_k
+\qquad\text{mit}\quad
+t_i\ge 0\;\text{und}\;
+t_1+\dots+t_n = 1.
+\]
+\index{konvexe Kombination}%
+Eine Teilmenge $M\subset \mathbb{R}^n$ heisst konvex, wenn zu
+zwei Vektoren $x,y\in M$ auch jede konvexe Kombination von $x$ und $y$
+wieder in $M$ ist.
+\index{konvex}%
+\end{definition}
+
+Die konvexen Kombinationen der Vektoren sind Linearkombination
+mit nichtnegativen Koeffizienten. Sie bilden im Allgemeinen
+einen $(k-1)$-Simplex in $\mathbb{R}^n$.
+Für zwei Punkte $x$ und $y$ bilden die konvexen Kombination
+$tx+(1-t)y$ für $t\in[0,1]$ die Verbindungsstrecke der beiden
+Vektoren.
+Eine Menge ist also konvex, wenn sie mit zwei Punkten immer auch
+ihre Verbindungsstrecke enthält
+% XXX Bild für Konvexe Menge
+
+
+
+% XXX Grenzverteilung
+\subsubsection{Grenzverteilung}
+Im Beispiel der Google-Matrix wurde ein iterativer Algorithmus
+zur Berechnung des Pagerank verwendet.
+Es stellt sich daher die Frage, ob diese Methode für andere homogene
+Markov-Ketten auch funkioniert.
+Man beginnt also mit einer beliebigen Verteilung $p(0)$ und wendet
+die Übergangsmatrix $T$ wiederholt an.
+Es entsteht somit eine Folge $p(n) = T^np(0)$.
+
+\begin{definition}
+Falls die Folge $p(n) = T^np(0)$ konvergiert, heisst der Grenzwert
+\[
+p(\infty) = \lim_{n\to\infty} p(n)
+\]
+eine {\em Grenzverteilung} von $T$.
+\index{Grenzverteilung}%
+\end{definition}
+
+Falls eine Grenzverteilung existiert, dann ist sie eine stationäre
+Verteilung.
+Für eine stationäre Verteilung $p(0)$ ist die Folge $p(n)$ eine
+konstante Folge, sie konvergiert also gegen $p(0)$.
+Stationäre Verteilungen sind also automatisch Grenzverteilungen.
+Falls der Raum der stationären Verteilungen mehrdimensional sind,
+dann ist auch die Grenzverteilung nicht eindeutig bestimmt, selbst
+wenn sie existiert.
+Aber nicht einmal die Existenz einer Grenzverteilung ist garantiert,
+wie das folgende Beispiel zeigt.
+
+\begin{beispiel}
+Sei $T$ die Permutationsmatrix der zyklischen Verteilung von drei
+Elementen in $S_3$, also die Matrix
+\[
+T=\begin{pmatrix}
+0&0&1\\
+1&0&0\\
+0&1&0
+\end{pmatrix}.
+\]
+Die konstante Verteilung $\frac13U$ ist offensichtlich eine
+stationäre Verteilung.
+In Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
+wird gezeigt, dass es die einzige ist.
+Sei jetzt $p(0)$ eine beliebiger Vektor in $\mathbb{R}^3$ mit
+nichtnegativen Einträgen, die sich zu $1$ summieren.
+Dann bilden die Vektoren $p(n)=T^np(0)$ einen Dreierzyklus
+\begin{align*}
+p(0)&=p(3)=p(6)=\dots =\begin{pmatrix}p_1(0)\\p_2(0)\\p_3(0)\end{pmatrix},
+\\
+p(1)&=p(4)=p(7)=\dots =\begin{pmatrix}p_2(0)\\p_3(0)\\p_1(0)\end{pmatrix},
+\\
+p(2)&=p(5)=p(8)=\dots =\begin{pmatrix}p_3(0)\\p_1(0)\\p_2(0)\end{pmatrix}.
+\end{align*}
+Die Folge $p(n)$ kann also nur dann konvergieren, wenn die drei
+Komponenten gleich sind.
+\end{beispiel}
+
+\subsubsection{Erwartungswert und Varianz}
+% XXX Erwartungswert und Varianz für eine Grenzverteilung
+Wenn sich im Laufe der Zeit eine Grenzverteilung einstellen soll, dann
+muss es auch möglich sein, Erwartungswert und Varianz dieser Verteilung
+zu berechnen.
+Dazu muss jedem Zustand ein Zahlenwert zugeordnet werden.
+Sei also
+\(
+g: \mathcal{S}\to R
+\)
+eine Funktion, die einem Zustand eine reelle Zahl zuordnet.
+Aus der Zufallsvariable $X_n$ des Zustands zur Zeit $n$ wird daraus
+die Zufallsvariable $Y_n=g(X_n)$ des Wertes zur Zeit $n$.
+Die Abbildung $g$ kann auch als Vektor mit der Komponenten $g_i$ 
+für $i\in\mathcal{S}$ betrachtet werden, wir verwenden für diesen
+Vektor wieder die Schreibweise $g$.
+
+Für die Verteilung $p(n)$ kann man jetzt auch Erwartungswert und
+Varianz berechnen.
+Der Erwartungswert ist
+\[
+E(Y)
+=
+\sum_{i\in\mathcal{S}} g_i p_i(n)
+=
+g^t p(n).
+\]
+Für die Varianz muss $g_i$ durch $g_i^2$ ersetzt werden.
+Dies kann am einfachsten mit dem Hadamard-Produkt geschrieben werden:
+\begin{align*}
+E(Y^2)
+&=
+\sum_{i\in\mathcal{S}} g_i p_i(n)
+=
+(g\odot g)^t p(n)
+\\
+E(Y^k)
+&=
+(g^{\odot k})^t p(n),
+\end{align*}
+wobei wir die Hadamard-Potenz $A^{\odot k}$ einer Matrix $A$ rekursiv
+durch
+\[
+A^{\odot 0}=E
+\qquad\text{und}\qquad
+A^{\odot k} = A\odot A^{\odot (k-1)}
+\]
+definieren.
+
+\subsubsection{Erwartungswert von Werten auf Übergängen}
+% XXX Erwartungswert für Zufallsvariablen, die von den Übergängen abhängen
+In Abschnitt~\ref{buch:section:paradoxon-von-parrondo} wird ein Spiel
+vorgestellt, in dem der Gewinn davon abhängt, welcher Übergang stattfindet,
+nicht welcher Zustand erreicht wird.
+Es git daher eine Matrix $G$ von Gewinnen, der Eintrag $g_{ij}$ ist
+der Gewinn, der bei einem Übergang von Zustand $j$ in den Zustand $i$
+ausgezahlt wird.
+Mit dieser Matrix lassen sich jetzt viele verschiedene Fragen beantworten:
+
+\begin{frage}
+\label{buch:wahrscheinlichkeit:frage1}
+Mit welchem Gewinn kann man in Runde $n$ des Spiels rechnen,
+wenn $p(n-1)$ die Verteilung zur Zeit $n-1$ ist?
+\end{frage}
+
+Der Erwartungswert ist
+\begin{align*}
+E(Y)
+&=
+\sum_{i,j\in\mathcal{S}}
+g_{ji} t_{ji} p_i(n-1)
+\intertext{oder in Matrixform}
+&=
+U^t
+(G\odot T)
+p(n-1).
+\end{align*}
+
+\begin{frage}
+Mit welchen Gewinnen kann man rechnen, wenn der Prozess sich zu Beginn 
+einer Spielrunde im Zustand $i$ befindet?
+\end{frage}
+
+Dies ist der Spezialfall der Frage~\ref{buch:wahrscheinlichkeit:frage1}
+für die Verteilung $p_j(n-1) = \delta_{ij}$.
+Der Erwartungswert ist die Summe der Spalte $j$ der Matrix $G\odot T$.
+Man kann das Produkt $U^t(G\odot T)$ also auch als eine Zeilenvektor
+von Gewinnerwartungen unter der Vorbedingung $X_{n-1}=j$ betrachten.
+\[
+\begin{pmatrix}
+E(Y|X_{n-1}=1)
+&\dots&
+E(Y|X_{n-1}=n)
+\end{pmatrix}
+=
+U^t (G\odot T).
+\]
+Indem man $G$ durch $G^{\odot k}$ ersetzt, kann man beliebige höhere
+Momente berechnen.
+
+\subsection{Absorbierende Zustände}
+% XXX Definition
+Eine Grenzverteilung beschreibt die relative Häufigkeit, mit der
+der Prozess in den verschiedenen Zuständen vorbeikommt.
+In einem Spiel, in dem der Spieler ruiniert werden kann, gibt es
+aus dem Ruin-Zustand keinen Weg zurück.
+Der Spieler bleibt in diesem Zustand.
+
+\begin{definition}
+Ein Zustand $i$ einer homogenen Markov-Kette mit Übergangsmatrix $T$
+heisst {\em absorbierend}, wenn $T_{ii}=1$ ist.
+\index{absorbierender Zustand}%
+Eine Markov-Kette mit mindestens einem absorbierenden Zustand heisst
+{\em absorbierende Markov-Kette}.
+\index{absorbierende Markov-Kette}%
+Nicht absorbierende Zustände heissen {\em transient}
+\index{transienter Zustand}%
+\end{definition}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/80-wahrscheinlichkeit/images/markov3.pdf}
+\caption{Markov-Kette mit absorbierenden Zuständen (blau hinterlegt).
+Erreicht die Markov-Kette einen absorbierenden Zustand, dann verbleibt
+sie für alle zukünftigen Zustände in diesem Zustand.
+\label{buch:wahrscheinlichkeit:fig:abs}}
+\end{figure}
+
+Eine Markov-Kette kann mehrere absorbierende Zustände haben, wie in
+Abbildung~\ref{buch:wahrscheinlichkeit:fig:abs} dargestellt.
+Indem man die absorbierenden Zustände zuerst auflistet, bekommt die 
+Übergangsmatrix die Form
+\[
+T=
+\left(
+\begin{array}{c|c}
+E&R\\
+\hline
+0&Q
+\end{array}
+\right).
+\]
+Die Matrix $R$ beschreibt die Wahrscheinlichkeiten, mit denen man
+ausgehend von einem transienten Zustand
+in einem bestimmten absorbierenden Zustand landet.
+Die Matrix $Q$ beschreibt die Übergänge, bevor dies passiert.
+Die Potenzen von $T$ sind
+\[
+T^2
+=
+\left(
+\begin{array}{c|c}
+E&R+RQ \\
+\hline
+0&Q^2
+\end{array}
+\right),
+\quad
+T^3
+=
+\left(
+\begin{array}{c|c}
+E&R+RQ+RQ^2 \\
+\hline
+0&Q^3
+\end{array}
+\right),
+\;
+\dots,
+\;
+T^k
+=
+\left(
+\begin{array}{c|c}
+E&\displaystyle R\sum_{l=0}^{k-1} Q^l \\
+\hline
+0&Q^k
+\end{array}
+\right).
+\]
+Da man früher oder später in einem absorbierenden Zustand landet,
+muss $\lim_{k\to\infty} Q^k=0$ sein.
+Die Summe in der rechten oberen Teilmatrix kann man als geometrische
+Reihe summieren, man erhält die Matrix
+\[
+\sum_{l=0}^{k-1} Q^l = (E-Q)^{-1}(E-Q^k),
+\]
+die für $k\to\infty$ gegen
+\[
+N
+=
+\lim_{k\to\infty} \sum_{l=0}^{k-1} Q^l
+=
+(E-Q)^{-1}
+\]
+konvergiert.
+Die Matrix $N$ heisst die {\em Fundamentalmatrix} der absorbierenden
+Markov-Kette.
+\index{Fundamental-Matrix}%
+
+\subsubsection{Absorbtionszeit}
+% XXX Absorptionszeit
+Wie lange dauert es im Mittel, bis der Prozess in einem
+Absorptionszustand $i$ stecken bleibt?
+Die Fundamentalmatrix $N$ der Markov-Kette beantwortet diese
+Frage.
+Wenn der Prozess genau im Schritt $k$ zum ersten Mal Zustand $i$
+ankommt, dann ist $E(k)$ die mittlere Wartezeit.
+Der Prozess verbringt also zunächst $k-1$ Schritte in transienten
+Zuständen, bevor er in einen absorbierenden Zustand wechselt.
+
+Wir brauchen die Wahrscheinlichkeit für einen Entwicklung des Zustandes
+ausgehend vom Zustand $j$, die nach $k-1$ Schritten im Zustand $l$
+landet, von wo er in den absorbierenden Zustand wechselt.
+Diese Wahrscheinlichkeit ist
+\[
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
+=
+\sum_{i_1,\dots,i_{k-2}}
+r_{il} q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}
+\]
+Von den Pfaden, die zur Zeit $k-1$ im Zustand $l$ ankommen gibt es
+aber auch einige, die nicht absorbiert werden.
+Für die Berechnung der Wartezeit möchten wir nur die Wahrscheinlichkeit
+innerhalb der Menge der Pfade, die auch tatsächlich absorbiert werden,
+das ist die bedingte Wahrscheinlichkeit
+\begin{equation}
+\begin{aligned}
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j|X_k=i)
+&=
+\frac{
+P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
+}{
+P(X_k=i)
+}
+\\
+&=
+\sum_{i_1,\dots,i_{k-2}}
+q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}.
+\end{aligned}
+\label{buch:wahrscheinlichkeit:eqn:ankunftswahrscheinlichkeit}
+\end{equation}
+Auf der rechten Seite steht das Matrixelement $(l,j)$ von $Q^{k-1}$.
+
+% XXX Differenz 
+
+Für die Berechnung der erwarteten Zeit ist müssen wir die
+Wahrscheinlichkeit mit $k$ multiplizieren und summieren:
+\begin{align}
+E(k)
+&=
+\sum_{k=0}^\infty
+k(
+q^{(k)}_{lj} 
+-
+q^{(k-1)}_{lj} 
+)
+\notag
+\\
+&=
+\dots
++
+(k+1)(
+q^{(k)}_{lj} 
+-
+q^{(k+1)}_{lj} 
+)
++
+k(
+q^{(k-1)}_{lj} 
+-
+q^{(k)}_{lj} 
+)
++
+\dots
+\label{buch:wahrscheinlichkeit:eqn:telescope}
+\\
+&=
+\dots
++
+q^{(k-1)}_{lj}
++
+\dots
+=
+\sum_{k} q^{(k)}_{lj}.
+\notag
+\end{align}
+In zwei benachbarten Termen in 
+\eqref{buch:wahrscheinlichkeit:eqn:telescope}
+heben sich die Summanden $kq^{(k)}_{lj}$ weg, man spricht von
+einer teleskopischen Reihe.
+Die verbleibenden Terme sind genau die Matrixelemente der Fundamentalmatrix $N$.
+Die Fundamentalmatrix enthält also im Eintrag $(l,j)$ die Wartezeit
+bis zur Absorption über den Zustand $l$.
+
+\subsubsection{Wartezeit}
+% XXX Mittlere Zeit bis zu einem bestimmten Zustand
+Die mittlere Wartezeit bis zum Erreichen eines Zustands kann mit der
+Theorie zur Berechnung der Absorptionszeit berechnet werden.
+Dazu modifiziert man den Prozess dahingehend, dass der Zielzustand
+ein absorbierender Zustand wird.
+Der Einfachheit halber gehen wir davon aus, dass der Zustand $1$ 
+der Zielzustand ist.
+Wir ersetzen die Übergangsmatrix $T$ durch die Matrix
+\[
+\tilde{T}
+=
+\left(
+\begin{array}{c|ccc}
+1     &t_{12}&\dots &t_{1n}\\
+\hline
+0     &t_{22}&\dots &t_{2n}\\
+\vdots&\dots &\ddots&\vdots\\
+0     &t_{n2}&\dots &t_{nn}
+\end{array}\right).
+\]
+$\tilde{T}$ hat den Zustand $1$ als absorbierenden Zustand.
+Die $Q$ und $R$ sind
+\[
+\tilde{R}
+=
+\begin{pmatrix}t_{12}&\dots&t_{1n}\end{pmatrix},
+\quad
+\tilde{Q}
+=
+\begin{pmatrix}
+t_{22}&\dots &t_{2n}\\
+\vdots&\ddots&\vdots\\
+t_{n2}&\dots &t_{nn}
+\end{pmatrix}.
+\]
+Die Wartezeit bis zum Erreichen des Zustands $i$ ausgehend von einem
+Zustand $n$ kann jetzt aus der Absorbtionszeit der Markov-Kette
+im Zustand $1$ mit Hilfe der Fundamentalmatrix
+\[
+\tilde{N} 
+=
+(E-\tilde{Q})^{-1}
+\]
+berechnet werden.
 
 

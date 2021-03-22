@@ -1,0 +1,103 @@
+B: matrix(
+	[ 0   , 1/4, 3/4 ],
+	[ 1/10, 0  , 1/4 ],
+	[ 9/10, 3/4, 0   ]
+);
+F: matrix(
+	[  0, -1,  1 ],
+	[  1,  0, -1 ],
+	[ -1,  1,  0 ]
+);
+G: matrix(
+	[  0, -1,  1 ],
+	[  1,  0, -1 ],
+	[ -1,  1,  0 ]
+);
+U: matrix([1], [1], [1]);
+p: (1/3) * U;
+
+ratsimp(expand((B * G) . p));
+ratsimp(expand(transpose(U) . (B * G) . p));
+
+/* find the eigenvector */
+/* find the eigenvector */
+B0: B - identfor(B);
+
+r: expand(B0[1] / B0[1,1]);
+B0[1]: r;
+B0[2]: B0[2] - B0[2,1] * r;
+B0[3]: B0[3] - B0[3,1] * r;
+
+B0: expand(B0);
+
+r: B0[2] / B0[2,2];
+B0[2]: r;
+B0[3]: B0[3] - B0[3,2] * r;
+
+B0: ratsimp(expand(B0));
+
+B0[1]: B0[1] - B0[1,2] * B0[2];
+
+B0: ratsimp(expand(B0));
+
+l: 78 + 12 * epsilon + 80 * epsilon^2;
+
+D: ratsimp(expand(l*B0));
+n: ratsimp(expand(l -D[1,3] -D[2,3]));
+
+p: (1/n) * matrix(
+[ -B0[1,3]*l ],
+[ -B0[2,3]*l ],
+[ l ]
+);
+p: ratsimp(expand(p));
+
+/* compute the expected gain */
+G*B;
+ratsimp(expand(transpose(U). (G*B) . p));
+
+/* modified game */
+Btilde: B - epsilon * F;
+ratsimp(expand((Btilde * G) . p));
+gain: ratsimp(expand(transpose(U) . (Btilde * G) . p));
+
+/* find the eigenvector */
+B0: Btilde - identfor(Btilde);
+
+r: expand(B0[1] / B0[1,1]);
+B0[1]: r;
+B0[2]: B0[2] - B0[2,1] * r;
+B0[3]: B0[3] - B0[3,1] * r;
+
+B0: expand(B0);
+
+r: B0[2] / B0[2,2];
+B0[2]: r;
+B0[3]: B0[3] - B0[3,2] * r;
+
+B0: ratsimp(expand(B0));
+
+B0[1]: B0[1] - B0[1,2] * B0[2];
+
+B0: ratsimp(expand(B0));
+
+l: 78 + 12 * epsilon + 80 * epsilon^2;
+
+D: ratsimp(expand(l*B0));
+n: ratsimp(expand(l -D[1,3] -D[2,3]));
+
+pepsilon: (1/n) * matrix(
+[ -B0[1,3]*l ],
+[ -B0[2,3]*l ],
+[ l ]
+);
+pepsilon: ratsimp(expand(pepsilon));
+
+/* taylor series expansion of the eigenvector */
+taylor(pepsilon, epsilon, 0, 3);
+
+/* expectation */
+
+G*Btilde;
+gainepsilon: ratsimp(expand(transpose(U). (G*Btilde) . pepsilon));
+taylor(gainepsilon, epsilon, 0, 5);

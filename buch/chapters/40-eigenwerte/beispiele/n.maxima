@@ -1,0 +1,20 @@
+/*
+ * n.maxima
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+ */
+A: matrix(
+ [  1,  9, -4 ],
+ [ -1,  3,  0 ],
+ [ -2,  0,  3 ]
+);
+
+p: expand(charpoly(A,x));
+factor(p);
+
+A.A;
+A.A.A;
+
+A.A - 5*A;
+
+A.A.A -7*A.A +16 *A;

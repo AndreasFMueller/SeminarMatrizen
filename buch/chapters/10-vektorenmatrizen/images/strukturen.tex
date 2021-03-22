@@ -1,0 +1,122 @@
+%
+% strukturen.tex -- Bezug der verschiedenen algebraischen Strukturen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+% assoziative Verknüpfung
+\draw[rounded corners=1cm] (-7,-11.5) rectangle (7,7);
+
+\begin{scope}[yshift=6cm]
+\node at (0,0.5) [left] {{\bf assoziative Verknüpfung}:\strut};
+\node at (0,0.5) [right] {$a(bc)=(ab)c\;\forall a,b,c$\strut};
+\node at (0,-0.3) {\small $\mathbb{N}$, $\Sigma^*$};
+\end{scope}
+
+% Gruppe
+\fill[rounded corners=1cm,color=gray!40] (-6.5,-11.0) rectangle (6.5,5.3);
+\draw[rounded corners=1cm] (-6.5,-11.0) rectangle (6.5,5.3);
+
+\begin{scope}[xshift=-3cm,yshift=4.3cm]
+\node at (0,0.5) [left] {{\bf Gruppe}:};
+\node at (0,0.5) [right] {neutrales Element $e$:\strut};
+\node at (3.3,0.5)  [right] {$eg=ge=g$\strut};
+\node at (5.7,0.5) [right] {$\forall g\in G$\strut};
+\node at (0,0.0) [right] {inverses Element $g^{-1}$:\strut};
+\node at (3.3,0.0) [right] {$gg^{-1}=g^{-1}g=e$\strut};
+\node at (5.7,0.0) [right] {$\forall g\in G$\strut};
+\node at (3,-1) {\small $\mathbb{Z}$, $\operatorname{GL}_n(\mathbb R)$, $S_n$, $A_n$};
+\end{scope}
+
+% abelsche Gruppe
+\fill[rounded corners=0.7cm,color=gray!20] (-6.2,-10.7) rectangle (6.2,2.7);
+\draw[rounded corners=0.7cm] (-6.2,-10.7) rectangle (6.2,2.7);
+\begin{scope}[yshift=1.5cm]
+\node at (0,0.5) [left] {{\bf abelsche Gruppe}:\strut};
+\node at (0,0.5) [right] {$a+b=b+a\;\forall a,b$\strut};
+\node at (0,0.0) {Addition\strut};
+
+\node at (0,-1) {\small $\mathbb{Q}^*$, $\operatorname{SO}(2)$, $C_n$ };
+\end{scope}
+
+\fill[rounded corners=0.5cm,color=white] (-2,-10.5) rectangle (6,-0.5);
+\fill[rounded corners=0.5cm,color=blue!20] (-6,-10.1) rectangle (2,0);
+%\draw[rounded corners=0.5cm] (-6,-10.0) rectangle (2,0);
+
+% Vektorraum
+\begin{scope}[yshift=-1cm]
+\node at (-5.8,0.5) [right] {{\bf Vektorraum}:\strut};
+\node at (-5.8,0.0) [right] {Skalarmultiplikation\strut};
+
+\node at (-5.8,-0.5) [right] {$\lambda(a+b)=\lambda a+\lambda b$\strut};
+\node at (-5.8,-1.0) [right] {$(\lambda+\mu)a=\lambda a+\mu a$\strut};
+\node at (-5.8,-1.5) [right] {$\forall\lambda,\mu\in \Bbbk\;\forall a,b\in V$};
+
+\node at (-5.8,-2.5) [right] {\small $\mathbb{R}^n$, $\mathbb{C}^n$, $l^2$};
+\end{scope}
+
+\fill[rounded corners=0.5cm,color=red!40,opacity=0.5]
+	(-2,-10.5) rectangle (6,-0.5);
+\draw[rounded corners=0.5cm] (-2,-10.5) rectangle (6,-0.5);
+
+\begin{scope}[yshift=-1cm]
+\node at (0,0.0) {{\bf Algebra}:\strut};
+\node at (0,-1.0) {$a(\lambda b) = \lambda ab$\strut};
+\node at (0,-1.5) {$\forall a,b\in A, \lambda\in \Bbbk$\strut};
+\node at (0,-3.0) {\small $c_0(\mathbb{R})$};
+\end{scope}
+
+\begin{scope}[yshift=-1cm]
+\node at (5.8,0) [left] {{\bf Ring}:};
+\node at (5.8,-0.5) [left] {Multiplikation};
+
+\node at (5.8,-1.0) [left] {$a(b+c)=ab+ac$\strut};
+\node at (5.8,-1.5) [left] {$(a+b)c=ac+bc$\strut};
+\node at (5.8,-2.0) [left] {$\forall a,b,c\in R$\strut};
+
+\node at (5.8,-3) [left] {\small $c_0(\mathbb{Z})$, $L^2(\mathbb R)$};
+\end{scope}
+
+\fill[rounded corners=0.3cm,color=yellow!20,opacity=0.5]
+	(-1.8,-10.3) rectangle (5.8,-4.5);
+\draw[rounded corners=0.3cm] (-1.8,-10.3) rectangle (5.8,-4.5);
+
+% boundary of blue area
+\draw[rounded corners=0.5cm] (-6,-10.1) rectangle (2,0);
+
+\begin{scope}[yshift=-5cm]
+\node at (5.6,0) [left] {{\bf Ring mit Eins}:};
+\node at (5.6,-1) [left] {$1\cdot a= a\cdot 1 = a\forall a\in R$\strut};
+\node at (5.6,-3) [left] {\small $\mathbb{Z}[X]$, $M_n(\mathbb{Z})$};
+\end{scope}
+
+\begin{scope}[yshift=-5cm]
+\node at (0,0)  {{\bf Algebra mit Eins}};
+\node at (0,-1.2) {\small $M_n(\mathbb R)$, $C([a,b])$};
+\end{scope}
+
+\fill[rounded corners=0.1cm,color=darkgreen!20]
+	(-1.6,-9.9) rectangle (1.6,-6.9);
+\draw[rounded corners=0.1cm] (-1.6,-9.9) rectangle (1.6,-6.9);
+
+\begin{scope}[yshift=-7cm]
+\node at (0,-0.3) {{\bf Körper}:\strut};
+\node at (0,-1) {$a\in K\setminus\{0\}\Rightarrow \exists a^{-1}$\strut};
+\node at (0,-2.2) {\small $\mathbb{F}_p$, $\mathbb{R}$, $\mathbb{C}$, $\mathbb{Q}(X)$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

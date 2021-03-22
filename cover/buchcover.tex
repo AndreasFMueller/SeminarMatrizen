@@ -42,11 +42,12 @@
 \hsize=13.6cm
 
 \begin{scope}
-%\clip (0,0) rectangle({\bogenbreite},{\bogenhoehe});
-\clip (0,3) rectangle ({\bogenbreite},14.2);
+\clip (0,0) rectangle({\bogenbreite},{\bogenhoehe});
+%\clip (0,0) rectangle ({\bogenbreite},20.2);
 %\node at (18.7,8.9) [scale=5.0]{\includegraphics{nozzle-hell.jpg}};
 %\node at (18.7,8.9) [scale=5.0]{\includegraphics{nozzle-hell3.jpg}};
 %\node at (18.7,8.9) [scale=5.0]{\includegraphics{nozzle.jpg}};
+\node at ({\bogenbreite/2},13.0) {\includegraphics[width=42cm]{matrix.pdf}};
 \end{scope}
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},24.3)
@@ -78,8 +79,9 @@
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
-	Pascal Honegger,		% I
+	%Pascal Honegger,		% I
 	Alain Keller,			% E
+	Robine Luchsinger,		% B
 	Jan Marbach,			% E
 	Andreas Mozzini Vellen%,		% E
 	}};
@@ -89,24 +91,25 @@
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Naoki Pross,			% E
-	Pascal Andreas Schmid,		% B
-	Thierry Schwaller%,		% E
+	Michael Schmid,		% MSE
+	Pascal Andreas Schmid%,		% B
 	}};
  
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},16.45)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
+	Thierry Schwaller,		% E
 	Michael Steiner,		% E
 	Tim Tönz,			% E
-	Fabio Viecelli,			% B
-	Lukas Zogg%,			% B
+	Fabio Viecelli%,		% B
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},15.8)
 	[color=white,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
+	Lukas Zogg%,			% B
 	%
 	}};
 

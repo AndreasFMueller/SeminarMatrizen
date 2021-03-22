@@ -1,0 +1,16 @@
+/* 
+ * 4003.maxima - algebraische Lösung von Aufgabe 4003
+ *
+ * (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+ */
+
+A: matrix(
+ [ -13,   5, -29,  29 ],
+ [ -27,  11, -51,  51 ],
+ [  -3,   1,  -2,   5 ],
+ [  -6,   2, -10,  13 ]);
+
+p: expand(charpoly(A,x));
+tex(p);
+factor(p);
+

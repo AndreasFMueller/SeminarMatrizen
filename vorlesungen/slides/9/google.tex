@@ -1,0 +1,123 @@
+%
+% google.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Google-Matrix}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\r{2.4}
+\coordinate (A) at (0,0);
+\coordinate (B) at (0:\r);
+\coordinate (C) at (60:\r);
+\coordinate (D) at (120:\r);
+\coordinate (E) at (180:\r);
+
+\foreach \a in {2,...,5}{
+	\fill[color=white] ({60*(\a-2)}:\r) circle[radius=0.2];
+	\draw ({60*(\a-2)}:\r) circle[radius=0.2];
+	\node at ({60*(\a-2)}:\r) {$\a$};
+}
+\fill[color=white] (A) circle[radius=0.2];
+\draw (A) circle[radius=0.2];
+\node at (A) {$1$};
+
+{\color<6>{red}
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (B);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (A) -- (C);
+}
+
+{\color<7>{red}
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (B) -- (C);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (B) to[out=-150,in=-30] (E);
+}
+
+{\color<8>{red}
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (C) to[out=-90,in=30] (A);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (C) to[out=-30,in=90] (B);
+}
+
+{\color<9>{red}
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (C);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (A);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (D) -- (E);
+}
+
+{\color<10>{red}
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (E) -- (A);
+	\draw[->,shorten >= 0.2cm,shorten <= 0.2cm] (E) to[out=90,in=-150] (D);
+}
+
+\end{tikzpicture}
+\end{center}
+\vspace{-10pt}
+\renewcommand{\arraystretch}{1.1}
+\uncover<5->{
+\begin{align*}
+H&=\begin{pmatrix}
+\uncover<6->{0          }
+	&\uncover<7->{0          }
+	&\uncover<8->{{\color<8>{red}\frac{1}{2}}}
+	&\uncover<9->{{\color<9>{red}\frac{1}{3}}}
+	&\uncover<10->{{\color<10>{red}\frac{1}{2}}}\\
+\uncover<6->{{\color<6>{red}\frac{1}{2}}}
+	&\uncover<7->{0          }
+	&\uncover<8->{{\color<8>{red}\frac{1}{2}}}
+	&\uncover<9->{0          }
+	&\uncover<10->{0          }\\
+\uncover<6->{{\color<6>{red}\frac{1}{2}}}
+	&\uncover<7->{{\color<7>{red}\frac{1}{2}}}
+	&\uncover<8->{0          }
+	&\uncover<9->{{\color<9>{red}\frac{1}{3}}}
+	&\uncover<10->{0          }\\
+\uncover<6->{0          }
+	&\uncover<7->{0          }
+	&\uncover<8->{0          }
+	&\uncover<9->{0          }
+	&\uncover<10->{{\color<10>{red}\frac{1}{2}}}\\
+\uncover<6->{0          }
+	&\uncover<7->{{\color<7>{red}\frac{1}{2}}}
+	&\uncover<8->{0          }
+	&\uncover<9->{{\color<9>{red}\frac{1}{3}}}
+	&\uncover<10->{0          }
+\end{pmatrix}
+\\
+\uncover<11->{
+h_{ij}
+&=
+\frac{1}{\text{Anzahl Links ausgehend von $j$}}
+}
+\end{align*}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Aufgabe}
+Bestimme die Wahrscheinlichkeit $p(i)$, mit der sich ein Surfer
+auf der Website $i$ befindet
+\end{block}
+\uncover<2->{
+\begin{block}{Navigation}
+$p(i) = P(i,\text{vor Navigation})$,
+\uncover<3->{$p'(i)=P(i,\text{nach Navigation})$}
+\uncover<4->{
+\[
+p'(i) = \sum_{j=1}^n h_{ij} p(j)
+\]}
+\end{block}}
+\vspace{-15pt}
+\begin{block}{Freier Wille}
+\vspace{-12pt}
+\[
+G = \alpha H + (1-\alpha)\frac{UU^t}{n}
+\]
+Google-Matrix
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}

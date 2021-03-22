@@ -1,0 +1,36 @@
+%
+% main.tex -- Paper zum Thema <erdbeben>
+%
+% (c) 2020 Hochschule Rapperswil
+%
+\chapter{Thema\label{chapter:erdbeben}}
+\lhead{Thema}
+\begin{refsection}
+\chapterauthor{Hans Muster}
+
+Ein paar Hinweise für die korrekte Formatierung des Textes
+\begin{itemize}
+\item
+Absätze werden gebildet, indem man eine Leerzeile einfügt.
+Die Verwendung von \verb+\\+ ist nur in Tabellen und Arrays gestattet.
+\item
+Die explizite Platzierung von Bildern ist nicht erlaubt, entsprechende
+Optionen werden gelöscht. 
+Verwenden Sie Labels und Verweise, um auf Bilder hinzuweisen.
+\item
+Beginnen Sie jeden Satz auf einer neuen Zeile. 
+Damit ermöglichen Sie dem Versionsverwaltungssysteme, Änderungen
+in verschiedenen Sätzen von verschiedenen Autoren ohne Konflikt 
+anzuwenden.
+\item 
+Bilden Sie auch für Formeln kurze Zeilen, einerseits der besseren
+Übersicht wegen, aber auch um GIT die Arbeit zu erleichtern.
+\end{itemize}
+
+\input{papers/erdbeben/teil0.tex}
+\input{papers/erdbeben/teil1.tex}
+\input{papers/erdbeben/teil2.tex}
+\input{papers/erdbeben/teil3.tex}
+
+\printbibliography[heading=subbibliography]
+\end{refsection}

@@ -7,5 +7,6 @@
 CHAPTERFILES = $(CHAPTERFILES)						\
 	chapters/80-wahrscheinlichkeit/google.tex			\
 	chapters/80-wahrscheinlichkeit/markov.tex			\
+	chapters/80-wahrscheinlichkeit/positiv.tex			\
 	chapters/80-wahrscheinlichkeit/parrondo.tex			\
 	chapters/80-wahrscheinlichkeit/chapter.tex

@@ -1,0 +1,48 @@
+%
+% eigenraeume.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\frametitle{Eigenräume}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Eigenraum}
+Für $\lambda\in\Bbbk$ heisst
+\begin{align*}
+E_\lambda(f)
+&=
+\ker (f-\lambda)
+\\
+\uncover<2->{
+&=
+\{v\in V\;|\; f(v) = \lambda v\}
+}
+\end{align*}
+\uncover<3->{%
+{\em Eigenraum} von $f$ zum Eigenwert $\lambda$.}
+\end{block}
+\uncover<4->{%
+$E_\lambda(f)\subset V$ ist ein Unterraum}
+
+\uncover<5->{%
+\begin{block}{Eigenwert}
+Falls $\dim E_\lambda(f)>0$ heisst $\lambda$ Eigenwert von $f$.
+\end{block}}
+
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{verallgemeinerter Eigenraum}
+Für $\lambda\in \Bbbk$ heisst
+\[
+\mathcal{E}_\lambda(f)
+=
+\mathcal{K}(f-\lambda)
+\]
+verallgemeinerter Eigenraum
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

@@ -1,0 +1,102 @@
+Im Rahmen der Aufgabe, die Zehntausenderstelle der Zahl $5^{5^{5^{5^5}}}$
+zu berechnen muss Michael Penn im Video 
+\url{https://youtu.be/Xg24FinMiws} bei 12:52 zwei Zahlen $x$ und $y$ finden,
+so dass,
+\[
+5^5x
++
+2^5y
+=
+1
+\]
+ist.
+Verwenden Sie die Matrixform des euklidischen Algorithmus.
+
+\begin{loesung}
+Zunächst berechnen wir die beiden Potenzen
+\[
+5^5 = 3125
+\qquad\text{und}\qquad
+2^5 = 32.
+\]
+Damit können wir jetzt den Algorithmus durchführen.
+Die Quotienten und Reste sind
+\begin{align*}
+a_0&=q_0\cdot b_0 + r_0&
+3125 &= 97 \cdot 32 + 21& q_0&=97 & r_0&= 21\\
+a_1&=q_1\cdot b_1 + r_1&
+32 &= 1\cdot 21 + 10    & q_1&= 1 & r_1&= 11\\
+a_2&=q_2\cdot b_2 + r_2&
+21 &= 1\cdot 11 + 10    & q_2&= 1 & r_2&= 10\\
+a_3&=q_3\cdot b_3 + r_3&
+11 &= 1\cdot 10 +  1    & q_3&= 1 & r_3&=  1\\
+a_4&=q_4\cdot b_4 + r_4&
+10 &= 10\cdot 1 +  0    & q_4&=10 & r_4&=  0
+\end{align*}
+Daraus kann man jetzt auch die Matrizen $Q(q_k)$ bestimmen und
+ausmultiplizieren:
+\begin{align*}
+Q
+&=
+\begin{pmatrix}
+0&1\\1&-10
+\end{pmatrix}
+\underbrace{
+\begin{pmatrix}
+0&1\\1&-1
+\end{pmatrix}
+\begin{pmatrix}
+0&1\\1&-1
+\end{pmatrix}
+}_{}
+\underbrace{
+\begin{pmatrix}
+0&1\\1&-1
+\end{pmatrix}
+\begin{pmatrix}
+0&1\\1&-97
+\end{pmatrix}
+}_{}
+\\
+&=
+\begin{pmatrix}
+0&1\\1&-10
+\end{pmatrix}
+\underbrace{
+\begin{pmatrix}
+0&-1\\-1&2
+\end{pmatrix}
+\begin{pmatrix}
+1&-97\\-1&98
+\end{pmatrix}
+}_{}
+\\
+&=
+\underbrace{
+\begin{pmatrix}
+0&1\\1&-10
+\end{pmatrix}
+\begin{pmatrix}
+2&-195\\-3&293
+\end{pmatrix}
+}_{}
+\\
+&=
+\begin{pmatrix}
+-3&293\\32&-3125
+\end{pmatrix}.
+\end{align*}
+Daras kann man jetzt ablesen, dass
+\[
+-3\cdot 3125
++ 
+293\cdot 32
+=
+-9375
++
+9376
+=
+1.
+\]
+Die gesuchten Zahlen sind also $x=-3$ und $y=293$.
+\end{loesung}

@@ -1,5 +1,5 @@
 %
-% chapter.tex -- Kapitel über eigenwerte und eigenvektoren
+% chapter.tex -- Kapitel über Eigenwerte und Eigenvektoren
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
@@ -7,9 +7,42 @@
 \label{buch:chapter:eigenwerte-und-eigenvektoren}}
 \lhead{Eigenwerte und Eigenvektoren}
 \rhead{}
+Die algebraischen Eigenschaften einer Matrix $A$ sind eng mit der
+Frage nach linearen Beziehungen unter den Potenzen von $A^k$ verbunden.
+Im Allgemeinen ist die Berechnung dieser Potenzen eher unübersichtlich,
+es sei denn, die Matrix hat eine spezielle Form.
+Die Potenzen einer Diagonalmatrix erhält man, indem man die Diagonalelemente
+potenziert.
+Auch für Dreiecksmatrizen ist mindestens die Berechnung der Diagonalelemente
+von $A^k$ einfach.
+Die Theorie der Eigenwerte und Eigenvektoren ermöglicht, Matrizen in
+eine solche besonders einfache Form zu bringen.
+
+In Abschnitt~\ref{buch:section:grundlagen} werden die grundlegenden
+Definitionen der Eigenwerttheorie in Erinnerung gerufen.
+Damit kann dann in Abschnitt~\ref{buch:section:normalformen}
+gezeigt werden, wie Matrizen in besonders einfache Form gebracht
+werden können.
+Die Eigenwerte bestimmen auch die Eigenschaften von numerischen
+Algorithmen, wie in den Abschnitten~\ref{buch:section:spektralradius}
+und \ref{buch:section:numerisch} dargestellt wird.
+Für viele Funktionen kann man auch den Wert $f(A)$ berechnen, unter
+geeigneten Voraussetzungen an den Spektralradius.
+Dies wird in Abschnitt~\ref{buch:section:spektraltheorie} beschrieben.
 
 
-\input{chapters/40-eigenwerte/numerisch.tex}
+\input{chapters/40-eigenwerte/grundlagen.tex}
+\input{chapters/40-eigenwerte/normalformen.tex}
 \input{chapters/40-eigenwerte/spektralradius.tex}
+\input{chapters/40-eigenwerte/numerisch.tex}
 \input{chapters/40-eigenwerte/spektraltheorie.tex}
+
+\section*{Übungsaufgaben}
+\rhead{Übungsaufgaben}
+\aufgabetoplevel{chapters/40-eigenwerte/uebungsaufgaben}
+\begin{uebungsaufgaben}
+\uebungsaufgabe{4001}
+\uebungsaufgabe{4002}
+\uebungsaufgabe{4003}
+\end{uebungsaufgaben}
 

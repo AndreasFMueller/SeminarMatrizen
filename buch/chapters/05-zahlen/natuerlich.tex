@@ -1,0 +1,276 @@
+%
+% natuerlich.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+% !TeX spellcheck = de_CH
+\section{Natürliche Zahlen
+\label{buch:section:natuerliche-zahlen}}
+\rhead{Natürliche Zahlen}
+Die natürlichen Zahlen sind die Zahlen, mit denen wir zählen.
+\index{natürliche Zahlen}%
+\index{$\mathbb{N}$}%
+Sie abstrahieren das Konzept der Anzahl der Elemente einer endlichen
+Menge.
+Da die leere Menge keine Elemente hat, muss die Menge der natürlichen
+Zahlen auch die Zahl $0$ enthalten.
+Wir schreiben
+\[
+\mathbb{N}
+=
+\{
+0,1,2,3,\dots
+\}.
+\]
+
+\subsubsection{Peano-Axiome}
+Man kann den Zählprozess durch die folgenden Axiome von Peano beschreiben:
+\index{Peano-Axiome}%
+\begin{enumerate}
+\item $0\in\mathbb N$.
+\item Jede Zahl $n\in \mathbb{N}$ hat einen {\em Nachfolger}
+$n'\in \mathbb{N}$.
+\index{Nachfolger}%
+\item $0$ ist nicht Nachfolger einer Zahl.
+\item Wenn zwei Zahlen $n,m\in\mathbb{N}$ den gleichen Nachfolger haben,
+$n'=m'$, dann sind sie gleich $n=m$.
+\item Enthält eine Menge $X$ die Zahl $0$ und mit jeder Zahl auch ihren
+Nachfolger, dann ist $\mathbb{N}\subset X$.
+\end{enumerate}
+
+\subsubsection{Vollständige Induktion}
+Es letzte Axiom formuliert das Prinzip der vollständigen Induktion.
+Um eine Aussage $P(n)$ für alle natürlichen Zahlen $n$
+mit vollständiger Induktion zu beweisen, bezeichnet man mit
+$X$ die Menge aller Zahlen, für die $P(n)$ wahr ist.
+Die Induktionsverankerung beweist, dass $P(0)$ wahr ist, dass also $0\in X$.
+Der Induktionsschritt beweist, dass mit einer Zahl $n\in X$ auch der
+Nachfolger $n'\in X$ ist.
+Nach dem letzten Axiom ist $\mathbb{N}\subset X$, oder anders ausgedrückt,
+die Aussage $P(n)$ ist wahr für jede natürliche Zahl.
+
+\subsubsection{Addition}
+Aus der Nachfolgereigenschaft lässt sich durch wiederholte Anwendung
+die vertrautere Addition konstruieren.
+\index{Addition!in $\mathbb{N}$}%
+Um die Zahl $n\in\mathbb{N}$ um $m\in\mathbb{N}$ zu vermehren, also
+$n+m$ auszurechnen, kann man rekursive Regeln
+\begin{align*}
+n+0&=n\\
+n+m'&=(n+m)'
+\end{align*}
+festlegen.
+Nach diesen Regeln ist
+\[
+5+3
+=
+5+2'
+=
+(5+2)'
+=
+(5+1')'
+=
+((5+1)')'
+=
+((5+0')')'
+=
+(((5)')')'.
+\]
+Dies ist genau die Art und Weise, wie kleine Kinder Rechnen lernen.
+Sie Zählen von $5$ ausgehend um $3$ weiter.
+Der dritte Nachfolger von $5$ heisst üblicherweise $8$.
+
+Die algebraische Struktur, die hier konstruiert worden ist, heisst
+eine Halbgruppe.
+Allerdings kann man darin zum Beispiel nur selten Gleichungen
+lösen, zum Beispiel hat $3+x=1$ keine Lösung.
+Die Addition ist nicht immer umkehrbar.
+
+\subsubsection{Multiplikation}
+Es ist klar, dass auch die Multiplikation definiert werden kann, 
+sobald die Addition definiert ist.
+Die Rekursionsformeln
+\begin{align}
+n\cdot 0 &= 0 \notag \\
+n\cdot m' &= n\cdot m + n
+\label{buch:zahlen:multiplikation-rekursion}
+\end{align}
+legen jedes Produkt von natürlichen Zahlen fest, zum Beispiel
+\[
+5\cdot 3
+=
+5\cdot 2'
+=
+5\cdot 2 + 5
+=
+5\cdot 1' + 5
+=
+5\cdot 1 + 5 + 5
+=
+5\cdot 0' + 5 + 5
+=
+5\cdot 0 + 5 + 5 + 5
+=
+5 + 5 + 5.
+\]
+Doch auch bezüglich der Multiplikation ist $\mathbb{N}$ unvollständig,
+die Beispielgleichung $3x=1$ hat keine Lösung in $\mathbb{N}$.
+
+\subsubsection{Rechenregeln}
+Aus den Definitionen lassen sich auch die Rechenregeln ableiten,
+die man für die alltägliche Rechnung braucht.
+Zum Beispiel kommt es nicht auf die Reihenfolge der Summanden
+oder Faktoren an. 
+Das {\em Kommutativgesetz} besagt
+\[
+a+b=b+a
+\qquad\text{und}\qquad
+a\cdot b = b\cdot a.
+\]
+\index{Kommutativgesetz}%
+Die Kommutativität der Addition werden wir auch in allen weiteren
+Konstruktionen voraussetzen.
+Die Kommutativität des Produktes ist allerdings weniger selbstverständlich
+und wird beim Matrizenprodukt nur noch für spezielle Faktoren zutreffen.
+
+Eine Summe oder ein Produkt mit mehr als zwei Summanden bzw.~Faktoren
+kann in jeder beliebigen Reihenfolge ausgewertet werden,
+\[
+(a+b)+c
+=
+a+(b+c)
+\qquad\text{und}\qquad
+(a\cdot b)\cdot c
+=
+a\cdot (b\cdot c)
+\]
+dies ist das Assoziativgesetz.
+Es gestattet auch eine solche Summe oder ein solches Produkt einfach
+als $a+b+c$ bzw.~$a\cdot b\cdot c$ zu schreiben, da es ja keine Rolle
+spielt, in welcher Reihenfolge man die Teilprodukte berechnet.
+
+Die Konstruktion der Multiplikation als iterierte Addition mit Hilfe
+der Rekursionsformel \eqref{buch:zahlen:multiplikation-rekursion}
+hat auch zur Folge, dass die {\em Distributivgesetze}
+\[
+a\cdot(b+c) = ab+ac
+\qquad\text{und}\qquad
+(a+b)c = ac+bc
+\]
+gelten.
+Bei einem nicht-kommutativen Produkt ist es hierbei notwendig,
+zwischen Links- und Rechts-Distributivgesetz zu unterscheiden.
+
+Die Distributivgesetze drücken die wohlbekannte Regel des
+Ausmultiplizierens aus.
+Ein Distributivgesetz ist also grundlegend dafür, dass man mit den
+Objekten so rechnen kann, wie man das in der elementaren Algebra 
+gelernt hat.
+Auch die Distributivgesetze sind daher Rechenregeln, die wir in
+Zukunft immer dann fordern werden, wenn Addition und Multiplikation
+definiert sind.
+Sie gelten immer für Matrizen.
+
+\subsubsection{Teilbarkeit}
+Die Lösbarkeit von Gleichungen der Form $ax=b$ mit $a,b\in\mathbb{N}$
+gibt Anlass zum sehr nützlichen Konzept der Teilbarkeit.
+\index{Teilbarkeit}%
+Die Zahl $b$ heisst teilbar durch $a$, wenn die Gleichung $ax=b$ eine
+Lösung in $\mathbb{N}$ hat.
+\index{teilbar}%
+Jede natürlich Zahl $n$ ist durch $1$ und durch sich selbst teilbar,
+denn $n\cdot 1 = n$.
+Andere Teiler sind dagegen nicht selbstverständlich.
+Die Zahlen
+\[
+\mathbb{P}
+=
+\{2,3,5,7,11,13,17,19,23,29,\dots\}
+\]
+haben keine weiteren Teiler. Sie heissen {\em Primzahlen}.
+\index{Primzahl}%
+Die Menge der natürlichen Zahlen ist die naheliegende Arena
+für die Zahlentheorie.
+\index{Zahlentheorie}%
+
+\subsubsection{Konstruktion der natürlichen Zahlen aus der Mengenlehre}
+Die Peano-Axiome postulieren, dass es natürliche Zahlen gibt.
+Es werden keine Anstrengungen unternommen, die natürlichen Zahlen
+aus noch grundlegenderen mathematischen Objekten zu konstruieren.
+Die Mengenlehre bietet eine solche Möglichkeit.
+
+Da die natürlichen Zahlen das Konzept der Anzahl der Elemente einer
+Menge abstrahieren, gehört die leere Menge zur Zahl $0$.
+Die Zahl $0$ kann also durch die leere Menge $\emptyset = \{\}$
+wiedergegeben werden.
+
+Der Nachfolger muss jetzt als eine Menge mit einem Element konstruiert
+werden.
+Das einzige mit Sicherheit existierende Objekt, das für diese Menge
+zur Verfügung steht, ist $\emptyset$.
+Zur Zahl $1$ gehört daher die Menge $\{\emptyset\}$, eine Menge mit
+genau einem Element.
+Stellt die Menge $N$ die Zahl $n$ dar, dann können wir die zu $n+1$
+gehörige Menge $N'$ dadurch konstruieren, dass wir zu den Elemente
+von $N$ ein zusätzliches Element hinzufügen, das noch nicht in $N$ ist,
+zum Beispiel $\{N\}$:
+\[
+N' = N \cup \{ N \}.
+\]
+
+Die natürlichen Zahlen existieren also, wenn wir akzeptieren, dass es
+Mengen gibt.
+Die natürlichen Zahlen sind dann nacheinander die Mengen
+\begin{align*}
+0 &= \emptyset 
+\\
+1 &= 0 \cup \{0\} = \emptyset \cup \{0\} = \{0\}
+\\
+2 &= 1 \cup \{1\} = \{0\}\cup\{1\} = \{0,1\}
+\\
+3 &= 2 \cup \{2\} = \{0,1\}\cup \{2\} = \{0,1,2\}
+\\
+&\phantom{n}\vdots
+\\
+n+1&= n \cup \{n\} = \{0,\dots,n-1\} \cup \{n\} = \{0,1,\dots,n\}
+\\
+&\phantom{n}\vdots
+\end{align*}
+
+\subsubsection{Natürliche Zahlen als Äquivalenzklassen}
+Im vorangegangenen Abschnitt haben wir die natürlichen Zahlen aus
+der leeren Menge schrittweise sozusagen ``von unten'' aufgebaut.
+Wir können aber auch eine Sicht ``von oben'' einnehmen.
+Dazu definieren wir, was eine endliche Menge ist und was es heisst,
+dass endliche Mengen gleiche Mächtigkeit haben.
+
+\begin{definition}
+Eine Menge $A$ heisst {\em endlich}, wenn es jede injektive Abbildung
+$A\to A$ auch surjektiv ist.
+\index{endlich}%
+Zwei endliche Mengen $A$ und $B$ heissen {\em gleich mächtig},
+\index{gleich mächtig}%
+in Zeichen $A\sim B$, wenn es eine Bijektion
+$A\to B$ gibt.
+\end{definition}
+
+Der Vorteil dieser Definition ist, dass sie die früher definierten 
+natürlichen Zahlen nicht braucht, diese werden jetzt erst konstruiert.
+Dazu fassen wir in der Menge aller endlichen Mengen die gleich mächtigen
+Mengen zusammen, bilden also die Äquivalenzklassen der Relation $\sim$.
+
+Der Vorteil dieser Sichtweise ist, dass die natürlichen Zahlen ganz
+explizit als die Anzahlen von Elementen einer endlichen Menge entstehen.
+Eine natürlich Zahl ist also eine Äquivalenzklasse
+$\llbracket A\rrbracket$, die alle endlichen Mengen enthält,  die die
+gleiche Mächtigkeit wie $A$ haben.
+Zum Beispiel gehört dazu auch die Menge, die im vorangegangenen
+Abschnitt aus der leeren Menge aufgebaut wurde.
+
+Die Mächtigkeit einer endlichen Menge $A$ ist die Äquivalenzklasse, in der
+die Menge drin ist: $|A| = \llbracket A\rrbracket\in \mathbb{N}$ nach 
+Konstruktion von $\mathbb{N}$.
+Aus logischer Sicht etwas problematisch ist allerdings, dass wir 
+von der ``Menge aller endlichen Mengen'' sprechen ohne uns zu versichern,
+dass dies tatsächlich eine zulässige Konstruktion ist.
+

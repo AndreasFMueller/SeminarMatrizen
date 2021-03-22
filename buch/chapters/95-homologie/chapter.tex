@@ -1,0 +1,49 @@
+%
+% chapter.tex -- Homologie
+%
+% (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\chapter{Homologie
+\label{buch:chapter:homologie}}
+\lhead{Homologie}
+\rhead{}
+Mit der Inzidenzmatrix war es möglich, einen Graphen zu beschreiben
+und verschiedene interessante Eigenschaften desselben zu berechnen.
+Damit können aber nur eindimensionale Strukturen analysiert werden:
+Es ist zum Beispiel nicht möglich, ein Dreieck vom Rand eines
+Dreiecks zu unterscheiden~\ref{buch:homologie:figure:zusammenziehbar}.
+\begin{figure}
+\centering
+\includegraphics{chapters/95-homologie/images/dreieck.pdf}
+\caption{Ein Dreieck $\triangle$ (rechts) und der Rand des Dreicks
+(links) sind mit den Methoden
+der Graphentheorie nicht unterschiedbar. 
+Als topologische Räume sind das Dreieck und sein Rand aber ganz klar
+unterschiedbar: In einem Dreieck ist jeder geschlossene Pfad in einen 
+Punkt zusammenziehbar, aber die Randkurve ist nicht mehrzusammenziehbar,
+sobald man das innere des Dreiecks entfernt.
+\label{buch:homologie:figure:zusammenziehbar}}
+\end{figure}
+Die Randkurve ist in einem Dreieck zusammenziehbar, aber sobald man
+das innere des Dreiecks entfernt, ist die Randkurve nicht mehr
+zusammenziehbar.
+Dreieck und der Rand des Dreiecks sind also grundsätzlich verschieden.
+
+Die Inzidenzmatrix ordnet jeder Kante ihre beiden Endpunkte zu.
+Die Homologietheorie verallgemeinert diese Idee.
+Der sogenannte Randoperator ordnet jedem Dreieck, Tetraeder oder allgemein
+jedem Simplex seinen Rand zu.
+Damit wird es möglich, das Dreieck vom Rand des Dreiecks zu unterschieden.
+
+\input{chapters/95-homologie/simplex.tex}
+\input{chapters/95-homologie/komplex.tex}
+\input{chapters/95-homologie/homologie.tex}
+\input{chapters/95-homologie/mayervietoris.tex}
+\input{chapters/95-homologie/fixpunkte.tex}
+
+
+
+
+
+
+

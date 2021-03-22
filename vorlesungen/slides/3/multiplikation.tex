@@ -1,0 +1,180 @@
+%
+% multiplikation.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\def\N{21}
+\begin{frame}[t,fragile]
+\frametitle{Multiplikation mit $\alpha$ in $\mathbb{Z}(\alpha)$}
+\vspace{-18pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=0.92]
+
+\node[color=red] at (-3.2,3.2) [above right] {$\mathbb{Z}(\sqrt{2})$};
+\node[color=blue] at (3.5,3.2) [above left] {$\sqrt{2}\mathbb{Z}(\sqrt{2})$};
+
+\pgfmathparse{sqrt(2)}
+\xdef\a{\pgfmathresult}
+\pgfmathparse{-int(3.2/\a)}
+\xdef\ymin{\pgfmathresult}
+\pgfmathparse{int(3.2/\a)}
+\xdef\ymax{\pgfmathresult}
+
+\draw[->] (-3.2,0) -- (3.5,0) coordinate[label={$\mathbb{Z}$}];
+\draw[->] (0,-3.2) -- (0,3.6) coordinate[label={right:$\mathbb{Z}\sqrt{2}$}];
+
+\def\punkt#1#2#3{
+	({(1-(#3))*(#1)+2*(#3)*(#2)},{((1-(#3))*(#2)+(#3)*(#1))*\a})
+}
+
+\foreach \x in {-3,...,3}{
+	\draw[color=red,line width=0.5pt]
+		\punkt{\x}{\ymin}{0} -- \punkt{\x}{\ymax}{0};
+	\foreach \y in {\ymin,...,\ymax}{
+		\fill[color=red] \punkt{\x}{\y}{0} circle[radius=0.08];
+	}
+}
+\foreach \y in {\ymin,...,\ymax}{
+	\draw[color=red,line width=0.5pt]
+		\punkt{-3}{\y}{0} -- \punkt{3}{\y}{0};
+}
+
+
+\def\bildnetz#1{
+	\pgfmathparse{(#1-1)/(\N-1)}
+	\xdef\t{\pgfmathresult}
+	\only<#1>{
+		\uncover<2->{
+			\draw[->,color=blue,line width=1.4pt]
+				(0,\a) -- \punkt{0}{1}{\t};
+			\draw[->,color=blue,line width=1.4pt]
+				(1,0) -- \punkt{1}{0}{\t};
+		}
+		\foreach \x in {-3,...,3}{
+			\draw[color=blue,line width=0.5pt]
+				\punkt{\x}{\ymin}{\t} -- \punkt{\x}{\ymax}{\t};
+			\foreach \y in {\ymin,...,\ymax}{
+				\fill[color=blue]
+				\punkt{\x}{\y}{\t}
+				circle[radius=0.06];
+			}
+		}
+		\foreach \y in {\ymin,...,\ymax}{
+			\draw[color=blue,line width=0.5pt]
+				\punkt{-3}{\y}{\t} -- \punkt{3}{\y}{\t};
+		}
+	}
+}
+
+\begin{scope}
+\clip (-3.2,-3.2) rectangle (3.2,3.2);
+\ifthenelse{\boolean{presentation}}{
+	\foreach \T in {1,...,\N}{
+		\bildnetz{\T}
+	}
+}{
+	\bildnetz{\N}
+}
+\end{scope}
+
+\uncover<\N->{
+\begin{scope}[yshift=-2.5cm]
+\fill[color=white,opacity=0.8] (-1.5,-0.8) rectangle (1.5,0.8);
+\draw[line width=0.2pt] (-1.5,-0.8) rectangle (1.5,0.8);
+\node at (0,0) {$\displaystyle W=\begin{pmatrix}0&2\\1&0\end{pmatrix}$};
+\end{scope}
+}
+
+\node at (0,-3.7) {$\alpha^2 = 2$};
+
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=0.92]
+
+\node[color=red] at (-3.2,3.2) [above right] {$\mathbb{Z}(\varphi)$};
+\node[color=blue] at (3.5,3.2) [above left] {$\varphi\mathbb{Z}(\varphi)$};
+
+\pgfmathparse{(sqrt(5)+1)/2}
+\xdef\a{\pgfmathresult}
+\pgfmathparse{-int(3.3/\a)}
+\xdef\ymin{\pgfmathresult}
+\pgfmathparse{int(3.3/\a)}
+\xdef\ymax{\pgfmathresult}
+\def\punkt#1#2#3{
+	({(1-(#3))*(#1)+(#3)*(#2)},{((1-(#3))*(#2)+(#3)*(#1+#2))*\a})
+}
+
+\draw[->] (-3.2,0) -- (3.5,0) coordinate[label={$\mathbb{Z}$}];
+\draw[->] (0,-3.2) -- (0,3.6) coordinate[label={right:$\mathbb{Z}\varphi$}];
+
+\foreach \x in {-3,...,3}{
+	\draw[color=red,line width=0.5pt]
+		\punkt{\x}{\ymin}{0} -- \punkt{\x}{\ymax}{0};
+	\foreach \y in {\ymin,...,\ymax}{
+		\fill[color=red] \punkt{\x}{\y}{0} circle[radius=0.08];
+	}
+}
+\foreach \y in {\ymin,...,\ymax}{
+	\draw[color=red,line width=0.5pt]
+		\punkt{-3}{\y}{0} -- \punkt{3}{\y}{0};
+}
+
+\def\bildnetz#1{
+	\pgfmathparse{(#1-1)/(\N-1)}
+	\xdef\t{\pgfmathresult}
+	\only<#1>{
+		\uncover<2->{
+			\draw[->,color=blue,line width=1.4pt]
+				(0,\a) -- \punkt{0}{1}{\t};
+			\draw[->,color=blue,line width=1.4pt]
+				(1,0) -- \punkt{1}{0}{\t};
+		}
+		\foreach \x in {-3,...,3}{
+			\draw[color=blue,line width=0.5pt]
+				\punkt{\x}{\ymin}{\t} -- \punkt{\x}{\ymax}{\t};
+			\foreach \y in {\ymin,...,\ymax}{
+				\fill[color=blue] \punkt{\x}{\y}{\t}
+					circle[radius=0.06];
+			}
+		}
+		\foreach \y in {\ymin,...,\ymax}{
+			\draw[color=blue,line width=0.5pt]
+				\punkt{-3}{\y}{\t} -- \punkt{3}{\y}{\t};
+		}
+	}
+}
+
+\begin{scope}
+
+\clip (-3.2,-3.2) rectangle (3.2,3.2);
+\ifthenelse{\boolean{presentation}}{
+	\foreach \T in {1,...,\N}{
+		\bildnetz{\T}
+	}
+}{
+	\bildnetz{\N}
+}
+\end{scope}
+
+\uncover<\N->{
+\begin{scope}[yshift=-2.5cm]
+\fill[color=white,opacity=0.8] (-1.5,-0.8) rectangle (1.5,0.8);
+\draw[line width=0.2pt] (-1.5,-0.8) rectangle (1.5,0.8);
+\node at (0,0) {$\displaystyle \Phi=\begin{pmatrix}0&1\\1&1\end{pmatrix}$};
+\end{scope}
+}
+
+\node at (0,-3.7) {$\alpha^2 = \alpha + 1$};
+
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

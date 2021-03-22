@@ -1,0 +1,108 @@
+%
+% rekursion.tex
+%
+% (c) 2019 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\begin{frame}[fragile]
+\frametitle{Rekursion}
+\vspace{-20pt}
+\begin{center}
+\begin{tikzpicture}[>=latex]
+
+\def\blob#1#2#3{
+        \fill[color=#3] #1 circle[radius=0.3];
+        \draw[line width=0.7pt] #1 circle[radius=0.3];
+        \node at #1 {{#2}};
+}
+
+\def\kante#1#2{
+        \draw[line width=0.7pt,shorten >= 0.3,shorten >= 0.3] #1 -- #2 ;
+}
+
+\coordinate (A) at (0,0);
+\coordinate (B1) at (2,2);
+\coordinate (B2) at (2,1);
+\coordinate (B3) at (2,0);
+\coordinate (B4) at (2,-1);
+\coordinate (B5) at (2,-2);
+
+\draw[line width=1.9pt,color=gray] (A)--(B1);
+\draw[line width=1.9pt,color=gray] (A)--(B2);
+\draw[line width=1.9pt,color=gray] (A)--(B3);
+\draw[line width=1.9pt,color=gray] (A)--(B4);
+\draw[line width=1.9pt,color=gray] (A)--(B5);
+
+\coordinate (Z) at (10,0);
+
+\begin{scope}
+\clip (2,-2.3) rectangle (10,2.3);
+\foreach \y in{-10,...,10}{
+	\draw[line width=1.9pt,color=gray]
+		(2,\y)--(10,{\y-8});
+	\draw[line width=1.9pt,color=gray]
+		(2,\y)--(10,{\y+8});
+}
+\end{scope}
+
+\uncover<2>{
+\draw[line width=4pt,color=red] (A)--(B1)--(5,-1)--(8,2)--(Z);
+}
+
+\uncover<3>{
+\draw[line width=4pt,color=red] (A)--(B2)--(3,0)--(4,1)--(5,0)--(6,1)--(8.5,-1.5)--(Z);
+}
+
+\uncover<4>{
+\draw[line width=4pt,color=red] (A)--(B3)--(2.5,0.5)--(3.5,-0.5)--(5,1.0)--(7,-1)--(9,1)--(Z);
+}
+
+\uncover<5>{
+\draw[line width=4pt,color=red] (A)--(B4)--(3,0)--(4,1)--(5,0)--(6,1)--(7,0)
+	--(6.0,-1.0)--(7,-2)--(7.5,-1.5)--(7,-1)--(7.5,-0.5)
+	--(8.5,-1.5)--(Z);
+}
+
+\uncover<6->{
+	\draw[line width=4pt,color=red] (A)--(B5)--(6,2);
+}
+\uncover<7->{
+	\draw[line width=4pt,color=red] (6,2)--(7,1)--(5,-1);
+}
+\uncover<8->{
+	\draw[line width=4pt,color=red] (5,-1)--(6,-2)--(8,0)--(9,-1);
+}
+\uncover<9->{
+	\draw[line width=4pt,color=red] (9,-1)--(Z);
+}
+
+\blob{(A)}{$A$}{red!20}
+\blob{(B1)}{$B_1$}{white}
+\blob{(B2)}{$B_2$}{white}
+\blob{(B3)}{$B_3$}{white}
+\blob{(B4)}{$B_4$}{white}
+\blob{(B5)}{$B_5$}{white}
+
+\blob{(Z)}{$Z$}{red!20}
+
+\uncover<6->{
+	\node at (6,2) {\includegraphics[width=1.5cm]{../slides/8/floyd-warshall/macdonalds.png}};
+}
+
+\uncover<7->{
+	\node at (5,-1) {\includegraphics[width=1.5cm]{../slides/8/floyd-warshall/starbucks.png}};
+}
+
+\uncover<8->{
+	\node at (9,-1) {\includegraphics[width=2cm]{../slides/8/floyd-warshall/burgerking.png}};
+}
+
+\end{tikzpicture}
+\end{center}
+
+\begin{block}{Abstieg}
+Für den kürzesten Weg von $A$ nach $Z$ suche denjenigen Nachbarn $B_i$
+von $A$, der den kürzesten Weg von $B_i$ nach $Z$ hat.
+\uncover<7->{$\Rightarrow$ wir brauchen {\color{red}alle} kürzesten Wege!}
+\end{block}
+
+\end{frame}

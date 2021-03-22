@@ -6,7 +6,7 @@
 \section{Definitionen
 \label{buch:section:polynome:definitionen}}
 \rhead{Definitionen}
-In diesem Abschnitt stellen wir einige grundlegende Definitionen für das 
+In diesem Abschnitt stellen wir einige grundlegende Definitionen für das
 Rechnen mit Polynomen zusammen.
 
 %
@@ -26,7 +26,7 @@ unter einer ``Zahl'' vorstellen.
 Wir bezeichnen die Menge, aus der die ``Zahlen'' kommen können mit $R$ und
 nennen sie die Menge der Skalare.
 \index{Skalar}%
-Wenn wir uns vorstellen, dass man die Elemente von $R$ an Stelle von $X$ 
+Wenn wir uns vorstellen, dass man die Elemente von $R$ an Stelle von $X$
 in das Polynom einsetzen kann, dann muss es möglich sein, in $R$ zu
 Multiplizieren und zu Addieren, und es müssen die üblichen Rechenregeln
 der Algebra gelten, $R$ muss also ein Ring sein.
@@ -44,7 +44,7 @@ R[X]
 p(X) = a_nX^n+a_{n-1}X^{n-1} + \dots a_1X+a_0\;|\; a_k\in R, n\in\mathbb{N}
 \}
 \]
-heisst die Menge der {\em Polynome} mit Koeffizienten in $R$ 
+heisst die Menge der {\em Polynome} mit Koeffizienten in $R$
 oder
 {\em Polynome über} $R$.
 \index{Polynome über $R$}%
@@ -77,7 +77,7 @@ Ein Polynom heisst {\em normiert} oder auch {\em monisch}, wenn der
 höchste Koeffizient oder auch {\em Leitkoeffizient} des Polynomus $1$ ist,
 also $a_n=1$.
 \index{Leitkoeffizient}%
-Wann man in $R$ durch $a_n$ dividieren kann, dann kann man aus dem Polynom
+Wenn man in $R$ durch $a_n$ dividieren kann, dann kann man aus dem Polynom
 $p(X)=a_nX^n+\dots$ mit Leitkoeffizient $a_n$ das normierte Polynom
 \[
 \frac{1}{a_n}p(X) = \frac{1}{a_n}(a_nX^n + \dots + a_0)=
@@ -86,9 +86,8 @@ X^n + \frac{a_{n-1}}{a_n}X^{n-1} + \dots + \frac{a_0}{a_n}
 machen.
 Man sagt auch, das Polynom $p(X)$ wurde normiert.
 
-Die Beschreibung der Rechenoperationen wird etwas verkompliziert durch
-die Tatsache, zwei Polynome nicht gleich viele von $0$ verschiedene
-Koeffizienten haben müssen.
+Die Tatsache, dass zwei  Polynome nicht gleich viele von $0$ verschiedene Koeffizienten haben müssen,
+verkompliziert die Beschreibung der Rechenoperationen ein wenig.
 Wir werden daher im Folgenden oft für ein Polynom
 \[
 p(X)
@@ -118,7 +117,7 @@ definiert ist.
 Die Menge $R[X]$ aller Polynome über $R$ wird zu einem Ring, wenn man die
 Rechenoperationen Addition und Multiplikation so definiert, wie man das
 in der Schule gelernt hat.
-Die Summe von zwei Polynomen 
+Die Summe von zwei Polynomen
 \begin{align*}
 p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0\\
 q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
@@ -129,7 +128,7 @@ p(X)+q(X)
 =
 \sum_{k} (a_k+b_k)X^k,
 \]
-wobei die Summe wieder so zu interpretieren ist, über alle Terme 
+wobei die Summe wieder so zu interpretieren ist, über alle Terme
 summiert wird, für die mindestens einer der Summanden von $0$
 verschieden ist.
 
@@ -234,7 +233,7 @@ beweist \eqref{buch:eqn:polynome:gradprodukt}.
 Es könnte aber passieren, dass $a_nb_m=0$ ist, d.~h.~es ist durchaus möglich,
 dass der Grad kleiner ist.
 Schliesslich kann der höchsten Koeffizient von $\lambda p(X)$ nicht grösser
-als der höchste Koeffizient von $p(X)$ sein, was 
+als der höchste Koeffizient von $p(X)$ sein, was
 \eqref{buch:eqn:polynome:gradskalar} beweist.
 \end{proof}
 
@@ -253,7 +252,7 @@ a_nb_m = \begin{pmatrix}0&0\\0&0\end{pmatrix}.
 \end{equation}
 Diese unangehme Situation tritt immer ein, wenn es von Null verschiedene
 Elemente gibt, deren Produkt $0$ ist.
-In Matrizenringen ist das der Normalfall, man kann diesen fall also nicht
+In Matrizenringen ist das der Normalfall, man kann diesen Fall also nicht
 einfach ausschliessen.
 In den Zahlenmengen wie $\mathbb{Z}$, $\mathbb{Q}$ und $\mathbb{R}$ passiert
 das natürlich nie.
@@ -262,13 +261,13 @@ das natürlich nie.
 Ein Ring $R$ heisst {\em nullteilerfrei}, wenn für zwei Elemente
 $a,b\in R$ aus $ab=0$ immer geschlossen werden kann, dass
 $a=0$ oder $b=0$.
-Ein von $0$ verschiedenes Element $a\in R$ heisst ein Nullteiler,
-wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $b=0$.
+Ein von $0$ verschiedenes Element $a\in R$ heisst Nullteiler,
+wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $ab=0$.
 \index{Nullteiler}
 \index{nullteilerfrei}
 \end{definition}
 
-Die beiden Matrizen in 
+Die beiden Matrizen in
 \eqref{buch:eqn:definitionen:nullteilerbeispiel}
 sind Nullteiler im Ring $M_2(\mathbb{Z})$ der $2\times 2$-Matrizen.
 Der Matrizenring $M_2(\mathbb{Z})$ ist also nicht nullteilerfrei.
@@ -294,17 +293,17 @@ Dann gilt
 
 \begin{proof}[Beweis]
 Der Fall, dass der höchste Koeffizient verschwindet, weil $a_n$, $b_m$
-und $\lambda$ Nullteiler sind, kann unter den gegebenen Voraussetzungen
+oder $\lambda$ Nullteiler sind, kann unter den gegebenen Voraussetzungen
 nicht eintreten, daher werden die in
 Lemma~\ref{lemma:rechenregelnfuerpolynomgrad} gefunden Ungleichungen
-exakt für Produkte exakt.
+für Produkte exakt.
 \end{proof}
 
 Die Gleichung
 \eqref{buch:eqn:polynome:gradskalarexakt}
 kann im Fall $\lambda=0$ natürlich nicht gelten.
 Betrachten wir $\lambda$ wieder als ein Polynom, dann folgt aus
-\eqref{buch:eqn:polynome:gradproduktexakt}, dass
+\eqref{buch:eqn:polynome:gradsummeexakt}, dass
 \[
 \begin{aligned}
 \lambda&\ne 0  &&\Rightarrow& \deg (\lambda p) &= \deg\lambda + \deg p = 0+\deg p
@@ -312,13 +311,14 @@ Betrachten wir $\lambda$ wieder als ein Polynom, dann folgt aus
 \lambda&=0     &&\Rightarrow& \deg (0 p) &= \deg 0 + \deg p = \deg 0
 \end{aligned}
 \]
-Diese Gleichung kann also nur aufrechterhalten werden, wenn $\deg 0$ eine
-Zahl ist mit der Eigenschaft, dass man immer noch $\deg 0$ bekommt,
-wenn man irgend eine Zahl $\deg p$ hinzuaddiert.
-So eine Zahl gibt es in den ganzen Zahlen nicht, wenn zu einer ganzen
-Zahl eine andere ganze Zahl hinzuaddiert, ändert sich fast immer etwas.
-Man muss daher $\deg 0 = -\infty$ setzen mit der Festlegung, dass
-$-\infty + n = -\infty$ gilt für beliebige ganze Zahlen $n$.
+Diese Gleichung kann also nur aufrechterhalten werden, wenn die ``Zahl'' $\deg 0$ die Eigenschaft besitzt, dass man immer noch $\deg 0$ bekommt,
+wenn man irgend eine Zahl $\deg p$ hinzuaddiert. Wenn also
+\[\deg 0 + \deg p = \deg 0 \qquad \forall \deg p \in \mathbb Z\]
+gilt.
+So eine Zahl gibt es in den ganzen Zahlen nicht.
+Wenn man zu einer ganzen Zahl eine andere ganze Zahl hinzuaddiert, ändert sich fast immer etwas.
+Man muss daher $\deg 0 = -\infty$ setzen und festlegen, dass
+$-\infty + n = -\infty$ für beliebige ganze Zahlen $n$ gilt.
 
 \begin{definition}
 \label{buch:def:definitionen:polynomfilterung}
@@ -338,18 +338,18 @@ R^{(-\infty)}[X] & \subset
 	& R^{(0)}[X] & \subset
 		& R^{(1)}[X] & \subset & \dots & \subset
 			& R^{(k)}[X] & \subset
-				& R^{(k+1)}[x] & \subset & \dots & \subset
+				& R^{(k+1)}[X] & \subset & \dots & \subset
 					& R[X]\\[3pt]
 \bigg\| &
 	&\bigg\| &
-		&\bigg\| & & & 
+		&\bigg\| & & &
 			&&
 				&& & &
 					&
 \\[3pt]
 \{0\} & \subset
 	& R & \subset
-		& \{ax+b\;|a,b\in R\} & \subset & \dots &
+		& \{a_1X+a_0\;|a_k\in R\} & \subset & \dots &
 \end{array}
 \]
 und ihre Vereinigung ist $R[X]$.
@@ -378,7 +378,199 @@ R^{(k+l)}[X].
 %
 \subsection{Teilbarkeit
 \label{buch:subsection:polynome:teilbarkeit}}
-XXX TODO
+Im Ring der ganzen Zahlen sind nicht alle Divisionen ohne Rest
+ausführbar, so entsteht das Konzept der Teilbarkeit.
+Der Divisionsalgorithmus, den man in der Schule lernt, liefert
+zu beliebigen ganzen Zahlen $a,b\in\mathbb{Z}$ den Quotienten
+$q$ und den Rest $r$ derart, dass $a=qb+r$.
+Der Algorithmus basiert auf der Zehnersystemdarstellung 
+\begin{align*}
+a &= a_n10^{n} + a_{n-1}10^{n-1} + \dots + a_110^{1} + a_0
+\\
+b &= b_m10^{n} + b_{m-1}10^{n-1} + \dots + b_110^{1} + b_0
+\end{align*}
+und ermittelt den Quotienten, indem er mit den einzelnen Stellen
+$a_k$ und $b_k$ arbeitet.
+Er ist also eigentlich ein Algorithmus für die Polynome
+\begin{align*}
+a &= a_nX^{n} + a_{n-1}X^{n-1} + \dots + a_1X^{1} + a_0
+\\
+b &= b_mX^{n} + b_{m-1}X^{n-1} + \dots + b_1X^{1} + b_0,
+\end{align*}
+mit dem einzigen Unterschied, dass statt $X$ mit der festen Zahl $X=10$
+gearbeitet wird.
+Der Teilungsalgorithmus für Polynome lässt sich aber leicht
+rekonstruieren.
+
+\subsubsection{Polynomdivision}
+Wir zeigen den Polynomdivisionsalgorithmus an einem konkreten Beispiel.
+Gesucht sind Quotient $q\in \mathbb{Z}[X]$ und Rest $r\in\mathbb{Z}[X]$
+der beiden Polynome
+\begin{equation}
+\begin{aligned}
+a(X) &= X^4 - X^3 -7X^2 + X + 6\\
+b(X) &= X^2+X+1,
+\end{aligned}
+\label{buch:polynome:eqn:divisionsaufgabe}
+\end{equation}
+für die also gilt $a=bq+r$.
+Die Division ergibt
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+X^4&-& X^3&-&7X^2&+& X&+&6&:&X^2&+&X&+&1&=&X^2&-&2X&-&6=q\\
+\llap{$-($}X^4&+& X^3&+& X^2\rlap{$)$}& &  & & & &   & & & & & &   & &  & & \\ \cline{1-5}
+   &-&2X^3&-&8X^2&+& X& & & &   & & & & & &   & &  & & \\
+   &\llap{$-($}-&2X^3&-&2X^2&-&2X\rlap{$)$}& & & &   & & & & & &   & &  & & \\ \cline{2-7}
+   & &    &-&6X^2&+&3X&+&6& &   & & & & & &   & &  & & \\
+   & &    &\llap{$-($}-&6X^2&-&6X&-&6\rlap{$)$}& &   & & & & & &   & &  & & \\ \cline{4-9}
+   & &    & &    & &9X&+&12\rlap{$\mathstrut=r$}& &   & & & & & &   & &  & & \\ \cline{7-9}
+\end{array}
+\]
+Durch nachrechnen kann man überprüfen, dass tatsächlich
+\begin{align*}
+bq
+&=
+X^4-X^3-7X^2-8X-6
+\\
+bq+r&=
+X^4-X^3-7X^2+X+6 = a
+\end{align*}
+gilt.
+
+Das Beispiel~\eqref{buch:polynome:eqn:divisionsaufgabe} war besonders
+einfach, weil der führende Koeffizient des Divisorpolynomes $1$ war.
+Für $b=2X^2+X+1$ funktioniert der Algorithmus dagegen nicht mehr.
+Jedes für $q$ in Frage kommende Polynom vom Grad $2$ muss von der
+Form $q=q_2X^2+q_1X+q_0$ sein.
+Multipliziert man mit $b$, erhält man $bq=2q_2X^4 + (2q_1+q_2)X^3+\dots$.
+Insbesondere ist es nicht möglich mit ganzzahligen Quotienten
+$q_k\in\mathbb{Z}$ auch nur der ersten Koeffizienten von $a$ zu
+erhalten.
+Dazu müsste nämlich $a_n = 1 = 2q_2$ oder $q_2 = \frac12\not\in\mathbb{Z}$
+sein.
+Der Divisionsalgorithmus funktioniert also nur dann, wenn die 
+Division durch den führenden Koeffizienten des Divisorpolynomes $b$ 
+immer ausführbar ist.
+Im Beispiel~\eqref{buch:polynome:eqn:divisionsaufgabe} war das der
+Fall, weil der führende Koeffizient $1$ war.
+Für beliebige Polynome $b\in R[X]$ ist das aber nur der Fall,
+wenn die Koeffizienten in Tat und Wahrheit einem Körper entstammen.
+
+Im Folgenden betrachten wir daher nur noch Polynomringe mit Koeffizienten
+in einem Körper $\Bbbk$.
+In $\mathbb{Q}[X]$ ist die Division $a:b$ für die Polynome
+\begin{equation}
+\begin{aligned}
+a(X) &= X^4 - X^3 -7X^2 + X + 6\\
+b(X) &= X^2+X+1,
+\end{aligned}
+\label{buch:polynome:eqn:divisionsaufgabe}
+\end{equation}
+problemlos durchführbar:
+\[
+\arraycolsep=1.4pt
+\renewcommand{\arraystretch}{1.2}
+\begin{array}{rcrcrcrcrcrcrcrcrcrcr}
+X^4&-&       X^3&-&         7X^2&+&          X&+&           6&:&2X^2&+&X&+&1&=&\frac12X^2&-&\frac34X&-\frac{27}{8} = q\\
+\llap{$-($}X^4&+&\frac12X^3&+&   \frac12X^2\rlap{$)$}& &           & &            & &    & & & & & &          & &        &             \\ \cline{1-5}
+   &-&\frac32X^3&-&\frac{15}2X^2&+&          X& &            & &    & & & & & &          & &        &             \\
+   &\llap{$-($}-&\frac32X^3&-&\frac{ 3}4X^2&-&\frac{ 3}4X\rlap{$)$}& &            & &    & & & & & &          & &        &             \\\cline{2-7}
+   & &          &-&\frac{27}4X^2&+&\frac{ 7}4X&+&           6& &    & & & & & &          & &        &             \\
+   & &          &\llap{$-($}-&\frac{27}4X^2&-&\frac{27}8X&-&\frac{27}{8}\rlap{$)$}& &    & & & & & &          & &        &             \\\cline{4-9}
+   & &          & &             & &\frac{41}8X&+&\frac{75}{8}\rlap{$\mathstrut=r$}& &    & & & & & &          & &        &             \\
+\end{array}
+\]
+Der Algorithmus funktioniert selbstverständlich genauso in $\mathbb{R}[X]$
+oder $\mathbb{C}[X]$, und ebenso in den in
+Kapitel~\ref{buch:chapter:endliche-koerper} studierten endlichen Körpern.
+
+\subsubsection{Euklidische Ringe und Faktorzerlegung}
+Der Polynomring $\Bbbk[X]$ hat noch eine weitere Eigenschaft, die ihn
+von einem gewöhnlichen Ring unterschiedet.
+Der Polynomdivisionsalgorithmus findet zu zwei Polynomen $f,g\in\Bbbk[X]$
+den Quotienten $q\in\Bbbk[X]$ und den Rest $r\in\Bbbk[X]$ mit
+$f=qg+r$, wobei ausserdem $\deg r<\deg g$ ist.
+
+\begin{definition}
+Ein {\em euklidischer Ring} $R$ ist ein nullteilerfreier Ring mit einer
+Gradfunktion $\deg\colon R\setminus\{0\}\to\mathbb{N}$ mit folgenden
+Eigenschaften
+\begin{enumerate}
+\item Für $x,y\in R$ gilt $\deg(xy) \ge \deg(x)$.
+\item Für alle $x,y\in R$ gibt es $q,r\in R$ mit $x=qy+r$ mit
+$\deg(y)>\deg(x)$
+\label{buch:20-polynome:def:euklidischerring-2}
+\end{enumerate}
+Bedingung~\ref{buch:20-polynome:def:euklidischerring-2} ist die
+{\em Division mit Rest}.
+\index{Gradfunktion}%
+\index{Division mit Rest}%
+\index{euklidischer Ring}%
+\end{definition}
+
+Die ganzen Zahlen $\mathbb{Z}$ bilden einen euklidischen Ring mit der 
+Gradfunktion $\deg(z)=|z|$ für $z\in \mathbb{Z}$.
+Aus dem Divisionsalgorithmus für ganze Zahlen leiten sich alle grundlegenden
+Eigenschaften über Teilbarkeit und Primzahlen ab.
+Eine Zahl $x$ ist teilbar durch $y$, wenn $x=qy$ mit $q\in \mathbb{Z}$,
+es gibt Zahlen $p\in\mathbb{Z}$, die keine Teiler haben und jede Zahl
+kann auf eindeutige Art und Weise in ein Produkt von Primfaktoren
+zerlegt werden.
+
+\subsubsection{Irreduzible Polynome}
+Das Konzept der Primzahl lässt sich wie folgt in den Polynomring übertragen.
+
+\begin{definition}
+Ein Polynom $f\in R[X]$ heisst irreduzibel, es keine Faktorisierung $f=gh$
+in Faktoren $g,h\in R[X]$ mit $\deg(g)>0$ und $\deg(h) >0$.
+\end{definition}
+
+\begin{beispiel}
+Polynome ersten Grades $aX+b$ sind immer irreduzibel, da sie bereits
+minimalen Grad haben.
+
+Sei jetzt $f=X^2+bX+c$ ein quadratisches Polynom in $\mathbb{Q}[X]$.
+Wenn es faktorisierbar sein soll, dann müssen die Faktoren Polynome
+ersten Grades sein, also $f=(X-x_1)(X-x_2)$ mit $x_i\in\mathbb{Q}$.
+Die Zahlen $x_i$ die einzigen möglichen Lösungen für $x_i$ können mit
+der Lösungsformel für die quadratische Gleichung
+\[
+x_i = -\frac{b}2\pm\sqrt{\frac{b^2}{4}-c}
+\]
+gefunden werden.
+Die Faktorisierung ist also genau dann möglich, wenn $b^2/4-c$ ein 
+Quadrat in $\mathbb{Q}$.
+In $\mathbb{R}$ ist das Polynom faktorisierbar, wenn $b^2-4c\ge 0$ ist.
+In $\mathbb{C}$ gibt es keine Einschränkung, die Wurzel zu ziehen,
+in $\mathbb{C}$ gibt es also keine irreduziblen Polynome im Grad $2$.
+\end{beispiel}
+
+\subsubsection{Faktorisierung in einem Polynomring}
+Ein Polynomring ist ganz offensichtlich auch ein euklidischer Ring.
+Wir erwarten daher die entsprechenden Eigenschaften auch in einem
+Polynomring.
+Allerdings ist eine Faktorzerlegung nicht ganz eindeutig.
+Wenn das Polynom $f\in\mathbb{Z}[X]$ die Faktorisierung
+$f=g\cdot h$ mit $g,h\mathbb{Z}[X]$ hat, dann
+ist $rg\cdot r^{-1}h$ ebenfalls eine Faktorisierung für jedes $r =\pm1$.
+Dasselbe gilt in $\mathbb{Q}$ für jedes $r\in \mathbb{Q}^*$.
+Faktorisierung ist also nur eindeutig bis auf Elemente der
+Einheitengruppe des Koeffizientenringes.
+Diese Mehrdeutigkeit kann in den Polynomringen $\Bbbk[X]$ 
+überwunden werden, indem die Polynome normiert werden.
+
+\begin{satz}
+Ein normiertes Polynom $f\in \Bbbk[X]$ kann in
+normierte Faktoren $g_1,\dots,g_k\in\Bbbk[X]$ zerlegt werden, so dass
+$f=g_1\cdot\ldots\cdot g_k$, wobei die Faktoren irreduzibel sind.
+Zwei solche Faktorisierungen unterscheiden sich nur durch die Reihenfolge
+der Faktoren.
+Ein Polynom $f\in \Bbbk[X]$ kann in ein Produkt $a_n g_1\cdot\ldots\cdot g_k$
+zerlegt werden, wobei die normierten Faktoren $g_i$ bis auf die Reihenfolge
+eindeutig sind.
+\end{satz}
+
 
 %
 % Abschnitt über formale Potenzreihen

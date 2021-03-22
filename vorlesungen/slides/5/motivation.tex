@@ -1,0 +1,67 @@
+%
+% movitation.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Motivation}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Matrix $A$ analysieren}
+Matrix $A$ mit Minimalpolynom $m_A(X)$ vom
+Grad $s$
+\end{block}
+\uncover<2->{%
+\begin{block}{Faktorisieren}
+Minimalpolynom faktorisieren
+\[
+m_A(X)
+=
+(X-\mu_1)(X-\mu_2)\dots(X-\mu_s)
+\]
+\end{block}}
+\uncover<3->{%
+\begin{block}{Vertauschen}
+$\sigma\in S_s$ eine Permutation von $1,\dots,s$
+ist
+\begin{align*}
+m_A(X)
+&=
+(X-\mu_{\sigma(1)})
+%(X-\mu_{\sigma(2)})
+\dots
+(X-\mu_{\sigma(s)})
+\\
+0
+&=
+(A-\mu_{\sigma(1)})
+%(A-\mu_{\sigma(2)})
+\dots
+(A-\mu_{\sigma(s)})
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{Bedingung für $\mu_k$}
+Permutation wählen so dass $\mu_k$ an erster Stelle steht:
+\[
+0=(A-\mu_k) \prod_{i\ne k}(A-\mu_i) v
+\]
+für alle $v\in\Bbbk^n$.
+\end{block}}
+\uncover<5->{%
+\begin{block}{Eigenwerte}
+Nur diejenigen ${\color{red}\mu}$ sind möglich, für die es $v\in\Bbbk^n$
+gibt mit
+\[
+(A-\mu)v = 0
+\Rightarrow Av = {\color{red}\mu} v
+\]
+Eigenwertbedingung
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
