@@ -6,3 +6,142 @@
 \section{Lie-Gruppen
 \label{buch:section:lie-gruppen}}
 \rhead{Lie-Gruppen}
+
+\subsection{Drehungen in der Ebene
+\label{buch:gruppen:drehungen2d}}
+Drehungen der Ebene können in einer orthonormierten Basis durch
+Matrizen der Form
+\[
+D_{\alpha}
+=
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha& \cos\alpha
+\end{pmatrix}
+\]
+dargestellt werden.
+Wir bezeichnen die Menge der Drehmatrizen in der Ebene mit
+$\operatorname{SO}(2)\subset\operatorname{GL}_2(\mathbb{R})$.
+Die Abbildung
+\[
+D_{\bullet}
+\colon
+\mathbb{R}\to \operatorname{SO}(2)
+:
+\alpha \mapsto D_{\alpha}
+\]
+hat die Eigenschaften
+\begin{align*}
+D_{\alpha+\beta}&= D_{\alpha}D_{\beta}
+\\
+D_0&=I
+\\
+D_{2k\pi}&=I\qquad \forall k\in\mathbb{Z}.
+\end{align*}
+Daraus folgt zum Beispiel, dass $D_{\bullet}$ eine $2\pi$-periodische
+Funktion ist.
+$D_{\bullet}$ bildet die Menge der Winkel $[0,2\pi)$ bijektiv auf
+die Menge der Drehmatrizen in der Ebene ab.
+
+Ein alternatives Bild für die Drehungen der Ebene kann man in der komplexen
+Ebene $\mathbb{C}$ erhalten.
+Die Multiplikation mit der komplexen Zahl $e^{i\alpha}$ beschreibt eine
+Drehung der komplexen Ebene um den Winkel $\alpha$.
+Die Zahlen der Form $e^{i\alpha}$ haben den Betrag $1$ und die Abbildung
+\[
+f\colon \mathbb{R}\to \mathbb{C}:\alpha \mapsto e^{i\alpha}
+\]
+hat die Eigenschaften
+\begin{align*}
+f(\alpha+\beta) &= f(\alpha)f(\beta)
+\\
+f(0)&=1
+\\
+f(2\pi k)&=1\qquad\forall k\in\mathbb{Z},
+\end{align*}
+die zu den Eigenschaften der Abbildung $\alpha\mapsto D_{\alpha}$ 
+analog sind.
+
+Jede komplexe Zahl $z$ vom Betrag $1$ kann geschrieben werden in der Form
+$z=e^{i\alpha}$, die Abbildung $f$ ist also eine Parametrisierung des
+Einheitskreises in der Ebene.
+Wir bezeichen $S^1=\{z\in\mathbb{C}\;|\; |z|=1\}$ die komplexen Zahlen vom
+Betrag $1$.
+$S^1$ ist eine Gruppe bezüglich der Multiplikation, da für jede Zahl
+$z,w\in S^1$ gilt
+$|z^{-1}|=1$ und $|zw|=1$ und damit $z^{-1}\in S^1$ und $zw\in S^1$.
+
+Zu einer komplexen Zahl $z\in S^1$ gibt es einen bis auf Vielfache
+von $2\pi$ eindeutigen Winkel $\alpha(z)$ derart, dass $e^{i\alpha(z)}=z$.
+Damit kann man jetzt die Abbildung
+\[
+\varphi
+\colon
+S^1\to \operatorname{SO}(2)
+:
+z\mapsto  D_{\alpha(z)}
+\]
+konstruieren.
+Da $D_{\alpha}$ $2\pi$-periodisch ist, geben um Vielfache
+von $2\pi$ verschiedene Wahlen von $\alpha(z)$ die gleiche
+Matrix $D_{\alpha(z)}$, die Abbildung $\varphi$ ist daher
+wohldefiniert.
+$\varphi$ erfüllt ausserdem die Bedingungen
+\begin{align*}
+\varphi(z_1z_2)
+&=
+D_{\alpha(z_1z_2)}
+=
+D_{\alpha(z_1)+\alpha(z_2)}
+=
+D_{\alpha(z_1)}D_{\alpha(z_2)}
+=
+\varphi(z_1)\varphi(z_2)
+\\
+\varphi(1)
+&=
+D_{\alpha(1)}
+=
+D_0
+=
+I
+\end{align*}
+Die Abbildung $\varphi$ ist ein Homomorphismus der Gruppe $S^1$
+in die Gruppe $\operatorname{SO}(2)$.
+Die Menge der Drehmatrizen in der Ebene kann also mit dem Einheitskreis
+in der komplexen Ebene identifiziert werden.
+
+\subsection{Isometrien von $\mathbb{R}^n$
+\label{buch:gruppen:isometrien}}
+Lineare Abbildungen der Ebene $\mathbb{R}^n$ mit dem üblichen Skalarprodukt
+können durch $n\times n$-Matrizen beschrieben werden.
+Die Matrizen, die das Skalarprodukt erhalten, bilden eine Gruppe,
+die in diesem Abschnitt genauer untersucht werden soll.
+Eine Matrix $A\in M_{2}(\mathbb{R})$ ändert das Skalarprodukt nicht, wenn
+für jedes beliebige Paar $x,y$ von Vektoren gilt
+$\langle Ax,Ay\rangle = \langle x,y\rangle$.
+Das Standardskalarprodukt kann mit dem Matrixprodukt ausgedrückt werden:
+\[
+\langle Ax,Ay\rangle
+=
+(Ax)^tAy
+=
+x^tA^tAy
+=
+x^ty
+=
+\langle x,y\rangle
+\]
+für jedes Paar von Vektoren $x,y\in\mathbb{R}$.
+
+Mit dem Skalarprodukt kann man auch die Matrixelemente einer Matrix
+einer Abbildung $f$ in der Standardbasis bestimmen.
+Das Skalarprodukt $\langle e_i, v\rangle$ ist die Länge der Projektion
+des Vektors $v$ auf die Richtung $e_i$.
+Die Komponenten von $Ae_j$ sind daher $a_{ij}=\langle e_i,f(e_j)\rangle$.
+Die Matrix $A$ der Abbildung $f$ hat also die Matrixelemente
+$a_{ij}=e_i^tAe_j$.
+
+
+\subsection{Die Gruppe $\operatorname{SU}(2)$
+\label{buch:gruppen:su2}}
