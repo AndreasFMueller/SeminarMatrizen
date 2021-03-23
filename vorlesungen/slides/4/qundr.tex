@@ -1,0 +1,138 @@
+%
+% qundr.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkblue}{rgb}{0,0,0.8}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (ll) at (-6,-3.6);
+\coordinate (lr) at (6,-3.6);
+\coordinate (ur) at (6,3.6);
+\coordinate (ul) at (-6,3.6);
+
+\def\d{0.6}
+\def\D{0.5}
+
+\coordinate (q) at (0,{-2.25+\d});
+\coordinate (r) at (-1.5,{\d+\D});
+\coordinate (a) at (1.5,{\d-\D});
+\coordinate (c) at (0,{2.25+\d});
+
+\coordinate (m1) at ($0.5*(q)+0.5*(r)$);
+\coordinate (m2) at ($0.5*(q)+0.5*(a)$);
+\coordinate (m3) at ($0.5*(c)+0.5*(r)$);
+\coordinate (m4) at ($0.5*(c)+0.5*(a)$);
+
+\def\t{1.5}
+\coordinate (M1) at ($(m1)+\t*(m1)-\t*(m4)$);
+\coordinate (M2) at ($(m2)+\t*(m2)-\t*(m3)$);
+\coordinate (M4) at ($(m4)+\t*(m4)-\t*(m1)$);
+\coordinate (M3) at ($(m3)+\t*(m3)-\t*(m2)$);
+
+\begin{scope}
+\clip (ll) rectangle (ur);
+
+\uncover<3->{
+	\fill[color=blue!30]
+		($0.9*(m1)+0.1*(M1)+(-6,0)$) -- ($0.9*(m1)+0.1*(M1)$)
+		-- (M4) -- (ul) -- cycle;
+}
+
+\uncover<4->{
+	\fill[color=red!60,opacity=0.5]
+		($0.9*(m2)+0.1*(M2)$) -- ($0.9*(m2)+0.1*(M2)+(6,0)$)
+		-- (ur) -- (M3) -- cycle;
+}
+
+\uncover<2->{
+	\fill[color=darkgreen!60,opacity=0.5]
+		($1.09*(m3)-0.09*(M3)$) -- ($1.09*(m3)-0.09*(M3)+(-6,0)$)
+		-- (ll) -- (M2) -- cycle;
+}
+
+\uncover<6->{
+	\fill[color=gray,opacity=0.5]
+		({6-0.1},{\d+0.22}) rectangle ({6-2.4},{\d+0.62});
+	\node[color=yellow] at (6,\d) [above left] {überabzählbar\strut};
+
+	\fill[color=gray,opacity=0.5]
+		({-6+0.1},{\d-0.15}) rectangle ({-6+1.75},{\d-0.55});
+	\node[color=yellow] at (-6,\d) [below right] {abzählbar\strut};
+
+	\draw[color=yellow,line width=2pt] (-7,\d) -- (7,\d);
+}
+
+\end{scope}
+
+\node at (q) {$\mathbb{Q}$\strut};
+\node at ($(q)+(0,-0.2)$) [below] {Primkörper};
+
+\uncover<3->{
+	\node at (r) {$\mathbb{R}$\strut};
+	\node at (r) [left] {$\text{reelle Zahlen}=\mathstrut$};
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q) -- (r);
+	\node at ($0.5*(q)+0.5*(r)$)
+		[below,rotate={atan((-2.25-\D)/1.5)}] {index $\infty$};
+	\node[color=blue] at (ul)
+		[above right] {topologische Vervollständigung};
+}
+
+\uncover<4->{
+	\node at (a) {$\mathbb{A}$\strut};
+	\node at (a) [right] {$\mathstrut = \text{algebraische Zahlen}$};
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (q) -- (a);
+	\node at ($0.5*(q)+0.5*(a)$)
+		[below,rotate={atan((2.25-\D)/1.5)}] {index $\infty$};
+	\node[color=red] at (ur)
+		[above left] {algebraische Vervollständigung};
+}
+
+\uncover<5->{
+	\node at (c) {$\mathbb{C}$\strut};
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (r) -- (c);
+	\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (a) -- (c);
+	\node at ($(c)+(0,0.2)$) [above] {komplexe Zahlen};
+	\node at ($0.5*(r)+0.5*(c)$)
+		[above,rotate={atan((2.25-\D)/1.5)}] {index 2};
+	\node at ($0.5*(a)+0.5*(c)$)
+		[above,rotate={atan((-2.25-\D)/1.5)}] {index $\infty$};
+}
+
+\uncover<3->{
+	\node[color=darkblue] at (ul) [below right]
+	{\begin{minipage}{0.3\textwidth}\raggedright
+	Grenzwerte von Cauchy-Folgen in $\mathbb{Q}$ hinzufügen
+	\end{minipage}};
+}
+
+\uncover<4->{
+	\node[color=darkred] at (ur) [below left]
+	{\begin{minipage}{0.3\textwidth}\raggedleft
+	Nullstellen von Polynomen in $\mathbb{Q}[X]$ hinzufügen
+	\end{minipage}};
+}
+
+\uncover<2->{
+	\node[color=darkgreen] at (ll) [above right]
+	{\begin{minipage}{0.4\textwidth}\raggedright
+	\begin{block}{Archimedische Eigenschaft}
+	Für $a>b >0$ gibt es $n\in\mathbb{N}$ mit
+	$n\cdot b > a$
+	\end{block}
+	\end{minipage}};
+
+	\node[color=darkgreen] at (ll) [below right]
+		{geordneter Körper, nötig für die Definition von Cauchy-Folgen};
+}
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup

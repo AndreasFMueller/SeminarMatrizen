@@ -20,6 +20,7 @@ chapter4 =								\
 	../slides/4/charakteristik.tex					\
 	../slides/4/char2.tex						\
 	../slides/4/frobenius.tex					\
+	../slides/4/qundr.tex						\
 	../slides/4/alpha.tex						\
 	../slides/4/chapter.tex
 
