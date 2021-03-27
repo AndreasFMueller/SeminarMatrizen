@@ -111,6 +111,9 @@ in die Gruppe $\operatorname{SO}(2)$.
 Die Menge der Drehmatrizen in der Ebene kann also mit dem Einheitskreis
 in der komplexen Ebene identifiziert werden.
 
+%
+% Isometrien von R^n
+%
 \subsection{Isometrien von $\mathbb{R}^n$
 \label{buch:gruppen:isometrien}}
 Lineare Abbildungen der Ebene $\mathbb{R}^n$ mit dem üblichen Skalarprodukt
@@ -142,6 +145,182 @@ Die Komponenten von $Ae_j$ sind daher $a_{ij}=\langle e_i,f(e_j)\rangle$.
 Die Matrix $A$ der Abbildung $f$ hat also die Matrixelemente
 $a_{ij}=e_i^tAe_j$.
 
+\subsubsection{Die orthogonale Gruppe $\operatorname{O}(n)$}
+Die Matrixelemente von $A^tA$ sind
+$\langle A^tAe_i, e_j\rangle =\langle e_i,e_j\rangle = \delta_{ij}$
+sind diejenigen der Einheitsmatrix,
+die Matrix $A$ erfüllt $AA^t=I$ oder $A^{-1}=A^t$.
+Dies sind die {\em orthogonalen} Matrizen.
+Die Menge $\operatorname{O}(n)$ der isometrischen Abbildungen besteht
+daher aus den Matrizen
+\[
+\operatorname{O}(n)
+=
+\{ A\in M_n(\mathbb{R})\;|\; AA^t=I\}.
+\]
+Die Matrixgleichung $AA^t=I$ liefert $n(n+1)/2$ unabhängige Bedingungen,
+die die orthogonalen Matrizen innerhalb der $n^2$-dimensionalen
+Menge $M_n(\mathbb{R})$ auszeichnen.
+Die Menge $\operatorname{O}(n)$ der orthogonalen Matrizen hat daher
+die Dimension
+\[
+n^2 - \frac{n(n+1)}{2}
+=
+\frac{2n^2-n^2-n}{2}
+=
+\frac{n(n-1)}2.
+\]
+Im Spezialfall $n=2$ ist die Gruppe $O(2)$ eindimensional.
 
+\subsubsection{Die Gruppe $\operatorname{SO}(n)$}
+Die Gruppe $\operatorname{O}(n)$ enhält auch Isometrien, die
+die Orientierung des Raumes umkehren, wie zum Beispiel Spiegelungen.
+Wegen $\det (AA^t)=\det A\det A^t = (\det A)^2=1$ kann die Determinante
+einer orthogonalen Matrix nur $\pm 1$ sein.
+Orientierungserhaltende Isometrien haben Determinante $1$.
+
+Die Gruppe
+\[
+\operatorname{SO}(n)
+=
+\{A\in\operatorname{O}(n)\;|\; \det A=1\}
+\]
+heisst die {\em spezielle orthogonale Gruppe}.
+Die Dimension der Gruppe $\operatorname{O}(n)$ ist $n(n-1)/2$.
+
+\subsubsection{Die Gruppe $\operatorname{SO}(3)$}
+Die Gruppe $\operatorname{SO}(3)$ der Drehungen des dreidimensionalen
+Raumes hat die Dimension $3(3-1)/2=3$.
+Eine Drehung wird festgelegt durch die Richtung der Drehachse und den
+Drehwinkel.
+Die Richtung der Drehachse ist ein Einheitsvektor, also ein Punkt
+auf der zweidimensionalen Kugel.
+Der Drehwinkel ist der dritte Parameter.
+
+Drehungen mit kleinen Drehwinkeln können zusammengesetzt werden
+aus den Matrizen
+\[
+D_{x,\alpha}
+=
+\begin{pmatrix}
+1&0&0\\
+0&\cos\alpha&-\sin\alpha\\
+0&\sin\alpha& \cos\alpha
+\end{pmatrix},
+\qquad
+D_{y,\beta}
+=
+\begin{pmatrix}
+ \cos\beta&0&\sin\beta\\
+      0    &1&     0    \\
+-\sin\beta&0&\cos\beta
+\end{pmatrix},
+\qquad
+D_{z,\gamma}
+=
+\begin{pmatrix}
+\cos\gamma&-\sin\gamma&0\\
+\sin\gamma& \cos\gamma&0\\
+    0     &     0     &1
+\end{pmatrix},
+\]
+die Drehungen um die Koordinatenachsen um den Winkel $\alpha$
+beschreiben.
+Auch die Winkel $\alpha$, $\beta$ und $\gamma$ können als die
+drei Koordinaten der Mannigkfaltigkeit $\operatorname{SO}(3)$
+angesehen werden.
+
+%
+% Die Gruppe SU(2)
+%
 \subsection{Die Gruppe $\operatorname{SU}(2)$
 \label{buch:gruppen:su2}}
+Die Menge der Matrizen
+\[
+\operatorname{SU}(2)
+=
+\left\{
+\left.
+A=\begin{pmatrix} a&b\\c&d\end{pmatrix}
+\;\right|\;
+a,b,c,d\in\mathbb{C},\det(A)=1, AA^*=I
+\right\}
+\]
+heisst die {\em spezielle unitäre Gruppe}.
+Wegen $\det(AB)=\det(A)\det(B)=1$ und $(AB)^*AB=B^*A^*AB=B^*B=I$ ist 
+$\operatorname{SU}(2)$ eine Untergruppe von $\operatorname{GL}_2(\mathbb{C})$.
+Die Bedingungen $\det A=1$ und $AA^*=I$ schränken die möglichen Werte
+von $a$ und $b$ weiter ein.
+Aus 
+\[
+A^*
+=
+\begin{pmatrix}
+\overline{a}&\overline{c}\\
+\overline{b}&\overline{d}
+\end{pmatrix}
+\]
+und den Bedingungen führen die Gleichungen
+\[
+\begin{aligned}
+a\overline{a}+b\overline{b}&=1
+&&\Rightarrow&|a|^2+|b|^2&=1
+\\
+a\overline{c}+b\overline{d}&=0
+&&\Rightarrow&
+\frac{a}{b}&=-\frac{\overline{d}}{\overline{c}}
+\\
+c\overline{a}+d\overline{b}&=0
+&&\Rightarrow&
+\frac{c}{d}&=-\frac{\overline{b}}{\overline{a}}
+\\
+c\overline{c}+d\overline{d}&=1&&\Rightarrow&|c|^2+|d|^2&=1
+\\
+ad-bc&=1
+\end{aligned}
+\]
+Aus der zweiten Gleichung kann man ableiten, dass es eine Zahl $t\in\mathbb{C}$
+gibt derart, dass $c=-t\overline{b}$ und $d=t\overline{a}$.
+Damit wird die Bedingung an die Determinante zu
+\[
+1
+=
+ad-bc = at\overline{a} - b(-t\overline{b})
+=
+t(|a|^2+|b|^2)
+=
+t,
+\]
+also muss die Matrix $A$ die Form haben
+\[
+A
+=
+\begin{pmatrix}
+a&b\\
+-\overline{b}&\overline{a}
+\end{pmatrix}
+\qquad\text{mit}\quad |a|^2+|b|^2=1.
+\]
+Schreibt man $a=a_1+ia_2$ und $b=b_1+ib_2$ mit rellen $a_i$ und $b_i$,
+dann besteht $SU(2)$  aus den Matrizen der Form
+\[
+A=
+\begin{pmatrix}
+ a_1+ia_2&b_1+ib_2\\
+-b_1+ib_2&a_1-ia_2
+\end{pmatrix}
+\]
+mit der zusätzlichen Bedingung
+\[
+|a|^2+|b|^2
+=
+a_1^2 + a_2^2 + b_1^2 + b_2^2 = 1.
+\]
+Die Matrizen von $\operatorname{SU}(2)$ stehen daher in einer
+eins-zu-eins-Beziehung zu den Vektoren $(a_1,a_2,b_1,b_2)\in\mathbb{R}^4$
+eines vierdimensionalen reellen Vektorraums mit Länge $1$.
+Geometrisch betrachtet ist also $\operatorname{SU}(2)$ eine dreidmensionalen
+Kugel, die in einem vierdimensionalen Raum eingebettet ist.
+
+
+

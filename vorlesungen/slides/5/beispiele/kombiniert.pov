@@ -18,5 +18,6 @@ ebene(k21, k22, gruen2)
 arrow(O, j11, at, orange1)
 arrow(O, j12, at, orange1)
 arrow(O, k11, at, gruen1)
+gerade(k11, gruen1)
 ebene(j11, j12, orange1)
 
