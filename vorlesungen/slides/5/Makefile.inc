@@ -5,6 +5,8 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
 chapter5 =								\
+	../slides/5/plan.tex						\
+	../slides/5/planbeispiele.tex					\
 	../slides/5/verzerrung.tex					\
 	../slides/5/motivation.tex					\
 	../slides/5/charpoly.tex					\
@@ -36,9 +38,12 @@ chapter5 =								\
 	../slides/5/satzvongelfand.tex					\
 									\
 	../slides/5/stoneweierstrass.tex				\
+	../slides/5/swbeweis.tex					\
 	../slides/5/potenzreihenmethode.tex				\
 	../slides/5/logarithmusreihe.tex				\
 	../slides/5/exponentialfunktion.tex				\
 	../slides/5/hyperbolisch.tex					\
+									\
+	../slides/5/approximation.tex					\
 	../slides/5/chapter.tex
 

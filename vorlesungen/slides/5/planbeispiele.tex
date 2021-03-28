@@ -1,0 +1,103 @@
+%
+% planbeispiele.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{frame}[t]
+\frametitle{Beispiele}
+\vspace{-15pt}
+\begin{columns}[t]
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=blue!20}
+\setbeamercolor{block title}{bg=blue!20}
+\uncover<2->{%
+\begin{block}{$A$ diagonal, $\operatorname{Sp}(A)\subset\mathbb{R}$\strut}
+Beispiele:
+\begin{align*}
+f(x)
+&=
+x^k,
+\\
+f(x)&=
+\sqrt{x},
+\sqrt[k]{x}
+\\
+f(x)&=|x|
+\end{align*}
+\vspace{43pt}
+\end{block}}
+\end{column}
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=darkgreen!20}
+\setbeamercolor{block title}{bg=darkgreen!20}
+\uncover<1->{%
+\begin{block}{$f(z)$ analytisch\strut}
+Beispiele:
+\begin{align*}
+e^z
+&=
+\sum_{k=0}^\infty \frac{z^k}{k!}
+\\
+\cos z
+&=
+\sum_{k=0}^\infty (-1)^k\frac{z^{2k}}{2k!}
+\\
+\sin z
+&=
+\sum_{k=0}^\infty (-1)^k\frac{z^{2k+1}}{(2k+1)!}
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=darkred!20}
+\setbeamercolor{block title}{bg=darkred!20}
+\uncover<3->{%
+\begin{block}{$A$ normal, $AA^*=A^*A$\strut}
+Beispiele:
+\begin{align*}
+f(z)&=\sqrt{z\overline{z}}=|z|
+\end{align*}
+\vspace{76pt}
+\end{block}}
+\end{column}
+\end{columns}
+\vspace{-10pt}
+\begin{columns}[t]
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=blue!20}
+\setbeamercolor{block title}{bg=blue!20}
+\uncover<5->{%
+\begin{block}{}
+\vspace{-6pt}
+$f(A)$ wohldefiniert für {\color{blue}diagonalisierbare}
+Matrizen $A\in M_n(\mathbb{R})$
+\end{block}}
+\end{column}
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=darkgreen!20}
+\setbeamercolor{block title}{bg=darkgreen!20}
+\uncover<4->{%
+\begin{block}{}
+\vspace{-6pt}
+$f(A)$ wohldefiniert für {\color{darkgreen}jedes} $A\in M_n(\mathbb{C})$
+\vspace{14pt}
+\end{block}}
+\end{column}
+\begin{column}{0.33\textwidth}
+\setbeamercolor{block body}{bg=darkred!20}
+\setbeamercolor{block title}{bg=darkred!20}
+\uncover<6->{%
+\begin{block}{}
+\vspace{-6pt}
+$f(A)$ wohldefiniert für {\color{darkred}normale}
+Matrizen $A\in M_n(\mathbb{C})$
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

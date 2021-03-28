@@ -3,9 +3,64 @@
 %
 % (c) 2021 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 \begin{frame}[t]
-\frametitle{Stone-Weierstrass}
-
-TODO XXX
-
+\frametitle{Allgemeiner Approximationssatz}
+\vspace{-20pt}
+\begin{columns}[t]
+\begin{column}{0.5\textwidth}
+\begin{theorem}[Stone-Weierstrass, $\mathbb{R}$]
+$A$ eine {\color{darkgreen}$\mathbb{R}$}-Algebra
+von stetigen Funktionen auf einem
+%abgeschlossenen und beschränkten
+kompakten
+Definitionsgebiet $D\subset {\color{darkgreen}\mathbb{R}}$, 
+\begin{itemize}
+\item<2-> konstante Funktion $c\in A$,
+\item<3-> für $d_1,d_2\in D$ gibt es ein $s\in A$ mit
+$s(d_1)\ne s(d_2)$.
+\end{itemize}
+\uncover<4->{%
+Dann lässt sich jede stetige Funktion durch Funktionen aus $A$
+approximieren}
+\end{theorem}
+\uncover<5->{
+\begin{block}{Anwendung}
+\uncover<6->{$A={\color{darkgreen}\mathbb{R}}[X]$}\uncover<7->{,
+$s(X)=X$}\uncover<8->{,
+jede stetige Funktion kann durch
+Polynome in $X$ approximiert werden}
+\end{block}}
+\end{column}
+\begin{column}{0.5\textwidth}
+\uncover<9->{%
+\begin{theorem}[Stone-Weierstrass, $\mathbb{C}$]
+$A$ eine {\color<10->{red}$\mathbb{C}$}-Algebra von stetigen Funktionen
+auf einem
+%abgeschlossenen und beschränkten
+kompakten
+Definitionsgebiet $D\subset {\color<10->{red}\mathbb{C}}$, 
+\begin{itemize}
+\item konstante Funktion $c\in A$,
+\item für $d_1,d_2\in D$ gibt es ein $s\in A$ mit
+$s(d_1)\ne s(d_2)$.
+\only<11->{
+\item {\color{red}$f\in A\Rightarrow \overline{f}\in A$}
+}
+\end{itemize}
+Dann lässt sich jede stetige Funktion durch Funktionen aus $A$
+approximieren
+\end{theorem}}
+\vspace{-5pt}
+\uncover<12->{%
+\begin{block}{Anwendung}
+$A={\color{red}\mathbb{C}}[Z,\overline{Z}]$\uncover<13->{,
+$s(Z{\color{red},\overline{Z}})=Z$}\uncover<14->{,
+jede stetige Funktion
+lässt sich durch Polynome in $Z{\color{red},\overline{Z}}$ approximieren}
+\end{block}}
+\end{column}
+\end{columns}
 \end{frame}
+\egroup
