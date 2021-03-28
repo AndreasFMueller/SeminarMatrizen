@@ -29,6 +29,8 @@ chapter5 =								\
 									\
 	../slides/5/spektrum.tex					\
 	../slides/5/normal.tex						\
+	../slides/5/normalbeispiel.tex					\
+	../slides/5/normalbeispiel34.tex				\
 	../slides/5/unitaer.tex						\
 									\
 	../slides/5/konvergenzradius.tex				\

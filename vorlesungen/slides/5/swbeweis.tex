@@ -1,0 +1,56 @@
+%
+% swbeweis.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Beweisidee Stone-Weierstrass}
+\vspace{-15pt}
+\begin{columns}[t]
+\begin{column}{0.5\textwidth}
+\begin{enumerate}
+\item<1->
+$\exists$ eine monoton wachsende Folge von Polynomen $u_n(t)\to \sqrt{t}$
+gleichmässig auf $[0,1]\subset{\color{darkgreen}\mathbb{R}}$
+\item<2->
+$f\in A$, dann kann man $|f| = \sqrt{f^2}$ beliebig genau approximieren
+durch Funktionen
+in $A$
+\item<3->
+$f,g\in A$, dann kann
+\begin{align*}
+\max(a,b)&={\textstyle\frac12}(f+g+|f-g|)\\
+\min(a,b)&={\textstyle\frac12}(f+g-|f-g|)
+\end{align*}
+in $A$ beliebig genau approximiert werden.
+\end{enumerate}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item<4->
+Für $x,y\in D$ und $\alpha,\beta\in\mathbb{R}$ gibt es $f\in A$ mit
+$f(x)=\alpha$ und $f(y)=\beta$
+\item<5->
+Zu
+$f\colon D\to\mathbb{R}$ stetig und $x\in D$ gibt es $g\in A$ mit $g(x)=f(x)$
+und $g(y) \le f(y)+\varepsilon$ für $y\ne x$
+\item<6->
+Für $f$ gibt es endlich viele Approximationen $g_i$ mit Punkten $x_i$
+wie in Schritt~4.
+Dann ist $\max_i g_i$ eine Approximation von $f$, die beliebig genau in
+$A$ approximiert werden kann.
+\end{enumerate}
+\end{column}
+\end{columns}
+
+\vspace{10pt}
+\uncover<7->{%
+Schritt~2 braucht in {\color{red}$\mathbb{C}$} die komplex Konjugierte:
+$|f|^2=f\overline{f}$}
+\end{frame}
+\egroup
