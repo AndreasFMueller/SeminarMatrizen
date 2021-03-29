@@ -1,0 +1,72 @@
+Berechnen Sie $\sin At$ für die Matrix
+\[
+A=\begin{pmatrix}
+\omega& 1 \\
+ 0 &\omega
+\end{pmatrix}.
+\]
+Kontrollieren Sie Ihr Resultat, indem Sie den Fall $\omega = 0$ gesondert
+ausrechnen.
+\begin{hinweis}
+Schreiben Sie $A=\omega I + N$ mit einer nilpotenten Matrix.
+\end{hinweis}
+
+\begin{loesung}
+Man muss $At$ in die Potenzreihe
+\[
+\sin z = z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + \dots
+\]
+für die Sinus-Funktion einsetzen.
+Mit der Schreibweise $A=\omega I + N$, wobei $N^2=0$ können die Potenzen etwas
+leichter berechnet werden:
+\begin{align*}
+A^0 &= I
+\\
+A^1 &= \omega I + N
+\\
+A^2 &= \omega^2 I + 2\omega N
+\\
+A^3 &= \omega^3 I + 3\omega^2 N
+\\
+A^4 &= \omega^4 I + 4\omega^3 N
+\\
+&\phantom{a}\vdots
+\\
+A^k &= \omega^k I + k\omega^{k-1} N
+\end{align*}
+Damit kann man jetzt $\sin At$ berechnen:
+\begin{align}
+\sin At
+&=
+At - \frac{A^3t^3}{3!}  + \frac{A^5t^5}{5!} - \frac{A^7t^7}{7!}
+\dots
+\notag
+\\
+&=
+\biggl(
+\omega t  - \frac{\omega^3t^3}{3!} + \frac{\omega^5t^5}{5!} - \frac{\omega^7t^7}{7!}
++\dots
+\biggr)I
++
+\biggl(
+t -\frac{3\omega^2t^3}{3!} + \frac{5\omega^4t^5}{5!} - \frac{7\omega^6t^7}{7!}+\dots
+\biggr)N
+\notag
+\\
+&=
+I\sin\omega t
++tN\biggl(1-\frac{\omega^2t^2}{2!} +\frac{\omega^4t^4}{4!}
+- \frac{\omega^6t^6}{6!}
++\dots\biggr)
+\notag
+\\
+&=I\sin\omega t + tN\cos\omega t.
+\label{4004:resultat}
+\end{align}
+Im Fall $\omega=0$ ist $A=N$ und $A^2=0$, so dass
+\[
+\sin At = tN,
+\]
+dies stimmt mit \eqref{4004:resultat} für $\omega=0$ überein, da
+$\cos\omega t = \cos 0=1$ in diesem Fall.
+\end{loesung}

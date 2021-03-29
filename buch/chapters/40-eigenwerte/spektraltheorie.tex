@@ -5,7 +5,582 @@
 % 
 \section{Spektraltheorie
 \label{buch:section:spektraltheorie}}
-% Matrix-Exponentialfunktion
-% Wurzel einer Matrix
-% Beliebige Funktion f(A) für normale Matrizen
+Aufgabe der Spektraltheorie ist, Bedingungen an eine Matrix $A$ und eine
+Funktion $f(z)$ zu finden, unter denen es möglich ist, $f(A)$ auf 
+konsistente Art und Weise zu definieren.
+Weiter müssen Methoden entwickelt werden, mit denen $f(A)$ berechnet
+werden kann.
+Für ein Polynom $p(z)$ ist $p(A)$ durch einsetzen definiert.
+Für Funktionen, die sich nicht durch ein Polynom darstellen lassen,
+muss eine Approximation der Funktion durch Polynome verwendet werden.
+Sei also $p_n(z)$ eine Folge von Polynomen, die als Approximation der
+Funktion $f(z)$ verwendet werden soll.
+Das Ziel ist, $f(A)$ als den Grenzwert der Matrixfolge $p_n(A)$
+zu definieren.
+
+Zunächst ist nicht klar, wie eine solche Folge gewählt werden muss.
+Es muss eine Teilmenge von $K\subset\mathbb{C}$ spezifiziert werden,
+auf der die Funktionenfolge $p_n(z)$ konvergieren muss,
+damit auch die Konvergenz der Matrizenfolge $p_n(A)$ garantiert ist.
+Auch die Art der Konvergenz von $p_n(z)$ auf der Menge $K$ ist noch
+unklar.
+Da der Abstand zweier Matrizen $A$ und $B$ in der Operatornorm
+mit der grössten Abweichung $\|(A-B)v\|$ für Einheitsvektoren $v$
+gemessen wird, ist es einigermassen plausibel, dass
+die grösse Abweichung zwischen zwei Polynomen $|p(z) - q(z)|$ auf
+der Menge $K$ kleine sein muss, wenn $\|p(A)-q(A)\|$ klein 
+sein soll.
+Da die Differenz $p(z)-q(z)$ für beliebige Polynome, die sich nicht
+nur um eine Konstante unterscheiden, mit $z$ über alle Grenzen wächst,
+muss $K$ beschränkt sein.
+Gesucht ist also eine kompakte Menge $K\subset\mathbb{C}$ und eine
+Folge $p_n(z)$ von Polynomen, die auf $K$ gleichmässig gegen $f(z)$
+konvergieren.
+Die Wahl von $K$ muss sicherstellen, dass für jede gleichmässig
+konvergente Folge von Polynomen $p_n(z)$ auch die Matrizenfolge
+$p_n(A)$ konvergiert.
+
+Es wird sich zeigen, dass die Menge $K$ das Spektrum von $A$ ist,
+also eine endliche Teilmenge von $\mathbb{C}$.
+Jede Funktion kann auf so einer Menge durch Polynome exakt wiedergegeben
+werden.
+Es gibt insbesondere Folgen von Polynomen, die eingeschränkt
+auf das Spektrum gleich sind, also $p_n(z)=p_m(z)$ für alle $z\in K$,
+die aber ausserhalb des Spektrums alle verschieden sind.
+Als Beispiel kann die Matrix 
+\[
+N=\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\]
+herangezogen werden.
+Ihr Spektrum ist $\operatorname{Sp}(N)=\{0\}\subset\mathbb{C}$.
+Zwei Polynome stimmen genau dann auf $\operatorname{Sp}(N)$ überein,
+wenn der konstante Koeffizient gleich ist.
+Die Polynome $p(z)=z$ und $q(z)=z^2$ stimmen daher auf dem Spektrum
+überein.
+Für die Matrizen gilt aber $p(N)=N$ und $q(N)=N^2=0$, die Matrizen
+stimmen also nicht überein.
+Es braucht also zusätzliche Bedingungen an die Matrix $A$, die
+sicherstellen, dass $p(A)=0$ ist, wann immer $p(z)=0$ für
+$z\in\operatorname{Sp}(A)$ gilt.
+
+In diesem Abschnitt sollen diese Fragen untersucht werden.
+In Abschnitt~\ref{buch:subsection:approximation-durch-polynome}
+wird gezeigt, wie sich Funktionen durch Polynome approximieren
+lassen, woraus sich dann Approximationen von $f(A)$ für diagonalisierbare
+Matrizen mit reellen Eigenwerten ergeben.
+
+Der Satz von Stone-Weierstrass, der in
+Abschnitt~\ref{buch:subsetion:stone-weierstrass} dargestellt wird,
+ist ein sehr allgemeines Approximationsresultat, welches nicht nur
+zeigt, dass die Approximation unter sehr natürlichen Voraussetzungen
+beliebig genau möglich ist, sondern uns im komplexen Fall auch
+weitere Einsicht dafür geben kann, welche Voraussetzungen an eine
+komplexe Matrix gestellt werden müssen, damit man damit rechnen kann,
+dass die Approximation zu einer konsistenten Definition von $f(A)$ führt.
+
+%
+% Approximation
+%
+\subsection{Approximation durch Polynome
+\label{buch:subsection:approximation-durch-polynome}}
+Die der Berechnung von $f(A)$ für eine beleibige stetige Funktion,
+die sich nicht als Potenzreihe schreiben lässt, verwendet Approximationen
+von Polynomen.
+Die numerische Mathematik hat eine grosse Menge von solchen
+Approximationsverfahren entwickelt, wovon zwei kurz (ohne Beweise)
+vorgestellt werden sollen.
+
+\subsubsection{Das Legendre-Interpolationspolynom}
+Zu vorgegebenen, verschiedenen Zahlen $z_i\in\mathbb{C}$, $0\le i\le n$,
+die auch die {\em Stützstellen} genannt werden,
+gibt es immer ein Polynom vom Grade $n$, welches in den $z_i$ vorgegebene
+Werte $f(z_i)$ annimmt.
+Ein solches Polynom lässt sich im Prinzip mit Hilfe eines linearen
+Gleichungssystems finden, man kann aber auch direkt eine Lösung
+konstruieren.
+Dazu bildet man erst die Polynome
+\begin{align*}
+l(z) &= (z-z_0)(z-z_1)\dots (z-z_n) \qquad\text{und}
+\\
+l_i(z) &= (z-z_0)\dots \widehat{(z-z_i)}\dots (z-z_n).
+\end{align*}
+Darin bedeutet der Hut, dass dieser Term weggelassen werden soll.
+Für $z\ne z_i$ ist $l_i(z)=l(z)/(z-z_i)$.
+Die Polynome
+\[
+k_i(z)
+=
+\frac{l_i(z)}{l_i(z_i)}
+=
+\frac{(z-z_0)\dots \widehat{(z-z_i)}\dots (z-z_n)}{(z_i-z_0)\dots \widehat{(z_i-z_i)}\dots (z_i-z_n)}
+\]
+haben die Eigenschaft
+$k_i(z_j)=\delta_{ij}$.
+Damit lässt sich jetzt ein Polynom
+\[
+p(z) = \sum_{j=0}^n f(z_j) \frac{l_j(z)}{l_j(z_j)}
+\]
+vom Grad $n$ konstruieren, welches die Werte
+\[
+p(z_i)
+=
+\sum_{j=0}^n f(z_j) \frac{l_j(z_i)}{l_j(z_j)}
+=
+\sum_{j=0}^n f(z_j) \delta_{ij}
+=
+f_(z_i)
+\]
+annimmt.
+Das Polynom $p(z)$ heisst das {\em Legendre-Interpolationspolynom}.
+
+Zwar lässt sich also für eine endliche Menge von komplexen Zahlen immer
+ein Polynom finden, welches vorgeschriebene Wert in allen diesen Zahlen
+annimmt, doch ist die Stabilität für grosse $n$ eher beschränkt.
+
+
+\subsubsection{Gleichmassige Approximation mit Bernstein-Polynomen}
+Das Legendre-Interpolationspolynom nimmt in den  Stützstellen die
+verlangten Werte an, aber ausserhalb der Stützstellen ist nicht
+garantiert, dass man eine gute Approximation einer Funktion $f(z)$
+erhält.
+
+Für die Approximation auf einem reellen Interval $[a,b]$ hat
+Sergei Natanowitsch Bernstein ein 
+Dazu werden zuerst die reellen Bernsteinpolynome vom Grad $n$
+durch
+\begin{align*}
+B_{i,n}(t) = \binom{n}{i} t^i(1-t)^{n-i}.
+\end{align*}
+definiert.
+Als Approximationspolynom für die auf dem Interval 
+$[0,1]$ definierte, stetige Funktion $f(t)$ kann man dann
+\[
+B_n(f)(t)
+=
+\sum_{i=0}^n B_{i,n}(t) f\biggl(\frac{i}{n}\biggr)
+\]
+verwenden.
+Die Polynome $B_n(f)(t)$ konvergieren gleichmässig auf $[0,1]$
+gegen die Funktion $f(t)$.
+Über die Konvergenz ausserhalb des reellen Intervalls wird nichts
+ausgesagt.
+Die Approximation mit Bernstein-Polynomen ist daher nur sinnvoll,
+wenn man weiss, dass die Eigenwerte der Matrix reell sind, was im
+wesentlichen auf diagonalisierbare Matrizen führt.
+
+Für ein anderes Interval $[a,b]$ kann man ein Approximationspolynom
+erhalten, indem man die affine Transformation
+$s\mapsto (s-a)/(b-a)$
+von $[a,b]$ auf $[0,1]$
+verwendet. 
+
+%
+% Der Satz von Stone-Weierstrass
+%
+\subsection{Der Satz von Stone-Weierstrasss
+\label{buch:subsetion:stone-weierstrass}}
+Der Satz von Stone-Weierstrass behandelt im Gegensatz zu den in
+Abschnitt~\ref{buch:subsection:approximation-durch-polynome}
+besprochenen Approximationsmethoden nicht nur Funktionen von
+reellen Variablen durch Polynome.
+Vielmehr kann das Definitionsgebiet irgend eine abgeschlossene
+und beschränkte Teilmenge eines reellen oder komplexen Vektorraumes
+sein und die Funktionen können Polynome aber auch viel allgemeinere
+Funktionen verwendet werden, wie zum Beispiel die Funktionen
+$x\mapsto \cos nx$ und $x\mapsto \sin nx$ definiert auf dem
+Intervall $[0,2\pi]$.
+In diesem Fall liefert der Satz von Stone-Weierstrass die Aussage,
+dass sich jede stetige periodische Funktion gleichmässig durch
+trigonometrische Polynome approximieren lässt.
+
+Die Aussage des Satz von Stone-Weierstrass über reelle Funktionen
+lässt sich nicht auf komplexe Funktionen erweitern.
+Von besonderem Interesse ist jedoch, dass der Beweis des Satz 
+zeigt, warum solche Aussagen für komplexe Funktionen nicht mehr
+zutreffen.
+Im Falle der Approximation von komplexen Funktionen $f(z)$ durch Polynome
+zwecks Definition von $f(A)$ werden sich daraus Bedingungen an die
+Matrix ableiten lassen, die eine konsistente Definition überhaupt
+erst ermöglichen werden.
+
+\subsubsection{Punkte trennen}
+Aus den konstanten Funktionen lassen sich durch algebraische
+Operationen nur weitere konstante Funktionen erzeugen.
+Die konstanten Funktionen sind also nur dann eine genügend
+reichhaltige Menge, wenn die Menge $K$ nur einen einzigen Punkt
+enthält.
+Damit sich Funktionen approximieren lassen, die in zwei Punkten
+verschiedene Werte haben, muss es auch unter den zur Approximation
+zur Verfügung stehenden Funktionen solche haben, deren Werte sich
+in diesen Punkten unterscheiden.
+Diese Bedingung wird in der folgenden Definition formalisiert.
+
+\begin{definition}
+Sei $K$ eine beliebige Menge und $A$ eine Menge von Funktionen
+$K\to \mathbb{C}$.
+Man sagt, $A$ {\em trennt die Punkte von $K$}, wenn es für jedes Paar
+\index{Punkte trennen}%
+von Punkten $x,y\in K$ eine Funktion $f\in A$ gibt derart, dass
+$f(x)\ne f(y)$.
+\end{definition}
+
+Man kann sich die Funktionen $f$, die gemäss dieser Definition die Punkte
+von $K$ trennen, als eine Art Koordinaten der Punkte in $K$ vorstellen.
+Die Punkte der Teilmenge $K\subset \mathbb{R}^n$ werden zum Beispiel
+von den Koordinatenfunktionen $x\mapsto x_i$ getrennt.
+Wir schreiben für die $i$-Koordinate daher auch als Funktion $x_i(x)=x_i$.
+Zwei verschiedene Punkte $x,y\in K$ unterscheiden sich in mindestens
+einer Koordinate.
+Für diese Koordinate sind dann die Werte der zugehörigen
+Koordinatenfunktion $x_i=x_i(x)\ne x_i(y)=y_i$ verschieden, die
+Funktionen $x_1(x)$ bis $x_n(x)$ trennen also die Punkte.
+
+\begin{beispiel}
+Wir betrachten einen Kreis in der Ebene, also die Menge
+\[
+S^1
+=
+\{(x_1,x_2)\;|\; x_1^2 + x_2^2=1\}
+\]
+$S^1$ ist eine abgeschlossene und beschränkte Menge in $\mathbb{R}^2$.
+Die Funktion $x\mapsto x_1$ trennt die Punkte nicht, denn zu jedem
+Punkt $(x_1,x_2)\in S^2$ gibt es den an der ersten Achse
+gespiegelten Punkt $\sigma(x)=(x_1,-x_2)$, dessen erste Koordinate
+den gleichen Wert hat.
+Ebenso trennt die Koordinatenfunktion $x\mapsto x_2$ die Punkte nicht.
+Die Menge $A=\{ x_1(x), x_2(x)\}$ bestehend aus den beiden
+Koordinatenfunktionen trennt dagegen die Punkte von $S^1$, da die Punkte
+sich immer in mindestens einem Punkt unterscheiden.
+
+Man könnte auch versuchen, den Kreis in Polarkoordinaten zu beschreiben.
+Die Funktion $\varphi(x)$, die jedem Punkt $x\in S^1$ den Polarwinkel
+zuordnet, trennt sicher die Punkte des Kreises.
+Zwei verschiedene Punkte auf dem Kreis haben verschieden Polarwinkel.
+Die Menge $\{\varphi\}$ trennt also die Punkte von $S^1$.
+Allerdings ist die Funktion nicht stetig, was zwar der Definition
+nicht widerspricht aber ein Hindernis für spätere Anwendungen ist.
+\end{beispiel}
+
+
+\subsubsection{Der Satz von Stone-Weierstrass für reelle Funktionen}
+Die Beispiele von Abschnitt~\ref{buch:subsection:approximation-durch-polynome}
+haben bezeigt, dass sich reellwertige Funktionen einer reellen
+Variable durch Polynome beliebig genau approximieren lassen.
+Es wurde sogar eine Methode vorgestellt, die eine auf einem Intervall
+gleichmässig konvergente Polynomefolge produziert.
+Die Variable $x\in[a,b]$ trennt natürlich die Punkte, die Algebra der
+Polynome in der Variablen $x$ enthält also sicher Funktionen, die in
+verschiedenen Punkten des Intervalls auch verschiedene Werte annehmen.
+Nicht ganz so selbstverständlich ist aber, dass sich daraus bereits
+ergibt, dass jede beliebige Funktion sich als Polynome in $x$
+approximieren lässt.
+Dies ist der Inhalt des folgenden Satzes von Stone-Weierstrass.
+
+\begin{satz}[Stone-Weierstrass]
+\label{buch:satz:stone-weierstrass}
+Enthält eine $\mathbb{R}$-Algebra $A$ von stetigen, rellen Funktionen
+auf einer kompakten Menge $K$ die konstanten Funktionen und trennt sie
+Punkte, d.~h.~für zwei verschiedene Punkte $x,y\in K$ gibt es
+immer eine Funktion $f\in A$ mit $f(x)\ne f(y)$, dann ist jede stetige,
+reelle Funktion auf $K$ gleichmässig approximierbar durch Funktionen 
+in $A$.
+\end{satz}
+
+\begin{proof}[Beweis]
+XXX TODO
+\end{proof}
+
+Der entscheidende Schritt des Beweises ist, dass man die Betragsfunktion
+konstruieren kann.
+Daraus leiten sich dann alle folgenden Konstruktionen ab.
+
+\subsubsection{Anwendung auf symmetrische und hermitesche Matrizen}
+Für symmetrische und hermitesche Matrizen $A$ ist bekannt, dass die
+Eigenwerte reell sind, also das Spektrum $\operatorname{A}\subset\mathbb{R}$
+ist.
+Für eine Funktion $\mathbb{R}\to \mathbb{R}$ lässt sich nach dem
+Satz~\ref{buch:satz:stone-weierstrass} immer eine Folge $p_n$ von
+approximierenden Polynomen in $x$ finden, die auf $\operatorname{Sp}(A)$
+gleichmässig konvergiert.
+Die Matrix $f(A)$ kann dann definiert werden also der Grenzwert
+\[
+f(A) = \lim_{n\to\infty} p_n(A).
+\]
+Da diese Matrizen auch diagonalisierbar sind, kann man eine Basis
+aus Eigenvektoren verwenden.
+Die Wirkung von $p_n(A)$ auf einem Eigenvektor $v$ zum Eigenwert $\lambda$
+ist
+\[
+p_n(A)v
+=
+(a_kA^k + a_{k-1}A^{k-1}+\dots +a_2A^2+a_1A+a_0I)v
+=
+(a_k\lambda^k + a_{k-1}\lambda^{k-1}+\dots + a_2\lambda^2 + a_1\lambda + a_0)v
+=
+p_n(\lambda)v.
+\]
+Im Grenzwert wirkt $f(A)$ daher durch Multiplikation eines Eigenvektors
+mit $f(\lambda)$, die Matrix $f(A)$ hat in der genannten Basis die
+Diagonalform
+\[
+A=\begin{pmatrix}
+\lambda_1&         &      &         \\
+         &\lambda_2&      &         \\
+         &         &\ddots&         \\
+         &         &      &\lambda_n
+\end{pmatrix}
+\qquad\Rightarrow\qquad
+f(A)=\begin{pmatrix}
+f(\lambda_1)&            &      &            \\
+            &f(\lambda_2)&      &            \\
+            &            &\ddots&            \\
+            &            &      &f(\lambda_n)
+\end{pmatrix}.
+\]
+
+\begin{satz}
+\label{buch:eigenwerte:satz:spektralsatz}
+Ist $A$ symmetrische oder selbstadjungiert Matrix und $f$ eine Funktion
+auf dem Spektrum $\operatorname{Sp}(A)$ von $A$.
+Dann gibt es genau eine Matrix $f(A)$, die Grenzwert jeder beliebigen
+Folge $p_n(A)$ für Polynomfolgen, die $\operatorname{Sp}(A)$ gleichmässig
+gegen $f$ konvergieren.
+\end{satz}
+
+\subsubsection{Der Satz von Stone-Weierstrass für komplexe Funktionen}
+Der Satz~\ref{buch:satz:stone-weierstrass} von Stone-Weierstrass für
+reelle Funktionen gilt nicht für komplexe Funktionen.
+Der Grund ist, dass im Beweis benötigt wird, dass man den Betrag
+einer Funktion approximieren können muss.
+Dies geschah, indem zunächst eine Polynom-Approximation für die 
+Quadratwurzel konstruiert wurde, die dann auf das Quadrat einer
+Funktion angewendet wurde.
+Der Betrag einer komplexen Zahl $z$ ist aber nicht allein aus $z$
+berechenbar, man braucht in irgend einer Form Zugang zu Real-
+und Imaginärteil.
+Zum Beispiel kann man Real- und Imaginärteil als
+$\Re z= \frac12(z+\overline{z})$ und $\Im z = \frac12(z-\overline{z})$
+bestimmen.
+Kenntnis von Real- und Imaginärteil ist als gleichbedeutend mit
+der Kenntnis der komplex Konjugierten $\overline{z}$.
+Der Betrag lässt sich daraus als $|z|^2 = z\overline{z}$ finden.
+Beide Beispiele zeigen, dass man den im Beweis benötigten Betrag
+nur dann bestimmen kann, wenn mit jeder Funktion aus $A$ auch die
+komplex konjugierte Funktion zur Verfügung steht.
+
+\begin{satz}[Stone-Weierstrass]
+Enthält eine $\mathbb{C}$-Algebra $A$ von stetigen, komplexwertigen
+Funktionen auf einer kompakten Menge $K$ die konstanten Funktionen,
+trennt sie Punkte und ist ausserdem mit jeder Funktion $f\in A$ auch
+die komplex konjugiert Funktion $\overline{f}\in A$,
+dann lässt sich jede stetige, komplexwertige Funktion 
+auf $K$ gleichmässig durch Funktionen aus $A$ approximieren.
+\end{satz}
+
+Mit Hilfe der konjugiert komplexen Funktion lässt sich immer eine
+Approximation für die Betragsfunktion finden, so dass sich der
+Beweis des reellen Satzes von Stone-Weierstrass übertragen lässt.
+
+%
+% Normale Matrizen
+%
+\subsection{Normale Matrizen
+\label{buch:subsection:normale-matrizen}}
+Aus dem Satz von Stone-Weierstrass für komplexe Matrizen kann man
+jetzt einen Spektralsätze für eine etwas grössere Klasse von Matrizen
+ableiten, als im Satz~\ref{buch:eigenwerte:satz:spektralsatz}
+möglich war.
+Der Satz besagt, dass für eine beliebige Funktion $f$ auf dem Spektrum
+$\operatorname{Sp}(A)$ eine Folge von auf $\operatorname{Sp}(A)$
+gleichmässig konvergenten, approximierenden Polynomen
+$p_n(z,\overline{z})$ gefunden werden kann.
+Doch wie soll jetzt aus dieser Polynomfolge ein Kandidat von $f(A)$
+gefunden werden?
+
+Zunächst stellt sich die Frage, was für die Variable $\overline{z}$ 
+eingesetzt werden soll.
+$1\times 1$-Matrizen sind notwendigerweise diagonal, also muss 
+man in diesem Fall die Matrix $\overline{A}$ für die Variable
+$\overline{z}$ eingesetzt werden.
+Dies erklärt aber noch nicht, wie für $n\times n$-Matrizen
+vorzugehen ist, wenn $n>1$ ist.
+
+Die Notwendigkeit, die Variable $\overline{z}$ hinzuzunehmen
+ergab sich aus der Anforderung, dass der Betrag aus $|z|^2=z\overline{z}$
+konstruiert werden können muss.
+Insbesondere muss beim Einsetzen eine Matrix entstehen, die nur 
+positive Eigenwerte hat.
+Für eine beliebige komplexe $n\times n$-Matrix $A$ ist aber
+$A\overline{A}$ nicht notwendigerweise positiv, wie das Beispiel
+\[
+A
+=
+\begin{pmatrix}0&i\\i&0\end{pmatrix}
+\qquad
+\Rightarrow
+\qquad
+A\overline{A}
+=
+\begin{pmatrix}0&i\\-i&0\end{pmatrix}
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+=
+\begin{pmatrix}
+-1&0\\
+ 0&-1
+\end{pmatrix}
+=
+-I
+\]
+zeigt.
+Eine positive Matrix entsteht dagegen immer, wenn man statt
+$A$ die Adjungierte $A^*=\overline{A}^t$ verwendet.
+
+Die Substitution von $A$ für $z$ und $A^*$ für $\overline{z}$
+in einem Polynom $p(z,\overline{z})$ ist nicht unbedingt eindeutig.
+Schon das Polynom $p(z,\overline{z})=z\overline{z}$ kann man auch
+als $\overline{z}z$ schreiben.
+Damit die Substition eindeutig wird, muss man also fordern, dass
+$AA^* = A^*A$ ist.
+
+\begin{definition}
+Eine Matrix $A\in M_n(\mathbb{C})$ heisst {\em normal}, wenn $AA^*=A^*A$ gilt.
+\end{definition}
+
+\subsubsection{Beispiele normaler Matrizen}
+
+\begin{enumerate}
+\item
+Hermitesche und Antihermitesche Matrizen sind normal, denn solche
+Matrizen erfüllen $A^*=\pm A$ und damit
+\(
+AA^* = \pm A^2 = A^*A.
+\)
+\item
+Symmetrische und antisymmetrische Matrizen sind normal,
+denn aus $A=A^t$ folgt $A^*=\overline{A}^t$ und damit
+\begin{align*}
+AA^* &=  A\overline{A}^t = 
+\\
+A^*A &=
+\end{align*}
+\item
+Unitäre Matrizen $U$ sind normal, das $UU^*=I=U^*U$ gilt.
+\item
+Orthogonale Matrizen sind normal wegen $O(n) = U(n) \cap M_n(\mathbb{R})$.
+\end{enumerate}
+
+Jede Matrix lässt sich durch Wahl einer geeigneten Basis in Jordansche 
+Normalform bringen.
+Allerdings sind Jordan-Blöcke keine normalen Matrizen, wie der folgende
+Satz zeigt.
+
+\begin{satz}
+Eine Dreiecksmatrix ist genau dann normal, wenn sie diagonal ist.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $A$ eine obere Dreiecksmatrix, das Argument für eine untere Dreiecksmatrix
+funktioniert gleich.
+Wir berechnen ein Diagonalelement für beide Produkte $AA^*$ und $A^*A$.
+Dazu brauchen wir die Matrixelemente von $A$ und $A^*$.
+Bezeichnen wir die Matrixelemente von $A$ mit $a_{ij}$, dann hat $A^*$
+die Matrixelemente $(A^*)_{ij}=\overline{a}_{ji}$.
+Damit kann man die Diagonalelemente der Produkte als
+\begin{align*}
+(AA^*)_{ii}
+&=
+\sum_{j=1}^n a_{ij}\overline{a}_{ij}
+=
+\sum_{j=i}^n |a_{ij}|^2
+\\
+(A^*A)_{ii}
+&=
+\sum_{j=1}^n \overline{a}_{ji}a_{ji}
+=
+\sum_{j=1}^i |a_{ji}|^2
+\end{align*}
+ausrechnen.
+Der obere Ausdruck ist die quadrierte Länge der Zeile $i$ der Matrix $A$,
+der untere ist die quadrierte Länge der Spalte $i$.
+Da die Matrix eine obere Dreiecksmatrix ist, hat die erste Spalte höchstens
+ein einziges von $0$ verschiedenes Element.
+Daher kann auch die erste Zeile höchstens dieses eine Elemente haben.
+Die Matrix hat daher Blockstruktur mit einem $1\times 1$-Block in der
+linken obere Ecke und einem  $n-1$-dimensionalen Block für den Rest.
+Durch Wiederholen des Arguments für den $(n-1)\times (n-1)$-Block 
+kann man so schrittweise schliessen, dass die Matrix $A$ diagonal sein muss.
+\end{proof}
+
+
+\begin{satz}
+Sind $A$ und $B$ normale Matrizen und $AB^*=B^*A$, dann sind auch $A+B$
+und $AB$ normal.
+\end{satz}
+
+\begin{proof}[Beweis]
+Zunächst folgt aus $AB^*=B^*A$ auch
+$A^*B = (B^*A)^* = (AB^*)^* = BA^*$.
+Der Beweis erfolgt durch Nachrechnen:
+\begin{align*}
+(A+B)(A+B)^*
+&=
+AA^* + AB^* + BA^*+BB^*
+\\
+(A+B)^*(A+B)
+&=
+A^*A + A^*B + B^*A + B^*B
+\end{align*}
+Die ersten und letzten Terme auf der rechten Seite stimmen überein, weil
+$A$ und $B$ normal sind.
+Die gemischten Terme stimmen überein wegen der Vertauschbarkeit von
+$A$ und $B^*$.
+
+Für das Produkt rechnet man
+\begin{align*}
+(AB)(AB)^*
+&= ABB^*A^* = AB^*BA^*
+= B^*AA^*B
+=
+B^*A^*AB
+=
+(AB)^*(AB),
+\end{align*}
+was zeigt, dass auch $AB$ normal ist.
+\end{proof}
+
+\subsubsection{Äquivalente Bedingungen}
+Es gibt eine grosse Zahl äquivalenter Eigenschaften für normale Matrizen.
+Die folgenden Eigenschaften sind äquivalent:
+\begin{enumerate}
+\item
+Die Matrix $A$ ist mit einer unitären Matrix diagonalisierbar
+\item
+Es gibt eine orthonormale Basis von Eigenvektoren von $A$ für $\mathbb{C}^n$
+\item
+Für jeden Vektor $x\in\mathbb{C}^n$ gilt $\|Ax\|=\|A^*x\|$
+\item
+Die Forbenius-Norm der Matrix $A$ kann mit den Eigenwerten $\lambda_i$
+von $A$ berechnet werden:
+$\operatorname{Spur}(A^*A) = \sum_{i=1}^n |\lambda_i|^2$
+\item
+Der hermitesche Teil $\frac12(A+A^*)$ und der antihermitesche Teil
+$\frac12(A-A^*)$ von $A$ vertauschen.
+\item
+$A^*$ ist ein Polynom vom Grad $n-1$ in $A$.
+\item
+Es gibt eine unitäre Matrix $U$ derart, dass $A^*=AU$
+\item
+Es gibt eine Polarzerlegugn $A=UP$ mit einer unitären Matrix $U$ und
+einer postiv semidefiniten Matrix $P$, die untereinander vertauschen.
+\item
+Es gibt eine Matrix $N$ mit verschiedenen Eigenwerten, mit denen $A$
+vertauscht.
+\item
+Wenn $A$ die (absteigend geordneten) singulärwerte $\sigma_i$ und
+die absteigend geordneten Eigenwerte $\lambda_i$ hat,
+dann it $\sigma_i=|\lambda_i|$.
+\end{enumerate}
+
+
+
 
