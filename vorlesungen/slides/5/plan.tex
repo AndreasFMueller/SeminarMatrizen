@@ -1,0 +1,198 @@
+%
+% plan.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkred}{rgb}{0.8,0.0,0}
+\begin{frame}[t]
+\frametitle{Was ist $f(A)$?}
+\vspace{-5pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\uncover<7->{
+	\fill[color=blue!20] (-1.5,0.7) rectangle (11.5,3.8);
+}
+
+\uncover<4->{
+	\fill[color=darkgreen!20] (-1.5,-0.7) rectangle (11.5,0.7);
+}
+
+\uncover<12->{
+	\fill[color=darkred!20] (-1.5,-0.7) rectangle (11.5,-3.8);
+}
+
+\begin{scope}[xshift=-1cm]
+\node at (0,0) [left] {$A$};
+\end{scope}
+
+%\foreach \x in {1,...,20}{
+%	\only<\x>{ \node at (-1,3) {\x}};
+%}
+
+%
+% Blauer Ast
+%
+
+\uncover<2->{
+	\draw[->,color=blue,shorten <= 0.3cm, shorten >= 0.0cm]
+		(-1.2,0) -- (0,1.3);
+
+	\begin{scope}[xshift=0cm,yshift=1.5cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (3.4,0.6);
+	\draw[color=blue] (0,-0.6) rectangle (3.4,0.6);
+	\node at (0,0) [right] {$\begin{aligned}
+	f&=p\in\mathbb{R}[X]\\
+	f(A)&=p(A)
+	\end{aligned}
+	$};
+	\end{scope}
+}
+
+\uncover<7->{
+	\draw[->,color=blue] (1.8,2.1) -- (3.6,3);
+
+	\begin{scope}[xshift=3.6cm,yshift=3cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (3.7,0.6);
+	\draw[color=blue] (0,-0.6) rectangle (3.7,0.6);
+	\node at (0,0) [right] {\begin{minipage}{3cm}\raggedright
+	$f$ durch $p_n\in\mathbb{R}[X]$\\
+	approximieren
+	\end{minipage}};
+	\end{scope}
+}
+
+\uncover<8->{
+	\draw[->,color=blue] (7.3,3) -- (9.5,1.9);
+
+	\begin{scope}[xshift=7.6cm,yshift=1.5cm]
+	\fill[color=white,opacity=0.7] (0,-0.35) rectangle (3.8,0.4);
+	\draw[color=blue] (0,-0.35) rectangle (3.8,0.4);
+	\node at (0,0) [right] {$\displaystyle f(A) = \lim_{n\to\infty}p_n(A)$};
+	\end{scope}
+}
+
+\uncover<9->{
+	\node[color=blue] at (3.6,1.6) [right] {\begin{minipage}{4cm}
+	\raggedright
+	Konvergenz $p_n\to f$\\
+	auf Spektrum $\operatorname{Sp}(A)\subset\mathbb{R}$
+	\end{minipage}};
+}
+
+\uncover<11->{
+	\node[color=blue] at (-1.5,3.8) [below right]
+		{$A$ symmetrisch: $A=A^*$};
+}
+\uncover<10->{
+	\node[color=blue] at (11.5,3.8) [below left] {$A$ diagonalisierbar};
+}
+
+%
+% Roter Ast
+%
+
+\uncover<12->{
+	\draw[->,color=darkred,shorten <= 0.3cm, shorten >= 0.0cm] (-1.2,0) -- (0,-1.3);
+
+	\begin{scope}[xshift=0cm,yshift=-1.5cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (3.4,0.6);
+	\draw[color=darkred] (0,-0.6) rectangle (3.4,0.6);
+	\node at (0,0) [right] {$\begin{aligned}
+	f&=p\in\mathbb{C}[Z,\overline{Z}]\\
+	f(A)&=p(A,A^*)
+	\end{aligned}$};
+	\end{scope}
+}
+
+\uncover<13->{
+	\node[color=darkred] at (1.7,-2.1) [below left]
+		{Für $|Z|^2 = Z\overline{Z}$};
+}
+
+\uncover<14->{
+	\draw[->,color=darkred] (1.8,-2.1) -- (3.6,-3);
+
+	\begin{scope}[xshift=3.6cm,yshift=-3cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (3.7,0.6);
+	\draw[color=darkred] (0,-0.6) rectangle (3.7,0.6);
+	\node at (0,0) [right] {\begin{minipage}{3.5cm}\raggedright
+	$f$ durch $q_n\in\mathbb{C}[Z,\overline{Z}]$\\
+	approximieren
+	\end{minipage}};
+	\end{scope}
+}
+
+\uncover<15->{
+	\draw[->,color=darkred] (7.3,-3) -- (9.5,-1.85);
+
+	\begin{scope}[xshift=7.6cm,yshift=-1.5cm]
+	\fill[color=white,opacity=0.7] (0,-0.35) rectangle (3.8,0.4);
+	\draw[color=darkred] (0,-0.35) rectangle (3.8,0.4);
+	\node at (0,0) [right]
+		{$\displaystyle f(A) = \lim_{n\to\infty}q_n(A,A^*)$};
+	\end{scope}
+}
+
+\uncover<16->{
+	\node[color=darkred] at (3.6,-1.8) [right] {\begin{minipage}{4cm}
+	\raggedright
+	Konvergenz $p_n\to f$\\
+	auf $\operatorname{Sp}(A)\cup\operatorname{Sp}(A^*)$
+	\end{minipage}};
+}
+
+\uncover<17->{
+	\node[color=darkred] at (11.5,-3.8) [above left] {%
+	\begin{minipage}{3.5cm}\raggedleft
+	nur sinnvoll definiert wenn 
+	$AA^*=A^*A$
+	\end{minipage}};
+}
+
+\uncover<18->{
+	\node[color=darkred] at (-1.5,-3.8) [above right]
+		{$A$ normal: $AA^*=A^*A$};
+}
+
+%
+% Grüner Ast
+%
+
+\uncover<3->{
+	\draw[->,color=darkgreen,shorten <= 0.0cm, shorten >= 0.0cm]
+		(-1,0) -- (0,0);
+
+	\begin{scope}[xshift=0cm,yshift=0cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (2.9,0.6);
+	\draw[color=darkgreen] (0,-0.6) rectangle (2.9,0.6);
+	\node at (0,0) [right] {$\displaystyle
+	f(z)=\sum_{k=0}^\infty a_kz^k$};
+	\end{scope}
+}
+
+\uncover<5->{
+	\node[color=darkgreen] at (5.9,0) [above] {$f(z)$ analytisch!};
+}
+\uncover<6->{
+	\node[color=darkgreen] at (5.9,0) [below]
+		{$\varrho(A)<\text{Konvergenzradius}$};
+}
+
+\uncover<4->{
+	\draw[->,color=darkgreen] (2.9,0) -- (8.5,0);
+
+	\begin{scope}[xshift=8.5cm]
+	\fill[color=white,opacity=0.7] (0,-0.6) rectangle (2.9,0.6);
+	\draw[color=darkgreen] (0,-0.6) rectangle (2.9,0.6);
+	\node at (0,0) [right] {$\displaystyle
+	 f(A)=\sum_{k=0}^\infty a_kA^k$};
+	\end{scope}
+}
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup

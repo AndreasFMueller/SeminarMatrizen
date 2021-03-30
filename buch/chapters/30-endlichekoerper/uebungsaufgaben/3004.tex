@@ -65,19 +65,19 @@ Die Gauss-Tableaux sind
 \begin{align*}
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
-   1 & 1 & 0 & 0 &  1\\
-   0 & 1 & 1 & 1 &  0\\
-   1 & 1 & 1 & 1 &  0\\
-   0 & 1 & 1 & 0 &  1\\
+   1 & 1 & 0 & 0 &  0\\
+   0 & 1 & 1 & 1 &  1\\
+   1 & 1 & 1 & 1 &  1\\
+   0 & 1 & 1 & 0 &  0\\
 \hline
 \end{tabular}
 &\to
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
-   1 & 1 & 0 & 0 &  1\\
-   0 & 1 & 1 & 1 &  0\\
+   1 & 1 & 0 & 0 &  0\\
+   0 & 1 & 1 & 1 &  1\\
    0 & 0 & 1 & 1 &  1\\
-   0 & 1 & 1 & 0 &  1\\
+   0 & 1 & 1 & 0 &  0\\
 \hline
 \end{tabular}
 %\\
@@ -85,8 +85,8 @@ Die Gauss-Tableaux sind
 \to
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
-   1 & 1 & 0 & 0 &  1\\
-   0 & 1 & 1 & 1 &  0\\
+   1 & 1 & 0 & 0 &  0\\
+   0 & 1 & 1 & 1 &  1\\
    0 & 0 & 1 & 1 &  1\\
    0 & 0 & 0 & 1 &  1\\
 \hline
@@ -95,8 +95,8 @@ Die Gauss-Tableaux sind
 \to
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
-   1 & 1 & 0 & 0 &  1\\
-   0 & 1 & 1 & 0 &  1\\
+   1 & 1 & 0 & 0 &  0\\
+   0 & 1 & 1 & 0 &  0\\
    0 & 0 & 1 & 0 &  0\\
    0 & 0 & 0 & 1 &  1\\
 \hline
@@ -106,8 +106,8 @@ Die Gauss-Tableaux sind
 \to
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
-   1 & 1 & 0 & 0 &  1\\
-   0 & 1 & 0 & 0 &  1\\
+   1 & 1 & 0 & 0 &  0\\
+   0 & 1 & 0 & 0 &  0\\
    0 & 0 & 1 & 0 &  0\\
    0 & 0 & 0 & 1 &  1\\
 \hline
@@ -118,7 +118,7 @@ Die Gauss-Tableaux sind
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
    1 & 0 & 0 & 0 &  0\\
-   0 & 1 & 0 & 0 &  1\\
+   0 & 1 & 0 & 0 &  0\\
    0 & 0 & 1 & 0 &  0\\
    0 & 0 & 0 & 1 &  1\\
 \hline
@@ -128,7 +128,7 @@ In der ersten Zeile stehen die Schritt der Vorwärtsreduktion, in der
 zweiten die Schritte des Rückwärtseinsetzens.
 Als Lösung liest man ab
 \[
-x=\begin{pmatrix}0\\1\\0\\1 \end{pmatrix},
+x=\begin{pmatrix}0\\0\\0\\1 \end{pmatrix},
 \]
 die Korrektheit kann man leicht durch Einsetzen überprüfen.
 \item

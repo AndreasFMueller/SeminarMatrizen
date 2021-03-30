@@ -6,3 +6,258 @@
 \section{Lie-Algebren
 \label{buch:section:lie-algebren}}
 \rhead{Lie-Algebren}
+Im vorangegangenen Abschnitt wurde gezeigt, dass alle beschriebenen
+Matrizengruppen als Untermannigfaltigkeiten im $n^2$-dimensionalen
+Vektorraum $M_n(\mathbb{R}9$ betrachtet werden können.
+Die Gruppen haben damit nicht nur die algebraische Struktur einer
+Matrixgruppe, sie haben auch die geometrische Struktur einer 
+Mannigfaltigkeit.
+Insbesondere ist es sinnvoll, von Ableitungen zu sprechen.
+
+Eindimensionale Untergruppen einer Gruppe können auch als Kurven
+innerhalb der Gruppe angesehen werden.
+In diesem Abschnitt soll gezeigt werden, wie man zu jeder eindimensionalen
+Untergruppe einen Vektor in $M_n(\mathbb{R})$ finden kann derart, dass
+der Vektor als Tangentialvektor an diese Kurve gelten kann.
+Aus einer Abbildung zwischen der Gruppe und diesen Tagentialvektoren
+erhält man dann auch eine algebraische Struktur auf diesen Tangentialvektoren,
+die sogenannte Lie-Algebra.
+Sie ist charakteristisch für die Gruppe.
+Insbesondere werden wir sehen, wie die Gruppen $\operatorname{SO}(3)$ 
+und $\operatorname{SU}(2)$ die gleich Lie-Algebra haben und dass die
+Lie-Algebra von $\operatorname{SO}(3)$ mit dem Vektorprodukt in $\mathbb{R}^3$
+übereinstimmt.
+
+%
+% Tangentialvektoren und SO(2)
+%
+\subsection{Tangentialvektoren und $\operatorname{SO}(2)$}
+Die Drehungen in der Ebene können reell als Matrizen der Form
+\[
+D_{\alpha}
+=
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha& \cos\alpha
+\end{pmatrix}
+\]
+als eidimensionale Kurve innerhalb von $M_2(\mathbb{R})$ beschrieben
+werden.
+Alternativ können Drehungen um den Winkel $\alpha$ als mit Hilfe von
+der Abbildung
+$
+\alpha\mapsto e^{i\alpha}
+$
+als komplexe Zahlen vom Betrag $1$ beschrieben werden.
+Dies sind zwei verschiedene Parametrisierungen der gleichen
+geometrischen Transformation.
+
+Die Ableitung nach $\alpha$ ist $ie^{i\alpha}$, der Tangentialvektor
+im Punkt $e^{i\alpha}$ ist also $ie^{i\alpha}$.
+Die Multiplikation mit $i$ ist die Drehung um $90^\circ$, der Tangentialvektor
+ist also der um $90^\circ$ gedrehte Ortsvektor zum Punkt auf der Kurve.
+
+In der Darstelllung als $2\times 2$-Matrix ist die Ableitung
+\[
+\frac{d}{d\alpha}D_\alpha
+=
+\frac{d}{d\alpha}
+\begin{pmatrix}
+\cos\alpha& -\sin\alpha\\
+\sin\alpha&  \cos\alpha
+\end{pmatrix}
+=
+\begin{pmatrix}
+-\sin\alpha & -\cos\alpha \\
+ \cos\alpha & -\sin\alpha
+\end{pmatrix}.
+\]
+Die rechte Seite kann wieder mit der Drehmatrix $D_\alpha$ geschrieben
+werden, es ist nämlich
+\[
+\frac{d}{d\alpha}D_\alpha
+=
+\begin{pmatrix}
+-\sin\alpha & -\cos\alpha \\
+ \cos\alpha & -\sin\alpha
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\alpha & -\sin\alpha\\
+\sin\alpha &  \cos\alpha
+\end{pmatrix}
+\begin{pmatrix}
+0&-1\\
+1& 0
+\end{pmatrix}
+=
+D_\alpha J.
+\]
+Der Tangentialvektor an die Kurve $\alpha\mapsto D_\alpha$ innerhalb
+$M_2(\mathbb{R})$ im Punkt $D_\alpha$ ist also die Matrix 
+$JD_\alpha$.
+Die Matrix $J$ ist die Drehung um $90^\circ$, denn $J=D_{\frac{\pi}2}$.
+Der Zusammenhang zwischen dem Punkt $D_\alpha$ und dem Tangentialvektor
+ist also analog zur Beschreibug mit komplexen Zahlen.
+
+Im Komplexen vermittelt die Exponentialfunktion den Zusammenhang zwischen
+dem Winkel $\alpha$ und dre Drehung $e^{i\alpha}$.
+Der Grund dafür ist natürlich die Differentialgleichung
+\[
+\frac{d}{d\alpha} z(\alpha) =  iz(\alpha).
+\]
+Die analoge Differentialgleichung 
+\[
+\frac{d}{d\alpha} D_\alpha = J D_\alpha
+\]
+führt auf die Matrix-Exponentialreihe
+\begin{align*}
+D_\alpha
+=
+\exp (J\alpha)
+&=
+\sum_{k=0}^\infty \frac{(J\alpha)^k}{k!}
+=
+\biggl(
+1-\frac{\alpha^2}{2!} + \frac{\alpha^4}{4!} -\frac{\alpha^6}{6!}+\dots
+\biggr)
++
+J\biggl(
+\alpha - \frac{\alpha^3}{3!}
++ \frac{\alpha^5}{5!}
+- \frac{\alpha^7}{7!}+\dots
+\biggr)
+\\
+&=
+I\cos\alpha
++
+J\sin\alpha,
+\end{align*}
+welche der Eulerschen Formel $e^{i\alpha} = \cos\alpha + i \sin\alpha$
+analog ist.
+
+In diesem Beispiel gibt es nur eine Tangentialrichtung und alle in Frage
+kommenden Matrizen vertauschen miteinander.
+Es ist daher nicht damit zu rechnen, dass sich eine interessante 
+Algebrastruktur für die Ableitungen konstruieren lässt.
+
+%
+% Die Lie-Algebra einer Matrizengruppe
+%
+\subsection{Lie-Algebra einer Matrizengruppe}
+Das eindimensionale Beispiel $\operatorname{SO}(2)$ hat gezeigt, dass
+die Tangentialvektoren in einem beliebigen Punkt $D_\alpha$ aus dem
+Tangentialvektor im Punkt $I$ durch Anwendung der Drehung hervorgehen,
+die $I$ in $D_\alpha$ abbildet.
+Die Drehungen einer eindimensionalen Untergruppe transportieren daher
+den Tangentialvektor in $I$ entlang der Kurve auf jeden beliebigen
+anderen Punkt.
+Zu jedem Tangentialvektor im Punkt $I$ dürfte es daher genau eine
+eindimensionale Untergruppe geben.
+
+Sei die Abbildung $\varrho\colon\mathbb{R}\to G$ eine Einparameter-Untergruppe
+von $G\subset M_n(\mathbb{R})$.
+Durch Ableitung der Gleichung $\varrho(t+x) = \varrho(t)\varrho(x)$ nach
+$x$ folgt die Differentialgleichung
+\[
+\varrho'(t)
+=
+\frac{d}{dx}\varrho(t+x)\bigg|_{x=0}
+=
+\varrho(t) \frac{d}{dx}\varrho(0)\bigg|_{x=0}
+=
+\varrho(t) \varrho'(0).
+\]
+Der Tangentialvektor in $\varrho'(t)$ in $\varrho(t)$ ist daher
+der Tangentialvektor $\varrho'(0)$ in $I$ transportiert in den Punkt
+$\varrho(t)$ mit Hilfe der Matrix $\varrho(t)$.
+
+Aus der Differentialgleichung folgt auch, dass
+\[
+\varrho(t) = \exp (t\varrho'(0)).
+\]
+Zu einem Tangentialvektor in $I$ kann man also immer die
+Einparameter-Untergruppe mit Hilfe der Differentialgleichung 
+oder der expliziten Exponentialreihe rekonstruieren.
+
+Die eindimensionale Gruppe $\operatorname{SO}(2)$ ist abelsch und
+hat einen eindimensionalen Tangentialraum, man kann also nicht mit
+einer interessanten Algebrastruktur rechnen.
+Für eine höherdimensionale, nichtabelsche Gruppe sollte sich aus
+der Tatsache, dass es verschiedene eindimensionale Untergruppen gibt,
+deren Elemente nicht mit den Elemente einer anderen solchen Gruppe
+vertauschen, eine interessante Algebra konstruieren lassen, deren
+Struktur die Nichtvertauschbarkeit wiederspiegelt.
+
+Seien also $A$ und $B$ Tangentialvektoren einer Matrizengruppe $G$,
+die zu den Einparameter-Untergruppen $\varphi(t)=\exp At$ und
+$\varrho(t)=\exp Bt$ gehören.
+Insbesondere gilt $\varphi'(0)=A$ und $\varrho'(0)=B$.
+Das Produkt $\pi(t)=\varphi(t)\varrho(t)$ ist allerdings nicht notwendigerweise
+eine Einparametergruppe, denn dazu müsste gelten
+\begin{align*}
+\pi(t+s)
+&=
+\varphi(t+s)\varrho(t+s)
+=
+\varphi(t)\varphi(s)\varrho(t)\varrho(s)
+\\
+=
+\pi(t)\pi(s)
+&=
+\varphi(t)\varrho(t)\varphi(s)\varrho(s)
+\end{align*}
+Durch Multiplikation von links mit $\varphi(t)^{-1}$ und
+mit $\varrho(s)^{-1}$ von rechts folgt, dass dies genau dann gilt,
+wenn
+\[
+\varphi(s)\varrho(t)=\varrho(t)\varphi(s).
+\]
+Die beiden Seiten dieser Gleichung sind erneut verschiedene Punkte
+in $G$.
+Durch Multiplikation mit $\varrho(t)^{-1}$ von links und mit
+$\varphi(s)^{-1}$ von rechts erhält man die äquivaliente
+Bedingung
+\begin{equation}
+\varrho(-t)\varphi(s)\varrho(t)\varphi(-s)=I.
+\label{buch:lie:konjugation}
+\end{equation}
+Ist die Gruppe $G$ nicht kommutativ, kann man nicht
+annehmen, dass diese Bedingung erfüllt ist.
+
+Aus \eqref{buch:lie:konjugation} erhält man jetzt eine Kurve
+\[
+t \mapsto \gamma(t,s) = \varrho(-t)\varphi(s)\varrho(t)\varphi(-s) \in G
+\]
+in der Gruppe, die für $t=0$ durch $I$ geht.
+Ihren Tangentialvektor kann man durch Ableitung bekommen:
+\begin{align*}
+\frac{d}{dt}\gamma(t,s)
+&=
+-\varrho'(-t)\varphi(s)\varrho(t)\varphi(-s)
++\varrho(-t)\varphi(s)\varrho'(t)\varphi(-t)
+\\
+\frac{d}{dt}\gamma(t)\bigg|_{t=0}
+&=
+-B\varphi(s) + \varphi(-s)B
+\end{align*}
+Durch erneute Ableitung nach $s$  erhält man dann 
+\begin{align*}
+\frac{d}{ds} \frac{d}{dt}\gamma(t,s)\bigg|_{t=0}
+&=
+-B\varphi'(s) - \varphi(-s)B
+\end{align*}
+
+%
+% Die Lie-Algebra von SO(3)
+%
+\subsection{Die Lie-Algebra von $\operatorname{SO}(3)$}
+
+%
+% Die Lie-Algebra von SU(2)
+%
+\subsection{Die Lie-Algebra von $\operatorname{SU}(2)$}
+
+
+
+

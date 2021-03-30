@@ -1,0 +1,151 @@
+Rechnen Sie nach, dass die Matrix
+\[
+A
+=
+\begin{pmatrix}
+2&1&0\\
+0&2&1\\
+1&0&2
+\end{pmatrix}
+\]
+normal ist.
+\begin{teilaufgaben}
+\item
+Berechnen Sie die Eigenwerte, indem Sie das charakteristische Polynom 
+von $A$ und seine Nullstellen bestimmen.
+\item
+Das Polynom
+\[
+p(z,\overline{z})
+=
+\frac{(3-\sqrt{3})z\overline{z}-9(1-\sqrt{3})}{6}
+\]
+hat die Eigenschaft, dass 
+\begin{align*}
+p(\lambda,\lambda) &= |\lambda|
+\end{align*}
+für alle drei Eigenwerte von $A$.
+Verwenden Sie dieses Polynom, um $B=|A|$ zu berechen.
+\item
+Überprüfen Sie Ihr Resultat, indem Sie mit einem Computeralgebra-Programm
+die Eigenwerte von $B$ bestimmen.
+\end{teilaufgaben}
+
+\begin{loesung}
+Die Matrix $A$ ist von der Form $2I+O$ mit $O\in\operatorname{SO}(3)$,
+für solche Matrizen wurde gezeigt, dass sie normal sind.
+Man kann aber auch direkt nachrechnen:
+\begin{align*}
+AA^t
+&=
+\begin{pmatrix}
+2&1&0\\
+0&2&1\\
+1&0&2
+\end{pmatrix}
+\begin{pmatrix}
+2&0&1\\
+1&2&0\\
+0&1&2
+\end{pmatrix}
+=
+\begin{pmatrix}
+5&2&2\\
+2&5&2\\
+2&2&5
+\end{pmatrix}
+\\
+A^tA
+&=
+\begin{pmatrix}
+2&0&1\\
+1&2&0\\
+0&1&2
+\end{pmatrix}
+\begin{pmatrix}
+2&1&0\\
+0&2&1\\
+1&0&2
+\end{pmatrix}
+=
+\begin{pmatrix}
+5&2&2\\
+2&5&2\\
+2&2&5
+\end{pmatrix}
+\end{align*}
+Es gilt also $AA^t=A^tA$, die Matrix ist also normal.
+\begin{teilaufgaben}
+\item Das charakteristische Polynom ist
+\begin{align}
+\chi_A(\lambda)
+&=\left|
+\begin{matrix}
+2-\lambda &    1      &      0     \\
+    0     & 2-\lambda &      1     \\
+    1     &    0      & 2-\lambda
+\end{matrix}
+\right|
+=
+(2-\lambda)^3+1
+\label{4005:charpoly}
+\\
+&=-\lambda^3 -6\lambda^2 + 12\lambda +9.
+\notag
+\end{align}
+Mit einem Taschenrechner kann man die Nullstellen finden,
+aber man kann das auch die Form \eqref{4005:charpoly}
+des charakteristischen Polynoms direkt faktorisieren:
+\begin{align*}
+\chi_A(\lambda)
+&=
+(2-\lambda)^3+1
+\\
+&=
+((2-\lambda)+1)
+((2-\lambda)^2 -(2-\lambda)+1)
+\\
+&=
+(3-\lambda)
+(\lambda^2-3\lambda +4-2+\lambda +1)
+\\
+&=
+(3-\lambda)
+(\lambda^2-2\lambda +3)
+\end{align*}
+Daraus kann man bereits einen Eigenwert $\lambda=3$ ablesen,
+die weiteren Eigenwerte sind die Nullstellen des zweiten Faktors, die
+man mit der Lösungsformel für quadratische Gleichungen finden kann:
+\begin{align*}
+\lambda_{\pm}
+&=
+\frac{3\pm\sqrt{9-12}}{2}
+=
+\frac{3}{2} \pm\frac{\sqrt{-3}}{2}
+=
+\frac{3}{2} \pm i\frac{\sqrt{3}}{2}
+\end{align*}
+\item
+Wir müssen $z=A$ und $\overline{z}=A^t$ im Polynom $p(z,\overline{z})$
+substituieren und erhalten
+\begin{align*}
+B
+&=
+\frac{3-\sqrt{3}}6 \begin{pmatrix}5&2&2\\2&5&2\\2&2&5\end{pmatrix}
++\frac{\sqrt{3}-1}{2}I
+\\
+&=
+\begin{pmatrix}
+   2.1547005&  0.42264973&  0.42264973 \\
+   0.4226497&  2.15470053&  0.42264973 \\
+   0.4226497&  0.42264973&  2.15470053
+\end{pmatrix}
+\end{align*}
+\item
+Tatsächlich gibt die Berechnung der Eigenwerte
+den einfachen Eigenwert $\mu_0=3=|\lambda_0|$
+und
+den doppelten Eigenwert $\mu_{\pm} = \sqrt{3}=1.7320508=|\lambda_{\pm}|$.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}

@@ -1,0 +1,80 @@
+%
+% normalbeispiel34.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{darkred}{rgb}{0.8,0,0}
+\begin{frame}[t]
+\frametitle{Beispiele normaler Matrizen für $n=3$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.49\textwidth}
+\begin{align*}
+A
+&=
+\begin{pmatrix}
+\alpha&\beta &   0  \\
+   0  &\alpha&\beta \\
+\beta &   0  &\alpha
+\end{pmatrix},
+\;
+A^t=
+\begin{pmatrix}
+\alpha&   0  &\beta \\
+\beta &\alpha&   0  \\
+   0  &\beta &\alpha
+\end{pmatrix}
+&
+\uncover<2->{%
+&\Rightarrow\left\{
+\begin{aligned}
+AA^t&=\begin{pmatrix}
+\alpha^2+\beta^2 & \alpha\beta      & \alpha\beta      \\
+\alpha\beta      & \alpha^2+\beta^2 & \alpha\beta      \\
+\alpha\beta      & \alpha\beta      & \alpha^2+\beta^2 
+\end{pmatrix}
+\\
+&\phantom{ooooooooooooooo}\|
+\\
+A^tA&=\begin{pmatrix}
+\alpha^2+\beta^2 & \alpha\beta      & \alpha\beta      \\
+\alpha\beta      & \alpha^2+\beta^2 & \alpha\beta      \\
+\alpha\beta      & \alpha\beta      & \alpha^2+\beta^2 
+\end{pmatrix}
+\end{aligned}\right.}
+\\
+\uncover<3->{
+A&=\alpha I + \beta O}\uncover<4->{, O=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix}\in \operatorname{O}(3)}
+&
+\uncover<5->{
+&\Rightarrow
+\left\{
+\begin{aligned}
+AA^*&= \alpha^2I^2 + \beta^2
+\ifthenelse{\boolean{presentation}}{ \only<6->{I} }{} \only<-5>{OO^*}
++ \alpha\beta(O+O^*)\\
+A^*A&= \alpha^2I^2 + \beta^2
+\ifthenelse{\boolean{presentation}}{ \only<6->{I} }{} \only<-5>{O^*O}
++ \alpha\beta(O^*+O)
+\end{aligned}
+\right.}
+\\
+\uncover<7->{A&=U+V^*,\text{normal}}\uncover<10->{\text{, }
+{\color{darkgreen}UV}={\color{darkgreen}VU}}
+&
+&\uncover<8->{\Rightarrow
+\left\{
+\begin{aligned}
+AA^* &= UU^* + {\color<9->{darkgreen}UV} + {\color<9->{darkred}V^*U^*} + V^*V
+\\
+A^*A &= U^*U + {\color<9->{darkred}U^*V^*} + {\color<9->{darkgreen}VU} + VV^*
+\end{aligned}
+\right.}
+\end{align*}
+\end{column}
+\begin{column}{0.49\textwidth}
+\end{column}
+\end{columns}
+\end{frame}

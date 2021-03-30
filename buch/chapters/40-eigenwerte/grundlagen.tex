@@ -16,6 +16,36 @@ gestreckt werden.
 Gelingt es, eine Basis aus solchen sogenanten {\em Eigenvektoren} zu finden,
 dann kann man die Matrix $A$ durch Basiswechsel in diese Form bringen.
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/40-eigenwerte/images/kernbild.pdf}
+\caption{Iterierte Kerne und Bilder einer $3\times 3$-Matrix mit Rang~2.
+Die abnehmend geschachtelten iterierten Bilder
+$\mathcal{J}^1(A) \subset \mathcal{J}^2(A)$
+sind links dargestellt, die zunehmen geschachtelten iterierten Kerne
+$\mathcal{K}^1(A) \subset \mathcal{K}^2(A)$ rechts.
+\label{buch:eigenwerte:img:kernbild}}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/40-eigenwerte/images/kombiniert.pdf}
+\caption{Iterierte Kerne und Bilder einer $3\times 3$-Matrix mit Rang~2.
+Da $\dim\mathcal{J}^2(A)=1$ und $\dim\mathcal{J}^1(A)=2$ ist, muss es
+einen Vektor in $\mathcal{J}^1(A)$ geben, der von $A$ auf $0$ abgebildet
+wird, der also auch im Kern $\mathcal{K}^1(A)$ liegt.
+Daher ist $\mathcal{K}^1(A)$ die Schnittgerade von $\mathcal{J}^1(A)$ und
+$\mathcal{K}^2(A)$.
+Man kann auch gut erkennen, dass
+$\mathbb{R}^3
+=
+\mathcal{K}^1(A)\oplus \mathcal{J}^1(A)
+=
+\mathcal{K}^2(A) \oplus \mathcal{J}^2(A)$
+ist.
+\label{buch:eigenwerte:img:kombiniert}}
+\end{figure}
+
 %
 % Kern und Bild von Matrixpotenzen
 %
