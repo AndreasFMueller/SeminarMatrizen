@@ -1,0 +1,94 @@
+%
+% wurzel.tex -- Wurzel
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{10}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\a{0.8}
+\def\U{0}
+
+\fill[color=blue!20] (0,\a) rectangle (1.00,1.03);
+\draw[line width=0.4pt] (0,1) -- (1,1) -- (1,0);
+
+\draw[->] (0,{-0.01}) -- (0,{1.06}) coordinate[label={right:$y$}];
+
+\begin{scope}
+\clip (0,0) rectangle (1,1);
+\draw[color=blue,line width=1.4pt] plot[domain=0:1.01,samples=100]
+	({\x},{\x*\x});
+\end{scope}
+
+%\draw[color=purple,line width=0.5pt] (0.48,-0.01) -- (1,1);
+%\fill[color=purple] (1,1) circle[radius=0.008];
+
+\node[color=blue] at (0,{\a}) [left] {$a$};
+
+\def\schritt#1#2{
+	\xdef\u{\U}
+	\pgfmathparse{0.5*(\a-\u*\u)}
+	\xdef\d{\pgfmathresult}
+	\pgfmathparse{\u+\d}
+	\xdef\U{\pgfmathresult}
+
+	\fill[color=purple!10] (\u,{\u*\u}) -- (\U,\a) -- (\u,\a) -- cycle;
+
+	\node[color=darkgreen] at (\u,0) [below] {$u_#1$};
+	\draw[color=darkgreen,line width=0.1pt] (\u,0)--(\u,\a);
+
+	\fill[color=darkgreen] (\u,{\u*\u}) circle[radius=0.006];
+
+	\draw[<->,color=darkgreen] (\u,{\u*\u}) -- (\u,\a);
+
+	\draw[color=purple,shorten <= 0.6mm]
+		(\u,{\u*\u}) -- (\U,\a);
+}
+\def\marke#1#2{
+	\node[color=orange] at ({0.5*(\u+\U)},\a) [#2] {$\frac12(a-u_#1^2)$};
+	\draw[<->,color=orange,shorten >= 0mm,shorten <= 0mm]
+		(\u,\a) -- (\U,\a);
+}
+
+\def\hoehe#1{
+	\node[color=darkgreen] at ({\u+0.01},{\a-\d-0.01})
+		[above,rotate=90] {$a-u_#1^2$};
+}
+
+\schritt{0}{1}
+\hoehe{0}
+\marke{0}{above}
+
+\schritt{1}{2}
+\hoehe{1}
+\marke{1}{above}
+\node[color=darkgreen] at (\u,{\u*\u-0.02}) [above left] {$u_1^2$};
+
+\schritt{2}{3}
+\hoehe{2}
+%\marke{2}{right,rotate=90}
+\marke{2}{above}
+\node[color=darkgreen] at (\u,{\u*\u-0.02}) [above left] {$u_2^2$};
+
+\schritt{3}{4}
+
+\draw[color=blue] ({sqrt(\a)},-0.01) -- ({sqrt(\a)},\a);
+\node[color=blue] at ({sqrt(\a)-0.02},0) [below right] {$\sqrt{a}$};
+
+\draw[->] (-0.01,0) -- (1.05,0) coordinate[label={$u$}];
+\node at (1,0) [below] {$1$};
+\node at (0,1) [left] {$1$};
+\draw (1,-0.01) -- (1,0.01);
+
+\end{tikzpicture}
+\end{document}
+

@@ -1,0 +1,78 @@
+%
+% dimjk.tex -- dimensionen von K^l und J^l
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1.2}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\def\pfad{
+        ({0*\sx},{6-6}) --
+        ({1*\sx},{6-4.5}) --
+        ({2*\sx},{6-3.5}) --
+        ({3*\sx},{6-2.9}) --
+        ({4*\sx},{6-2.6}) --
+        ({5*\sx},{6-2.4}) --
+        ({8*\sx},{6-2.4})
+}
+\def\sx{1.2}
+
+\fill[color=orange!20] \pfad -- ({6*\sx},6) -- (0,6) -- cycle;
+\fill[color=darkgreen!20] \pfad -- ({6*\sx},0) -- cycle;
+
+\fill[color=orange!40] ({5*\sx},6) rectangle ({8*\sx},{6-2.4});
+\fill[color=darkgreen!40] ({5*\sx},0) rectangle ({8*\sx},{6-2.4});
+
+\draw[color=darkgreen,line width=2pt] ({3*\sx},{6-6}) -- ({3*\sx},{6-2.9});
+\node[color=darkgreen] at ({3*\sx},{6-4.45}) [rotate=90,above] {$\dim\mathcal{K}^k(A)$};
+\draw[color=orange,line width=2pt] ({3*\sx},{6-0}) -- ({3*\sx},{6-2.9});
+\node[color=orange] at ({3*\sx},{6-1.45}) [rotate=90,above] {$\dim\mathcal{J}^k(A)$};
+
+\node[color=orange] at ({6.5*\sx},{6-1.2}) {bijektiv};
+\node[color=darkgreen] at ({6.5*\sx},{6-4.2}) {konstant};
+
+\fill ({0*\sx},{6-6}) circle[radius=0.08];
+\fill ({1*\sx},{6-4.5}) circle[radius=0.08];
+\fill ({2*\sx},{6-3.5}) circle[radius=0.08];
+\fill ({3*\sx},{6-2.9}) circle[radius=0.08];
+\fill ({4*\sx},{6-2.6}) circle[radius=0.08];
+\fill ({5*\sx},{6-2.4}) circle[radius=0.08];
+\fill ({6*\sx},{6-2.4}) circle[radius=0.08];
+\fill ({7*\sx},{6-2.4}) circle[radius=0.08];
+\fill ({8*\sx},{6-2.4}) circle[radius=0.08];
+
+\draw \pfad;
+
+\draw[->] (-0.5,0) -- ({8*\sx+0.5},0) coordinate[label={$k$}];
+\draw[->] (-0.5,6) -- ({8*\sx+0.5},6);
+
+\foreach \x in {0,...,8}{
+        \draw ({\x*\sx},-0.05) -- ({\x*\sx},0.05);
+}
+\foreach \x in {0,...,3}{
+        \node at ({\x*\sx},-0.05) [below] {$\x$};
+}
+\node at ({4*\sx},-0.05) [below] {$\dots\mathstrut$};
+\node at ({5*\sx},-0.05) [below] {$l$};
+\node at ({6*\sx},-0.05) [below] {$l+1$};
+\node at ({7*\sx},-0.05) [below] {$l+2$};
+\node at ({8*\sx},-0.05) [below] {$l+3$};
+
+\node[color=orange] at ({1.2*\sx},5.6)
+	{$\mathcal{J}^k(A)\supset\mathcal{J}^{k+1}(A)$};
+\node[color=darkgreen] at ({1.2*\sx},0.4)
+	{$\mathcal{K}^k(A)\subset\mathcal{K}^{k+1}(A)$};
+
+\end{tikzpicture}
+\end{document}
+

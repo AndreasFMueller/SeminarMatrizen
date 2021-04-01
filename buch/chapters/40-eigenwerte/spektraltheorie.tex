@@ -276,6 +276,25 @@ ergibt, dass jede beliebige Funktion sich als Polynome in $x$
 approximieren lässt.
 Dies ist der Inhalt des folgenden Satzes von Stone-Weierstrass.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/40-eigenwerte/images/wurzel.pdf}
+\caption{Konstruktion einer monoton wachsenden Approximationsfolge für
+$\sqrt{a}$
+\label{buch:eigenwerte:fig:wurzelverfahren}}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/40-eigenwerte/images/wurzelapprox.pdf}
+\caption{Monoton wachsende Approximation der Funktion $t\mapsto\sqrt{t}$ mit 
+Polynomen $u_n(t)$ nach 
+\eqref{buch:eigenwerte:eqn:wurzelapproximation}
+(links) und der Fehler der Approximation
+(rechts).
+\label{buch:eigenwerte:fig:wurzelapproximation}}
+\end{figure}
+
 \begin{satz}[Stone-Weierstrass]
 \label{buch:satz:stone-weierstrass}
 Enthält eine $\mathbb{R}$-Algebra $A$ von stetigen, rellen Funktionen
@@ -286,12 +305,137 @@ reelle Funktion auf $K$ gleichmässig approximierbar durch Funktionen
 in $A$.
 \end{satz}
 
+Für den Beweis des Satzes wird ein Hilfsresultat benötigt, welches wir
+zunächst ableiten.
+Es besagt, dass sich die Wurzelfunktion $t\mapsto\sqrt{t}$
+auf dem Interval $[0,1]$ gleichmässig
+von unten durch Polynome approximieren lässt, die in
+Abbildung~\ref{buch:eigenwerte:fig:wurzelapproximation} dargestellt
+sind.
+
+\begin{satz}
+Die rekursiv definierte Folge von Polynomen
+\begin{equation}
+u_{n+1}(t)
+=
+u_n(t) + \frac12(t-u_n(t)^2),
+\qquad
+u_0(t)=0
+\label{buch:eigenwerte:eqn:wurzelapproximation}
+\end{equation}
+ist monoton wachsend und approximiert die Wurzelfunktion $t\mapsto\sqrt{t}$
+gleichmässig auf dem Intervall $[0,1]$.
+\end{satz}
+
 \begin{proof}[Beweis]
-XXX TODO
+Wer konstruieren zunächst das in
+Abbildung~\ref{buch:eigenwerte:fig:wurzelverfahren}
+visualierte Verfahren, mit dem für jede Zahl $a\in[0,1]$
+die Wurzel $\sqrt{a}$ berechnet werden kann.
+Sei $u < \sqrt{a}$ eine Approximation der Wurzel.
+Die Approximation ist der exakte Wert der Lösung, wenn $a-u^2=0$.
+In jedem anderen Fall muss $u$ um einen Betrag $d$ vergrössert werden.
+Natürlich muss immer noch $u+d<\sqrt{a}$ sein.
+Man kann die maximal zulässige Korrektur $d$ geometrisch abschätzen,
+wie dies in Abbildung~\ref{buch:eigenwerte:fig:wurzelverfahren}
+skizziert ist.
+Die maximale Steigung des Graphen der Funktion $u\mapsto u^2$ ist $2$,
+daher darf man $u$ maximal um die Hälfte der Differenz $a-u^2$ (grün)
+vergrössern, also $d=\frac12(a-u^2)$.
+Die Rekursionsformel
+\[
+u_{n+1} = u_n + d = u_n + \frac12(a-u_n^2)
+\]
+mit dem Startwert $u_0=0$ liefert daher eine 
+Folge, die gegen $\sqrt{a}$ konvergiert.
 \end{proof}
 
-Der entscheidende Schritt des Beweises ist, dass man die Betragsfunktion
-konstruieren kann.
+\begin{proof}[Beweis des Satzes von Stone-Weierstrass]
+Da $A$ eine Algebra ist, ist mit jeder Funktion $f\in A$ für jedes Polynome
+$p\in\mathbb{R}[X]$ auch $p(f)$ eine Funktion in $A$.
+\begin{enumerate}
+\item Schritt: Für jede Funktion $f\in A$ lässt sich auch $|f|$ durch
+Funktionen in $A$ beliebig genau durch eine monoton wachsende Folge
+von Funktionen approximieren.
+
+Da $A$ eine Algebra ist, ist $f^2\in A$.
+Sei ausserdem $m^2=\sup \{f(x)^2\;|\;x\in K\}$, so dass $f^2/m^2$ eine Funktion
+mit Werten im Intervall $[0,1]$ ist.
+Die Funktionen $f_n(x)=mu_n(f(x)^2/m^2)$ sind ebenfalls in $A$ und
+approximieren gleichmässig $\sqrt{f(x)^2}=|f(x)|$.
+\item Schritt: Für zwei Funktionen $f,g\in A$ gibt es eine monoton wachsende
+Folge, die $\max(f,g)$ gleichmässig beliebig genau approximiert
+und eine monoton fallende Folge, die $\min(f,g)$ gleichmässig beliebig 
+genau approximiert.
+
+Diese Folgen können aus der Approximationsfolge für den Betrag einer
+Funktion und den Identitäten
+\begin{align*}
+\max(f,g) &= \frac12(f+g+|f-g|) \\
+\min(f,g) &= \frac12(f+g-|f-g|) 
+\end{align*}
+gefunden werden.
+\item Schritt: Zu zwei beliebigen Punkten $x,y\in K$ und Werten
+$\alpha,\beta\in\mathbb{R}$ gibt es immer eine Funktion in $A$,
+die in den Punkten $x,y$ die vorgegebenen Werte $\alpha$ bzw.~$\beta$
+annimmt.
+Da $A$ die Punkte trennt, gibt es eine Funktion $f_0$ mit $f_0(x)\ne f_0(y)$.
+Dann ist die Funktion
+\[
+f(t)
+=
+\beta + \frac{f_0(t)-f_0(y)}{f_0(x)-f_0(y)}(\alpha-\beta)
+\]
+wohldefiniert und nimmt die verlangten Werte an.
+\item Schritt: Zu jeder stetigen Funktion $f\colon K\to\mathbb{R}$, jedem
+Punkt $x\in K$ und jedem $\varepsilon>0$ gibt es eine Funktion $g\in A$ derart,
+dass $g(x)=f(x)$ und $g(y) \le f(y)+\varepsilon$ für alle $y\in K$.
+
+Zu jedem $z\in K$ gibt es eine Funktion in $A$ mit
+$h_z(x)=f(x)$ und $h_z(z) \le f(z)+\frac12\varepsilon$.
+Wegen der Stetigkeit von $h_z$ gibt es eine Umgebung $V_z$ von $z$, in der
+immer noch gilt $h_z(y)\le f(y)+\varepsilon$ für $y\in V_z$.
+Wegen der Kompaktheit von $K$ kann man endlich viele Punkte $z_i$ wählen
+derart, dass die $V_{z_i}$ immer noch $K$ überdecken.
+Dann erfüllt die Funktion
+\(
+g(z) = \inf h_{z_i}
+\)
+die Bedingungen $g(x) = f(x)$ und für $z\in V_{z_i}$
+\[
+g(z) = \inf_{j} h_{z_j}(z) \le h_{z_i}(z) \le f(z)+\varepsilon.
+\]
+Ausserdem ist $g(z)$ nach dem zweiten Schritt beliebig genau durch
+Funktionen in $A$ approximierbar.
+\item Schritt: Jede stetige Funktion $f\colon K\to\mathbb{R}$ kann
+beliebig genau durch Funktionen in $A$ approximiert werden.
+Sei $\varepsilon > 0$.
+
+Nach dem vierten Schritt gibt es für jedes $y\in K$ eine Funktion $g_y$
+derart, dass $g_y(y)=f(y)$  und $g_y(x) \le f(x) + \varepsilon$ für
+$x\in K$.
+Da $g_y$ stetig ist, gilt ausserdem $g_y(x) \ge f(x) -\varepsilon$ in
+einer Umgebung $U_y$ von $y$.
+Da $K$ kompakt ist, kann man endlich viele $y_i$ derart, dass die $U_{y_i}$
+immer noch ganz $K$ überdecken.
+Die Funktion $g=\sup g_{y_i}$ erfüllt dann überall $g(x) \le f(x)+\varepsilon$,
+weil jede der Funktionen $g_y$ diese Ungleichung erfüllt.
+Ausserdem gilt für $x\in V_{x_j}$
+\[
+g(x) = \sup_i g_{x_i}(x) \ge g_{x_j}(x) \ge f(x)-\varepsilon.
+\]
+Somit ist
+\[
+|f(x)-g(x)| \le \varepsilon.
+\]
+Damit ist $f(x)$ beliebig nahe an der Funktion $g(x)$, die sich 
+beliebig genau durch Funktionen aus $A$ approximieren lässt.
+\qedhere
+\end{enumerate}
+\end{proof}
+
+Im ersten Schritt des Beweises ist ganz entscheidend, dass man die
+Betragsfunktion konstruieren kann.
 Daraus leiten sich dann alle folgenden Konstruktionen ab.
 
 \subsubsection{Anwendung auf symmetrische und hermitesche Matrizen}
@@ -347,13 +491,66 @@ Folge $p_n(A)$ für Polynomfolgen, die $\operatorname{Sp}(A)$ gleichmässig
 gegen $f$ konvergieren.
 \end{satz}
 
-\subsubsection{Der Satz von Stone-Weierstrass für komplexe Funktionen}
+\subsubsection{Unmöglichkeit der Approximation von $z\mapsto \overline{z}$
+in $\mathbb{C}[z]$}
 Der Satz~\ref{buch:satz:stone-weierstrass} von Stone-Weierstrass für
 reelle Funktionen gilt nicht für komplexe Funktionen.
-Der Grund ist, dass im Beweis benötigt wird, dass man den Betrag
-einer Funktion approximieren können muss.
-Dies geschah, indem zunächst eine Polynom-Approximation für die 
-Quadratwurzel konstruiert wurde, die dann auf das Quadrat einer
+In diesem Abschnitt zeigen wir, dass sich die Funktion $z\mapsto\overline{z}$
+auf der Einheitskreisscheibe $K=\{z\in\mathbb{C}\;|\; |z|\le 1\}$ nicht
+gleichmässig durch Polynome $p(z)$ mit komplexen Koeffizienten approximieren
+lässt.
+
+Wäre eine solche Approximation möglich, dann könnte man $\overline{z}$
+auch durch eine Potenzreihe
+\[
+\overline{z}
+=
+\sum_{k=0}^\infty a_kz^k
+\]
+darstellen.
+Das Wegintegral beider Seiten über den Pfad $\gamma(t) = e^{it}$
+in der komplexen Ebene ist
+\begin{align*}
+\oint_\gamma z^k\,dz
+&=
+\int_0^{2\pi} e^{ikt} ie^{it}\,dt
+=
+i\int_0^{2\pi} e^{it(k+1)}\,dt
+=
+i\biggl[ \frac{1}{i(k+1)} e^{it(k+1)}\biggr]_0^{2\pi}
+=
+0
+\\
+\oint_\gamma
+\sum_{k=0}^\infty a_kz^k
+\,dz
+&=
+\sum_{k=0}^\infty a_k \oint_\gamma z^k\,dz
+=
+\sum_{k=0}^\infty a_k\cdot 0
+=
+0
+\\
+\oint_\gamma \overline{z}\,dz
+&=
+\int_0^{2\pi} e^{it} ie^{it}\,dt
+=
+i\int_0^{2\pi} \,dt = 2\pi i,
+\end{align*}
+dabei wurde $\overline{\gamma}(t)=e^{-it}$ verwendet.
+Insbesondere widersprechen sich die beiden Integrale.
+Die ursprüngliche Annahmen, $\overline{z}$ lasse sich durch Polynome
+gleichmässig approximieren, muss daher verworfen werden.
+
+\subsubsection{Der Satz von Stone-Weierstrass für komplexe Funktionen}
+Der Satz von Stone-Weierstrass kann nach dem vorangegangene Abschnitt
+also nicht gelten.
+Um den Beweis des Satzes~\ref{buch:satz:stone-weierstrass}
+auf komplexe Zahlen zu übertragen, muss im ersten Schritt ein Weg
+gefunden werden, den Betrag einer Funktion zu approximieren.
+
+Im reellen Fall geschah dies, indem zunächst eine Polynom-Approximation
+für die Quadratwurzel konstruiert wurde, die dann auf das Quadrat einer
 Funktion angewendet wurde.
 Der Betrag einer komplexen Zahl $z$ ist aber nicht allein aus $z$
 berechenbar, man braucht in irgend einer Form Zugang zu Real-

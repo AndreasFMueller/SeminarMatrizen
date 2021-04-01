@@ -1,0 +1,214 @@
+%
+% normalform.tex -- Normalform einer Matrix ermitteln
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\def\b{0.025}
+
+\def\s{2.5}
+\def\t{0.7}
+\def\T{0.5}
+
+\fill[color=darkgreen!20]
+	({-3*\s-0.5*\t},{8*\t})
+	--
+	({-3*\s+0.5*\t},{8*\t})
+	--
+	({-2*\s-0.5*\t},{7*\t})
+	--
+	({-2*\s+0.5*\t},{7*\t})
+	--
+	({-1*\s-0.5*\t},{4*\t})
+	--
+	({-1*\s+0.5*\t},{4*\t})
+	--
+	({-0.5*\t},0)
+	--
+	({-3*\s-0.5*\t},{0*\t})
+	-- cycle;
+
+
+\fill[color=white,rounded corners=3pt]
+	({-0.5*\t-\b},{-\b}) rectangle ({0.5*\t+\b},{\b+0.15});
+\draw[rounded corners=3pt]
+	({-0.5*\t-\b},{-\b}) rectangle ({0.5*\t+\b},{\b+0.15});
+\node at (0,0) [below] {$\mathcal{K}^0(A)$};
+
+\fill[color=white,rounded corners=3pt]
+	({-1*\s-0.5*\t-\b},{-\b}) rectangle ({-1*\s+0.5*\t+\b},{4*\t+\b});
+\draw[rounded corners=3pt]
+	({-1*\s-0.5*\t-\b},{-\b}) rectangle ({-1*\s+0.5*\t+\b},{4*\t+\b});
+\fill[color=blue!20,rounded corners=2pt] 
+	({-1*\s-0.5*\t+\b},{1*\t+\b}) rectangle ({-1*\s+0.5*\t-\b},{3*\t-\b});
+\draw[color=blue!40,rounded corners=2pt] 
+	({-1*\s-0.5*\t+\b},{1*\t+\b}) rectangle ({-1*\s+0.5*\t-\b},{3*\t-\b});
+\fill[color=blue!20,rounded corners=2pt] 
+	({-1*\s-0.5*\t+\b},{3*\t+\b}) rectangle ({-1*\s+0.5*\t-\b},{4*\t-\b});
+\draw[color=blue!40,rounded corners=2pt] 
+	({-1*\s-0.5*\t+\b},{3*\t+\b}) rectangle ({-1*\s+0.5*\t-\b},{4*\t-\b});
+\fill[color=red!20,rounded corners=2pt]
+	({-1*\s-0.5*\t+\b},{\b}) rectangle ({-1*\s+0.5*\t-\b},{1*\t-\b});
+\draw[color=red,rounded corners=2pt]
+	({-1*\s-0.5*\t+\b},{\b}) rectangle ({-1*\s+0.5*\t-\b},{1*\t-\b});
+\fill[color=red] ({-1*\s},{0.5*\t}) circle[radius=0.1];
+\fill[color=red,opacity=0.5] ({-1*\s},{1.5*\t}) circle[radius=0.1];
+\fill[color=red,opacity=0.5] ({-1*\s},{2.5*\t}) circle[radius=0.1];
+\fill[color=red,opacity=0.5] ({-1*\s},{3.5*\t}) circle[radius=0.1];
+\node at ({-1*\s},0) [below] {$\mathcal{K}^1(A)$};
+
+\fill[color=white,rounded corners=3pt]
+	({-2*\s-0.5*\t-\b},{-\b}) rectangle ({-2*\s+0.5*\t+\b},{7*\t+\b});
+\draw[rounded corners=3pt]
+	({-2*\s-0.5*\t-\b},{-\b}) rectangle ({-2*\s+0.5*\t+\b},{7*\t+\b});
+\fill[color=gray!20,rounded corners=2pt]
+	({-2*\s-0.5*\t+\b},{+\b}) rectangle ({-2*\s+0.5*\t-\b},{4*\t-\b});
+\draw[color=gray,rounded corners=2pt]
+	({-2*\s-0.5*\t+\b},{+\b}) rectangle ({-2*\s+0.5*\t-\b},{4*\t-\b});
+\node[color=black!70] at ({-2*\s},{2*\t}) [rotate=90] {$\mathcal{K}^1(A)$};
+\fill[color=red!20,rounded corners=2pt]
+	({-2*\s-0.5*\t+\b},{4*\t+\b}) rectangle ({-2*\s+0.5*\t-\b},{6*\t-\b});
+\draw[color=red,rounded corners=2pt]
+	({-2*\s-0.5*\t+\b},{4*\t+\b}) rectangle ({-2*\s+0.5*\t-\b},{6*\t-\b});
+\fill[color=blue!20,rounded corners=2pt] 
+	({-2*\s-0.5*\t+\b},{6*\t+\b}) rectangle ({-2*\s+0.5*\t-\b},{7*\t-\b});
+\draw[color=blue!40,rounded corners=2pt] 
+	({-2*\s-0.5*\t+\b},{6*\t+\b}) rectangle ({-2*\s+0.5*\t-\b},{7*\t-\b});
+\fill[color=red] ({-2*\s},{4.5*\t}) circle[radius=0.1];
+\fill[color=red] ({-2*\s},{5.5*\t}) circle[radius=0.1];
+\fill[color=red,opacity=0.5] ({-2*\s},{6.5*\t}) circle[radius=0.1];
+\draw[->,color=blue,line width=1.2pt,shorten >= 0.15cm,shorten <= 0.15cm]
+	({-2*\s},{6.5*\t}) -- ({-1*\s},{3.5*\t});
+\draw[->,color=blue,line width=1.2pt,shorten >= 0.15cm,shorten <= 0.15cm]
+	({-2*\s},{5.5*\t}) -- ({-1*\s},{2.5*\t});
+\draw[->,color=blue,line width=1.2pt,shorten >= 0.15cm,shorten <= 0.15cm]
+	({-2*\s},{4.5*\t}) -- ({-1*\s},{1.5*\t});
+\node at ({-2*\s},0) [below] {$\mathcal{K}^2(A)$};
+
+\fill[color=white,rounded corners=3pt]
+	({-3*\s-0.5*\t-\b},{-\b}) rectangle ({-3*\s+0.5*\t+\b},{8*\t+\b});
+\draw[rounded corners=3pt]
+	({-3*\s-0.5*\t-\b},{-\b}) rectangle ({-3*\s+0.5*\t+\b},{8*\t+\b});
+\fill[color=gray!20,rounded corners=2pt]
+	({-3*\s-0.5*\t+\b},{+\b}) rectangle ({-3*\s+0.5*\t-\b},{7*\t-\b});
+\draw[color=gray,rounded corners=2pt]
+	({-3*\s-0.5*\t+\b},{+\b}) rectangle ({-3*\s+0.5*\t-\b},{7*\t-\b});
+\node[color=black!70] at ({-3*\s},{3.5*\t}) [rotate=90] {$\mathcal{K}^2(A)$};
+\fill[color=red!20,rounded corners=2pt]
+	({-3*\s-0.5*\t+\b},{7*\t+\b}) rectangle ({-3*\s+0.5*\t-\b},{8*\t-\b});
+\draw[color=red,rounded corners=2pt]
+	({-3*\s-0.5*\t+\b},{7*\t+\b}) rectangle ({-3*\s+0.5*\t-\b},{8*\t-\b});
+\fill[color=red] ({-3*\s},{7.5*\t}) circle[radius=0.1];
+\draw[->,color=blue,line width=1.2pt,shorten >= 0.15cm,shorten <= 0.15cm]
+	({-3*\s},{7.5*\t}) -- ({-2*\s},{6.5*\t});
+\node at ({-3*\s},0) [below] {$\mathcal{K}^3(A)$};
+
+\def\xo{1}
+\def\yo{-1}
+
+\def\punkt#1#2{
+	({\xo+(#1)*\T},{\yo-(#2)*\T})
+}
+
+\fill[color=red!20] \punkt{0}{0} rectangle \punkt{1}{8};
+\fill[color=red!20] \punkt{2}{0} rectangle \punkt{3}{8};
+\fill[color=red!20] \punkt{4}{0} rectangle \punkt{5}{8};
+\fill[color=red!20] \punkt{7}{0} rectangle \punkt{8}{8};
+
+\fill[color=blue!20] \punkt{2}{1} rectangle \punkt{3}{2};
+\fill[color=blue!20] \punkt{4}{3} rectangle \punkt{5}{4};
+\fill[color=blue!20] \punkt{6}{5} rectangle \punkt{7}{6};
+\fill[color=blue!20] \punkt{7}{6} rectangle \punkt{8}{7};
+
+\draw \punkt{0}{0} rectangle \punkt{8}{8};
+
+\draw[color=gray] \punkt{0}{1} -- \punkt{3}{1} -- \punkt{3}{5} -- \punkt{8}{5};
+\draw[color=gray] \punkt{1}{0} -- \punkt{1}{3} -- \punkt{5}{3} -- \punkt{5}{8};
+
+\draw[->,color=red]
+	({-3*\s+0.5*\t+\b},{7.5*\t})
+	--
+	({0*\s+0.5*\t},{7.5*\t})
+	to[out=0,in=90]
+	({\xo+7.5*\T},{\yo});
+
+\draw[->,color=blue]
+	({-2*\s+0.5*\t+\b},{6.5*\t})
+	--
+	({0*\s+0.5*\t},{6.5*\t})
+	to[out=0,in=90]
+	({\xo+6.5*\T},{\yo});
+
+\draw[->,color=blue]
+	({-1*\s+0.5*\t+\b},{3.5*\t})
+	--
+	({0*\s+0.5*\t},{3.5*\t})
+	to[out=0,in=90]
+	({\xo+5.5*\T},{\yo});
+
+\draw[->,color=red]
+	({-2*\s+0.5*\t+\b},{5.5*\t})
+	--
+	({0*\s+0.5*\t},{5.5*\t})
+	to[out=0,in=90]
+	({\xo+4.5*\T},{\yo});
+
+\draw[->,color=red]
+	({-2*\s+0.5*\t+\b},{4.5*\t})
+	--
+	({0*\s+0.5*\t},{4.5*\t})
+	to[out=0,in=90]
+	({\xo+2.5*\T},{\yo});
+
+\draw[->,color=blue]
+	({-1*\s+0.5*\t+\b},{2.5*\t})
+	--
+	({0*\s+0.5*\t},{2.5*\t})
+	to[out=0,in=90]
+	({\xo+3.5*\T},{\yo});
+
+\draw[->,color=red]
+	({-1*\s+0.5*\t+\b},{0.5*\t})
+	--
+	({0*\s+0.5*\t},{0.5*\t})
+	to[out=0,in=90]
+	({\xo+0.5*\T},{\yo});
+
+\draw[->,color=blue]
+	({-1*\s+0.5*\t+\b},{1.5*\t})
+	--
+	({0*\s+0.5*\t},{1.5*\t})
+	to[out=0,in=90]
+	({\xo+1.5*\T},{\yo});
+
+\node at \punkt{0.5}{0.5} {$0$};
+\node at \punkt{1.5}{1.5} {$0$};
+\node at \punkt{2.5}{2.5} {$0$};
+\node at \punkt{3.5}{3.5} {$0$};
+\node at \punkt{4.5}{4.5} {$0$};
+\node at \punkt{5.5}{5.5} {$0$};
+\node at \punkt{6.5}{6.5} {$0$};
+\node at \punkt{7.5}{7.5} {$0$};
+
+\node[color=blue] at \punkt{2.5}{1.5} {$1$};
+\node[color=blue] at \punkt{4.5}{3.5} {$1$};
+\node[color=blue] at \punkt{6.5}{5.5} {$1$};
+\node[color=blue] at \punkt{7.5}{6.5} {$1$};
+
+\node at \punkt{-0.5}{4} [left] {$A=$};
+
+\end{tikzpicture}
+\end{document}
+
