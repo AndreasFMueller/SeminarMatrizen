@@ -1,10 +1,12 @@
+% !TeX spellcheck = de_CH
 Das Polynom $m(X)=X^2+2X+2$ ist als Polynom in $\mathbb{F}_3[X]$ irreduzibel.
 Dies bedeutet, dass der Ring der Polynome $\mathbb{F}_3[X] / (m(X))$ 
-ein Körper ist, man bezeichnet ihn auch mit $\mathbb{F}_3(\alpha)$,
-wobei man sich $\alpha$ als eine Nullstelle von $m(X)$
+ein Körper ist.
+Man bezeichnet ihn auch mit $\mathbb{F}_3(\alpha)$,
+wobei man sich $\alpha$ als Nullstelle von $m(X)$
 oder als die Matrix
 \[
-\alpha = \begin{pmatrix} 0&2\\1&2\end{pmatrix}
+\alpha = \begin{pmatrix} 0&1\\1&1\end{pmatrix}
 \]
 vorstellen kann.
 \begin{teilaufgaben}
@@ -70,17 +72,30 @@ Die Additions- und Multiplikationstabelle von $\mathbb{F}_3$ ist
 \end{tikzpicture}
 \end{center}
 \item
-Wegen $m(\alpha)=\alpha^2+\alpha+1=0$ folgt $\alpha+1+\alpha^{-1}=0$
-oder $\alpha^{-1} = -\alpha - 1 = 2+2\alpha$.
+Aus $m(\alpha)=\alpha^2+2\alpha+2=0$ folgt
+\begin{align*}
+  \alpha + 2 + 2\alpha^{-1} 
+  &=
+  0
+  \\
+  2\alpha^{-1} 
+  &=
+  2\alpha + 1
+  \\
+  \alpha^{-1}
+  &=
+  \alpha + 2
+  .
+\end{align*}
 Als Matrix kann man
 \[
 \alpha^{-1}
 =
-2\alpha + 2
+\alpha + 2
 =
 \begin{pmatrix}
-0&4\\
-2&4
+0&1\\
+1&1
 \end{pmatrix}
 +
 \begin{pmatrix}
@@ -88,10 +103,10 @@ Als Matrix kann man
 \end{pmatrix}
 =
 \begin{pmatrix}
-2&4\\2&2
+2&1\\1&3
 \end{pmatrix}
 \equiv
-\begin{pmatrix}2&1\\2&0\end{pmatrix}
+\begin{pmatrix}2&1\\1&0\end{pmatrix}
 \mod 3
 \]
 schreiben und durch Nachrechnen verifizieren dass, tatsächlich gilt
@@ -99,17 +114,17 @@ schreiben und durch Nachrechnen verifizieren dass, tatsächlich gilt
 \alpha\alpha^{-1}
 =
 \begin{pmatrix}
-0&2\\
-1&2
+0&1\\
+1&1
 \end{pmatrix}
 \begin{pmatrix}
 2&1\\
-2&0
+1&0
 \end{pmatrix}
 =
 \begin{pmatrix}
-4&0\\
-6&1
+1&0\\
+3&1
 \end{pmatrix}
 \equiv
 \begin{pmatrix}
@@ -125,9 +140,11 @@ Im ersten Schritt ist es
 \[
 \arraycolsep=1.4pt
 \begin{array}{rcrcrcrcrcr}
- \llap{$($}X^2&+&X&+&1\rlap{$)$}&\;:&(X&+&1)&=&X = q_1\\
-\llap{$-($}X^2&+&X\rlap{$)$}& &  & &  & &  & & \\ \cline{1-3}
-     & &0&+&1 &\rlap{$\mathstrut = r_1$}\phantom{)}& &  & &  & \\
+  \llap{$($}X^2&+&2X&+&2\rlap{$)$}&\;:&(X&+&1)&=&X + 1 = q_1\\
+ \llap{$-($}X^2&+&X\rlap{$)$}& &  & &  & &  & & \\ \cline{1-3}
+     & &X&+&2 & & &  & &  & \\
+ & & \llap{$-($}X&+&1\rlap{$)$} & &  & &  & & \\ \cline{3-5}
+ & & & &1 &\rlap{$\mathstrut = r_1$}\phantom{)}& &  & & &\\
 \end{array}
 \]
 Die nächste Division ist $(X+1) : 1$, die als Quotient $q_2=X+1$ und den
@@ -152,53 +169,77 @@ Q(q_1)
 0&1\\1&2X+2
 \end{pmatrix}
 \begin{pmatrix}
-0&1\\{\color{red}1}&{\color{red}2X}
+0&1\\1&2X+2
 \end{pmatrix}
 =
 \begin{pmatrix}
-{\color{red}1}&{\color{red}2X}\\
-2X&X^2+X+1
+1&2X+2\\
+2X+2&X^2+X+2
 \end{pmatrix}.
 \end{align*}
-Die gesuchten Polynome sind $s=1$ und $t=2X$ und man kann nachrechnen,
+Die gesuchten Polynome sind $s=1$ und $t=2X+2$ und man kann nachrechnen,
 dass
 \begin{align*}
 s\cdot m(X) + t\cdot (X+1)
 &=
-X^2+X+1 + 2X\cdot (X+1)
-=
-X^2+X+1 + 2X^2 + 2X
+X^2+2X+2 + (2X+2)\cdot (X+1)
 \\
-&= 3X^2+3X+1\equiv 1 \mod 3.
+&=
+X^2+2X+2 + 2X^2 + 4X + 2
+\\
+&= 3X^2+6X+1\\
+&\equiv 1 \mod 3.
 \end{align*}
 Natürlich kann man $s$ und $t$ auch mit der erweiterten Tabelle
 finden:
 \begin{center}
 \begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|>{$}c<{$}|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|}
 \hline
-k&    a_k&b_k& q_k&r_k& c_k&     d_k\\
+k&    a_k&b_k & q_k&r_k& c_k&     d_k\\
 \hline
- &       &   &    &   &   1&       0\\
-0&X^2+X+1&X+1& X  &  1&   0&       1\\
-1&    X+1&  1& X+1&  0&{\color{red}   1}&{\color{red}      2X}\\
-2&      1&  0&    &  0&2X+2& 2X^2+2X\\
+ &        &   &    &   &   1&       0\\
+0&X^2+2X+2&X+1& X+1&  1&   0&       1\\
+1&     X+1&  1& X+1&  0&   1&    2X+2\\
+2&       1&  0&    &  0&2X+2&X^2+2X+2\\
 \hline
 \end{tabular}
 \end{center}
-In allen Fällen ist also $(1+X)^{-1} = 2X$.
+In allen Fällen ist also $(X+1)^{-1} = 2X+2$.
 \item
-Wegen $m(\alpha)=0$ ist $\alpha^2=-\alpha-1=2\alpha+2$ und damit
+Wegen $m(\alpha)=\alpha^2 + 2\alpha + 2 = 0$ ist
+$\alpha^2=-2\alpha-2=\alpha+1$ und damit
 \begin{align*}
 \alpha^3
 &=
-\alpha\cdot \alpha^2 = \alpha (2\alpha +2) = 
-2\alpha^2 + 2\alpha
+\alpha\cdot \alpha^2 = \alpha (\alpha +1) = 
+\alpha^2 + \alpha
 =
-2(\underbrace{\alpha^2 + \alpha + 1}_{\displaystyle=0} + 2)
-=
-2\cdot 2
-=
-1.
+2\alpha+1
+.
+\end{align*}
+Die restlichen Potenzen von $\alpha$ sind
+\begin{align*}
+  \alpha^4
+  &=
+  \alpha (2\alpha+1)
+  = 2\alpha^2 + \alpha
+  = 2\alpha + 2 + \alpha = 2
+  \\
+  \alpha^5
+  &=
+  2\alpha
+  \\
+  \alpha^6
+  &=
+  2\alpha^2
+  =
+  2\alpha + 2
+  \\
+  \alpha^7
+  &=
+  2\alpha^2 + 2\alpha
+  =
+  \alpha + 2
 \qedhere
 \end{align*}
 \end{teilaufgaben}
