@@ -5,7 +5,7 @@
 #
 all:	sp.pdf nilpotent.pdf kernbild.pdf kombiniert.pdf \
 	wurzelapprox.pdf wurzel.pdf dimjk.pdf jknilp.pdf \
-	normalform.pdf
+	normalform.pdf minmax.pdf
 
 sp.pdf:	sp.tex sppaths.tex
 	pdflatex sp.tex
@@ -40,3 +40,5 @@ jknilp.pdf:	jknilp.tex
 normalform.pdf:	normalform.tex
 	pdflatex normalform.tex
 
+minmax.pdf:	minmax.tex
+	pdflatex minmax.tex

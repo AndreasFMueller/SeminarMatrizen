@@ -327,6 +327,20 @@ ist monoton wachsend und approximiert die Wurzelfunktion $t\mapsto\sqrt{t}$
 gleichmässig auf dem Intervall $[0,1]$.
 \end{satz}
 
+\begin{figure}
+\centering
+\includegraphics{chapters/40-eigenwerte/images/minmax.pdf}
+\caption{Graphische Erklärung der
+Identitäten~\eqref{buch:eigenwerte:eqn:minmax} für
+$\max(f(x),g(x))$ und $\min(f(x),g(x))$.
+Die purpurrote Kurve stellt den Mittelwert von $f(x)$ und $g(x)$ dar,
+die vertikalen grünen Linien haben die Länge der Differenz $|f(x)-g(x)|$.
+Das Maximum erhält man, indem man den halben Betrag der Differenz zum
+Mittelwert hinzuaddiert, das Minimum erhält man durch Subtraktion
+der selben Grösse.
+\label{buch:eigenwerte:fig:minmax}}
+\end{figure}
+
 \begin{proof}[Beweis]
 Wer konstruieren zunächst das in
 Abbildung~\ref{buch:eigenwerte:fig:wurzelverfahren}
@@ -368,13 +382,18 @@ Folge, die $\max(f,g)$ gleichmässig beliebig genau approximiert
 und eine monoton fallende Folge, die $\min(f,g)$ gleichmässig beliebig 
 genau approximiert.
 
+
 Diese Folgen können aus der Approximationsfolge für den Betrag einer
 Funktion und den Identitäten
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 \max(f,g) &= \frac12(f+g+|f-g|) \\
 \min(f,g) &= \frac12(f+g-|f-g|) 
-\end{align*}
-gefunden werden.
+\end{aligned}
+\label{buch:eigenwerte:eqn:minmax}
+\end{equation}
+gefunden werden, die in Abbildung~\ref{buch:eigenwerte:fig:minmax}
+graphisch erklärt werden.
 \item Schritt: Zu zwei beliebigen Punkten $x,y\in K$ und Werten
 $\alpha,\beta\in\mathbb{R}$ gibt es immer eine Funktion in $A$,
 die in den Punkten $x,y$ die vorgegebenen Werte $\alpha$ bzw.~$\beta$
