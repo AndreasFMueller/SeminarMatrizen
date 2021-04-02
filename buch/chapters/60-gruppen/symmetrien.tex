@@ -93,8 +93,183 @@ ihre Normale erhalten.
 Die folgenden Beispiele sollen zeigen, wie solche Symmetriedefinitionen
 auf algebraische Bedingungen an die Matrixelemente führen.
 
+Zu jeder Abbildung $f\colon\mathbb{R}^n\to\mathbb{R}^n$, unter der 
+ein geometrisches Objekt in $\mathbb{R}^n$ symmetrisch ist, können wir
+sofort weitere Abbildungen angeben, die ebenfalls Symmetrien sind.
+Zum Beispiel sind die iterierten Abbildungen $f\circ f$, $f\circ f\circ f$
+u.~s.~w., die wir auch $f^n$ mit $n\in\mathbb{N}$ schreiben werden,
+ebenfalls Symmetrien.
+Wenn die Symmetrie auch umkehrbar ist, dann gilt dies sogar für alle
+$n\in\mathbb{Z}$.
+Wir erhalten so eine Abbildung
+$\varphi\colon \mathbb{Z}\to \operatorname{GL}_n(\mathbb{R}):n\mapsto f^n$
+mit den Eigenschaften $\varphi(0)=f^0 = I$ und
+$\varphi(n+m)=f^{n+m}=f^n\circ f^m = \varphi(n)\circ\varphi(m)$.
+$\varphi$ ist ein Homomorphismus der Gruppe $\mathbb{Z}$ in die Gruppe
+$\operatorname{GL}_n(\mathbb{R})$.
+Wir nennen dies eine {\em diskrete Symmetrie}.
 
-\subsection{Manningfaltigkeiten
+\subsection{Kontinuierliche Symmetrien
+\label{buch:subsection:kontinuierliche-symmetrien}}
+Von besonderem Interesse sind kontinuierliche Symmetrien.
+Dies sind Abbildungen eines Systems, die von einem Parameter
+abhängen.
+Zum Beispiel können wir Drehungen der Ebene $\mathbb{R}^2$ um den
+Winkel $\alpha$ durch Matrizen 
+\[
+D_{\alpha}
+=
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha& \cos\alpha
+\end{pmatrix}
+\]
+beschrieben werden.
+Ein Kreis um den Nullpunkt bleibt unter jeder dieser Drehungen invariant.
+Im Gegensatz dazu sind alle $3n$-Ecke mit Schwerpunkt $0$ nur invariant
+unter der einen Drehung $D_{\frac{2\pi}3}$ invariant.
+Die kleinste Menge, die einen vorgegebenen Punkt enthält und unter
+allen Drehungen $D_\alpha$ invariant ist, ist immer ein Kreis um
+den Nullpunkt.
+
+\begin{definition}
+Ein Homomorphismus $\varphi\colon\mathbb{R}\to\operatorname{GL}_n(\mathbb{R})$
+von der additiven Gruppe $\mathbb{R}$ in die allgemeine lineare Gruppe
+heisst eine {\em Einparameter-Untergruppe} von
+$\operatorname{GL}(\mathbb{R})$.
+\end{definition}
+
+Die Abbildung 
+\[
+\varphi
+\colon
+\mathbb{R}\to\operatorname{GL}_n(\mathbb{R})
+:
+\alpha \mapsto
+D_{\alpha}
+=
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha& \cos\alpha
+\end{pmatrix}
+\]
+ist also eine Einparameter-Untergruppe von $\operatorname{GL}_2(\mathbb{R})$.
+
+\subsubsection{Der harmonische Oszillator}
+Eine Masse $m$ verbunden mit einer Feder mit der Federkonstanten $K$
+schwingt um die Ruhelage $x=0$ entsprechend der Differentialgleichung
+\[
+m\frac{d^2}{dt^2} x(t) =  -Kx(t).
+\]
+Die Kreisfrequenz der Schwingung ist
+\[
+\omega = \sqrt{\frac{K}{m}}.
+\]
+Das System kann als zweidimensionales System im Phasenraum mit den 
+Koordinaten $x_1=x$ und $x_2=p=m\dot{x}$ beschrieben werden.
+Die zweidimensionale Differentialgleichung ist
+\begin{equation}
+\left.
+\begin{aligned}
+\dot{x}(t) &= \frac{1}{m}p(t)\\
+\dot{p}(t) &= -Kx(t) 
+\end{aligned}
+\quad
+\right\}
+\qquad\Rightarrow\qquad
+\frac{d}{dt}
+\begin{pmatrix}x(t)\\p(t)\end{pmatrix}
+=
+\begin{pmatrix}
+0&\frac{1}{m}\\
+-K&0
+\end{pmatrix}
+\begin{pmatrix}x(t)\\p(t)\end{pmatrix}.
+\label{chapter:gruppen:eqn:phasenraumdgl}
+\end{equation}
+Die Lösung der Differentialgleichung für die Anfangsbedingung $x(0)=1$ und
+$p(0)=0$ ist
+\[
+x(t)
+=
+\cos \omega t
+\qquad\Rightarrow\qquad
+p(t)
+=
+-\omega \sin\omega t,
+\]
+die Lösung zur Anfangsbedingung $x(0)=0$ und $p(0)=1$ ist
+\[
+x(t) = \frac{1}{\omega} \sin\omega t,
+\qquad
+p(t) = \cos \omega t.
+\]
+In Matrixform kann man die allgemeine Lösung zur Anfangsbedingun $x(0)=x_0$
+und $p(0)=p_0$
+\[
+\begin{pmatrix}
+x(t)\\
+p(t)
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+ \cos \omega t & \frac{1}{\omega} \sin\omega t \\
+-\omega \sin\omega t & \cos\omega t
+\end{pmatrix}
+}_{\Phi_t}
+\begin{pmatrix}x_0\\p_0\end{pmatrix}
+\]
+schreiben.
+Die Matrizen $\Phi_t$ bilden eine Einparameter-Untergruppe von
+$\operatorname{GL}_n(\mathbb{R})$, da
+\begin{align*}
+\Phi_s\Phi_t
+&=
+\begin{pmatrix}
+ \cos\omega s & \frac{1}{\omega} \sin\omega s \\
+-\omega \sin\omega s & \cos\omega s
+\end{pmatrix}
+\begin{pmatrix}
+ \cos\omega t & \frac{1}{\omega} \sin\omega t \\
+-\omega \sin\omega t & \cos\omega t
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+\cos\omega s \cos\omega t - \sin\omega s \sin\omega t 
+& \frac{1}{\omega} ( \cos\omega s \sin\omega t + \sin\omega s \cos \omega t)
+\\
+-\omega (\sin\omega s \cos\omega t + \cos\omega s \sin\omega t )
+& \cos\omega s \cos\omega t -\sin\omega s \sin\omega t 
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+ \cos\omega(s+t) & \frac{1}{\omega}\sin\omega(s+t) \\
+-\omega \sin\omega(s+t) & \cos\omega(s+t)
+\end{pmatrix}
+=
+\Phi_{s+t}
+\end{align*}
+gilt.
+Die Lösungen der 
+Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
+sind in Abbildung~\ref{chapter:gruppen:fig:phasenraum}
+Die Matrizen $\Phi_t$ beschreiben eine kontinuierliche Symmetrie
+des Differentialgleichungssystems, welches den harmonischen Oszillator
+beschreibt.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/phasenraum.pdf}
+\caption{Die Lösungen der
+Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
+im Phasenraum sind Ellipsen mit Halbachsenverhältnis $\omega^{-1}$.
+\label{chapter:gruppen:fig:phasenraum}}
+\end{figure}
+
+\subsection{Mannigfaltigkeiten
 \label{buch:subsection:mannigfaltigkeit}}
 
 \subsection{Der Satz von Noether
