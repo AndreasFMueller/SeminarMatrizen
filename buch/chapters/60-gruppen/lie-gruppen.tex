@@ -6,6 +6,105 @@
 \section{Lie-Gruppen
 \label{buch:section:lie-gruppen}}
 \rhead{Lie-Gruppen}
+Die in bisherigen Beispielen untersuchten Matrizengruppen zeichnen sich
+durch zusätzliche Eigenschaften aus.
+Die Gruppe
+\[
+\operatorname{GL}_n(\mathbb{R}) 
+=
+\{ A \in M_n(\mathbb{R})\;|\; \det A \ne 0\}
+\]
+besteht aus den Matrizen, deren Determinante nicht $0$ ist.
+Da die Menge der Matrizen mit $\det A=0$ eine abgeschlossene Menge
+in $M_n(\mathbb{R}) \simeq \mathbb{R}^{n^2}$ ist, ist
+$\operatorname{GL}_n(\mathbb{R})$ eine offene Teilmenge in $\mathbb{R}^{n^2}$,
+sie besitzt also automatisch die Struktur einer $n^2$-Mannigfaltigkeit.
+Dies gilt jedoch auch für alle anderen Matrizengruppen, die in diesem
+Abschnitt genauer untersucht werden sollen.
+
+\subsection{Mannigfaltigkeitsstruktur der Matrizengruppen
+\label{buch:subsection:mannigfaltigkeitsstruktur-der-matrizengruppen}}
+Eine Matrizengruppe wird automatsich zu einer Mannigfaltigkeit,
+wenn es gelingt, eine Karte für eine Umgebung des neutralen Elements
+zu finden.
+Dazu muss gezeigt werden, dass sich aus einer solchen Karte für jedes
+andere Gruppenelement eine Karte für eine Umgebung ableiten lässt.
+Sei also $\varphi_e\colon U_e\mathbb{R}^N$ eine Karte für die Umgebung
+$U_e\subset G$ von $e\in G$.
+Für $g\in G$ ist dann die Abbildung
+\[
+\varphi_g
+\colon
+U_g
+=
+gU_e
+\to
+\mathbb{R}
+:
+h\mapsto \varphi_e(g^{-1}h)
+\]
+eine Karte für die Umgebung $U_g$ des Gruppenelementes $g$.
+schreibt man $l_{g}$ für  die Abbildung $h\mapsto gh$, dann
+kann man die Kartenabbildung auch $\varphi_g = \varphi_e\circ l_{g^{-1}}$
+schreiben.
+
+Die Kartenwechsel-Abbildungen für zwei Karten $\varphi_{g_1}$
+und $\varphi_{g_2}$ ist die Abbildung
+\[
+\varphi_{g_1,g_2}
+=
+\varphi_{g_1}\circ \varphi_{g_2}^{-1}
+=
+\varphi_e\circ l_{g_1^{-1}} \circ (\varphi_e\circ l_{g_2^{-1}})^{-1}
+=
+\varphi_e\circ l_{g_1^{-1}} \circ l_{g_2^{-1}}^{-1} \varphi_e^{-1}
+=
+\varphi_e\circ l_{g_1^{-1}} \circ l_{g_2}\varphi_e^{-1}
+=
+\varphi_e\circ l_{g_1^{-1}g_2}\varphi_e^{-1}
+\]
+mit der Ableitung
+\[
+D\varphi_e\circ Dl_{g_1^{-1}g_2} D\varphi_e^{-1}
+=
+D\varphi_e\circ Dl_{g_1^{-1}g_2} (D\varphi_e)^{-1}.
+\]
+Die Abbildung $l_{g_1^{-1}g_2}$ ist aber nur die Multiplikation mit
+einer Matrix, also eine lineare Abbildung, so dass der Kartenwechsel
+nichts anderes ist als die Darstellung der Matrix der Linksmultiplikation
+$l_{g_1^{-1}g_2}$ im Koordinatensystem der Karte $U_e$ ist.
+Differenzierbarkeit der Kartenwechsel ist damit sichergestellt,
+die Matrizengruppen sind automatisch differenzierbare Mannigfaltigkeiten.
+
+Die Konstruktion aller Karten aus einer einzigen Karte für eine
+Umgebung des neutralen Elements zeigt auch, dass es für die Matrizengruppen
+reicht, wenn man die Elemente in einer Umgebung des neutralen
+Elementes parametrisieren kann.
+Dies ist jedoch nicht nur für die Matrizengruppen möglich.
+Wenn eine Gruppe gleichzeitig eine differenzierbare Mannigfaltigkeit
+ist, dann können Karten über die ganze Gruppe transportiert werden,
+wenn die Multiplikation mit Gruppenelementen eine differenzierbare
+Abbildung ist.
+Solche Gruppen heissen auch Lie-Gruppen gemäss der folgenden Definition.
+
+\begin{definition}
+\index{Lie-Gruppe}%
+Eine {\em Lie-Gruppe} ist eine Gruppe, die gleichzeitig eine differenzierbare
+Mannigfaltigkeit ist derart, dass die Abbildungen
+\begin{align*}
+G\times G \to G &: (g_1,g_2)\mapsto g_1g_2
+G\to G &: g \mapsto g^{-1}
+\end{align*}
+differenzierbare Abbildungen zwischen Mannigfaltigkeiten sind.
+\end{definition}
+
+Die Abstraktheit dieser Definition täuscht etwas über die 
+Tatsache hinweg, dass sich mit Hilfe der Darstellungstheorie
+jede beliebige Lie-Gruppe als Untermannigfaltigkeit einer 
+Matrizengruppe verstehen lässt.
+Das Studium der Matrizengruppen erlaubt uns daher ohne grosse
+Einschränkungen ein Verständnis für die Theorie der Lie-Gruppen
+zu entwickeln.
 
 \subsection{Drehungen in der Ebene
 \label{buch:gruppen:drehungen2d}}

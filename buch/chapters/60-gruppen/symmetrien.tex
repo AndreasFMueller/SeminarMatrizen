@@ -405,7 +405,7 @@ umrechnen können auf die Kugelkoordinaten.
 Dazu muss seine Umrechnungsformel von kartesischen Koordinaten
 auf Kugelkoordinaten differenzierbar sein.
 
-Diese Idee wird vom Konzept der Mannigfaltigkeit verallgemeinert.
+Diese Idee wird durch das Konzept der Mannigfaltigkeit verallgemeinert.
 Eine $n$-dimensionale {\em Mannigfaltigkeit} ist eine Menge $M$ von Punkten,
 die lokal, also in der Umgebung eines Punktes, mit möglicherweise mehreren
 verschiedenen Koordinatensystemen versehen werden kann.
@@ -413,14 +413,30 @@ Ein Koordinatensystem ist eine umkehrbare Abbildung einer offenen Teilmenge
 $U\subset M$ in den Raum $\mathbb{R}^n$.
 Die Komponenten dieser Abbildung heissen die {\em Koordinaten}.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/karten.pdf}
+\caption{Karten
+$\varphi_\alpha\colon U_\alpha\to \mathbb{R}^2$
+und
+$\varphi_\beta\colon U_\beta\to \mathbb{R}^2$
+auf einem Torus.
+Auf dem Überschneidungsgebiet $\varphi_\alpha^{-1}(U_\alpha\cap U_\beta)$
+ist der Kartenwechsel $\varphi_\beta\circ\varphi_\alpha^{-1}$ wohldefiniert
+und muss differnzierbar sein, wenn eine differenzierbare Mannigfaltigkeit
+entstehen soll.
+\label{buch:gruppen:fig:karten}}
+\end{figure}
+
 \begin{definition}
 Eine Karte auf $M$ ist eine umkehrbare Abbildung
-$\varphi\colon U\to \mathbb{R}^n$.
+$\varphi\colon U\to \mathbb{R}^n$ (siehe auch
+Abbildung~\ref{buch:gruppen:fig:karten}).
 Ein differenzierbarer Atlas ist eine Familie von Karten $\varphi_\alpha$
 derart, dass die Definitionsgebiete $U_\alpha$ die ganze Menge $M$
 überdecken, und dass die Kartenwechsel Abbildungen
 \[
-\varphi_\beta\circ\varphi_\alpha^{-1}
+\varphi_{\beta\alpha}=\varphi_\beta\circ\varphi_\alpha^{-1}
 \colon
 \varphi_\alpha(U_\alpha\cap U_\beta)
 \to
@@ -513,8 +529,65 @@ konstruieren, der $S^n$ zu einer $n$-dimensionalen Mannigfaltigkeit macht.
 \end{beispiel}
 
 \subsubsection{Tangentialraum}
+Mit Hilfe einer Karte $\varphi_\alpha\colon U_\alpha\to\mathbb{R}^n$
+kann das Geschehen in einer Mannigfaltigkeit in den vertrauten 
+$n$-dimensionalen Raum $\mathbb{B}^n$ transportiert werden. 
+Eine Kurve $\gamma\colon \mathbb{R}\to M$, die so parametrisiert sein
+soll, dass $\gamma(t)\in U_\alpha$ für $t$ in einer Umgebung $I$ von $0$ ist,
+wird von der Karte in eine Kurve
+$\gamma_\alpha=\varphi_\alpha\circ\gamma\colon I\to \mathbb{R}^n$ 
+abgebildet,
+deren Tangentialvektor wieder ein Vektor in $\mathbb{R}^n$ ist.
 
-\subsubsection{Einbettung und Karten}
+Eine zweite Karte $\varphi_\beta$ führt auf eine andere Kurve
+mit der Parametrisierung
+$\gamma_\beta=\varphi_\beta\circ\gamma\colon I \to \mathbb{R}^n$ 
+und einem anderen Tangentialvektor.
+Die beiden Tangentialvektoren können aber mit der Ableitung der
+Koordinatenwechsel-Abbildung
+$\varphi_{\beta\alpha}=\varphi_\beta\circ\varphi_\alpha^{-1}\colon
+\varphi_\alpha(U_\alpha\cap U_\beta)\to \mathbb{R}^n$
+ineinander umgerechnet werden.
+Aus
+\[
+\gamma_\beta
+=
+\varphi_\beta\circ \gamma
+=
+(
+\varphi_\beta
+\circ
+\varphi_\alpha^{-1}
+)
+\circ
+\varphi_\alpha\circ\gamma
+=
+\varphi_{\beta\alpha}
+\circ
+\varphi_\alpha\circ\gamma
+=
+\varphi_{\beta\alpha}\circ\gamma_\alpha
+\]
+folgt durch Ableitung nach dem Kurvenparameter $t$, dass
+\[
+\frac{d}{dt}\gamma_\beta(t)
+=
+D\varphi_{\beta\alpha} \frac{d}{dt}\gamma_\alpha(t).
+\]
+Die Ableitung $D\varphi_{\beta\alpha}$ von $\varphi_{\beta\alpha}$ 
+an der Stelle $\gamma_\alpha(t)$ berechnet also aus dem Tangentialvektor
+einer Kurve in der Karte $\varphi_\alpha$ den Tangentialvektor der
+Kurve in der Karte $\varphi_\beta$.
+
+Die Forderung nach Differenzierbarkeit der Kartenwechselabbildungen
+$\varphi_{\beta\alpha}$ stellt also nur sicher, dass die Beschreibung
+eines Systemes mit Differentialgleichungen in verschiedenen
+Koordinatensystemen auf die gleichen Lösungskurven in der
+Mannigfaltigkeit führt.
+Insbesondere ist die Verwendung von Karten ist also nur ein Werkzeug,
+mit dem die Unmöglichkeit einer globalen Besschreibung einer
+Mannigfaltigkeit $M$ mit einem einzigen globalen Koordinatensystem
+ohne Singularitäten umgangen werden kann.
 
 \subsection{Der Satz von Noether
 \label{buch:subsection:noether}}
