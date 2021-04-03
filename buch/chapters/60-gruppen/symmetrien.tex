@@ -156,6 +156,14 @@ D_{\alpha}
 ist also eine Einparameter-Untergruppe von $\operatorname{GL}_2(\mathbb{R})$.
 
 \subsubsection{Der harmonische Oszillator}
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/phasenraum.pdf}
+\caption{Die Lösungen der
+Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
+im Phasenraum sind Ellipsen mit Halbachsenverhältnis $\omega^{-1}$.
+\label{chapter:gruppen:fig:phasenraum}}
+\end{figure}
 Eine Masse $m$ verbunden mit einer Feder mit der Federkonstanten $K$
 schwingt um die Ruhelage $x=0$ entsprechend der Differentialgleichung
 \[
@@ -206,7 +214,7 @@ p(t) = \cos \omega t.
 \]
 In Matrixform kann man die allgemeine Lösung zur Anfangsbedingun $x(0)=x_0$
 und $p(0)=p_0$
-\[
+\begin{equation}
 \begin{pmatrix}
 x(t)\\
 p(t)
@@ -217,9 +225,10 @@ p(t)
  \cos \omega t & \frac{1}{\omega} \sin\omega t \\
 -\omega \sin\omega t & \cos\omega t
 \end{pmatrix}
-}_{\Phi_t}
+}_{\displaystyle =\Phi_t}
 \begin{pmatrix}x_0\\p_0\end{pmatrix}
-\]
+\label{buch:gruppen:eqn:phi}
+\end{equation}
 schreiben.
 Die Matrizen $\Phi_t$ bilden eine Einparameter-Untergruppe von
 $\operatorname{GL}_n(\mathbb{R})$, da
@@ -260,17 +269,252 @@ Die Matrizen $\Phi_t$ beschreiben eine kontinuierliche Symmetrie
 des Differentialgleichungssystems, welches den harmonischen Oszillator
 beschreibt.
 
-\begin{figure}
-\centering
-\includegraphics{chapters/60-gruppen/images/phasenraum.pdf}
-\caption{Die Lösungen der
+\subsubsection{Fluss einer Differentialgleichung}
+Die Abbildungen $\Phi_t$ von \eqref{buch:gruppen:eqn:phi} sind jeweils
+Matrizen in $\operatorname{GL}_n(\mathbb{R})$.
+Der Grund dafür ist, dass die
 Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
-im Phasenraum sind Ellipsen mit Halbachsenverhältnis $\omega^{-1}$.
-\label{chapter:gruppen:fig:phasenraum}}
-\end{figure}
+linear ist.
+Dies hat zur Folge, dass für zwei Anfangsbedingungen $x_1,x_2\in\mathbb{R}^2$
+die Lösung für Linearkombinationen $\lambda x_1+\mu x_2$ durch
+Linearkombination der Lösungen erhalten werden kann, also
+aus der Formel
+\[
+\Phi_t (\lambda x_1 + \mu x_2) = \lambda \Phi_t x_1 + \mu \Phi_t x_2.
+\]
+Dies zeigt, dass $\Phi_t$ für jedes $t$ eine lineare Abbildung sein muss.
+
+Für eine beliebige Differentialgleichung kann man immer noch eine Abbildung
+$\Phi$ konstruieren, die aber nicht mehr linear ist.
+Sei dazu die Differentialgleichung erster Ordnung
+\begin{equation}
+\frac{dx}{dt}
+=
+f(t,x)
+\qquad\text{mit}\qquad
+f\colon \mathbb{R}\times\mathbb{R}^n \to \mathbb{R}^n
+\label{buch:gruppen:eqn:dgl}
+\end{equation}
+gegeben.
+Für jeden Anfangswert $x_0\in\mathbb{R}^n$ kann man mindestens für eine
+gewisse Zeit $t <\varepsilon$ eine Lösung $x(t,x_0)$ finden mit $x(t,x_0)=x_0$.
+Aus der Theorie der gewöhnlichen Differentialgleichungen ist auch
+bekannt, dass $x(t,x_0)$ mindestens in der Nähe von $x_0$ differenzierbar von
+$x_0$ abhängt.
+Dies erlaubt eine Abbildung
+\[
+\Phi\colon \mathbb{R}\times \mathbb{R}^n \to \mathbb{R}^n
+:
+(t,x_0) \mapsto \Phi_t(x_0) = x(t,x_0)
+\]
+zu definieren, die sowohl von $t$ als auch von $x_0$ differenzierbar
+abhängt.
+Aus der Definition folgt unmittelbar, dass $\Phi_0(x_0)=x_0$ ist, dass
+also $\Phi_0$ die identische Abbildung von $\mathbb{R}^n$ ist.
+
+Aus der Definition lässt sich auch ableiten, dass
+$\Phi_{s+t}=\Phi_s\circ\Phi_t$ gilt.
+$\Phi_t(x_0)=x(t,x_0)$ ist der Endpunkt der Bahn, die bei $x_0$ beginnt
+und sich während der Zeit $t$ entwickelt.
+$\Phi_s(x(t,x_0))$ ist dann der Endpunkt der Bahn, die bei $x(t,x_0)$ 
+beginnt und sich während der Zeit $s$ entwickelt.
+Somit ist $\Phi_s\circ \Phi_t(x_0)$ der Endpunkt der Bahn, die bei
+$x_0$ beginnt und sich über die Zeit $s+t$ entwickelt.
+In Formeln bedeutet dies
+\[
+\Phi_{s+t} = \Phi_s\circ \Phi_t.
+\]
+Die Abbildung $t\mapsto \Phi_t$ ist also wieder ein Homomorphismus
+von der additiven Gruppe $\mathbb{R}$ in eine Gruppe von differenzierbaren
+Abbildungen $\mathbb{R}^n\to\mathbb{R}^n$.
+
+\begin{definition}
+Die Abbildung
+\[
+\Phi\colon \mathbb{R}\times\mathbb{R}^n\to\mathbb{R}^n
+:
+(t,x_0) \mapsto \Phi_t(x_0) = x(t,x_0)
+\]
+heisst der {\em Fluss} der Differentialgleichung
+\eqref{buch:gruppen:eqn:dgl},
+wenn für jedes $x_0\in\mathbb{R}^n$ die Kurve $t\mapsto \Phi_t(x_0)$
+eine Lösung der Differentialgleichung ist mit Anfangsbedingung $x_0$.
+\end{definition}
+
+Die Abbildung $\Phi_t$ von \eqref{buch:gruppen:eqn:phi} ist also
+der Fluss der Differentialgleichung des harmonischen Oszillators.
 
 \subsection{Mannigfaltigkeiten
 \label{buch:subsection:mannigfaltigkeit}}
+Eine Differentialgleichung der Form~\eqref{buch:gruppen:eqn:dgl}
+stellt einen Zusammenhang her zwischen einem Punkt $x$ und der
+Tangentialrichtung einer Bahnkurve $f(t,x)$.
+Die Ableitung liefert die lineare Näherung der Bahkurve
+\[
+x(t_0+h) = x(t_0) + h f(t_0,x_0) + o(h)
+\]
+für $h$ in einer kleinen Umgebung von $0$.
+Das funktioniert auch, weil $f(t_0,x_0)$ selbst ein Vektor von
+$\mathbb{R}^n$ ist, in dem die Bahnkurve verläuft.
+
+Diese Idee funktioniert nicht mehr zum Beispiel für eine
+Differentialgleichung auf einer Kugeloberfläche, weil alle Punkte
+$x(t_0)+hf(t_0,x_0)$ für alle $h\ne 0$ nicht mehr auf der Kugeloberfläche
+liegen.
+Physikalisch äussert sich das ein einer zusätzlichen Kraft, die nötig
+ist, die Bahn auf der Kugeloberfläche zu halten.
+Diese Kraft stellt zum Beispiel sicher, dass die Vektoren $f(t,x)$ für
+Punkte $x$ auf der Kugeloberfläche immer tangential an die Kugel sind.
+Trotzdem ist der Tangentialvektor oder der Geschwindigkeitsvektor 
+nicht mehr ein Objekt, welches als Teil der Kugeloberfläche definiert
+werden kann, er kann nur definiert werden, wenn man sich die Kugel als
+in einen höherdimensionalen Raum eingebettet vorstellen kann.
+
+Um die Idee der Differentialgleichung auf einer beliebigen Fläche
+konsistent zu machen ist daher notwendig, die Idee einer Tagentialrichtung
+auf eine Art zu definieren, die nicht von der Einbettung der Fläche
+in den $n$-dimensionalen Raum abhängig ist.
+Das in diesem Abschnitt entwickelte Konzept der {\em Mannigfaltigkeit}
+löst dieses Problem.
+
+\subsubsection{Karten}
+Die Navigation auf der Erdoberfläche verwendet das Koordinatensystem
+der geographischen Länge und Breite.
+Dieses Koordinatensystem funktioniert gut, solange man sich nicht an
+den geographischen Polen befindet, denn deren Koordinaten sind
+nicht mehr eindeutig.
+Alle Punkte mit geographischer Breite $90^\circ$ und beliebiger 
+geographischer Länge beschreiben den Nordpol.
+Auch die Ableitung funktioniert dort nicht mehr.
+Bewegt man sich mit konstanter Geschwindigkeit über den Nordpol,
+springt die Ableitung der geographischen Breite von einem positiven
+Wert auf einen negativen Wert, sie kann also nicht differenzierbar sein.
+Diese Einschränkungen sind in der Praxis nur ein geringes Problem dar,
+da die meisten Reisen nicht über die Pole erfolgen.
+
+Der Polarforscher, der in unmittelbarer Umgebung des Poles arbeitet,
+kann das Problem lösen, indem er eine lokale Karte für das Gebiet
+um den Pol erstellt.
+Dafür kann er beliebige Koordinaten verwenden, zum Beispiel auch
+ein kartesisches Koordinatensystem, er muss nur eine Methode haben,
+wie er seine Koordinaten wieder auf geographische Länge und Breite
+umrechnen will.
+Und wenn er über Geschwindigkeiten kommunizieren will, dann muss
+er auch Ableitungen von Kurven in seinem kartesischen Koordinatensystem
+umrechnen können auf die Kugelkoordinaten.
+Dazu muss seine Umrechnungsformel von kartesischen Koordinaten
+auf Kugelkoordinaten differenzierbar sein.
+
+Diese Idee wird vom Konzept der Mannigfaltigkeit verallgemeinert.
+Eine $n$-dimensionale {\em Mannigfaltigkeit} ist eine Menge $M$ von Punkten,
+die lokal, also in der Umgebung eines Punktes, mit möglicherweise mehreren
+verschiedenen Koordinatensystemen versehen werden kann.
+Ein Koordinatensystem ist eine umkehrbare Abbildung einer offenen Teilmenge
+$U\subset M$ in den Raum $\mathbb{R}^n$.
+Die Komponenten dieser Abbildung heissen die {\em Koordinaten}.
+
+\begin{definition}
+Eine Karte auf $M$ ist eine umkehrbare Abbildung
+$\varphi\colon U\to \mathbb{R}^n$.
+Ein differenzierbarer Atlas ist eine Familie von Karten $\varphi_\alpha$
+derart, dass die Definitionsgebiete $U_\alpha$ die ganze Menge $M$
+überdecken, und dass die Kartenwechsel Abbildungen
+\[
+\varphi_\beta\circ\varphi_\alpha^{-1}
+\colon
+\varphi_\alpha(U_\alpha\cap U_\beta)
+\to
+\varphi_\beta(U_\alpha\cap U_\beta)
+\]
+als Abbildung von offenen Teilmengen von $\mathbb{R}^n$ differenzierbar
+ist.
+Eine {$n$-dimensionale differenzierbare Mannigfaltigkeit} ist eine
+Menge $M$ mit einem differenzierbaren Atlas.
+\end{definition}
+
+Karten und Atlanten regeln also nur, wie sich verschiedene lokale
+Koordinatensysteme ineinander umrechnen lassen.
+
+\begin{beispiel}
+$M=\mathbb{R}^n$ ist eine differenzierbare Mannigfaltigkeit denn 
+die identische Abbildung $M\to \mathbb{R}^n$ ist eine Karte und ein
+Atlas von $M$.
+\end{beispiel}
+
+\begin{beispiel}
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/kartenkreis.pdf}
+\caption{Karten für die Kreislinie $S^1\subset\mathbb{R}^2$.
+\label{buch:gruppen:fig:kartenkreis}}
+\end{figure}
+Die Kreislinie in in der Ebene ist eine $1$-dimensionale Mannigfaltigkeit.
+Natürlich kann sie nicht mit einer einzigen Karte beschrieben werden,
+da es keine umkehrbaren Abbildungen zwischen $\mathbb{R}$ und der Kreislinie
+gibt.
+Man kann aber die folgenden vier Karten verwenden:
+\begin{align*}
+\varphi_1&\colon U_{x>0}\{(x,y)\;|\;x^2+y^2=1\wedge x>0\} \to
+:
+(x,y) \mapsto y\\
+\varphi_2&\colon U_{x<0}\{(x,y)\;|\;x^2+y^2=1\wedge x<0\} \to
+:
+(x,y) \mapsto y\\
+\varphi_3&\colon U_{y>0}\{(x,y)\;|\;x^2+y^2=1\wedge y>0\} \to
+:
+(x,y) \mapsto x\\
+\varphi_4&\colon U_{y<0}\{(x,y)\;|\;x^2+y^2=1\wedge y<0\} \to
+:
+(x,y) \mapsto x
+\end{align*}
+Die Werte der Kartenabbildungen sind genau die $x$- und $y$-Koordinaten
+auf der in den Raum $\mathbb{R}^2$ eingebetteten Kreislinie.
+
+Für $\varphi_1$ und $\varphi_2$ sind die Definitionsgebiete disjunkt,
+hier gibt es also keine Notwendigkeit, Koordinatenumrechnungen vornehmen
+zu können.
+Dasselbe gilt für $\varphi_3$ und $\varphi_4$.
+
+Die nichtleeren Schnittmengen der verschiedenen Kartengebiete beschreiben
+jeweils die Punkte der Kreislinie in einem Quadranten.
+Die Umrechnung zwischen den Koordinaten erfolgt je nach Quadrant durch
+\[
+x\mapsto y=\pm\sqrt{1-x^2\mathstrut}
+\qquad\text{oder}\qquad
+y\mapsto x=\pm\sqrt{1-y^2\mathstrut},
+\]
+diese Abbildungen sind im offenen Intervall $(-1,1)$ differenzierbar,
+Schwierigkeiten mit der Ableitungen ergeben sich nur an den Stellen
+$x=\pm1$ und $y=\pm 1$, die in einem Überschneidungsgebiet von Karten
+nicht vorkommen können.
+Somit bilden die vier Karten einen differenzierbaren Atlas für
+die Kreislinie (Abbildung~\ref{buch:gruppen:fig:kartenkreis}).
+\end{beispiel}
+
+\begin{beispiel}
+Ganz analog zum vorangegangenen Beispiel über die Kreisline lässt sich
+für eine $n$-di\-men\-sio\-nale Sphäre
+\[
+S^n = \{ (x_1,\dots,x_{n+1})\;|\; x_0^2+\dots+x_n^2=1\}
+\]
+immer ein Atlas aus $2^{n+1}$ Karten mit den Koordinatenabbildungen
+\[
+\varphi_{i,\pm}
+\colon
+U_{i,\pm}
+=
+\{p\in S^n\;|\; \pm x_i >0\}
+\to
+\mathbb{R}^n
+:
+p\mapsto (x_1,\dots,\hat{x}_i,\dots,x_{n+1})
+\]
+konstruieren, der $S^n$ zu einer $n$-dimensionalen Mannigfaltigkeit macht.
+\end{beispiel}
+
+\subsubsection{Tangentialraum}
+
+\subsubsection{Einbettung und Karten}
 
 \subsection{Der Satz von Noether
 \label{buch:subsection:noether}}
