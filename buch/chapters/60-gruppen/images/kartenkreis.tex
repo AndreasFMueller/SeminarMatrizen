@@ -55,12 +55,19 @@
 
 \node at (1.01,1.32)
 	[right] {$\varphi_3\circ \varphi_1^{-1}(y)=\sqrt{1-y^2}$};
+\node at (1.6,1.6) {$\varphi_{31}$};
+
 \node at (1.01,-1.28)
 	[right] {$\varphi_1\circ \varphi_4^{-1}(x)=-\sqrt{1-x^2}$};
+\node at (1.6,-1.6) {$\varphi_{14}$};
+
 \node at (-1.24,1.32)
 	[left] {$\varphi_2\circ\varphi_4^{-1}(x)=\sqrt{1-x^2}$};
+\node at (-1.6,-1.6) {$\varphi_{42}$};
+
 \node at (-1.18,-1.28)
 	[left] {$\varphi_4\circ\varphi_2^{-1}(y)=-\sqrt{1-y^2}$};
+\node at (-1.6,1.6) {$\varphi_{23}$};
 
 \foreach \y in {0.1,0.3,...,0.9}{
 	\draw[->,color=red,shorten >= 0.1cm,shorten <= 0.3cm]
@@ -166,7 +173,7 @@
 \node[color=blue] at (-1.25,0) [left] {$\varphi_2$};
 
 \node[color=darkgreen] at (115:1) [below right] {$U_{y>0}$};
-\node[color=darkgreen] at (0,1.25) [above] {$\varphi_4$};
+\node[color=darkgreen] at (0,1.25) [above] {$\varphi_3$};
 
 \node[color=orange] at (-115:1) [above right] {$U_{y<0}$};
 \node[color=orange] at (0,-1.25) [below] {$\varphi_4$};
