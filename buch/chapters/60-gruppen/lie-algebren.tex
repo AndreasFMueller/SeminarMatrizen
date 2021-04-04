@@ -29,234 +29,618 @@ Lie-Algebra von $\operatorname{SO}(3)$ mit dem Vektorprodukt in $\mathbb{R}^3$
 übereinstimmt.
 
 %
-% Tangentialvektoren und SO(2)
-%
-\subsection{Tangentialvektoren und $\operatorname{SO}(2)$}
-Die Drehungen in der Ebene können reell als Matrizen der Form
-\[
-D_{\alpha}
-=
-\begin{pmatrix}
-\cos\alpha&-\sin\alpha\\
-\sin\alpha& \cos\alpha
-\end{pmatrix}
-\]
-als eidimensionale Kurve innerhalb von $M_2(\mathbb{R})$ beschrieben
-werden.
-Alternativ können Drehungen um den Winkel $\alpha$ als mit Hilfe von
-der Abbildung
-$
-\alpha\mapsto e^{i\alpha}
-$
-als komplexe Zahlen vom Betrag $1$ beschrieben werden.
-Dies sind zwei verschiedene Parametrisierungen der gleichen
-geometrischen Transformation.
-
-Die Ableitung nach $\alpha$ ist $ie^{i\alpha}$, der Tangentialvektor
-im Punkt $e^{i\alpha}$ ist also $ie^{i\alpha}$.
-Die Multiplikation mit $i$ ist die Drehung um $90^\circ$, der Tangentialvektor
-ist also der um $90^\circ$ gedrehte Ortsvektor zum Punkt auf der Kurve.
-
-In der Darstelllung als $2\times 2$-Matrix ist die Ableitung
-\[
-\frac{d}{d\alpha}D_\alpha
-=
-\frac{d}{d\alpha}
-\begin{pmatrix}
-\cos\alpha& -\sin\alpha\\
-\sin\alpha&  \cos\alpha
-\end{pmatrix}
-=
-\begin{pmatrix}
--\sin\alpha & -\cos\alpha \\
- \cos\alpha & -\sin\alpha
-\end{pmatrix}.
-\]
-Die rechte Seite kann wieder mit der Drehmatrix $D_\alpha$ geschrieben
-werden, es ist nämlich
-\[
-\frac{d}{d\alpha}D_\alpha
-=
-\begin{pmatrix}
--\sin\alpha & -\cos\alpha \\
- \cos\alpha & -\sin\alpha
-\end{pmatrix}
-=
-\begin{pmatrix}
-\cos\alpha & -\sin\alpha\\
-\sin\alpha &  \cos\alpha
-\end{pmatrix}
-\begin{pmatrix}
-0&-1\\
-1& 0
-\end{pmatrix}
-=
-D_\alpha J.
-\]
-Der Tangentialvektor an die Kurve $\alpha\mapsto D_\alpha$ innerhalb
-$M_2(\mathbb{R})$ im Punkt $D_\alpha$ ist also die Matrix 
-$JD_\alpha$.
-Die Matrix $J$ ist die Drehung um $90^\circ$, denn $J=D_{\frac{\pi}2}$.
-Der Zusammenhang zwischen dem Punkt $D_\alpha$ und dem Tangentialvektor
-ist also analog zur Beschreibug mit komplexen Zahlen.
-
-Im Komplexen vermittelt die Exponentialfunktion den Zusammenhang zwischen
-dem Winkel $\alpha$ und dre Drehung $e^{i\alpha}$.
-Der Grund dafür ist natürlich die Differentialgleichung
-\[
-\frac{d}{d\alpha} z(\alpha) =  iz(\alpha).
-\]
-Die analoge Differentialgleichung 
-\[
-\frac{d}{d\alpha} D_\alpha = J D_\alpha
-\]
-führt auf die Matrix-Exponentialreihe
-\begin{align*}
-D_\alpha
-=
-\exp (J\alpha)
-&=
-\sum_{k=0}^\infty \frac{(J\alpha)^k}{k!}
-=
-I\biggl(
-1-\frac{\alpha^2}{2!} + \frac{\alpha^4}{4!} -\frac{\alpha^6}{6!}+\dots
-\biggr)
-+
-J\biggl(
-\alpha - \frac{\alpha^3}{3!}
-+ \frac{\alpha^5}{5!}
-- \frac{\alpha^7}{7!}+\dots
-\biggr)
-\\
-&=
-I\cos\alpha
-+
-J\sin\alpha,
-\end{align*}
-welche der Eulerschen Formel $e^{i\alpha} = \cos\alpha + i \sin\alpha$
-analog ist.
-
-In diesem Beispiel gibt es nur eine Tangentialrichtung und alle in Frage
-kommenden Matrizen vertauschen miteinander.
-Es ist daher nicht damit zu rechnen, dass sich eine interessante 
-Algebrastruktur für die Ableitungen konstruieren lässt.
-
-%
 % Die Lie-Algebra einer Matrizengruppe
 %
-\subsection{Lie-Algebra einer Matrizengruppe}
-Das eindimensionale Beispiel $\operatorname{SO}(2)$ hat gezeigt, dass
-die Tangentialvektoren in einem beliebigen Punkt $D_\alpha$ aus dem
-Tangentialvektor im Punkt $I$ durch Anwendung der Drehung hervorgehen,
-die $I$ in $D_\alpha$ abbildet.
-Die Drehungen einer eindimensionalen Untergruppe transportieren daher
-den Tangentialvektor in $I$ entlang der Kurve auf jeden beliebigen
-anderen Punkt.
-Zu jedem Tangentialvektor im Punkt $I$ dürfte es daher genau eine
-eindimensionale Untergruppe geben.
+\subsection{Lie-Algebra einer Matrizengruppe
+\label{buch:section:lie-algebra-einer-matrizengruppe}}
+Zu jedem Tangentialvektor $A$ im Punkt $I$ einer Matrizengruppe gibt es
+eine Einparameteruntergruppe, die mit Hilfe der Exponentialfunktion
+$e^{At}$ konstruiert werden kann.
+Für die folgende Konstruktion arbeiten wir in der Gruppe
+$\operatorname{GL}_n(\mathbb{R})$, in der jede Matrix auch ein
+Tangentialvektor ist.
+Wir werden daraus die Lie-Klammer ableiten und später verifizieren,
+dass diese auch für die Tangentialvektoren der Gruppen
+$\operatorname{SO}(n)$ oder $\operatorname{SL}_n(\mathbb{R})$ funktioniert.
 
-Sei die Abbildung $\varrho\colon\mathbb{R}\to G$ eine Einparameter-Untergruppe
-von $G\subset M_n(\mathbb{R})$.
-Durch Ableitung der Gleichung $\varrho(t+x) = \varrho(t)\varrho(x)$ nach
-$x$ folgt die Differentialgleichung
-\[
-\varrho'(t)
-=
-\frac{d}{dx}\varrho(t+x)\bigg|_{x=0}
-=
-\varrho(t) \frac{d}{dx}\varrho(0)\bigg|_{x=0}
-=
-\varrho(t) \varrho'(0).
-\]
-Der Tangentialvektor in $\varrho'(t)$ in $\varrho(t)$ ist daher
-der Tangentialvektor $\varrho'(0)$ in $I$ transportiert in den Punkt
-$\varrho(t)$ mit Hilfe der Matrix $\varrho(t)$.
-
-Aus der Differentialgleichung folgt auch, dass
-\[
-\varrho(t) = \exp (t\varrho'(0)).
-\]
-Zu einem Tangentialvektor in $I$ kann man also immer die
-Einparameter-Untergruppe mit Hilfe der Differentialgleichung 
-oder der expliziten Exponentialreihe rekonstruieren.
-
-Die eindimensionale Gruppe $\operatorname{SO}(2)$ ist abelsch und
-hat einen eindimensionalen Tangentialraum, man kann also nicht mit
-einer interessanten Algebrastruktur rechnen.
-Für eine höherdimensionale, nichtabelsche Gruppe sollte sich aus
-der Tatsache, dass es verschiedene eindimensionale Untergruppen gibt,
-deren Elemente nicht mit den Elemente einer anderen solchen Gruppe
-vertauschen, eine interessante Algebra konstruieren lassen, deren
-Struktur die Nichtvertauschbarkeit wiederspiegelt.
-
-Seien also $A$ und $B$ Tangentialvektoren einer Matrizengruppe $G$,
-die zu den Einparameter-Untergruppen $\varphi(t)=\exp At$ und
-$\varrho(t)=\exp Bt$ gehören.
-Insbesondere gilt $\varphi'(0)=A$ und $\varrho'(0)=B$.
-Das Produkt $\pi(t)=\varphi(t)\varrho(t)$ ist allerdings nicht notwendigerweise
-eine Einparametergruppe, denn dazu müsste gelten
+\subsubsection{Lie-Klammer}
+Zu zwei verschiedenen Tagentialvektoren $A\in M_n(\mathbb{R})$ und
+$B\in M_n(\mathbb{R})$ gibt es zwei verschiedene Einparameteruntergruppen
+$e^{At}$ und $e^{Bt}$.
+Wenn die Matrizen $A$ und $B$ oder die Einparameteruntergruppen 
+$e^{At}$ und $e^{Bt}$ vertauschbar sind, dann stimmen 
+$e^{At}e^{Bt}$ und $e^{Bt}e^{At}$ nicht überein.
+Die zugehörigen Potenzreihen sind:
 \begin{align*}
-\pi(t+s)
+e^{At}
 &=
-\varphi(t+s)\varrho(t+s)
-=
-\varphi(t)\varphi(s)\varrho(t)\varrho(s)
+I+At + \frac{A^2t^2}{2!} + \frac{A^3t^3}{3!} + \dots
 \\
-=
-\pi(t)\pi(s)
+e^{Bt}
 &=
-\varphi(t)\varrho(t)\varphi(s)\varrho(s)
-\end{align*}
-Durch Multiplikation von links mit $\varphi(t)^{-1}$ und
-mit $\varrho(s)^{-1}$ von rechts folgt, dass dies genau dann gilt,
-wenn
-\[
-\varphi(s)\varrho(t)=\varrho(t)\varphi(s).
-\]
-Die beiden Seiten dieser Gleichung sind erneut verschiedene Punkte
-in $G$.
-Durch Multiplikation mit $\varrho(t)^{-1}$ von links und mit
-$\varphi(s)^{-1}$ von rechts erhält man die äquivaliente
-Bedingung
-\begin{equation}
-\varrho(-t)\varphi(s)\varrho(t)\varphi(-s)=I.
-\label{buch:lie:konjugation}
-\end{equation}
-Ist die Gruppe $G$ nicht kommutativ, kann man nicht
-annehmen, dass diese Bedingung erfüllt ist.
-
-Aus \eqref{buch:lie:konjugation} erhält man jetzt eine Kurve
-\[
-t \mapsto \gamma(t,s) = \varrho(-t)\varphi(s)\varrho(t)\varphi(-s) \in G
-\]
-in der Gruppe, die für $t=0$ durch $I$ geht.
-Ihren Tangentialvektor kann man durch Ableitung bekommen:
-\begin{align*}
-\frac{d}{dt}\gamma(t,s)
-&=
--\varrho'(-t)\varphi(s)\varrho(t)\varphi(-s)
-+\varrho(-t)\varphi(s)\varrho'(t)\varphi(-t)
+I+Bt + \frac{B^2t^2}{2!} + \frac{B^3t^3}{3!} + \dots
 \\
-\frac{d}{dt}\gamma(t)\bigg|_{t=0}
+e^{At}e^{Bt}
 &=
--B\varphi(s) + \varphi(-s)B
+\biggl(I+At + \frac{A^2t^2}{2!} + \dots\biggr)
+\biggl(I+Bt + \frac{B^2t^2}{2!} + \dots\biggr)
+\\
+&=
+I+(A+B)t + \biggl(\frac{A^2}{2!}+AB+\frac{B^2}{2!}\biggr)t^2 +\dots
+\\
+e^{Bt}e^{At}
+&=
+\biggl(I+Bt + \frac{B^2t^2}{2!} + \dots\biggr)
+\biggl(I+At + \frac{A^2t^2}{2!} + \dots\biggr)
+\\
+&=
+I+(B+A)t + \biggl(\frac{B^2}{2!}+BA+\frac{A^2}{2!}\biggr)t^2 +\dots
+\intertext{%
+Die beiden Kurven $e^{At}e^{Bt}$ und $e^{Bt}e^{At}$ haben zwar den gleichen
+Tangentialvektor für $t=0$, sie unterscheiden
+sich aber untereinander, und sie unterscheiden sich von der
+Einparameteruntergruppe von $A+B$}
+e^{(A+B)t}
+&=
+I + (A+B)t + \frac{t^2}{2}(A^2 + AB + BA + B^2) + \ldots
+\intertext{Für die Unterschiede finden wir}
+e^{At}e^{Bt} - e^{(A+B)t}
+&=
+\biggl(AB-\frac{AB+BA}2\biggr)t^2
++\ldots
+=
+(AB-BA) \frac{t^2}{2} + \ldots
+=
+[A,B]\frac{t^2}{2}+\ldots
+\\
+e^{Bt}e^{At} - e^{(A+B)t}
+&=
+\biggl(BA-\frac{AB+BA}2\biggr)t^2
++\ldots
+=
+(BA-AB)
+\frac{t^2}{2}
++\ldots
+=
+-[A,B]\frac{t^2}{2}
+\\
+e^{At}e^{Bt}-e^{Bt}e^{At}
+&=
+(AB-BA)t^2+\ldots
+=
+\phantom{-}[A,B]t^2+\ldots
 \end{align*}
-Durch erneute Ableitung nach $s$  erhält man dann 
+wobei mit $[A,B]=AB-BA$ abgekürzt wird.
+
+\begin{definition}
+\label{buch:gruppen:def:kommutator}
+Der Kommutator zweier Matrizen $A,B\in M_n(\mathbb{R})$ ist die Matrix
+$[A,B]=AB-BA$.
+\end{definition}
+
+Der Kommutator ist bilinear und antisymmetrisch, da
 \begin{align*}
-\frac{d}{ds} \frac{d}{dt}\gamma(t,s)\bigg|_{t=0}
+[\lambda A+\mu B,C]
 &=
--B\varphi'(s) - \varphi(-s)B
+\lambda AC+\mu BC-\lambda CA -\mu CB
+=
+\lambda[A,C]+\mu[B,C]
+\\
+[A,\lambda B+\mu C]
+&=
+\lambda AB + \mu AC - \lambda BA - \mu CA
+=
+\lambda[A,B]+\mu[A,C]
+\\
+[A,B]
+&=
+AB-BA = -(BA-AB) = -[B,A].
 \end{align*}
+Aus der letzten Bedingung folgt insbesodnere $[A,A]=0$
+
+Der Kommutator $[A,B]$ misst in niedrigster Ordnung den Unterschied
+zwischen den $e^{At}$ und $e^{Bt}$.
+Der Kommutator der Tangentialvektoren $A$ und $B$ bildet also die
+Nichtkommutativität der Matrizen $e^{At}$ und $e^{Bt}$ ab.
+
+
+\subsubsection{Die Jacobi-Identität}
+Der Kommutator hat die folgende zusätzliche algebraische Eigenschaft:
+\begin{align*}
+[A,[B,C]]
++
+[B,[C,A]]
++
+[C,[A,B]]
+&=
+[A,BC-CB]
++
+[B,CA-AC]
++
+[C,AB-BA]
+\\
+&=\phantom{+}
+ABC-ACB-BCA+CBA
+\\
+&\phantom{=}+
+BCA-BAC-CAB+ACB
+\\
+&\phantom{=}+
+CAB-CBA-ABC+BAC
+\\
+&=0.
+\end{align*}
+Diese Eigenschaft findet man auch bei anderen Strukturen, zum Beispiel
+bei Vektorfeldern, die man als Differentialoperatoren auf Funktionen 
+betrachten kann.
+Man kann dann einen Kommutator $[X,Y]$ für zwei Vektorfelder
+$X$ und $Y$ definieren.
+Dieser Kommutator von Vektorfeldern erfüllt ebenfalls die gleiche
+Identität.
+
+\begin{definition}
+\label{buch:gruppen:def:jacobi}
+Ein bilineares Produkt $[\;,\;]\colon V\times V\to V$ auf dem Vektorraum
+erfüllt die {\em Jacobi-Identität}, wenn 
+\[
+[u,[v,w]] + [v,[w,u]] + [w,[u,v]]=0
+\]
+ist für beliebige Vektoren $u,v,w\in V$.
+\end{definition}
+
+\subsubsection{Lie-Algebra}
+Die Tangentialvektoren einer Lie-Gruppe tragen also mit dem Kommutator
+eine zusätzliche Struktur, nämlich die Struktur einer Lie-Algebra.
+
+\begin{definition}
+Ein Vektorraum $V$ mit einem bilinearen, Produkt
+\[
+[\;,\;]\colon V\times V \to V : (u,v) \mapsto [u,v],
+\]
+welches zusätzlich die Jacobi-Identität~\ref{buch:gruppen:def:jacobi}
+erfüllt, heisst eine {\em Lie-Algebra}.
+\end{definition}
+
+Die Lie-Algebra einer Lie-Gruppe $G$ wird mit $LG$ bezeichnet.
+$LG$ besteht aus den Tangentialvektoren im Punkt $I$.
+Die Exponentialabbildung $\exp\colon LG\to G:A\mapsto e^A$
+ist eine differenzierbare Abbildung von $LG$ in die Gruppe $G$.
+Insbesondere kann die Inverse der Exponentialabbildung als eine
+Karte in einer Umgebung von $I$ verwendet werden.
+
+Für die Lie-Algebren der Matrizengruppen, die früher definiert worden
+sind, verwenden wir die als Notationskonvention, dass der Name der
+Lie-Algebra der mit kleinen Buchstaben geschrieben Name der Lie-Gruppe ist.
+Die Lie-Algebra von $\operatorname{SO}(n)$ ist also
+$L\operatorname{SO}(n) = \operatorname{os}(n)$,
+die Lie-Algebra von $\operatorname{SL}_n(\mathbb{R})$ ist
+$L\operatorname{SL}_n(\mathbb{R})=\operatorname{sl}_n(\mathbb{R})$.
+
 
 %
 % Die Lie-Algebra von SO(3)
 %
-\subsection{Die Lie-Algebra von $\operatorname{SO}(3)$}
+\subsection{Die Lie-Algebra von $\operatorname{SO}(3)$
+\label{buch:subsection:die-lie-algebra-von-so3}}
+Zur Gruppe $\operatorname{SO}(3)$ der Drehmatrizen gehört die Lie-Algebra
+$\operatorname{so}(3)$ der antisymmetrischen $3\times 3$-Matrizen.
+Solche Matrizen haben die Form
+\[
+\Omega
+=
+\begin{pmatrix}
+    0    & \omega_3&-\omega_2\\
+-\omega_3&   0     & \omega_1\\
+ \omega_2&-\omega_1&    0
+\end{pmatrix}
+\]
+Der Vektorraum $\operatorname{so}(3)$ ist also dreidimensional.
+
+Die Wirkung von $I+t\Omega$ auf einem Vektor $x$ ist
+\[
+(I+t\Omega)
+\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}
+=
+\begin{pmatrix}
+    1     & t\omega_3&-t\omega_2\\
+-t\omega_3&   1      & t\omega_1\\
+ t\omega_2&-t\omega_1&    1
+\end{pmatrix}
+\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}
+=
+\begin{pmatrix}
+x_1-t(-\omega_3x_2+\omega_2x_3)\\
+x_2-t( \omega_3x_1-\omega_1x_3)\\
+x_3-t(-\omega_2x_1+\omega_1x_2)
+\end{pmatrix}
+=
+x- t\begin{pmatrix}\omega_1\\\omega_2\\\omega_3\end{pmatrix}\times x
+=
+x+ tx\times \omega.
+\]
+Die Matrix $\Omega$ ist als die infinitesimale Version einer Drehung
+um die Achse $\omega$.
+
+Wir können die Analogie zwischen Matrizen in $\operatorname{so}(3)$ und
+Vektoren in $\mathbb R^3$ noch etwas weiter treiben. Zu jedem Vektor
+in $\mathbb R^3$ konstruieren wir eine Matrix in $\operatorname{so}(3)$
+mit Hilfe der Abbildung
+\[
+\mathbb R^3\to\operatorname{so}(3)
+:
+\begin{pmatrix}v_1\\v_2\\v_3\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+  0 & v_3&-v_1\\
+-v_3&  0 & v_2\\
+ v_1&-v_2&  0
+\end{pmatrix}.
+\]
+Der Kommutator von zwei so aus Vektoren $\vec u$ und $\vec v$
+konstruierten Matrizen $U$ und $V$ ist:
+\begin{align*}
+[U,V]
+&=
+UV-VU
+\\
+&=
+\begin{pmatrix}
+  0 & u_3&-u_1\\
+-u_3&  0 & u_2\\
+ u_1&-u_2&  0
+\end{pmatrix}
+\begin{pmatrix}
+  0 & v_3&-v_1\\
+-v_3&  0 & v_2\\
+ v_1&-v_2&  0
+\end{pmatrix}
+-
+\begin{pmatrix}
+  0 & v_3&-v_1\\
+-v_3&  0 & v_2\\
+ v_1&-v_2&  0
+\end{pmatrix}
+\begin{pmatrix}
+  0 & u_3&-u_1\\
+-u_3&  0 & u_2\\
+ u_1&-u_2&  0
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+u_3v_3+u_1v_1 - u_3v_3 - u_1v_1
+        & u_1v_2 - u_2v_1
+                & u_3v_2 - u_2v_3
+\\
+u_2v_1 - u_1v_2
+        & -u_3v_3-u_2v_2 + u_3v_3+u_2v_2
+                & u_3v_1 - u_1v_3
+\\
+u_2v_3 - u_3v_2
+        & u_1v_3 - u_3v_1
+                &-u_1v_1-u_2v_2 u_1v_1+u_2v_2
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+0
+        & u_1v_2 - u_2v_1
+                &-(u_2v_3-u_3v_2)
+\\
+-( u_1v_2 - u_2v_1)
+        & 0
+                & u_3v_1 - u_1v_3
+\\
+u_2v_3 - u_3v_2
+        &-( u_3v_1 - u_1v_3)
+                & 0
+\end{pmatrix}
+\end{align*}
+Die Matrix $[U,V]$ gehört zum Vektor $\vec u\times\vec v$.
+Damit können wir aus der Jacobi-Identität jetzt folgern, dass
+\[
+\vec u\times(\vec v\times w)
++
+\vec v\times(\vec w\times u)
++
+\vec w\times(\vec u\times v)
+=0
+\]
+für drei beliebige Vektoren $\vec u$, $\vec v$ und $\vec w$ ist.
+Dies bedeutet, dass der dreidimensionale Vektorraum $\mathbb R^3$
+mit dem Vektorprodukt zu einer Lie-Algebra wird.
+In der Tat verwenden einige Bücher statt der vertrauten Notation
+$\vec u\times \vec v$ für das Vektorprodukt die aus der Theorie der
+Lie-Algebren entlehnte Notation $[\vec u,\vec v]$, zum Beispiel
+das Lehrbuch der Theoretischen Physik \cite{skript:landaulifschitz1}
+von Landau und Lifschitz.
+
+Die Lie-Algebren sind vollständig klassifiziert worden, es gibt
+keine nicht trivialen zweidimensionalen Lie-Algebren.
+Unser dreidimensionaler Raum ist also auch in dieser Hinsicht speziell:
+es ist der kleinste Vektorraum, in dem eine nichttriviale Lie-Algebra-Struktur
+möglich ist.
+
+Die antisymmetrischen Matrizen
+\[
+\omega_{23}
+=
+\begin{pmatrix} 0&1&0\\-1&0&0\\0&0&0\end{pmatrix}
+\quad
+\omega_{31}
+=
+\begin{pmatrix} 0&0&-1\\0&0&0\\1&0&0\end{pmatrix}
+\quad
+\omega_{12}
+=
+\begin{pmatrix} 0&0&0\\0&0&1\\0&-1&0\end{pmatrix}
+\]
+haben die Kommutatoren
+\begin{equation}
+\begin{aligned}
+[\omega_{23},\omega_{31}]
+&=
+\begin{pmatrix}
+0&0&0\\
+0&0&1\\
+0&-1&0
+\end{pmatrix}
+=
+\omega_{12}
+\\
+[\omega_{31},\omega_{12}]
+&=
+\begin{pmatrix}
+0&1&0\\
+-1&0&0\\
+0&0&0
+\end{pmatrix}
+=
+\omega_{23}
+\\
+[\omega_{12},\omega_{23}]
+&=
+\begin{pmatrix}
+0&0&-1\\
+0&0&0\\
+1&0&0
+\end{pmatrix}
+=
+\omega_{31}
+\end{aligned}
+\label{buch:gruppen:eqn:so3-kommutatoren}
+\end{equation}
+
+\subsection{Die Lie-Algebra von $\operatorname{SL}_n(\mathbb{R})$}
+Die Lie-Algebra von $\operatorname{SL}_n(\mathbb{R})$ besteht aus den
+spurlosen Matrizen in $M_n(\mathbb{R})$.
+Der Kommutator solcher Matrizen erfüllt
+\[
+\operatorname{Spur}([A,B])
+=
+\operatorname{Spur}(AB-BA)
+=
+\operatorname{Spur}(AB)-\operatorname{Spur}(BA)
+=
+0,
+\]
+somit ist 
+\[
+\operatorname{sl}_n(\mathbb{R})
+=
+\{
+A\in M_n(\mathbb{R})\;|\; \operatorname{Spur}(A)=0
+\}
+\]
+mit dem Kommutator eine Lie-Algebra.
 
 %
-% Die Lie-Algebra von SU(2)
+% Die Lie-Algebra von U(n)
+%
+\subsection{Die Lie-Algebra von $\operatorname{U}(n)$}
+Die Lie-Gruppe
+\[
+U(n)
+=
+\{
+A\in M_n(\mathbb{C}
+\;|\;
+AA^*=I
+\}
+\]
+heisst die unitäre Gruppe, sie besteht aus den Matrizen, die
+das sesquilineare Standardskalarprodukt auf dem komplexen
+Vektorraum $\mathbb{C}^n$ invariant lassen.
+Sei eine $\gamma(t)$ ein differenzierbare Kurve in $\operatorname{U}(n)$
+derart, dass $\gamma(0)=I$.
+Die Ableitung der Identität $AA^*=I$ führt dann auf 
+\begin{align*}
+0
+=
+\frac{d}{dt}
+\gamma(t)\gamma(t)^*
+\bigg|_{t=0}
+=
+\dot{\gamma}(0)\gamma(0)^*
++
+\gamma(0)\dot{\gamma}(0)^*
+=
+\dot{\gamma}(0)
++
+\dot{\gamma}(0)^*
+\quad\Rightarrow\quad
+\dot{\gamma}(0)&=-\dot{\gamma}(0)^*.
+A&=-A^*
+\end{align*}
+Die Lie-Algebra $\operatorname{u}(n)$ besteht daher aus den antihermiteschen
+Matrizen.
+
+Wir sollten noch verifizieren, dass der Kommutator zweier antihermiteschen
+Matrizen wieder anithermitesch ist:
+\begin{align*}
+[A,B]^*
+&=
+(AB-BA)^*
+=
+B^*A^*-A^*B^*
+=
+BA - AB
+=
+-[B,A].
+\end{align*}
+
+Eine antihermitesche Matrix erfüllt $a_{ij}=-\overline{a}_{ji}$,
+für die Diagonalelemente folgt daher $a_{ii} = -\overline{a}_{ii}$
+oder $\overline{a}_{ii}=-a_{ii}$.
+Der Realteil von $a_{ii}$ ist
+\[
+\Re a_{ii}
+=
+\frac{a_{ii}+\overline{a}_{ii}}2
+=
+0,
+\]
+die Diagonalelemente einer antihermiteschen Matrix sind daher rein
+imaginär.
+
+
+%
+% Die Lie-Algebra SU(2)
 %
 \subsection{Die Lie-Algebra von $\operatorname{SU}(2)$}
+Die Lie-Algebra $\operatorname{su}(n)$ besteht aus den
+spurlosen antihermiteschen Matrizen.
+Sie erfüllen daher die folgenden Bedingungen:
+\[
+A=\begin{pmatrix}a&b\\c&d\end{pmatrix}
+\qquad
+\text{mit}
+\qquad
+\left\{
+\begin{aligned}
+a+d&=0&&\Rightarrow& a=is = -d
+\\
+b^*&=-c
+\end{aligned}
+\right.
+\]
+Damit hat $A$ die Form
+\begin{align*}
+A=\begin{pmatrix}
+is&u+iv\\
+-u+iv&-is
+\end{pmatrix}
+&=
+s
+\begin{pmatrix}
+i&0\\
+0&-i
+\end{pmatrix}
++
+u
+\begin{pmatrix}
+ 0&1\\
+-1&0
+\end{pmatrix}
++
+v
+\begin{pmatrix}
+0&i\\
+i&0
+\end{pmatrix}
+\\
+&=
+iv\underbrace{\begin{pmatrix}0&1\\1&0\end{pmatrix}}_{\displaystyle=\sigma_1}
++
+iu\underbrace{\begin{pmatrix}0&-i\\i&0\end{pmatrix}}_{\displaystyle=\sigma_2}
++
+is\underbrace{\begin{pmatrix}1&0\\0&-1\end{pmatrix}}_{\displaystyle=\sigma_3}
+\end{align*}
+Diese Matrizen heissen die {\em Pauli-Matrizen}, sie haben die Kommutatoren
+\begin{align*}
+[\sigma_1,\sigma_2]
+&=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+-
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+=
+2\begin{pmatrix}i&0\\0&-i \end{pmatrix}
+=
+2i\sigma_3,
+\\
+[\sigma_2,\sigma_3]
+&=
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+-
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\begin{pmatrix}0&-i\\i&0\end{pmatrix}
+=
+2
+\begin{pmatrix}0&i\\i&0\end{pmatrix}
+=
+2i\sigma_1.
+\\
+[\sigma_1,\sigma_3]
+&=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+-
+\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+=
+2i
+\begin{pmatrix}0&-1\\1&0\end{pmatrix}
+=
+2i\sigma_2,
+\end{align*}
+Bis auf eine Skalierung stimmt dies überein mit den Kommutatorprodukten
+der Matrizen $\omega_{23}$, $\omega_{31}$ und $\omega_{12}$
+in \eqref{buch:gruppen:eqn:so3-kommutatoren}.
+Die Matrizen $-\frac12i\sigma_j$ haben die Kommutatorprodukte
+\begin{align*}
+\bigl[-{\textstyle\frac12}i\sigma_1,-{\textstyle\frac12}i\sigma_2\bigr]
+&=
+-{\textstyle\frac14}[\sigma_1,\sigma_2]
+=
+-{\textstyle\frac14}\cdot 2i\sigma_3
+=
+-{\textstyle\frac12}i\sigma_3
+\\
+\bigl[-{\textstyle\frac12}i\sigma_2,-{\textstyle\frac12}i\sigma_3\bigr]
+&=
+-{\textstyle\frac14}[\sigma_2,\sigma_3]
+=
+-{\textstyle\frac14}\cdot 2i\sigma_1
+=
+-{\textstyle\frac12}i\sigma_1
+\\
+\bigl[-{\textstyle\frac12}i\sigma_3,-{\textstyle\frac12}i\sigma_1\bigr]
+&=
+-{\textstyle\frac14}[\sigma_3,\sigma_1]
+=
+-{\textstyle\frac14}\cdot 2i\sigma_2
+=
+-{\textstyle\frac12}i\sigma_2
+\end{align*}
+Die lineare Abbildung, die
+\begin{align*}
+\omega_{23}&\mapsto -{\textstyle\frac12}i\sigma_1\\
+\omega_{31}&\mapsto -{\textstyle\frac12}i\sigma_2\\
+\omega_{12}&\mapsto -{\textstyle\frac12}i\sigma_3
+\end{align*}
+abbildet ist daher ein Isomorphismus der Lie-Algebra $\operatorname{so}(3)$
+auf die Lie-Algebra $\operatorname{su}(2)$.
+Die Lie-Gruppen $\operatorname{SO}(3)$ und $\operatorname{SU}(2)$
+haben also die gleiche Lie-Algebra.
+
+Tatsächlich kann man Hilfe von Quaternionen die Matrix $\operatorname{SU}(2)$
+als Einheitsquaternionen beschreiben und damit eine Darstellung der
+Drehmatrizen in $\operatorname{SO}(3)$ finden.
+Dies wird in Kapitel~\ref{chapter:clifford} dargestellt.
+
 
 
 
