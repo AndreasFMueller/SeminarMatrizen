@@ -136,7 +136,7 @@ den Nullpunkt.
 Ein Homomorphismus $\varphi\colon\mathbb{R}\to\operatorname{GL}_n(\mathbb{R})$
 von der additiven Gruppe $\mathbb{R}$ in die allgemeine lineare Gruppe
 heisst eine {\em Einparameter-Untergruppe} von
-$\operatorname{GL}(\mathbb{R})$.
+$\operatorname{GL}_n(\mathbb{R})$.
 \end{definition}
 
 Die Abbildung 
@@ -468,18 +468,22 @@ Die Kreislinie in in der Ebene ist eine $1$-dimensionale Mannigfaltigkeit.
 Natürlich kann sie nicht mit einer einzigen Karte beschrieben werden,
 da es keine umkehrbaren Abbildungen zwischen $\mathbb{R}$ und der Kreislinie
 gibt.
-Man kann aber die folgenden vier Karten verwenden:
+Die Projektionen auf die einzelnen Koordinaten liefern die folgenden
+vier Karten:
 \begin{align*}
-\varphi_1&\colon U_{x>0}\{(x,y)\;|\;x^2+y^2=1\wedge x>0\} \to
+\varphi_1&\colon U_{x>0}\{(x,y)\;|\;x^2+y^2=1\wedge x>0\} \to\mathbb{R}
 :
-(x,y) \mapsto y\\
-\varphi_2&\colon U_{x<0}\{(x,y)\;|\;x^2+y^2=1\wedge x<0\} \to
+(x,y) \mapsto y
+\\
+\varphi_2&\colon U_{x<0}\{(x,y)\;|\;x^2+y^2=1\wedge x<0\} \to\mathbb{R}
 :
-(x,y) \mapsto y\\
-\varphi_3&\colon U_{y>0}\{(x,y)\;|\;x^2+y^2=1\wedge y>0\} \to
+(x,y) \mapsto y
+\\
+\varphi_3&\colon U_{y>0}\{(x,y)\;|\;x^2+y^2=1\wedge y>0\} \to\mathbb{R}
 :
-(x,y) \mapsto x\\
-\varphi_4&\colon U_{y<0}\{(x,y)\;|\;x^2+y^2=1\wedge y<0\} \to
+(x,y) \mapsto x
+\\
+\varphi_4&\colon U_{y<0}\{(x,y)\;|\;x^2+y^2=1\wedge y<0\} \to\mathbb{R}
 :
 (x,y) \mapsto x
 \end{align*}
@@ -493,13 +497,47 @@ Dasselbe gilt für $\varphi_3$ und $\varphi_4$.
 
 Die nichtleeren Schnittmengen der verschiedenen Kartengebiete beschreiben
 jeweils die Punkte der Kreislinie in einem Quadranten.
-Die Umrechnung zwischen den Koordinaten erfolgt je nach Quadrant durch
-\[
-x\mapsto y=\pm\sqrt{1-x^2\mathstrut}
-\qquad\text{oder}\qquad
-y\mapsto x=\pm\sqrt{1-y^2\mathstrut},
-\]
-diese Abbildungen sind im offenen Intervall $(-1,1)$ differenzierbar,
+Die Umrechnung zwischen den Koordinaten und ihre Ableitung
+ist je nach Quadrant durch
+\begin{align*}
+&\text{1.~Quadrant}&
+\varphi_{31}
+&=
+\varphi_3\circ\varphi_1^{-1}\colon y\mapsto\phantom{-}\sqrt{1-y^2\mathstrut}
+&
+D\varphi_{31}
+&=
+-\frac{y}{\sqrt{1-y^2\mathstrut}}
+\\
+&\text{2.~Quadrant}&
+\varphi_{24}
+&=
+\varphi_3\circ\varphi_1^{-1}\colon x\mapsto\phantom{-}\sqrt{1-x^2\mathstrut}
+&
+D\varphi_{24}
+&=
+-\frac{x}{\sqrt{1-x^2\mathstrut}}
+\\
+&\text{3.~Quadrant}&
+\varphi_{42}
+&=
+\varphi_3\circ\varphi_1^{-1}\colon y\mapsto-\sqrt{1-y^2\mathstrut}
+&
+D\varphi_{42}
+&=
+\phantom{-}\frac{y}{\sqrt{1-y^2\mathstrut}}
+\\
+&\text{4.~Quadrant}&
+\varphi_{14}
+&=
+\varphi_3\circ\varphi_1^{-1}\colon x\mapsto-\sqrt{1-x^2\mathstrut}
+&
+D\varphi_{14}
+&=
+\phantom{-}\frac{x}{\sqrt{1-x^2\mathstrut}}
+\end{align*}
+gegeben.
+Diese Abbildungen sind im offenen Intervall $(-1,1)$ differenzierbar,
 Schwierigkeiten mit der Ableitungen ergeben sich nur an den Stellen
 $x=\pm1$ und $y=\pm 1$, die in einem Überschneidungsgebiet von Karten
 nicht vorkommen können.
@@ -572,7 +610,9 @@ folgt durch Ableitung nach dem Kurvenparameter $t$, dass
 \[
 \frac{d}{dt}\gamma_\beta(t)
 =
-D\varphi_{\beta\alpha} \frac{d}{dt}\gamma_\alpha(t).
+D\varphi_{\beta\alpha}
+\cdot
+\frac{d}{dt}\gamma_\alpha(t).
 \]
 Die Ableitung $D\varphi_{\beta\alpha}$ von $\varphi_{\beta\alpha}$ 
 an der Stelle $\gamma_\alpha(t)$ berechnet also aus dem Tangentialvektor
@@ -588,6 +628,91 @@ Insbesondere ist die Verwendung von Karten ist also nur ein Werkzeug,
 mit dem die Unmöglichkeit einer globalen Besschreibung einer
 Mannigfaltigkeit $M$ mit einem einzigen globalen Koordinatensystem
 ohne Singularitäten umgangen werden kann.
+
+\begin{beispiel}
+Das Beispiel des Kreises in Abbildung~\ref{buch:gruppen:fig:kartenkreis}
+zeigt, dass die Tangentialvektoren je nach Karte sehr verschieden
+aussehen können.
+Der Tangentialvektor der Kurve $\gamma(t) = (x(t), y(t))$ im Punkt
+$\gamma(t)$ ist $\dot{y}(t)$ in den Karten $\varphi_1$ und $\varphi_2$ 
+und $\dot{x}(t)$ in den Karten $\varphi_3$ und $\varphi_4$.
+
+Die spezielle Kurve $\gamma(t) = (\cos t,\sin t)$ hat in einem Punkt
+$t\in (0,\frac{\pi}2)$.
+in der Karte $\varphi_1$ den Tangentialvektor $\dot{y}(t)=\cos t$,
+in der Karte $\varphi_3$ aber den Tangentialvektor $\dot{x}=-\sin t$.
+Die Ableitung des Kartenwechsels in diesem Punkt ist die $1\times 1$-Matrix
+\[
+D\varphi_{31}(\gamma(t))
+=
+-\frac{y(t)}{\sqrt{1-y(t)^2}}
+=
+-\frac{\sin t}{\sqrt{1-\sin^2 t}}
+=
+-\frac{\sin t}{\cos t}
+=
+-\tan t.
+\]
+Die Koordinatenumrechnung ist gegeben durch
+\[
+\dot{x}(t)
+=
+D\varphi_{31}(\gamma(t)) 
+\dot{y}(t)
+\]
+wird für die spezielle Kurve $\gamma(t)=(\cos t,\sin t)$ wird dies zu
+\[
+D\varphi_{31}(\gamma(t)) 
+\cdot
+\dot{y}(t)
+=
+-\tan t\cdot \cos t
+=
+-\frac{\sin t}{\cos t}\cdot \cos t
+=
+-\sin t
+=
+\dot{x}(t).
+\qedhere
+\]
+\end{beispiel}
+
+Betrachtet man die Kreislinie als Kurve in $\mathbb{R}^2$,
+dann ist der Tangentialvektor durch
+$\dot{\gamma}(t)=(\dot{x}(t),\dot{y}(t))$ gegeben.
+Da die Karten Projektionen auf die $x$- bzw.~$y$-Achsen sind,
+entsteht der Tangentialvektor in der Karte durch Projektion
+von $(\dot{x}(t),\dot{y}(t))$ auf die entsprechende Komponente.
+
+Die Tangentialvektoren in zwei verschiedenen Punkten der Kurve können
+im Allgemeinen nicht miteinander verglichen werden.
+Darüber hinweg hilft auch die Tatsache nicht, dass die Kreislinie
+in den Vektorraum $\mathbb{R}^2$ eingebettet sind, wo sich Vektoren
+durch Translation miteinander vergleichen lassen.
+Ein nichtverschwindender Tangentialvektor im Punkt $(1,0)$ hat, 
+betrachtet als Vektor in $\mathbb{R}^2$ verschwindende $x$-Komponente,
+für Tangentialvektoren im Inneren eines Quadranten ist dies nicht
+der Fall.
+
+Eine Möglichkeit, einen Tangentialvektor in $(1,0)$ mit einem
+Tangentialvektor im Punkt $(\cos t,\sin t)$ zu vergleichen, besteht
+darin, den Vektor um den Winkel $t$ zu drehen.
+Dies ist möglich, weil die Kreislinie eine kontinuierliche Symmetrie,
+nämlich die Drehung um den Winkel $t$ hat, die es erlaubt, den Punkt $(1,0)$
+in den Punkt $(\cos t,\sin t)$ abzubilden.
+Erst diese Symmetrie ermöglicht den Vergleich.
+Dieser Ansatz ist für alle Matrizen erfolgreich, wie wir später sehen werden.
+
+Ein weiterer Ansatz, Tangentialvektoren zu vergleichen, ist die Idee, 
+einen sogenannten Zusammenhang zu definieren, eine Vorschrift, wie
+Tangentialvektoren infinitesimal entlang von Kurven in der Mannigfaltigkeit
+transportiert werden können.
+Auf einer sogenannten {\em Riemannschen Mannigfaltigkeit} ist zusätzlich
+zur Mannigfaltigkeitsstruktur die Längenmessung definiert.
+Sie kann dazu verwendet werden, den Transport von Vektoren entlang einer
+Kurve so zu definieren, dass dabei Längen und Winkel erhalten bleiben.
+Dieser Ansatz ist die Basis der Theorie der Krümmung sogenannter
+Riemannscher Mannigfaltigkeiten.
 
 \subsection{Der Satz von Noether
 \label{buch:subsection:noether}}

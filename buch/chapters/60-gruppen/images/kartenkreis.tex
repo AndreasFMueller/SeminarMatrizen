@@ -62,12 +62,13 @@
 \node at (1.6,-1.6) {$\varphi_{14}$};
 
 \node at (-1.24,1.32)
-	[left] {$\varphi_2\circ\varphi_4^{-1}(x)=\sqrt{1-x^2}$};
-\node at (-1.6,-1.6) {$\varphi_{42}$};
+	[left] {$\varphi_2\circ\varphi_3^{-1}(x)=\sqrt{1-x^2}$};
+\node at (-1.6,1.6) {$\varphi_{23}$};
 
 \node at (-1.18,-1.28)
 	[left] {$\varphi_4\circ\varphi_2^{-1}(y)=-\sqrt{1-y^2}$};
-\node at (-1.6,1.6) {$\varphi_{23}$};
+\node at (-1.6,-1.6) {$\varphi_{42}$};
+
 
 \foreach \y in {0.1,0.3,...,0.9}{
 	\draw[->,color=red,shorten >= 0.1cm,shorten <= 0.3cm]
@@ -90,7 +91,9 @@
 		({-\x},{-sqrt(1-\x*\x)}) -- ({-\x},-1.5);
 }
 
-\draw[color=gray!20,line width=3pt] (0,0) circle[radius=1];
+%\draw[color=gray!50,line width=3pt] (0,0) circle[radius=1];
+\draw[color=yellow!30,line width=3pt] (0,0) circle[radius=1];
+\node[color=yellow] at ({1/sqrt(2)},{1/sqrt(2)}) [above right] {$S^1$};
 
 \def\r{1.02}
 
