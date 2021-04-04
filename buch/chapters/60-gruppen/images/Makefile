@@ -3,7 +3,7 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	phasenraum.pdf kartenkreis.pdf karten.pdf sl2.pdf
+all:	phasenraum.pdf kartenkreis.pdf karten.pdf sl2.pdf scherungen.pdf
 
 phasenraum.pdf:	phasenraum.tex
 	pdflatex phasenraum.tex
@@ -19,4 +19,7 @@ karten.pdf:	karten.tex torus.png
 
 sl2.pdf:	sl2.tex 
 	pdflatex sl2.tex
+
+scherungen.pdf:	scherungen.tex 
+	pdflatex scherungen.tex
 
