@@ -1,0 +1,162 @@
+Die Elemente der Gruppe $G$ der Translationen und Streckungen von
+$\mathbb{R}$ kann durch Paare $(\lambda,t)\in\mathbb{R}^+\times\mathbb{R}$
+beschrieben werden,
+wobei $\lambda$ durch Streckung und $t$ durch Translation wirkt:
+\[
+(\lambda,t)\colon \mathbb{R}\to\mathbb{R}: x\mapsto \lambda x+t.
+\]
+Dies ist allerdings noch keine Untergruppe einer Matrizengruppe.
+Dazu bettet man $\mathbb{R}$ mit Hilfe der Abbildung
+\[
+\mathbb{R}\to\mathbb{R}^2 : x\mapsto \begin{pmatrix}x\\1\end{pmatrix}
+\]
+in $\mathbb{R}^2$ ein.
+Die Wirkung von $(\lambda,t)$ ist dann
+\[
+\begin{pmatrix}(\lambda,t)\cdot x\\1\end{pmatrix}
+=
+\begin{pmatrix} \lambda x + t\\1\end{pmatrix}
+=
+\begin{pmatrix}\lambda&1\\0&1\end{pmatrix}\begin{pmatrix}x\\1\end{pmatrix}.
+\]
+Die Wirkung des Paares $(\lambda,t)$ kann also mit Hilfe einer 
+$2\times 2$-Matrix beschrieben werden.
+Die Abbildung
+\[
+G\to \operatorname{GL}_2(\mathbb{R})
+:
+(\lambda,t)
+\mapsto
+\begin{pmatrix}\lambda&t\\0&1\end{pmatrix}
+\]
+bettet die Gruppe $G$ in $\operatorname{GL}_2(\mathbb{R})$ ein.
+\begin{teilaufgaben}
+\item
+Berechnen Sie das Produkt $g_1g_2$ zweier Elemente
+$g_j=(\lambda_j,t_j)$.
+\item 
+Bestimmen Sie das inverse Elemente von $(\lambda,t)$ in $G$.
+\item
+Der sogenannte Kommutator zweier Elemente ist $g_1g_2g_1^{-1}g_2^{-1}$,
+berechnen Sie den Kommutator für die Gruppenelemente von a).
+\item
+Rechnen Sie nach, dass
+\[
+s\mapsto \begin{pmatrix}e^s&0\\0&1\end{pmatrix}
+,\qquad
+t\mapsto \begin{pmatrix}1&t\\0&1\end{pmatrix}
+\]
+Einparameteruntergruppen von $\operatorname{GL}_2(\mathbb{R})$ sind.
+\item
+Berechnen Sie die Tangentialvektoren $S$ und $T$ dieser beiden
+Einparameteruntergruppen.
+\item
+Berechnen Sie den Kommutator $[S,T]$
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die beiden Gruppenelemente wirken auf $x$ nach
+\[
+(\lambda_1,t_1)
+(\lambda_2,t_2)
+\cdot
+x
+=
+(\lambda_1,t_1)(\lambda_2x+t_2)
+=
+\lambda_1(\lambda_2x+t_2)+t_1)
+=
+\lambda_1\lambda_2 x + (\lambda_1t_2+t_1),
+\]
+also ist $g_1g_2=(\lambda_1\lambda_2,\lambda_1t_2+t_1)$.
+\item
+Die Inverse von $(\lambda,t)$ kann erhalten werden, indem man die
+Abbildung $x\mapsto y=\lambda x +t$ nach $x$ auflöst:
+\[
+y=\lambda x+t
+\qquad\Rightarrow\qquad
+\lambda^{-1}(y-t)
+=
+\lambda^{-1}y - \lambda^{-1}t.
+\]
+Daraus liest man ab, dass $(\lambda,t)^{-1}=(\lambda^{-1},-\lambda^{-1}t)$
+ist.
+\item
+Mit Hilfe der Identität $g_1g_2g_1^{-1}g_2^{-1}=g_1g_2(g_2g_1)^{-1}$
+kann man den Kommutator leichter berechnen
+\begin{align*}
+g_1g_2&=(\lambda_1\lambda_2,t_1+\lambda_1t_2)
+\\
+g_2g_1&= (\lambda_2\lambda_1,t_2+\lambda_2t_1)
+\\
+(g_2g_1)^{-1}
+&=
+(\lambda_1^{-1}\lambda_2^{-1},
+	-\lambda_2^{-1}\lambda_1^{-1}(t_2+\lambda_2t_1))
+\\
+g_1g_2g_1^{-1}g_2^{-1}
+&=
+(\lambda_1\lambda_2,t_1+\lambda_1t_2)
+(\lambda_1^{-1}\lambda_2^{-1},
+	-\lambda_2^{-1}\lambda_1^{-1}(t_2+\lambda_2t_1))
+\\
+&=(1,t_1+\lambda_1t_2 + \lambda_1\lambda_2(
+	-\lambda_2^{-1}\lambda_1^{-1}(t_2+\lambda_2t_1))
+)
+\\
+&=(1, t_1+\lambda_1t_2 - t_2 -\lambda_2t_1)
+=
+(1,(1-\lambda_2)(t_1-t_2))
+\end{align*}
+Der Kommutator ist also das neutrale Element, wenn $\lambda_2=1$ ist.
+\item
+Dies ist am einfachsten in der Matrixform nachzurechnen:
+\begin{align*}
+\begin{pmatrix} e^{s_1}&0\\0&1\end{pmatrix}
+\begin{pmatrix} e^{s_2}&0\\0&1\end{pmatrix}
+&=
+\begin{pmatrix}e^{s_1+s_2}&0\\0&1\end{pmatrix}
+&
+\begin{pmatrix} 1&t_1\\0&1\end{pmatrix}
+\begin{pmatrix} 1&t_2\\0&1\end{pmatrix}
+&=
+\begin{pmatrix} 1&t_1+t_2\\0&1\end{pmatrix}
+\end{align*}
+\item
+Die Tangentialvektoren werden erhalten durch ableiten der
+Matrixdarstellung nach dem Parameter
+\begin{align*}
+S
+&=
+\frac{d}{ds} \begin{pmatrix}e^s&0\\0&1\end{pmatrix}\bigg|_{s=0}
+=
+\begin{pmatrix}1&0\\0&0\end{pmatrix}
+\\
+T
+&=
+\frac{d}{dt} \begin{pmatrix}1&t\\0&1\end{pmatrix}\bigg|_{t=0}
+=
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\end{align*}
+\item Der Kommutator ist
+\[
+[S,T]
+=
+\begin{pmatrix}1&0\\0&0\end{pmatrix}
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+-
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+\begin{pmatrix}1&0\\0&0\end{pmatrix}
+=
+\begin{pmatrix}0&1\\0&0\end{pmatrix}
+-
+\begin{pmatrix}0&0\\0&0\end{pmatrix}
+=
+T.
+\qedhere
+\]
+\end{teilaufgaben}
+\end{loesung}
+
