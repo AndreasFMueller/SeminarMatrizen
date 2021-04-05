@@ -6,126 +6,118 @@
 \section{Wavelets auf Graphen
 \label{buch:section:wavelets-auf-graphen}}
 \rhead{Wavelets auf Graphen}
-Graphen werden oft verwendet um geometrische Objekte zu approximieren.
-Funktionen auf einem Graphen können dann Approximationen von physikalischen
-Grössen wie zum Beispiel der Temperatur auf dem geometrischen Objekt
-interpretiert werden.
-Verschiedene Basen für die Beschreibung solcher Funktionen sind im Laufe
-der Zeit verwendet worden, doch Wavelets auf einem Graphen sind eine
-neuere Idee, mit der man aus der Laplace-Matrix Basen gewinnen kann,
-die die Idee von langsam sich ausbreitenden Störungen besonders gut
-wiederzugeben in der Lage sind.
+In Abschnitt~\ref{buch:subsection:standardbasis-und-eigenbasis} wurde
+gezeigt dass die Standardbasis den Zusammenhang zwischen den einzelnen
+Teilen des Graphen völlig ignoriert, während die Eigenbasis Wellen
+beschreibt, die mit vergleichbarer Amplitude sich über den ganzen
+Graphen entsprechen.
+Die Eigenbasis unterdrückt also die ``Individualität'' der einzelnen
+Knoten fast vollständig.
 
-In diesem Abschnitt werden erst Funktionen auf einem Graphen genauer
-definiert.
-In Abschnitt~\ref{buch:subsection:standardbasis-und-eigenbasis}
-wird die Eigenbasis mit dem Laplace-Operator konstruiert und mit
-der Standarbasis verglichen.
-Schliesslich werden in Abschnitt~\ref{buch:subsection:wavelet-basen}
-verschiedene Wavelet-Basen konstruiert.
+Wenn man einen Standardbasisvektor in einem Knoten $i$
+als Anfangstemperaturverteilung verwendet, erwartet man eine Lösung,
+die für kleine Zeiten $t$ die Energie immer in der Nähe des Knotens $i$
+konzentriert hat.
+Weder die Standardbasis noch die Eigenbasis haben diese Eigenschaft.
 
-\subsection{Funktionen auf einem Graphen und die Laplace-Matrix}
-Sei $G$ ein Graph mit der Knotenmenge $V$.
-Eine Funktion $f$ auf einem Graphen ist eine Funktion $f\colon V\to\mathbb{R}$.
-Funktionen auf $G$ sind also Vektoren, die mit den Knoten $V$ indiziert
-sind.
-
-Es gibt auch ein Skalarprodukt für Funktionen auf dem Graphen.
-Sind $f$ und $g$ zwei Funktionen auf $G$, dann ist das Skalarprodukt
-definiert durch
+\subsection{Vergleich mit der Wärmeleitung auf $\mathbb{R}$}
+Ein ähnliches Phänomen findet man bei der Wärmeausbreitung gemäss
+der partiellen Differentialgleichung
 \[
-\langle f,g\rangle
-=
-\frac{1}{|V|}\sum_{v\in V} \overline{f}(v) g(v)
+\frac{\partial T}{\partial t} = -\kappa \frac{\partial^2 T}{\partial x^2}.
 \]
-Dies ist das bekannte Skalarprodukt der Vektoren mit Komponenten $f(v)$.
+Die von Fourier erfundene Methode, die Fourier-Theorie, verwendet die
+Funktionen $e^{ik x}$, die Eigenvektoren der zweiten Ableitung
+$\partial^2/\partial x^2$ sind.
+Diese haben das gleiche Problem, der Betrag von $e^{ikx}$ ist $1$, die
+Entfernung von einem Punkt spielt überhaupt keine Rolle.
+Die Funktion
+\[
+F(x,t)
+=
+\frac{1}{\sqrt{4\pi\kappa t}}e^{-x^2/4\kappa t}
+\]
+ist eine Lösung der Wärmeleitungsgleichung mit einem Maximum an
+der Stelle $0$.
+Sie heisst die Fundamentallösung der Wärmeleitungsgleichung.
+Durch Überlagerung von Translaten in eine Funktion
+\begin{equation}
+f(x,t)
+=
+\int_{-\infty}^\infty f(\xi) F(x-\xi,t)\,d\xi
+\label{buch:graphen:eqn:fundamentalueberlagerung}
+\end{equation}
+kann man die allgemeine Lösung aus Fundamentallösungen zusammensetzen.
+Die Fundamentallösungen $f(x-\xi,t)$ sind für kleine Zeiten immer noch
+deutlich in einer Umgebung von $\xi$ konzentriert.
 
+% XXX Ausbreitung der Fundamentallösung illustrieren
 \begin{figure}
 \centering
-\includegraphics{chapters/70-graphen/images/kreis.pdf}
-\caption{Beispiel Graph zur Illustration der verschiedenen Basen auf einem
-Graphen.
-\label{buch:graphen:fig:kreis}}
+\includegraphics{chapters/70-graphen/images/fundamental.pdf}
+\caption{Vergleich der verschiedenen Funktionenfamilien, mit denen
+Lösungenfunktionen durch Linearkombination erzeugt werden können.
+In der Standarbasis (links) ist es am einfachsten, die Funktionswerte
+abzulesen, in der Eigenbasis (Mitte) kann die zeitliche Entwicklung
+besonders leicht berechnet werden.
+Dazuwischen liegen die Fundamentallösungen (rechts), die eine einigermassen
+übersichtliche Zeitentwicklung haben, die Berechnung der Temperatur an 
+einer Stelle $x$ zur Zeit $t$ ist aber erst durch das Integral
+\eqref{buch:graphen:eqn:fundamentalueberlagerung} gegeben.
+\label{buch:graphen:fig:fundamental}}
 \end{figure}
-\begin{beispiel}
-Wir illustrieren die im folgenden entwickelte Theorie an dem Beispielgraphen
-von Abbildung~\ref{buch:graphen:fig:kreis}.
-Besonders interessant sind die folgenden Funktionen:
-\[
-\left.
-\begin{aligned}
-s_m(k)
-&=
-\sin\frac{2\pi mk}{n}
-\\
-c_m(k)
-&=
-\cos\frac{2\pi mk}{n}
-\end{aligned}
-\;
-\right\}
-\quad
-\Rightarrow
-\quad
-e_m(k)
+
+\subsection{Fundamentallösungen auf einem Graphen}
+Die Wärmeleitungsgleichung auf einem Graphen kann für einen
+Standardbasisvektor mit Hilfe der
+Lösungsformel~\eqref{buch:graphen:eqn:eigloesung}
+gefunden werden.
+Aus physikalischen Gründen ist aber offensichtlich, dass die
+Wärmeenergie Fundamentallösungen $F_i(t)$ für kurze Zeiten $t$
+in der Nähe des Knoten $i$ konzentriert ist.
+Dies ist aber aus der expliziten Formel
+\begin{equation}
+F_i(t)
 =
-e^{2\pi imk/n}
+\sum_{j=1}^n \langle f_j,e_i\rangle e^{-\kappa \lambda_i t} f_j
 =
-c_m(k) + is_m(k).
-\]
-Das Skalarprodukt dieser Funktionen ist
-\[
-\langle e_m, e_{m'}\rangle
-=
-\frac1n
-\sum_{k=1}^n
-\overline{e^{2\pi i km/n}}
-e^{2\pi ikm'/n}
-=
-\frac1n
-\sum_{k=1}^n
-e^{\frac{2\pi i}{n}(m'-m)k}
-=
-\delta_{mm'}
-\]
-Die Funktionen bilden daher eine Orthonormalbasis des Raums der
-Funktionen auf $G$.
-Wegen $\overline{e_m} = e_{-m}$ folgt, dass für gerade $n$
-die Funktionen
-\[
-c_0, c_1,s_1,c_2,s_2,\dots c_{\frac{n}2-1},c_{\frac{n}2-1},c_{\frac{n}2}
-\]
-eine orthonormierte Basis.
-\end{beispiel}
+\sum_{j=1}^n \overline{f}_{ji} e^{-\kappa \lambda_i t},
+\label{buch:graphen:eqn:fundamentalgraph}
+\end{equation}
+nicht unmittelbar erkennbar.
+
+Man kann aber aus~\eqref{buch:graphen:eqn:fundamentalgraph} ablesen,
+dass für zunehmende Zeit die hohen Frequenzen sehr schnell gedämpft
+werden.
+Die hohen Frequenzen erzeugen also den scharfen Peak für Zeiten nahe
+beim Knoten $i$, die zu kleineren $\lambda_i$ beschreiben die Ausbreitung
+über grössere Distanzen.
+Die Fundamentallösung interpoliert also in einem gewissen Sinne zwischen
+den Extremen der Standardbasis und der Eigenbasis.
+Die ``Interpolation'' geht von der Differentialgleichung aus,
+sie ist nicht einfach nur ein Filter, der die verschiedenen Frequenzen
+auf die gleiche Art bearbeitet.
+
+Gesucht ist eine Methode, eine Familie von Vektoren zu finden,
+aus der sich alle Vektoren linear kombinieren lassen, in der aber
+auch auf die für die Anwendung interessante Längenskala angepasste
+Funktionen gefunden werden können.
+
+\subsection{Wavelets und Frequenzspektrum}
+Eine Wavelet-Basis der Funktionen auf $\mathbb{R}$ zerlegt
 
 
-Die Laplace-Matrix kann mit der folgenden Definition zu einer linearen
-Abbildung auf Funktionen auf dem Graphen gemacht werden.
-Sei $f\colon V\to \mathbb{R}$ und $L$ die Laplace-Matrix mit
-Matrixelementen $l_{vv'}$ wobei $v,v'\in V$ ist.
-Dann definieren wir die Funktion $Lf$ durch
-\[
-(Lf)(v)
-=
-\sum_{v'\in V} l_{vv'}f(v').
-\]
+\subsection{Frequenzspektrum
+\label{buch:subsection:frequenzspektrum}}
+Die Fundamentallösung der Wärmeleitunsgleichung haben ein Spektrum, welches
+wie $e^{-k^2}$ gegen $0$ geht.
 
-\subsection{Standardbasis und Eigenbasis
-\label{buch:subsection:standardbasis-und-eigenbasis}}
-Die einfachste Basis, aus der siche Funktionen auf dem Graphen linear
-kombinieren lassen, ist die Standardbasis.
-Sie hat für jeden Knoten $v$ des Graphen eine Basisfunktion mit den Werten
-\[
-e_v\colon V\to\mathbb R:v'\mapsto \begin{cases}
-1\qquad&v=v'\\
-0\qquad&\text{sonst.}
-\end{cases}
-\]
+Die Fundamentallösung entsteht dadurch, dass die hohen Frequenzen
+schneller dämpft als die tiefen Frequenzen.
 
 
 \subsection{Wavelet-Basen
-\label{buch:subsection:wavelet-basen}}
-
+\label{buch:subsection:}}
 
 
 

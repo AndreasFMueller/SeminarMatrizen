@@ -1,0 +1,54 @@
+%
+% fundamental.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\begin{scope}[xshift=-4.6cm]
+	\draw[color=red,line width=2pt] (1.8,0) -- (1.8,2);
+	\draw[color=red,line width=2pt] (0,0) -- (4,0);
+	\node at (1.8,0) [below] {$i$};
+	\draw[->] (-0.1,0) -- (4.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+
+	\node at (2,-2.3) [below] {Standarbasis};
+\end{scope}
+
+\begin{scope}
+	\draw[color=red,line width=1.4pt] 
+		plot[domain=0:360,samples=100] ({\x/90},{2*sin(\x)});
+	\draw[color=blue,line width=1.4pt] 
+		plot[domain=0:360,samples=100] ({\x/90},{2*cos(\x)});
+	\node[color=blue] at (1,-1) {$\Re f_i$};
+	\node[color=red] at (2,1) {$\Im f_i$};
+	\draw[->] (-0.1,0) -- (4.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+	\node at (2,-2.3) [below] {Eigenbasis};
+\end{scope}
+
+\begin{scope}[xshift=4.6cm]
+	\foreach \t in {0.02,0.05,0.1,0.2,0.5}{
+		\draw[color=red,line width=1.0pt]
+			plot[domain=-1.8:2.2,samples=100]
+				({\x+1.8},{exp(-\x*\x/(4*\t))/(sqrt(4*3.1415*\t))});
+	}
+	\fill[color=red] (1.8,0) circle[radius=0.08];
+	\node at (1.8,0) [below] {$\xi$};
+	\draw[->] (-0.1,0) -- (4.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+	\node at (2,-2.3) [below] {Fundamentallösung};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+
