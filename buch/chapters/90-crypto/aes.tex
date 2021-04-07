@@ -333,9 +333,99 @@ c(Z) = \texttt{03}_{16}Z^3 + Z^2+Z^1+\texttt{02}_{16},
 \]
 die natürlich ebenfalls umkehrbar ist.
 
-\subsection{Rundenschlüssel
-\label{buch:subsection:rundenschlüssel}}
+\subsection{Schlüssel
+\label{buch:subsection:schlüssel}}
+Die von den Byte- und Blockoperationen mischen die einzelnen Bits
+der Daten zwar ganz schön durcheinander, aber es wird noch kein
+Schlüsselmaterial eingearbeitet, welches den Prozess einzigartig
+macht.
 
+\subsubsection{Schlüsseladdition}
+Nach jeder Spaltenmischoperation wird ein Rundenschlüssel
+zum Blockhinzuaddiert.
+Beim ersten Mal wird dazu einfach das Schlüsselmaterial verwendet.
+Für die folgenden Runden muss aus diesem Schlüssel neues
+Material, die sogenannten Rundenschlüssel, gewonnen werden.
+
+\subsubsection{Rundenschlüssel}
+\begin{figure}
+\centering
+\includegraphics{chapters/90-crypto/images/keys.pdf}
+\caption{Erzeugung der erweiterten Schlüsseldaten aus dem Schlüssel
+$K_0,\dots,K_7$ für Schlüssellänge 256\,bit.
+Die mit $S$ beschrifteten Blöcke wenden die $S$-Box auf jedes einzelne
+Byte an.
+$\pi$ ist die zyklische Vertauschung der Bytes eines Wortes.
+Die Operation $r_i$ ist eine Addition einer Konstanten, die in jeder
+Runde anders ist.
+\label{buch:crypto:fig:keys}}
+\end{figure}
+Die Erzeugung der Rundenschlüssel ist in Abbildung
+\ref{buch:crypto:fig:keys}
+schematisch dargestellt.
+Die Blöcke beschreiben wieder Spaltenvektoren im vierdimensionalen
+Raum $\mathbb{F}_{2^8}^4$.
+Die Blöcke $K_0$ bis $K_7$ stellen den ursprünglichen Schlüssel dar.
+Die Erzeugung eines neuen Blocks Schlüsselmatrial beginnt damit,
+dass der letzte Vektor des vorangegangenblocks drei Operationen
+unterworfen werden.
+\begin{itemize}
+\item
+Die Operation $\pi$ vertauscht die Bytes des Vektors zyklisch:
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\s{0.6}
+\begin{scope}
+\draw (0,0) rectangle (\s,{4*\s});
+\foreach \y in {1,...,3}{
+	\draw (0,{\y*\s}) (\s,{\y*\s});
+}
+\node at ({0.5*\s},{0.5*\s}) {$b_3$};
+\node at ({0.5*\s},{1.5*\s}) {$b_2$};
+\node at ({0.5*\s},{2.5*\s}) {$b_1$};
+\node at ({0.5*\s},{3.5*\s}) {$b_0$};
+\end{scope}
+\draw[->] ({1.1*\s},{2*\s}) -- ({4.9*\s},{2*\s});
+\node at ({3*\s},{2*\s}) [above] {$\pi$};
+\begin{scope}[xshift=3cm]
+\draw (0,0) rectangle (\s,{4*\s});
+\foreach \y in {1,...,3}{
+	\draw (0,{\y*\s}) (\s,{\y*\s});
+}
+\node at ({0.5*\s},{0.5*\s}) {$b_0$};
+\node at ({0.5*\s},{1.5*\s}) {$b_3$};
+\node at ({0.5*\s},{2.5*\s}) {$b_2$};
+\node at ({0.5*\s},{3.5*\s}) {$b_1$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\item
+Die $S$-Operation wendet die $S$-Box auf alle Bytes eines Vektors an.
+\item
+Die $r_i$ Operation addiert in Runde eine Konstante $r_i$ zur $0$-Komponente.
+\end{itemize}
+Die Konstante $r_i$ ist wieder ein einzelnes Byte und es ist daher
+naheliegend, diese Bytes mit Hilfe der Arithmetik in $\mathbb{F}_{2^8}$
+zu erzeugen.
+Man kann daher $r_i$ definieren als
+$(\texttt{02}_{16})^{i-1}\in\mathbb{F}_{2^8}$.
+
+\subsection{Runden}
+Der AES-Verschlüsselungsalgorithmus besteht jetzt darin, die bisher
+definierten Operationen wiederholt anzuwenden.
+Eine einzelne Runde besteht dabei aus folgenden Schritten:
+\begin{enumerate}
+\item Wende die $S$-Box auf alle Bytes des Blocks an.
+\item Führe den Zeilenshift durch.
+\item Mische die Spalten (wird in der letzten Runde)
+\item Erzeuge den nächsten Rundenschlüssel
+\item Addiere den Rundenschlüssel
+\end{enumerate}
+Der AES-Verschlüsselungsalgorithmus beginnt damit, dass der Schlüssel
+zum Datenblock addiert wird.
+Anschliessend werden je nach Blocklänge verschiedene Anzahlen von
+Runden durchgeführt, 10 Runden für 128\,bit, 12 Runden für 192\,bit und
+14 Runden für 256\,bit.
 
 
 
