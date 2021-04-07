@@ -4,7 +4,7 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
 all:	dh.pdf elliptic.pdf schieberegister.pdf multiplikation.pdf sbox.pdf \
-	shift.pdf
+	shift.pdf keys.pdf
 
 dh.pdf:	dh.tex
 	pdflatex dh.tex
@@ -23,4 +23,7 @@ sbox.pdf:	sbox.tex
 
 shift.pdf:	shift.tex
 	pdflatex shift.tex
+
+keys.pdf:	keys.tex
+	pdflatex keys.tex
 

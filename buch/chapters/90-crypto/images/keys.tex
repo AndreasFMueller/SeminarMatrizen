@@ -1,0 +1,90 @@
+%
+% keys.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\s{0.5}
+\def\punkt#1#2{({(#1)*\s},{(#2)*\s})}
+\def\wort#1#2#3{
+	\fill[color=#3] \punkt{#1}{#2} rectangle \punkt{(#1+1)}{(#2+4)};
+	\draw \punkt{#1}{#2} rectangle \punkt{(#1+1)}{(#2+4)};
+}
+
+\def\summe{
+	\foreach \x in {0,3,...,21}{
+		\draw[->] \punkt{(\x+0.5)}{-0.1} -- \punkt{(\x+0.5)}{-2.1};
+		\draw \punkt{(\x+0.5)}{-2.5} circle[radius={0.3*\s}];
+		\draw \punkt{(\x+0.5-0.2)}{-2.5} 
+			--
+			\punkt{(\x+0.5+0.2)}{-2.5};
+		\draw \punkt{(\x+0.5)}{-2.5+0.2} 
+			--
+			\punkt{(\x+0.5)}{-2.5-0.2};
+		\draw[->] \punkt{(\x+0.5)}{-2.9} -- \punkt{(\x+0.5)}{-4.9};
+	}
+	\foreach \x in {0,3,...,18}{
+		\draw[->] \punkt{(\x+1)}{-7} -- \punkt{(\x+2)}{-7}
+			-- \punkt{(\x+2)}{-2.5} -- \punkt{(\x+3.1)}{-2.5};
+	}
+	\fill[color=white]
+		\punkt{(9+1.5)}{-5.25}
+		rectangle
+		\punkt{(9+2.5)}{-4.25};
+	\draw
+		\punkt{(9+1.5)}{-5.25}
+		rectangle
+		\punkt{(9+2.5)}{-4.25};
+	\node at \punkt{(9+2)}{-4.75} {$S$};
+}
+\def\blocks#1{
+	\foreach \x in {0,3,...,21}{
+		\wort{\x}{0}{#1}
+	}
+}
+
+\def\schlange{
+	\draw[->] \punkt{22.1}{2} -- \punkt{23}{2}
+		-- \punkt{23}{-1.0} -- \punkt{-3}{-1.0}
+		-- \punkt{-3}{-8} -- \punkt{-1}{-8} -- \punkt{-1}{-2.5}
+		-- \punkt{0.1}{-2.5};
+	;
+	\fill[color=white] \punkt{-3.5}{-1.5} rectangle \punkt{-2.5}{-3.5};
+	\draw \punkt{-3.5}{-1.5} rectangle \punkt{-2.5}{-3.5};
+	\node at \punkt{-3}{-2.5} {$\pi$};
+	\fill[color=white] \punkt{-3.5}{-3.5} rectangle \punkt{-2.5}{-5.5};
+	\draw \punkt{-3.5}{-3.5} rectangle \punkt{-2.5}{-5.5};
+	\node at \punkt{-3}{-4.5} {$S$};
+	\fill[color=white] \punkt{-3.5}{-5.5} rectangle \punkt{-2.5}{-7.5};
+	\draw \punkt{-3.5}{-5.5} rectangle \punkt{-2.5}{-7.5};
+	\node at \punkt{-3}{-6.5} {$r$};
+}
+
+\begin{scope}
+	\blocks{blue!20}
+	\schlange
+	\summe
+\end{scope}
+
+\begin{scope}[yshift=-4.5cm]
+	\blocks{darkgreen!20}
+	\summe
+\end{scope}
+
+\begin{scope}[yshift=-9cm]
+	\blocks{darkgreen!20}
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+
