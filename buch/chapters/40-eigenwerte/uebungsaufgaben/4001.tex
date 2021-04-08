@@ -2,7 +2,7 @@ Verwenden Sie die Matrixdarstellung komplexer Zahlen, um $i^i$ zu
 berechnen.
 
 \begin{hinweis}
-Verwenden Sie die eulersche Formel um $\log J$ zu bestimmen.
+Verwenden Sie die Eulersche Formel um $\log J$ zu bestimmen.
 \end{hinweis}
 
 \begin{loesung}
@@ -14,11 +14,11 @@ Zunächst erinnern wir an die Eulersche Formel
 =
 \sum_{k=0}^\infty \frac{t^k J^k}{k!}
 =
-\sum_{i=0}^\infty \frac{t^{2i}(-1)^i}{(2i)!}\cdot E
+\sum_{i=0}^\infty \frac{t^{2i}(-1)^i}{(2i)!}\cdot I
 +
 \sum_{i=0}^\infty \frac{t^{2i+1}(-1)^i}{(2i+1)!}\cdot J
 =
-\cos t\cdot E
+\cos t\cdot I
 +
 \sin t\cdot J.
 \]
@@ -49,7 +49,7 @@ J = \begin{pmatrix}
 Als nächstes müssen wir $J\log J$ berechnen.
 Aus \eqref{4001:logvalue} folgt
 \[
-J\log J = J\cdot \frac{\pi}2J = - \frac{\pi}2 \cdot E.
+J\log J = J\cdot \frac{\pi}2J = - \frac{\pi}2 \cdot I.
 \]
 Darauf ist die Exponentialreihe auszuwerten, also
 \[
@@ -57,7 +57,7 @@ J^J
 =
 \exp (J\log J)
 =
-\exp(-\frac{\pi}2 E)
+\exp(-\frac{\pi}2 I)
 =
 \exp
 \begin{pmatrix}
@@ -70,7 +70,7 @@ e^{-\frac{\pi}2}&0\\
 0&e^{-\frac{\pi}2}
 \end{pmatrix}
 =
-e^{-\frac{\pi}2} E.
+e^{-\frac{\pi}2} I.
 \]
 Als komplexe Zahlen ausgedrückt folgt also $i^i = e^{-\frac{\pi}2}$.
 \end{loesung}

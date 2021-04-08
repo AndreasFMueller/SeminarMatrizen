@@ -1,0 +1,241 @@
+%
+% sbox.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\s{0.2}
+\def\punkt#1#2{({#1*\s},{(8-(#2))*\s})}
+
+\definecolor{b}{rgb}{0,0,0}
+\definecolor{w}{rgb}{1,1,1}
+
+\def\feld#1#2#3{
+	\fill[color=#3] \punkt{#1}{#2} rectangle \punkt{(#1+1)}{(#2-1)};
+}
+
+\def\zeile#1#2#3#4#5#6#7#8#9{
+	\feld{0}{#1}{#2}
+	\feld{1}{#1}{#3}
+	\feld{2}{#1}{#4}
+	\feld{3}{#1}{#5}
+	\feld{4}{#1}{#6}
+	\feld{5}{#1}{#7}
+	\feld{6}{#1}{#8}
+	\feld{7}{#1}{#9}
+}
+\def\inverse#1#2#3#4#5#6#7#8#9{
+	\feld{8}{#1}{#2}
+	\feld{9}{#1}{#3}
+	\feld{10}{#1}{#4}
+	\feld{11}{#1}{#5}
+	\feld{12}{#1}{#6}
+	\feld{13}{#1}{#7}
+	\feld{14}{#1}{#8}
+	\feld{15}{#1}{#9}
+}
+\def\rechteck{
+	\draw (0,{1*\s}) rectangle ({16*\s},{(8+1)*\s});
+	\draw ({8*\s},{1*\s}) -- ({8*\s},{(8+1)*\s});
+}
+
+\def\pivot#1#2{
+	\draw[color=red,line width=1.2pt]
+		\punkt{(#1+\inset)}{(#2-\inset)}
+		rectangle
+		\punkt{(#1+1-\inset)}{(#2-1+\inset)};
+}
+\def\inset{0.1}
+\def\cleanup#1#2#3{
+	\pgfmathparse{(#3-#2)/abs(#3-#2)}
+	\xdef\signum{\pgfmathresult}
+	\draw[color=blue!50,line width=1.2pt]
+		\punkt{(#1+\inset)}{#3}
+		--
+		\punkt{(#1+\inset)}{(#2-1+\inset*\signum)}
+		--
+		\punkt{(#1+1-\inset)}{(#2-1+\inset*\signum)}
+		--
+		\punkt{(#1+1-\inset)}{#3}
+	;
+}
+
+\begin{scope}
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1bbwwwbbb \inverse1wbwwwwww
+	\zeile2bbbwwwbb \inverse2wwbwwwww
+	\zeile3bbbbwwwb \inverse3wwwbwwww
+	\zeile4bbbbbwww \inverse4wwwwbwww
+	\zeile5wbbbbbww \inverse5wwwwwbww
+	\zeile6wwbbbbbw \inverse6wwwwwwbw
+	\zeile7wwwbbbbb \inverse7wwwwwwwb
+	\rechteck
+	\pivot{0}{0}
+	\cleanup{0}{1}{7}
+\end{scope}
+
+\begin{scope}[xshift=4cm]
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wbbwbbww \inverse2bwbwwwww
+	\zeile3wbbbbbbw \inverse3bwwbwwww
+	\zeile4wbbbwbbb \inverse4bwwwbwww
+	\zeile5wbbbbbww \inverse5wwwwwbww
+	\zeile6wwbbbbbw \inverse6wwwwwwbw
+	\zeile7wwwbbbbb \inverse7wwwwwwwb
+	\rechteck
+	\pivot{1}{1}
+	\cleanup{1}{2}{7}
+\end{scope}
+
+\begin{scope}[xshift=8cm]
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwbbwbbw \inverse3wbwbwwww
+	\zeile4wwbbbbbb \inverse4wbwwbwww
+	\zeile5wwbbwbww \inverse5bbwwwbww
+	\zeile6wwbbbbbw \inverse6wwwwwwbw
+	\zeile7wwwbbbbb \inverse7wwwwwwwb
+	\rechteck
+	\pivot{2}{2}
+	\cleanup{2}{3}{7}
+\end{scope}
+
+\begin{scope}[xshift=12cm,yshift=0cm]
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwbw \inverse3wwbbwwww
+	\zeile4wwwbbwbb \inverse4wwbwbwww
+	\zeile5wwwbwwww \inverse5bwbwwbww
+	\zeile6wwwbbwbw \inverse6wbbwwwbw
+	\zeile7wwwbbbbb \inverse7wwwwwwwb
+	\rechteck
+	\pivot{3}{3}
+	\cleanup{3}{4}{7}
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{8}{7} -- \punkt{8}{11};
+\end{scope}
+
+\begin{scope}[xshift=12cm,yshift=-2.4cm]
+	\draw[<-,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwbw \inverse3wwbbwwww
+	\zeile4wwwwbwwb \inverse4wwwbbwww
+	\zeile5wwwwwwbw \inverse5bwwbwbww
+	\zeile6wwwwbwww \inverse6wbwbwwbw
+	\zeile7wwwwbbwb \inverse7wwbbwwwb
+	\rechteck
+	\pivot{4}{4}
+	\cleanup{4}{5}{7}
+\end{scope}
+
+\begin{scope}[xshift=8cm,yshift=-2.4cm]
+	\draw[<-,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwbw \inverse3wwbbwwww
+	\zeile4wwwwbwwb \inverse4wwwbbwww
+	\zeile5wwwwwwbw \inverse5bwwbwbww
+	\zeile6wwwwwwwb \inverse6wbwwbwbw
+	\zeile7wwwwwbww \inverse7wwbwbwwb
+	\rechteck
+\end{scope}
+
+\begin{scope}[xshift=4cm,yshift=-2.4cm]
+	\draw[<-,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbbbb \inverse0bwwwwwww
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwbw \inverse3wwbbwwww
+	\zeile4wwwwbwwb \inverse4wwwbbwww
+	\zeile5wwwwwbww \inverse5wwbwbwwb
+	\zeile6wwwwwwbw \inverse6bwwbwbww
+	\zeile7wwwwwwwb \inverse7wbwwbwbw
+	\rechteck
+	\cleanup{7}{7}{-1}
+\end{scope}
+
+\begin{scope}[xshift=0cm,yshift=-2.4cm]
+	\zeile0bwwwbbbw \inverse0bbwwbwbw
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwbw \inverse3wwbbwwww
+	\zeile4wwwwbwww \inverse4wbwbwwbw
+	\zeile5wwwwwbww \inverse5wwbwbwwb
+	\zeile6wwwwwwbw \inverse6bwwbwbww
+	\zeile7wwwwwwwb \inverse7wbwwbwbw
+	\rechteck
+	\cleanup{6}{6}{-1}
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{8}{7} -- \punkt{8}{11};
+\end{scope}
+
+\begin{scope}[xshift=0cm,yshift=-4.8cm]
+	\zeile0bwwwbbww \inverse0wbwbbbbw
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwbww \inverse2wbbwwwww
+	\zeile3wwwbwwww \inverse3bwbwwbww
+	\zeile4wwwwbwww \inverse4wbwbwwbw
+	\zeile5wwwwwbww \inverse5wwbwbwwb
+	\zeile6wwwwwwbw \inverse6bwwbwbww
+	\zeile7wwwwwwwb \inverse7wbwwbwbw
+	\rechteck
+	\cleanup{5}{5}{-1}
+\end{scope}
+
+\begin{scope}[xshift=4cm,yshift=-4.8cm]
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwbwww \inverse0wbbbwbbb
+	\zeile1wbwwbwww \inverse1bbwwwwww
+	\zeile2wwbwwwww \inverse2wbwwbwwb
+	\zeile3wwwbwwww \inverse3bwbwwbww
+	\zeile4wwwwbwww \inverse4wbwbwwbw
+	\zeile5wwwwwbww \inverse5wwbwbwwb
+	\zeile6wwwwwwbw \inverse6bwwbwbww
+	\zeile7wwwwwwwb \inverse7wbwwbwbw
+	\rechteck
+	\cleanup{4}{4}{-1}
+\end{scope}
+
+\begin{scope}[xshift=8cm,yshift=-4.8cm]
+	\draw[->,shorten >= 0.05cm,shorten <= 0.05cm]
+		\punkt{-4}{3} -- \punkt{0}{3};
+	\zeile0bwwwwwww \inverse0wwbwwbwb
+	\zeile1wbwwwwww \inverse1bwwbwwbw
+	\zeile2wwbwwwww \inverse2wbwwbwwb
+	\zeile3wwwbwwww \inverse3bwbwwbww
+	\zeile4wwwwbwww \inverse4wbwbwwbw
+	\zeile5wwwwwbww \inverse5wwbwbwwb
+	\zeile6wwwwwwbw \inverse6bwwbwbww
+	\zeile7wwwwwwwb \inverse7wbwwbwbw
+	\rechteck
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

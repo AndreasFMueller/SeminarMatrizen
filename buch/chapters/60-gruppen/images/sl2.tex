@@ -1,0 +1,146 @@
+%
+% sl2.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\begin{scope}[xshift=-4.5cm]
+	\fill[color=blue!20]
+		(1.4,0) -- (0,1.4) -- (-1.4,0) -- (0,-1.4) -- cycle;
+	\fill[color=red!40,opacity=0.5]
+		(1.96,0) -- (0,1) -- (-1.96,0) -- (0,-1) -- cycle;
+
+	\begin{scope}
+		\clip (-2.1,-2.1) rectangle (2.3,2.3);
+		\draw[color=darkgreen]
+			plot[domain=-1:1,samples=100]
+				({(1/1.4)*exp(\x)},{(1/1.4)*exp(-\x)});
+		\draw[color=darkgreen]
+			plot[domain=-1:1,samples=100]
+				({(1/1.4)*exp(\x)},{-(1/1.4)*exp(-\x)});
+		\draw[color=darkgreen]
+			plot[domain=-1:1,samples=100]
+				({-(1/1.4)*exp(\x)},{(1/1.4)*exp(-\x)});
+		\draw[color=darkgreen]
+			plot[domain=-1:1,samples=100]
+				({-(1/1.4)*exp(\x)},{-(1/1.4)*exp(-\x)});
+	\end{scope}
+
+	\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+
+	\draw[->,color=blue] (0,0) -- (1.4,0);
+	\draw[->,color=blue] (0,0) -- (0,1.4);
+
+	\draw[->,color=red] (0,0) -- (1.96,0);
+	\draw[->,color=red] (0,0) -- (0,1);
+	\node at (0,-3.2) 
+		{$\displaystyle
+		\begin{aligned}
+		A&=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+		\\
+		e^{At}
+		&=\begin{pmatrix}e^t&0\\0&e^{-t}\end{pmatrix}
+		\end{aligned}
+		$};
+	
+\end{scope}
+
+
+\begin{scope}
+	\fill[color=blue!20]
+		(0:1.4) -- (90:1.4) -- (180:1.4) -- (270:1.4) -- cycle;
+	\fill[color=red!40,opacity=0.5]
+		(33:1.4) -- (123:1.4) -- (213:1.4) -- (303:1.4) -- cycle;
+
+	\draw[color=darkgreen] (0,0) circle[radius=1.4];
+
+	\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+
+	\draw[->,color=blue] (0,0) -- (1.4,0);
+	\draw[->,color=blue] (0,0) -- (0,1.4);
+
+	\draw[->,color=red] (0,0) -- (33:1.4);
+	\draw[->,color=red] (0,0) -- (123:1.4);
+
+	\node at (0,-3.2)
+		{$\displaystyle
+		\begin{aligned}
+		B
+		&=\begin{pmatrix}0&-1\\1&0 \end{pmatrix}
+		\\
+		e^{Bt}
+		&=
+		\begin{pmatrix}
+		\cos t&-\sin t\\
+		\sin t& \cos t
+		\end{pmatrix}
+		\end{aligned}$};
+\end{scope}
+
+
+\begin{scope}[xshift=4.5cm]
+	\fill[color=blue!20]
+		(0:1.4) -- (90:1.4) -- (180:1.4) -- (270:1.4) -- cycle;
+	\def\x{0.5}
+	\fill[color=red!40,opacity=0.5]
+		({1.4*cosh(\x)},{1.4*sinh(\x})
+		--
+		({1.4*sinh(\x},{1.4*cosh(\x)})
+		--
+		({-1.4*cosh(\x)},{-1.4*sinh(\x})
+		--
+		({-1.4*sinh(\x},{-1.4*cosh(\x)})
+		-- cycle;
+
+	\begin{scope}
+	\clip (-2.1,-2.1) rectangle (2.2,2.2);
+	\draw[color=darkgreen]
+		plot[domain=-1:1,samples=100] ({1.4*cosh(\x)},{1.4*sinh(\x)});
+	\draw[color=darkgreen]
+		plot[domain=-1:1,samples=100] ({1.4*sinh(\x)},{1.4*cosh(\x)});
+	\draw[color=darkgreen]
+		plot[domain=-1:1,samples=100] ({-1.4*cosh(\x)},{1.4*sinh(\x)});
+	\draw[color=darkgreen]
+		plot[domain=-1:1,samples=100] ({1.4*sinh(\x)},{-1.4*cosh(\x)});
+	\end{scope}
+
+	\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+
+	\draw[->,color=blue] (0,0) -- (1.4,0);
+	\draw[->,color=blue] (0,0) -- (0,1.4);
+
+	\draw[->,color=red] (0,0) -- ({1.4*cosh(\x)},{1.4*sinh(\x)});
+	\draw[->,color=red] (0,0) -- ({1.4*sinh(\x)},{1.4*cosh(\x)});
+
+	\node at (0,-3.2) {$\displaystyle
+		\begin{aligned}
+		C&=\begin{pmatrix}0&1\\1&0\end{pmatrix}
+		\\
+		e^{Ct}
+		&=
+		\begin{pmatrix}
+		\cosh t&\sinh t\\
+		\sinh t&\cosh t
+		\end{pmatrix}
+		\end{aligned}
+		$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

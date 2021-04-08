@@ -213,6 +213,24 @@ Somit können sich $\mathcal{K}^i(A)$ und $\mathcal{J}^i(A)$ für $i>n$
 nicht mehr ändern.
 \end{proof}
 
+\begin{figure}
+\centering
+\includegraphics{chapters/40-eigenwerte/images/dimjk.pdf}
+\caption{Entwicklung der Dimension von $\dim\mathcal{K}^k(A)$ (grün)
+und $\dim\mathcal{J}^k(A)$ (orange) in Abhängigkeit vom Exponenten $k$.
+Für $k\ge l$ ändern sich die Dimensionen nicht mehr, $A$ eingeschränkt
+auf $\mathcal{J}^l(A)=\mathcal{J}(A)$ ist injektiv.
+\label{buch:eigenwerte:fig:dimjk}}
+\end{figure}
+
+Abbildung~\ref{buch:eigenwerte:fig:dimjk} zeigt die Abhängigkeit der
+Dimensionen $\dim\mathcal{K}^k(A)$ und $\dim\mathcal{J}^k(A)$ von $k$.
+Die Dimension $\dim\mathcal{J}^k(A)$ nimmt ab bis zu $k=l$, danach ändert
+sie sich nicht mehr und die Einschränkung von $A$ auf $\mathcal{J}^l(A)$ 
+ist injektiv.
+Die Dimension $\dim\mathcal{K}^k(A)$ nimmt zu bis zu $k=l$, danach
+ändert sie sich nicht mehr.
+
 \begin{definition}
 \label{buch:eigenwerte:def:KundJ}
 Die gemäss Satz~\ref{buch:eigenwerte:satz:ketten} identischen Unterräume
@@ -227,6 +245,7 @@ $\mathcal{J}^i(A)$ für $i\ge k$ werden mit
 \]
 bezeichnet.
 \end{definition}
+
 
 %
 % Inveriante Unterräume
@@ -399,6 +418,7 @@ Mit vollständiger Induktion folgt, dass $a_{ij}^s=0$ für $i+s>j$.
 Insbesondere ist $A^n=0$, die Matrix $A$ ist nilpotent.
 \end{beispiel}
 
+
 Man kann die Konstruktion der Unterräume $\mathcal{K}^i(A)$ weiter
 dazu verwenden, eine Basis zu finden, in der eine nilpotente Matrix
 eine besonders einfach Form erhält.
@@ -486,6 +506,178 @@ nilpotente Abbildung $\mathcal{K}(A)\to\mathcal{K}(A)$.
 Nach Satz~\ref{buch:eigenwerte:satz:allgnilpotent} kann man in
 $\mathcal{K}(A)$ eine Basis so wählen, dass die Matrix die Blockform
 \eqref{buch:eigenwerte:eqn:allgnilpotent} erhält.
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/40-eigenwerte/images/jknilp.pdf}
+\caption{Entwicklung der Dimensionen von Kern und Bild von $A^k$ in
+Abhängigkeit von $k$
+\label{buch:eigenwte:fig:jknilp}}
+\end{figure}
+
+\begin{beispiel}
+In der Abbildung~\ref{buch:eigenwte:fig:jknilp} sind die Dimensionen
+von Kern und Bild der Matrix
+\[
+\setcounter{MaxMatrixCols}{12}
+A=\begin{pmatrix}
+0& & & & & & & & & & & \\
+ &0& & & & & & & & & & \\
+ & &0& & & & & & & & & \\
+ & & &0& & & & & & & & \\
+ & & & &0&1& & & & & & \\
+ & & & & &0& & & & & & \\
+ & & & & & &0&1& & & & \\
+ & & & & & & &0&1& & & \\
+ & & & & & & & &0&1& & \\
+ & & & & & & & & &0&1& \\
+ & & & & & & & & & &0&
+\end{pmatrix}
+\]
+dargestellt.
+Die Matrix $A^k$ ist in den kleinen Quadraten am unteren Rand der Matrix
+symbolisch dargestellt.
+Grüne Spalten bestehen aus lauter Nullen, die zugehörigen
+Standardbasisvektoren werden von diesem $A^k$ auf $0$ abgebildet.
+Die orangen Felder enthalten Einsen, die entsprechenden Standardbasisvektoren
+bilden daher eine Basis des Bildes von $A^k$.
+\end{beispiel}
+
+%
+% Basis für die Jordan-Normalform einer nilpotenten Matrix
+%
+\subsection{Basis für die Normalform einer nilpotenten Matrix bestimmen
+\label{buch:subsection:normalform-einer-nilpotenten-matrix}}
+Die Zerlegung in die invarianten Unterräume $\mathcal{J}^k(f)$ und
+$\mathcal{K}^k(f)$ ermöglichen, eine Basis zu finden, in der die
+Matrix von $f$ die Blockform \eqref{buch:eigenwerte:eqn:allgnilpotent}
+hat.
+In diesem Abschnitt soll die Konstruktion einer solchen Basis
+etwas ausführlicher beschrieben werden.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/40-eigenwerte/images/normalform.pdf}
+\caption{Konstruktion der Basis für die Jordansche Normalform einer
+nilpotenten Matrix.
+Die Vektoren werden in der Reihenfolge von rechts nach links in die
+Matrix gefüllt.
+\label{buch:eigenwerte:fig:normalform}}
+\end{figure}
+
+Abbildung~\ref{buch:eigenwerte:fig:normalform} illustriert den Prozess
+an einer nilpotenten Matrix $A$ mit $A^3=0$
+Die vertikalen Rechtecke im linken Teil der Abbildung symbolisieren
+die Unterräume $\mathcal{K}^k(A)$.
+Es ist bekannt, dass $\mathcal{K}^k(A) \subset \mathcal{K}^{k+1}(A)$ ist,
+die Einbettung wird in der Abbildung durch graue Rechtecke dargestellt.
+Es sei wieder $l$ der Exponent, für den $\mathcal{K}^l(A)=\Bbbk^n$ wird.
+Da $\mathcal{K}^{l-1}(A)\ne \mathcal{K}^l(A)$ ist, muss es einen
+komplementären Unterraum geben, in dem eine Basis gewählt wird.
+Jeder der Vektoren $b_1,\dots,b_s$ dieser Basis gibt Anlass zu einem
+Block der Form $N_l$, der auf dem Unterraum 
+$\langle b_i,Ab_i,\dots,A^{l-1}b_i\rangle$ operiert.
+In der Abbildung ist $b_i$ durch einen roten Punkt symbolisiert und
+die Bilder $Ab_i,\dots,A^{l-1}b_i$ werden durch blaue Pfeile untereinander
+verbunden.
+
+Der Raum $\mathcal{K}^{l-1}(A)$ enthält dann $\mathcal{K}^{l-2}(A)$ und
+die Vektoren $Ab_1,\dots,Ab_s$.
+Es ist aber möglich, dass diese Vektoren nicht den ganzen Raum
+$\mathcal{K}^{l-1}(A)$ erzeugen.
+In diesem Fall lassen sich die Vektoren mit Hilfe weiterer Vektoren
+$b_{s+1},\dots,b_{s+r}$ zu einer Basisi von $\mathcal{K}^{l-1}(A)$
+ergänzen.
+Wie vorhin gibt jeder der Vektoren $b_{s+i}$ Anlass zu einem Block
+der Form $N_{l-1}$, der auf dem Unterraum
+$\langle b_{s+i},Ab_{s+i}\dots,A^{l-2}b_{s+i}\rangle$
+operiert.
+
+Durch Wiederholung dieses Prozesses können schrittweise Basisvektoren
+$b_i$ erzeugt werden.
+Die Matrix der Abbildung $f$ in der Basis $\{b_i,Ab_i,\dots,A^kb_i\}$
+ist ein Block der Form $N_k$.
+Für $0\le k\le l-1$ sind die Vektoren $A^kb_i$,
+solange sie von $0$ verschieden sind,
+alle nach Konstruktion linear unabhängig, sie bilden eine Basis
+von $\mathcal{K}^l(A)=\mathbb{R}^n$.
+
+\begin{beispiel}
+Die Basis für die Zerlegung der Matrix
+\[
+A
+=
+\begin{pmatrix*}[r]
+  3& 1&-2\\
+-21&-7&14\\
+ -6&-2& 4
+\end{pmatrix*}
+\]
+in Blockform soll nach der oben beschriebenen Methode ermittelt werden.
+Zunächst kann man nachrechnen, dass $A^2=0$ ist.
+Der Kern von $A$ ist der Lösungsraum der Gleichung $Ax=0$, da alle Zeilen
+Vielfache der ersten Zeile sind, recht es zu verlangen, dass die
+Komponenten $x_i$ der Lösung die Gleichung
+\[
+3x_1+x_2-2x_3=0
+\]
+erfüllen.
+Jetzt muss ein Vektor $b_1$ ausserhalb von $\mathbb{L}$ gefunden werden,
+der erste Standardbasisvektor $e_1$ kann dazu verwendet werden.
+Es ist auch klar, dass $Ae_1\ne 0$ ist.
+Wir verwenden daher die beiden Vektoren 
+\[
+b_3=e_1=\begin{pmatrix} 1\\0\\0 \end{pmatrix}
+,\qquad
+b_2=Ab_3=\begin{pmatrix*}[r] 3\\-21\\-6 \end{pmatrix*},
+\]
+in dieser Basis hat $A$ die Matrix $N_2$.
+Jetzt muss noch ein Basisvektor $b_1$ gefunden werden,
+der in $\ker A=\mathbb{L}$ liegt und so, dass $b_1$ und $b_2$ 
+linear unabhängig sind.
+Die zweite Bedingung kann leicht dadurch sichergestellt werden,
+dass man die erste Komponente von $b_1$ als $0$ wählt.
+Eine mögliche Lösung ist dann
+\[
+b_1=\begin{pmatrix}0\\2\\1\end{pmatrix}
+\]
+Die Matrix 
+\[
+B=\begin{pmatrix*}[r]
+ 0& 1&   3\\
+ 2& 0& -21\\
+ 1& 0&  -6
+\end{pmatrix*}
+\qquad\text{mit Inverser}
+\qquad
+B^{-1}=\begin{pmatrix*}[r]
+0&-\frac23& \frac73\\
+0&-\frac19& \frac29\\
+1& \frac13&-\frac23
+\end{pmatrix*}
+\]
+transformiert die Matrix $A$ auf den Block $N_3$:
+\[
+B^{-1}AB
+=
+B^{-1}\begin{pmatrix*}[r]
+0&0&  3\\
+0&0&-21\\
+0&0& -6
+\end{pmatrix*}
+=
+\begin{pmatrix}
+0&0&0\\
+0&0&1\\
+0&0&0
+\end{pmatrix}
+=
+N_3.
+\qedhere
+\]
+\end{beispiel}
 
 %
 % Begriff des Eigenwertes und Eigenvektors

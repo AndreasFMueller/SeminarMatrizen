@@ -1,0 +1,181 @@
+%
+% jknilp.tex -- Dimensionen von K^l und J^l für nilpotente Matrizen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\def\s{0.15}
+\def\punkt#1#2{({#1*\s},{#2*\s})}
+
+\def\vektor#1{
+	\fill[color=darkgreen!30] \punkt{#1}{0} rectangle \punkt{(#1+1)}{12};
+}
+\def\feld#1#2{
+	\fill[color=orange!60] ({#1*\s},{(12-#2)*\s}) rectangle
+		({(#1+1)*\s},{(11-#2)*\s});
+}
+
+\def\quadrat#1{
+	\draw \punkt{0}{0} rectangle \punkt{12}{12};
+
+	\draw \punkt{0}{11} -- \punkt{2}{11} -- \punkt{2}{9} -- \punkt{4}{9}
+		-- \punkt{4}{6} -- \punkt{12}{6};
+
+	\draw \punkt{1}{12} -- \punkt{1}{10} -- \punkt{3}{10}
+		-- \punkt{3}{8} -- \punkt{6}{8} -- \punkt{6}{0};
+	\node at ({6*\s},0) [below] {#1\strut};
+}
+
+\begin{scope}[xshift=-0.9cm,yshift=-3cm]
+\foreach \n in {0,...,11}{
+	\feld{\n}{\n}
+}
+\quadrat{$A^0=I$}
+\end{scope}
+
+\begin{scope}[xshift=1.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{6}
+\feld{5}{4}
+\feld{7}{6}
+\feld{8}{7}
+\feld{9}{8}
+\feld{10}{9}
+\feld{11}{10}
+\quadrat{$A$}
+\end{scope}
+
+\begin{scope}[xshift=3.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{5}
+\vektor{6}
+\vektor{7}
+\feld{8}{6}
+\feld{9}{7}
+\feld{10}{8}
+\feld{11}{9}
+\quadrat{$A^2$}
+\end{scope}
+
+\begin{scope}[xshift=5.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{5}
+\vektor{6}
+\vektor{7}
+\vektor{8}
+\feld{9}{6}
+\feld{10}{7}
+\feld{11}{8}
+\quadrat{$A^3$}
+\end{scope}
+
+\begin{scope}[xshift=7.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{5}
+\vektor{6}
+\vektor{7}
+\vektor{8}
+\vektor{9}
+\feld{10}{6}
+\feld{11}{7}
+\quadrat{$A^4$}
+\end{scope}
+
+\begin{scope}[xshift=9.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{5}
+\vektor{6}
+\vektor{7}
+\vektor{8}
+\vektor{9}
+\vektor{10}
+\feld{11}{6}
+\quadrat{$A^5$}
+\end{scope}
+
+\begin{scope}[xshift=11.1cm,yshift=-3cm]
+\vektor{0}
+\vektor{1}
+\vektor{2}
+\vektor{3}
+\vektor{4}
+\vektor{5}
+\vektor{6}
+\vektor{7}
+\vektor{8}
+\vektor{9}
+\vektor{10}
+\vektor{11}
+\quadrat{$A^6$}
+\end{scope}
+
+\def\pfad{
+	(0,0) -- (2,3) -- (4,4) -- (6,4.5) -- (8,5) -- (10,5.5) -- (12,6)
+}
+
+
+\fill[color=orange!20] \pfad -- (-1,6) -- (-1,0) -- cycle;
+\fill[color=darkgreen!20] \pfad -- (13,6) -- (13,0) -- cycle;
+\draw[line width=1.3pt] \pfad;
+
+\fill (0,0) circle[radius=0.08];
+\fill (2,3) circle[radius=0.08];
+\fill (4,4) circle[radius=0.08];
+\fill (6,4.5) circle[radius=0.08];
+\fill (8,5) circle[radius=0.08];
+\fill (10,5.5) circle[radius=0.08];
+\fill (12,6) circle[radius=0.08];
+
+\foreach \y in {0.5,1,...,5.5}{
+	\draw[line width=0.3pt] (-1.1,\y) -- (13.0,\y);
+}
+\foreach \y in {0,2,4,...,12}{
+	\node at (-1.1,{\y*0.5}) [left] {$\y$};
+}
+\foreach \x in {0,...,6}{
+	\draw ({2*\x},0) -- ({2*\x},-1.2);
+	\node at ({2*\x},-0.6) [above,rotate=90] {$k=\x$};
+}
+
+\draw[->] (-1.1,0) -- (13.4,0) coordinate[label={$k$}];
+\draw[->] (-1.1,6) -- (13.4,6);
+\draw[->] (-1.0,0) -- (-1.0,6.5);
+
+\node[color=darkgreen] at (8,1.95) [above] {$\dim \mathcal{K}^k(A)$};
+\node[color=orange] at (2,4.95) [above] {$\dim \mathcal{J}^k(A)$};
+
+\end{tikzpicture}
+\end{document}
+
