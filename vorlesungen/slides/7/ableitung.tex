@@ -1,0 +1,62 @@
+%
+% ableitung.tex -- Ableitung in der Lie-Gruppe
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Ableitung in der Matrix-Gruppe}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Ableitung in $\operatorname{O}(n)$}
+$s \mapsto A(s)\in\operatorname{O}(n)$
+\begin{align*}
+I
+&=
+A(s)^tA(s)
+\\
+0
+=
+\frac{d}{ds} I
+&=
+\frac{d}{ds} (A(s)^t A(s))
+\\
+&=
+\dot{A}(s)^tA(s) + A(s)^t \dot{A}(s)
+\intertext{An der Stelle $s=0$, d.~h.~$A(0)=I$}
+0
+&=
+\dot{A}(0)^t
++
+\dot{A}(0)
+\\
+\Leftrightarrow
+\qquad
+\dot{A}(0)^t &= -\dot{A}(0)
+\end{align*}
+``Tangentialvektoren'' sind antisymmetrische Matrizen
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Ableitung in $\operatorname{SL}_2(\mathbb{R})$}
+$s\mapsto A(s)\in\operatorname{SL}_n(\mathbb{R})$
+\begin{align*}
+1 &= \det A(t)
+\\
+0
+=
+\frac{d}{dt}1
+&=
+\frac{d}{dt} \det A(t)
+\intertext{mit dem Entwicklungssatz kann man nachrechnen:}
+0&=\operatorname{Spur}\dot{A}(0)
+\end{align*}
+``Tangentialvektoren'' sind spurlose Matrizen
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

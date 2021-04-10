@@ -1,0 +1,87 @@
+%
+% einparameter.tex -- Einparameter Untergruppen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Einparameter Untergruppen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Definition}
+Eine Kurve $\gamma\colon \mathbb{R}\to G\subset\operatorname{GL}_n(\mathbb{R})$,
+die gleichzeitig eine Untergruppe von $G$ ist mit
+\[
+\gamma(t+s) = \gamma(t)\gamma(s)\quad\forall t,s\in\mathbb{R}
+\]
+\end{block}
+\begin{block}{Drehungen}
+Drehmatrizen bilden Einparameter- Untergruppen
+\begin{align*}
+t \mapsto D_{x,t}
+&=
+\begin{pmatrix}
+1&0&0\\
+0&\cos t&-\sin t\\
+0&\sin t& \cos t
+\end{pmatrix}
+\\
+D_{x,t}D_{x,s}
+&=
+D_{x,t+s}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Scherungen in $\operatorname{SL}_2(\mathbb{R})$}
+\vspace{-12pt}
+\[
+\begin{pmatrix}
+1&s\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}
+1&t\\
+0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&s+t\\
+0&1
+\end{pmatrix}
+\]
+\end{block}
+\vspace{-12pt}
+\begin{block}{Skalierungen in $\operatorname{SL}_2(\mathbb{R})$}
+\vspace{-12pt}
+\[
+\begin{pmatrix}
+e^s&0\\0&e^{-s}
+\end{pmatrix}
+\begin{pmatrix}
+e^t&0\\0&e^{-t}
+\end{pmatrix}
+=
+\begin{pmatrix}
+e^{t+s}&0\\0&e^{-(t+s)}
+\end{pmatrix}
+\]
+\end{block}
+\vspace{-12pt}
+\begin{block}{Gemischt}
+\vspace{-12pt}
+\begin{gather*}
+A_t = I \cosh t + \begin{pmatrix}1&a\\0&-1\end{pmatrix}\sinh t
+\\
+\text{dank}\quad
+\begin{pmatrix}1&s\\0&-1\end{pmatrix}^2
+=I
+\end{gather*}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

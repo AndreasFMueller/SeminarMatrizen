@@ -1,0 +1,216 @@
+%
+% sl2.tex -- Beispiel: Parametrisierung von SL_2(R)
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t,fragile]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$\operatorname{SL}_2(\mathbb{R})\subset\operatorname{GL}_n(\mathbb{R})$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.44\textwidth}
+\begin{block}{Determinante}
+\[
+A=\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+\;\Rightarrow\;
+\det A = ad-bc
+\]
+\end{block}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{block}{Dimension}
+\[
+4\; \text{Variablen}
+-
+1\; \text{Bedingung}
+=
+3\; \text{Dimensionen}
+\]
+\end{block}
+\end{column}
+\end{columns}
+\vspace{-10pt}
+\uncover<3->{%
+\begin{columns}[t,onlytextwidth]
+\def\s{0.94}
+\begin{column}{0.33\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=\s]
+\begin{scope}
+	\clip (-2.1,-2.1) rectangle (2.3,2.3);
+	\fill[color=blue!20] (-1,-1) rectangle (1,1);
+	\foreach \x in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (\x,-3) -- (\x,3);
+	}
+	\foreach \y in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (-3,\y) -- (3,\y);
+	}
+	\foreach \d in {4,...,10}{
+		\only<\d>{
+			\pgfmathparse{1+(\d-4)/10}
+			\xdef\t{\pgfmathresult}
+			\fill[color=red!40,opacity=0.5]
+				({-\t},{-1/\t}) rectangle (\t,{1/\t});
+			\foreach \x in {-2,...,2}{
+				\draw[color=red,line width=0.3pt]
+					({\x*\t},-3) -- ({\x*\t},3);
+			}
+			\foreach \y in {-3,...,3}{
+				\draw[color=red,line width=0.3pt]
+				(-3,{\y/\t}) -- (3,{\y/\t});
+			}
+		}
+	}
+	\uncover<11->{
+		\xdef\t{1.6}
+		\fill[color=red!40,opacity=0.5]
+			({-\t},{-1/\t}) rectangle (\t,{1/\t});
+		\foreach \x in {-2,...,2}{
+			\draw[color=red,line width=0.3pt]
+				({\x*\t},-3) -- ({\x*\t},3);
+		}
+		\foreach \y in {-3,...,3}{
+			\draw[color=red,line width=0.3pt]
+			(-3,{\y/\t}) -- (3,{\y/\t});
+		}
+	}
+\end{scope}
+\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+\uncover<3->{%
+	\fill[color=white,opacity=0.8] (-1.5,-2.8) rectangle (1.5,-1.3);
+	\node at (0,-2.1) {$
+	D
+	=
+	\begin{pmatrix} e^t & 0 \\ 0 & e^{-t} \end{pmatrix}
+	$};
+}
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.33\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=\s]
+\fill[color=blue!20] (-1,-1) rectangle (1,1);
+\begin{scope}
+	\clip (-2.1,-2.1) rectangle (2.3,2.3);
+	\foreach \x in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (\x,-3) -- (\x,3);
+	}
+	\foreach \y in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (-3,\y) -- (3,\y);
+	}
+	\foreach \d in {11,...,17}{
+		\only<\d>{
+			\pgfmathparse{(\d-11)/10}
+			\xdef\t{\pgfmathresult}
+			\fill[color=red!40,opacity=0.5]
+				({-1+\t*(-1)},{-1})
+				--
+				({1+\t*(-1)},{-1})
+				--
+				({1+\t},{1})
+				--
+				({-1+\t},{1})
+				-- cycle;
+			\foreach \x in {-3,...,3}{
+				\draw[color=red,line width=0.3pt]
+					({\x+\t*(-3)},-3) -- ({\x+\t*(3)},3);
+			}
+			\foreach \y in {-3,...,3}{
+				\draw[color=red,line width=0.3pt]
+					({-3+\t*\y},\y) -- ({3+\t*\y},\y);
+			}
+		}
+	}
+	\uncover<18->{
+		\xdef\t{0.6}
+		\fill[color=red!40,opacity=0.5]
+			({-1+\t*(-1)},{-1})
+			--
+			({1+\t*(-1)},{-1})
+			--
+			({1+\t},{1})
+			--
+			({-1+\t},{1})
+			-- cycle;
+		\foreach \x in {-3,...,3}{
+			\draw[color=red,line width=0.3pt]
+				({\x+\t*(-3)},-3) -- ({\x+\t*(3)},3);
+		}
+		\foreach \y in {-3,...,3}{
+			\draw[color=red,line width=0.3pt]
+				({-3+\t*\y},\y) -- ({3+\t*\y},\y);
+		}
+	}
+\end{scope}
+\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+\uncover<11->{
+	\fill[color=white,opacity=0.8] (-1.5,-2.8) rectangle (1.5,-1.3);
+	\node at (0,-2.1) {$
+	S
+	=
+	\begin{pmatrix} 1&s\\ 0&1\end{pmatrix}
+	$};
+}
+\end{tikzpicture}
+\end{center}
+\end{column}
+\begin{column}{0.33\textwidth}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=\s]
+\fill[color=blue!20] (-1,-1) rectangle (1,1);
+\begin{scope}
+	\clip (-2.1,-2.1) rectangle (2.3,2.3);
+	\foreach \x in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (\x,-3) -- (\x,3);
+	}
+	\foreach \y in {-2,...,2}{
+		\draw[color=blue,line width=0.3pt] (-3,\y) -- (3,\y);
+	}
+	\foreach \d in {18,...,24}{
+		\only<\d>{
+			\pgfmathparse{(\d-18)/10}
+			\xdef\t{\pgfmathresult}
+			\fill[color=red!40,opacity=0.5]
+				(-1,{\t*(-1)-1})
+				--
+				(1,{\t*1-1})
+				--
+				(1,{\t*1+1})
+				--
+				(-1,{\t*(-1)+1})
+				-- cycle;
+			\foreach \x in {-3,...,3}{
+				\draw[color=red,line width=0.3pt]
+					(\x,{\x*\t-3}) -- (\x,{\x*\t+3});
+			}
+			\foreach \y in {-3,...,3}{
+				\draw[color=red,line width=0.3pt]
+					(-3,{-3*\t+\y}) -- (3,{3*\t+\y});
+			}
+		}
+	}
+\end{scope}
+\draw[->] (-2.1,0) -- (2.3,0) coordinate[label={$x$}];
+\draw[->] (0,-2.1) -- (0,2.3) coordinate[label={right:$y$}];
+\uncover<18->{%
+\fill[color=white,opacity=0.8] (-1.5,-2.8) rectangle (1.5,-1.3);
+	\node at (0,-2.1) {$
+	T
+	=
+	\begin{pmatrix} 1&0\\t&1\end{pmatrix}
+	$};
+}
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns}}
+\end{frame}
+\egroup
