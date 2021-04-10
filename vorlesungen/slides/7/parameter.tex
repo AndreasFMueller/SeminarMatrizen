@@ -4,6 +4,7 @@
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
 \bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
 \begin{frame}[t]
 \setlength{\abovedisplayskip}{5pt}
 \setlength{\belowdisplayskip}{5pt}
@@ -41,17 +42,27 @@ $\vec{k}=\vec{\omega}^0=\mathstrut$Drehachse
 \[
 \vec{x}
 \mapsto
+(\vec{x} -(\vec{k}\cdot\vec{x})\vec{k})
 \cos\omega
-\vec{x}
 +
 (\vec{k}\times\vec{x})\sin\omega
 +
-\vec{k}(\vec{k}\cdot\vec{x}) (1-\cos\omega)
+\vec{k}(\vec{k}\cdot\vec{x}) 
 \]
-XXX TODO: Bild für Rodriguez Formel
+\vspace{-40pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\node at (0,0) {\includegraphics[width=\textwidth]{../slides/7/images/rodriguez.jpg}};
+\node[color=red] at (1.6,-0.9) {$\vec{x}$};
+\node[color=blue] at (0.5,2) {$\vec{k}$};
+\node[color=darkgreen] at (-3,1.1) {$\vec{k}\times\vec{x}$};
+\node[color=yellow] at (2.2,-0.2) {$\vec{x}-(\vec{x}\cdot\vec{k})\vec{k}$};
+\end{tikzpicture}
+\end{center}
 \end{block}
 \end{column}
 \end{columns}
+\vspace{-15pt}
 {\usebeamercolor[fg]{title}Dimension:} $\operatorname{SO}(3)$ ist eine
 dreidimensionale Gruppe
 \end{frame}
