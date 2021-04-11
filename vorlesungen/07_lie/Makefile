@@ -15,7 +15,7 @@ MathSem-07-lie.pdf:	MathSem-07-lie.tex $(SOURCES)
 lie-handout.pdf:	lie-handout.tex $(SOURCES)
 	pdflatex lie-handout.tex
 
-thumbnail:	thumbnail.jpg # fix1.jpg
+thumbnail:	thumbnail.jpg fix1.jpg
 
 thumbnail.pdf:	MathSem-07-lie.pdf
 	pdfjam --outfile thumbnail.pdf --papersize '{16cm,9cm}' \
@@ -26,7 +26,7 @@ thumbnail.jpg:	thumbnail.pdf
 
 fix1.pdf:	MathSem-07-lie.pdf
 	pdfjam --outfile fix1.pdf --papersize '{16cm,9cm}' \
-		MathSem-07-lie.pdf 1
+		MathSem-07-lie.pdf 205
 fix1.jpg:	fix1.pdf
 	convert -density 300 fix1.pdf \
                 -resize 1920x1080 -units PixelsPerInch fix1.jpg
