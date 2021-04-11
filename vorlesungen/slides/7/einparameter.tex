@@ -7,17 +7,20 @@
 \begin{frame}[t]
 \setlength{\abovedisplayskip}{5pt}
 \setlength{\belowdisplayskip}{5pt}
-\frametitle{Einparameter Untergruppen}
+\frametitle{Einparameter-Untergruppen}
 \vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
 \begin{block}{Definition}
 Eine Kurve $\gamma\colon \mathbb{R}\to G\subset\operatorname{GL}_n(\mathbb{R})$,
-die gleichzeitig eine Untergruppe von $G$ ist mit
+die {\color<2->{red}gleichzeitig eine Untergruppe von $G$} ist \uncover<3->{mit}
 \[
+\uncover<3->{
 \gamma(t+s) = \gamma(t)\gamma(s)\quad\forall t,s\in\mathbb{R}
+}
 \]
 \end{block}
+\uncover<4->{%
 \begin{block}{Drehungen}
 Drehmatrizen bilden Einparameter- Untergruppen
 \begin{align*}
@@ -33,9 +36,10 @@ D_{x,t}D_{x,s}
 &=
 D_{x,t+s}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
 \begin{block}{Scherungen in $\operatorname{SL}_2(\mathbb{R})$}
 \vspace{-12pt}
 \[
@@ -53,8 +57,9 @@ D_{x,t+s}
 0&1
 \end{pmatrix}
 \]
-\end{block}
+\end{block}}
 \vspace{-12pt}
+\uncover<6->{%
 \begin{block}{Skalierungen in $\operatorname{SL}_2(\mathbb{R})$}
 \vspace{-12pt}
 \[
@@ -69,8 +74,9 @@ e^t&0\\0&e^{-t}
 e^{t+s}&0\\0&e^{-(t+s)}
 \end{pmatrix}
 \]
-\end{block}
+\end{block}}
 \vspace{-12pt}
+\uncover<7->{%
 \begin{block}{Gemischt}
 \vspace{-12pt}
 \begin{gather*}
@@ -80,7 +86,7 @@ A_t = I \cosh t + \begin{pmatrix}1&a\\0&-1\end{pmatrix}\sinh t
 \begin{pmatrix}1&s\\0&-1\end{pmatrix}^2
 =I
 \end{gather*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

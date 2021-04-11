@@ -20,6 +20,7 @@ Kurve in $\mathbb{R}^n$:
 I=[a,b] \to \mathbb{R}^n
 :
 t\mapsto \gamma(t)
+\uncover<2->{
 =
 \begin{pmatrix}
 x_1(t)\\
@@ -27,6 +28,7 @@ x_2(t)\\
 \vdots\\
 x_n(t)
 \end{pmatrix}
+}
 \]
 \vspace{-15pt}
 \begin{center}
@@ -42,16 +44,21 @@ x_n(t)
 \fill[color=red] (C) circle[radius=0.06];
 \node[color=red] at (C) [left] {$\gamma(t)$};
 
-\draw[->,color=blue,line width=1.4pt,shorten <= 0.06cm] (C) -- (E);
-\node[color=blue] at (E) [right] {$\dot{\gamma}(t)$};
+\uncover<4->{
+	\draw[->,color=blue,line width=1.4pt,shorten <= 0.06cm] (C) -- (E);
+	\node[color=blue] at (E) [right] {$\dot{\gamma}(t)$};
+}
 
-\draw[->] (-0.1,0) -- (5.9,0) coordinate[label={$x_1$}];
-\draw[->] (0,-0.1) -- (0,4.3) coordinate[label={right:$x_2$}];
+\uncover<2->{
+	\draw[->] (-0.1,0) -- (5.9,0) coordinate[label={$x_1$}];
+	\draw[->] (0,-0.1) -- (0,4.3) coordinate[label={right:$x_2$}];
+}
 \end{tikzpicture}
 \end{center}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<4->{%
 \begin{block}{Tangenten}
 Ableitung
 \[
@@ -66,6 +73,7 @@ Ableitung
 \dot{x}_n(t)
 \end{pmatrix}
 \]
+\uncover<5->{%
 Lineare Approximation:
 \[
 \gamma(t+h)
@@ -75,10 +83,21 @@ Lineare Approximation:
 \dot{\gamma}(t) \cdot h
 +
 o(h)
-\]
+\]}%
+\vspace{-10pt}
+\begin{itemize}
+\item<6->
 Sinnvoll, weil sowohl $\gamma(t)$ und $\dot{\gamma}(t)$
 in $\mathbb{R}^n$ liegen
-\end{block}
+\item<7->
+Gilt auch für
+\[
+\operatorname{GL}_n(\mathbb{R})
+\uncover<8->{\subset M_n(\mathbb{R})}
+\uncover<9->{ = \mathbb{R}^{n\times n}}
+\]
+\end{itemize}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

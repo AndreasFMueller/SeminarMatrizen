@@ -15,29 +15,35 @@
 Ableitung von $\gamma(t)$ an der Stelle $t$:
 \begin{align*}
 \dot{\gamma}(t)
-&=
+&\uncover<2->{=
 \frac{d}{d\tau}\gamma(\tau)\bigg|_{\tau=t}
+}
 \\
-&=
+&\uncover<3->{=
 \frac{d}{ds}
 \gamma(t+s)
 \bigg|_{s=0}
+}
 \\
-&=
+&\uncover<4->{=
 \frac{d}{ds}
 \gamma(t)\gamma(s)
 \bigg|_{s=0}
+}
 \\
-&=
+&\uncover<5->{=
 \gamma(t)
 \frac{d}{ds}
 \gamma(s)
 \bigg|_{s=0}
-=
+}
+\uncover<6->{=
 \gamma(t) \dot{\gamma}(0)
+}
 \end{align*}
 \end{block}
 \vspace{-10pt}
+\uncover<7->{%
 \begin{block}{Differentialgleichung}
 \vspace{-10pt}
 \[
@@ -47,33 +53,39 @@ Ableitung von $\gamma(t)$ an der Stelle $t$:
 \quad
 A=\dot{\gamma}(0)\in LG
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.50\textwidth}
+\uncover<8->{%
 \begin{block}{Lösung}
 Exponentialfunktion
 \[
 \exp\colon LG\to G : A \mapsto \exp(At) = \sum_{k=0}^\infty \frac{t^k}{k!}A^k
 \]
-\end{block}
+\end{block}}
 \vspace{-5pt}
+\uncover<9->{%
 \begin{block}{Kontrolle: Tangentialvektor berechnen}
 \vspace{-10pt}
 \begin{align*}
 \frac{d}{dt}e^{At}
-&=
+&\uncover<10->{=
 \sum_{k=1}^\infty A^k \frac{d}{dt} t^{k}{k!}
+}
 \\
-&=
+&\uncover<11->{=
 \sum_{k=1}^\infty A^{k-1}\frac{t^{k-1}}{(k-1)!} A
+}
 \\
-&=
+&\uncover<12->{=
 \sum_{k=0} A^k\frac{t^k}{k!}
 A
-=
+}
+\uncover<13->{=
 e^{At} A
+}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

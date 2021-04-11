@@ -21,6 +21,7 @@ x\mapsto \underbrace{e^s\cdot x}_{\text{Skalierung}} \mathstrut+ t
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
 \begin{block}{Drehung und Verschiebung}
 Gruppe
 $G=
@@ -32,51 +33,57 @@ Wirkung auf $\mathbb{R}^2$:
 \[
 \vec{x}\mapsto \underbrace{D_\alpha \vec{x}}_{\text{Drehung}} \mathstrut+ \vec{t}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \vspace{-15pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<3->{%
 \begin{block}{Verknüpfung}
 \vspace{-15pt}
 \begin{align*}
 (e^{s_1},t_1)(e^{s_2},t_2)x
-&=
-(e^{s_1},t_1)(e^{s_2}x+t_2)
+&\uncover<4->{=
+(e^{s_1},t_1)(e^{s_2}x+t_2)}
 \\
-&=
-e^{s_1+s_2}x + e^{s_1}t_2+t_1
+&\uncover<5->{=
+e^{s_1+s_2}x + e^{s_1}t_2+t_1}
 \\
+\uncover<6->{
 (e^{s_1},t_1)(e^{s_2},t_2)
 &=
-(e^{s_1}e^{s_2},t_1+e^{s_1}t_2)
+(e^{s_1}e^{s_2},t_1+e^{s_1}t_2)}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<7->{%
 \begin{block}{Verknüpfung}
 \vspace{-15pt}
 \begin{align*}
 (\alpha_1,\vec{t}_1)
 (\alpha_2,\vec{t}_2)
 \vec{x}
-&=
-(\alpha_1,\vec{t}_1)(D_{\alpha_2}\vec{x}+\vec{t}_2)
+&\uncover<8->{=
+(\alpha_1,\vec{t}_1)(D_{\alpha_2}\vec{x}+\vec{t}_2)}
 \\
-&=D_{\alpha_1+\alpha_2}\vec{x} + D_{\alpha_1}\vec{t}_2+\vec{t}_1
+&\uncover<9->{=D_{\alpha_1+\alpha_2}\vec{x} + D_{\alpha_1}\vec{t}_2+\vec{t}_1}
 \\
+\uncover<10->{
 (\alpha_1,\vec{t}_1)
 (\alpha_2,\vec{t}_2)
 &=
 (\alpha_1+\alpha_2, D_{\alpha_1}\vec{t}_2+\vec{t}_1)
+}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \vspace{-10pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<11->{%
 \begin{block}{Matrixschreibweise}
 \vspace{-12pt}
 \[
@@ -88,9 +95,10 @@ e^s&t\\
 \quad\text{auf}\quad
 \begin{pmatrix}x\\1\end{pmatrix}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<12->{%
 \begin{block}{Matrixschreibweise}
 \vspace{-12pt}
 \[
@@ -102,7 +110,7 @@ D_{\alpha}&\vec{t}\\
 \quad\text{auf}\quad
 \begin{pmatrix}\vec{x}\\1\end{pmatrix}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
