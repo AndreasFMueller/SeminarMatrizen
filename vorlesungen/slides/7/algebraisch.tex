@@ -19,23 +19,25 @@ Längenmessung mit Skalarprodukt
 \langle \vec{v},\vec{v}\rangle
 =
 \vec{v}\cdot \vec{v}
-=
-\vec{v}^t\vec{v}
+\uncover<2->{=
+\vec{v}^t\vec{v}}
 \end{align*}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<3->{%
 \begin{block}{Flächeninhalt/Volumen}
 $n$ Vektoren $V=(\vec{v}_1,\dots,\vec{v}_n)$
 \\
 Volumen des Parallelepipeds: $\det V$
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 %
 \vspace{-7pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<4->{%
 \begin{block}{Längenerhaltende Transformationen}
 $A\in\operatorname{GL}_n(\mathbb{R})$
 \begin{align*}
@@ -44,38 +46,45 @@ $A\in\operatorname{GL}_n(\mathbb{R})$
 (A\vec{x})
 \cdot
 (A\vec{y})
-=
+\uncover<5->{=
 (A\vec{x})^t
-(A\vec{y})
+(A\vec{y})}
 \\
+\uncover<6->{
 \vec{x}^tI\vec{y}
 &=
-\vec{x}^tA^tA\vec{y}
-\Rightarrow I=A^tA
+\vec{x}^tA^tA\vec{y}}
+\uncover<7->{
+\Rightarrow I=A^tA}
 \end{align*}
-Begründung: $\vec{e}_i^t B \vec{e}_j = b_{ij}$
-\end{block}
+\uncover<8->{Begründung: $\vec{e}_i^t B \vec{e}_j = b_{ij}$}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<9->{%
 \begin{block}{Volumenerhaltende Transformationen}
 $A\in\operatorname{GL}_n(\mathbb{R})$
 \begin{align*}
 \det(V)
 &=
 \det(AV)
-=
-\det(A)\det(V)
+\uncover<10->{=
+\det(A)\det(V)}
 \\
-1&=\det(A)
+\uncover<11->{
+1&=\det(A)}
 \end{align*}
+\uncover<10->{
 (Produktsatz für Determinante)
-\end{block}
+}
+\end{block}}
 \end{column}
 \end{columns}
 %
 \vspace{-3pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\uncover<12->{%
 \begin{block}{Orthogonale Matrizen}
 Längentreue Abbildungen = orthogonale Matrizen:
 \[
@@ -87,9 +96,10 @@ A \in \operatorname{GL}_n(\mathbb{R})
 A^tA=I
 \}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<13->{%
 \begin{block}{``Spezielle'' Matrizen}
 Volumen-/Orientierungserhaltende Transformationen:
 \[
@@ -97,7 +107,7 @@ Volumen-/Orientierungserhaltende Transformationen:
 =
 \{ A \in \operatorname{GL}_n(\mathbb{R}) \;|\; \det A = 1\}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 
