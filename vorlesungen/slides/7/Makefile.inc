@@ -10,6 +10,7 @@ chapter5 =								\
 	../slides/7/mannigfaltigkeit.tex				\
 	../slides/7/sl2.tex						\
 	../slides/7/drehung.tex						\
+	../slides/7/drehanim.tex					\
 	../slides/7/semi.tex						\
 	../slides/7/kurven.tex						\
 	../slides/7/einparameter.tex					\

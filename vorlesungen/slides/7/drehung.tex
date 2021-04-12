@@ -50,7 +50,7 @@ D_{60^\circ}
 {\tiny
 \begin{pmatrix}2&0\\0&\frac12\end{pmatrix}
 \begin{pmatrix}1&-\frac{\sqrt{3}}4\\0&1\end{pmatrix}
-\begin{pmatrix}1&0\\\frac{\sqrt{3}}2&1\end{pmatrix}
+\begin{pmatrix}1&0\\\sqrt{3}&1\end{pmatrix}
 }
 \]
 \end{block}}
@@ -81,14 +81,14 @@ c^{-1}&0\\
   0   &c
 \end{pmatrix}
 \begin{pmatrix}
--st&-s\\
-  t& 1
+1-st&-s\\
+   t& 1
 \end{pmatrix}
 }
 \\
 &\uncover<6->{=
 \begin{pmatrix}
-{\color<11->{orange}-stc^{-1}}&{\color<10->{darkgreen}sc^{-1}}\\
+{\color<11->{orange}(1-st)c^{-1}}&{\color<10->{darkgreen}sc^{-1}}\\
 {\color<9->{blue}ct}&{\color<8->{red}c}
 \end{pmatrix}}
 \uncover<7->{=
@@ -120,9 +120,9 @@ t}&=\rlap{$\displaystyle\frac{\sin\alpha}{c} = \tan\alpha$}}\\
 }
 \\
 \uncover<11->{
-{\color{orange} -stc^{-t}}
+{\color{orange} (1-st)c^{-t}}
 &=
-\rlap{$\sin\alpha\tan\alpha = \cos\alpha \quad $}
+\rlap{$\displaystyle\frac{(1-\sin^2\alpha)}{\cos\alpha} = \cos\alpha $}
 }
 \end{align*}
 \end{block}}

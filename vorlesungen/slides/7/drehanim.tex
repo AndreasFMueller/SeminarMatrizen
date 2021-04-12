@@ -1,0 +1,155 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\def\punkt#1#2{ ({\A*(#1)+\B*(#2)},{\C*(#1)+\D*(#2)}) }
+
+\makeatletter
+\hoffset=-2cm
+\advance\textwidth2cm
+\hsize\textwidth
+\columnwidth\textwidth
+\makeatother
+
+\begin{frame}[t,plain]
+\vspace{-5pt}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\fill[color=white] (-4,-4) rectangle (9,4.5);
+
+\def\a{60}
+
+\pgfmathparse{tan(\a)}
+\xdef\T{\pgfmathresult}
+
+\pgfmathparse{-sin(\a)*cos(\a)}
+\xdef\S{\pgfmathresult}
+
+\pgfmathparse{1/cos(\a)}
+\xdef\E{\pgfmathresult}
+
+\def\N{20}
+\pgfmathparse{2*\N}
+\xdef\Nzwei{\pgfmathresult}
+\pgfmathparse{3*\N}
+\xdef\Ndrei{\pgfmathresult}
+
+\node at (4.2,4.2) [below right] {\begin{minipage}{7cm}
+\begin{block}{$\operatorname{SO}(2)\subset\operatorname{SL}_2(\mathbb{R})$}
+\begin{itemize}
+\item Thus most $A\in\operatorname{SL}_2(\mathbb{R})$ can be parametrized
+as shear mappings and axis rescalings
+\[
+A=
+\begin{pmatrix}d&0\\0&d^{-1}\end{pmatrix}
+\begin{pmatrix}1&s\\0&1\end{pmatrix}
+\begin{pmatrix}1&0\\t&1\end{pmatrix}
+\]
+\item Most rotations can be decomposed into a product of
+shear mappings and axis rescalings
+\end{itemize}
+\end{block}
+\end{minipage}};
+
+\foreach \d in {1,2,...,\Ndrei}{
+	% Scherung in Y-Richtung
+	\ifnum \d>\N
+		\pgfmathparse{\T}
+	\else
+		\pgfmathparse{\T*(\d-1)/(\N-1)}
+	\fi
+	\xdef\t{\pgfmathresult}
+
+	% Scherung in X-Richtung
+	\ifnum \d>\Nzwei
+		\xdef\s{\S}
+	\else
+		\ifnum \d<\N
+			\xdef\s{0}
+		\else
+			\ifnum \d=\N
+				\xdef\s{0}
+			\else
+				\pgfmathparse{\S*(\d-\N-1)/(\N-1)}
+				\xdef\s{\pgfmathresult}
+			\fi
+		\fi
+	\fi
+
+	% Reskalierung der Achsen
+	\ifnum \d>\Nzwei
+		\pgfmathparse{exp(ln(\E)*(\d-2*\N-1)/(\N-1))}
+	\else
+		\pgfmathparse{1}
+	\fi
+	\xdef\e{\pgfmathresult}
+
+	% Matrixelemente 
+	\pgfmathparse{(\e)*((\s)*(\t)+1)}
+	\xdef\A{\pgfmathresult}
+
+	\pgfmathparse{(\e)*(\s)}
+	\xdef\B{\pgfmathresult}
+
+	\pgfmathparse{(\t)/(\e)}
+	\xdef\C{\pgfmathresult}
+
+	\pgfmathparse{1/(\e)}
+	\xdef\D{\pgfmathresult}
+
+	\only<\d>{
+		\node at (5.0,-0.9) [below right] {$
+			\begin{aligned}
+				t &= \t                 \\
+				s &= \s                 \\
+				d &= \e                 \\
+				D &= \begin{pmatrix}
+					\A&\B\\
+					\C&\D
+				     \end{pmatrix}
+					\qquad
+					\only<60>{\checkmark}
+			\end{aligned}
+		$};
+	}
+
+	\begin{scope}
+		\clip (-4.05,-4.05) rectangle (4.05,4.05);
+		\only<\d>{
+			\foreach \x in {-6,...,6}{
+				\draw[color=blue,line width=0.5pt]
+					\punkt{\x}{-12} -- \punkt{\x}{12};
+			}
+			\foreach \y in {-12,...,12}{
+				\draw[color=darkgreen,line width=0.5pt]
+					\punkt{-6}{\y} -- \punkt{6}{\y};
+			}
+
+			\foreach \r in {1,2,3,4}{
+				\draw[color=red] plot[domain=0:359,samples=360]
+					({\r*(\A*cos(\x)+\B*sin(\x))},{\r*(\C*cos(\x)+\D*sin(\x))})
+					--
+					cycle;
+			}
+		}
+	\end{scope}
+
+%	\uncover<\d>{
+%		\node at (5,4) {\d};
+%	}
+}
+
+\draw[->] (-4,0) -- (4.2,0) coordinate[label={$x$}];
+\draw[->] (0,-4) -- (0,4.2) coordinate[label={right:$y$}];
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup
