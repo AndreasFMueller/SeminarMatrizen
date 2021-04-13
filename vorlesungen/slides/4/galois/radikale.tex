@@ -4,11 +4,66 @@
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
 \begin{frame}[t]
-\frametitle{Radikale}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Lösung durch Radikale}
+\vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\begin{block}{Problemstellung}
+Finde Nullstellen eines Polynomes
+\[
+p(X)
+=
+a_nX^n + a_{n-1}X^{n-1}
++\dots+
+a_1X+a_0
+\]
+$p\in\mathbb{Q}[X]$
+\end{block}
+\uncover<2->{%
+\begin{block}{Radikale}
+Geschachtelte Wurzelausdrücke
+\[
+\sqrt[3]{
+-\frac{q}2 +\sqrt{\frac{q^2}{4}+\frac{p^3}{27}}
+}
++
+\sqrt[3]{
+-\frac{q}2 -\sqrt{\frac{q^2}{4}+\frac{p^3}{27}}
+}
+\]
+\uncover<3->{(Lösung von $x^3+px+q=0$)}
+\end{block}}
+\uncover<4->{%
+\begin{block}{Lösbar durch Radikale}
+Nullstelle von $p(X)$ ist ein Radikal
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
+\begin{block}{Algebraische Formulierung}
+Gegeben ein irreduzibles Polynom $p\in\mathbb{Q}[X]$,
+finde eine Körpererweiterung $\mathbb{Q}\subset\Bbbk$, derart,
+dass $p$ in $\Bbbk$ eine Nullstelle hat\uncover<6->{:
+$\Bbbk = \mathbb{Q}[X]/(p)$}
+\end{block}}
+\uncover<7->{%
+\begin{block}{Radikalerweiterung}
+Körpererweiterung $\Bbbk\subset\Bbbk'$ um $\alpha$ mit einer der Eigenschaften
+\begin{itemize}
+\item<8-> $\alpha$ ist eine Einheitswurzel
+\item<9-> $\alpha^k\in\Bbbk$
+\end{itemize}
+\end{block}}
+\vspace{-5pt}
+\uncover<10->{%
+\begin{block}{Lösbar durch Radikale}
+Radikalerweiterungen
+\[
+\mathbb{Q} \subset \Bbbk \subset \Bbbk' \subset \dots \subset \Bbbk'' \ni \alpha
+\]
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

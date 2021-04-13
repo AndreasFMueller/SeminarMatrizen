@@ -1,0 +1,85 @@
+%
+% liealgebra.tex -- Lie-Algebra
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Lie-Algebra}
+\ifthenelse{\boolean{presentation}}{\vspace{-15pt}}{\vspace{-8pt}}
+\begin{block}{Vektorraum}
+Tangentialvektoren im Punkt $I$:
+\begin{center}
+\begin{tabular}{>{$}c<{$}|p{6cm}|>{$}c<{$}}
+\text{Lie-Gruppe $G$}&Tangentialvektoren&\text{Lie-Algebra $LG$} \\
+\hline
+\uncover<2->{
+\operatorname{GL}_n(\mathbb{R})
+& beliebige Matrizen
+& M_n(\mathbb{R})
+}
+\\
+\uncover<3->{
+\operatorname{O(n)}
+& antisymmetrische Matrizen
+& \operatorname{o}(n)
+}
+\\
+\uncover<4->{
+\operatorname{SL}_n(\mathbb{R})
+& spurlose Matrizen
+& \operatorname{sl}_2(\mathbb{R})
+}
+\\
+\uncover<5->{
+\operatorname{U(n)}
+& antihermitesche Matrizen
+& \operatorname{u}(n)
+}
+\\
+\uncover<6->{
+\operatorname{SU(n)}
+& spurlose, antihermitesche Matrizen
+& \operatorname{su}(n)
+}
+\end{tabular}
+\end{center}
+\end{block}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.40\textwidth}
+\uncover<7->{%
+\begin{block}{Lie-Klammer}
+Kommutator: $[A,B] = AB-BA$
+\end{block}}
+\uncover<8->{%
+\begin{block}{Nachprüfen}
+$[A,B]\in LG$
+für $A,B\in LG$
+\end{block}}
+\end{column}
+\begin{column}{0.56\textwidth}
+\uncover<9->{%
+\begin{block}{Algebraische Eigenschaften}
+\begin{itemize}
+\item<10-> antisymmetrisch: $[A,B]=-[B,A]$
+\item<11-> Jacobi-Identität
+\[
+[A,[B,C]]+
+[B,[C,A]]+
+[C,[A,B]]
+= 0
+\]
+\end{itemize}
+\vspace{-13pt}
+\uncover<12->{%
+{\usebeamercolor[fg]{title}
+Beispiel:} $\mathbb{R}^3$ mit Vektorprodukt $\mathstrut = \operatorname{so}(3)$
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

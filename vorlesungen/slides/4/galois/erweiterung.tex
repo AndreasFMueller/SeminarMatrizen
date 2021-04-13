@@ -4,11 +4,62 @@
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
 \begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
 \frametitle{Körpererweiterungen}
+\vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
+\begin{block}{Körpererweiterung}
+$E,F$ Körper: $E\subset F$
+\end{block}
+\uncover<6->{%
+\begin{block}{Vektorraum}
+$F$ ist ein Vektorraum über $E$
+\end{block}}
+\uncover<7->{%
+\begin{block}{Endliche Körpererweiterung}
+$\dim_E F < \infty$
+\end{block}}
+\uncover<8->{%
+\begin{block}{Adjunktion eines $\alpha$}
+$\Bbbk(\alpha)$ kleinster Körper, der $\Bbbk$ und
+$\alpha$ enthält.
+\end{block}}
+\uncover<9->{%
+\begin{block}{Algebraische Erweiterung}
+$\alpha$ algebraisch über $\Bbbk$, i.~e.~Nullstelle von
+$m(X)\in\Bbbk[X]$
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Beispiele}
+\begin{enumerate}
+\item<3->
+$\mathbb{R} \subset \mathbb{R}(i) = \mathbb{C}$
+\item<4->
+$\mathbb{Q}\subset \mathbb{Q}(\sqrt{2})$
+\item<5->
+$\mathbb{Q} \subset \mathbb{Q}(\sqrt{2}) \subset \mathbb{Q}(\sqrt[4]{2})$
+\end{enumerate}
+\end{block}}
+\uncover<7->{%
+\begin{block}{Grad}
+$E\subset F$ heisst Körpererweiterung vom Grad $n$, falls
+\[
+\dim_E F  = n =: [F:E]
+\]
+\uncover<8->{%
+Gleichbedeutend: $\deg m(X) = n$}
+\uncover<10->{%
+\[
+E\subset F\subset G
+\Rightarrow
+[G:E] = [G:F]\cdot [F:E]
+\]
+(in unseren Fällen)}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

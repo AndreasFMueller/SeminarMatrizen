@@ -1,0 +1,28 @@
+Die beiden Files
+
+    presentation-template.tex
+    slide-template.tex
+
+können als Basis für die eigene Präsentation verwendet werden.
+Dazu geht man wie folgt vor:
+
+1. In einem Arbeitsverzeichnis eine Kopie von presentation-template.tex
+anlegen und im file Author und Titel anpassen. Im Folgenden wird diese
+Kopie als beispiel-praesentation.tex bezeichnet.
+
+2. Für jede Folie der Präsentation im Arbeitsverzeichnis eine Kopie von
+slide-template.tex anlegen und den Inhalt anpassen.
+
+3. Die Slides mit Hilfe von Input-Befehlen, die in presentation-template.tex
+eingetragen werden, in die Präsentation importieren.
+
+4. Die Präsentation mit dem Befehl
+
+	pdflatex beispiel-praesentation.tex
+
+erzeugen, es entsteht das File beispile-praesentation.pdf
+
+Diese Vorgehen erlaubt, die Reihenfolge der Folien während der Vorbereitung
+zu ändern oder zwecks Beschleunigung des pdflatex-Laufs während der 
+Entwicklung auszukommentieren.
+
