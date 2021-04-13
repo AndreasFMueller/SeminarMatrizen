@@ -637,7 +637,7 @@ grösserer gemeinsamer Teiler von $a$ und $b$.
 Dies kann nicht sein, also müssen $u$ und $v$ teilerfremd sein.
 Das kleinste gemeinsame Vielfache von $a$ und $b$ ist dann $ugv=av=ub$.
 Die Bestimmung des kleinsten gemeinsamen Vielfachen ist also gleichbedeutend
-mit der Bestimmung der Zahle $u$ und $v$.
+mit der Bestimmung der Zahlen $u$ und $v$.
 
 Die definierende Eigenschaften von $u$ und $v$ kann man in Matrixform als
 \begin{equation}
@@ -704,7 +704,7 @@ Genauso wie es möglich war, das Produkt $Q$ der Matrizen
 $Q(q_k)$ iterativ zu bestimmen, muss es auch eine Rekursionsformel
 für das Produkt der inversen Matrizen $Q(q_k)^{-1}$ geben.
 
-Schreiben wir die die gesuchte Matrix 
+Schreiben wir die gesuchte Matrix 
 \[
 K_k
 =
@@ -715,8 +715,8 @@ e_k & e_{k-1}\\
 f_k & f_{k-1}
 \end{pmatrix},
 \]
-dann kann, kann $K_k$ durch die Rekursion
-\[
+dann kann man $K_k$ durch die Rekursion
+\begin{equation}
 K_{k+1}
 =
 K_{k} Q(q_k)^{-1} 
@@ -724,7 +724,8 @@ K_{k} Q(q_k)^{-1}
 K_k K(q_k)
 \qquad\text{mit}\qquad
 K_0 = \begin{pmatrix}1&0\\0&1\end{pmatrix} = I
-\]
+\label{buch:endlichekoerper:eqn:kgvrekursion}
+\end{equation}
 berechnen.
 Die Inverse von $Q(q)$ ist
 \[
@@ -760,30 +761,9 @@ von $A$ sein.
 In $K_{k+1}$ ist daher nur die erste Spalte neu, die zweite Spalte ist
 die erste Spalte von $K_k$.
 
-Wenn $K_k$ die Matrixelemente
-\[
-K_k
-=
-\begin{pmatrix}
-e_k & e_{k-1} \\
-f_k & f_{k-1}
-\end{pmatrix}
-\qquad\text{und}\qquad
-K_0 =
-\begin{pmatrix}
-1&0\\
-0&1
-\end{pmatrix}
-\Rightarrow
-\left\{
-\begin{aligned}
-e_0 &= 1 & e_{-1} &= 0\\
-f_0 &= 0 & f_{-1} &= 1
-\end{aligned}
-\right.
-\]
-Daraus kann man  Rekursionsformeln für die Folgen $e_k$ und $f_k$ 
-ablesen, es gilt
+Aus der Rekursionsformel \eqref{buch:endlichekoerper:eqn:kgvrekursion}
+für die Matrizen $K_k$ kann man jetzt eine Rekursionsbeziehung
+für die Folgen $e_k$ und $f_k$ ablesen, es gilt
 \begin{align*}
 e_{k+1} &= q_ke_k + e_{k-1} \\
 f_{k+1} &= q_kf_k + f_{k-1}
