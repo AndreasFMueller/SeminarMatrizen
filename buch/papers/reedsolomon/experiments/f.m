@@ -11,11 +11,16 @@ signal = zeros(l,1);
 signal(1:N,1) = round(10 * rand(N,1));
 signal
 
-codiert = fft(signal)
-
 plot(abs(signal));
 xlim([1, l]);
 title("Signal");
+pause()
+
+codiert = fft(signal)
+
+plot(abs(codiert));
+xlim([1, l]);
+title("Codiert");
 pause()
 
 fehler = zeros(l,1);
