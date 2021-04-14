@@ -431,6 +431,7 @@ zur Bestimmung des grössten gemeinsamen Teilers von $76415$ und $23205$
 zur Berechnung der Koeffizienten $c_k$ und $d_k$
 Wir schreiben die gefundenen Zahlen in eine Tabelle:
 \begin{center}
+\label{buch:endlichekoerper:beispiel1erweitert}
 \renewcommand{\arraystretch}{1.1}
 \begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
 \hline
@@ -518,6 +519,7 @@ Insbesondere ist der euklidische Algorithmus genauso wie die
 Matrixschreibweise auch für Polynome durchführbar.
 
 \begin{beispiel}
+\label{buch:endlichekoerper:eqn:polynomggt}
 Wir berechnen als Beispiel den grössten gemeinsamen Teiler 
 der Polynome
 \[
@@ -614,4 +616,368 @@ Aus den letzten zwei Zeilen folgt
 $ua-vb = ab/g - ab/g = 0$, wie erwartet.
 \end{beispiel}
 
+%
+% Das kleinste gemeinsame Vielfache
+%
+\subsection{Das kleinste gemeinsame Vielfache
+\label{buch:subsection:daskgv}}
+Das kleinste gemeinsame Vielfache zweier Zahlen $a$ und $b$ ist
+\[
+\operatorname{kgV}(a,b)
+=
+\frac{ab}{\operatorname{ggT}(a,b)}.
+\]
+Wir suchen nach einen Algorithmus, mit dem man das kleinste gemeinsame
+Vielfache effizient berechnen kann.
+
+Die Zahlen $a$ und $b$ sind beide Vielfache des grössten gemeinsamen
+Teilers $g=\operatorname{ggT}(a,b)$, es gibt also Zahlen $u$ und $v$ derart,
+dass $a=ug$ und $b=vg$.
+Wenn $t$ ein gemeinsamer Teiler von $u$ und $v$ ist, dann ist $tg$ ein
+grösserer gemeinsamer Teiler von $a$ und $b$.
+Dies kann nicht sein, also müssen $u$ und $v$ teilerfremd sein.
+Das kleinste gemeinsame Vielfache von $a$ und $b$ ist dann $ugv=av=ub$.
+Die Bestimmung des kleinsten gemeinsamen Vielfachen ist also gleichbedeutend
+mit der Bestimmung der Zahlen $u$ und $v$.
+
+Die definierende Eigenschaften von $u$ und $v$ kann man in Matrixform als
+\begin{equation}
+\begin{pmatrix}
+a\\b
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+u&?\\
+v&?
+\end{pmatrix}}_{\displaystyle =K}
+\begin{pmatrix}
+\operatorname{ggT}(a,b)\\ 0
+\end{pmatrix}
+\label{buch:eindlichekoerper:eqn:uvmatrix}
+\end{equation}
+geschrieben werden, wobei wir die Matrixelemente $?$ nicht kennen.
+Diese Elemente müssen wir auch nicht kennen, um $u$ und $v$ zu bestimmen.
+
+Bei der Bestimmung des grössten gemeinsamen Teilers wurde der Vektor auf
+der rechten Seite von~\eqref{buch:eindlichekoerper:eqn:uvmatrix} bereits
+gefunden.
+Die Matrizen $Q(q_i)$, die die einzelne Schritte des euklidischen
+Algorithmus beschreiben, ergeben ihn als
+\[
+\begin{pmatrix}
+\operatorname{ggT}(a,b)\\0
+\end{pmatrix}
+=
+Q(q_n)Q(q_{n-1}) \dots Q(q_1)Q(q_0)
+\begin{pmatrix}a\\b\end{pmatrix}.
+\]
+Indem wir die Matrizen $Q(q_n)$ bis $Q(q_0)$ auf die linke Seite der
+Gleichung schaffen, erhalten wir
+\[
+\begin{pmatrix}a\\b\end{pmatrix}
+=
+Q(q_0)^{-1}
+Q(q_1)^{-1}
+\dots
+Q(q_{n-1})^{-1}
+Q(q_n)
+\begin{pmatrix}\operatorname{ggT}(a,b)\\0\end{pmatrix}.
+\]
+Eine mögliche Lösung für die Matrix $K$ in
+\eqref{buch:eindlichekoerper:eqn:uvmatrix}
+ist der die Matrix
+\[
+K
+=
+Q(q_0)^{-1}
+Q(q_1)^{-1}
+\dots
+Q(q_{n-1})^{-1}
+Q(q_n).
+\]
+Insbesondere ist die Matrix $K$ die Inverse der früher gefundenen
+Matrix $Q$.
+
+Die Berechnung der Matrix $K$ als Inverse von $Q$ ist nicht sehr
+effizient.
+Genauso wie es möglich war, das Produkt $Q$ der Matrizen
+$Q(q_k)$ iterativ zu bestimmen, muss es auch eine Rekursionsformel
+für das Produkt der inversen Matrizen $Q(q_k)^{-1}$ geben.
+
+Schreiben wir die gesuchte Matrix 
+\[
+K_k
+=
+Q(q_0)^{-1}\dots Q(q_{k-1})^{-1}
+=
+\begin{pmatrix}
+e_k & e_{k-1}\\
+f_k & f_{k-1}
+\end{pmatrix},
+\]
+dann kann man $K_k$ durch die Rekursion
+\begin{equation}
+K_{k+1}
+=
+K_{k} Q(q_k)^{-1} 
+=
+K_k K(q_k)
+\qquad\text{mit}\qquad
+K_0 = \begin{pmatrix}1&0\\0&1\end{pmatrix} = I
+\label{buch:endlichekoerper:eqn:kgvrekursion}
+\end{equation}
+berechnen.
+Die Inverse von $Q(q)$ ist
+\[
+K(q)
+=
+Q(q)^{-1}
+=
+\frac{1}{\det Q(q)}
+\begin{pmatrix}
+q&1\\
+1&0
+\end{pmatrix}
+\quad\text{denn}\quad
+K(q)Q(q)
+=
+\begin{pmatrix}
+q&1\\
+1&0
+\end{pmatrix}
+\begin{pmatrix}
+0&1\\
+1&-q
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&0\\
+0&1
+\end{pmatrix}.
+\]
+Da die zweite Spalte von $K(q)$ die erste Spalte einer Einheitsmatrix
+ist, wird die zweite Spalte des Produktes $AK(q)$ immer die erste Spalte
+von $A$ sein.
+In $K_{k+1}$ ist daher nur die erste Spalte neu, die zweite Spalte ist
+die erste Spalte von $K_k$.
+
+Aus der Rekursionsformel \eqref{buch:endlichekoerper:eqn:kgvrekursion}
+für die Matrizen $K_k$ kann man jetzt eine Rekursionsbeziehung
+für die Folgen $e_k$ und $f_k$ ablesen, es gilt
+\begin{align*}
+e_{k+1} &= q_ke_k + e_{k-1} \\
+f_{k+1} &= q_kf_k + f_{k-1}
+\end{align*}
+für $k=0,1,\dots ,n$.
+Damit können $e_k$ und $f_k$ gleichzeitig mit den Zahlen $c_k$ und $d_k$
+in einer Tabelle berechnen.
+
+\begin{beispiel}
+Wir erweitern das Beispiel von
+Seite~\pageref{buch:endlichekoerper:beispiel1erweitert}
+um die beiden Spalten zur Berechnung von $e_k$ und $f_k$:
+\begin{center}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
+\hline
+k&   a_k&   b_k&    q_k&  r_k&     c_k&     d_k&   e_k&   f_k\\
+\hline
+ &      &      &       &     &       1&       0&     0&     1\\
+0& 76415& 23205&      3& 6800&       0&       1&     1&     0\\
+1& 23205&  6800&      3& 2805&       1&      -3&     3&     1\\
+2&  6800&  2805&      2& 1190&      -3&      10&    10&     3\\
+3&  2805&  1190&      2&  425&       7&     -23&    23&     7\\
+4&  1190&   425&      2&  340&     -17&      56&    56&    17\\
+5&   425&   340&      1&   85&      41&    -135&   135&    41\\
+6&   340&    85&      4&    0&     -58&     191&   191&    58\\
+7&    85&     0&       &     &     273&    -899&   899&   273\\
+\hline
+\end{tabular}
+\end{center}
+Der grösste gemeinsame Teiler ist $\operatorname{ggT}(a,b)=85$.
+Aus der letzten Zeile der Tabelle kann man jetzt die Zahlen $u=e_7=899$
+und $v=f_7=273$ ablesen, und tatsächlich ist
+\[
+a=76415 = 899\cdot 85
+\qquad\text{und}\qquad
+b=23205 = 273 \cdot 85.
+\]
+Daraus kann man dann auch das kleinste gemeinsame Vielfache ablesen, es ist
+\[
+\operatorname{kgV}(a,b)
+=
+\operatorname{kgV}(76415,23205)
+=
+\left\{
+\begin{aligned}
+ub
+&=
+899\cdot 23205\\
+va
+&=
+273\cdot 76415
+\end{aligned}
+\right\}
+=
+20861295.
+\qedhere
+\]
+\end{beispiel}
+
+Der erweiterte Algorithmus kann auch dazu verwendet werden,
+das kleinste gemeinsame Vielfache zweier Polynome zu berechnen.
+Dies wird zum Beispiel bei der Decodierung des Reed-Solomon-Codes in
+Kapitel~\ref{chapter:reedsolomon} verwendet.
+
+\subsubsection{Polynome
+\label{buch:endlichekoerper:eqn:polynomkgv}}
+Im Beispiel auf Seite~\pageref{buch:endlichekoerper:eqn:polynomggt}
+wird der grösste gemeinsame Teiler der Polynome
+\[
+a
+=
+X^4 - 2X^3 -7 X^2 + 8X + 12,
+\qquad
+b = X^4 + X^3 -7X^2 -X + 6
+\]
+berechnet.
+Dies kann jetzt erweitert werden für die Berechnung des kleinsten
+gemeinsamen Vielfachen.
+
+\begin{beispiel}
+Die Berechnungstabelle nur für die Spalten $e_k$ und $f_k$ ergibt
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
+\hline
+k&   q_k&  e_k&  f_k\\
+\hline
+ &                 &                           0&                           1\\
+0&                1&                           1&                           0\\
+1&-\frac13X-\frac13&                           1&                           1\\
+2& \frac34X+\frac34&           -\frac13X+\frac23&           -\frac13X-\frac13\\
+ &                 &-\frac14X^2+\frac14X+\frac32&-\frac14X^2-\frac12X+\frac34\\
+\hline
+\end{tabular}
+\end{center}
+Daraus kann man ablesen, dass
+\[
+u
+=
+-\frac14X^2+\frac14X+\frac32
+\qquad\text{und}\qquad
+v
+=
+-\frac14X^2-\frac12X+\frac34.
+\]
+Daraus ergibt sich das kleinste gemeinsame Vielfache auf zwei verschiedene Weisen:
+\[
+\operatorname{ggT}(a,b)
+=
+\left\{
+\begin{aligned}
+\textstyle
+(-\frac14X^2+\frac14X+\frac32)&\cdot(X^4 - 2X^3 -7 X^2 + 8X + 12)
+\\
+\textstyle
+(-\frac14X^2-\frac12X+\frac34)&\cdot(X^4 + X^3 -7X^2 -X + 6)
+\end{aligned}
+\right\}
+=
+-\frac14X^6+\frac72X^4-\frac{49}4X^2+9.
+\]
+Die beiden Berechnungsmöglichkeiten stimmen wie erwartet überein.
+\end{beispiel}
+
+\subsubsection{Anwendung: Decodierung des Reed-Solomon-Codes}
+Der Reed-Solomon-Code verwendet Polynome zur Codierung der Daten,
+dies wird in Kapitel~\ref{chapter:reedsolomon} im Detail beschrieben.
+Bei der Decodierung muss der Faktor $u$ für zwei gegebene Polynome
+$n(X)$ und $r(X)$ bestimmt werden.
+Allerdings ist das Polynom $r(X)$ nicht vollständig bekannt, nur die 
+ersten paar Koeffizienten sind gegeben.
+Dafür weiss man zusätzlich, wieviele Schritte genau der Euklidische
+Algorithmus braucht.
+Daraus lässt sich genügend Information gewinnen, um die Faktoren $u$
+und $v$ zu bestimmen.
+Das Video \url{https://youtu.be/uOLW43OIZJ0} von Edmund Weitz
+erklärt die Theorie hinter dieser Teilaufgabe anhand von Beispielen.
+
+\begin{beispiel}
+Wir berechnen also die Faktoren $u$ und $v$ für die beiden Polynome
+\begin{align*}
+n(X)
+&=
+X^{12}+12
+\\
+r(X)
+&=
+7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + w(X)
+\end{align*}
+in $\mathbb{F}_{13}[X]$, wobei $w(X)$ ein unbekanntes Polynom vom Grad $5$ ist. 
+Man weiss zusätzlich noch, dass der euklidische Algorithmus genau drei
+Schritte braucht, es gibt also genau drei Quotienten, die in die
+Berechnung der Zahlen $e_k$ und $f_k$ einfliessen.
+
+Im ersten Schritt des euklidischen Algorithmus ist der Quotient
+$n(X) / r(X)$ zu bestimmen, der Grad $1$ haben muss.
+\begin{align*}
+a_0=n(X)           &= X^{12}+12
+\\
+b_0=r(X)           &= 7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + \dots
+\\
+q_0                &= 2X+10
+\\
+r_0 = a_0-b_0\cdot q_0 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+a_1 &= 7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + \dots
+\\
+b_1 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+q_1 &= 2X+2
+\\
+r_1 = a_1 - b_1q_1 &= 5X^9 + 10 X^8 + \dots
+\\
+a_2 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+b_2 &= 5X^9 + 10 X^8 + \dots
+\\
+q_2 &= 2X+10
+\end{align*}
+Aus den Polynomen $q_k$ können jetzt die Faktoren $u$ und $v$
+bestimmt werden:
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+k&   q_k&               e_k&        f_k\\
+\hline
+ &      &                 0&          1\\
+0& 2X+10&                 1&          0\\
+1& 2X+2 &             2X+10&          1\\
+2& 2X+10&        4X^2+11X+8&       2X+2\\
+ &      & 8X^3+10X^2+11X+12& 4X^2+11X+8\\
+\hline
+\end{tabular}
+\end{center}
+Die Faktorisierung des Polynoms
+\[
+u
+=
+8X^3+10X^2+11X+12
+\]
+kann bestimmt werden, indem man alle Zahlen $1,2,\dots,12\in\mathbb{F}_{13}$
+einsetzt.
+Man findet so die Nullstellen $3$, $4$ und $8$, also muss das Polynom
+$u$ faktorisiert werden können als
+\[
+u=
+8(X-3)(X-4)(X-8)
+=
+8X^3 - 120X^2+544X-768
+=
+8X^3 +10X^2+11X+12.
+\qedhere
+\]
+\end{beispiel}
 

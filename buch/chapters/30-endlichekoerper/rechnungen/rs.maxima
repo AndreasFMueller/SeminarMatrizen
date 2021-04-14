@@ -1,0 +1,29 @@
+n: X^12 + 12;
+r: 7*X^11 + 4*X^10 + X^9 + 12*X^8 + 2*X^7 + 12*X^6;
+
+q0: 2*X+10;
+q1: 2*X+2;
+q2: 2*X+10;
+
+a0: n;
+b0: r;
+r0: expand(a0 - q0 * b0);
+
+a1: b0;
+b1: r0;
+r1: expand(a1 - q1 * b1);
+
+a2: b1;
+b2: r1;
+r2: expand(a2 - q2 * b2);
+
+K: matrix([1,0],[0,1]);
+
+K: expand(K . matrix([q0,1],[1,0]));
+K: expand(K . matrix([q1,1],[1,0]));
+K: expand(K . matrix([q2,1],[1,0]));
+
+u: 8*X^3+10*X^2+11*X+12;
+v: 4*X^2+11*X+8;
+
+factor(u), modulus:13;
