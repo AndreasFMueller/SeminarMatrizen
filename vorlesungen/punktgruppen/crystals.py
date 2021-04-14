@@ -1,0 +1,269 @@
+from manim import *
+
+import math as m
+import numpy as np
+
+# configure style
+config.background_color = '#202020'
+config.tex_template.add_to_preamble(
+    r"\usepackage[p,osf]{scholax}"
+    r"\usepackage{amsmath}"
+    r"\usepackage[scaled=1.075,ncf,vvarbb]{newtxmath}"
+)
+
+# scenes
+class Geometric2DSymmetries(Scene):
+    def construct(self):
+        # title
+        title = Tex(r"Geometrische \\ Symmetrien")
+        title.scale(1.5)
+        self.play(Write(title))
+        self.wait()
+        self.play(FadeOut(title))
+        self.wait()
+
+        self.intro()
+        self.cyclic()
+        self.dihedral()
+
+    def intro(self):
+        # create square
+        square = Square()
+        square.set_fill(PINK, opacity=.5)
+        self.play(SpinInFromNothing(square))
+        self.wait()
+
+        # the action of doing nothing
+        action = MathTex(r"1")
+        self.play(Write(action))
+        self.play(ApplyMethod(square.scale, 1.2))
+        self.play(ApplyMethod(square.scale, 1/1.2))
+        self.play(FadeOut(action))
+
+        # show some reflections
+        axis = DashedLine(2 * LEFT, 2 * RIGHT)
+        sigma = MathTex(r"\sigma")
+        sigma.next_to(axis, RIGHT)
+
+        self.play(Create(axis))
+        self.play(Write(sigma))
+
+        self.play(ApplyMethod(square.flip, RIGHT))
+        self.wait()
+
+        for d in [UP + RIGHT, UP]:
+            self.play(
+                Rotate(axis, PI/4),
+                Rotate(sigma, PI/4, about_point=ORIGIN))
+
+            self.play(Rotate(sigma, -PI/4), run_time=.5)
+            self.play(ApplyMethod(square.flip, d))
+
+        self.play(
+            FadeOutAndShift(sigma),
+            Uncreate(axis))
+
+        # show some rotations
+        dot = Dot(UP + RIGHT)
+        figure = VGroup()
+        figure.add(square)
+        figure.add(dot)
+
+        rot = MathTex(r"r")
+        self.play(Write(rot), Create(dot))
+
+        last = rot
+        for newrot in map(MathTex, [r"r", r"r^2", r"r^3"]):
+            self.play(
+                ReplacementTransform(last, newrot),
+                Rotate(figure, PI/2, about_point=ORIGIN))
+            self.wait()
+            last = newrot
+
+        self.play(Uncreate(dot), FadeOut(square), FadeOut(last))
+
+
+    def cyclic(self):
+        # create symmetric figure
+        figure = VGroup()
+        prev = [1.5, 0, 0]
+        for i in range(1,6):
+            pos = [
+                1.5*m.cos(2 * PI/5 * i),
+                1.5*m.sin(2 * PI/5 * i),
+                0
+            ]
+
+            if prev:
+                line = Line(prev, pos)
+                figure.add(line)
+
+            dot = Dot(pos, radius=.1)
+            if i == 5:
+                dot.set_fill(RED)
+
+            prev = pos
+            figure.add(dot)
+
+        group = MathTex(r"G = \langle r \rangle")
+        self.play(Write(group), run_time = 2)
+        self.wait()
+        self.play(ApplyMethod(group.to_corner, UP))
+
+        actions = map(MathTex, [r"1", r"r", r"r^2", r"r^3", r"r^4", r"1"])
+        action = next(actions, MathTex(r"r"))
+        
+        self.play(Create(figure))
+        self.play(Write(action))
+        self.wait()
+
+        for i in range(5):
+            newaction = next(actions, MathTex(r"r"))
+            self.play(
+                ReplacementTransform(action, newaction),
+                Rotate(figure, 2*PI/5, about_point=ORIGIN))
+            action = newaction
+
+        self.play(Uncreate(figure), FadeOut(action))
+
+        whole_group = MathTex(
+            r"G = \langle r \rangle" 
+            r"= \left\{1, r, r^2, r^3, r^4 \right\}")
+
+        self.play(ApplyMethod(group.move_to, ORIGIN))
+        self.play(ReplacementTransform(group, whole_group))
+        self.wait()
+
+        cyclic = MathTex(
+            r"C_n = \langle r \rangle" 
+            r"= \left\{1, r, r^2, \dots, r^n \right\}")
+
+        cyclic_title = Tex(r"Zyklische Gruppe")
+        cyclic_title.next_to(cyclic, UP * 2)
+
+        cyclic.scale(1.2)
+        cyclic_title.scale(1.2)
+
+        self.play(ReplacementTransform(whole_group, cyclic))
+        self.play(FadeInFrom(cyclic_title, UP))
+
+        self.wait(5)
+        self.play(FadeOut(cyclic), FadeOut(cyclic_title))
+
+    def dihedral(self):
+        # create square
+        square = Square()
+        square.set_fill(PINK, opacity=.5)
+
+        # generator equation
+        group = MathTex(
+            r"G = \langle \sigma, r \,|\,",
+            r"\sigma^2 = 1,",
+            r"r^4 = 1,",
+            r"(\sigma r)^2 = 1 \rangle")
+
+        self.play(Write(group), run_time = 2)
+        self.wait()
+        self.play(ApplyMethod(group.to_corner, UP))
+        self.play(FadeIn(square))
+
+        axis = DashedLine(2 * LEFT, 2 * RIGHT)
+        sigma = MathTex(r"\sigma^2 = 1")
+        sigma.next_to(axis, RIGHT)
+        self.play(Create(axis), Write(sigma))
+        self.play(ApplyMethod(square.flip, RIGHT))
+        self.play(ApplyMethod(square.flip, RIGHT))
+        self.play(Uncreate(axis), FadeOut(sigma))
+
+        # rotations
+        dot = Dot(UP + RIGHT)
+        rot = MathTex(r"r^4 = 1")
+        rot.next_to(square, DOWN * 3)
+
+        figure = VGroup()
+        figure.add(dot)
+        figure.add(square)
+
+        self.play(Write(rot), Create(dot))
+        for i in range(4):
+            self.play(Rotate(figure, PI/2))
+        self.play(FadeOut(rot), Uncreate(dot))
+
+        # rotation and flip
+        action = MathTex(r"(\sigma r)^2 = 1")
+        action.next_to(square, DOWN * 5)
+
+        dot = Dot(UP + RIGHT)
+        axis = DashedLine(2 * LEFT, 2 * RIGHT)
+        self.play(Create(dot), Create(axis), Write(action))
+
+        figure = VGroup()
+        figure.add(dot)
+        figure.add(square)
+
+        for i in range(2):
+            self.play(Rotate(figure, PI/2))
+            self.play(ApplyMethod(figure.flip, RIGHT))
+            self.wait()
+
+        self.play(Uncreate(dot), Uncreate(axis), FadeOut(action))
+        self.play(FadeOut(square))
+
+        # equation for the whole
+        whole_group = MathTex(
+            r"G &= \langle \sigma, r \,|\,"
+            r"\sigma^2 = r^4 = (\sigma r)^2 = 1 \rangle \\"
+            r"&= \left\{"
+            r"1, r, r^2, r^3, \sigma, \sigma r, \sigma r^2, \sigma r^3"
+            r"\right\}")
+
+        self.play(ApplyMethod(group.move_to, ORIGIN))
+        self.play(ReplacementTransform(group, whole_group))
+        self.wait(2)
+
+        dihedral = MathTex(
+            r"D_n &= \langle \sigma, r \,|\,"
+            r"\sigma^2 = r^n = (\sigma r)^2 = 1 \rangle \\"
+            r"&= \left\{"
+            r"1, r, r^2, \dots, \sigma, \sigma r, \sigma r^2, \dots"
+            r"\right\}")
+
+        dihedral_title = Tex(r"Diedergruppe: Symmetrien eines \(n\)-gons")
+        dihedral_title.next_to(dihedral, UP * 2)
+
+        dihedral.scale(1.2)
+        dihedral_title.scale(1.2)
+
+        self.play(ReplacementTransform(whole_group, dihedral))
+        self.play(FadeInFrom(dihedral_title, UP))
+
+        self.wait(5)
+        self.play(FadeOut(dihedral), FadeOut(dihedral_title))
+
+
+class Geometric3DSymmetries(ThreeDScene):
+    def construct(self):
+        self.symmetric()
+
+    def symmetric(self):
+        self.renderer.camera.light_source.move_to(3*IN) # changes the source of the light
+        self.set_camera_orientation(phi=60 * DEGREES, theta=-20 * DEGREES)
+
+        cube = Cube()
+        axes = ThreeDAxes()
+
+        axis = np.array([2,2,2])
+        line = DashedLine(-axis, axis)
+
+        self.play(Create(axes), Create(cube))
+        self.play(Create(line))
+
+        self.play(ApplyMethod(cube.rotate, PI, axis / abs(axis)))
+
+        self.begin_ambient_camera_rotation(rate=0.1)
+        self.wait(7)
+
+
+class AlgebraicSymmetries(Scene):
+    def construct(self):
+        pass
