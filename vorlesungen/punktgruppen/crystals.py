@@ -2,6 +2,7 @@ from manim import *
 
 import math as m
 import numpy as np
+import itertools as it
 
 # configure style
 config.background_color = '#202020'
@@ -34,7 +35,7 @@ class Geometric2DSymmetries(Scene):
         self.wait()
 
         # the action of doing nothing
-        action = MathTex(r"1")
+        action = MathTex(r"\mathbb{1}")
         self.play(Write(action))
         self.play(ApplyMethod(square.scale, 1.2))
         self.play(ApplyMethod(square.scale, 1/1.2))
@@ -110,7 +111,10 @@ class Geometric2DSymmetries(Scene):
         self.wait()
         self.play(ApplyMethod(group.to_corner, UP))
 
-        actions = map(MathTex, [r"1", r"r", r"r^2", r"r^3", r"r^4", r"1"])
+        actions = map(MathTex, [
+            r"\mathbb{1}", r"r", r"r^2",
+            r"r^3", r"r^4", r"\mathbb{1}"])
+
         action = next(actions, MathTex(r"r"))
         
         self.play(Create(figure))
@@ -128,7 +132,7 @@ class Geometric2DSymmetries(Scene):
 
         whole_group = MathTex(
             r"G = \langle r \rangle" 
-            r"= \left\{1, r, r^2, r^3, r^4 \right\}")
+            r"= \left\{\mathbb{1}, r, r^2, r^3, r^4 \right\}")
 
         self.play(ApplyMethod(group.move_to, ORIGIN))
         self.play(ReplacementTransform(group, whole_group))
@@ -136,7 +140,7 @@ class Geometric2DSymmetries(Scene):
 
         cyclic = MathTex(
             r"Z_n = \langle r \rangle" 
-            r"= \left\{1, r, r^2, \dots, r^{n-1} \right\}")
+            r"= \left\{\mathbb{1}, r, r^2, \dots, r^{n-1} \right\}")
 
         cyclic_title = Tex(r"Zyklische Gruppe")
         cyclic_title.next_to(cyclic, UP * 2)
@@ -158,9 +162,9 @@ class Geometric2DSymmetries(Scene):
         # generator equation
         group = MathTex(
             r"G = \langle \sigma, r \,|\,",
-            r"\sigma^2 = 1,",
-            r"r^4 = 1,",
-            r"(\sigma r)^2 = 1 \rangle")
+            r"\sigma^2 = \mathbb{1},",
+            r"r^4 = \mathbb{1},",
+            r"(\sigma r)^2 = \mathbb{1} \rangle")
 
         self.play(Write(group), run_time = 2)
         self.wait()
@@ -168,7 +172,7 @@ class Geometric2DSymmetries(Scene):
         self.play(FadeIn(square))
 
         axis = DashedLine(2 * LEFT, 2 * RIGHT)
-        sigma = MathTex(r"\sigma^2 = 1")
+        sigma = MathTex(r"\sigma^2 = \mathbb{1}")
         sigma.next_to(axis, RIGHT)
         self.play(Create(axis), Write(sigma))
         self.play(ApplyMethod(square.flip, RIGHT))
@@ -177,7 +181,7 @@ class Geometric2DSymmetries(Scene):
 
         # rotations
         dot = Dot(UP + RIGHT)
-        rot = MathTex(r"r^4 = 1")
+        rot = MathTex(r"r^4 = \mathbb{1}")
         rot.next_to(square, DOWN * 3)
 
         figure = VGroup()
@@ -190,7 +194,7 @@ class Geometric2DSymmetries(Scene):
         self.play(FadeOut(rot), Uncreate(dot))
 
         # rotation and flip
-        action = MathTex(r"(\sigma r)^2 = 1")
+        action = MathTex(r"(\sigma r)^2 = \mathbb{1}")
         action.next_to(square, DOWN * 5)
 
         dot = Dot(UP + RIGHT)
@@ -212,9 +216,9 @@ class Geometric2DSymmetries(Scene):
         # equation for the whole
         whole_group = MathTex(
             r"G &= \langle \sigma, r \,|\,"
-            r"\sigma^2 = r^4 = (\sigma r)^2 = 1 \rangle \\"
+            r"\sigma^2 = r^4 = (\sigma r)^2 = \mathbb{1} \rangle \\"
             r"&= \left\{"
-            r"1, r, r^2, r^3, \sigma, \sigma r, \sigma r^2, \sigma r^3"
+            r"\mathbb{1}, r, r^2, r^3, \sigma, \sigma r, \sigma r^2, \sigma r^3"
             r"\right\}")
 
         self.play(ApplyMethod(group.move_to, ORIGIN))
@@ -223,9 +227,9 @@ class Geometric2DSymmetries(Scene):
 
         dihedral = MathTex(
             r"D_n &= \langle \sigma, r \,|\,"
-            r"\sigma^2 = r^n = (\sigma r)^2 = 1 \rangle \\"
+            r"\sigma^2 = r^n = (\sigma r)^2 = \mathbb{1} \rangle \\"
             r"&= \left\{"
-            r"1, r, r^2, \dots, \sigma, \sigma r, \sigma r^2, \dots"
+            r"\mathbb{1}, r, r^2, \dots, \sigma, \sigma r, \sigma r^2, \dots"
             r"\right\}")
 
         dihedral_title = Tex(r"Diedergruppe: Symmetrien eines \(n\)-gons")
@@ -245,22 +249,60 @@ class Geometric3DSymmetries(ThreeDScene):
     def construct(self):
         self.symmetric()
 
+
+    @staticmethod
+    def get_cube():
+        verts = np.array(list(it.product(*3 * [[-1, 1]])))
+        edges = [
+            (v1, v2)
+            for v1, v2 in it.combinations(verts, 2)
+            if sum(v1 == v2) == 2
+        ]
+        corner_dots = Group(*[
+            Sphere().set_height(0.25).move_to(vert)
+            for vert in verts
+        ])
+        corner_dots.set_color(GREY_B)
+        edge_rods = Group(*[
+            Line3D(v1, v2)
+            for v1, v2 in edges
+        ])
+
+        faces = Cube(square_resolution=(10, 10))
+        faces.set_height(2)
+        faces.set_color(BLUE_E, 0.3)
+        # faces.add_updater(lambda m: m.sort(lambda p: np.dot(p, [np.sign(self.euler_angles[0]) * 0.2, -1, 0.2])))
+
+        cube = Group(corner_dots, edge_rods, faces)
+        cube.corner_dots = corner_dots
+        cube.edge_rods = edge_rods
+        cube.faces = faces
+        return cube
+
     def symmetric(self):
         self.renderer.camera.light_source.move_to(3*IN) # changes the source of the light
-        self.set_camera_orientation(phi=60 * DEGREES, theta=-20 * DEGREES)
+        self.set_camera_orientation(phi=60 * DEGREES, theta=5 * DEGREES)
 
         cube = Cube()
-        axes = ThreeDAxes()
+        self.play(GrowFromCenter(cube))
 
-        axis = np.array([2,2,2])
-        line = DashedLine(-axis, axis)
+        axes = list(
+            map(lambda v: v / np.linalg.norm(v),
+            map(np.array, [
+                [0, 0, 1],
+                [0, 1, 1],
+                [1, 1, 1],
+            ])
+        ))
+        angles = [ PI, PI, PI * 2/3 ]
+        lines = list(map(lambda x: Line(-2 * x, 2 * x), axes))
 
-        self.play(Create(axes), Create(cube))
-        self.play(Create(line))
+        camera_thetas = list(map(lambda x: x * DEGREES, [10, 100, 110]))
+        for axis, line, angle, camera_angle in zip(axes, lines, angles, camera_thetas):
+            self.move_camera(theta=camera_angle)
+            self.play(Create(line))
+            self.play(Rotate(cube, angle, axis=axis, run_time=3))
 
-        self.play(ApplyMethod(cube.rotate, PI, axis / abs(axis)))
-
-        self.begin_ambient_camera_rotation(rate=0.1)
         self.wait(7)
 
 
