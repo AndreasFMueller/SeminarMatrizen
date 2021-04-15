@@ -135,8 +135,8 @@ class Geometric2DSymmetries(Scene):
         self.wait()
 
         cyclic = MathTex(
-            r"C_n = \langle r \rangle" 
-            r"= \left\{1, r, r^2, \dots, r^n \right\}")
+            r"Z_n = \langle r \rangle" 
+            r"= \left\{1, r, r^2, \dots, r^{n-1} \right\}")
 
         cyclic_title = Tex(r"Zyklische Gruppe")
         cyclic_title.next_to(cyclic, UP * 2)
@@ -266,4 +266,77 @@ class Geometric3DSymmetries(ThreeDScene):
 
 class AlgebraicSymmetries(Scene):
     def construct(self):
-        pass
+        # title
+        title = Tex(r"Algebraische \\ Symmetrien")
+        title.scale(1.5)
+        self.play(Write(title))
+        self.wait()
+        self.play(FadeOut(title))
+        self.wait()
+
+        self.cyclic()
+
+    def cyclic(self):
+        root_powers = MathTex(
+            r"\left( e^\frac{\pi i}{2} \right)^0 &=  1 \\",
+            r"\left( e^\frac{\pi i}{2} \right)^1 &=  i \\",
+            r"\left( e^\frac{\pi i}{2} \right)^2 &= -1 \\",
+            r"\left( e^\frac{\pi i}{2} \right)^3 &= -i \\")
+
+        root_more_powers = MathTex(
+            r"\left( e^\frac{\pi i}{2} \right)^4 &=  1 \\",
+            r"\left( e^\frac{\pi i}{2} \right)^5 &=  i \\",
+            r"\left( e^\frac{\pi i}{2} \right)^6 &= -1 \\",
+            r"\left( e^\frac{\pi i}{2} \right)^7 &= -i \\")
+
+        root_powers.shift(LEFT * 2)
+        root_more_powers.shift(RIGHT * 2)
+
+        for line in root_powers:
+            self.play(Write(line))
+
+        for line in root_more_powers:
+            self.play(Write(line))
+
+        self.wait()
+        self.play(
+            ApplyMethod(root_powers.to_edge, LEFT),
+            FadeOutAndShift(root_more_powers, RIGHT))
+
+        groups = MathTex(
+            r"G &= \left\{ 1, i, -1, -i \right\} \\",
+            r"&= \left\{",
+                "1,", "i,", "i^2,", "i^3",
+            r"\right\} \\",
+            r"Z_4 &= \left\{",
+                "1,", "r,", "r^2,", "r^3"
+            r"\right\}")
+        groups.shift(UP)
+
+        self.play(Write(groups[0]))
+        self.play(FadeOutAndShift(root_powers, LEFT))
+        for part in groups[0:]:
+            self.play(Write(part))
+        self.play(ApplyMethod(groups.to_corner, UP + LEFT))
+        self.wait()
+
+        isomorphism = MathTex(
+                r"\varphi : G &\to Z_4 \\",
+                r"\mathrm{ker}(\varphi) &= \emptyset \\",
+                r"G &\cong Z_4")
+
+        iso_it = iter(isomorphism)
+        self.play(Write(next(iso_it)))
+        self.wait()
+        self.play(Write(next(iso_it)))
+        self.wait()
+
+        # TODO: show in group
+
+        self.play(Write(next(iso_it)))
+        self.wait()
+
+        self.play(ApplyMethod(isomorphism.to_edge, UP))
+
+        self.wait(5)
+
