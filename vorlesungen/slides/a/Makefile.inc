@@ -15,5 +15,11 @@ chaptera =								\
 	../slides/a/ecc/quadrieren.tex					\
 	../slides/a/ecc/oakley.tex					\
 									\
+	../slides/a/aes/bytes.tex					\
+	../slides/a/aes/sinverse.tex					\
+	../slides/a/aes/blocks.tex					\
+	../slides/a/aes/keys.tex					\
+	../slides/a/aes/runden.tex					\
+									\
 	../slides/a/chapter.tex
 

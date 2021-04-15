@@ -25,16 +25,19 @@
 \folie{a/ecc/operation.tex}
 % Quadrieren
 \folie{a/ecc/quadrieren.tex}
-% XXX Oakley Gruppe
-%\folie{a/ecc/oakley.tex}
+% Oakley Gruppe
+\ifthenelse{\boolean{presentation}}{
+\folie{a/ecc/oakley.tex}
+}{}
 
 \section{AES}
-% XXX Byte-Operationen
-%\folie{a/aes/bytes.tex}
-% XXX Block-Operationen
-%\folie{a/aes/blocks.tex}
-% XXX Key-Schedule
-%\folie{a/aes/keys.tex}
-% XXX Zusammensetzung
-%\folie{a/aes/runden.tex}
+% Byte-Operationen
+\folie{a/aes/bytes.tex}
+\folie{a/aes/sinverse.tex}
+% Block-Operationen
+\folie{a/aes/blocks.tex}
+% Key-Schedule
+\folie{a/aes/keys.tex}
+% Zusammensetzung
+\folie{a/aes/runden.tex}
 
