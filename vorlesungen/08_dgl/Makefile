@@ -5,15 +5,28 @@
 #
 all:	dgl-handout.pdf MathSem-08-dgl.pdf
 
+# SHELL = /bin/bash
+
 include ../slides/Makefile.inc
 
 SOURCES = common.tex slides.tex $(slides)
+IMAGES = vektorfelder-1.pdf
 
-MathSem-08-dgl.pdf:	MathSem-08-dgl.tex $(SOURCES)
-	pdflatex MathSem-08-dgl.tex
 
-dgl-handout.pdf:	dgl-handout.tex $(SOURCES)
-	pdflatex dgl-handout.tex
+MathSem-08-dgl.pdf:	MathSem-08-dgl.tex $(SOURCES) $(IMAGES)
+	pdflatex MathSem-08-dgl.tex > /dev/null
+
+dgl-handout.pdf:	dgl-handout.tex $(SOURCES) $(IMAGES)
+	pdflatex dgl-handout.tex > /dev/null
+
+vektorfelder-1.pdf: ../slides/10/vektorfelder.mp
+	cd ../slides/10/; \
+	TEX=latex mpost vektorfelder.mp; \
+	for f in vektorfelder.[0-9]*; \
+	do \
+	  mptopdf $${f} > /dev/null; \
+	done; \
+	rm -f vektorfelder.[0-9]* vektorfelder.log vektorfelder.mpx
 
 thumbnail:	thumbnail.jpg # fix1.jpg
 
