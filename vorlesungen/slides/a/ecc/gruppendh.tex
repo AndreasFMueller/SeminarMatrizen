@@ -1,0 +1,51 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Diffie-Hellmann verallgemeinern}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Diffie-Hellman in $\mathbb{F}_p$\strut}
+\begin{enumerate}
+\item<2-> Parteien einigen sich auf $g\in \mathbb{F}_p$, $g\ne 0$, $g\ne 1$
+\item<3-> $A$ und $B$ wählen Exponenten $a,b\in \mathbb{N}$
+\item<4-> Parteien tauschen $u=g^a$ und $v=g^b$ aus
+\item<5-> Parteien berechnen $v^a$ und $u^b$
+\[
+v^a = (g^b)^a = g^{ab} =(g^a)^b = u^b
+\]
+gemeinsamer privater Schlüssel
+\end{enumerate}
+\end{block}
+\uncover<11->{%
+{\usebeamercolor[fg]{title}Spezialfall:} $G=\mathbb{F}_p^*$
+}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<6->{%
+\begin{block}{Diffie-Hellmann in $G$\strut}
+\begin{enumerate}
+\item<7-> Parteien einigen sich auf $g\in G$, $g\ne e$
+\item<8-> $A$ und $B$ wählen Exponenten $a,b\in \mathbb{N}$
+\item<9-> Parteien tauschen $u=g^a$ und $v=g^b$ aus
+\item<10-> Parteien berechnen $v^a$ und $u^b$
+\[
+v^a = (g^b)^a = g^{ab} =(g^a)^b = u^b
+\]
+gemeinsamer privater Schlüssel
+\end{enumerate}
+\end{block}}
+\uncover<12->{%
+{\usebeamercolor[fg]{title}Idee:} Wähle effizient zu berechnende, ``grosse''
+Gruppen, mit ``komplizierter'' Multiplikation
+}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
