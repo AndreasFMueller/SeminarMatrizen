@@ -1,0 +1,85 @@
+%
+% oakley.tex -- Oakley Gruppen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Oakley-Gruppen}
+\only<1>{%
+\small
+\verbatiminput{../slides/a/ecc/oakley1.txt}
+$\approx 1.55252\cdot 10^{231}$
+}
+\only<2>{%
+\begin{block}{$\mathbb{F}_p$}
+Endlicher Körper mit $p = $
+\verbatiminput{../slides/a/ecc/prime1.txt}
+\end{block}
+}
+\only<3>{%
+\small
+\verbatiminput{../slides/a/ecc/oakley2.txt}
+}
+\only<4>{%
+\begin{block}{$\mathbb{F}_p$}
+Endlicher Körper mit $p = $
+\verbatiminput{../slides/a/ecc/prime2.txt}
+$\approx 1.7977\cdot 10^{308}$
+\end{block}
+}
+\only<5>{%
+\small
+\verbatiminput{../slides/a/ecc/oakley3.txt}
+}
+\only<6>{%
+\begin{block}{Oakley Gruppe 3}
+\begin{align*}
+m(x) &= x^{155} + x^{62} + 1
+\\
+a    &= 0
+\\
+b    &= \texttt{0x07338f}
+\\
+g_x  &= 0x7b = x^6 + x^5 + x^4 + x^3 + x + 1
+\\
+&=
+x^{18}+x^{17}+x^{16}
++
+x^{13}+x^{12}
++
+x^{9}+x^{8}+x^{7}
++
+x^{3}+x^{1}+x^{1}+1
+\\
+|G|&=45671926166590716193865565914344635196769237316 = 4.5672\cdot 10^{46}
+\\
+\log_2|G|&=155\,\text{bit}
+\end{align*}
+\end{block}}
+\only<7>{%
+\small
+\verbatiminput{../slides/a/ecc/oakley4.txt}
+}
+\only<8>{%
+\begin{block}{Oakley Gruppe 4}
+\begin{align*}
+m(x) &= x^{185} + x^{69} + 1
+\\
+a    &= 0
+\\
+b    &= \texttt{0x1ee9} = x^{12} + x^{11}+x^{10}+x^9 + x^7+x^6+x^5 + x^3+1
+\\
+g_x  &= \texttt{0x18} = x^4+x^3
+\\
+|G| &= 49039857307708443467467104857652682248052385001045053116
+\\
+&= 4.9040\cdot 10^{55}
+\\
+\log_2|G| &= 185
+\end{align*}
+\end{block}}
+\end{frame}
+\egroup

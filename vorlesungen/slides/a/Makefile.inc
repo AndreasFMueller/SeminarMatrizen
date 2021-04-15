@@ -11,6 +11,9 @@ chaptera =								\
 	../slides/a/ecc/gruppendh.tex					\
 	../slides/a/ecc/kurve.tex					\
 	../slides/a/ecc/inverse.tex					\
+	../slides/a/ecc/operation.tex					\
+	../slides/a/ecc/quadrieren.tex					\
+	../slides/a/ecc/oakley.tex					\
 									\
 	../slides/a/chapter.tex
 
