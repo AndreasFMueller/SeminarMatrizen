@@ -66,9 +66,7 @@ class Geometric2DSymmetries(Scene):
 
         # show some rotations
         dot = Dot(UP + RIGHT)
-        figure = VGroup()
-        figure.add(square)
-        figure.add(dot)
+        figure = VGroup(square, dot)
 
         rot = MathTex(r"r")
         self.play(Write(rot), Create(dot))
@@ -184,9 +182,7 @@ class Geometric2DSymmetries(Scene):
         rot = MathTex(r"r^4 = \mathbb{1}")
         rot.next_to(square, DOWN * 3)
 
-        figure = VGroup()
-        figure.add(dot)
-        figure.add(square)
+        figure = VGroup(dot, square)
 
         self.play(Write(rot), Create(dot))
         for i in range(4):
@@ -201,9 +197,7 @@ class Geometric2DSymmetries(Scene):
         axis = DashedLine(2 * LEFT, 2 * RIGHT)
         self.play(Create(dot), Create(axis), Write(action))
 
-        figure = VGroup()
-        figure.add(dot)
-        figure.add(square)
+        figure = VGroup(dot, square)
 
         for i in range(2):
             self.play(Rotate(figure, PI/2))
@@ -317,6 +311,7 @@ class AlgebraicSymmetries(Scene):
         self.wait()
 
         self.cyclic()
+        self.matrices()
 
     def cyclic(self):
         # show the i product
@@ -374,9 +369,7 @@ class AlgebraicSymmetries(Scene):
         for part in homomorphism:
             self.play(Write(part))
 
-        hom_bracegrp = VGroup()
-        hom_bracegrp.add(morphism)
-        hom_bracegrp.add(homomorphism)
+        hom_bracegrp = VGroup(morphism, homomorphism)
 
         self.play(
             ApplyMethod(grouppow.shift, 2.5 * LEFT),
@@ -384,21 +377,21 @@ class AlgebraicSymmetries(Scene):
 
         hom_brace = Brace(hom_bracegrp, direction=RIGHT)
         hom_text = Tex("Homomorphismus").next_to(hom_brace.get_tip(), RIGHT)
+        hom_text_short = MathTex(r"G \simeq Z_4").next_to(hom_brace.get_tip(), RIGHT)
 
         self.play(Create(hom_brace))
         self.play(Write(hom_text))
+        self.play(ReplacementTransform(hom_text, hom_text_short))
         self.wait()
 
-        self.play(FadeOut(hom_brace), FadeOut(hom_text))
+        self.play(FadeOut(hom_brace), FadeOut(hom_text_short))
 
         # add the isomorphism part
         isomorphism = Tex(r"\(\phi\) ist bijektiv")
         isomorphism.next_to(homomorphism, DOWN).align_to(homomorphism, LEFT)
         self.play(Write(isomorphism))
 
-        iso_bracegrp = VGroup()
-        iso_bracegrp.add(hom_bracegrp)
-        iso_bracegrp.add(isomorphism)
+        iso_bracegrp = VGroup(hom_bracegrp, isomorphism)
 
         iso_brace = Brace(iso_bracegrp, RIGHT)
         iso_text = Tex("Isomorphismus").next_to(iso_brace.get_tip(), RIGHT)
@@ -412,44 +405,68 @@ class AlgebraicSymmetries(Scene):
         self.wait()
 
         # create a group for the whole
-        morphgrp = VGroup()
-        morphgrp.add(iso_bracegrp)
-        morphgrp.add(iso_brace)
-        morphgrp.add(iso_text_short)
+        morphgrp = VGroup(iso_bracegrp, iso_brace, iso_text_short)
 
         self.play(
-            FadeOutAndShift(grouppow, UP),
-            FadeOutAndShift(morphgrp, DOWN))
+            ApplyMethod(grouppow.to_edge, LEFT),
+            ApplyMethod(morphgrp.to_edge, LEFT))
+        # self.play(
+        #     FadeOutAndShift(grouppow, UP),
+        #     FadeOutAndShift(morphgrp, DOWN))
 
         # draw a complex plane
-        plane = ComplexPlane()
-        plane.axis_config["number_scale_val"] = 1
-        self.play(Create(plane))
+        plane = ComplexPlane(x_min = -2, x_max = 3)
+        coordinates = plane.get_coordinate_labels(1, -1, 1j, -1j)
 
         roots = list(map(lambda p: Dot(p, fill_color=PINK), (
             [1, 0, 0], [0, 1, 0], [-1, 0, 0], [0, -1, 0]
         )))
 
-        self.play(
-            *map(Create, roots),
-            *map(Write, plane.get_coordinate_labels(1, -1, 1j, -1j)))
-        self.wait()
-
         arrow = CurvedArrow(
             1.5 * np.array([m.cos(10 * DEGREES), m.sin(10 * DEGREES), 0]),
             1.5 * np.array([m.cos(80 * DEGREES), m.sin(80 * DEGREES), 0]))
-
         arrowtext = MathTex("\cdot i")
         arrowtext.move_to(2 / m.sqrt(2) * (UP + RIGHT))
 
         square = Square().rotate(PI/4).scale(1/m.sqrt(2))
         square.set_fill(PINK).set_opacity(.4)
 
+        figuregrp = Group(plane, square, arrow, arrowtext, *coordinates, *roots)
+        figuregrp.to_edge(RIGHT)
+
+        self.play(Create(plane))
+        self.play(
+            *map(Create, roots),
+            *map(Write, coordinates))
+        self.wait()
         self.play(FadeIn(square), Create(arrow), Write(arrowtext))
 
         for _ in range(4):
             self.play(Rotate(square, PI/2))
             self.wait(.5)
 
-        self.play(FadeOut(square), FadeOut(arrow), *map(FadeOut, roots))
+        self.play(
+            *map(FadeOut, (square, arrow, arrowtext)),
+            *map(FadeOut, coordinates),
+            *map(FadeOut, roots))
         self.play(Uncreate(plane))
+        self.play(
+            FadeOutAndShift(grouppow, RIGHT),
+            FadeOutAndShift(morphgrp, RIGHT))
+
+        modulo = MathTex(
+            r"\phi: Z_4 &\to (\mathbb{Z}/4\mathbb{Z}, +) \\"
+            r"\phi(\mathbb{1} \circ r^2) &= 0 + 2 \pmod 4").scale(1.5)
+        self.play(Write(modulo))
+        self.wait(2)
+
+        self.play(FadeOut(modulo))
+        self.wait(3)
+
+    def matrices(self):
+        question = MathTex(r"D_n \cong \,? \\ S_n \cong \,? \\ A_n \cong \,?")
+        question.scale(1.5)
+
+        self.play(Write(question))
+
+        self.wait(3)
