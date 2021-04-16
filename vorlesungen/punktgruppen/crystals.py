@@ -109,7 +109,7 @@ class Geometric2DSymmetries(Scene):
         group = MathTex(r"G = \langle r \rangle")
         self.play(Write(group), run_time = 2)
         self.wait()
-        self.play(ApplyMethod(group.to_corner, UP))
+        self.play(ApplyMethod(group.to_edge, UP))
 
         actions = map(MathTex, [
             r"\mathbb{1}", r"r", r"r^2",
@@ -168,7 +168,7 @@ class Geometric2DSymmetries(Scene):
 
         self.play(Write(group), run_time = 2)
         self.wait()
-        self.play(ApplyMethod(group.to_corner, UP))
+        self.play(ApplyMethod(group.to_edge, UP))
         self.play(FadeIn(square))
 
         axis = DashedLine(2 * LEFT, 2 * RIGHT)
@@ -319,66 +319,137 @@ class AlgebraicSymmetries(Scene):
         self.cyclic()
 
     def cyclic(self):
-        root_powers = MathTex(
-            r"\left( e^\frac{\pi i}{2} \right)^0 &=  1 \\",
-            r"\left( e^\frac{\pi i}{2} \right)^1 &=  i \\",
-            r"\left( e^\frac{\pi i}{2} \right)^2 &= -1 \\",
-            r"\left( e^\frac{\pi i}{2} \right)^3 &= -i \\")
-
-        root_more_powers = MathTex(
-            r"\left( e^\frac{\pi i}{2} \right)^4 &=  1 \\",
-            r"\left( e^\frac{\pi i}{2} \right)^5 &=  i \\",
-            r"\left( e^\frac{\pi i}{2} \right)^6 &= -1 \\",
-            r"\left( e^\frac{\pi i}{2} \right)^7 &= -i \\")
-
-        root_powers.shift(LEFT * 2)
-        root_more_powers.shift(RIGHT * 2)
-
-        for line in root_powers:
-            self.play(Write(line))
-
-        for line in root_more_powers:
-            self.play(Write(line))
-
-        self.wait()
-        self.play(
-            ApplyMethod(root_powers.to_edge, LEFT),
-            FadeOutAndShift(root_more_powers, RIGHT))
-
-        groups = MathTex(
-            r"G &= \left\{ 1, i, -1, -i \right\} \\",
-            r"&= \left\{",
-                "1,", "i,", "i^2,", "i^3",
-            r"\right\} \\",
-            r"Z_4 &= \left\{",
-                "1,", "r,", "r^2,", "r^3"
-            r"\right\}")
-        groups.shift(UP)
-
-        self.play(Write(groups[0]))
-        self.play(FadeOutAndShift(root_powers, LEFT))
-        for part in groups[0:]:
+        # show the i product
+        product = MathTex(
+            r"1", r"\cdot i &= i \\",
+            r"i \cdot i &= -1 \\",
+            r"-1 \cdot i &= -i \\",
+            r"-i \cdot i &= 1")
+        product.scale(1.5)
+        
+        for part in product:
             self.play(Write(part))
-        self.play(ApplyMethod(groups.to_corner, UP + LEFT))
+
+        self.wait()
+        self.play(ApplyMethod(product.scale, 1/1.5))
+
+        # gather in group
+        group = MathTex(r"G = \left\{ 1, i, -1, -i \right\}")
+        self.play(ReplacementTransform(product, group))
         self.wait()
 
-        isomorphism = MathTex(
-                r"\varphi : G &\to Z_4 \\",
-                r"\mathrm{ker}(\varphi) &= \emptyset \\",
-                r"G &\cong Z_4")
-
-        iso_it = iter(isomorphism)
-        self.play(Write(next(iso_it)))
-        self.wait()
-        self.play(Write(next(iso_it)))
+        # show Z4
+        grouppow =  MathTex(
+            r"G &= \left\{ 1, i, i^2, i^3 \right\} \\",
+            r"Z_4 &= \left\{ \mathbb{1}, r, r^2, r^3 \right\}")
+        self.play(ReplacementTransform(group, grouppow[0]))
         self.wait()
 
-        # TODO: show in group
+        self.play(Write(grouppow[1]))
+        self.wait()
+        self.play(ApplyMethod(grouppow.to_edge, UP))
 
-        self.play(Write(next(iso_it)))
+        # define morphisms
+        morphism = MathTex(r"\phi: Z_4 \to G \\")
+        morphism.shift(UP)
+        self.play(Write(morphism))
+
+        # show an example
+        mappings = MathTex(
+            r"\phi(\mathbb{1}) &= 1 \\",
+            r"\phi(r) &= i \\",
+            r"\phi(r^2) &= i^2 \\",
+            r"\phi(r^3) &= i^3 \\")
+        mappings.next_to(morphism, DOWN)
+
+        self.play(Write(mappings))
+        self.wait()
+        self.play(FadeOutAndShift(mappings, DOWN))
+
+        # more general definition
+        homomorphism = MathTex(
+            r"\phi(r\circ \mathbb{1}) &= i\cdot 1 \\",
+            r"&= \phi(r)\cdot\phi(\mathbb{1})")
+        homomorphism.next_to(morphism, DOWN).align_to(morphism, LEFT)
+        for part in homomorphism:
+            self.play(Write(part))
+
+        hom_bracegrp = VGroup()
+        hom_bracegrp.add(morphism)
+        hom_bracegrp.add(homomorphism)
+
+        self.play(
+            ApplyMethod(grouppow.shift, 2.5 * LEFT),
+            ApplyMethod(hom_bracegrp.shift, 2.5 * LEFT))
+
+        hom_brace = Brace(hom_bracegrp, direction=RIGHT)
+        hom_text = Tex("Homomorphismus").next_to(hom_brace.get_tip(), RIGHT)
+
+        self.play(Create(hom_brace))
+        self.play(Write(hom_text))
         self.wait()
 
-        self.play(ApplyMethod(isomorphism.to_edge, UP))
+        self.play(FadeOut(hom_brace), FadeOut(hom_text))
 
-        self.wait(5)
+        # add the isomorphism part
+        isomorphism = Tex(r"\(\phi\) ist bijektiv")
+        isomorphism.next_to(homomorphism, DOWN).align_to(homomorphism, LEFT)
+        self.play(Write(isomorphism))
 
+        iso_bracegrp = VGroup()
+        iso_bracegrp.add(hom_bracegrp)
+        iso_bracegrp.add(isomorphism)
+
+        iso_brace = Brace(iso_bracegrp, RIGHT)
+        iso_text = Tex("Isomorphismus").next_to(iso_brace.get_tip(), RIGHT)
+        iso_text_short = MathTex("Z_4 \cong G").next_to(iso_brace.get_tip(), RIGHT)
+
+        self.play(Create(iso_brace))
+        self.play(Write(iso_text))
+        self.wait()
+
+        self.play(ReplacementTransform(iso_text, iso_text_short))
+        self.wait()
+
+        # create a group for the whole
+        morphgrp = VGroup()
+        morphgrp.add(iso_bracegrp)
+        morphgrp.add(iso_brace)
+        morphgrp.add(iso_text_short)
+
+        self.play(
+            FadeOutAndShift(grouppow, UP),
+            FadeOutAndShift(morphgrp, DOWN))
+
+        # draw a complex plane
+        plane = ComplexPlane()
+        plane.axis_config["number_scale_val"] = 1
+        self.play(Create(plane))
+
+        roots = list(map(lambda p: Dot(p, fill_color=PINK), (
+            [1, 0, 0], [0, 1, 0], [-1, 0, 0], [0, -1, 0]
+        )))
+
+        self.play(
+            *map(Create, roots),
+            *map(Write, plane.get_coordinate_labels(1, -1, 1j, -1j)))
+        self.wait()
+
+        arrow = CurvedArrow(
+            1.5 * np.array([m.cos(10 * DEGREES), m.sin(10 * DEGREES), 0]),
+            1.5 * np.array([m.cos(80 * DEGREES), m.sin(80 * DEGREES), 0]))
+
+        arrowtext = MathTex("\cdot i")
+        arrowtext.move_to(2 / m.sqrt(2) * (UP + RIGHT))
+
+        square = Square().rotate(PI/4).scale(1/m.sqrt(2))
+        square.set_fill(PINK).set_opacity(.4)
+
+        self.play(FadeIn(square), Create(arrow), Write(arrowtext))
+
+        for _ in range(4):
+            self.play(Rotate(square, PI/2))
+            self.wait(.5)
+
+        self.play(FadeOut(square), FadeOut(arrow), *map(FadeOut, roots))
+        self.play(Uncreate(plane))
