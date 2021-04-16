@@ -1,0 +1,138 @@
+%
+% so2.tex -- Illustration of so(2) -> SO(2)
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+% Erstellt durch Roy Seitz
+%
+% !TeX spellcheck = de_CH
+\bgroup
+
+\newcommand{\gSL}[2]{\ensuremath{\text{SL}(#1, \mathbb{#2})}}
+\newcommand{\gSO}[1]{\ensuremath{\text{SO}(#1)}}
+\newcommand{\gGL}[2]{\ensuremath{\text{GL}(#1, \mathbb #2)}}
+
+\newcommand{\asl}[2]{\ensuremath{\mathfrak{sl}(#1, \mathbb{#2})}}
+\newcommand{\aso}[1]{\ensuremath{\mathfrak{so}(#1)}}
+\newcommand{\agl}[2]{\ensuremath{\mathfrak{gl}(#1, \mathbb #2)}}
+
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Von der Lie-Gruppe zur -Algebra}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+  \begin{block}{Lie-Gruppe}
+    Darstellung von \gSO2:
+    \begin{align*}
+      \mathbb R 
+      &\to 
+      \gSO2
+      \\
+      t
+      &\mapsto
+      \begin{pmatrix}
+        \cos t &         -\sin t \\ 
+        \sin t & \phantom-\cos t
+      \end{pmatrix}
+    \end{align*}
+  \end{block}
+  \begin{block}{Ableitung am neutralen Element}
+    \begin{align*}
+    \frac{d}{d t}
+    &
+    \left.
+    \begin{pmatrix}
+      \cos t &         -\sin t \\ 
+      \sin t & \phantom-\cos t
+    \end{pmatrix}
+    \right|_{ t = 0}
+    \\
+    =
+    & 
+    \begin{pmatrix} -\sin0 & -\cos0 \\ \phantom-\cos0 & -\sin0 \end{pmatrix}
+    = 
+    \begin{pmatrix} 0 & -1 \\ 1 &  \phantom-0 \end{pmatrix}
+    \end{align*}
+  \end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+  \begin{block}{Lie-Algebra}
+    Darstellung von \aso2:
+    \begin{align*}
+      \mathbb R 
+      &\to 
+      \aso2
+      \\
+      t
+      &\mapsto
+      \begin{pmatrix}
+        0 &         -t \\ 
+        t & \phantom-0
+      \end{pmatrix}
+    \end{align*}
+  \end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Von der Lie-Algebra zur -Gruppe}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+  \begin{block}{Differentialgleichung}
+    Gegeben:
+    \[
+    A
+    =
+    \dot\gamma(0) = \begin{pmatrix} 0 & -1 \\ 1 & \phantom-0 \end{pmatrix}
+    \]
+    Gesucht:
+    \[ \dot \gamma (t) = \gamma(t) A \qquad \gamma \in \gSO2 \]
+    \[ \Rightarrow \gamma(t) = \exp(At) \gamma(0) = \exp(At) \]
+  \end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+  \begin{block}{Lie-Algebra}
+    Potenzen von A:
+    \begin{align*}
+      A^2 &= -I &
+      A^3 &= -A &
+      A^4 &=  I &
+      \ldots
+    \end{align*}
+  \end{block}
+\end{column}
+\end{columns}
+Folglich:
+\begin{align*}
+  \exp(At)
+  &= I + At 
+  + A^2\frac{t^2}{2!} 
+  + A^3\frac{t^3}{3!}
+  + A^4\frac{t^4}{4!}
+  + A^5\frac{t^5}{5!}
+  + \ldots \\
+  &= \begin{pmatrix}
+    \vspace*{3pt}
+    1 - \frac{t^2}{2} + \frac{t^4}{4!} - \ldots
+    &
+    -t + \frac{t^3}{3!} - \frac{t^5}{5!} + \ldots
+    \\ 
+    t - \frac{t^3}{3!} + \frac{t^5}{5!} - \ldots
+    &
+    1 - \frac{t^2}{2!} + \frac{t^4}{4!} - \ldots
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \cos t &         -\sin t \\ 
+    \sin t & \phantom-\cos t
+  \end{pmatrix}
+\end{align*}
+
+\end{frame}
+\egroup
