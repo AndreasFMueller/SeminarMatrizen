@@ -1,0 +1,12 @@
+buch*.aux
+buch*.bbl
+buch*.bib
+buch*.blg
+buch*.idx
+buch*.ilg
+buch*.ind
+buch*.log
+buch*.out
+buch*.pdf
+buch*.run.xml
+buch*.toc
