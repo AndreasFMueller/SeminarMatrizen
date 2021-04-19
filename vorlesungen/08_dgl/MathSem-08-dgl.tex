@@ -7,8 +7,29 @@
 \input{common.tex}
 \setboolean{presentation}{true}
 \begin{document}
-\begin{frame}
-\titlepage
+  \begin{frame}
+    \titlepage
+    \vspace{-1.5cm}
+    \begin{columns}
+    \begin{column}{.48\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{../slides/10/vektorfelder-6.pdf}
+    \end{column}
+    \begin{column}{.48\textwidth}
+      \begin{align*}
+        x(t) 
+        &=
+        \exp(At) x_0 
+        \\
+        \exp(At)
+        &=
+        1 + At + \frac{A^2t^2}{2} + \frac{A^3 t^3}{3!} + \ldots
+        \\
+        &=
+       \lim_{n\to \infty} \left(1 + \frac{At}{n}\right)^n
+      \end{align*}
+    \end{column}
+  \end{columns}
 \end{frame}
 \input{slides.tex}
 \end{document}

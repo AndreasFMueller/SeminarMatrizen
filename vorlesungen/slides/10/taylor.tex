@@ -11,7 +11,7 @@
   \setlength{\abovedisplayskip}{5pt}
   \setlength{\belowdisplayskip}{5pt}
   \frametitle{Beispiel $\sin(x)$}
-  \vspace{-20pt}
+  \ifthenelse{\boolean{presentation}}{\vspace{-20pt}}{\vspace{-8pt}}
   \begin{block}{Taylor-Approximationen von $\sin(x)$}
     \begin{align*}
       p_{
@@ -44,15 +44,15 @@
       \draw[domain=-4:4, samples=50, smooth, blue]
       plot ({\x}, {sin(180/3.1415968*\x)})
       node[above right] {$\sin(x)$};
-      \uncover<1>{
+      \uncover<1|handout:0>{
         \draw[domain=-4:4, samples=2, smooth, red]
         plot ({\x}, {0})
         node[above right] {$p_0(x)$};}
-      \uncover<2>{
+      \uncover<2|handout:0>{
         \draw[domain=-1.5:1.5, samples=2, smooth, red]
         plot ({\x}, {\x})
         node[below right] {$p_1(x)$};}
-      \uncover<3>{
+      \uncover<3|handout:0>{
         \draw[domain=-1.5:1.5, samples=2, smooth, red]
         plot ({\x}, {\x})
         node[below right] {$p_2(x)$};}
@@ -60,19 +60,19 @@
         \draw[domain=-3:3, samples=50, smooth, red]
         plot ({\x}, {\x - \x*\x*\x/6})
         node[above right] {$p_3(x)$};}
-      \uncover<5>{
+      \uncover<5|handout:0>{
         \draw[domain=-3:3, samples=50, smooth, red]
         plot ({\x}, {\x - \x*\x*\x/6})
         node[above right] {$p_4(x)$};}
-      \uncover<6>{
+      \uncover<6|handout:0>{
         \draw[domain=-3.9:3.9, samples=50, smooth, red]
         plot ({\x}, {\x - \x*\x*\x/6 + \x*\x*\x*\x*\x/120})
         node[below right] {$p_5(x)$};}
-      \uncover<7>{
+      \uncover<7|handout:0>{
         \draw[domain=-3.9:3.9, samples=50, smooth, red]
         plot ({\x}, {\x - \x*\x*\x/6 + \x*\x*\x*\x*\x/120})
         node[below right] {$p_6(x)$};}
-      \uncover<8->{
+      \uncover<8-|handout:0>{
         \draw[domain=-4:4, samples=50, smooth, red]
         plot ({\x}, {\x - \x*\x*\x/6 + \x*\x*\x*\x*\x/120 -
           \x*\x*\x*\x*\x*\x*\x/5040})
@@ -85,7 +85,7 @@
   \setlength{\abovedisplayskip}{5pt}
   \setlength{\belowdisplayskip}{5pt}
   \frametitle{Taylor-Reihen}
-  \vspace{-20pt}
+  \ifthenelse{\boolean{presentation}}{\vspace{-20pt}}{\vspace{-8pt}}
     \begin{block}{Polynom-Approximationen von $f(t)$}
       \begin{align*}
         p_n(t) 
@@ -135,8 +135,8 @@
 \begin{frame}[t]
   \setlength{\abovedisplayskip}{5pt}
   \setlength{\belowdisplayskip}{5pt}
-%  \frametitle{Beispiel $e^t$}
-%  \vspace{-20pt}
+  \frametitle{Beispiel $e^t$}
+  \ifthenelse{\boolean{presentation}}{\vspace{-20pt}}{\vspace{-8pt}}
   \begin{block}{Taylor-Approximationen von $e^{at}$}
     \begin{align*}
       p_{
@@ -171,15 +171,15 @@
       \draw[domain=-4:1, samples=50, smooth, blue]
         plot ({\x}, {exp(\x)})
         node[above right] {$\exp(t)$};
-      \uncover<1>{
+      \uncover<1|handout:0>{
       \draw[domain=-4:4, samples=12, smooth, red]
         plot ({\x}, {1})
         node[below right] {$p_0(t)$};}
-      \uncover<2>{
+      \uncover<2|handout:0>{
       \draw[domain=-4:1.5, samples=10, smooth, red]
       plot ({\x}, {1 + \x})
       node[below right] {$p_1(t)$};}
-      \uncover<3>{
+      \uncover<3|handout:0>{
       \draw[domain=-4:1, samples=50, smooth, red]
         plot ({\x}, {1 + \x + \x*\x/2})
         node[below right] {$p_2(t)$};}
@@ -187,22 +187,22 @@
       \draw[domain=-4:1, samples=50, smooth, red]
         plot ({\x}, {1 + \x + \x*\x/2 + \x*\x*\x/6})
         node[below right] {$p_3(t)$};}
-      \uncover<5>{
+      \uncover<5|handout:0>{
       \draw[domain=-4:0.9, samples=50, smooth, red]
         plot ({\x}, {1 + \x + \x*\x/2 + \x*\x*\x/6 + \x*\x*\x*\x/24})
         node[below left] {$p_4(t)$};}
-      \uncover<6>{
+      \uncover<6|handout:0>{
       \draw[domain=-4:0.9, samples=50, smooth, red]
       plot ({\x}, {1 + \x + \x*\x/2 + \x*\x*\x/6 + \x*\x*\x*\x/24
         + \x*\x*\x*\x*\x/120})
       node[below left] {$p_5(t)$};}
-      \uncover<7>{
+      \uncover<7|handout:0>{
       \draw[domain=-4:0.9, samples=50, smooth, red]
       plot ({\x}, {1 + \x + \x*\x/2 + \x*\x*\x/6 + \x*\x*\x*\x/24
         + \x*\x*\x*\x*\x/120
         + \x*\x*\x*\x*\x*\x/720})
       node[below left] {$p_6(t)$};}
-      \uncover<8->{
+      \uncover<8-|handout:0>{
       \draw[domain=-4:0.9, samples=50, smooth, red]
       plot ({\x}, {1 + \x + \x*\x/2 + \x*\x*\x/6 + \x*\x*\x*\x/24
         + \x*\x*\x*\x*\x/120
