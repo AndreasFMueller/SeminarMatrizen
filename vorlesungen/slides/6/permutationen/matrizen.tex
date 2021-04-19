@@ -1,0 +1,75 @@
+%
+% matrizen.tex -- Darstellung der Permutationen als Matrizen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Permutationsmatrizen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Permutationsabbildung}
+$\sigma\in S_n$ eine Permutation, definiere
+\[
+f
+\colon
+e_i \mapsto e_{\sigma(i)}
+\]
+($e_i$ Standardbasisvektor)
+\end{block}
+\begin{block}{Lineare Abbildung}
+$f$ kann erweitert werden zu einer linearen Abbildung
+\[
+\tilde{f}
+\colon
+\Bbbk^n \to \Bbbk^n
+:
+\sum_{k=1}^n a_i e_i
+\mapsto
+\sum_{k=1}^n a_i f(e_i)
+\]
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Permutationsmatrix}
+Matrix $A_{\tilde{f}}$ der linearen Abbildung $\tilde{f}$
+hat die Matrixelemente
+\[
+a_{ij}
+=
+\begin{cases}
+1&\qquad i=\sigma(j)\\
+0&\qquad\text{sonst}
+\end{cases}
+\]
+\end{block}
+\vspace{-10pt}
+\begin{block}{Beispiel}
+\vspace{-20pt}
+\[
+\begin{pmatrix}
+1&2&3&4\\
+3&2&4&1
+\end{pmatrix}
+\mapsto
+\begin{pmatrix}
+0&0&0&1\\
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0
+\end{pmatrix}
+\]
+\end{block}
+\vspace{-10pt}
+\begin{block}{Homomorphismus}
+Die Abbildung
+$S_n\to\operatorname{GL}(\Bbbk)\colon \sigma \mapsto A_{\tilde{f}}$
+ist ein Homomorphismus
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
