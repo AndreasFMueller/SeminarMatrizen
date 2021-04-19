@@ -2,6 +2,7 @@
 % potenzreihenmethode.tex
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+% Bearbeitet durch Roy Seitz
 %
 \begin{frame}[t]
 \setlength{\abovedisplayskip}{5pt}
@@ -11,56 +12,53 @@
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
 \begin{block}{Lineare Differentialgleichung}
-\vspace{-12pt}
 \begin{align*}
-y'&=ay&&\Rightarrow&y'-ay&=0
+x'&=ax&&\Rightarrow&x'-ax&=0
 \\
-y(0)&=C
+x(0)&=C
 \end{align*}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
 \uncover<2->{%
 \begin{block}{Potenzreihenansatz}
-\vspace{-12pt}
 \begin{align*}
-y(x)
+x(t)
 &=
-a_0+ a_1x + a_2x^2 + \dots
+a_0+ a_1t + a_2t^2 + \dots
 \\
-y(0)&=a_0=C
+x(0)&=a_0=C
 \end{align*}
 \end{block}}
 \end{column}
 \end{columns}
 \uncover<3->{%
 \begin{block}{Lösung}
-\vspace{-12pt}
 \[
 \arraycolsep=1.4pt
 \begin{array}{rcrcrcrcrcr}
-\uncover<3->{ y'(x)}
+\uncover<3->{ x'(t)}
 	\uncover<5->{
 	&=&\phantom{(} a_1\phantom{\mathstrut-aa_0)}
-	&+& 2a_2\phantom{\mathstrut-aa_1)}x
-		&+& 3a_3\phantom{\mathstrut-aa_2)}x^2
-			&+& 4a_4\phantom{\mathstrut-aa_3)}x^3
+	&+& 2a_2\phantom{\mathstrut-aa_1)}t
+		&+& 3a_3\phantom{\mathstrut-aa_2)}t^2
+			&+& 4a_4\phantom{\mathstrut-aa_3)}t^3
 				&+& \dots}\\
-\uncover<3->{-ay(x)}
+\uncover<3->{-ax(t)}
 	\uncover<6->{
 	&=&\mathstrut-aa_0 \phantom{)}
-	&-&  aa_1\phantom{)}x
-		&-&  aa_2\phantom{)}x^2
-			&-&  aa_3\phantom{)}x^3
+	&-&  aa_1\phantom{)}t
+		&-&  aa_2\phantom{)}t^2
+			&-&  aa_3\phantom{)}t^3
 				&-& \dots}\\[2pt]
 \hline
 \\[-10pt]
 \uncover<3->{0}
 	\uncover<7->{
 	&=&(a_1-aa_0)
-	&+& (2a_2-aa_1)x
-		&+& (3a_3-aa_2)x^2
-			&+& (4a_4-aa_3)x^3
+	&+& (2a_2-aa_1)t
+		&+& (3a_3-aa_2)t^2
+			&+& (4a_4-aa_3)t^3
 				&+& \dots}\\
 \end{array}
 \]
@@ -73,21 +71,21 @@ a_1=aa_0=aC}\uncover<9->{,
 a_2=\frac12a^2C}\uncover<10->{,
 \quad
 a_3=\frac16a^3C}\uncover<11->{,
-\dots
+\ldots,
 a_k=\frac1{k!}a^kC}
 \hspace{3cm}
 \\
 \uncover<4->{
-\Rightarrow y(x) &= C}\uncover<8->{+Cax}\uncover<9->{ + C\frac12(ax)^2}
-\uncover<10->{ + C \frac16(ax)^3}
-\uncover<11->{ + \dots+C\frac{1}{k!}(ax)^k+\dots}
+\Rightarrow x(t) &= C}\uncover<8->{+Cat}\uncover<9->{ + C\frac12(at)^2}
+\uncover<10->{ + C \frac16(at)^3}
+\uncover<11->{ + \dots+C\frac{1}{k!}(at)^k+\dots}
 \ifthenelse{\boolean{presentation}}{
 \only<12>{
 =
-C\sum_{k=0}^\infty \frac{(ax)^k}{k!}}
+C\sum_{k=0}^\infty \frac{(at)^k}{k!}}
 }{}
 \uncover<13->{=
-Ce^{ax}}
+C\exp(at)}
 \end{align*}
 \end{block}}
 \end{frame}

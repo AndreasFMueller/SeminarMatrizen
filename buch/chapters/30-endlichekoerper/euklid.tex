@@ -519,6 +519,7 @@ Insbesondere ist der euklidische Algorithmus genauso wie die
 Matrixschreibweise auch für Polynome durchführbar.
 
 \begin{beispiel}
+\label{buch:endlichekoerper:eqn:polynomggt}
 Wir berechnen als Beispiel den grössten gemeinsamen Teiler 
 der Polynome
 \[
@@ -829,5 +830,154 @@ das kleinste gemeinsame Vielfache zweier Polynome zu berechnen.
 Dies wird zum Beispiel bei der Decodierung des Reed-Solomon-Codes in
 Kapitel~\ref{chapter:reedsolomon} verwendet.
 
+\subsubsection{Polynome
+\label{buch:endlichekoerper:eqn:polynomkgv}}
+Im Beispiel auf Seite~\pageref{buch:endlichekoerper:eqn:polynomggt}
+wird der grösste gemeinsame Teiler der Polynome
+\[
+a
+=
+X^4 - 2X^3 -7 X^2 + 8X + 12,
+\qquad
+b = X^4 + X^3 -7X^2 -X + 6
+\]
+berechnet.
+Dies kann jetzt erweitert werden für die Berechnung des kleinsten
+gemeinsamen Vielfachen.
 
+\begin{beispiel}
+Die Berechnungstabelle nur für die Spalten $e_k$ und $f_k$ ergibt
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
+\hline
+k&   q_k&  e_k&  f_k\\
+\hline
+ &                 &                           0&                           1\\
+0&                1&                           1&                           0\\
+1&-\frac13X-\frac13&                           1&                           1\\
+2& \frac34X+\frac34&           -\frac13X+\frac23&           -\frac13X-\frac13\\
+ &                 &-\frac14X^2+\frac14X+\frac32&-\frac14X^2-\frac12X+\frac34\\
+\hline
+\end{tabular}
+\end{center}
+Daraus kann man ablesen, dass
+\[
+u
+=
+-\frac14X^2+\frac14X+\frac32
+\qquad\text{und}\qquad
+v
+=
+-\frac14X^2-\frac12X+\frac34.
+\]
+Daraus ergibt sich das kleinste gemeinsame Vielfache auf zwei verschiedene Weisen:
+\[
+\operatorname{ggT}(a,b)
+=
+\left\{
+\begin{aligned}
+\textstyle
+(-\frac14X^2+\frac14X+\frac32)&\cdot(X^4 - 2X^3 -7 X^2 + 8X + 12)
+\\
+\textstyle
+(-\frac14X^2-\frac12X+\frac34)&\cdot(X^4 + X^3 -7X^2 -X + 6)
+\end{aligned}
+\right\}
+=
+-\frac14X^6+\frac72X^4-\frac{49}4X^2+9.
+\]
+Die beiden Berechnungsmöglichkeiten stimmen wie erwartet überein.
+\end{beispiel}
+
+\subsubsection{Anwendung: Decodierung des Reed-Solomon-Codes}
+Der Reed-Solomon-Code verwendet Polynome zur Codierung der Daten,
+dies wird in Kapitel~\ref{chapter:reedsolomon} im Detail beschrieben.
+Bei der Decodierung muss der Faktor $u$ für zwei gegebene Polynome
+$n(X)$ und $r(X)$ bestimmt werden.
+Allerdings ist das Polynom $r(X)$ nicht vollständig bekannt, nur die 
+ersten paar Koeffizienten sind gegeben.
+Dafür weiss man zusätzlich, wieviele Schritte genau der Euklidische
+Algorithmus braucht.
+Daraus lässt sich genügend Information gewinnen, um die Faktoren $u$
+und $v$ zu bestimmen.
+Das Video \url{https://youtu.be/uOLW43OIZJ0} von Edmund Weitz
+erklärt die Theorie hinter dieser Teilaufgabe anhand von Beispielen.
+
+\begin{beispiel}
+Wir berechnen also die Faktoren $u$ und $v$ für die beiden Polynome
+\begin{align*}
+n(X)
+&=
+X^{12}+12
+\\
+r(X)
+&=
+7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + w(X)
+\end{align*}
+in $\mathbb{F}_{13}[X]$, wobei $w(X)$ ein unbekanntes Polynom vom Grad $5$ ist. 
+Man weiss zusätzlich noch, dass der euklidische Algorithmus genau drei
+Schritte braucht, es gibt also genau drei Quotienten, die in die
+Berechnung der Zahlen $e_k$ und $f_k$ einfliessen.
+
+Im ersten Schritt des euklidischen Algorithmus ist der Quotient
+$n(X) / r(X)$ zu bestimmen, der Grad $1$ haben muss.
+\begin{align*}
+a_0=n(X)           &= X^{12}+12
+\\
+b_0=r(X)           &= 7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + \dots
+\\
+q_0                &= 2X+10
+\\
+r_0 = a_0-b_0\cdot q_0 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+a_1 &= 7 X^{11} + 4 X^{10} + X^9 + 12 X^8 + 2 X^7 + 12 X^6 + \dots
+\\
+b_1 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+q_1 &= 2X+2
+\\
+r_1 = a_1 - b_1q_1 &= 5X^9 + 10 X^8 + \dots
+\\
+a_2 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
+\\
+b_2 &= 5X^9 + 10 X^8 + \dots
+\\
+q_2 &= 2X+10
+\end{align*}
+Aus den Polynomen $q_k$ können jetzt die Faktoren $u$ und $v$
+bestimmt werden:
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+k&   q_k&               e_k&        f_k\\
+\hline
+ &      &                 0&          1\\
+0& 2X+10&                 1&          0\\
+1& 2X+2 &             2X+10&          1\\
+2& 2X+10&        4X^2+11X+8&       2X+2\\
+ &      & 8X^3+10X^2+11X+12& 4X^2+11X+8\\
+\hline
+\end{tabular}
+\end{center}
+Die Faktorisierung des Polynoms
+\[
+u
+=
+8X^3+10X^2+11X+12
+\]
+kann bestimmt werden, indem man alle Zahlen $1,2,\dots,12\in\mathbb{F}_{13}$
+einsetzt.
+Man findet so die Nullstellen $3$, $4$ und $8$, also muss das Polynom
+$u$ faktorisiert werden können als
+\[
+u=
+8(X-3)(X-4)(X-8)
+=
+8X^3 - 120X^2+544X-768
+=
+8X^3 +10X^2+11X+12.
+\qedhere
+\]
+\end{beispiel}
 
