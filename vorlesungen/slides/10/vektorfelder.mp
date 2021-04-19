@@ -48,23 +48,27 @@ drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
 label.top(btex $x_1$ etex, z2 shifted (10,0));
 label.rt(btex $x_2$ etex, z4 shifted (0,10));
 
-% Draw circles
-for x = 0.2 step 0.2 until 1.4:
-  path p;
-  p = (x,0);
-  for a = 5 step 5 until 355:
-    p := p--(x*cosd(a), x*sind(a));
-  endfor;
-  p := p--cycle;
-  pickup pencircle scaled 1pt;
-  draw p scaled unit withcolor red;
-endfor;
+% % Draw circles
+% for x = 0.2 step 0.2 until 1.4:
+%   path p;
+%   p = (x,0);
+%   for a = 5 step 5 until 355:
+%     p := p--(x*cosd(a), x*sind(a));
+%   endfor;
+%   p := p--cycle;
+%   pickup pencircle scaled 1pt;
+%   draw p scaled unit withcolor red;
+% endfor;
 
 % Define DGL
 def dglField(expr x, y) =
   %(-0.5 * (x + y), -0.5 * (y - x))
   (-y, x)
 enddef;
+
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
 
 % Draw arrows for each grid point
 pickup pencircle scaled 0.5pt;
@@ -78,11 +82,9 @@ endfor;
 
 endfig;
 
-
-
 %
 % Vektorfeld in der Ebene mit Lösungskurve
-% X \in sl(2, R)
+% Euler(1)
 %
 beginfig(2)
 
@@ -101,17 +103,27 @@ drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
 label.top(btex $x_1$ etex, z2 shifted (10,0));
 label.rt(btex $x_2$ etex, z4 shifted (0,10));
 
-% Draw flow lines
-for y = -1.4 step 0.2 until 1.4:
-  path p;
-  p = (-1.5,y) -- (1.5, y);
-  pickup pencircle scaled 1pt;
-  draw p scaled unit withcolor red;
-endfor;
-
 def dglField(expr x, y) =
-  (y, 0)
+  (-y, x)
 enddef;
+
+def dglFieldp(expr z) =
+  dglField(xpart z, ypart z)
+enddef;
+
+def curve(expr z, l, s) =
+  path p;
+  p := z;
+  for t = 0 step 1 until l:
+    p := p--((point (length p) of p) shifted (s * dglFieldp(point (length p) of p)));
+  endfor;
+  draw p scaled unit withcolor red;
+enddef;
+
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
+curve(A, 0, 1);
 
 % Draw arrows for each grid point
 pickup pencircle scaled 0.5pt;
@@ -125,12 +137,9 @@ endfor;
 
 endfig;
 
-
-
-
 %
 % Vektorfeld in der Ebene mit Lösungskurve
-% Y \in sl(2, R)
+% Euler(2)
 %
 beginfig(3)
 
@@ -149,42 +158,27 @@ drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
 label.top(btex $x_1$ etex, z2 shifted (10,0));
 label.rt(btex $x_2$ etex, z4 shifted (0,10));
 
-% Draw flow lines
-for x = -1.4 step 0.2 until 1.4:
-  path p;
-  p = (x, -1.5) -- (x, 1.5);
-  pickup pencircle scaled 1pt;
-  draw p scaled unit withcolor red;
-endfor;
-
 def dglField(expr x, y) =
-  (0, x)
+  (-y, x)
 enddef;
 
-% def dglFieldp(expr z) =
-%   dglField(xpart z, ypart z)
-% enddef;
-% 
-% def curve(expr z, l) =
-%   path p;
-%   p := z;
-%   for t = 0 step 1 until l:
-%     p := p--((point (length p) of p) shifted (0.01 * dglFieldp(point (length p) of p)));
-%   endfor;
-%   draw p scaled unit withcolor red;
-% enddef;
-%
-% numeric outerlength;
-% outerlength = 200;
-% curve(( 0.1, 0), outerlength);
-% curve(( 0.2, 0), outerlength);
-%
-% numeric innerlength;
-% innerlength = 500;
-% 
-% for a = 0 step 30 until 330:
-%   curve(0.05 * (cosd(a), sind(a)), innerlength);
-% endfor;
+def dglFieldp(expr z) =
+  dglField(xpart z, ypart z)
+enddef;
+
+def curve(expr z, l, s) =
+  path p;
+  p := z;
+  for t = 0 step 1 until l:
+    p := p--((point (length p) of p) shifted (s * dglFieldp(point (length p) of p)));
+  endfor;
+  draw p scaled unit withcolor red;
+enddef;
+
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
+curve(A, 1, 0.5);
 
 % Draw arrows for each grid point
 pickup pencircle scaled 0.5pt;
@@ -198,10 +192,9 @@ endfor;
 
 endfig;
 
-
 %
 % Vektorfeld in der Ebene mit Lösungskurve
-% H \in sl(2, R)
+% Euler(3)
 %
 beginfig(4)
 
@@ -215,39 +208,32 @@ z3 = (   0, -1.5) * unit;
 z4 = (   0,  1.5) * unit;
 
 pickup pencircle scaled 1pt;
-drawarrow (z1 shifted (-25,0))--(z2 shifted (25,0));
+drawarrow (z1 shifted (-10,0))--(z2 shifted (10,0));
 drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
-label.top(btex $x_1$ etex, z2 shifted (25,0));
+label.top(btex $x_1$ etex, z2 shifted (10,0));
 label.rt(btex $x_2$ etex, z4 shifted (0,10));
 
 def dglField(expr x, y) =
-  (x, -y)
+  (-y, x)
 enddef;
 
 def dglFieldp(expr z) =
   dglField(xpart z, ypart z)
 enddef;
 
-def curve(expr z, l) =
+def curve(expr z, l, s) =
   path p;
   p := z;
   for t = 0 step 1 until l:
-    p := p--((point (length p) of p) shifted (0.01 * dglFieldp(point (length p) of p)));
+    p := p--((point (length p) of p) shifted (s * dglFieldp(point (length p) of p)));
   endfor;
   draw p scaled unit withcolor red;
 enddef;
 
-for i = -1 step 2 until 1:
-  for k = -1 step 2 until 1:
-    curve((1.3 * i,  1.5 * k), 18);
-    curve((1.1 * i,  1.5 * k), 35);
-    curve((0.9 * i,  1.5 * k), 55);
-    curve((0.7 * i,  1.5 * k), 80);
-    curve((0.5 * i,  1.5 * k), 114);
-    curve((0.3 * i,  1.5 * k), 165);
-    curve((0.1 * i,  1.5 * k), 275);
-  endfor;
-endfor;
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
+curve(A, 3, 0.25);
 
 % Draw arrows for each grid point
 pickup pencircle scaled 0.5pt;
@@ -261,6 +247,115 @@ endfor;
 
 endfig;
 
+%
+% Vektorfeld in der Ebene mit Lösungskurve
+% Euler(4)
+%
+beginfig(5)
+
+numeric unit;
+unit := 150;
+
+z0 = (   0,    0);
+z1 = (-1.5,    0) * unit;
+z2 = ( 1.5,    0) * unit;
+z3 = (   0, -1.5) * unit;
+z4 = (   0,  1.5) * unit;
+
+pickup pencircle scaled 1pt;
+drawarrow (z1 shifted (-10,0))--(z2 shifted (10,0));
+drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
+label.top(btex $x_1$ etex, z2 shifted (10,0));
+label.rt(btex $x_2$ etex, z4 shifted (0,10));
+
+def dglField(expr x, y) =
+  (-y, x)
+enddef;
+
+def dglFieldp(expr z) =
+  dglField(xpart z, ypart z)
+enddef;
+
+def curve(expr z, l, s) =
+  path p;
+  p := z;
+  for t = 0 step 1 until l:
+    p := p--((point (length p) of p) shifted (s * dglFieldp(point (length p) of p)));
+  endfor;
+  draw p scaled unit withcolor red;
+enddef;
+
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
+curve(A, 7, 0.125);
+
+% Draw arrows for each grid point
+pickup pencircle scaled 0.5pt;
+for x = -1.5 step 0.1 until 1.55:
+  for y = -1.5 step 0.1 until 1.55:
+    drawarrow ((x, y) * unit)
+      --(((x,y) * unit) shifted (8 * dglField(x,y)))
+        withcolor blue;
+  endfor;
+endfor;
+
+endfig;
+
+%
+% Vektorfeld in der Ebene mit Lösungskurve
+% Euler(5)
+%
+beginfig(6)
+
+numeric unit;
+unit := 150;
+
+z0 = (   0,    0);
+z1 = (-1.5,    0) * unit;
+z2 = ( 1.5,    0) * unit;
+z3 = (   0, -1.5) * unit;
+z4 = (   0,  1.5) * unit;
+
+pickup pencircle scaled 1pt;
+drawarrow (z1 shifted (-10,0))--(z2 shifted (10,0));
+drawarrow (z3 shifted (0,-10))--(z4 shifted (0,10));
+label.top(btex $x_1$ etex, z2 shifted (10,0));
+label.rt(btex $x_2$ etex, z4 shifted (0,10));
+
+def dglField(expr x, y) =
+  (-y, x)
+enddef;
+
+def dglFieldp(expr z) =
+  dglField(xpart z, ypart z)
+enddef;
+
+def curve(expr z, l, s) =
+  path p;
+  p := z;
+  for t = 0 step 1 until l:
+    p := p--((point (length p) of p) shifted (s * dglFieldp(point (length p) of p)));
+  endfor;
+  draw p scaled unit withcolor red;
+enddef;
+
+pair A;
+A := (1, 0);
+draw A scaled unit withpen pencircle scaled 8bp withcolor red;
+curve(A, 99, 0.01);
+
+% Draw arrows for each grid point
+pickup pencircle scaled 0.5pt;
+for x = -1.5 step 0.1 until 1.55:
+  for y = -1.5 step 0.1 until 1.55:
+    drawarrow ((x, y) * unit)
+      --(((x,y) * unit) shifted (8 * dglField(x,y)))
+        withcolor blue;
+  endfor;
+endfor;
+
+endfig;
 
 
 end;

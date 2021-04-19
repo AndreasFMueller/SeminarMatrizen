@@ -1,0 +1,91 @@
+%
+% potenzreihenmethode.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+% Bearbeitet durch Roy Seitz
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Potenzreihenmethode}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Lineare Differentialgleichung}
+\begin{align*}
+x'&=ax&&\Rightarrow&x'-ax&=0
+\\
+x(0)&=C
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Potenzreihenansatz}
+\begin{align*}
+x(t)
+&=
+a_0+ a_1t + a_2t^2 + \dots
+\\
+x(0)&=a_0=C
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<3->{%
+\begin{block}{Lösung}
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcrcr}
+\uncover<3->{ x'(t)}
+	\uncover<5->{
+	&=&\phantom{(} a_1\phantom{\mathstrut-aa_0)}
+	&+& 2a_2\phantom{\mathstrut-aa_1)}t
+		&+& 3a_3\phantom{\mathstrut-aa_2)}t^2
+			&+& 4a_4\phantom{\mathstrut-aa_3)}t^3
+				&+& \dots}\\
+\uncover<3->{-ax(t)}
+	\uncover<6->{
+	&=&\mathstrut-aa_0 \phantom{)}
+	&-&  aa_1\phantom{)}t
+		&-&  aa_2\phantom{)}t^2
+			&-&  aa_3\phantom{)}t^3
+				&-& \dots}\\[2pt]
+\hline
+\\[-10pt]
+\uncover<3->{0}
+	\uncover<7->{
+	&=&(a_1-aa_0)
+	&+& (2a_2-aa_1)t
+		&+& (3a_3-aa_2)t^2
+			&+& (4a_4-aa_3)t^3
+				&+& \dots}\\
+\end{array}
+\]
+\begin{align*}
+\uncover<4->{
+a_0&=C}\uncover<8->{,
+\quad
+a_1=aa_0=aC}\uncover<9->{,
+\quad
+a_2=\frac12a^2C}\uncover<10->{,
+\quad
+a_3=\frac16a^3C}\uncover<11->{,
+\ldots,
+a_k=\frac1{k!}a^kC}
+\hspace{3cm}
+\\
+\uncover<4->{
+\Rightarrow x(t) &= C}\uncover<8->{+Cat}\uncover<9->{ + C\frac12(at)^2}
+\uncover<10->{ + C \frac16(at)^3}
+\uncover<11->{ + \dots+C\frac{1}{k!}(at)^k+\dots}
+\ifthenelse{\boolean{presentation}}{
+\only<12>{
+=
+C\sum_{k=0}^\infty \frac{(at)^k}{k!}}
+}{}
+\uncover<13->{=
+C\exp(at)}
+\end{align*}
+\end{block}}
+\end{frame}

@@ -14,7 +14,7 @@ IMAGES = vektorfelder-1.pdf
 
 
 MathSem-08-dgl.pdf:	MathSem-08-dgl.tex $(SOURCES) $(IMAGES)
-	pdflatex MathSem-08-dgl.tex > /dev/null
+	pdflatex --synctex=1 MathSem-08-dgl.tex > /dev/null
 
 dgl-handout.pdf:	dgl-handout.tex $(SOURCES) $(IMAGES)
 	pdflatex dgl-handout.tex > /dev/null
