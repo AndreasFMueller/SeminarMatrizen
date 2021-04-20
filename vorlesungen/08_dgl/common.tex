@@ -1,0 +1,27 @@
+%
+% common.tex -- gemeinsame definition
+%
+% (c) 2017 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\input{../common/packages.tex}
+\input{../common/common.tex}
+\mode<beamer>{%
+\usetheme[hideothersubsections,hidetitle]{Hannover}
+}
+\beamertemplatenavigationsymbolsempty
+\title[DGL]{Differential-Gleichungen}
+\author[R.~Seitz]{Roy Seitz}
+\date[]{}
+\newboolean{presentation}
+
+\newcommand{\gSL}[2]{\ensuremath{\text{SL}(#1, \mathbb{#2})}}
+\newcommand{\gSO}[1]{\ensuremath{\text{SO}(#1)}}
+\newcommand{\gGL}[2]{\ensuremath{\text{GL}(#1, \mathbb #2)}}
+
+\newcommand{\asl}[2]{\ensuremath{\mathfrak{sl}(#1, \mathbb{#2})}}
+\newcommand{\aso}[1]{\ensuremath{\mathfrak{so}(#1)}}
+\newcommand{\agl}[2]{\ensuremath{\mathfrak{gl}(#1, \mathbb #2)}}
+
+\DeclareMathOperator{\Spur}{Spur}
+
+
