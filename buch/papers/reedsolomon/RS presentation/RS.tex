@@ -64,12 +64,16 @@
 			&&\\
 			k & t & k+2t Werte eines Polynoms vom Grad k-1 \\ 
 			\hline
+			&&\\
+			&&\\
+			&Ausserdem können bis zu 2t Fehler erkannt werden!\\
 		\end{tabular}
 	\end{center}
 
-	Ausserdem können bis zu 2t Fehler erkannt werden!
+	
+		
 	\end{frame}
-\section{Fourier Transformation}
+\section{Diskrete Fourier Transformation}
 	\begin{frame}
 		\frametitle{Idee}
 		\begin{itemize}
@@ -104,7 +108,7 @@
 	\end{figure}
 	\end{frame}
 	
-\section{Diskrete Fourier Transformation}
+
 	\begin{frame}
 	\frametitle{Diskrete Fourier Transformation}
 	Die Diskrete Fourier Transformation ist so gegeben:
@@ -134,10 +138,10 @@
 	=
 	\begin{pmatrix}
 		w^0 & w^0   & w^0  & \dots  &w^0     \\
-		w^0 & w^1   &w^2   & \dots  &w^n     \\ 
-		w^0 & w^2   &w^4   & \dots  &w^{2n}  \\ 
+		w^0 & w^1   &w^2   & \dots  &w^N     \\ 
+		w^0 & w^2   &w^4   & \dots  &w^{2N}  \\ 
 		\vdots   & \vdots     &\vdots     &\ddots  &\vdots       \\
-		w^0 & w^{1n}&w^{2n}& \dots  &w^{n}  \\ 
+		w^0 & w^{1(N-1)}&w^{2(N-1)}& \dots  &w^{(N-1)(N-1)}  \\ 
 	\end{pmatrix}
 	\begin{pmatrix}
 		\textcolor{blue}{f_0}  	\\
@@ -154,6 +158,7 @@
 		
 			Wie wird der Fehler lokalisiert?
 		\only<2>{
+			\newline
 			Indem in einem Endlichen Körper gerechnet wird.
 		}
 	\end{frame}	
