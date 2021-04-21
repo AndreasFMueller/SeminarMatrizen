@@ -1,9 +1,16 @@
 \headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
 \headcommand {\beamer@framepages {1}{1}}
-\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@sectionpages {1}{1}}
+\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\sectionentry {1}{Introduction}{2}{Introduction}{0}}
+\headcommand {\slideentry {1}{0}{1}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\beamer@partpages {1}{2}}
-\headcommand {\beamer@subsectionpages {1}{2}}
-\headcommand {\beamer@sectionpages {1}{2}}
-\headcommand {\beamer@documentpages {2}}
-\headcommand {\gdef \inserttotalframenumber {2}}
+\headcommand {\slideentry {1}{0}{2}{3/9}{}{0}}
+\headcommand {\beamer@framepages {3}{9}}
+\headcommand {\slideentry {1}{0}{3}{10/11}{}{0}}
+\headcommand {\beamer@framepages {10}{11}}
+\headcommand {\beamer@partpages {1}{11}}
+\headcommand {\beamer@subsectionpages {2}{11}}
+\headcommand {\beamer@sectionpages {2}{11}}
+\headcommand {\beamer@documentpages {11}}
+\headcommand {\gdef \inserttotalframenumber {4}}
