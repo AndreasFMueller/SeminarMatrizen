@@ -1,4 +1,6 @@
 \babel@toc {ngerman}{}
 \beamer@sectionintoc {1}{Einführung}{2}{0}{1}
-\beamer@sectionintoc {2}{Polynom Ansatz}{12}{0}{2}
-\beamer@sectionintoc {3}{Diskrete Fourien Transformation}{17}{0}{3}
+\beamer@sectionintoc {2}{Polynom Ansatz}{3}{0}{2}
+\beamer@sectionintoc {3}{Fourier Transformation}{7}{0}{3}
+\beamer@sectionintoc {4}{Diskrete Fourier Transformation}{15}{0}{4}
+\beamer@sectionintoc {5}{Probleme und Fragen}{17}{0}{5}
