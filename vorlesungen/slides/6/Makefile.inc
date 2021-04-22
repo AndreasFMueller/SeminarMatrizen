@@ -4,6 +4,14 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
 chapter6 =								\
+	../slides/6/punktgruppen/ebene.tex				\
+	../slides/6/punktgruppen/semidirekt.tex				\
+	../slides/6/punktgruppen/c.tex					\
+	../slides/6/punktgruppen/d.tex					\
+	../slides/6/punktgruppen/p.tex					\
+	../slides/6/punktgruppen/chemie.tex				\
+	../slides/6/punktgruppen/aufspaltung.tex			\
+									\
 	../slides/6/permutationen/matrizen.tex				\
 									\
 	../slides/6/darstellungen/definition.tex			\
