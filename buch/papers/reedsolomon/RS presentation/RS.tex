@@ -24,9 +24,9 @@
 	\begin{frame}
 		\frametitle{Reed-Solomon-Code:}
 		\begin{itemize}
-		\item \only<1>{Für Übertragung von Daten}
-		\item \only<2->{Ermöglicht Korrektur von Übertragungsfehler}
-		\item \only<3->{Wird verwendet in: CD, QR-Codes, Voyager-Sonde, etc.}
+		\visible<1->{\item Für Übertragung von Daten}
+		\visible<2->{\item Ermöglicht Korrektur von Übertragungsfehler}
+		\visible<3->{\item Wird verwendet in: CD, QR-Codes, Voyager-Sonde, etc.}
 		\end{itemize}
 	\end{frame}
 %-------------------------------------------------------------------------------	
@@ -37,6 +37,7 @@
 		\end{itemize}
 	\end{frame}
 	\begin{frame}
+		\frametitle{Beispiel}
 		Übertragen von 
 		${f}_2=\textcolor{blue}{2}$, ${f}_1=\textcolor{blue}{1}$, ${f}_0=\textcolor{blue}{5}$ 
 		als $ p(w) = \textcolor{blue}{2}w^2 + \textcolor{blue}{1}w + \textcolor{blue}{5} $.
@@ -66,18 +67,18 @@
 			\hline 
 			3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
 			4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
-\only<2->{3}& 
-\only<2->{3}& 
-\only<3->{9 Werte eines Polynoms vom Grad 2} \\ 
+\visible<2->{3}& 
+\visible<2->{3}& 
+\visible<3->{9 Werte eines Polynoms vom Grad 2} \\ 
 			&&\\
-\only<4->{$k$} & 
-\only<4->{$t$} & 
-\only<4->{$k+2t$ Werte eines Polynoms vom Grad $k-1$} \\ 
+\visible<4->{$k$} & 
+\visible<4->{$t$} & 
+\visible<4->{$k+2t$ Werte eines Polynoms vom Grad $k-1$} \\ 
 			\hline
 			&&\\
 			&&\\
 			\multicolumn{3}{l} {
-				\only<4>{Ausserdem können bis zu $2t$ Fehler erkannt werden!}
+				\visible<4>{Ausserdem können bis zu $2t$ Fehler erkannt werden!}
 			}
 		\end{tabular}
 	\end{center}	
@@ -123,21 +124,23 @@
 	\frametitle{Diskrete Fourier Transformation}
 	\begin{itemize}
 	\item Diskrete Fourier-Transformation gegeben durch:
-	
+	\visible<1->{
 	\[
 	\label{ft_discrete}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	\]
+	\]}
+	\visible<2->{
 	\item Ersetzte
 	\[
 	w = e^{-\frac{2\pi j}{N} k}
-	\]
-	Wenn $N$ konstant:
+	\]}
+	\visible<3->{
+	\item Wenn $N$ konstant:
 	\[
 	\hat{c}_{k}=\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
-	\]
+	\]}
 	\end{itemize}
 	\end{frame}	
 
@@ -166,12 +169,12 @@
 	\]
 	\end{frame}
 %-------------------------------------------------------------------------------	
-\section{Probleme und Fragen}
+
 	\begin{frame}
 		\frametitle{Probleme und Fragen}
 		
 			Wie wird der Fehler lokalisiert?
-		\only<2>{
+		\visible<2>{
 			\newline
 			Indem in einem endlichen Körper gerechnet wird.
 		}
