@@ -19,14 +19,18 @@
 	\begin{frame}[plain]
 		\maketitle
 	\end{frame}
-	\section{Einführung}
+%-------------------------------------------------------------------------------	
+\section{Einführung}
 	\begin{frame}
 		\frametitle{Einführung}
 		\begin{itemize}
 		\item Reed-Solomon-Code beschäftigt sich mit der Übertragung von Daten
 		und deren Fehler Erkennung.
+		\item Wird verwendet in: 
+		\only<2>{CD, QR-Codes, Voyager-Sonde, etc.}
 		\end{itemize}
 	\end{frame}
+%-------------------------------------------------------------------------------	
 \section{Polynom Ansatz}
 	\begin{frame}
 	Beispiel 2, 1, 5 Versenden und auf 2 Fehler absichern.
@@ -50,7 +54,7 @@
 			\includegraphics[scale = 1.2]{images/polynom2.pdf}
 			\textcolor{green}{7} Zahlen versenden, um \textcolor{blue}{3} Zahlen gegen \textcolor{red}{2} Fehlern abzusichern.}
 	\end{frame}
-
+%-------------------------------------------------------------------------------	
 	\begin{frame}
 	\frametitle{Parameter}
 	\begin{center}
@@ -59,20 +63,24 @@
 			"Nutzlast" & Fehler & Versenden \\
 			\hline 
 			3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
-			4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\ 
-			3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
+			4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
+\only<2->{3}& 
+\only<2->{2}& 
+\only<2->{7 Werte eines Polynoms vom Grad 2} \\ 
 			&&\\
-			k & t & k+2t Werte eines Polynoms vom Grad k-1 \\ 
+\only<3->{k} & 
+\only<3->{t} & 
+\only<3->{k+2t Werte eines Polynoms vom Grad k-1} \\ 
 			\hline
 			&&\\
 			&&\\
-			&Ausserdem können bis zu 2t Fehler erkannt werden!\\
+			\multicolumn{3}{l} {
+				\only<4>{Ausserdem können bis zu 2t Fehler erkannt werden!}
+			}
 		\end{tabular}
-	\end{center}
-
-	
-		
+	\end{center}	
 	\end{frame}
+%-------------------------------------------------------------------------------	
 \section{Diskrete Fourier Transformation}
 	\begin{frame}
 		\frametitle{Idee}
@@ -81,7 +89,7 @@
 			\item Danach Empfangen und Rücktransformieren.
 		\end{itemize}
 	\end{frame}
-
+%-------------------------------------------------------------------------------	
 	\begin{frame}
 		\begin{figure}
 			\only<1>{
@@ -107,8 +115,7 @@
 			}
 	\end{figure}
 	\end{frame}
-	
-
+%-------------------------------------------------------------------------------		
 	\begin{frame}
 	\frametitle{Diskrete Fourier Transformation}
 	Die Diskrete Fourier Transformation ist so gegeben:
@@ -117,8 +124,8 @@
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	\].
-	
+	\]
+	Ersetzten als:
 	\[
 	w = e^{-\frac{2\pi j}{N} k}
 	\]
@@ -128,14 +135,14 @@
 	\]
 	\end{frame}	
 
-
+%-------------------------------------------------------------------------------	
 	\begin{frame}
 	\frametitle{Diskrete Fourier Transformation}
 	\[
 	\begin{pmatrix}
 		\hat{c}_1 \\\hat{c}_2 \\\hat{c}_3 \\ \vdots \\\hat{c}_n
 	\end{pmatrix}
-	=
+	= \frac{1}{N}
 	\begin{pmatrix}
 		w^0 & w^0   & w^0  & \dots  &w^0     \\
 		w^0 & w^1   &w^2   & \dots  &w^N     \\ 
@@ -152,7 +159,7 @@
 	\end{pmatrix}
 	\]
 	\end{frame}
-
+%-------------------------------------------------------------------------------	
 \section{Probleme und Fragen}
 	\begin{frame}
 		\frametitle{Probleme und Fragen}
@@ -163,7 +170,7 @@
 			Indem in einem Endlichen Körper gerechnet wird.
 		}
 	\end{frame}	
-
+%-------------------------------------------------------------------------------	
 	\begin{frame}
 		\frametitle{Reed-Solomon in Endlichen Körpern}
 		
