@@ -22,36 +22,38 @@
 %-------------------------------------------------------------------------------	
 \section{Einführung}
 	\begin{frame}
-		\frametitle{Einführung}
+		\frametitle{Reed-Solomon-Code:}
 		\begin{itemize}
-		\item Reed-Solomon-Code beschäftigt sich mit der Übertragung von Daten
-		und deren Fehler Erkennung.
-		\item Wird verwendet in: 
-		\only<2>{CD, QR-Codes, Voyager-Sonde, etc.}
+		\item \only<1>{Für Übertragung von Daten}
+		\item \only<2->{Ermöglicht Korrektur von Übertragungsfehler}
+		\item \only<3->{Wird verwendet in: CD, QR-Codes, Voyager-Sonde, etc.}
 		\end{itemize}
 	\end{frame}
 %-------------------------------------------------------------------------------	
 \section{Polynom Ansatz}
 	\begin{frame}
-	Beispiel 2, 1, 5 Versenden und auf 2 Fehler absichern.
+		\begin{itemize}
+			\item Beispiel $2, 1, 5$ versenden und auf 2 Fehler absichern
+		\end{itemize}
 	\end{frame}
 	\begin{frame}
 		Übertragen von 
-		${f}_2=$\textcolor{blue}{2}, ${f}_1$\textcolor{blue}{1}, ${f}_0$\textcolor{blue}{5} 
+		${f}_2=\textcolor{blue}{2}$, ${f}_1=\textcolor{blue}{1}$, ${f}_0=\textcolor{blue}{5}$ 
 		als $ p(w) = \textcolor{blue}{2}w^2 + \textcolor{blue}{1}w + \textcolor{blue}{5} $.
 		
 		\only<1>{
-			Versende $ (p(1),p(2),...,p(7)) = (\textcolor{green}{8}, 
+			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
 			\textcolor{green}{15}, \textcolor{green}{26},
-			\textcolor{green}{ 41}, \textcolor{green}{60}, 
+			\textcolor{green}{41}, \textcolor{green}{60}, 
 			\textcolor{green}{83}, \textcolor{green}{110})$	
 			\includegraphics[scale = 1.2]{images/polynom1.pdf}}
 		\only<2>{
-			Versende $ (p(1),p(2),...,p(7)) = (\textcolor{green}{8}, 
+			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
 			\textcolor{red}{50}, \textcolor{red}{37},
-			\textcolor{green}{ 41}, \textcolor{green}{60}, 
+			\textcolor{green}{41}, \textcolor{green}{60}, 
 			\textcolor{green}{83}, \textcolor{green}{110})$
 			\includegraphics[scale = 1.2]{images/polynom2.pdf}
+			\newline
 			\textcolor{green}{7} Zahlen versenden, um \textcolor{blue}{3} Zahlen gegen \textcolor{red}{2} Fehlern abzusichern.}
 	\end{frame}
 %-------------------------------------------------------------------------------	
@@ -60,22 +62,22 @@
 	\begin{center}
 		\begin{tabular}{ c c c } 
 			\hline
-			"Nutzlast" & Fehler & Versenden \\
+			``Nutzlas´´ & Fehler & Versenden \\
 			\hline 
 			3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
 			4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
 \only<2->{3}& 
-\only<2->{2}& 
-\only<2->{7 Werte eines Polynoms vom Grad 2} \\ 
+\only<2->{3}& 
+\only<3->{9 Werte eines Polynoms vom Grad 2} \\ 
 			&&\\
-\only<3->{k} & 
-\only<3->{t} & 
-\only<3->{k+2t Werte eines Polynoms vom Grad k-1} \\ 
+\only<4->{$k$} & 
+\only<4->{$t$} & 
+\only<4->{$k+2t$ Werte eines Polynoms vom Grad $k-1$} \\ 
 			\hline
 			&&\\
 			&&\\
 			\multicolumn{3}{l} {
-				\only<4>{Ausserdem können bis zu 2t Fehler erkannt werden!}
+				\only<4>{Ausserdem können bis zu $2t$ Fehler erkannt werden!}
 			}
 		\end{tabular}
 	\end{center}	
@@ -85,8 +87,9 @@
 	\begin{frame}
 		\frametitle{Idee}
 		\begin{itemize}
-			\item Idee mit Fourier Transformieren und dann senden.
-			\item Danach Empfangen und Rücktransformieren.
+			\item Fourier-transformieren
+			\item Übertragung
+			\item Rücktransformieren
 		\end{itemize}
 	\end{frame}
 %-------------------------------------------------------------------------------	
@@ -118,14 +121,16 @@
 %-------------------------------------------------------------------------------		
 	\begin{frame}
 	\frametitle{Diskrete Fourier Transformation}
-	Die Diskrete Fourier Transformation ist so gegeben:
+	\begin{itemize}
+	\item Diskrete Fourier-Transformation gegeben durch:
+	
 	\[
 	\label{ft_discrete}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
 	\]
-	Ersetzten als:
+	\item Ersetzte
 	\[
 	w = e^{-\frac{2\pi j}{N} k}
 	\]
@@ -133,6 +138,7 @@
 	\[
 	\hat{c}_{k}=\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
 	\]
+	\end{itemize}
 	\end{frame}	
 
 %-------------------------------------------------------------------------------	
@@ -145,8 +151,8 @@
 	= \frac{1}{N}
 	\begin{pmatrix}
 		w^0 & w^0   & w^0  & \dots  &w^0     \\
-		w^0 & w^1   &w^2   & \dots  &w^N     \\ 
-		w^0 & w^2   &w^4   & \dots  &w^{2N}  \\ 
+		w^0 & w^1   &w^2   & \dots  &w^{N-1}     \\ 
+		w^0 & w^2   &w^4   & \dots  &w^{2(N-1)}  \\ 
 		\vdots   & \vdots     &\vdots     &\ddots  &\vdots       \\
 		w^0 & w^{1(N-1)}&w^{2(N-1)}& \dots  &w^{(N-1)(N-1)}  \\ 
 	\end{pmatrix}
@@ -167,7 +173,7 @@
 			Wie wird der Fehler lokalisiert?
 		\only<2>{
 			\newline
-			Indem in einem Endlichen Körper gerechnet wird.
+			Indem in einem endlichen Körper gerechnet wird.
 		}
 	\end{frame}	
 %-------------------------------------------------------------------------------	
