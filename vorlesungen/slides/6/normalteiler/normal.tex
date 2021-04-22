@@ -1,0 +1,79 @@
+%
+% normal.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Normalteiler}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Gegeben}
+Eine Gruppe $G$ mit Untergruppe $N\subset G$
+\end{block}
+\uncover<2->{%
+\begin{block}{Bedingung}
+Welche Eigenschaft muss $N$ zusätzlich haben,
+damit 
+\[
+G/N
+=
+\{ gN \;|\; g\in G\}
+\]
+eine Gruppe wird.
+
+\uncover<3->{Wähle Repräsentaten $g_1N=g_2N$}
+\uncover<4->{%
+\begin{align*}
+g_1g_2N
+&\uncover<5->{=
+g_1g_2NN}
+\uncover<6->{=
+g_1g_2Ng_2^{-1}g_2N}
+\\
+&\uncover<7->{=
+g_1(g_2Ng_2^{-1})g_2N}
+\\
+&\uncover<8->{\stackrel{?}{=} g_1Ng_2N}
+\end{align*}}
+\uncover<9->{Funktioniert nur wenn $g_2Ng_2^{-1}=N$ ist}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<10->{%
+\begin{block}{Universelle Eigenschaft}
+Ist $\varphi\colon G\to G'$ ein Homomorphismus mit $\varphi(N)=\{e\}$%
+\uncover<11->{, dann gibt es einen Homomorphismus $G/N\to G'$:}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (N) at (-2.5,0);
+\coordinate (G) at (0,0);
+\coordinate (quotient) at (2.5,0);
+\coordinate (Gprime) at (0,-2.5);
+\coordinate (e) at (-2.5,-2.5);
+\node at (N) {$N$};
+\node at (e) {$\{e\}$};
+\node at (G) {$G$};
+\node at (Gprime) {$G'$};
+\node at (quotient) {$G/N$};
+\draw[->,shorten >= 0.3cm,shorten <= 0.4cm] (N) -- (G);
+\draw[->,shorten >= 0.3cm,shorten <= 0.4cm] (N) -- (e);
+\draw[->,shorten >= 0.3cm,shorten <= 0.4cm] (e) -- (Gprime);
+\draw[->,shorten >= 0.3cm,shorten <= 0.4cm] (G) -- (Gprime);
+\draw[->,shorten >= 0.4cm,shorten <= 0.4cm] (G) -- (quotient);
+\uncover<11->{
+\draw[->,shorten >= 0.3cm,shorten <= 0.4cm,color=red] (quotient) -- (Gprime);
+\node[color=red] at ($0.5*(quotient)+0.5*(Gprime)$) [below right] {$\exists!$};
+}
+\node at ($0.5*(quotient)$) [above] {$\pi$};
+\node at ($0.5*(Gprime)$) [left] {$\varphi$};
+\end{tikzpicture}
+\end{center}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

@@ -23,53 +23,57 @@ G\ltimes A
 \]
 heisst {\em semidirektes Produkt}.
 \begin{itemize}
-\item
+\item<2->
 Neutrales Element: $(e,0)$
-\item
+\item<3->
 Gruppenoperation
 \[
 (h_1,a_1)\cdot(h_2,a_2)
 =
 (h_1h_2, a_1 + \vartheta(h_1)a_2)
 \]
-\item
+\item<4->
 Inverse:
 $(h,a)^{-1}
 =
 (h^{-1},-\vartheta(h)^{-1}a)
 $
+\uncover<5->{%
 Kontrolle:
 \begin{align*}
 &\phantom{\mathstrut=\mathstrut}
 (h,a)\cdot (h^{-1},-\vartheta(h)^{-1}a)
 \\
-&=(hh^{-1},a-\vartheta(h)\vartheta(h)^{-1}a)
-=(e,0)
-\end{align*}
+&\uncover<6->{=(hh^{-1},a-\vartheta(h)\vartheta(h)^{-1}a)}
+\uncover<7->{=(e,0)}
+\end{align*}}
 \end{itemize}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<8->{%
 \begin{block}{Drehungen und Spiegelungen von $\mathbb{R}^2$}
 Spiegelung: $C_2$
 Drehungen der: $\operatorname{SO}(2)$
 Drehungen und Spiegelungen:
 $C_2\ltimes \operatorname{SO}(2)=O(2)$
-\end{block}
+\end{block}}
+\uncover<9->{%
 \begin{block}{Drehungen und Translationen}
 Drehungen: $H=\operatorname{SO}(2)$
 \\
 Translationen: $A=\mathbb{R}^2$
 \\
 Bewegungen der Ebene: $\operatorname{SO}(2)\ltimes \mathbb{R}^2$
-\end{block}
+\end{block}}
+\uncover<10->{%
 \begin{block}{Dopplereffekt und Laufzeit}
 Dopplereffekt: $\mathbb{R}^+$ (Skalierung)
 \\
 Laufzeit: $\mathbb{R}$ (Verschiebung)
 \\
 Skalierung und Verschiebung: $\mathbb{R}^+\ltimes \mathbb{R}$
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

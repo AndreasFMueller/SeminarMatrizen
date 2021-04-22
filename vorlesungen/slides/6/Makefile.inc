@@ -12,6 +12,12 @@ chapter6 =								\
 	../slides/6/punktgruppen/chemie.tex				\
 	../slides/6/punktgruppen/aufspaltung.tex			\
 									\
+	../slides/6/produkte/frei.tex					\
+	../slides/6/produkte/direkt.tex					\
+									\
+	../slides/6/normalteiler/normal.tex				\
+	../slides/6/normalteiler/konjugation.tex			\
+									\
 	../slides/6/permutationen/matrizen.tex				\
 									\
 	../slides/6/darstellungen/definition.tex			\
