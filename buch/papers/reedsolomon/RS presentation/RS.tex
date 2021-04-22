@@ -15,6 +15,7 @@
 	\date{26.04.2021}
 	\subject{Mathematisches Seminar}
 	\setbeamercovered{transparent}
+	%\setbeamercovered{invisible}
 	\setbeamertemplate{navigation symbols}{}
 	\begin{frame}[plain]
 		\maketitle
@@ -83,7 +84,11 @@
 		\end{tabular}
 	\end{center}	
 	\end{frame}
+<<<<<<< Updated upstream
 %-------------------------------------------------------------------------------	
+=======
+
+>>>>>>> Stashed changes
 \section{Diskrete Fourier Transformation}
 	\begin{frame}
 		\frametitle{Idee}
@@ -179,26 +184,38 @@
 			Indem in einem endlichen Körper gerechnet wird.
 		}
 	\end{frame}	
+<<<<<<< Updated upstream
 %-------------------------------------------------------------------------------	
+=======
+
+\section{Reed-Solomon in Endlichen Körpern}	
+
+>>>>>>> Stashed changes
 	\begin{frame}
 		\frametitle{Reed-Solomon in Endlichen Körpern}
 		
 		\begin{itemize}
-			\item Warum Endliche Körper?
+			\onslide<1->{\item Warum endliche Körper?}
 			
-			\qquad bessere Laufzeit
+			\onslide<1->{\qquad konkrete Zahlen $\rightarrow$ keine Rundungsfehler}
 			
-			\vspace{10pt}
+			\onslide<1->{\qquad digitale Fehlerkorrektur}
 			
-			\item Nachricht = Nutzdaten + Fehlerkorrekturteil
-			
-			\vspace{10pt}
-			
-			\item den Fehlerkorrekturteil brauchen wir im Optimalfall nicht
+			\onslide<1->{\qquad bessere Laufzeit}
 			
 			\vspace{10pt}
 			
-			\item Im Fehlerfall sollen wir aus der Nachricht ein Lokatorpolynom berechnen können, welches die Fehlerhaften Stellen beinhaltet
+			\onslide<1->{\item Nachricht = Nutzdaten + Fehlerkorrekturteil}
+			
+			\vspace{10pt}
+			
+			\onslide<1->{\item aus Fehlerkorrekturteil die Fehlerstellen finden}
+			
+			\onslide<1->{\qquad $\Rightarrow$ gesucht ist ein Lokatorpolynom}
+			
+%			\vspace{10pt}
+			
+%			\onslide<1->{\item Im Fehlerfall sollen wir aus der Nachricht ein Lokatorpolynom berechnen können, welches die fehlerhaften Stellen beinhaltet}
 			
 %			Wir sollten im Fehlerfall in der Lage sein, aus der Nachricht ein Lokatorpolynom zu berechnen, welches die Fehlerhaften Stellen beinhaltet
 						
@@ -212,35 +229,35 @@
 		
 %		sollten wir fehler bekommen, was uns die korrekturstellen mitgeteilt wird, dann ist es unsere aufgabe ein lokatorpolynom zu finden, welches uns verrät, auf welchen zeilen der Fehler aufgetreten ist
 	\end{frame}
-%-------------------------------------------------------------------------------	
+%-------------------------------------------------------------------------------
 	\begin{frame}
 		\frametitle{Definition eines Beispiels}
 		
 		\begin{itemize}
 			
-			\item Endlicher Körper $q = 11$
+			\only<1->{\item endlicher Körper $q = 11$}
 			
 			\only<1->{ist eine Primzahl}
 
-			\only<1->{beinhaltet die Zahlen $\mathbb{Z}_{11} = [0,1,2,3,4,5,6,7,8,9,10]$}
+			\only<1->{beinhaltet die Zahlen $\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}$}
 			
 			\vspace{10pt}
 			
-			\only<1->{\item Nachrichtenblock $n = q-1$}
+			\only<1->{\item Nachrichtenblock $=$ Nutzlast $+$ Fehlerkorrekturstellen
 			
-			wird an den Empfänger gesendet
+			$n = q - 1 = 10$ Zahlen}
 			
 			\vspace{10pt}
 			
-			\only<1->{\item max. Fehler $z = 2$}
+			\only<1->{\item Max.~Fehler $z = 2$
 			
-			maximale Anzahl von Fehler, die wir noch korrigieren können
+			maximale Anzahl von Fehler, die wir noch korrigieren können}
 			
 			\vspace{10pt}
 			
 			\only<1->{\item Nutzlast $k = n -2t = 6$ Zahlen}
 			
-			Fehlerstellen $2t = 4$ Zahlen
+			\only<1->{Fehlerkorrkturstellen $2t = 4$ Zahlen}
 			
 			\only<1->{Nachricht $m = [0,0,0,0,4,7,2,5,8,1]$}
 			
@@ -250,52 +267,54 @@
 		
 	\end{frame}
 %-------------------------------------------------------------------------------	
+\section{Codierung eines Beispiels}
 	\begin{frame}
 		\frametitle{Codierung}
 		
 		\begin{itemize}
-			\item Ansatz aus den Komplexen Zahlen mit der Fouriertransformation
+			\only<1->{\item Ansatz aus den komplexen Zahlen mit der diskreten Fouriertransformation}
 			
 			\vspace{10pt}
 			
-			\item $\mathrm{e}$ existiert nicht in $\mathbb{Z}_{11}$
+			\only<1->{\item Eulersche Zahl $\mathrm{e}$ existiert nicht in $\mathbb{F}_{11}$}
 			
 			\vspace{10pt}
 			
-			\item wir suchen $a$ so, dass $a^i$ den gesamten Zahlenbereich von $\mathbb{Z}_{11}$ abdeckt
+			\only<1->{\item Wir suchen $a$ so, dass $a^i$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken
 			
-			$\mathbb{Z}_{11}\setminus\{0\} = [a^0, a^1, a^2, a^3, a^4, a^5, a^6, a^7, a^8, a^9]$
-			
-			\vspace{10pt}
-			
-			\item wir wählen $a = 8$
-			
-			$\mathbb{Z}_{11}\setminus\{0\} = [1,8,9,6,4,10,3,2,5,7]$
-			
-			8 ist eine Primitive Einheitswurzel
+			$\mathbb{Z}_{11}\setminus\{0\} = \{a^0, a^1, a^2, a^3, a^4, a^5, a^6, a^7, a^8, a^9\}$}
 			
 			\vspace{10pt}
 			
-			\item $m(8^0) = 4\cdot1 + 7\cdot1 + 2\cdot1 + 5\cdot1 + 8\cdot1 + 1 = 5$
+			\only<1->{\item Wir wählen $a = 8$}
 			
-			$\Rightarrow$ \qquad können wir auch als Matrix schreiben
+			\only<1->{$\mathbb{Z}_{11}\setminus\{0\} = \{1,8,9,6,4,10,3,2,5,7\}$}
+			
+			\only<1->{$8$ ist eine primitive Einheitswurzel}
+			
+			\vspace{10pt}
+			
+			\only<1->{\item $m(8^0) = 4\cdot1 + 7\cdot1 + 2\cdot1 + 5\cdot1 + 8\cdot1 + 1 = 5$}
+			
+			\only<1->{$\Rightarrow$ \qquad können wir auch als Matrix schreiben}
 			
 		\end{itemize}
 		
 	\end{frame}
-%-------------------------------------------------------------------------------	
+%-------------------------------------------------------------------------------		
 	\begin{frame}
 		\frametitle{Codierung}
 		
 		\begin{itemize}
-			\item Übertragungsvektor $V$
+			\only<1->{\item Übertragungsvektor $v$}
 			
-			\item $V = A \cdot m$
+			\only<1->{\item $v = A \cdot m$}
 			
 		\end{itemize}
 		
 		\[
-		V = \begin{pmatrix}
+		\only<1->{
+		v = \begin{pmatrix}
 			8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
 			8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&	8^9\\
 			8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
@@ -311,29 +330,34 @@
 		\begin{pmatrix}
 			1 \\ 8 \\ 5 \\ 2 \\ 7 \\ 4 \\ 0 \\ 0 \\ 0 \\ 0 \\
 		\end{pmatrix}
+		}
 		\]
-		
+		\only<1->{
 		\begin{itemize}
-			\item $V = [5,3,6,5,2,10,2,7,10,4]$
+			\item $v = [5,3,6,5,2,10,2,7,10,4]$
 		\end{itemize}
-			
+		}	
 	\end{frame}
 %-------------------------------------------------------------------------------	
+\section{Decodierung ohne Fehler}
 	\begin{frame}
 		\frametitle{Decodierung ohne Fehler}
 		
 		\begin{itemize}
-			\item Der Empfänger erhält den unveränderten Vektor $V = [5,3,6,5,2,10,2,7,10,4]$
+			\only<1->{\item Der Empfänger erhält den unveränderten Vektor 
+			$v = [5,3,6,5,2,10,2,7,10,4]$}
 			
 			\vspace{10pt}
 			
-			\item Wir suchen die Inverse der Matrix A
+			\only<1->{\item Wir suchen die Inverse der Matrix $A$}
+			
+			\vspace{10pt}
 			
 		\end{itemize}
 		
 		\begin{columns}[t]
 		\begin{column}{0.50\textwidth}		
-		
+		\only<1->{
 		Inverse der Fouriertransformation
 		\vspace{10pt}
 		\[
@@ -341,25 +365,26 @@
 		\]
 		\vspace{10pt}
 		\[
-		f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega
+		\mathfrak{F}^{-1}(F(\omega)) = f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega
 		\]
-		
+		}
 		\end{column}
 		\begin{column}{0.50\textwidth}		
-		
-		Inverse von a
+		\only<1->{
+		Inverse von $a$}
 		\vspace{10pt}
+		\only<1->{
 		\[
 		8^{1} \Rightarrow 8^{-1}
 		\]
-		
-		Inverse finden wir über den Eulkidischen Algorithmus
+		}
+		\only<1->{Inverse finden wir über den Eulkidischen Algorithmus}
 		\vspace{10pt}
 		\end{column}
 		\end{columns}		
 		
 	\end{frame}
-%-------------------------------------------------------------------------------	
+%-------------------------------------------------------------------------------		
 	\begin{frame}
 		\frametitle{Der Euklidische Algorithmus}
 	
@@ -385,8 +410,8 @@
 	\begin{column}{0.50\textwidth}	
 	
 	\begin{center}
-	
-	\begin{tabular}{| c | c c | c | c c |}
+	\only<1->{
+	\begin{tabular}{| c | c c | c | r r |}
 		\hline
 		$k$ & $a_i$ & $b_i$ & $q_i$ & $c_i$ & $d_i$\\
 		\hline 
@@ -395,17 +420,17 @@
 		$1$& $11$& $8$& $1$& $1$& $0$\\
 		$2$& $8$& $3$& $2$& $-1$& $1$\\
 		$3$& $3$& $2$& $1$& $3$& $-2$\\
-		$4$& $2$& $1$& $2$& $-4$& $3$\\
+		$4$& $2$& $1$& $2$& \textcolor<3->{blue}{$-4$}& \textcolor<3->{red}{$3$}\\
 		$5$& $1$& $0$& & $11$& $-8$\\
 		\hline
 	\end{tabular}	
-	
+	}
 	\vspace{10pt}
 	
 	\begin{tabular}{rcl}
-		$-4\cdot 8 + 3 \cdot 11$ &$=$& $1$\\
-		$7 \cdot 8 + 3 \cdot 11$ &$=$& $1$\\
-		$8^{-1}$ &$=$& $7$
+		\only<1->{$\textcolor{blue}{-4} \cdot 8 + \textcolor{red}{3} \cdot 11$ &$=$& $1$}\\
+		\only<1->{$7 \cdot 8 + 3 \cdot 11$ &$=$& $1$}\\
+		\only<1->{$8^{-1}$ &$=$& $7$}
 		
 	\end{tabular}
 	
@@ -417,17 +442,17 @@
 	\end{frame}
 %-------------------------------------------------------------------------------	
 	\begin{frame}
-		\frametitle{Decodirung mit Inverser Matrix}	
+		\frametitle{Decodierung mit Inverser Matrix}	
 		
 		\begin{itemize}
-			\item $V = [5,3,6,5,2,10,2,7,10,4]$
+			\only<1->{\item $v = [5,3,6,5,2,10,2,7,10,4]$}
 			
-			\item $m = 1/10 \cdot A^{-1} \cdot V$
+			\only<1->{\item $m = 1/10 \cdot A^{-1} \cdot v$}
 			
-			\item $m = 10 \cdot A^{-1} \cdot V$
+			\only<1->{\item $m = 10 \cdot A^{-1} \cdot v$}
 			
 		\end{itemize}
-		
+		\only<1->{
 		\[
 		m = \begin{pmatrix}
 			7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0\\
@@ -446,85 +471,95 @@
 			5 \\ 3 \\ 6 \\ 5 \\ 2 \\ 10 \\ 2 \\ 7 \\ 10 \\ 4 \\
 		\end{pmatrix}
 		\]
-		
+		}
+		\only<1->{
 		\begin{itemize}
 			\item $m = [0,0,0,0,4,7,2,5,8,1]$
 		\end{itemize}
-		
+		}
 	\end{frame}
 %-------------------------------------------------------------------------------		
+\section{Decodierung mit Fehler}
 	\begin{frame}
 		\frametitle{Decodierung mit Fehler - Ansatz}	
 		
 		\begin{itemize}
-			\item Gesendet: $V = [5,3,6,5,2,10,2,7,10,4]$
+			\only<1->{\item Gesendet: $v = [5,3,6,5,2,10,2,7,10,4]$}
 			
-			\item Empfangen: $W = [5,3,6,8,2,10,2,7,1,4]$
+			\only<1->{\item Empfangen: $w = [5,3,6,\textcolor{red}{8},2,10,2,7,\textcolor{red}{1},4]$}
 			
-			\item Rücktransformation: $r = [\underbrace{5,7,4,10,}_{Fehlerstellen}5,4,5,7,6,7]$
+			\only<1->{\item Rücktransformation: $r = [\underbrace{5,7,4,10,}_{Fehlerinfo}5,4,5,7,6,7]$}
+			
 		\end{itemize}
 		
-		Wie finden wir die Fehler?
+	\only<1->{Wie finden wir die Fehler?}
 		
+		\only<1->{
 		\begin{itemize}
 			\item $m(X) = 4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1$
 			
 			\item $r(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + 5X^5 + 4X^4 + 5X^3 + 7X^2 + 6X + 7$
 			
-			\item $e(X) = r(X) - m(X)$
-		\end{itemize}	
-		
-		\begin{center}
+			%\only<7->{\item $e(X) = r(X) - m(X)$}
 			
+			\item $e(X) = r(X) - m(X)$
+			
+		\end{itemize}	
+	}
+
+		\begin{center}
+			\only<1->{
 		\begin{tabular}{c c c c c c c c c c c}
 			\hline
 			$i$& $0$& $1$& $2$& $3$& $4$& $5$& $6$& $7$& $8$& $9$\\
 			\hline
-			$r(a^{i})$& $5$& $3$& $6$& $8$& $2$& $10$& $2$& $7$& $1$& $4$\\
-			$m(a^{i})$& $5$& $3$& $6$& $5$& $2$& $10$& $2$& $7$& $10$& $4$\\
-			$e(a^{i})$& $0$& $0$& $0$& $3$& $0$& $0$& $0$& $0$& $2$& $0$\\
+			$r(a^{i})$& \only<1->{$5$& $3$& $6$& $8$& $2$& $10$& $2$& $7$& $1$& $4$}\\
+			$m(a^{i})$& \only<1->{$5$& $3$& $6$& $5$& $2$& $10$& $2$& $7$& $10$& $4$}\\
+			$e(a^{i})$& \only<1->{$0$& $0$& $0$& $3$& $0$& $0$& $0$& $0$& $2$& $0$}\\
 			\hline
 		\end{tabular}	
-			
+			}
 		\end{center}
-		
+	
+		\only<1->{
 		\begin{itemize}
 			\item Alle Stellen, die nicht Null sind, sind Fehler
 		\end{itemize}
-		
+		}
+
 	\end{frame}
-%-------------------------------------------------------------------------------	
+%-------------------------------------------------------------------------------		
 	\begin{frame}
 		\frametitle{Nullstellen des Fehlerpolynoms finden}
 		
 		\begin{itemize}
-			\item Satz von Fermat: $f(X) = X^{q-1}-1=0$
+			\only<1->{\item Satz von Fermat: $f(X) = X^{q-1}-1=0$}
 			
 			\vspace{10pt}
 			
-			\item $f(X) = X^{10}-1 = 0$ \qquad für $X = [1,2,3,4,5,6,7,8,9,10]$
+			\only<1->{\item $f(X) = X^{10}-1 = 0$ \qquad für $X \in \{1,2,3,4,5,6,7,8,9,10\}$}
 			
 			\vspace{10pt}
 			
-			\item $f(X) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6) \cdot$
+			\only<1->{\item $f(X) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6) \cdot$
 			
-			\qquad \qquad $(X-a^7)(X-a^8)(X-a^9)$
-			
-			\vspace{10pt}
-			
-			\item $e(X) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6) \cdot$
-			
-			\qquad \qquad $(X-a^7) \qquad \qquad (X-a^9) \cdot p(x)$
+			\qquad \qquad $(X-a^7)(X-a^8)(X-a^9)$}
 			
 			\vspace{10pt}
 			
-			\item $\operatorname{ggT}$ gibt uns eine Liste der Nullstellen, an denen es keine Fehler gegeben hat
+			\only<1->{\item $e(X) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6) \cdot$
+			
+			\qquad \qquad $(X-a^7) \qquad \qquad (X-a^9) \cdot p(x)$}
 			
 			\vspace{10pt}
 			
-			$\operatorname{ggT}(f(X),e(X)) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6) \cdot$
+			\only<1->{\item $\operatorname{ggT}$ gibt uns eine Liste der Nullstellen, an denen es keine Fehler gegeben hat}
 			
-			\qquad \qquad \qquad \qquad $(X-a^7) \qquad \qquad (X-a^9)$
+			\vspace{10pt}
+			
+			\only<1->{$\operatorname{ggT}(f(X),e(X)) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6) \cdot$
+			
+			\qquad \qquad \qquad \qquad $(X-a^7) \qquad \qquad (X-a^9)$}
 				
 		\end{itemize}
 			
@@ -574,33 +609,33 @@
 	\end{frame}
 %-------------------------------------------------------------------------------	
 	\begin{frame}
-		\frametitle{kennen wir $e$?}
+		\frametitle{Kennen wir $e(X)$?}
 		
 		\begin{itemize}
 			
-			\item $e$ ist unbekannt auf der Empfängerseite
+			\only<1->{\item $e(X)$ ist unbekannt auf der Empfängerseite}
 			
 			\vspace{10pt}
 			
-			\item $e(X) = r(X) - m(X)$ \qquad $\rightarrow$ \qquad $m(X)$ ist unbekannt?
+			\only<1->{\item $e(X) = r(X) - m(X)$ \qquad $\rightarrow$ \qquad $m(X)$ ist unbekannt?}
 			
 			\vspace{10pt}
 			
-			\item $m$ ist nicht gänzlich unbekannt: $m = [0,0,0,0,?,?,?,?,?,?]$
+			\only<1->{\item $m$ ist nicht gänzlich unbekannt: $m = [0,0,0,0,?,?,?,?,?,?]$
 			
-			In den bekannten Stellen liegt auch die Information, wo es Fehler gegeben hat
-			
-			\vspace{10pt}
-			
-			\item daraus folgt $e(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)$
+			In den bekannten Stellen liegt auch die Information, wo es Fehler gegeben hat}
 			
 			\vspace{10pt}
 			
-			\item $f(X) = X^{10} - 1 = X^{10} + 10$
+			\only<1->{\item Daraus folgt $e(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)$}
 			
 			\vspace{10pt}
 			
-			\item jetzt können wir den $\operatorname{ggT}$ von $f(X)$ und $e(X)$ berechnen
+			\only<1->{\item $f(X) = X^{10} - 1 = X^{10} + 10$}
+			
+			\vspace{10pt}
+			
+			\only<1->{\item Jetzt können wir den $\operatorname{ggT}$ von $f(X)$ und $e(X)$ berechnen}
 		\end{itemize}
 		
 	\end{frame}
@@ -608,8 +643,8 @@
 	\begin{frame}
 		\frametitle{Der Euklidische Algorithmus (nochmal)}
 		
-		$\operatorname{ggT}(f(X),e(X))$ hat den Grad 8
-		
+		\only<1->{$\operatorname{ggT}(f(X),e(X))$ hat den Grad $8$}
+		\only<1->{
 		\[
 		\arraycolsep=1.4pt
 		\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
@@ -620,7 +655,8 @@
 			& &    & &6X^8&+&0X^7&+&p(X)& &   & & & & & &   & &  & & \\
 		\end{array}
 		\]
-		
+		}
+		\only<1->{
 		\[
 		\arraycolsep=1.4pt
 		\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
@@ -629,14 +665,14 @@
 			&& 7X^8&+& p(X)& & & & & &   & & & & & &   & &  & & \\
 		\end{array}
 		\]
+		}
+		\vspace{10pt}
+		
+		\only<1->{$\operatorname{ggT}(f(X),e(X)) = 6X^8$}
 		
 		\vspace{10pt}
 		
-		$\operatorname{ggT}(f(X),e(X)) = 6X^8$
-		
-		\vspace{10pt}
-		
-		$\operatorname{kgV}$ durch den erweiterten Euklidischen Algorithmus bestimmen	
+		\only<1->{	$\operatorname{kgV}$ durch den erweiterten Euklidischen Algorithmus bestimmen	}
 		
 	\end{frame}
 		
@@ -653,7 +689,7 @@
 			& & $0$& $1$\\
 			$0$& $9X + 5$& $1$& $0$\\
 			$1$& $10X + 3$& $9X+5$& $1$\\
-			$2$& & $2X^2 + 0X + 5$& $10X + 3$\\
+			$2$& & \textcolor<2->{blue}{$2X^2 + 0X + 5$}& $10X + 3$\\
 			\hline
 		\end{tabular}	
 			
@@ -662,49 +698,54 @@
 		\vspace{10pt}
 		
 		\begin{tabular}{ll}
-			Somit erhalten wir den Faktor& $d(X) = 2X^2 + 5$\\
-			Faktorisiert erhalten wir& $d(X) = 2(X-5)(X-6)$\\
-			Lokatorpolynom& $d(X) = (X-a^i)(X-a^i)$
+			\only<1->{Somit erhalten wir den Faktor& $d(X) = 2X^2 + 5$\\}
+			\only<1->{Faktorisiert erhalten wir& $d(X) = 2(X-5)(X-6)$\\}
+			\only<1->{Lokatorpolynom& $d(X) = (X-a^i)(X-a^i)$}
 		\end{tabular}
 		
 		\vspace{10pt}
-		
+		\only<1->{
 		\begin{center}
 			$a^i = 5 \qquad \Rightarrow \qquad i = 3$
 			
 			$a^i = 6 \qquad \Rightarrow \qquad i = 8$
 		\end{center}
-		
-	$D = [3,8]$
+	}
+	\only<1->{$d(X) = (X-a^3)(X-a^8)$}
 		
 	\end{frame}
-%-------------------------------------------------------------------------------		
+%-------------------------------------------------------------------------------	
+\section{Nachricht Rekonstruieren}	
 	\begin{frame}
 		\frametitle{Rekonstruktion der Nachricht}
 		
 		\begin{itemize}
 			
-			\item $W = [5,3,6,8,2,10,2,7,1,4]$
+			\only<1->{\item $w = [5,3,6,8,2,10,2,7,1,4]$}
 			
-			\item $D = [3,8]$
+			\only<1->{\item $d(X) = (X-\textcolor<4->{red}{a^3})(X-\textcolor<4->{red}{a^8})$}
 			
 		\end{itemize}
-		
+		\only<1->{
 		\[
+		\textcolor{gray}{
 		\begin{pmatrix}
-			5 \\ 3 \\ 6 \\ 8 \\ 2 \\ 10 \\ 2 \\ 7 \\ 1 \\ 4 \\
+			 a^0 \\ a^1 \\ a^2 \\ \textcolor<4->{red}{a^3} \\ a^4 \\ a^5 \\ a^6 \\ a^7 \\ \textcolor<4->{red}{a^8} \\ a^9 \\
+		\end{pmatrix}}
+		\begin{pmatrix}
+			5 \\ 3 \\ 6 \\ \textcolor<4->{red}{8} \\ 2 \\ 10 \\ 2 \\ 7 \\ \textcolor<4->{red}{1} \\ 4 \\
 		\end{pmatrix}
 		=
 		\begin{pmatrix}
 			8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
 			8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&	8^9\\
 			8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
-			8^0&	8^3&	8^6&	8^9& 8^{12}& 8^{15}& 8^{18}& 8^{21}& 8^{24}& 8^{27}\\
+			\textcolor<4->{red}{8^0}&	\textcolor<4->{red}{8^3}&	\textcolor<4->{red}{8^6}&	\textcolor<4->{red}{8^9}& \textcolor<4->{red}{8^{12}}& \textcolor<4->{red}{8^{15}}& \textcolor<4->{red}{8^{18}}& \textcolor<4->{red}{8^{21}}& \textcolor<4->{red}{8^{24}}& \textcolor<4->{red}{8^{27}}\\
 			8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& 8^{24}& 8^{28}& 8^{32}& 8^{36}\\
 			8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& 8^{30}& 8^{35}& 8^{40}& 8^{45}\\
 			8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& 8^{36}& 8^{42}& 8^{48}& 8^{54}\\
 			8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& 8^{42}& 8^{49}& 8^{56}& 8^{63}\\
-			8^0&	8^8& 8^{16}& 8^{24}& 8^{32}& 8^{40}& 8^{48}& 8^{56}& 8^{64}& 8^{72}\\
+			\textcolor<4->{red}{8^0}&	\textcolor<4->{red}{8^8}& \textcolor<4->{red}{8^{16}}& \textcolor<4->{red}{8^{24}}& \textcolor<4->{red}{8^{32}}& \textcolor<4->{red}{8^{40}}& \textcolor<4->{red}{8^{48}}& \textcolor<4->{red}{8^{56}}& \textcolor<4->{red}{8^{64}}& \textcolor<4->{red}{8^{72}}\\
 			8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& 8^{54}& 8^{63}& 8^{72}& 8^{81}\\
 		\end{pmatrix}
 		\cdot
@@ -712,13 +753,14 @@
 			m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ m_6 \\ m_7 \\ m_8 \\ m_9 \\
 		\end{pmatrix}
 		\]
-		
+		}
+		\only<1->{
 		\begin{itemize}
 			\item Fehlerstellen entfernen
 		\end{itemize}
-		
+		}
 	\end{frame}	
-%-------------------------------------------------------------------------------	
+%-------------------------------------------------------------------------------		
 	\begin{frame}
 		\frametitle{Rekonstruktion der Nachricht}
 		
@@ -728,25 +770,25 @@
 		\end{pmatrix}
 		=
 		\begin{pmatrix}
-			8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
-			8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&	8^9\\
-			8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
-			8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& 8^{24}& 8^{28}& 8^{32}& 8^{36}\\
-			8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& 8^{30}& 8^{35}& 8^{40}& 8^{45}\\
-			8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& 8^{36}& 8^{42}& 8^{48}& 8^{54}\\
-			8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& 8^{42}& 8^{49}& 8^{56}& 8^{63}\\
-			8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& 8^{54}& 8^{63}& 8^{72}& 8^{81}\\
+			8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    \textcolor<3->{green}{8^0}&    \textcolor<3->{green}{8^0}&    \textcolor<3->{green}{8^0}&    \textcolor<3->{green}{8^0}\\
+			8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	\textcolor<3->{green}{8^6}&	 \textcolor<3->{green}{8^7}&     \textcolor<3->{green}{8^8}&	  \textcolor<3->{green}{8^9}\\
+			8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& \textcolor<3->{green}{8^{12}}& \textcolor<3->{green}{8^{14}}& \textcolor<3->{green}{8^{16}}& \textcolor<3->{green}{8^{18}}\\
+			8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& \textcolor<3->{green}{8^{24}}& \textcolor<3->{green}{8^{28}}& \textcolor<3->{green}{8^{32}}& \textcolor<3->{green}{8^{36}}\\
+			8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& \textcolor<3->{green}{8^{30}}& \textcolor<3->{green}{8^{35}}& \textcolor<3->{green}{8^{40}}& \textcolor<3->{green}{8^{45}}\\
+			8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& \textcolor<3->{green}{8^{36}}& \textcolor<3->{green}{8^{42}}& \textcolor<3->{green}{8^{48}}& \textcolor<3->{green}{8^{54}}\\
+			8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& \textcolor<3->{green}{8^{42}}& \textcolor<3->{green}{8^{49}}& \textcolor<3->{green}{8^{56}}& \textcolor<3->{green}{8^{63}}\\
+			8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& \textcolor<3->{green}{8^{54}}& \textcolor<3->{green}{8^{63}}& \textcolor<3->{green}{8^{72}}& \textcolor<3->{green}{8^{81}}\\
 		\end{pmatrix}
 		\cdot
 		\begin{pmatrix}
-			m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ m_6 \\ m_7 \\ m_8 \\ m_9 \\
+			m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor<2->{green}{m_6} \\ \textcolor<2->{green}{m_7} \\ \textcolor<2->{green}{m_8} \\ \textcolor<2->{green}{m_9} \\
 		\end{pmatrix}
 		\]
-		
+		\only<1->{
 		\begin{itemize}
 			\item Nullstellen entfernen
 		\end{itemize}
-		
+	}
 	\end{frame}
 %-------------------------------------------------------------------------------
 	\begin{frame}
@@ -754,7 +796,7 @@
 		
 		\[
 		\begin{pmatrix}
-			5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ 7 \\ 4 \\
+			5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ \textcolor<2->{red}{7} \\ \textcolor<2->{red}{4} \\
 		\end{pmatrix}
 		=
 		\begin{pmatrix}
@@ -764,8 +806,8 @@
 			8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}\\
 			8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}\\
 			8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}\\
-			8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}\\
-			8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}\\
+			\textcolor<2->{red}{8^0}&	\textcolor<2->{red}{8^7}& \textcolor<2->{red}{8^{14}}& \textcolor<2->{red}{8^{21}}& \textcolor<2->{red}{8^{28}}& \textcolor<2->{red}{8^{35}}\\
+			\textcolor<2->{red}{8^0}&	\textcolor<2->{red}{8^9}& \textcolor<2->{red}{8^{18}}& \textcolor<2->{red}{8^{27}}& \textcolor<2->{red}{8^{36}}& \textcolor<2->{red}{8^{45}}\\
 		\end{pmatrix}
 		\cdot
 		\begin{pmatrix}
@@ -774,11 +816,11 @@
 		\]
 		
 		\vspace{5pt}
-		
+		\only<1->{
 		\begin{itemize}
 			\item Matrix in eine Quadratische Form bringen
 		\end{itemize}
-		
+	}
 	\end{frame}
 %-------------------------------------------------------------------------------	
 	\begin{frame}
