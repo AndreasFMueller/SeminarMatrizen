@@ -43,18 +43,18 @@
 		${f}_2=\textcolor{blue}{2}$, ${f}_1=\textcolor{blue}{1}$, ${f}_0=\textcolor{blue}{5}$ 
 		als $ p(w) = \textcolor{blue}{2}w^2 + \textcolor{blue}{1}w + \textcolor{blue}{5} $.
 		
-		\only<1>{
-			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
-			\textcolor{green}{15}, \textcolor{green}{26},
-			\textcolor{green}{41}, \textcolor{green}{60}, 
-			\textcolor{green}{83}, \textcolor{green}{110})$	
-			\includegraphics[scale = 1.2]{images/polynom1.pdf}}
-		\only<2>{
-			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
-			\textcolor{red}{50}, \textcolor{red}{37},
-			\textcolor{green}{41}, \textcolor{green}{60}, 
-			\textcolor{green}{83}, \textcolor{green}{110})$
-			\includegraphics[scale = 1.2]{images/polynom2.pdf}
+		
+			Versende $ (p(1),p(2),\dots,p(7))$
+			\visible<2->{ = (\textcolor{green}{8},} 
+			\only<2>{\textcolor{green}{15},}
+			\only<3>{\textcolor{red}{50},}
+			\only<2>{\textcolor{green}{26},}
+			\only<3>{\textcolor{red}{37},}
+			\visible<2->{\textcolor{green}{41}, \textcolor{green}{60}, 
+			\textcolor{green}{83}, \textcolor{green}{110})}	
+			\only<2>{\includegraphics[scale = 1.2]{images/polynom1.pdf}}
+			\only<3>{\includegraphics[scale = 1.2]{images/polynom2.pdf}}
+			\visible<3>{
 			\newline
 			\textcolor{green}{7} Zahlen versenden, um \textcolor{blue}{3} Zahlen gegen \textcolor{red}{2} Fehlern abzusichern.}
 	\end{frame}
