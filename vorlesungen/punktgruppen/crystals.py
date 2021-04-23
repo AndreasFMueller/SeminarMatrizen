@@ -377,14 +377,14 @@ class AlgebraicSymmetries(Scene):
 
         hom_brace = Brace(hom_bracegrp, direction=RIGHT)
         hom_text = Tex("Homomorphismus").next_to(hom_brace.get_tip(), RIGHT)
-        hom_text_short = MathTex(r"G \simeq Z_4").next_to(hom_brace.get_tip(), RIGHT)
+        hom_text_short = MathTex(r"\mathrm{Hom}(G, Z_4)").next_to(hom_brace.get_tip(), RIGHT)
 
         self.play(Create(hom_brace))
         self.play(Write(hom_text))
         self.play(ReplacementTransform(hom_text, hom_text_short))
         self.wait()
 
-        self.play(FadeOut(hom_brace), FadeOut(hom_text_short))
+        # self.play(FadeOut(hom_brace), FadeOut(hom_text_short))
 
         # add the isomorphism part
         isomorphism = Tex(r"\(\phi\) ist bijektiv")
@@ -397,8 +397,9 @@ class AlgebraicSymmetries(Scene):
         iso_text = Tex("Isomorphismus").next_to(iso_brace.get_tip(), RIGHT)
         iso_text_short = MathTex("Z_4 \cong G").next_to(iso_brace.get_tip(), RIGHT)
 
-        self.play(Create(iso_brace))
-        self.play(Write(iso_text))
+        self.play(
+            ReplacementTransform(hom_brace, iso_brace),
+            ReplacementTransform(hom_text_short, iso_text))
         self.wait()
 
         self.play(ReplacementTransform(iso_text, iso_text_short))
@@ -464,9 +465,18 @@ class AlgebraicSymmetries(Scene):
         self.wait(3)
 
     def matrices(self):
-        question = MathTex(r"D_n \cong \,? \\ S_n \cong \,? \\ A_n \cong \,?")
-        question.scale(1.5)
+        question = MathTex(
+            r"D_n &\cong \,? \\"
+            r"S_n &\cong \,? \\"
+            r"A_n &\cong \,?").scale(1.5)
+
+        answer = MathTex(
+            r"D_n &\cong \,?\\"
+            r"S_4 &\cong \mathrm{Aut}(Q_8) \\"
+            r"A_5 &\cong \mathrm{PSL}_2 (5)").scale(1.5)
 
         self.play(Write(question))
+        self.wait()
+        self.play(ReplacementTransform(question, answer))
 
         self.wait(3)
