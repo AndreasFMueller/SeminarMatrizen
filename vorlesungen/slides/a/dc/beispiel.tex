@@ -1,0 +1,54 @@
+%
+% beispiel.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\def\u#1#2{\uncover<#1->{#2}}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Beispiel}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Aufgabe}
+Berechne $1291^{17}\in\mathbb{F}_{2027}$
+\end{block}
+\uncover<2->{%
+\begin{block}{Exponent}
+\vspace{-10pt}
+\[
+17 = 2^4 + 1
+=
+\texttt{10001}_2
+=
+\texttt{0x11}
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{Divide-and-Conquor}
+\begin{center}
+\begin{tabular}{|>{$}r<{$}>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+i&2^i&    a^{2^i} &       n &     n_i &                      m \\
+\hline
+0&  1&       1291 &      17 & \u{4}{1}&\u{5}{             1291}\\
+1&  2& \u{6}{ 487}& \u{7}{8}& \u{8}{0}& \u{9}{\color{gray}1291}\\
+2&  4&\u{10}{  10}&\u{11}{4}&\u{12}{0}&\u{13}{\color{gray}1291}\\
+3&  8&\u{14}{ 100}&\u{15}{2}&\u{16}{0}&\u{17}{\color{gray}1291}\\
+4& 16&\u{18}{1892}&\u{19}{1}&\u{20}{1}&\u{21}{              37}\\
+\hline
+\end{tabular}
+\end{center}
+\end{block}}
+\uncover<22->{%
+\begin{block}{Resultat}
+\(1291^{17} \equiv 37\mod 2027\)
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

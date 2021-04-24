@@ -1,0 +1,60 @@
+%
+% ableitung-exp.tex -- Ableitung von exp(x)
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+% Erstellt durch Roy Seitz
+%
+% !TeX spellcheck = de_CH
+\bgroup
+\begin{frame}[t]
+  \setlength{\abovedisplayskip}{5pt}
+  \setlength{\belowdisplayskip}{5pt}
+  %\frametitle{Ableitung von $\exp(x)$}
+  %\vspace{-20pt}
+  \begin{columns}[t,onlytextwidth]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Ableitung von $\exp(at)$}
+        \begin{align*}
+          \frac{d}{dt} \exp(at)
+          &=
+          \frac{d}{dt} \sum_{k=0}^{\infty} a^k \frac{t^k}{k!}
+          \\
+          &\uncover<2->{
+            = \sum_{k=0}^{\infty} a^k\frac{kt^{k-1}}{k(k-1)!}
+          }
+          \\
+          &\uncover<3->{
+            = a \sum_{k=1}^{\infty}
+            a^{k-1}\frac{t^{k-1}}{(k-1)!}
+          }
+          \\
+          &\uncover<4->{
+            = a \exp(at)
+          }
+        \end{align*}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \uncover<5->{
+        \begin{block}{Ableitung von $\exp(At)$}
+          \begin{align*}
+            \frac{d}{dt} \exp(At)
+            &=
+            \frac{d}{dt} \sum_{k=0}^{\infty} A^k \frac{t^k}{k!}
+            \\
+            &=
+            \sum_{k=0}^{\infty} A^k\frac{kt^{k-1}}{k(k-1)!}
+            \\
+            &=
+            A \sum_{k=1}^{\infty} A^{k-1}\frac{t^{k-1}}{(k-1)!}
+            \\
+            &=
+            A \exp(At)
+          \end{align*}
+        \end{block}
+      }
+    \end{column}
+  \end{columns}  
+\end{frame}
+
+\egroup

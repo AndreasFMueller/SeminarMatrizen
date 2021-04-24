@@ -1,0 +1,17 @@
+6.3 Third Oakley Group
+
+   IKE implementations SHOULD support a EC2N group with the following
+   characteristics. This group is assigned id 3 (three). The curve is
+   based on the Galois Field GF[2^155]. The field size is 155. The
+   irreducible polynomial for the field is:
+          u^155 + u^62 + 1.
+   The equation for the elliptic curve is:
+           y^2 + xy = x^3 + ax^2 + b.
+
+   Field Size:                         155
+   Group Prime/Irreducible Polynomial:
+                    0x0800000000000000000000004000000000000001
+   Group Generator One:                0x7b
+   Group Curve A:                      0x0
+   Group Curve B:                      0x07338f
+   Group Order: 0X0800000000000000000057db5698537193aef944
