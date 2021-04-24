@@ -25,38 +25,29 @@
 	\begin{frame}
 		\frametitle{Reed-Solomon-Code:}
 		\begin{itemize}
-		\visible<1->{\item Für Übertragung von Daten}
-		\visible<2->{\item Ermöglicht Korrektur von Übertragungsfehler}
-		\visible<3->{\item Wird verwendet in: CD, QR-Codes, Voyager-Sonde, etc.}
+		\item Für Übertragung von Daten
+		\item Ermöglicht Korrektur von Übertragungsfehler
+		\item Wird verwendet in: CD, QR-Codes, Voyager-Sonde, etc.
 		\end{itemize}
 	\end{frame}
 %-------------------------------------------------------------------------------	
 \section{Polynom Ansatz}
 	\begin{frame}
 		\begin{itemize}
-			\item Beispiel $2, 1, 5$ versenden und auf 2 Fehler absichern
+			\item $2, 1, 5$ versenden und auf 2 Fehler absichern
 		\end{itemize}
-	\end{frame}
-	\begin{frame}
 		\frametitle{Beispiel}
 		Übertragen von 
 		${f}_2=\textcolor{blue}{2}$, ${f}_1=\textcolor{blue}{1}$, ${f}_0=\textcolor{blue}{5}$ 
 		als $ p(w) = \textcolor{blue}{2}w^2 + \textcolor{blue}{1}w + \textcolor{blue}{5} $.
-		
-		\only<1>{
-			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
-			\textcolor{green}{15}, \textcolor{green}{26},
-			\textcolor{green}{41}, \textcolor{green}{60}, 
-			\textcolor{green}{83}, \textcolor{green}{110})$	
-			\includegraphics[scale = 1.2]{images/polynom1.pdf}}
-		\only<2>{
-			Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
-			\textcolor{red}{50}, \textcolor{red}{37},
-			\textcolor{green}{41}, \textcolor{green}{60}, 
-			\textcolor{green}{83}, \textcolor{green}{110})$
-			\includegraphics[scale = 1.2]{images/polynom2.pdf}
-			\newline
-			\textcolor{green}{7} Zahlen versenden, um \textcolor{blue}{3} Zahlen gegen \textcolor{red}{2} Fehlern abzusichern.}
+		\newline
+		Versende $ (p(1),p(2),\dots,p(7)) = (\textcolor{green}{8}, 
+		\textcolor{red}{50}, \textcolor{red}{37},
+		\textcolor{green}{41}, \textcolor{green}{60}, 
+		\textcolor{green}{83}, \textcolor{green}{110})$
+		\includegraphics[scale = 1.2]{images/polynom2.pdf}
+		\newline
+		\textcolor{green}{7} Zahlen versenden, um \textcolor{blue}{3} Zahlen gegen \textcolor{red}{2} Fehlern abzusichern.
 	\end{frame}
 %-------------------------------------------------------------------------------	
 	\begin{frame}
@@ -68,18 +59,14 @@
 			\hline 
 			3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
 			4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
-\visible<1->{3}& 
-\visible<1->{3}& 
-\visible<1->{9 Werte eines Polynoms vom Grad 2} \\ 
+			3& 3& 9 Werte eines Polynoms vom Grad 2 \\ 
 			&&\\
-\visible<1->{$k$} & 
-\visible<1->{$t$} & 
-\visible<1->{$k+2t$ Werte eines Polynoms vom Grad $k-1$} \\ 
+			$k$ & $t$ & $k+2t$ Werte eines Polynoms vom Grad $k-1$ \\ 
 			\hline
 			&&\\
 			&&\\
 			\multicolumn{3}{l} {
-				\visible<1>{Ausserdem können bis zu $2t$ Fehler erkannt werden!}
+			Ausserdem können bis zu $2t$ Fehler erkannt werden!
 			}
 		\end{tabular}
 	\end{center}	
@@ -127,23 +114,23 @@
 	\frametitle{Diskrete Fourier Transformation}
 	\begin{itemize}
 	\item Diskrete Fourier-Transformation gegeben durch:
-	\visible<1->{
+	
 	\[
 	\label{ft_discrete}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	\]}
-	\visible<2->{
+	\]
+
 	\item Ersetzte
 	\[
 	w = e^{-\frac{2\pi j}{N} k}
-	\]}
-	\visible<3->{
+	\]
+
 	\item Wenn $N$ konstant:
 	\[
 	\hat{c}_{k}=\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
-	\]}
+	\]
 	\end{itemize}
 	\end{frame}	
 
@@ -177,10 +164,9 @@
 		\frametitle{Probleme und Fragen}
 		
 			Wie wird der Fehler lokalisiert?
-		\visible<2>{
 			\newline
 			Indem in einem endlichen Körper gerechnet wird.
-		}
+		
 	\end{frame}	
 
 %-------------------------------------------------------------------------------	
