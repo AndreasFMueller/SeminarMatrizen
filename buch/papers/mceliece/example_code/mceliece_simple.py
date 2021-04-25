@@ -293,33 +293,35 @@ def blocks4_to_str(blocks):
         string+=chr(char)
     return string
 
-#shared attributes:
-n=7
-k=4
-t=1
+if __name__ == '__main__':
 
-#private key(s):
-g=Poly([1,1,0,1])  #generator polynom for 7/4 linear code (from table, 1.0 + 1.0·x¹ + 0.0·x² + 1.0·x³)
-P_M=gen_perm_M(n)    #create permutation matrix
-G_M=create_linear_code_matrix(n, k, g)  #linear code generator matrix
-S_M, S_inv=create_rand_bin_M(k, True) #random binary matrix and its inverse
-P_M_inv=P_M.T #inverse permutation matrix
-
-syndrome_table=create_syndrome_table(n, g) #part of linear-code decoder
-linear_code_decoder=lambda c:decode_linear_code(c, g, syndrome_table)
-
-#public key:
-pub_key=(P_M @ G_M @ S_M)%2
-
-
-msg_tx='Hello World?'
-
-blocks_tx=str_to_blocks4(msg_tx)
-encrypted=encrypt(blocks_tx, pub_key, t)
-
-blocks_rx=decrypt(encrypted, P_M_inv, linear_code_decoder, S_inv)
-msg_rx=blocks4_to_str(blocks_rx)
-
-print(f'msg_rx: {msg_rx}')
+    #shared attributes:
+    n=7
+    k=4
+    t=1
+    
+    #private key(s):
+    g=Poly([1,1,0,1])  #generator polynom for 7/4 linear code (from table, 1.0 + 1.0·x¹ + 0.0·x² + 1.0·x³)
+    P_M=gen_perm_M(n)    #create permutation matrix
+    G_M=create_linear_code_matrix(n, k, g)  #linear code generator matrix
+    S_M, S_inv=create_rand_bin_M(k, True) #random binary matrix and its inverse
+    P_M_inv=P_M.T #inverse permutation matrix
+    
+    syndrome_table=create_syndrome_table(n, g) #part of linear-code decoder
+    linear_code_decoder=lambda c:decode_linear_code(c, g, syndrome_table)
+    
+    #public key:
+    pub_key=(P_M @ G_M @ S_M)%2
+    
+    
+    msg_tx='Hello World?'
+    
+    blocks_tx=str_to_blocks4(msg_tx)
+    encrypted=encrypt(blocks_tx, pub_key, t)
+    
+    blocks_rx=decrypt(encrypted, P_M_inv, linear_code_decoder, S_inv)
+    msg_rx=blocks4_to_str(blocks_rx)
+    
+    print(f'msg_rx: {msg_rx}')
         
         
