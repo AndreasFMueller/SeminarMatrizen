@@ -1,12 +1,17 @@
 TEX=xelatex
 TEXARGS=--output-directory=build --halt-on-error
 
-all: script.pdf media
+all: slides.pdf script.pdf media
 
 .PHONY: clean
 clean:
 	@rm -rfv build
 	# @rm -rfv media
+
+slides.pdf: slides.tex
+	mkdir -p build
+	$(TEX) $(TEXARGS) slides.tex
+	cp build/slides.pdf .
 
 script.pdf: script.tex
 	mkdir -p build
