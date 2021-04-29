@@ -18,5 +18,6 @@ chapter5 =								\
 	../slides/7/liealgebra.tex					\
 	../slides/7/kommutator.tex					\
 	../slides/7/dg.tex						\
+	../slides/7/zusammenhang.tex					\
 	../slides/7/chapter.tex
 
