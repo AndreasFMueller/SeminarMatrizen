@@ -1,0 +1,98 @@
+%
+% ueberlagerung.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$S^3$, $\operatorname{SU}(2)$ und $\operatorname{SO}(3)$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.38\textwidth}
+\uncover<6->{%
+\begin{block}{Überlagerung}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\coordinate (A) at (0,0);
+\coordinate (B) at (2,0);
+\coordinate (C) at (2,-2);
+\coordinate (D) at (0,-2);
+
+\uncover<7->{
+\node at (A) {$\{\pm 1\}\mathstrut$};
+}
+\uncover<6->{
+\node at (B) {$S^3\mathstrut$};
+\node at ($(B)+(0.1,0)$) [right] {$=\operatorname{SU}(2)\mathstrut$};
+}
+\uncover<7->{
+\node at (C) {$\operatorname{SO}(3)\mathstrut$};
+\node at (D) {$\{I\}\mathstrut$};
+}
+
+\uncover<7->{
+\draw[->,shorten >= 0.3cm,shorten <= 0.5cm] (A) -- (B);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (A) -- (D);
+\draw[->,shorten >= 0.3cm,shorten <= 0.3cm] (B) -- (C);
+\draw[->,shorten >= 0.6cm,shorten <= 0.3cm] (D) -- (C);
+}
+
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item<7->
+$\pm q\in S^3$ $\Rightarrow$ $\varrho_{q}=\varrho_{-q}$
+\item<8->
+In der Nähe von $I$ sehen die Gruppen
+$\operatorname{SO}(3)$
+und
+$\operatorname{SU}(2)$ 
+``gleich'' aus
+\item<9->
+$\operatorname{SU}(2)$ ist geometrisch ``einfacher''
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.58\textwidth}
+\begin{block}{Pauli-Matrizen}
+Quaternionen als $2\times 2$-Matrizen schreiben
+\begin{align*}
+1&=\begin{pmatrix}1&0\\0&1\end{pmatrix}=\sigma_0,
+&
+i&=\begin{pmatrix}0&i\\i&0\end{pmatrix}=-i\sigma_1
+\\
+j&=\begin{pmatrix}0&-1\\1&0\end{pmatrix}=-i\sigma_2,
+&
+k&=\begin{pmatrix}i&0\\0&-i\end{pmatrix}=-i\sigma_3
+\end{align*}
+\uncover<2->{%
+erfüllen $i^2=j^2=k^2=ijk=-1$.}
+\end{block}
+\uncover<3->{%
+\begin{block}{$S^3 = \operatorname{SU}(2)$}
+\[
+a+bi+cj+dk
+=
+\begin{pmatrix}
+a+id&-c+bi\\
+c+ib&a-id
+\end{pmatrix}
+=
+A
+\]
+\begin{align*}
+\uncover<4->{
+\det A &= a^2 + b^2 + c^2 + d^2 = 1
+}
+\\
+\uncover<5->{
+A^* &= a - ib - jc - kd
+}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

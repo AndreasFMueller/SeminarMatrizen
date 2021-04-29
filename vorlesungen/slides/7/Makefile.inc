@@ -19,5 +19,10 @@ chapter5 =								\
 	../slides/7/kommutator.tex					\
 	../slides/7/dg.tex						\
 	../slides/7/zusammenhang.tex					\
+	../slides/7/quaternionen.tex					\
+	../slides/7/qdreh.tex						\
+	../slides/7/ueberlagerung.tex					\
+	../slides/7/hopf.tex						\
+	../slides/7/haar.tex						\
 	../slides/7/chapter.tex
 
