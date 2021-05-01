@@ -1,5 +1,8 @@
 \documentclass[12pt, xcolor, aspectratio=169]{beamer}
 
+% language
+\usepackage{polyglossia}
+\setmainlanguage{german}
 
 % Theme
 \beamertemplatenavigationsymbolsempty
@@ -31,6 +34,15 @@
 
 \setbeamercolor*{framesubtitle}{fg=white}
 
+\setbeamertemplate{section page}
+{
+  \begin{center}
+    \Huge
+    \insertsection
+  \end{center}
+}
+\AtBeginSection{\frame{\sectionpage}}
+
 % Metadata
 \title{\LARGE \scshape Punktgruppen und Kristallen}
 \author[N. Pross, T. T\"onz]{Naoki Pross, Tim T\"onz}
@@ -55,7 +67,15 @@
 \end{frame}
 
 \section{Geometrische Symmetrien}
+%% Made in video
+
 \section{Algebraische Symmetrien}
+\begin{frame}{}
+  Hello
+\end{frame}
+
 \section{Kristallen}
+
+\section{Anwendungen}
 
 \end{document}
