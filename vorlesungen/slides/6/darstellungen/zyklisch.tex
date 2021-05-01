@@ -16,15 +16,17 @@
 C_n = \mathbb{Z}/n\mathbb{Z}
 \)
 \end{block}
+\uncover<2->{%
 \begin{block}{Darstellungen von $C_n$}
 Gegeben durch $\varrho_k(1)=e^{2\pi i k/n}$,
 \[
 \varrho_k(l) = e^{2\pi ikl/n}
 \]
-\end{block}
+\end{block}}
 \vspace{-10pt}
+\uncover<3->{
 \begin{block}{Charaktere}
-\vspace{-10pt}
+%\vspace{-10pt}
 \[
 \chi_k(l) = e^{2\pi ikl/n}
 \]
@@ -38,13 +40,15 @@ haben Skalarprodukte
 \end{cases}
 \]
 Die Darstellungen $\chi_k$ sind nicht isomorph
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
 \begin{block}{Orthonormalbasis}
 Die Funktionen $\chi_k$ bilden eine Orthonormalbasis von $L^2(C_n)$
-\end{block}
+\end{block}}
 \vspace{-4pt}
+\uncover<6->{%
 \begin{block}{Analyse einer Darstellung}
 $\varrho\colon C_n\to \mathbb{C}^n$ eine Darstellung,
 $\chi_\varrho$ der Charakter lässt zerlegen:
@@ -53,24 +57,27 @@ c_k
 &=
 \langle \chi_k, \chi\rangle = \frac{1}{n} \sum_{l} \chi_k(l) e^{-2\pi ilk/n}
 \\
+\uncover<7->{
 \chi(l)
 &=
 \sum_{k} c_k \chi_k
 =
 \sum_{k} c_k e^{2\pi ikl/n}
+}
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-13pt}
+\uncover<8->{%
 \begin{block}{Fourier-Theorie}
 \vspace{-3pt}
 \begin{center}
 \begin{tabular}{>{$}l<{$}l}
-C_n&Diskrete Fourier-Theorie\\
-U(1)&Fourier-Reihen\\
-\mathbb{R}&Fourier-Integral
+\uncover<9->{C_n&Diskrete Fourier-Theorie}\\
+\uncover<10->{U(1)&Fourier-Reihen}\\
+\uncover<11->{\mathbb{R}&Fourier-Integral}
 \end{tabular}
 \end{center}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

@@ -20,39 +20,45 @@ Gegeben zwei Darstellungen
 \end{align*}
 \end{block}
 \vspace{-12pt}
+\uncover<2->{%
 \begin{block}{Direkte Summe der Darstellungen}
-\vspace{-12pt}
+%\vspace{-12pt}
 \begin{align*}
 \varrho_1\oplus\varrho_2
 &\colon
-G\to \mathbb{C}^{n_1+n_2} = \mathbb{C}^{n_1}\times\mathbb{C}^{n_2}
-=:
-\mathbb{C}^{n_1}\oplus\mathbb{C}^{n_2}
+G\to \mathbb{C}^{n_1+n_2}
+\only<3|handout:0>{
+= \mathbb{C}^{n_1}\times\mathbb{C}^{n_2}}
+\uncover<4->{=:
+\mathbb{C}^{n_1}\oplus\mathbb{C}^{n_2}}
+\hspace*{5cm}
 \\
 &\colon g\mapsto (\varrho_1(g),\varrho_2(g))
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-12pt}
+\uncover<5->{%
 \begin{block}{Charakter}
-\vspace{-12pt}
+%\vspace{-12pt}
 \begin{align*}
 \chi_{\varrho_1\oplus\varrho_2}(g)
 &=
 \operatorname{Spur}(\varrho_1\oplus\varrho_2)(g)
 \\
-&=
+&\uncover<6->{=
 \operatorname{Spur}{\varrho_1(g)}
 +
-\operatorname{Spur}{\varrho_1(g)}
+\operatorname{Spur}{\varrho_1(g)}}
 \\
-&=
+&\uncover<7->{=
 \chi_{\varrho_1}(g)
 +
-\chi_{\varrho_2}(g)
+\chi_{\varrho_2}(g)}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<8->{%
 \begin{block}{Tensorprodukt}
 $n_1\times n_2$-dimensionale
 Darstellung $\varrho_1\otimes\varrho_2$ mit Matrix
@@ -67,15 +73,16 @@ Darstellung $\varrho_1\otimes\varrho_2$ mit Matrix
 		&\varrho_1(g)_{n_1n_1} \varrho_2(g)
 \end{pmatrix}
 \]
-Die ``Einträge'' sind $n_2\times n_2$-Blöcke
-\end{block}
+\uncover<9->{Die ``Einträge'' sind $n_2\times n_2$-Blöcke}
+\end{block}}
+\uncover<10->{%
 \begin{block}{Darstellungsring}
 Die Menge der Darstellungen $R(G)$  einer Gruppe hat
 einer Ringstruktur mit $\oplus$ und $\otimes$
 \\
-$\Rightarrow$
-Algebra zum Studium der möglichen Darstellungen von $G$ verwenden
-\end{block}
+\uncover<11->{$\Rightarrow$
+Algebra zum Studium der möglichen Darstellungen von $G$ verwenden}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

@@ -14,31 +14,33 @@
 \begin{block}{Mittelung einer Abbildung}
 $h\colon V_1\to V_2$
 \[
-h^G = \frac{1}{|G|} \sum_{g\in G} \varrho_2(g)^{-1} \circ f \circ \varrho_1(g)
+h^G = \frac{1}{|G|} \sum_{g\in G} \varrho_2(g)^{-1} \circ h \circ \varrho_1(g)
 \]
 \begin{enumerate}
-\item $\varrho_i$ nicht isomorph $\Rightarrow$ $h^G=0$
-\item $V_1=V_2$, $h^G = \frac1n\operatorname{Spur}h$
+\item<2-> $\varrho_i$ nicht isomorph $\Rightarrow$ $h^G=0$
+\item<3-> $V_1=V_2,\varrho_1=\varrho_2$, $h^G = \frac1n\operatorname{Spur}h$
 \end{enumerate}
 \end{block}
+\uncover<4->{%
 \begin{block}{Matrixelemente für $\varrho_i$ nicht isomorph}
 $\varrho_i$ nicht isomorph, dann ist
 \[
 \frac{1}{|G|} \sum_{g\in G} \varrho_1(g^{-1})_{kl}\varrho_2(g)_{uv}=0
 \]
 für alle $k,l,u,v$
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<5->{%
 \begin{block}{Matrixelemente $V_1=V_2$, $\varrho_i$ iso}
-F¨r $k=v$ und $l=u$  gilt
+Für $k=v$ und $l=u$  gilt
 \[
 \frac{1}{|G|} \sum_{g\in G} \varrho_1(g^{-1})_{kl} \varrho_2(g)_{uv}
 =
 \frac1n
 \]
 und $=0$ sonst
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
