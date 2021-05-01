@@ -15,7 +15,6 @@ config.tex_template.add_to_preamble(
 # scenes
 class Geometric2DSymmetries(Scene):
     def construct(self):
-        # title
         self.intro()
         self.cyclic()
         self.dihedral()
@@ -269,75 +268,115 @@ class Geometric2DSymmetries(Scene):
 
 class Geometric3DSymmetries(ThreeDScene):
     def construct(self):
-        self.symmetric()
+        self.improper_rotation()
 
+    def improper_rotation(self):
+        # changes the source of the light and camera
+        self.renderer.camera.light_source.move_to(3*IN) 
+        self.set_camera_orientation(phi=0, theta=0)
 
-    @staticmethod
-    def get_cube():
-        verts = np.array(list(it.product(*3 * [[-1, 1]])))
-        edges = [
-            (v1, v2)
-            for v1, v2 in it.combinations(verts, 2)
-            if sum(v1 == v2) == 2
-        ]
-        corner_dots = Group(*[
-            Sphere().set_height(0.25).move_to(vert)
-            for vert in verts
-        ])
-        corner_dots.set_color(GREY_B)
-        edge_rods = Group(*[
-            Line3D(v1, v2)
-            for v1, v2 in edges
-        ])
+        # initial square
+        square = Square()
+        square.set_fill(PINK, opacity=.5)
 
-        faces = Cube(square_resolution=(10, 10))
-        faces.set_height(2)
-        faces.set_color(BLUE_E, 0.3)
-        # faces.add_updater(lambda m: m.sort(lambda p: np.dot(p, [np.sign(self.euler_angles[0]) * 0.2, -1, 0.2])))
+        self.play(Create(square))
+        self.wait()
 
-        cube = Group(corner_dots, edge_rods, faces)
-        cube.corner_dots = corner_dots
-        cube.edge_rods = edge_rods
-        cube.faces = faces
-        return cube
+        self.play(Rotate(square, PI/2))
+        self.wait()
 
-    def symmetric(self):
-        self.renderer.camera.light_source.move_to(3*IN) # changes the source of the light
-        self.set_camera_orientation(phi=60 * DEGREES, theta=5 * DEGREES)
+        self.move_camera(phi= 75 * DEGREES, theta = -80 * DEGREES)
 
-        cube = Cube()
-        self.play(GrowFromCenter(cube))
+        # create sphere from slices
+        cyclic_slices = []
+        for i in range(4):
+            colors = [PINK, RED] if i % 2 == 0 else [BLUE_D, BLUE_E]
+            cyclic_slices.append(ParametricSurface(
+                    lambda u, v: np.array([
+                        np.sqrt(2) * np.cos(u) * np.cos(v),
+                        np.sqrt(2) * np.cos(u) * np.sin(v),
+                        np.sqrt(2) * np.sin(u)
+                    ]),
+                    v_min=PI/4 + PI/2 * i,
+                    v_max=PI/4 + PI/2 * (i + 1),
+                    u_min=-PI/2, u_max=PI/2,
+                    checkerboard_colors=colors, resolution=(10,5)))
 
-        axes = list(
-            map(lambda v: v / np.linalg.norm(v),
-            map(np.array, [
-                [0, 0, 1],
-                [0, 1, 1],
-                [1, 1, 1],
-            ])
-        ))
-        angles = [ PI, PI, PI * 2/3 ]
-        lines = list(map(lambda x: Line(-2 * x, 2 * x), axes))
+        self.play(FadeOut(square), *map(Create, cyclic_slices))
 
-        camera_thetas = list(map(lambda x: x * DEGREES, [10, 100, 110]))
-        for axis, line, angle, camera_angle in zip(axes, lines, angles, camera_thetas):
-            self.move_camera(theta=camera_angle)
-            self.play(Create(line))
-            self.play(Rotate(cube, angle, axis=axis, run_time=3))
+        axis = Line3D(start=[0,0,-2.5], end=[0,0,2.5])
 
-        self.wait(7)
+        axis_name = MathTex(r"r \in Z_4")
+        # move to yz plane
+        axis_name.rotate(PI/2, axis = RIGHT)
+        axis_name.next_to(axis, OUT)
 
+        self.play(Create(axis))
+        self.play(Write(axis_name))
+        self.wait()
+
+        cyclic_sphere = VGroup(*cyclic_slices)
+        self.play(Rotate(cyclic_sphere, PI/2))
+        self.wait()
+
+        # reflection plane
+        self.play(FadeOut(cyclic_sphere), FadeIn(square))
+        plane = ParametricSurface(
+                lambda u, v: np.array([u, 0, v]),
+                u_min = -2, u_max = 2,
+                v_min = -2, v_max = 2,
+                fill_opacity=.3, resolution=(1,1))
+
+        plane_name = MathTex(r"\sigma \in D_4")
+        # move to yz plane
+        plane_name.rotate(PI/2, axis = RIGHT)
+        plane_name.next_to(plane, OUT + RIGHT)
+
+        self.play(Create(plane))
+        self.play(Write(plane_name))
+        self.wait()
+
+        self.move_camera(phi = 25 * DEGREES, theta = -75 * DEGREES)
+
+        self.play(Rotate(square, PI/2))
+        self.play(Rotate(square, PI, RIGHT))
+
+        self.play(Rotate(square, PI/2))
+        self.play(Rotate(square, PI, RIGHT))
+
+        self.move_camera(phi = 75 * DEGREES, theta = -80 * DEGREES)
+
+        # create sphere from slices
+        dihedral_slices = []
+        for i in range(4):
+            for j in range(2):
+                colors = [PINK, RED] if i % 2 == 0 else [BLUE_D, BLUE_E]
+                dihedral_slices.append(ParametricSurface(
+                        lambda u, v: np.array([
+                            np.sqrt(2) * np.cos(u) * np.cos(v),
+                            np.sqrt(2) * np.cos(u) * np.sin(v),
+                            np.sqrt(2) * np.sin(u)
+                        ]),
+                        v_min=PI/2 * j + PI/4 + PI/2 * i,
+                        v_max=PI/2 * j + PI/4 + PI/2 * (i + 1),
+                        u_min=-PI/2 if j == 0 else 0,
+                        u_max=0 if j == 0 else PI/2,
+                        checkerboard_colors=colors, resolution=(10,5)))
+
+        dihedral_sphere = VGroup(*dihedral_slices)
+
+        self.play(FadeOut(square), Create(dihedral_sphere))
+
+        self.play(Rotate(dihedral_sphere, PI/2))
+        self.play(Rotate(dihedral_sphere, PI, RIGHT))
+
+        self.play(Rotate(dihedral_sphere, PI/2))
+        self.play(Rotate(dihedral_sphere, PI, RIGHT))
+
+        self.wait(5)
 
 class AlgebraicSymmetries(Scene):
     def construct(self):
-        # title
-        title = Tex(r"Algebraische \\ Symmetrien")
-        title.scale(1.5)
-        self.play(Write(title))
-        self.wait()
-        self.play(FadeOut(title))
-        self.wait()
-
         self.cyclic()
         self.matrices()
 
@@ -349,7 +388,7 @@ class AlgebraicSymmetries(Scene):
             r"-1 \cdot i &= -i \\",
             r"-i \cdot i &= 1")
         product.scale(1.5)
-        
+
         for part in product:
             self.play(Write(part))
 
