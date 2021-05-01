@@ -16,16 +16,10 @@ config.tex_template.add_to_preamble(
 class Geometric2DSymmetries(Scene):
     def construct(self):
         # title
-        title = Tex(r"Geometrische \\ Symmetrien")
-        title.scale(1.5)
-        self.play(Write(title))
-        self.wait()
-        self.play(FadeOut(title))
-        self.wait()
-
         self.intro()
         self.cyclic()
         self.dihedral()
+        self.circle()
 
     def intro(self):
         # create square
@@ -114,7 +108,7 @@ class Geometric2DSymmetries(Scene):
             r"r^3", r"r^4", r"\mathbb{1}"])
 
         action = next(actions, MathTex(r"r"))
-        
+
         self.play(Create(figure))
         self.play(Write(action))
         self.wait()
@@ -237,6 +231,40 @@ class Geometric2DSymmetries(Scene):
 
         self.wait(5)
         self.play(FadeOut(dihedral), FadeOut(dihedral_title))
+
+    def circle(self):
+        circle = Circle(radius=2)
+        dot = Dot()
+        dot.move_to(2 * RIGHT)
+
+        figure = VGroup(circle, dot)
+        group_name = MathTex(r"S^1")
+
+        # create circle
+        self.play(Create(circle))
+        self.play(Create(dot))
+
+        # move it around
+        self.play(Rotate(figure, PI/3))
+        self.play(Rotate(figure, PI/6))
+        self.play(Rotate(figure, -PI/3))
+
+        # show name
+        self.play(Rotate(figure, PI/4), Write(group_name))
+        self.play(Uncreate(figure))
+
+        nsphere = MathTex(r"S^1 = \left\{z \in \mathbb{C} : |z| = 1\right\}")
+        nsphere_title = Tex(r"Kreisgruppe")
+        nsphere_title.next_to(nsphere, 2 * UP)
+
+        nsphere.scale(1.2)
+        nsphere_title.scale(1.2)
+
+        self.play(ReplacementTransform(group_name, nsphere))
+        self.play(FadeInFrom(nsphere_title, UP))
+
+        self.wait(5)
+        self.play(FadeOut(nsphere_title), FadeOut(nsphere))
 
 
 class Geometric3DSymmetries(ThreeDScene):
