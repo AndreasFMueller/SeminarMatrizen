@@ -130,7 +130,7 @@ class Geometric2DSymmetries(Scene):
         self.wait()
 
         cyclic = MathTex(
-            r"Z_n = \langle r \rangle" 
+            r"C_n = \langle r \rangle" 
             r"= \left\{\mathbb{1}, r, r^2, \dots, r^{n-1} \right\}")
 
         cyclic_title = Tex(r"Zyklische Gruppe")
@@ -237,7 +237,7 @@ class Geometric2DSymmetries(Scene):
         dot.move_to(2 * RIGHT)
 
         figure = VGroup(circle, dot)
-        group_name = MathTex(r"S^1")
+        group_name = MathTex(r"C_\infty")
 
         # create circle
         self.play(Create(circle))
@@ -252,7 +252,7 @@ class Geometric2DSymmetries(Scene):
         self.play(Rotate(figure, PI/4), Write(group_name))
         self.play(Uncreate(figure))
 
-        nsphere = MathTex(r"S^1 = \left\{z \in \mathbb{C} : |z| = 1\right\}")
+        nsphere = MathTex(r"C_\infty \cong S^1 = \left\{z \in \mathbb{C} : |z| = 1\right\}")
         nsphere_title = Tex(r"Kreisgruppe")
         nsphere_title.next_to(nsphere, 2 * UP)
 
@@ -269,6 +269,7 @@ class Geometric2DSymmetries(Scene):
 class Geometric3DSymmetries(ThreeDScene):
     def construct(self):
         self.improper_rotation()
+        self.icosahedron()
 
     def improper_rotation(self):
         # changes the source of the light and camera
@@ -279,11 +280,12 @@ class Geometric3DSymmetries(ThreeDScene):
         square = Square()
         square.set_fill(PINK, opacity=.5)
 
-        self.play(Create(square))
-        self.wait()
+        self.play(SpinInFromNothing(square))
+        self.wait(2)
 
-        self.play(Rotate(square, PI/2))
-        self.wait()
+        for i in range(4):
+            self.play(Rotate(square, PI/2))
+            self.wait(.5)
 
         self.move_camera(phi= 75 * DEGREES, theta = -80 * DEGREES)
 
@@ -306,7 +308,7 @@ class Geometric3DSymmetries(ThreeDScene):
 
         axis = Line3D(start=[0,0,-2.5], end=[0,0,2.5])
 
-        axis_name = MathTex(r"r \in Z_4")
+        axis_name = MathTex(r"r \in C_4")
         # move to yz plane
         axis_name.rotate(PI/2, axis = RIGHT)
         axis_name.next_to(axis, OUT)
@@ -316,8 +318,9 @@ class Geometric3DSymmetries(ThreeDScene):
         self.wait()
 
         cyclic_sphere = VGroup(*cyclic_slices)
-        self.play(Rotate(cyclic_sphere, PI/2))
-        self.wait()
+        for i in range(4):
+            self.play(Rotate(cyclic_sphere, PI/2))
+            self.wait()
 
         # reflection plane
         self.play(FadeOut(cyclic_sphere), FadeIn(square))
@@ -367,18 +370,21 @@ class Geometric3DSymmetries(ThreeDScene):
 
         self.play(FadeOut(square), Create(dihedral_sphere))
 
-        self.play(Rotate(dihedral_sphere, PI/2))
-        self.play(Rotate(dihedral_sphere, PI, RIGHT))
-
-        self.play(Rotate(dihedral_sphere, PI/2))
-        self.play(Rotate(dihedral_sphere, PI, RIGHT))
+        for i in range(2):
+            self.play(Rotate(dihedral_sphere, PI/2))
+            self.play(Rotate(dihedral_sphere, PI, RIGHT))
+            self.wait()
 
         self.wait(5)
+
+    def icosahedron(self):
+        pass
+
 
 class AlgebraicSymmetries(Scene):
     def construct(self):
         self.cyclic()
-        self.matrices()
+        # self.matrices()
 
     def cyclic(self):
         # show the i product
@@ -391,30 +397,31 @@ class AlgebraicSymmetries(Scene):
 
         for part in product:
             self.play(Write(part))
+            self.wait()
 
-        self.wait()
         self.play(ApplyMethod(product.scale, 1/1.5))
 
         # gather in group
         group = MathTex(r"G = \left\{ 1, i, -1, -i \right\}")
         self.play(ReplacementTransform(product, group))
-        self.wait()
+        self.wait(2)
 
         # show Z4
         grouppow =  MathTex(
             r"G &= \left\{ 1, i, i^2, i^3 \right\} \\",
-            r"Z_4 &= \left\{ \mathbb{1}, r, r^2, r^3 \right\}")
+            r"C_4 &= \left\{ \mathbb{1}, r, r^2, r^3 \right\}")
         self.play(ReplacementTransform(group, grouppow[0]))
-        self.wait()
+        self.wait(2)
 
         self.play(Write(grouppow[1]))
         self.wait()
         self.play(ApplyMethod(grouppow.to_edge, UP))
 
         # define morphisms
-        morphism = MathTex(r"\phi: Z_4 \to G \\")
+        morphism = MathTex(r"\phi: C_4 \to G \\")
         morphism.shift(UP)
         self.play(Write(morphism))
+        self.wait()
 
         # show an example
         mappings = MathTex(
@@ -425,33 +432,33 @@ class AlgebraicSymmetries(Scene):
         mappings.next_to(morphism, DOWN)
 
         self.play(Write(mappings))
-        self.wait()
+        self.wait(3)
         self.play(FadeOutAndShift(mappings, DOWN))
 
         # more general definition
         homomorphism = MathTex(
-            r"\phi(r\circ \mathbb{1}) &= i\cdot 1 \\",
-            r"&= \phi(r)\cdot\phi(\mathbb{1})")
+            r"\phi(r\circ \mathbb{1}) &= \phi(r)\cdot\phi(\mathbb{1}) \\",
+            r"&= i\cdot 1")
         homomorphism.next_to(morphism, DOWN).align_to(morphism, LEFT)
         for part in homomorphism:
             self.play(Write(part))
+            self.wait()
 
         hom_bracegrp = VGroup(morphism, homomorphism)
 
         self.play(
-            ApplyMethod(grouppow.shift, 2.5 * LEFT),
-            ApplyMethod(hom_bracegrp.shift, 2.5 * LEFT))
+            ApplyMethod(grouppow.shift, 3 * LEFT),
+            ApplyMethod(hom_bracegrp.shift, 3 * LEFT))
 
         hom_brace = Brace(hom_bracegrp, direction=RIGHT)
         hom_text = Tex("Homomorphismus").next_to(hom_brace.get_tip(), RIGHT)
-        hom_text_short = MathTex(r"\mathrm{Hom}(G, Z_4)").next_to(hom_brace.get_tip(), RIGHT)
+        hom_text_short = MathTex(r"\mathrm{Hom}(C_4, G)").next_to(hom_brace.get_tip(), RIGHT)
 
         self.play(Create(hom_brace))
         self.play(Write(hom_text))
+        self.wait()
         self.play(ReplacementTransform(hom_text, hom_text_short))
         self.wait()
-
-        # self.play(FadeOut(hom_brace), FadeOut(hom_text_short))
 
         # add the isomorphism part
         isomorphism = Tex(r"\(\phi\) ist bijektiv")
@@ -462,7 +469,7 @@ class AlgebraicSymmetries(Scene):
 
         iso_brace = Brace(iso_bracegrp, RIGHT)
         iso_text = Tex("Isomorphismus").next_to(iso_brace.get_tip(), RIGHT)
-        iso_text_short = MathTex("Z_4 \cong G").next_to(iso_brace.get_tip(), RIGHT)
+        iso_text_short = MathTex("C_4 \cong G").next_to(iso_brace.get_tip(), RIGHT)
 
         self.play(
             ReplacementTransform(hom_brace, iso_brace),
@@ -478,9 +485,6 @@ class AlgebraicSymmetries(Scene):
         self.play(
             ApplyMethod(grouppow.to_edge, LEFT),
             ApplyMethod(morphgrp.to_edge, LEFT))
-        # self.play(
-        #     FadeOutAndShift(grouppow, UP),
-        #     FadeOutAndShift(morphgrp, DOWN))
 
         # draw a complex plane
         plane = ComplexPlane(x_min = -2, x_max = 3)
@@ -523,7 +527,7 @@ class AlgebraicSymmetries(Scene):
             FadeOutAndShift(morphgrp, RIGHT))
 
         modulo = MathTex(
-            r"\phi: Z_4 &\to (\mathbb{Z}/4\mathbb{Z}, +) \\"
+            r"\phi: C_4 &\to (\mathbb{Z}/4\mathbb{Z}, +) \\"
             r"\phi(\mathbb{1} \circ r^2) &= 0 + 2 \pmod 4").scale(1.5)
         self.play(Write(modulo))
         self.wait(2)
