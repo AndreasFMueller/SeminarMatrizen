@@ -8,15 +8,11 @@ clean:
 	@rm -rfv build
 	# @rm -rfv media
 
-slides.pdf: slides.tex
+%.pdf: %.tex
 	mkdir -p build
-	$(TEX) $(TEXARGS) slides.tex
-	cp build/slides.pdf .
-
-script.pdf: script.tex
-	mkdir -p build
-	$(TEX) $(TEXARGS) script.tex
-	cp build/script.pdf .
+	$(TEX) $(TEXARGS) $<
+	$(TEX) $(TEXARGS) $<
+	cp build/$@ .
 
 media:
 	poetry install
