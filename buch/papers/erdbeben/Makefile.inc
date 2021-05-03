@@ -8,7 +8,6 @@ dependencies-erdbeben =						\
 	papers/erdbeben/main.tex					\
 	papers/erdbeben/references.bib				\
 	papers/erdbeben/teil0.tex					\
-	papers/erdbeben/teil1.tex					\
 	papers/erdbeben/teil2.tex					\
 	papers/erdbeben/teil3.tex
 
