@@ -20,7 +20,7 @@ Das charakteristische Polynom der Matrix ist
 \]
 Es hat die doppelten Nullstellen
 \[
-\lambda
+\lambda_\pm
 =
 2\pm \sqrt{4-13}
 =
@@ -28,6 +28,70 @@ Es hat die doppelten Nullstellen
 =
 2\pm 3i.
 \]
-Zur Bestimmung
+Zur Bestimmung der Basis muss man jetzt zunächst den Kern von 
+$A_+=A-\lambda_+I$ bestimmen, zum Beispiel mit Hilfe des Gauss-Algorithmus,
+man findet
+\[
+b_1
+=
+\begin{pmatrix}
+1+i\\
+2+2i\\
+i\\
+1
+\end{pmatrix}
+\]
+Als nächstes braucht man einen Vektor $b_1\in \ker A_+^2$, der 
+$b_1$ auf $b_1+\lambda_+b_2$ abbildet.
+Durch Lösen des Gleichungssystems $Ab_2-\lambda b_2=b_1$ findet man
+\[
+b_2
+=
+\begin{pmatrix}
+2-i\\3\\2\\0
+\end{pmatrix}
+\qquad\text{und damit weiter}\qquad
+\overline{b}_1
+=
+\begin{pmatrix}
+1-i\\
+2-2i\\
+-i\\
+1
+\end{pmatrix},\quad
+\overline{b}_2
+=
+\begin{pmatrix}
+2+i\\3\\2\\0
+\end{pmatrix}.
+\]
+Als Basis für die reelle Normalform von $A$ kann man jetzt die Vektoren
+\begin{align*}
+c_1
+&=
+b_1+\overline{b}_1 = \begin{pmatrix}2\\4\\0\\2\end{pmatrix},&
+d_1
+&=
+\frac{1}{i}(b_1-\overline{b}_1) = \begin{pmatrix}2\\4\\2\\0\end{pmatrix},&
+c_2
+&=
+b_2+\overline{b}_2 = \begin{pmatrix}4\\6\\4\\0\end{pmatrix},&
+d_2
+&=
+\frac{1}{i}(b_2-\overline{b}_2) = \begin{pmatrix}-2\\0\\0\\0\end{pmatrix}.
+\end{align*}
+verwenden.
+In dieser Basis hat $A$ die Matrix
+\[
+A'
+=
+\begin{pmatrix}
+ 2& 3& 1& 0\\
+-3& 2& 0& 1\\
+ 0& 0& 2& 3\\
+ 0& 0&-3& 2
+\end{pmatrix},
+\]
+wie man einfach nachrechnen kann.
 \end{loesung}
 
