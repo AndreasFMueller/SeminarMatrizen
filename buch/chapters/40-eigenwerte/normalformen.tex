@@ -330,9 +330,259 @@ Es ist das Polynom geringsten Grades über $\Bbbk'$, welches $m(A)=0$ erfüllt.
 
 \subsection{Reelle Normalform
 \label{buch:subsection:reelle-normalform}}
+Wenn eine reelle Matrix $A$ komplexe Eigenwerte hat, ist die Jordansche
+Normalform zwar möglich, aber die zugehörigen Basisvektoren werden ebenfalls
+komplexe Komponenten haben.
+Für eine rein reelle Rechnung ist dies nachteilig, da der Speicheraufwand
+dadurch verdoppelt und der Rechenaufwand für Multiplikationen vervierfacht
+wird.
 
-\subsection{Obere Hessenberg-Form
-\label{buch:subsection:obere-hessenberg-form}}
+Die nicht reellen Eigenwerte von $A$ treten in konjugiert komplexen Paaren
+$\lambda_i$ und $\overline{\lambda}_i$ auf.
+Wir betrachten im Folgenden nur ein einziges Paar $\lambda=a+ib$ und
+$\overline{\lambda}=a-ib$ von konjugiert komplexen Eigenwerten mit
+nur je einem einzigen $n\times n$-Jordan-Block $J$ und $\overline{J}$.
+Ist $\mathcal{B}=\{b_1,\dots,b_n\}$ die Basis für den Jordan-Block $J$,
+dann kann man die Vektoren
+$\overline{\mathcal{B}}=\{\overline{b}_1,\dots,\overline{b}_n\}$ als Basis für
+$\overline{J}$ verwenden.
+Die vereinigte Basis
+$\mathcal{C} = \mathcal{B}\cup\overline{\mathcal{B}}
+= \{b_1,\dots,b_n,\overline{b}_1,\dots,\overline{b}_n\}$
+erzeugen einen $2n$-dimensionalen Vektorraum,
+der direkte Summe der beiden von $\mathcal{B}$ und $\overline{\mathcal{B}}$
+erzeugen Vektorräume $V=\langle\mathcal{B}\rangle$ und
+$\overline{V}=\langle\overline{\mathcal{B}}\rangle$ ist.
+Es ist also
+\[
+U=\langle \mathcal{C}\rangle
+=
+V\oplus \overline{V}.
+\]
+Wir bezeichnen die lineare Abbildung mit den Jordan-Blöcken
+$J$ und $\overline{J}$ wieder mit $A$.
+
+Auf dem Vektorraum $U$ hat die lineare Abbildung in der Basis
+$\mathcal{C}$ die Matrix
+\[
+A=
+\begin{pmatrix}
+J&0\\
+0&\overline{J}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda&   1   &       &      &       &&&&&\\
+       &\lambda&   1   &      &       &&&&&\\
+       &       &\lambda&\ddots&       &&&&&\\
+       &       &       &\ddots&   1   &&&&&\\
+       &       &       &      &\lambda&&&&&\\
+&&&& &\overline{\lambda}&1&&     & \\
+&&&& &&\overline{\lambda}&1&     & \\
+&&&& &&&\overline{\lambda} &\dots& \\
+&&&& &&&                   &\dots&1\\
+&&&& &&&                   &&\overline{\lambda}\\
+\end{pmatrix}.
+\]
+
+Die Jordan-Normalform bedeutet, dass
+\[
+\begin{aligned}
+Ab_1&=\lambda b_1           &
+	A\overline{b}_1 &= \overline{\lambda} \overline{b}_1      \\
+Ab_2&=\lambda b_2 + b_1     &
+	A\overline{b}_2 &= \overline{\lambda} \overline{b}_2 +\overline{b_1}\\
+Ab_3&=\lambda b_3 + b_2     &
+	A\overline{b}_3 &= \overline{\lambda} \overline{b}_3 +\overline{b_2}\\
+    &\;\vdots               &
+	                 &\;\vdots \\
+Ab_n&=\lambda b_n + b_{n-1} &
+	A\overline{b}_n &= \overline{\lambda} \overline{b}_n +\overline{b_{n-1}}
+\end{aligned}
+\]
+Für die Linearkombinationen
+\begin{equation}
+\begin{aligned}
+c_i &= \frac{b_i+\overline{b}_i}{\sqrt{2}},
+&
+d_i &= \frac{b_i-\overline{b}_i}{i\sqrt{2}}
+\end{aligned}
+\label{buch:eigenwerte:eqn:reellenormalformumrechnung}
+\end{equation}
+folgt dann für $k>1$
+\begin{align*}
+Ac_k
+&=
+\frac{Ab_k+A\overline{b}_k}{2}
+&
+Ad_k
+&=
+\frac{Ab_k-A\overline{b}_k}{2i}
+\\
+&=
+\frac1{\sqrt{2}}(\lambda b_k + b_{k-1}
++ \overline{\lambda}\overline{b}_k + \overline{b}_{k-1})
+&
+&=
+\frac1{i\sqrt{2}}(\lambda b_k + b_{k-1}
+- \overline{\lambda}\overline{b}_k - \overline{b}_{k-1})
+\\
+&=
+\frac1{\sqrt{2}}(\alpha b_k + i\beta b_k + \alpha \overline{b}_k -i\beta \overline{b}_k)
++
+c_{k-1}
+&
+&=
+\frac1{i\sqrt{2}}(
+\alpha b_k + i\beta b_k - \alpha \overline{b}_k +i\beta \overline{b}_k)
++
+d_{k-1}
+\\
+&=
+\alpha
+\frac{b_k+\overline{b}_k}{\sqrt{2}}
++
+i \beta \frac{b_k-\overline{b}_k}{\sqrt{2}}
++
+c_{k-1}
+&
+&=
+\alpha
+\frac{b_k-\overline{b}_k}{i\sqrt{2}}
++
+i \beta \frac{b_k+\overline{b}_k}{i\sqrt{2}}
++
+d_{k-1}
+\\
+&= \alpha c_k -\beta d_k
++
+c_{k-1}
+&
+&= \alpha d_k + \beta c_k
++
+d_{k-1}.
+\end{align*}
+Für $k=1$ fallen die Terme $c_{k-1}$ und $d_{k-1}$ weg.
+In der Basis $\mathcal{D}=\{c_1,d_1,\dots,c_n,d_n\}$ hat die Matrix
+also die {\em reelle Normalform}
+\begin{equation}
+\def\temp#1{\multicolumn{1}{|c}{#1\mathstrut}}
+\def\semp#1{\multicolumn{1}{c|}{#1\mathstrut}}
+A_{\text{reell}}
+=
+\left(
+\begin{array}{cccccccccccc}
+\cline{1-4}
+\temp{\alpha}& \beta&\temp{     1}&     0&\temp{}      &      &      &      &      &      &&\\
+\temp{-\beta}&\alpha&\temp{     0}&     1&\temp{}      &      &      &      &      &      &&\\
+\cline{1-6}
+      &      &\temp{\alpha}& \beta&\temp{     1}&     0&\temp{}      &      &      &      &&\\
+      &      &\temp{-\beta}&\alpha&\temp{     0}&     1&\temp{}      &      &      &      &&\\
+\cline{3-6}
+      &      &      &      &\temp{\alpha}& \beta&\temp{}      &      &      &      &&\\
+      &      &      &      &\temp{-\beta}&\alpha&\temp{}      &      &      &      &&\\
+\cline{5-8}
+      &      &      &      &      &      &\temp{\phantom{0}}&\phantom{0}&\temp{      }&      &&\\
+      &      &      &      &      &      &\temp{\phantom{0}}&\phantom{0}&\temp{      }&      &&\\
+\cline{7-12}
+      &      &      &      &      &      &      &      &\temp{\alpha}& \beta&\temp{     1}&\semp{     0}\\
+      &      &      &      &      &      &      &      &\temp{-\beta}&\alpha&\temp{     0}&\semp{     1}\\
+\cline{9-12}
+      &      &      &      &      &      &      &      &      &      &\temp{\alpha}&\semp{ \beta}\\
+      &      &      &      &      &      &      &      &      &      &\temp{-\beta}&\semp{\alpha}\\
+\cline{11-12}
+\end{array}\right).
+\label{buch:eigenwerte:eqn:reellenormalform}
+\end{equation}
+
+Wir bestimmen noch die Transformationsmatrix, die $A$ in die reelle
+Normalform bringt.
+Dazu beachten wir, dass die Vektoren $c_k$ und $d_k$ in der Basis
+$\mathcal{B}$ nur in den Komponenten $k$ und $n+k$ von $0$ verschiedene
+Koordinaten haben, nämlich
+\[
+c_k
+=
+\frac1{\sqrt{2}}
+\left(
+\begin{array}{c}
+\vdots\\ 1 \\ \vdots\\\hline \vdots\\ 1\\\vdots
+\end{array}\right)
+\qquad\text{und}\qquad
+d_k
+=
+\frac1{i\sqrt{2}}
+\left(\begin{array}{c}
+\vdots\\ 1 \\ \vdots\\\hline\vdots\\-1\\\vdots
+\end{array}\right)
+=
+\frac1{\sqrt{2}}
+\left(\begin{array}{c}
+\vdots\\-i \\ \vdots\\\hline \vdots\\ i\\\vdots
+\end{array}\right)
+\]
+gemäss \eqref{buch:eigenwerte:eqn:reellenormalformumrechnung}.
+Die Umrechnung der Koordinaten von der Basis $\mathcal{B}$ in die Basis
+$\mathcal{D}$
+wird daher durch die Matrix
+\[
+S
+=
+\frac{1}{\sqrt{2}}
+\left(\begin{array}{cccccccccc}
+1&-i& &  & &  &     &     & &  \\
+ &  &1&-i& &  &     &     & &  \\
+ &  & &  &1&-i&     &     & &  \\
+ &  & &  & &  &\dots&\dots& &  \\
+ &  & &  & &  &     &     &1&-i\\
+\hline
+1& i& &  & &  &     &     & &  \\
+ &  &1& i& &  &     &     & &  \\
+ &  & &  &1& i&     &     & &  \\
+ &  & &  & &  &\dots&\dots& &  \\
+ &  & &  & &  &     &     &1& i\\
+\end{array}\right)
+\]
+vermittelt.
+Der Nenner $\sqrt{2}$ wurde so gewählt, dass die
+Zeilenvektoren der Matrix $S$ als komplexe Vektoren orthonormiert sind,
+die Matrix $S$ ist daher unitär und hat die Inverse
+\[
+S^{-1}
+=
+S^*
+=
+\frac{1}{\sqrt{2}}
+\left(\begin{array}{ccccc|ccccc}
+ 1&  &  &     &  &1& & &     & \\
+-i&  &  &     &  &i& & &     & \\
+  & 1&  &     &  & &1& &     & \\
+  &-i&  &     &  & &i& &     & \\
+  &  & 1&     &  & & &1&     & \\
+  &  &-i&     &  & & &i&     & \\
+  &  &  &\dots&  & & & &\dots& \\
+  &  &  &\dots&  & & & &\dots& \\
+  &  &  &     & 1& & & &     &1\\
+  &  &  &     &-i& & & &     &i\\
+\end{array}\right).
+\]
+Insbesondere folgt jetzt
+\[
+A
+=
+S^{-1}A_{\text{reell}}S
+=
+S^*A_{\text{reell}}S
+\qquad\text{und}\qquad
+A_{\text{reell}}
+=
+SAS^{-1}
+=
+SAS^*.
+\]
+
+%\subsection{Obere Hessenberg-Form
+%\label{buch:subsection:obere-hessenberg-form}}
 
 
 
