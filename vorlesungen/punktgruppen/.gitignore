@@ -1,6 +1,8 @@
 # directories
 __pycache__
-media
+media/Tex
+media/images/crystal
+media/videos
 build
 
 # files
