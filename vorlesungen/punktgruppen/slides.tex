@@ -155,7 +155,7 @@
       \end{align*}
       Orthogonale Gruppe
       \[
-        O(n) = \left\{ Q \in \mathrm{GL}_n(\mathbb{R}) : QQ^t = Q^tQ = I \right\}
+        O(n) = \left\{ Q : QQ^t = Q^tQ = I \right\}
       \]
     \end{column}
     \begin{column}{.5\textwidth}
@@ -173,7 +173,7 @@
         \Phi_r &= \begin{pmatrix}
           \cos \alpha & -\sin \alpha & 0 \\
           \sin \alpha & \cos \alpha & 0 \\
-          0 & 0 & 1 \\[1em]
+          0 & 0 & 1
         \end{pmatrix}
       \end{align*}
     \end{column}
@@ -208,21 +208,40 @@
                 }
               }
             \end{scope}
-
             \draw[white, thick] (-1, -1) rectangle (4,3);
 
-            \draw[red!80!background, thick, ->] (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
-            \draw[cyan!80!background, thick, ->] (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
-
+            \draw[red!80!background, thick, ->] 
+              (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
+            \draw[cyan!80!background, thick, ->]
+              (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
           \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{.5\textwidth}
-      Invariant (symmetrisch) unten Translation
+      Invariant (symmetrisch) unter Translation
       \[
         Q_i(\vec{r}) = \vec{r} + \vec{a}_i
       \]
 	    M\"ogliche Kristallstrukturen
+      \begin{center}
+        \begin{tikzpicture}[]
+          \node[circle, dashed, draw = gray, 
+            thick, fill = background,
+            minimum size = 4cm] {};
+          \node[gray] at (.9,-1.2) {674};
+
+          \node[circle, draw = white, thick,
+            fill = orange!40!background,
+            xshift = -3mm, yshift = 2mm,
+            minimum size = 2.75cm] (A) {};
+          \node[white, yshift = 2mm] at (A) {230};
+
+          \node[circle, draw = white, thick, 
+            fill = red!20!background,
+            xshift = -5mm, yshift = -5mm,
+            minimum size = 1cm] {32};
+        \end{tikzpicture}
+      \end{center}
     \end{column}
   \end{columns}
 \end{frame}
@@ -272,21 +291,19 @@
           \node[above left, xshift=-2mm] at (X) {\(x\)};
         \end{tikzpicture}
       \end{center}
+    \end{column}
+    \begin{column}{.5\textwidth}
       Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
       \begin{align*}
         q' = n q &= q + 2x \\
         nq &= q + 2q\sin(\alpha - \pi/2) \\
         n &= 1 - 2\cos\alpha
       \end{align*}
-    \end{column}
-    \begin{column}{.5\textwidth}
       Somit muss
-      \[
-        \alpha = \cos^{-1}\left(\frac{m-1}{2}\right)
-      \]
-      \begin{gather*}
-        \alpha \in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
-      \end{gather*}
+      \begin{align*}
+        \alpha &= \cos^{-1}\left(\frac{n-1}{2}\right) \\[1em]
+        \alpha &\in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
+      \end{align*}
     \end{column}
   \end{columns}
 \end{frame}
@@ -386,9 +403,11 @@
 
       \node[white] (E) {\(\vec{E}_p\)};
       \begin{scope}[node distance = .5mm]
-        \node[blue!50, right = of E] {\(-\)};
-        \node[red!50, left = of E] {\(+\)};
+        \node[red!50, right = of E] {\(+\)};
+        \node[blue!50, left = of E] {\(-\)};
       \end{scope}
+      \draw[gray, thick, dotted] (E) to ++(0,2);
+      \draw[gray, thick, dotted] (E) to ++(0,-2);
     \end{scope}
 
     \begin{scope}[xshift=11cm, yshift=-4.5cm]
@@ -407,9 +426,11 @@
 
       \node[white] (E) {\(\vec{E}_p\)};
       \begin{scope}[node distance = .5mm]
-        \node[blue!50, right = of E] {\(-\)};
-        \node[red!50, left = of E] {\(+\)};
+        \node[red!50, right = of E] {\(+\)};
+        \node[blue!50, left = of E] {\(-\)};
       \end{scope}
+      \draw[gray, thick, dotted] (E) to ++(0,2);
+      \draw[gray, thick, dotted] (E) to ++(0,-2);
     \end{scope}
   \end{tikzpicture}
 \end{frame}
