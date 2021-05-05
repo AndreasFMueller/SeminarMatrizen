@@ -487,7 +487,7 @@ class AlgebraicSymmetries(Scene):
             ApplyMethod(morphgrp.to_edge, LEFT))
 
         # draw a complex plane
-        plane = ComplexPlane(x_min = -2, x_max = 3)
+        plane = ComplexPlane(x_range = [-2.5, 2.5])
         coordinates = plane.get_coordinate_labels(1, -1, 1j, -1j)
 
         roots = list(map(lambda p: Dot(p, fill_color=PINK), (
@@ -503,7 +503,7 @@ class AlgebraicSymmetries(Scene):
         square = Square().rotate(PI/4).scale(1/m.sqrt(2))
         square.set_fill(PINK).set_opacity(.4)
 
-        figuregrp = Group(plane, square, arrow, arrowtext, *coordinates, *roots)
+        figuregrp = VGroup(plane, square, arrow, arrowtext, *coordinates, *roots)
         figuregrp.to_edge(RIGHT)
 
         self.play(Create(plane))
