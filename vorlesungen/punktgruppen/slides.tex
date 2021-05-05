@@ -135,6 +135,57 @@
 
 \section{Algebraische Symmetrien}
 %% Made in video
+\frame{
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Produkt mit \(i\)
+      \begin{align*}
+        1 \cdot i &= i \\
+        i \cdot i &= -1 \\
+        -1 \cdot i &= -i \\
+        -i \cdot i &= 1
+      \end{align*}
+      \pause
+      %
+      Gruppe
+      \begin{align*}
+        G &= \left\{
+          1, i, -1, -i
+        \right\} \\
+        &= \left\{
+          1, i, i^2, i^3
+        \right\} \\
+        C_4 &= \left\{
+          \mathbb{1}, r, r^2, r^3
+        \right\}
+      \end{align*}
+      \pause
+    \end{column}
+    \begin{column}{.5\textwidth}
+      Darstellung \(\phi : C_4 \to G\)
+      \begin{align*}
+        \phi(\mathbb{1}) &= 1 & \phi(r^2) &= i^2 \\
+        \phi(r) &= i & \phi(r^3) &= i^3
+      \end{align*}
+      \pause
+      %
+      Homomorphismus
+      \begin{align*}
+        \phi(r \circ \mathbb{1}) &= \phi(r) \cdot \phi(\mathbb{1}) \\
+        &= i \cdot 1
+      \end{align*}
+      \pause
+      %
+      \(\phi\) ist bijektiv \(\implies C_4 \cong G\)
+			\pause
+			%
+			\begin{align*}
+				\psi : C_4 &\to (\mathbb{Z}/4\mathbb{Z}, +) \\
+				\psi(\mathbb{1}\circ r^2) &= 0 + 2 \pmod{4}
+			\end{align*}
+    \end{column}
+  \end{columns}
+}
 
 \section{3D Symmetrien}
 %% Made in video
