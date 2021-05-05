@@ -141,6 +141,44 @@
 %% Made in video
 
 \section{Matrizen}
+\frame{
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Symmetriegruppe
+      \[
+        G = \left\{\mathbb{1}, r, \sigma, \dots \right\}
+      \]
+      Matrixdarstellung
+      \begin{align*}
+        \Phi : G &\to O(3) \\
+        g &\mapsto \Phi_g
+      \end{align*}
+      Orthogonale Gruppe
+      \[
+        O(n) = \left\{ Q \in \mathrm{GL}_n(\mathbb{R}) : QQ^t = Q^tQ = I \right\}
+      \]
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{align*}
+        \Phi_\mathbb{1} &= \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+        \end{pmatrix} = I \\[1em]
+        \Phi_\sigma &= \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & -1 & 0 \\
+          0 & 0 & 1
+        \end{pmatrix} \\[1em]
+        \Phi_r &= \begin{pmatrix}
+          \cos \alpha & -\sin \alpha & 0 \\
+          \sin \alpha & \cos \alpha & 0 \\
+          0 & 0 & 1 \\[1em]
+        \end{pmatrix}
+      \end{align*}
+    \end{column}
+  \end{columns}
+}
 
 \section{Kristalle}
 \begin{frame}[fragile]{}
@@ -178,11 +216,19 @@
 
           \end{tikzpicture}
       \end{center}
+    \end{column}
+    \begin{column}{.5\textwidth}
       Invariant (symmetrisch) unten Translation
       \[
         Q_i(\vec{r}) = \vec{r} + \vec{a}_i
       \]
+	    M\"ogliche Kristallstrukturen
     \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{columns}[T]
     \begin{column}{.5\textwidth}
       Wie kombiniert sich \(Q_i\) mit der anderen Symmetrien?
       \begin{center}
@@ -233,11 +279,6 @@
         n &= 1 - 2\cos\alpha
       \end{align*}
     \end{column}
-  \end{columns}
-\end{frame}
-
-\frame{
-  \begin{columns}[T]
     \begin{column}{.5\textwidth}
       Somit muss
       \[
@@ -247,10 +288,8 @@
         \alpha \in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
       \end{gather*}
     \end{column}
-    \begin{column}{.5\textwidth}
-    \end{column}
   \end{columns}
-}
+\end{frame}
 
 \section{Anwendungen}
 \begin{frame}[fragile]{}
