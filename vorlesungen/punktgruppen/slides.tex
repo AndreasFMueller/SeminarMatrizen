@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
 
 % Theme
 \beamertemplatenavigationsymbolsempty
@@ -95,7 +96,7 @@
         \draw[white, very thick, -Circle] (pos.east) to ++ (1,0) node (p) {};
         \draw[white, very thick, -Circle] (neg.east) to ++ (1,0) node (n) {};
 
-        \draw[white, thick, ->] (p) to[out = -80, in = 80] node[midway, right] {\(U = 0\)} (n);
+        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U = 0\)} (n);
       \end{scope}
       \begin{scope}[
           node distance = 0cm,
@@ -124,7 +125,7 @@
         \draw[white, very thick, -Circle] (pos.east) to ++ (1,0) node (p) {};
         \draw[white, very thick, -Circle] (neg.east) to ++ (1,0) node (n) {};
 
-        \draw[white, thick, ->] (p) to[out = -80, in = 80] node[midway, right] {\(U \neq 0\)} (n);
+        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U \neq 0\)} (n);
       \end{scope}
     \end{tikzpicture}
   \end{center}
@@ -142,6 +143,114 @@
 \section{Matrizen}
 
 \section{Kristalle}
+\begin{frame}[fragile]{}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Kristallgitter:
+      \(n_i \in \mathbb{Z}\),
+      \(\vec{a}_i \in \mathbb{R}^3\)
+      \[
+        \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3
+      \]
+      \begin{center}
+          \begin{tikzpicture}[
+              dot/.style = {
+                draw, circle, thick, white, fill = gray!40!background,
+                minimum size = 2mm,
+                inner sep = 0pt,
+                outer sep = 1mm,
+              },
+            ]
+
+            \begin{scope}
+              \clip (-1,-1) rectangle (4,3);
+              \foreach \y in {-5,-4,...,5} {
+                \foreach \x in {-5,-4,...,5} {
+                  \node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
+                }
+              }
+            \end{scope}
+
+            \draw[white, thick] (-1, -1) rectangle (4,3);
+
+            \draw[red!80!background, thick, ->] (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
+            \draw[cyan!80!background, thick, ->] (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
+
+          \end{tikzpicture}
+      \end{center}
+      Invariant (symmetrisch) unten Translation
+      \[
+        Q_i(\vec{r}) = \vec{r} + \vec{a}_i
+      \]
+    \end{column}
+    \begin{column}{.5\textwidth}
+      Wie kombiniert sich \(Q_i\) mit der anderen Symmetrien?
+      \begin{center}
+        \begin{tikzpicture}[
+            dot/.style = {
+              draw, circle, thick, white, fill = gray!40!background,
+              minimum size = 2mm,
+              inner sep = 0pt,
+              outer sep = 1mm,
+            },
+          ]
+
+          \node[dot] (A1) at (0,0) {};
+          \node[below left] at (A1) {\(A\)};
+
+          \node[dot] (A2) at (2.5,0) {};
+          \node[below right] at (A2) {\(A'\)};
+
+          \draw[red!80!background, thick, ->] 
+            (A1) to node[midway, below] {\(\vec{Q}\)} (A2);
+
+          \node[dot] (B1) at (120:2.5) {};
+          \node[above left] at (B1) {\(B\)};
+
+          \draw[green!70!background, thick, ->]
+            (A1) ++(.5,0) arc (0:120:.5) node[midway, above, xshift=1mm] {\(C_n\)};
+          \draw[red!80!background, dashed, thick, ->] (A1) to (B1);
+
+
+          \node[dot] (B2) at ($(A2)+(60:2.5)$) {};
+          \node[above right] at (B2) {\(B'\)};
+
+          \draw[green!70!background, thick, dashed, ->] (A2) ++(-.5,0) arc (180:60:.5);
+          \draw[red!80!background, dashed, thick, ->] (A2) to (B2);
+
+          \draw[yellow!80!background, thick, ->] (B1) to node[above, midway] {\(\vec{Q}'\)} (B2);
+
+          \draw[gray, dashed, thick] (A1) to (A1 |- B1) node (X) {};
+          \draw[gray, dashed, thick] (A2) to (A2 |- B2);
+
+          \node[above left, xshift=-2mm] at (X) {\(x\)};
+        \end{tikzpicture}
+      \end{center}
+      Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
+      \begin{align*}
+        q' = n q &= q + 2x \\
+        nq &= q + 2q\sin(\alpha - \pi/2) \\
+        n &= 1 - 2\cos\alpha
+      \end{align*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\frame{
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Somit muss
+      \[
+        \alpha = \cos^{-1}\left(\frac{m-1}{2}\right)
+      \]
+      \begin{gather*}
+        \alpha \in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
+      \end{gather*}
+    \end{column}
+    \begin{column}{.5\textwidth}
+    \end{column}
+  \end{columns}
+}
 
 \section{Anwendungen}
 \begin{frame}[fragile]{}
@@ -154,7 +263,7 @@
     ]
 
     \matrix [nodes = {box, align = center}, column sep = 1cm, row sep = 1.5cm] {
-      & \node (A) {32 Punktgruppe}; \\
+      & \node (A) {32 Punktgruppen}; \\
       \node (B) {11 Mit\\ Inversionszentrum}; & \node (C) {21 Ohne\\ Inversionszentrum}; \\
       & \node[fill=red!20!background] (D) {20 Piezoelektrisch}; & \node (E) {1 Nicht\\ piezoelektrisch}; \\
     };
