@@ -64,12 +64,11 @@
 \frame{\titlepage}
 \frame{\tableofcontents}
 
-\section{Einleitung}
 \frame{
   \begin{itemize}
-    \item Was heisst \emph{Symmetrie} in der Mathematik?
-    \item Wie kann ein Kristall modelliert werden?
-    \item Aus der Physik: Piezoelektrizit\"at
+    \item Was heisst \emph{Symmetrie} in der Mathematik? \pause
+    \item Wie kann ein Kristall modelliert werden? \pause
+    \item Aus der Physik: Piezoelektrizit\"at \pause
   \end{itemize}
   \begin{center}
     \begin{tikzpicture}
@@ -125,7 +124,7 @@
         \draw[white, very thick, -Circle] (pos.east) to ++ (1,0) node (p) {};
         \draw[white, very thick, -Circle] (neg.east) to ++ (1,0) node (n) {};
 
-        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U \neq 0\)} (n);
+        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U > 0\)} (n);
       \end{scope}
     \end{tikzpicture}
   \end{center}
@@ -148,16 +147,19 @@
       \[
         G = \left\{\mathbb{1}, r, \sigma, \dots \right\}
       \]
+      \pause
       Matrixdarstellung
       \begin{align*}
         \Phi : G &\to O(3) \\
         g &\mapsto \Phi_g
       \end{align*}
+      \pause
       Orthogonale Gruppe
       \[
         O(n) = \left\{ Q : QQ^t = Q^tQ = I \right\}
       \]
     \end{column}
+    \pause
     \begin{column}{.5\textwidth}
       \begin{align*}
         \Phi_\mathbb{1} &= \begin{pmatrix}
@@ -181,15 +183,31 @@
 }
 
 \section{Kristalle}
+\begin{frame}[fragile]{M\"ogliche Kristallstrukturen}
+  \begin{center}
+    \begin{tikzpicture}[]
+      \node[circle, dashed, draw = gray, 
+        thick, fill = background,
+        minimum size = 4cm] {};
+      \node[gray] at (.9,-1.2) {674};
+
+      \node[circle, draw = white, thick,
+        fill = orange!40!background,
+        xshift = -3mm, yshift = 2mm,
+        minimum size = 2.75cm] (A) {};
+      \node[white, yshift = 2mm] at (A) {230};
+
+      \node[circle, draw = white, thick, 
+        fill = red!20!background,
+        xshift = -5mm, yshift = -5mm,
+        minimum size = 1cm] {32};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
 \begin{frame}[fragile]{}
-  \begin{columns}[T]
+  \begin{columns}
     \begin{column}{.5\textwidth}
-      Kristallgitter:
-      \(n_i \in \mathbb{Z}\),
-      \(\vec{a}_i \in \mathbb{R}^3\)
-      \[
-        \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3
-      \]
       \begin{center}
           \begin{tikzpicture}[
               dot/.style = {
@@ -201,14 +219,14 @@
             ]
 
             \begin{scope}
-              \clip (-1,-1) rectangle (4,3);
-              \foreach \y in {-5,-4,...,5} {
-                \foreach \x in {-5,-4,...,5} {
+              \clip (-2,-2) rectangle (3,4);
+              \foreach \y in {-7,-6,...,7} {
+                \foreach \x in {-7,-6,...,7} {
                   \node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
                 }
               }
             \end{scope}
-            \draw[white, thick] (-1, -1) rectangle (4,3);
+            \draw[white, thick] (-2, -2) rectangle (3,4);
 
             \draw[red!80!background, thick, ->] 
               (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
@@ -217,31 +235,21 @@
           \end{tikzpicture}
       \end{center}
     \end{column}
+    \pause
     \begin{column}{.5\textwidth}
-      Invariant (symmetrisch) unter Translation
+      Kristallgitter:
+      \(n_i \in \mathbb{Z}\),
+      \(\vec{a}_i \in \mathbb{R}^3\)
+      \[
+        \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3
+      \]
+      \vspace{1cm}
+      \pause
+      
+      Invariant unter Translation
       \[
         Q_i(\vec{r}) = \vec{r} + \vec{a}_i
       \]
-	    M\"ogliche Kristallstrukturen
-      \begin{center}
-        \begin{tikzpicture}[]
-          \node[circle, dashed, draw = gray, 
-            thick, fill = background,
-            minimum size = 4cm] {};
-          \node[gray] at (.9,-1.2) {674};
-
-          \node[circle, draw = white, thick,
-            fill = orange!40!background,
-            xshift = -3mm, yshift = 2mm,
-            minimum size = 2.75cm] (A) {};
-          \node[white, yshift = 2mm] at (A) {230};
-
-          \node[circle, draw = white, thick, 
-            fill = red!20!background,
-            xshift = -5mm, yshift = -5mm,
-            minimum size = 1cm] {32};
-        \end{tikzpicture}
-      \end{center}
     \end{column}
   \end{columns}
 \end{frame}
@@ -249,7 +257,9 @@
 \begin{frame}[fragile]{}
   \begin{columns}[T]
     \begin{column}{.5\textwidth}
-      Wie kombiniert sich \(Q_i\) mit der anderen Symmetrien?
+      \onslide<1->{
+        Wie kombiniert sich \(Q_i\) mit der anderen Symmetrien?
+      }
       \begin{center}
         \begin{tikzpicture}[
             dot/.style = {
@@ -260,50 +270,70 @@
             },
           ]
 
-          \node[dot] (A1) at (0,0) {};
-          \node[below left] at (A1) {\(A\)};
+          \onslide<2->{
+            \node[dot] (A1) at (0,0) {};
+            \node[below left] at (A1) {\(A\)};
+          }
 
-          \node[dot] (A2) at (2.5,0) {};
-          \node[below right] at (A2) {\(A'\)};
+          \onslide<3->{
+            \node[dot] (A2) at (2.5,0) {};
+            \node[below right] at (A2) {\(A'\)};
 
-          \draw[red!80!background, thick, ->] 
-            (A1) to node[midway, below] {\(\vec{Q}\)} (A2);
+            \draw[red!80!background, thick, ->] 
+              (A1) to node[midway, below] {\(\vec{Q}\)} (A2);
+          }
 
-          \node[dot] (B1) at (120:2.5) {};
-          \node[above left] at (B1) {\(B\)};
+          \onslide<4->{
+            \node[dot] (B1) at (120:2.5) {};
+            \node[above left] at (B1) {\(B\)};
 
-          \draw[green!70!background, thick, ->]
-            (A1) ++(.5,0) arc (0:120:.5) node[midway, above, xshift=1mm] {\(C_n\)};
-          \draw[red!80!background, dashed, thick, ->] (A1) to (B1);
+            \draw[green!70!background, thick, ->]
+              (A1) ++(.5,0) arc (0:120:.5)
+              node[midway, above, xshift=1mm] {\(C_n\)};
+            \draw[red!80!background, dashed, thick, ->] (A1) to (B1);
+          }
 
+          \onslide<5->{
+            \node[dot] (B2) at ($(A2)+(60:2.5)$) {};
+            \node[above right] at (B2) {\(B'\)};
 
-          \node[dot] (B2) at ($(A2)+(60:2.5)$) {};
-          \node[above right] at (B2) {\(B'\)};
+            \draw[green!70!background, thick, dashed, ->]
+              (A2) ++(-.5,0) arc (180:60:.5);
+            \draw[red!80!background, dashed, thick, ->] (A2) to (B2);
+          }
 
-          \draw[green!70!background, thick, dashed, ->] (A2) ++(-.5,0) arc (180:60:.5);
-          \draw[red!80!background, dashed, thick, ->] (A2) to (B2);
+          \onslide<6->{
+            \draw[yellow!80!background, thick, ->]
+              (B1) to node[above, midway] {\(\vec{Q}'\)} (B2);
+          }
 
-          \draw[yellow!80!background, thick, ->] (B1) to node[above, midway] {\(\vec{Q}'\)} (B2);
-
+          \onslide<7->{
           \draw[gray, dashed, thick] (A1) to (A1 |- B1) node (X) {};
           \draw[gray, dashed, thick] (A2) to (A2 |- B2);
+          }
 
-          \node[above left, xshift=-2mm] at (X) {\(x\)};
+          \onslide<8->{
+            \node[above left, xshift=-2mm] at (X) {\(x\)};
+          }
         \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{.5\textwidth}
-      Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
+      \onslide<9->{
+        Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
+      }
       \begin{align*}
-        q' = n q &= q + 2x \\
-        nq &= q + 2q\sin(\alpha - \pi/2) \\
-        n &= 1 - 2\cos\alpha
+        \onslide<10->{q' = n q &= q + 2x \\}
+        \onslide<11->{nq &= q + 2q\sin(\alpha - \pi/2) \\}
+        \onslide<12->{n &= 1 - 2\cos\alpha}
       \end{align*}
-      Somit muss
-      \begin{align*}
-        \alpha &= \cos^{-1}\left(\frac{n-1}{2}\right) \\[1em]
-        \alpha &\in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
-      \end{align*}
+      \onslide<13->{
+        Somit muss
+        \begin{align*}
+          \alpha &= \cos^{-1}\left(\frac{1-n}{2}\right) \\[1em]
+          \alpha &\in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\}
+        \end{align*}
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -343,8 +373,9 @@
       negative/.style = { fill = blue!50 },
     ]
 
-    \node[font = {\large\bfseries}, align = center] (title) at (6,0) {Mit und Ohne\\ Symmetriezentrum};
+    \node[font = {\large\bfseries}, align = center] (title) at (5.5,0) {Mit und Ohne\\ Symmetriezentrum};
     \node[below = of title] {Polarisation Feld \(\vec{E}_p\)};
+    \pause
 
     \begin{scope}
       \matrix[nodes = { charge }, row sep = 8mm, column sep = 8mm] {
@@ -354,6 +385,7 @@
       };
       \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
     \end{scope}
+    \pause
 
     \begin{scope}[yshift=-4.5cm]
       \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
@@ -372,6 +404,7 @@
 
       \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
     \end{scope}
+    \pause
 
     \begin{scope}[xshift=11cm]
       \foreach \x/\t [count=\i] in {60/positive, 120/negative, 180/positive, 240/negative, 300/positive, 360/negative} {
@@ -379,10 +412,35 @@
       }
 
       \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
-      \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
     \end{scope}
+    \pause
 
-    \begin{scope}[xshift=6cm, yshift=-4.5cm]
+    \begin{scope}[xshift=11cm, yshift=-4.5cm]
+      \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
+      \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
+      \node[charge, positive, xshift= 2.5mm] (C3) at (180:1.5cm) {};
+      \node[charge, negative, yshift=-2.5mm] (C4) at (240:1.5cm) {};
+      \node[charge, positive, yshift=-2.5mm] (C5) at (300:1.5cm) {};
+      \node[charge, negative, xshift=-2.5mm] (C6) at (360:1.5cm) {};
+
+      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+
+      \draw[orange, very thick, <-] (C6) to ++(.7,0);
+      \draw[orange, very thick, <-] (C3) to ++(-.7,0);
+
+      \node[white] (E) {\(\vec{E}_p\)};
+      \begin{scope}[node distance = .5mm]
+        \node[red!50, right = of E] {\(+\)};
+        \node[blue!50, left = of E] {\(-\)};
+      \end{scope}
+      \draw[gray, thick, dotted] (E) to ++(0,2);
+      \draw[gray, thick, dotted] (E) to ++(0,-2);
+    \end{scope}
+    \pause
+
+    \begin{scope}[xshift=5.5cm, yshift=-4.5cm]
       \node[charge, positive, yshift=-2.5mm] (C1) at ( 60:1.5cm) {};
       \node[charge, negative, yshift=-2.5mm] (C2) at (120:1.5cm) {};
       \node[charge, positive, xshift=-2.5mm] (C3) at (180:1.5cm) {};
@@ -400,29 +458,6 @@
       \foreach \d in {C4, C5} {
         \draw[orange, very thick, <-] (\d) to ++(0,-.7);
       }
-
-      \node[white] (E) {\(\vec{E}_p\)};
-      \begin{scope}[node distance = .5mm]
-        \node[red!50, right = of E] {\(+\)};
-        \node[blue!50, left = of E] {\(-\)};
-      \end{scope}
-      \draw[gray, thick, dotted] (E) to ++(0,2);
-      \draw[gray, thick, dotted] (E) to ++(0,-2);
-    \end{scope}
-
-    \begin{scope}[xshift=11cm, yshift=-4.5cm]
-      \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
-      \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
-      \node[charge, positive, xshift= 2.5mm] (C3) at (180:1.5cm) {};
-      \node[charge, negative, yshift=-2.5mm] (C4) at (240:1.5cm) {};
-      \node[charge, positive, yshift=-2.5mm] (C5) at (300:1.5cm) {};
-      \node[charge, negative, xshift=-2.5mm] (C6) at (360:1.5cm) {};
-
-      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
-      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
-
-      \draw[orange, very thick, <-] (C6) to ++(.7,0);
-      \draw[orange, very thick, <-] (C3) to ++(-.7,0);
 
       \node[white] (E) {\(\vec{E}_p\)};
       \begin{scope}[node distance = .5mm]
@@ -462,14 +497,10 @@
       \]
       Anisotropisch Dielektrikum
       \[
-        (\ten{K}\ten{\varepsilon})\vec{E} = \frac{\omega^2}{\mu k^2} \vec{E}
+        (\ten{K}\ten{\varepsilon})\vec{E} = \frac{k^2}{\mu \omega^2} \vec{E}
       \]
       \[
         \vec{E} \in U_\lambda \implies (\ten{K}\ten{\varepsilon}) \vec{E} = \lambda \vec{E}
-      \]
-      \"Ahenlich auch in der Mechanik
-      \[
-        \vec{F} = \kappa \vec{x} \quad \text{(Hooke)}
       \]
     \end{column}
   \end{columns}
