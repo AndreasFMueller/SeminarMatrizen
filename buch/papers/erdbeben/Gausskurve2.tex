@@ -1,0 +1,39 @@
+\documentclass{standalone}
+ 
+\usepackage{pgfplots}
+ 
+\pgfplotsset{compat = newest}
+ 
+\begin{document}
+
+
+\begin{tikzpicture}
+
+
+\begin{axis}[
+    xmin = -1, xmax = 4,
+    ymin = -0.5, ymax = 2.50,
+    axis lines = center,
+    xlabel = $\sigma$,
+    ylabel = {$\mu$},
+]
+
+\addplot [
+    domain=-2:5, 
+    samples=200, 
+    color=orange,
+]
+{(1/(2*pi*0.2^2)^0.2)*exp(-(x-2)^2/(2*0.2^2))};
+
+\addplot [
+    domain=-2:5, 
+    samples=200, 
+    color=blue,
+    ]
+    {1/(2*pi*0.5^2)^0.5)*exp(-(x-0.9)^2/(2*0.5^2))};
+
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
