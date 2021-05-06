@@ -27,5 +27,6 @@ chapter5 =								\
 	../slides/7/ueberlagerung.tex					\
 	../slides/7/hopf.tex						\
 	../slides/7/haar.tex						\
+	../slides/7/integration.tex					\
 	../slides/7/chapter.tex
 
