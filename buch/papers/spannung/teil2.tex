@@ -3,12 +3,47 @@
 Wie im Kapitel Spannungsausbreitung beschrieben herrscht in jedem Punkt ein anderer Spannungszustand.
 Um die Spannung im Boden genauer untersuchen zu können für man einen infinitesimalen Würfel ein.
 \begin{figure}
-	\includegraphics{C:/Users/User/Documents/SeminarMatrizen/buch/papers/spannung/Grafiken/infinitesimalerWürfel.jpg}
+	\centering
+	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken\infinitesimalerWürfel.jpg}
 	\caption{infinitesimaler Würfel}
 	\label{fig:infintesimaler-wurfel}
 \end{figure}
 
 Sobald eine Kraft von oben wirkt hat man auch Kräfte die seitlich wirken.
 
-Nun alle Kräfte ansehen des Infintesimalen Körpers
+An diesem infinitesimalen Würfel hat man ein räumliches Koordinatensystem, die Achsen (1,2,3).
+Jede dieser 6 Flächen dieses Würfels hat damit 3 Pfeile.
+Geschrieben werden diese mit $\sigma$ mit jeweils zwei Indizes gibt.
+Die Indizes geben uns an, in welche Richtung der Pfeil zeigt.
+Zur Notation wird die Voigt`sche Notation benutzt. Das sieht wie folgt aus:
+
+\[
+\overline{\sigma}
+=
+\left[ \begin{array}{rrr}
+	\sigma_{11} & \sigma_{12} & \sigma_{13} \\ 
+	\sigma_{21} & \sigma_{22} & \sigma_{23} \\
+	\sigma_{31} & \sigma_{32} & \sigma_{33} \\ 
+\end{array}\right]
+=
+\left[ \begin{array}{rrr}
+	\sigma_{11} & \sigma_{12} & \sigma_{13} \\ 
+	 & \sigma_{22} & \sigma_{23} \\
+	sym &  & \sigma_{33} \\ 
+\end{array}\right]
+\Rightarrow
+\overrightarrow{\sigma}
+=
+\left(\begin{array}{c}\sigma_{11}\\\sigma_{22}\\\sigma_{33}\\\sigma_{23}\\\sigma_{13}\\\sigma_{12}\end{array}\right)
+\]
+
+Voigt`sche Notation besagt, dass man diesen Spannungstensor als Vektor aufschreiben darf.
+Die Reihenfolge folgt der Regel von Ecke links oben, diagonal zur Ecke rechts unten.
+Danach ist noch $\sigma_{23}$, $\sigma_{13}$ und $\sigma_{12}$ aufzuschreiben.
+
+Eine weitere Besonderheit ist die Symmetrie der Matrix.
+
+?????Was könnte man hier noch zu den Pfeilen erklären vom Würfel???????
+
+
 
