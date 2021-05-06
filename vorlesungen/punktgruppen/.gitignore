@@ -8,4 +8,5 @@ build
 # files
 script.log
 slides.log
+slides.vrb
 missfont.log

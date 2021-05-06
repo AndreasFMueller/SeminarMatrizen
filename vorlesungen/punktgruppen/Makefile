@@ -1,12 +1,11 @@
 TEX=xelatex
-TEXARGS=--output-directory=build --halt-on-error
+TEXARGS=--output-directory=build --halt-on-error --shell-escape
 
 all: slides.pdf script.pdf media
 
 .PHONY: clean
 clean:
 	@rm -rfv build
-	# @rm -rfv media
 
 %.pdf: %.tex
 	mkdir -p build
