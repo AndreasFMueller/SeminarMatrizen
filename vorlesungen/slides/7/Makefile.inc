@@ -16,6 +16,7 @@ chapter5 =								\
 	../slides/7/einparameter.tex					\
 	../slides/7/ableitung.tex					\
 	../slides/7/liealgebra.tex					\
+	../slides/7/liealgbeispiel.tex					\
 	../slides/7/kommutator.tex					\
 	../slides/7/dg.tex						\
 	../slides/7/zusammenhang.tex					\
