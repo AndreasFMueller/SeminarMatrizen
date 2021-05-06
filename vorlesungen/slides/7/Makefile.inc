@@ -19,6 +19,7 @@ chapter5 =								\
 	../slides/7/liealgbeispiel.tex					\
 	../slides/7/vektorlie.tex					\
 	../slides/7/kommutator.tex					\
+	../slides/7/bch.tex						\
 	../slides/7/dg.tex						\
 	../slides/7/zusammenhang.tex					\
 	../slides/7/quaternionen.tex					\
