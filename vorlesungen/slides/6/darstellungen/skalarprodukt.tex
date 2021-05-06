@@ -1,0 +1,42 @@
+%
+% skalarprodukt.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Skalarprodukt}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Definition des Skalarproduktes}
+$\varphi$, $\psi$ komplexe Funktionen auf $G$:
+\[
+\langle \varphi,\psi\rangle
+=
+\frac{1}{|G|} \sum_{g\in G} \overline{\varphi(g)} \psi(g)
+\]
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Satz}
+\begin{enumerate}
+\item
+$\chi$ der Charakter einer irrediziblen Darstellung
+$\Rightarrow$ $\langle \chi,\chi\rangle=1$.
+\item<3->
+$\chi$ und $\chi'$ Charaktere nichtisomorpher Darstellungen
+$\Rightarrow$
+$\langle \chi,\chi'\rangle=0$
+\end{enumerate}
+\uncover<4->{%
+D.~h.~Charaktere irreduzibler Darstellungen sind orthonormiert
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

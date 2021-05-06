@@ -16,7 +16,19 @@ chapter5 =								\
 	../slides/7/einparameter.tex					\
 	../slides/7/ableitung.tex					\
 	../slides/7/liealgebra.tex					\
+	../slides/7/liealgbeispiel.tex					\
+	../slides/7/vektorlie.tex					\
 	../slides/7/kommutator.tex					\
+	../slides/7/bch.tex						\
 	../slides/7/dg.tex						\
+	../slides/7/interpolation.tex					\
+	../slides/7/exponentialreihe.tex				\
+	../slides/7/zusammenhang.tex					\
+	../slides/7/quaternionen.tex					\
+	../slides/7/qdreh.tex						\
+	../slides/7/ueberlagerung.tex					\
+	../slides/7/hopf.tex						\
+	../slides/7/haar.tex						\
+	../slides/7/integration.tex					\
 	../slides/7/chapter.tex
 

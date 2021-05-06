@@ -1,0 +1,77 @@
+%
+% konjugation.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Konjugation}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{``Basiswechsel''}
+In der Gruppe $\operatorname{GL}_n(\Bbbk)$
+\[
+A' = TAT^{-1}
+\]
+$T\in\operatorname{GL}_n(\Bbbk)$
+\\
+$A$ und $A'$ sind ``gleichwertig''
+\end{block}
+\uncover<2->{%
+\begin{block}{Definition}
+$g_1,g_2\in G$ sind {\em konjugiert}, wenn es
+$h\in G$ gibt mit
+\[
+g_1 = hg_2h^{-1}
+\]
+\end{block}}
+\uncover<3->{%
+\begin{block}{Beispiel}
+Konjugierte Elemente in $\operatorname{GL}_n(\Bbbk)$ haben die
+gleiche Spur und Determinante
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{Konjugationsklasse}
+Die Konjugationsklasse von $g$ ist
+\[
+\llbracket g\rrbracket
+=
+\{h\in G\;|\; \text{$h$ konjugiert zu $g$}\}
+\]
+\end{block}}
+\vspace{-7pt}
+\uncover<5->{%
+\begin{block}{Klassenzerlegung}
+\begin{align*}
+G
+&=
+\{e\}
+\cup
+\llbracket g_1\rrbracket
+\cup
+\llbracket g_2\rrbracket
+\cup
+\dots
+\\
+&\uncover<6->{=
+C_e\cup C_1 \cup C_2\cup\dots}
+\end{align*}
+\end{block}}
+\vspace{-7pt}
+\uncover<7->{%
+\begin{block}{Klassenfunktionen}
+Funktionen, die auf Konjugationsklassen konstant sind
+\end{block}}
+\uncover<8->{%
+\begin{block}{Beispiele}
+Spur, Determinante
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
