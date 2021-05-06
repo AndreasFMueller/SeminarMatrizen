@@ -1,0 +1,78 @@
+%
+% liealgbeispiel.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Lie-Algebra Beispiele}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{$\operatorname{sl}_2(\mathbb{R})$}
+Spurlose Matrizen:
+\[
+\operatorname{sl}_2(\mathbb{R})
+=
+\{A\in M_n(\mathbb{R})\;|\; \operatorname{Spur}A=0\}
+\]
+\end{block}
+\begin{block}{Lie-Algebra?}
+Nachrechnen: $[A,B]\in \operatorname{sl}_2(\mathbb{R})$:
+\begin{align*}
+\operatorname{Spur}([A,B])
+&=
+\operatorname{Spur}(AB-BA)
+\\
+&=
+\operatorname{Spur}(AB)-\operatorname{Spur}(BA)
+\\
+&=
+\operatorname{Spur}(AB)-\operatorname{Spur}(AB)
+\\
+&=0
+\end{align*}
+$\Rightarrow$ $\operatorname{sl}_2(\mathbb{R})$ ist eine Lie-Algebra
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{$\operatorname{so}(n)$}
+Antisymmetrische Matrizen:
+\[
+\operatorname{so}(n)
+=
+\{A\in M_n(\mathbb{R})
+\;|\;
+A=-A^t
+\}
+\]
+\end{block}
+\begin{block}{Lie-Algebra?}
+Nachrechnen: $A,B\in \operatorname{so}(n)$
+\begin{align*}
+[A,B]^t
+&=
+(AB-BA)^t
+\\
+&=
+B^tA^t - A^tB^t
+\\
+&=
+(-B)(-A)-(-A)(-B)
+\\
+&=
+BA-AB
+=
+-(AB-BA)
+\\
+&=
+-[A,B]
+\end{align*}
+$\Rightarrow$ $\operatorname{so}(n)$ ist eine Lie-Algebra
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

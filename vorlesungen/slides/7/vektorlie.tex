@@ -1,0 +1,206 @@
+%
+% viktorlie.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Vektorprodukt als Lie-Algebra}
+%\vspace{-10pt}
+\centering
+\begin{tikzpicture}[>=latex,thick]
+\arraycolsep=2.4pt
+\def\Ax{0}
+\def\Ux{4.1}
+\def\Kx{7.2}
+\def\Rx{13.1}
+
+\def\Lx{2.2}
+\def\Ly{0}
+\def\Lz{-2.2}
+
+\fill[color=red!20] (\Ax,{\Lx-1.55}) rectangle ({\Ux-0.1},{\Lx+0.55});
+\fill[color=red!20] (\Ux,{\Lx-1.55}) rectangle ({\Kx-0.1},{\Lx+0.55});
+\fill[color=red!20] (\Kx,{\Lx-1.55}) rectangle ({\Rx},{\Lx+0.55});
+
+\fill[color=darkgreen!20] (\Ax,{\Ly-1.55}) rectangle ({\Ux-0.1},{\Ly+0.55});
+\fill[color=darkgreen!20] (\Ux,{\Ly-1.55}) rectangle ({\Kx-0.1},{\Ly+0.55});
+\fill[color=darkgreen!20] (\Kx,{\Ly-1.55}) rectangle ({\Rx},{\Ly+0.55});
+
+\fill[color=blue!20] (\Ax,{\Lz-1.55}) rectangle ({\Ux-0.1},{\Lz+0.55});
+\fill[color=blue!20] (\Ux,{\Lz-1.55}) rectangle ({\Kx-0.1},{\Lz+0.55});
+\fill[color=blue!20] (\Kx,{\Lz-1.55}) rectangle ({\Rx},{\Lz+0.55});
+
+\coordinate (A) at (\Ax,3.2);
+\coordinate (Ax) at (\Ax,\Lx);
+\coordinate (Ay) at (\Ax,\Ly);
+\coordinate (Az) at (\Ax,\Lz);
+
+\node at (A) [right]
+	{\usebeamercolor[fg]{title}Drehmatrix, $\operatorname{SO}(n)$\strut};
+
+\node at (Ax) [right] {$\displaystyle\tiny
+D_{x,\alpha}=\begin{pmatrix}
+1&0&0\\
+0&\cos\alpha&-\sin\alpha\\
+0&\sin\alpha&\cos\alpha
+\end{pmatrix}$};
+
+\node at (Ay) [right] {$\displaystyle\tiny
+D_{y,\alpha}=\begin{pmatrix}
+\cos\alpha&0&\sin\alpha\\
+0&1&0\\
+-\sin\alpha&0&\cos\alpha
+\end{pmatrix}$};
+
+\node at (Az) [right] {$\displaystyle\tiny
+D_{z,\alpha}=\begin{pmatrix}
+\cos\alpha&-\sin\alpha&0\\
+\sin\alpha&\cos\alpha&0\\
+0&0&1
+\end{pmatrix}$};
+
+\coordinate (U) at (\Ux,3.2);
+\coordinate (Ux) at (\Ux,\Lx);
+\coordinate (Uy) at (\Ux,\Ly);
+\coordinate (Uz) at (\Ux,\Lz);
+\coordinate (Ex) at (\Ux,{\Lx-1});
+\coordinate (Ey) at (\Ux,{\Ly-1});
+\coordinate (Ez) at (\Ux,{\Lz-1});
+
+\uncover<2->{
+\node at (U) [right]
+	{\usebeamercolor[fg]{title}Ableitung, $\operatorname{so}(n)$\strut};
+
+\node at (Ux) [right] {$\displaystyle\tiny
+U_x=\begin{pmatrix*}[r]
+0&0&0\\
+0&0&-1\\
+0&1&0
+\end{pmatrix*}
+$};
+
+\node at (Uy) [right] {$\displaystyle\tiny
+U_y=\begin{pmatrix*}[r]
+0&0&1\\
+0&0&0\\
+-1&0&0
+\end{pmatrix*}
+$};
+
+\node at (Uz) [right] {$\displaystyle\tiny
+U_z=\begin{pmatrix*}[r]
+0&-1&0\\
+1&0&0\\
+0&0&0
+\end{pmatrix*}
+$};
+}
+
+\uncover<9->{
+\node at (Ex) [right] {$\displaystyle
+\, e_x = \tiny\begin{pmatrix}1\\0\\0\end{pmatrix}
+$};
+
+\node at (Ey) [right] {$\displaystyle
+\, e_y = \tiny\begin{pmatrix}0\\1\\0\end{pmatrix}
+$};
+
+\node at (Ez) [right] {$\displaystyle
+\, e_z = \tiny\begin{pmatrix}0\\0\\1\end{pmatrix}
+$};
+}
+
+\coordinate (K) at (\Kx,3.2);
+\coordinate (Kx) at (\Kx,\Lx);
+\coordinate (Ky) at (\Kx,\Ly);
+\coordinate (Kz) at (\Kx,\Lz);
+\coordinate (Vx) at (\Kx,{\Lx-1});
+\coordinate (Vy) at (\Kx,{\Ly-1});
+\coordinate (Vz) at (\Kx,{\Lz-1});
+
+\uncover<3->{
+\node at (K) [right]
+	{\usebeamercolor[fg]{title}Kommutator\strut};
+
+\node at (Kx) [right] {$\displaystyle
+\begin{aligned}
+[U_y,U_z] &\uncover<4->{= 
+{\tiny
+\begin{pmatrix}
+0&0&0\\
+0&0&0\\
+0&1&0
+\end{pmatrix}}
+\uncover<5->{\mathstrut-
+\tiny
+\begin{pmatrix}
+0&0&0\\
+0&0&1\\
+0&0&0
+\end{pmatrix}}}
+\uncover<6->{=U_x}
+\end{aligned}
+$};
+}
+
+\uncover<7->{
+\node at (Ky) [right] {$\displaystyle
+\begin{aligned}
+[U_z,U_x] &= 
+{\tiny
+\begin{pmatrix}
+0&0&1\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+-
+\begin{pmatrix}
+0&0&0\\
+0&0&0\\
+1&0&0
+\end{pmatrix}}
+=U_y
+\end{aligned}
+$};
+}
+
+\uncover<8->{
+\node at (Kz) [right] {$\displaystyle
+\begin{aligned}
+[U_x,U_y] &= 
+{\tiny
+\begin{pmatrix}
+0&0&0\\
+1&0&0\\
+0&0&0
+\end{pmatrix}
+-
+\begin{pmatrix}
+0&1&0\\
+0&0&0\\
+0&0&0
+\end{pmatrix}}
+=U_z
+\end{aligned}
+$};
+}
+
+\uncover<10->{
+\node at (Vx) [right] {$\displaystyle \phantom{]}e_y\times e_z = e_x$};
+}
+
+\uncover<11->{
+\node at (Vy) [right] {$\displaystyle \phantom{]}e_z\times e_x = e_y$};
+}
+
+\uncover<12->{
+\node at (Vz) [right] {$\displaystyle \phantom{]}e_x\times e_y = e_z$};
+}
+
+\end{tikzpicture}
+\end{frame}
+\egroup
