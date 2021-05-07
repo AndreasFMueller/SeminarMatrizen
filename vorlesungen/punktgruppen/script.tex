@@ -1,5 +1,8 @@
 \documentclass[a4paper]{article}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 \usepackage[cm]{manuscript}
 \usepackage{xcolor}
 
@@ -7,25 +10,30 @@
 \newenvironment{totranslate}{\color{blue!70!black}}{}
 
 \begin{document}
-\section{das Sind wir}
-  (TT) Willkommen zu unserer Präsentation über Punktgruppen und deren Anwendung in der Kristallographie. 
-  Ich bin Tim Tönz habe vor dem Studium die Lehre als Elektroinstallateur abgeschlossen und studiere jetzt Elektrotechnik im Vierten Semester mit Herrn Naoki Pross. 
-  (NP)Das bin ich  \ldots  Nun zum Inhalt 
+\section{Das sind wir}
+\scene{Tim}
+Willkommen zu unserer Präsentation über Punktgruppen und deren Anwendung in der
+Kristallographie.  Ich bin Tim Tönz habe vor dem Studium die Lehre als
+Elektroinstallateur abgeschlossen und studiere jetzt Elektrotechnik im Vierten
+Semester mit Herrn Naoki Pross. 
+\scene{Naoki}
+  Das bin ich  \ldots  Nun zum Inhalt 
 
 \section{Ablauf}
-  Wir möchten Euch zeigen, was eine Punktgruppe ausmacht, Konkret an Bespielen in 2D zeigen mit Gemainsamkeiten zu Algebraischen Symmetrien. 
-  Da wir Menschen jedoch 3 Räumliche Dimensionen Wahrnehmen möchten wir euch die 3D Symetrien natürlcih nicht vorenthalten.
-  Um dem Thema des Mathematikseminars gerecht zu werden, Werden wir die einfache Verbindung zwischen Matrizen und Punktsymetrien zeigen.
-  Dammit die Praxis nicht ganz vergessen geht, Kristalle Mathematisch beschreiben und dessen Limitationen in hinsicht Symmetrien. 
-  Als Abschluss Zeigen wir euch einen zusammenhan zwischen Piezoelektrizität und Symmetrien.
+Wir möchten Euch zeigen, was eine Punktgruppe ausmacht, Konkret an Bespielen in 2D zeigen mit Gemainsamkeiten zu Algebraischen Symmetrien. 
+Da wir Menschen jedoch 3 Räumliche Dimensionen Wahrnehmen möchten wir euch die 3D Symetrien natürlcih nicht vorenthalten.
+Um dem Thema des Mathematikseminars gerecht zu werden, Werden wir die einfache Verbindung zwischen Matrizen und Punktsymetrien zeigen.
+Dammit die Praxis nicht ganz vergessen geht, Kristalle Mathematisch beschreiben und dessen Limitationen in hinsicht Symmetrien. 
+Als Abschluss Zeigen wir euch einen zusammenhan zwischen Piezoelektrizität und Symmetrien.
 
 \section{intro}
-  Ich hoffe wir konnten schon mit der Einleitung ein wenig Neugirde wecken.
-  fals dies noch nicht der Fall ist, sind hier noch die wichtigsten fragen, welche wir euch beantworten wollen, oder zumindest überzeugen, wieso dies spannende Fragen sind.  
-  Als erstes, was eine Symetrie ist oder in unserem Fall eine Punktsymetrie.
-  Was macht ein Kristall aus, also wie kann man seine Wichtigsten eigenschaften mathematisch beschreiben.
-  Als letztes noch zu der Piezoelektrizität, welche ein Effekt beschreibt, dass bestimmte Krisstalle eine elektrische Spannung erzeugen, wenn sie unter mechanischen Druck gesetzt werden. 
-  welche kristalle diese fähigkeit haben, hat ganz konkret mit ihrer Symmetrie zu tun.
+Ich hoffe wir konnten schon mit der Einleitung ein wenig Neugirde wecken.
+fals dies noch nicht der Fall ist, sind hier noch die wichtigsten fragen, welche wir euch beantworten wollen, oder zumindest überzeugen, wieso dies spannende Fragen sind.  
+Als erstes, was eine Symetrie ist oder in unserem Fall eine Punktsymetrie.
+Was macht ein Kristall aus, also wie kann man seine Wichtigsten eigenschaften mathematisch beschreiben.
+Als letztes noch zu der Piezoelektrizität, welche ein Effekt beschreibt, dass bestimmte Krisstalle eine elektrische Spannung erzeugen, wenn sie unter mechanischen Druck gesetzt werden. 
+welche kristalle diese fähigkeit haben, hat ganz konkret mit ihrer Symmetrie zu tun.
+
 \section{Geometrie}
 \begin{totranslate}
 We'll start with geometric symmetries as they are the simplest to grasp.
@@ -68,24 +76,70 @@ We'll start with geometric symmetries as they are the simplest to grasp.
   to an \(n\)-gon, and is known as the ``Dihedral Group'' of order \(n\).
 \end{totranslate}
 
-\scene{Symmetrische Gruppe}
-\scene{Alternierende Gruppe}
-
 \section{Algebra}
-\begin{totranslate}
-Let's now move into something seemingly unrelated: \emph{algebra}.
-\scene{Complex numbers and cyclic groups}
-\end{totranslate}
+\scene{Produkt mit \(i\)}
+\"Uberlegen wir uns eine spezielle algebraische Operation: Multiplikation mit
+der imagin\"aren Einheit. \(1\) mal \(i\) ist gleich \(i\). Wieder mal \(i\)
+ist \(-1\), dann \(-i\) und schliesslich kommen wir z\"uruck auf \(1\).  Diese
+fassen wir in eine Gruppe \(G\) zusammen. Oder sch\"oner geschrieben:. Sieht das
+bekannt aus?
+
+\scene{Morphismen}
+Das Gefühl, dass es sich um dasselbe handelt, kann wie folgt formalisiert
+werden.  Sei \(\phi\) eine Funktion von \(C_4\) zu \(G\). Ordnen wir zu jeder
+Symmetrieoperation ein Element aus \(G\). Wenn man die Zuordnung richtig
+definiert, dann sieht man die folgende Eigenschaft: Eine Operation nach eine
+andere zu nutzen, und dann die Funktion des Resultats zu nehmen, ist gleich wie
+die Funktion der einzelnen Operazionen zu nehmen und das Resultat zu
+multiplizieren. Dieses Ergebnis ist so bemerkenswert, dass es in der Mathematik
+einen Namen bekommen hat: Homorphismus, von griechisch "homos" dasselbe und
+"morphe" Form.  Manchmal wird es auch so geschrieben. Ausserdem, wenn \(\phi\)
+eins zu eins ist, heisst es \emph{Iso}morphismus: "iso" gleiche Form. Was
+man typischerweise mit diesem Symbol schreibt.
+
+\scene{Animation}
+Sie haben wahrscheinlich schon gesehen, worauf das hinausläuft. Dass die
+zyklische Gruppe \(C_4\) und \(G\) die gleiche Form haben, ist im wahrste Sinne
+des Wortes. %% Ask Tim: literally true
+
+\scene{Modulo}
+Der Beispiel mit der komplexen Einheit, war wahrscheinlich nicht so
+\"uberraschend. Aber was merkw\"urdig ist, ist das diese geometrische Struktur,
+kann man auch in anderen Sachen finden, die erst nicht geometrisch aussehen.
+Ein Beispiel für Neugierige: Summe in der Modulo-Arithmetik. Um die Geometrie
+zu finden denken Sie an einer Uhr.
 
 \section{Matrizen}
-  Das man mit matrizen so einiges darstellen kann ist keine neuigkeit mehr nach einem halben Semester Matheseminar. 
-  Also überrascht es wohl auch keinen, das mann alle punktsymetrischen Operationen auch mit Matrizen Formulieren kann.
-  (Beispiel zu Rotation mit video)
-  Für die Spiegelung wie auch eine Punkt inversion habt ihr dank dem matheseminar bestmmt schon eine Idee wie diese Operationen als Matrizen aussehen.
-  Ich weis nicht obe der Tipp etwas nützt, aber ih müsst nur in der Gruppe O(3) suchen. 
-  Was auch sinn macht, denn die Gruppe O(3) zeichnet sich aus weil ihre Matrizen distanzen konstant hallten wie auch einen fixpunkt haben was sehr erwünscht ist, wenn man Punktsymmetrien beschreiben will.
+\scene{Titelseite}
+Nun gehen wir kurz auf den Thema unseres Seminars ein: Matrizen.  Das man mit
+Matrizen Dinge darstellen kann, ist keine Neuigkeit mehr, nach einem
+Semester MatheSeminar.  Also überrascht es wohl auch keinen, das man alle
+punktsymmetrischen Operationen auch mit Matrizen Formulieren kann.
 
+\scene{Matrizen}
 
+Sei dann \(G\) unsere Symmetrie Gruppe, die unsere abstrakte Drehungen und
+Spiegelungen enth\"ahlt. Die Matrix Darstellung dieser Gruppe, ist eine
+Funktion gross \(\Phi\), von \(G\) zur orthogonalen Gruppe \(O(3)\), die zu
+jeder Symmetrie Operation klein \(g\) eine Matrix gross \(\Phi_g\) zuordnet.
+
+Zur Erinnerung, die Orthogonale Gruppe ist definiert als die Matrizen, deren
+transponierte auch die inverse ist. Da diese Volumen und Distanzen erhalten,
+natuerlich nur bis zu einer Vorzeichenumkehrung, macht es Sinn, dass diese
+Punksymmetrien genau beschreiben.
+
+Nehmen wir die folgende Operationen als Beispiele. Die Matrix der trivialen
+Operation, dass heisst nichts zu machen, ist die Einheitsmatrix. Eine
+Spiegelung ist dasselbe aber mit einem Minus, und Drehungen sind uns schon
+dank Herrn M\"uller bekannt.
+
+% (Beispiel zu Rotation mit video) Für die Spiegelung wie auch eine Punkt
+% inversion habt ihr dank dem matheseminar bestmmt schon eine Idee wie diese
+% Operationen als Matrizen aussehen.  Ich weis nicht obe der Tipp etwas nützt,
+% aber ih müsst nur in der Gruppe O(3) suchen.  Was auch sinn macht, denn die
+% Gruppe O(3) zeichnet sich aus weil ihre Matrizen distanzen konstant hallten
+% wie auch einen fixpunkt haben was sehr erwünscht ist, wenn man
+% Punktsymmetrien beschreiben will.
 
 \section{Krystalle}
   Jenen welchen die Kristalle bis jetzt ein wenig zu kurz gekommen sind, Freuen sich hoffentlich zurecht an dieser Folie.
@@ -108,7 +162,7 @@ Let's now move into something seemingly unrelated: \emph{algebra}.
     Das heisst der Abstand zwischen B und B' mmuss ein ganzes vielfachen von dem Abstand B zu B' sein. 
     
   \scene{Restriktion in Algebra}
-    Ausgeschrieben setzen wir q klein auf die Länge der Translation, \(\alpha\) auf  \(2\pi / n\) und \(n \) auf \( \mathbb{N}\)
+    Ausgeschrieben setzen wir klein auf die Länge der Translation, \(\alpha\) auf  \(2\pi / n\) und \(n\) auf \(\mathbb{N}\).
 
 \end{document}
 % vim:et ts=2 sw=2:
