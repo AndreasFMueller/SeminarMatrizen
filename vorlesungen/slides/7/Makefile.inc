@@ -21,6 +21,9 @@ chapter5 =								\
 	../slides/7/kommutator.tex					\
 	../slides/7/bch.tex						\
 	../slides/7/dg.tex						\
+	../slides/7/interpolation.tex					\
+	../slides/7/exponentialreihe.tex				\
+	../slides/7/logarithmus.tex					\
 	../slides/7/zusammenhang.tex					\
 	../slides/7/quaternionen.tex					\
 	../slides/7/qdreh.tex						\
