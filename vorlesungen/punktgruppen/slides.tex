@@ -259,73 +259,59 @@
 }
 
 \section{Kristalle}
-\begin{frame}[fragile]{M\"ogliche Kristallstrukturen}
-  \begin{center}
-    \begin{tikzpicture}[]
-      \node[circle, dashed, draw = gray, 
-        thick, fill = background,
-        minimum size = 4cm] {};
-      \node[gray] at (.9,-1.2) {674};
-
-      \node[circle, draw = white, thick,
-        fill = orange!40!background,
-        xshift = -3mm, yshift = 2mm,
-        minimum size = 2.75cm] (A) {};
-      \node[white, yshift = 2mm] at (A) {230};
-
-      \node[circle, draw = white, thick, 
-        fill = red!20!background,
-        xshift = -5mm, yshift = -5mm,
-        minimum size = 1cm] {32};
-    \end{tikzpicture}
-  \end{center}
-\end{frame}
-
 \begin{frame}[fragile]{}
   \begin{columns}
-    \begin{column}{.5\textwidth}
-      \begin{center}
-          \begin{tikzpicture}[
-              dot/.style = {
-                draw, circle, thick, white, fill = gray!40!background,
-                minimum size = 2mm,
-                inner sep = 0pt,
-                outer sep = 1mm,
-              },
-            ]
+    \onslide<1->{
+      \begin{column}{.5\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[
+                dot/.style = {
+                  draw, circle, thick, white, fill = gray!40!background,
+                  minimum size = 2mm,
+                  inner sep = 0pt,
+                  outer sep = 1mm,
+                },
+              ]
 
-            \begin{scope}
-              \clip (-2,-2) rectangle (3,4);
-              \foreach \y in {-7,-6,...,7} {
-                \foreach \x in {-7,-6,...,7} {
-                  \node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
+              \begin{scope}
+                \clip (-2,-2) rectangle (3,4);
+                \foreach \y in {-7,-6,...,7} {
+                  \foreach \x in {-7,-6,...,7} {
+                    \node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
+                  }
                 }
-              }
-            \end{scope}
-            \draw[white, thick] (-2, -2) rectangle (3,4);
+              \end{scope}
+              \draw[white, thick] (-2, -2) rectangle (3,4);
 
-            \draw[red!80!background, thick, ->] 
-              (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
-            \draw[cyan!80!background, thick, ->]
-              (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
-          \end{tikzpicture}
-      \end{center}
-    \end{column}
-    \pause
+              \draw[red!80!background, thick, ->] 
+                (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
+              \draw[cyan!80!background, thick, ->]
+                (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
+            \end{tikzpicture}
+        \end{center}
+      \end{column}
+    }
     \begin{column}{.5\textwidth}
-      Kristallgitter:
-      \(n_i \in \mathbb{Z}\),
-      \(\vec{a}_i \in \mathbb{R}^3\)
-      \[
-        \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3
-      \]
+      \onslide<2->{
+        Kristallgitter:
+        \(n_i \in \mathbb{Z}\),
+      }
+      \onslide<3->{
+        \(\vec{a}_i \in \mathbb{R}^3\)
+      }
+      \onslide<2->{
+        \[
+          \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 \onslide<3->{+ n_3 \vec{a}_3}
+        \]
+      }
       \vspace{1cm}
-      \pause
-      
-      Invariant unter Translation
-      \[
-        Q_i(\vec{r}) = \vec{r} + \vec{a}_i
-      \]
+
+      \onslide<4->{
+        Invariant unter Translation
+        \[
+          Q_i(\vec{r}) = \vec{r} + \vec{a}_i
+        \]
+      }
     \end{column}
   \end{columns}
 \end{frame}
@@ -383,23 +369,21 @@
               (B1) to node[above, midway] {\(\vec{Q}'\)} (B2);
           }
 
-          \onslide<7->{
-          \draw[gray, dashed, thick] (A1) to (A1 |- B1) node (X) {};
-          \draw[gray, dashed, thick] (A2) to (A2 |- B2);
-          }
-
-          \onslide<8->{
-            \node[above left, xshift=-2mm] at (X) {\(x\)};
+          \onslide<10->{
+		    \draw[gray, dashed, thick] (A1) to (A1 |- B1) node (Xl) {};
+			\draw[gray, dashed, thick] (A2) to (A2 |- B2) node (Xr) {};
+            \node[above left, xshift=-2mm] at (Xl) {\(x\)};
+            \node[above right, xshift= 2mm] at (Xr) {\(x\)};
           }
         \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{.5\textwidth}
-      \onslide<9->{
+      \onslide<7->{
         Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
       }
       \begin{align*}
-        \onslide<10->{q' = n q &= q + 2x \\}
+        \onslide<9->{q' = n q \onslide<10->{&= q + 2x \\}}
         \onslide<11->{nq &= q + 2q\sin(\alpha - \pi/2) \\}
         \onslide<12->{n &= 1 - 2\cos\alpha}
       \end{align*}
@@ -413,6 +397,34 @@
       }
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{M\"ogliche Kristallstrukturen}
+  \begin{center}
+    \begin{tikzpicture}[]
+      \node[circle, dashed, draw = gray, 
+        thick, fill = background,
+        minimum size = 4cm] {};
+      \node[gray] at (.9,-1.2) {674};
+
+      \node[circle, draw = white, thick,
+        fill = orange!40!background,
+        xshift = -3mm, yshift = 2mm,
+        minimum size = 2.75cm,
+        outer sep = 1mm] (A) {};
+      \node[white, yshift = 2mm] at (A) {230};
+      \node[white, font=\large, above right = of A] (Al) {Raumgruppe};
+      \draw[white, thick, ->] (Al.west) to[out=180, in=60] (A);
+
+      \node[circle, draw = white, thick, 
+        fill = red!20!background,
+        xshift = -5mm, yshift = -5mm,
+        minimum size = 1cm,
+        outer sep = 1mm] (B) {32};
+      \node[white, font=\large, below left = of B, xshift=-4mm] (Bl) {Kristallklassen};
+      \draw[white, thick, ->] (Bl.east) to[out = 0, in = 180] (B);
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 {
@@ -678,7 +690,7 @@
     ]
 
     \matrix [nodes = {box, align = center}, column sep = 1cm, row sep = 1.5cm] {
-      & \node (A) {32 Punktgruppen}; \\
+      & \node (A) {32 Kristallklassen}; \\
       \node (B) {11 Mit\\ Inversionszentrum}; & \node (C) {21 Ohne\\ Inversionszentrum}; \\
       & \node[fill=red!20!background] (D) {20 Piezoelektrisch}; & \node (E) {1 Nicht\\ piezoelektrisch}; \\
     };
