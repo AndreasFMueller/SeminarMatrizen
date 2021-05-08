@@ -738,51 +738,11 @@
     \end{scope}
     \pause
 
+	%% 
     \node[below = of title] {Polarisation Feld \(\vec{E}_p\)};
+
+	%% hex with vertical pressure
     \begin{scope}[xshift=11cm, yshift=-4.5cm]
-      \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
-      \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
-      \node[charge, positive, xshift= 2.5mm] (C3) at (180:1.5cm) {};
-      \node[charge, negative, yshift=-2.5mm] (C4) at (240:1.5cm) {};
-      \node[charge, positive, yshift=-2.5mm] (C5) at (300:1.5cm) {};
-      \node[charge, negative, xshift=-2.5mm] (C6) at (360:1.5cm) {};
-
-      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
-      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
-
-      \draw[orange, very thick, <-] (C6) to ++(.7,0);
-      \draw[orange, very thick, <-] (C3) to ++(-.7,0);
-
-      \node[white] (E) {\(\vec{E}_p\)};
-      \begin{scope}[node distance = .5mm]
-        \node[red!50, right = of E] {\(+\)};
-        \node[blue!50, left = of E] {\(-\)};
-      \end{scope}
-      % \draw[gray, thick, dotted] (E) to ++(0,2);
-      % \draw[gray, thick, dotted] (E) to ++(0,-2);
-    \end{scope}
-    \pause
-
-    \begin{scope}[yshift=-4.5cm]
-      \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
-        \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
-        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
-        \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
-      };
-
-      \foreach \d in {NW, N, NE} {
-        \draw[orange, very thick, <-] (\d) to ++(0,.7);
-      }
-
-      \foreach \d in {SW, S, SE} {
-        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
-      }
-
-      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
-    \end{scope}
-    \pause
-
-    \begin{scope}[xshift=5.5cm, yshift=-4.5cm]
       \node[charge, positive, yshift=-2.5mm] (C1) at ( 60:1.5cm) {};
       \node[charge, negative, yshift=-2.5mm] (C2) at (120:1.5cm) {};
       \node[charge, positive, xshift=-2.5mm] (C3) at (180:1.5cm) {};
@@ -809,12 +769,76 @@
       % \draw[gray, thick, dotted] (E) to ++(0,2);
       % \draw[gray, thick, dotted] (E) to ++(0,-2);
     \end{scope}
+	\pause
+
+	%% square with vertical pressure 
+    \begin{scope}[yshift=-4.5cm]
+      \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
+        \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
+        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
+        \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
+      };
+
+      \foreach \d in {NW, N, NE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,.7);
+      }
+
+      \foreach \d in {SW, S, SE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
+      }
+
+      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
+    \end{scope}
+    \pause
+
+	%% hex with horizontal pressure
+    \begin{scope}[xshift=5.5cm, yshift=-4.5cm]
+      \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
+      \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
+      \node[charge, positive, xshift= 2.5mm] (C3) at (180:1.5cm) {};
+      \node[charge, negative, yshift=-2.5mm] (C4) at (240:1.5cm) {};
+      \node[charge, positive, yshift=-2.5mm] (C5) at (300:1.5cm) {};
+      \node[charge, negative, xshift=-2.5mm] (C6) at (360:1.5cm) {};
+
+      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+
+      \draw[orange, very thick, <-] (C6) to ++(.7,0);
+      \draw[orange, very thick, <-] (C3) to ++(-.7,0);
+
+      \node[white] (E) {\(\vec{E}_p\)};
+      \begin{scope}[node distance = .5mm]
+        \node[blue!50, right = of E] {\(-\)};
+        \node[red!50, left = of E] {\(+\)};
+      \end{scope}
+      % \draw[gray, thick, dotted] (E) to ++(0,2);
+      % \draw[gray, thick, dotted] (E) to ++(0,-2);
+    \end{scope}
+    \pause
+	  
+
   \end{tikzpicture}
 \end{frame}
 
 \frame{
   \frametitle{Licht in Kristallen}
   \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Helmholtz Wellengleichung
+      \[
+        \nabla^2 \vec{E} = \ten{\varepsilon}\mu
+        \frac{\partial^2}{\partial t^2} \vec{E}
+      \]
+      Ebene Welle
+      \[
+        \vec{E} = \vec{E}_0 \exp\left[i
+          \left(\vec{k}\cdot\vec{r} - \omega t \right)\right]
+      \]
+      Anisotropisch Dielektrikum
+      \[
+        (\ten{K}\ten{\varepsilon})\vec{E} = \frac{k^2}{\mu \omega^2} \vec{E}
+      \]
+    \end{column}
     \begin{column}{.5\textwidth}
       Symmetriegruppe und Darstellung
       \begin{align*}
@@ -825,25 +849,6 @@
         U_\lambda &= \left\{ v : \Phi v = \lambda v \right\} \\
         &= \mathrm{null}\left(\Phi - \lambda I\right)
       \end{align*}
-      Helmholtz Wellengleichung
-      \[
-        \nabla^2 \vec{E} = \ten{\varepsilon}\mu
-        \frac{\partial^2}{\partial t^2} \vec{E}
-      \]
-    \end{column}
-    \begin{column}{.5\textwidth}
-      Ebene Welle
-      \[
-        \vec{E} = \vec{E}_0 \exp\left[i
-          \left(\vec{k}\cdot\vec{r} - \omega t \right)\right]
-      \]
-      Anisotropisch Dielektrikum
-      \[
-        (\ten{K}\ten{\varepsilon})\vec{E} = \frac{k^2}{\mu \omega^2} \vec{E}
-      \]
-      \[
-        \vec{E} \in U_\lambda \implies (\ten{K}\ten{\varepsilon}) \vec{E} = \lambda \vec{E}
-      \]
     \end{column}
   \end{columns}
 }
