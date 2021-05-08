@@ -715,7 +715,6 @@
     ]
 
     \node[font = {\large\bfseries}, align = center] (title) at (5.5,0) {Mit und Ohne\\ Symmetriezentrum};
-    \node[below = of title] {Polarisation Feld \(\vec{E}_p\)};
     \pause
 
     \begin{scope}
@@ -728,35 +727,18 @@
     \end{scope}
     \pause
 
-    \begin{scope}[yshift=-4.5cm]
-      \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
-        \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
-        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
-        \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
-      };
-
-      \foreach \d in {NW, N, NE} {
-        \draw[orange, very thick, <-] (\d) to ++(0,.7);
-      }
-
-      \foreach \d in {SW, S, SE} {
-        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
-      }
-
-      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
-    \end{scope}
-    \pause
-
     \begin{scope}[xshift=11cm]
       \foreach \x/\t [count=\i] in {60/positive, 120/negative, 180/positive, 240/negative, 300/positive, 360/negative} {
         \node[charge, \t] (C\i) at (\x:1.5cm) {};
       }
 
       \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      \node[circle, draw=gray, fill=gray, outer sep = 0, inner sep = 0, minimum size = 3mm] {};
       % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
     \end{scope}
     \pause
 
+    \node[below = of title] {Polarisation Feld \(\vec{E}_p\)};
     \begin{scope}[xshift=11cm, yshift=-4.5cm]
       \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
       \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
@@ -776,8 +758,27 @@
         \node[red!50, right = of E] {\(+\)};
         \node[blue!50, left = of E] {\(-\)};
       \end{scope}
-      \draw[gray, thick, dotted] (E) to ++(0,2);
-      \draw[gray, thick, dotted] (E) to ++(0,-2);
+      % \draw[gray, thick, dotted] (E) to ++(0,2);
+      % \draw[gray, thick, dotted] (E) to ++(0,-2);
+    \end{scope}
+    \pause
+
+    \begin{scope}[yshift=-4.5cm]
+      \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
+        \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
+        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
+        \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
+      };
+
+      \foreach \d in {NW, N, NE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,.7);
+      }
+
+      \foreach \d in {SW, S, SE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
+      }
+
+      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
     \end{scope}
     \pause
 
@@ -805,8 +806,8 @@
         \node[red!50, right = of E] {\(+\)};
         \node[blue!50, left = of E] {\(-\)};
       \end{scope}
-      \draw[gray, thick, dotted] (E) to ++(0,2);
-      \draw[gray, thick, dotted] (E) to ++(0,-2);
+      % \draw[gray, thick, dotted] (E) to ++(0,2);
+      % \draw[gray, thick, dotted] (E) to ++(0,-2);
     \end{scope}
   \end{tikzpicture}
 \end{frame}
