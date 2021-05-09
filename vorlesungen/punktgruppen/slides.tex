@@ -6,6 +6,8 @@
 
 % pretty drawings
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
+
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{shapes.misc}
@@ -83,7 +85,7 @@
   \begin{itemize}
     \item Was heisst \emph{Symmetrie} in der Mathematik? \pause
     \item Wie kann ein Kristall modelliert werden? \pause
-    \item Aus der Physik: Piezoelektrizit\"at \pause
+    \item Aus der Physik: Licht, Piezoelektrizit\"at \pause
   \end{itemize}
   \begin{center}
     \begin{tikzpicture}
@@ -823,34 +825,71 @@
 \frame{
   \frametitle{Licht in Kristallen}
   \begin{columns}[T]
-    \begin{column}{.5\textwidth}
-      Helmholtz Wellengleichung
-      \[
-        \nabla^2 \vec{E} = \ten{\varepsilon}\mu
-        \frac{\partial^2}{\partial t^2} \vec{E}
-      \]
-      Ebene Welle
-      \[
-        \vec{E} = \vec{E}_0 \exp\left[i
-          \left(\vec{k}\cdot\vec{r} - \omega t \right)\right]
-      \]
-      Anisotropisch Dielektrikum
-      \[
-        (\ten{K}\ten{\varepsilon})\vec{E} = \frac{k^2}{\mu \omega^2} \vec{E}
-      \]
+    \begin{column}{.45\textwidth}
+      \onslide<2->{
+        Helmholtz Wellengleichung
+        \[
+          \nabla^2 \vec{E} = \ten{\varepsilon}\mu
+          \frac{\partial^2}{\partial t^2} \vec{E}
+        \]
+      }
+      \onslide<3->{
+        Ebene Welle
+        \[
+          \vec{E} = \vec{E}_0 \exp\left[i
+            \left(\vec{k}\cdot\vec{r} - \omega t \right)\right]
+        \]
+      }
+      \onslide<4->{
+        Anisotropisch Dielektrikum
+        \[
+          (\ten{K}\ten{\varepsilon})\vec{E} 
+            = \frac{k^2}{\mu \omega^2} \vec{E}
+          \implies
+          \Phi \vec{E} = \lambda \vec{E}
+        \]
+      }
     \end{column}
-    \begin{column}{.5\textwidth}
-      Symmetriegruppe und Darstellung
-      \begin{align*}
-        G &= \left\{\mathbb{1}, r, \sigma, \dots \right\} \\
-        &\Phi : G \to O(n)
-      \end{align*}
-      \begin{align*}
-        U_\lambda &= \left\{ v : \Phi v = \lambda v \right\} \\
-        &= \mathrm{null}\left(\Phi - \lambda I\right)
-      \end{align*}
+    \begin{column}{.55\textwidth}
+      \onslide<5->{
+        Eingenraum
+        \begin{align*}
+          U_\lambda &= \left\{ v : \Phi v = \lambda v \right\}
+          = \mathrm{null}\left(\Phi - \lambda I\right)
+        \end{align*}
+      }\onslide<6->{
+        Symmetriegruppe und Darstellung
+        \begin{align*}
+          G &= \left\{\mathbb{1}, r, \sigma, \dots \right\} \\
+          &\Phi : G \to O(n)
+        \end{align*}
+      }\onslide<7->{
+        Kann man \(U_\lambda\) von \(G\) herauslesen?
+        \only<7>{
+          \[
+            U_\lambda \stackrel{?}{=} f\left(\bigoplus_{g \in G} \Phi_g\right)
+          \]
+        }\only<8>{
+          \begin{align*}
+            \mathrm{Tr}\left[\Phi_r(g)\right] 
+              &= \sum_i n_i \mathrm{Tr}\left[\Psi_i(g)\right] \\
+            |G| &= \sum_i\mathrm{Tr}\left[\Psi_i(\mathbb{1})\right]
+          \end{align*}
+        }
+      }
     \end{column}
   \end{columns}
 }
+
+% \begin{frame}[fragile]
+%   \centering
+%   \tdplotsetmaincoords{70}{110}
+%   \begin{tikzpicture}[scale=2, tdplot_main_coords]
+%     \node[draw=white, thick, minimum size = 3cm, circle] {};
+%     % \foreach \x in {0, 120, 240} {
+%     % }
+%   \end{tikzpicture}
+% \end{frame}
+
 
 \end{document}
