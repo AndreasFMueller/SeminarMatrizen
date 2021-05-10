@@ -1,0 +1,895 @@
+\documentclass[12pt, xcolor, aspectratio=169, handout]{beamer}
+
+% language
+\usepackage{polyglossia}
+\setmainlanguage{german}
+
+% pretty drawings
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{calc}
+
+\usetikzlibrary{external}
+\tikzexternalize[
+  mode = graphics if exists,
+  figure list = true,
+  prefix=build/
+]
+
+% Theme
+\beamertemplatenavigationsymbolsempty
+
+% set look
+\usetheme{default} 
+\usecolortheme{fly}
+\usefonttheme{serif}
+
+%% Set font
+\usepackage[p,osf]{scholax}
+\usepackage{amsmath}
+\usepackage[scaled=1.075,ncf,vvarbb]{newtxmath}
+
+% set colors
+\definecolor{background}{HTML}{202020}
+
+\setbeamercolor{normal text}{fg=white, bg=background}
+\setbeamercolor{structure}{fg=white}
+
+\setbeamercolor{item projected}{use=item,fg=background,bg=item.fg!35}
+
+\setbeamercolor*{palette primary}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=structure.fg!75}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=structure.fg!50}
+\setbeamercolor*{palette quaternary}{fg=white,bg=background}
+
+\setbeamercolor*{block title}{parent=structure}
+\setbeamercolor*{block body}{fg=background, bg=}
+
+\setbeamercolor*{framesubtitle}{fg=white}
+
+\setbeamertemplate{section page}
+{
+  \begin{center}
+    \Huge
+    \insertsection
+  \end{center}
+}
+\AtBeginSection{\frame{\sectionpage}}
+
+% Macros
+\newcommand{\ten}[1]{#1}
+
+% Metadata
+\title{\LARGE \scshape Punktgruppen und Kristalle}
+\author[N. Pross, T. T\"onz]{Naoki Pross, Tim T\"onz}
+\institute{Hochschule f\"ur Technik OST, Rapperswil}
+\date{10. Mai 2021}
+
+% Slides
+\begin{document}
+\frame{
+  \titlepage
+  \vfill
+  \begin{center}
+    \small \color{gray}
+    Slides: \texttt{s.0hm.ch/ctBsD}
+  \end{center}
+}
+\frame{\tableofcontents}
+
+\frame{
+  \begin{itemize}
+    \item Was heisst \emph{Symmetrie} in der Mathematik? \pause
+    \item Wie kann ein Kristall modelliert werden? \pause
+    \item Aus der Physik: Licht, Piezoelektrizit\"at \pause
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{scope}[
+          node distance = 0cm
+        ]
+        \node[
+          rectangle, fill = gray!40!background,
+          minimum width = 3cm, minimum height = 2cm,
+        ] (body) {\(\vec{E}_p = \vec{0}\)};
+
+        \node[
+          draw, rectangle, thick, white, fill = red!50,
+          minimum width = 3cm, minimum height = 1mm,
+          above = of body
+        ] (pos) {};
+
+        \node[
+          draw, rectangle, thick, white, fill = blue!50,
+          minimum width = 3cm, minimum height = 1mm,
+          below = of body
+        ] (neg) {};
+
+        \draw[white, very thick, -Circle] (pos.east) to ++ (1,0) node (p) {};
+        \draw[white, very thick, -Circle] (neg.east) to ++ (1,0) node (n) {};
+
+        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U = 0\)} (n);
+      \end{scope}
+      \begin{scope}[
+          node distance = 0cm,
+          xshift = 7cm
+        ]
+        \node[
+          rectangle, fill = gray!40!background,
+          minimum width = 3cm, minimum height = 1.5cm,
+        ] (body) {\(\vec{E}_p = \vec{0}\)};
+
+        \node[
+          draw, rectangle, thick, white, fill = red!50,
+          minimum width = 3cm, minimum height = 1mm,
+          above = of body
+        ] (pos) {};
+
+        \node[
+          draw, rectangle, thick, white, fill = blue!50,
+          minimum width = 3cm, minimum height = 1mm,
+          below = of body
+        ] (neg) {};
+
+        \draw[orange, very thick, <-] (pos.north) to node[near end, right] {\(\vec{F}\)} ++(0,1);
+        \draw[orange, very thick, <-] (neg.south) to node[near end, right] {\(\vec{F}\)} ++(0,-1);
+
+        \draw[white, very thick, -Circle] (pos.east) to ++ (1,0) node (p) {};
+        \draw[white, very thick, -Circle] (neg.east) to ++ (1,0) node (n) {};
+
+        \draw[white, thick, ->] (p) to[out = -70, in = 70] node[midway, right] {\(U > 0\)} (n);
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+}
+
+\section{2D Symmetrien}
+%% Made in video
+{
+  \usebackgroundtemplate{
+    \includegraphics[height=\paperheight]{media/images/nosignal}}
+  \frame{}
+}
+
+\section{Algebraische Symmetrien}
+%% Made in video
+\frame{
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Produkt mit \(i\)
+      \begin{align*}
+        1 \cdot i &= i \\
+        i \cdot i &= -1 \\
+        -1 \cdot i &= -i \\
+        -i \cdot i &= 1
+      \end{align*}
+      \pause
+      %
+      Gruppe
+      \begin{align*}
+        G &= \left\{
+          1, i, -1, -i
+        \right\} \\
+        &= \left\{
+          1, i, i^2, i^3
+        \right\} \\
+        C_4 &= \left\{
+          \mathbb{1}, r, r^2, r^3
+        \right\}
+      \end{align*}
+      \pause
+    \end{column}
+    \begin{column}{.5\textwidth}
+      Darstellung \(\phi : C_4 \to G\)
+      \begin{align*}
+        \phi(\mathbb{1}) &= 1 & \phi(r^2) &= i^2 \\
+        \phi(r) &= i & \phi(r^3) &= i^3
+      \end{align*}
+      \pause
+      %
+      Homomorphismus
+      \begin{align*}
+        \phi(r \circ \mathbb{1}) &= \phi(r) \cdot \phi(\mathbb{1}) \\
+        &= i \cdot 1
+      \end{align*}
+      \pause
+      %
+      \(\phi\) ist bijektiv \(\implies C_4 \cong G\)
+			\pause
+			%
+			\begin{align*}
+				\psi : C_4 &\to (\mathbb{Z}/4\mathbb{Z}, +) \\
+				\psi(\mathbb{1}\circ r^2) &= 0 + 2 \pmod{4}
+			\end{align*}
+    \end{column}
+  \end{columns}
+}
+
+\section{3D Symmetrien}
+%% Made in video
+{
+  \usebackgroundtemplate{
+    \includegraphics[height=\paperheight]{media/images/nosignal}}
+  \frame{}
+}
+
+\section{Matrizen}
+\frame{
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      Symmetriegruppe
+      \[
+        G = \left\{\mathbb{1}, r, \sigma, \dots \right\}
+      \]
+      \pause
+      Matrixdarstellung
+      \begin{align*}
+        \Phi : G &\to O(3) \\
+        g &\mapsto \Phi_g
+      \end{align*}
+      \pause
+      Orthogonale Gruppe
+      \[
+        O(n) = \left\{ Q : QQ^t = Q^tQ = I \right\}
+      \]
+    \end{column}
+    \pause
+    \begin{column}{.5\textwidth}
+      \begin{align*}
+        \Phi_\mathbb{1} &= \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & 1 & 0 \\
+          0 & 0 & 1
+        \end{pmatrix} = I \\[1em]
+        \Phi_\sigma &= \begin{pmatrix}
+          1 & 0 & 0 \\
+          0 & -1 & 0 \\
+          0 & 0 & 1
+        \end{pmatrix} \\[1em]
+        \Phi_r &= \begin{pmatrix}
+          \cos \alpha & -\sin \alpha & 0 \\
+          \sin \alpha & \cos \alpha & 0 \\
+          0 & 0 & 1
+        \end{pmatrix}
+      \end{align*}
+    \end{column}
+  \end{columns}
+}
+
+\section{Kristalle}
+\begin{frame}[fragile]{}
+  \begin{columns}
+    \onslide<1->{
+      \begin{column}{.5\textwidth}
+        \begin{center}
+            \begin{tikzpicture}[
+                dot/.style = {
+                  draw, circle, thick, white, fill = gray!40!background,
+                  minimum size = 2mm,
+                  inner sep = 0pt,
+                  outer sep = 1mm,
+                },
+              ]
+
+              \begin{scope}
+                \clip (-2,-2) rectangle (3,4);
+                \foreach \y in {-7,-6,...,7} {
+                  \foreach \x in {-7,-6,...,7} {
+                    \node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
+                  }
+                }
+              \end{scope}
+              \draw[white, thick] (-2, -2) rectangle (3,4);
+
+              \draw[red!80!background, thick, ->] 
+                (N00) to node[midway, below] {\(\vec{a}_1\)} (N10);
+              \draw[cyan!80!background, thick, ->]
+                (N00) to node[midway, left] {\(\vec{a}_2\)} (N01);
+            \end{tikzpicture}
+        \end{center}
+      \end{column}
+    }
+    \begin{column}{.5\textwidth}
+      \onslide<2->{
+        Kristallgitter:
+        \(n_i \in \mathbb{Z}\),
+      }
+      \onslide<3->{
+        \(\vec{a}_i \in \mathbb{R}^3\)
+      }
+      \onslide<2->{
+        \[
+          \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 \onslide<3->{+ n_3 \vec{a}_3}
+        \]
+      }
+      \vspace{1cm}
+
+      \onslide<4->{
+        Invariant unter Translation
+        \[
+          Q_i(\vec{r}) = \vec{r} + \vec{a}_i
+        \]
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{columns}[T]
+    \begin{column}{.5\textwidth}
+      \onslide<1->{
+        Wie kombiniert sich \(Q_i\) mit der anderen Symmetrien?
+      }
+      \begin{center}
+        \begin{tikzpicture}[
+            dot/.style = {
+              draw, circle, thick, white, fill = gray!40!background,
+              minimum size = 2mm,
+              inner sep = 0pt,
+              outer sep = 1mm,
+            },
+          ]
+
+          \onslide<2->{
+            \node[dot] (A1) at (0,0) {};
+            \node[below left] at (A1) {\(A\)};
+          }
+
+          \onslide<3->{
+            \node[dot] (A2) at (2.5,0) {};
+            \node[below right] at (A2) {\(A'\)};
+
+            \draw[red!80!background, thick, ->] 
+              (A1) to node[midway, below] {\(\vec{Q}\)} (A2);
+          }
+
+          \onslide<4->{
+            \node[dot] (B1) at (120:2.5) {};
+            \node[above left] at (B1) {\(B\)};
+
+            \draw[green!70!background, thick, ->]
+              (A1) ++(.5,0) arc (0:120:.5)
+              node[midway, above, xshift=1mm] {\(C_n\)};
+            \draw[red!80!background, dashed, thick, ->] (A1) to (B1);
+          }
+
+          \onslide<5->{
+            \node[dot] (B2) at ($(A2)+(60:2.5)$) {};
+            \node[above right] at (B2) {\(B'\)};
+
+            \draw[green!70!background, thick, dashed, ->]
+              (A2) ++(-.5,0) arc (180:60:.5);
+            \draw[red!80!background, dashed, thick, ->] (A2) to (B2);
+          }
+
+          \onslide<6->{
+            \draw[yellow!80!background, thick, ->]
+              (B1) to node[above, midway] {\(\vec{Q}'\)} (B2);
+          }
+
+          \onslide<10->{
+		    \draw[gray, dashed, thick] (A1) to (A1 |- B1) node (Xl) {};
+			\draw[gray, dashed, thick] (A2) to (A2 |- B2) node (Xr) {};
+            \node[above left, xshift=-2mm] at (Xl) {\(x\)};
+            \node[above right, xshift= 2mm] at (Xr) {\(x\)};
+          }
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \onslide<7->{
+        Sei \(q = |\vec{Q}|\), \(\alpha = 2\pi/n\) und \(n \in \mathbb{N}\)
+      }
+      \begin{align*}
+        \onslide<9->{q' = n q \onslide<10->{&= q + 2x \\}}
+        \onslide<11->{nq &= q + 2q\sin(\alpha - \pi/2) \\}
+        \onslide<12->{n &= 1 - 2\cos\alpha}
+      \end{align*}
+      \onslide<13->{
+        Somit muss
+        \begin{align*}
+          \alpha &= \cos^{-1}\left(\frac{1-n}{2}\right) \\[1em]
+          \alpha &\in \left\{ 0, 60^\circ, 90^\circ, 120^\circ, 180^\circ \right\} \\
+          n &\in \left\{ 1, 2, 3, 4, 6 \right\}
+        \end{align*}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{M\"ogliche Kristallstrukturen}
+  \begin{center}
+    \begin{tikzpicture}[]
+      \node[circle, dashed, draw = gray, 
+        thick, fill = background,
+        minimum size = 4cm] {};
+      \node[gray] at (.9,-1.2) {674};
+
+      \node[circle, draw = white, thick,
+        fill = orange!40!background,
+        xshift = -3mm, yshift = 2mm,
+        minimum size = 2.75cm,
+        outer sep = 1mm] (A) {};
+      \node[white, yshift = 2mm] at (A) {230};
+      \node[white, font=\large, above right = of A] (Al) {Raumgruppe};
+      \draw[white, thick, ->] (Al.west) to[out=180, in=60] (A);
+
+      \node[circle, draw = white, thick, 
+        fill = red!20!background,
+        xshift = -5mm, yshift = -5mm,
+        minimum size = 1cm,
+        outer sep = 1mm] (B) {32};
+      \node[white, font=\large, below left = of B, xshift=-4mm] (Bl) {Kristallklassen};
+      \draw[white, thick, ->] (Bl.east) to[out = 0, in = 180] (B);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+{
+  \usebackgroundtemplate[fragile]{
+    \begin{tikzpicture}[
+        overlay,
+        xshift = .45\paperwidth,
+        yshift = .47\paperheight,
+        classcirc/.style = {
+          draw = gray, thick, circle,
+          minimum size = 12mm,
+          inner sep = 0pt, outer sep = 0pt,
+        },
+        classlabel/.style = {
+          below right = 5mm
+        },
+        round/.style = {
+          draw = yellow, thick, circle,
+          minimum size = 1mm,
+          inner sep = 0pt, outer sep = 0pt,
+        },
+        cross/.style = {
+          cross out, draw = magenta, thick,
+          minimum size = 1mm, 
+          inner sep = 0pt, outer sep = 0pt
+        },
+      ]
+      \matrix [row sep = 3mm, column sep = 0mm] {
+        \node[classcirc] (C1)  {} node[classlabel] {\(C_{1}\)};  & 
+        \node[classcirc] (C2)  {} node[classlabel] {\(C_{2}\)};  &
+        \node[classcirc] (C3)  {} node[classlabel] {\(C_{3}\)};  &
+        \node[classcirc] (Ci)  {} node[classlabel] {\(C_{i}\)};  &
+
+        \node[classcirc] (Cs)  {} node[classlabel] {\(C_{s}\)};  &
+        \node[classcirc] (C3i) {} node[classlabel] {\(C_{3i}\)}; &
+        \node[classcirc] (C2h) {} node[classlabel] {\(C_{2h}\)}; &
+        \node[classcirc] (D2)  {} node[classlabel] {\(D_{2}\)};  \\
+
+        \node[classcirc] (D3d) {} node[classlabel] {\(D_{3d}\)}; &
+        \node[classcirc] (C2v) {} node[classlabel] {\(C_{2v}\)}; & 
+        \node[classcirc] (D2h) {} node[classlabel] {\(D_{2h}\)}; & 
+        \node[classcirc] (D3)  {} node[classlabel] {\(D_{3}\)};  &
+
+        \node[classcirc] (C4)  {} node[classlabel] {\(C_{4}\)};  &
+        \node[classcirc] (C6)  {} node[classlabel] {\(C_{6}\)};  &
+        \node[classcirc] (D3dP) {} node[classlabel] {\(D_{3d}\)}; &
+        \node[classcirc] (S4)  {} node[classlabel] {\(S_{4}\)};  \\
+
+        \node[classcirc] (S3)  {} node[classlabel] {\(S_{3}\)};  &
+        \node[classcirc, dashed] (T)   {} node[classlabel] {\(T_{}\)};   &
+        \node[classcirc] (C4h) {} node[classlabel] {\(C_{4h}\)}; &
+        \node[classcirc] (C6h) {} node[classlabel] {\(C_{6h}\)}; &
+
+        \node[classcirc, dashed] (Th)  {} node[classlabel] {\(T_{h}\)};  &
+        \node[classcirc] (C4v) {} node[classlabel] {\(C_{4v}\)}; &
+        \node[classcirc] (C6v) {} node[classlabel] {\(C_{6v}\)}; &
+        \node[classcirc, dashed] (Td)  {} node[classlabel] {\(T_{d}\)};  \\
+        
+        \node[classcirc] (D2d) {} node[classlabel] {\(D_{2d}\)}; &
+        \node[classcirc] (D3h) {} node[classlabel] {\(D_{3h}\)}; &
+        \node[classcirc, dashed] (O)   {} node[classlabel] {\(O_{}\)};   &
+        \node[classcirc] (D4)  {} node[classlabel] {\(D_{4}\)};  &
+
+        \node[classcirc] (D6)  {} node[classlabel] {\(D_{6}\)};  &
+        \node[classcirc, dashed] (Oh)  {} node[classlabel] {\(O_{h}\)};  &
+        \node[classcirc] (D4h) {} node[classlabel] {\(D_{4h}\)}; &
+        \node[classcirc] (D6h) {} node[classlabel] {\(D_{6h}\)}; \\
+      };
+
+
+      \node[cross] at ($(C1)+(4mm,0)$) {};
+
+      
+      \node[cross] at ($(C2)+(4mm,0)$) {};
+      \node[cross] at ($(C2)-(4mm,0)$) {};
+
+
+      \node[cross] at ($(C3)+(  0:4mm)$) {};
+      \node[cross] at ($(C3)+(120:4mm)$) {};
+      \node[cross] at ($(C3)+(240:4mm)$) {};
+
+
+      \node[cross] at ($(Ci)+(4mm,0)$) {};
+      \node[round] at ($(Ci)-(4mm,0)$) {};
+
+
+      \node[cross] at ($(Cs)+(4mm,0)$) {};
+      \node[round] at ($(Cs)+(4mm,0)$) {};
+
+
+      \node[cross] at ($(C3i)+(  0:4mm)$) {};
+      \node[cross] at ($(C3i)+(120:4mm)$) {};
+      \node[cross] at ($(C3i)+(240:4mm)$) {};
+      \node[round] at ($(C3i)+( 60:4mm)$) {};
+      \node[round] at ($(C3i)+(180:4mm)$) {};
+      \node[round] at ($(C3i)+(300:4mm)$) {};
+
+
+      \node[cross] at ($(C2h)+(4mm,0)$) {};
+      \node[cross] at ($(C2h)-(4mm,0)$) {};
+      \node[round] at ($(C2h)+(4mm,0)$) {};
+      \node[round] at ($(C2h)-(4mm,0)$) {};
+
+
+      \node[cross] at ($(D2)+( 20:4mm)$) {};
+      \node[cross] at ($(D2)+(200:4mm)$) {};
+      \node[round] at ($(D2)+(160:4mm)$) {};
+      \node[round] at ($(D2)+(340:4mm)$) {};
+
+
+      \foreach \x in {0, 120, 240} {
+        \node[cross] at ($(D3d)+({\x+15}:4mm)$) {};
+        \node[cross] at ($(D3d)+({\x-15}:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 180} {
+        \node[cross] at ($(C2v)+({\x+15}:4mm)$) {};
+        \node[cross] at ($(C2v)+({\x-15}:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 180} {
+        \node[cross] at ($(D2h)+({\x+15}:4mm)$) {};
+        \node[cross] at ($(D2h)+({\x-15}:4mm)$) {};
+        \node[round] at ($(D2h)+({\x+15}:4mm)$) {};
+        \node[round] at ($(D2h)+({\x-15}:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 120, 240} {
+        \node[cross] at ($(D3)+({\x+15}:4mm)$) {};
+        \node[round] at ($(D3)+({\x-15}:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 90, 180, 270} {
+        \node[cross] at ($(C4)+(\x:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 60, 120, 180, 240, 300} {
+        \node[cross] at ($(C6)+(\x:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 120, 240} {
+        \node[cross] at ($(D3dP)+({\x+15}:4mm)$) {};
+        \node[cross] at ($(D3dP)+({\x-15}:4mm)$) {};
+        \node[round] at ($(D3dP)+({\x+15+60}:4mm)$) {};
+        \node[round] at ($(D3dP)+({\x-15+60}:4mm)$) {};
+      }
+
+
+      \node[cross] at ($(S4)+(4mm,0)$) {};
+      \node[cross] at ($(S4)-(4mm,0)$) {};
+      \node[round] at ($(S4)+(0,4mm)$) {};
+      \node[round] at ($(S4)-(0,4mm)$) {};
+
+
+      \foreach \x in {0, 120, 240} {
+        \node[cross] at ($(S3)+(\x:4mm)$) {};
+        \node[round] at ($(S3)+(\x:4mm)$) {};
+      }
+
+
+      %% TODO: T
+
+
+      \foreach \x in {0, 90, 180, 270} {
+        \node[cross] at ($(C4h)+(\x:4mm)$) {};
+        \node[round] at ($(C4h)+(\x:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 60, 120, 180, 240, 300} {
+        \node[cross] at ($(C6h)+(\x:4mm)$) {};
+        \node[round] at ($(C6h)+(\x:4mm)$) {};
+      }
+
+
+      %% TODO: Th
+
+
+      \foreach \x in {0, 90, 180, 270} {
+        \node[cross] at ($(C4v)+(\x+15:4mm)$) {};
+        \node[cross] at ($(C4v)+(\x-15:4mm)$) {};
+      }
+
+
+
+      \foreach \x in {0, 60, 120, 180, 240, 300} {
+        \node[cross] at ($(C6v)+(\x+10:4mm)$) {};
+        \node[cross] at ($(C6v)+(\x-10:4mm)$) {};
+      }
+
+
+      %% TODO: Td
+
+
+      \foreach \x in {0, 180} {
+        \node[cross] at ($(D2d)+({\x+15}:4mm)$) {};
+        \node[round] at ($(D2d)+({\x-15}:4mm)$) {};
+
+        \node[round] at ($(D2d)+({\x+15+90}:4mm)$) {};
+        \node[cross] at ($(D2d)+({\x-15+90}:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 120, 240} {
+        \node[cross] at ($(D3h)+({\x+15}:4mm)$) {};
+        \node[cross] at ($(D3h)+({\x-15}:4mm)$) {};
+        \node[round] at ($(D3h)+({\x+15}:4mm)$) {};
+        \node[round] at ($(D3h)+({\x-15}:4mm)$) {};
+      }
+
+
+      %% TODO: O
+
+
+      \foreach \x in {0, 90, 180, 270} {
+        \node[cross] at ($(D4)+({\x+15}:4mm)$) {};
+        \node[round] at ($(D4)+({\x-15}:4mm)$) {};
+      }
+
+      \foreach \x in {0, 60, 120, 180, 240, 300} {
+        \node[cross] at ($(D6)+({\x+10}:4mm)$) {};
+        \node[round] at ($(D6)+({\x-10}:4mm)$) {};
+      }
+
+
+      % TODO Oh
+
+
+      \foreach \x in {0, 90, 180, 270} {
+        \node[cross] at ($(D4h)+(\x+15:4mm)$) {};
+        \node[cross] at ($(D4h)+(\x-15:4mm)$) {};
+        \node[round] at ($(D4h)+(\x+15:4mm)$) {};
+        \node[round] at ($(D4h)+(\x-15:4mm)$) {};
+      }
+
+
+      \foreach \x in {0, 60, 120, 180, 240, 300} {
+        \node[cross] at ($(D6h)+({\x+10}:4mm)$) {};
+        \node[cross] at ($(D6h)+({\x-10}:4mm)$) {};
+        \node[round] at ($(D6h)+({\x+10}:4mm)$) {};
+        \node[round] at ($(D6h)+({\x-10}:4mm)$) {};
+      }
+    \end{tikzpicture}
+  }
+  \begin{frame}[fragile]{}
+  \end{frame}
+}
+
+\section{Anwendungen}
+\begin{frame}[fragile]{}
+  \centering
+  \begin{tikzpicture}[
+      box/.style = {
+        rectangle, thick, draw = white, fill = darkgray!50!background,
+        minimum height = 1cm, outer sep = 2mm,
+      },
+    ]
+
+    \matrix [nodes = {box, align = center}, column sep = 1cm, row sep = 1.5cm] {
+      & \node (A) {32 Kristallklassen}; \\
+      \node (B) {11 Mit\\ Inversionszentrum}; & \node (C) {21 Ohne\\ Inversionszentrum}; \\
+      & \node[fill=red!20!background] (D) {20 Piezoelektrisch}; & \node (E) {1 Nicht\\ piezoelektrisch}; \\
+    };
+
+    \draw[thick, ->] (A.west) to[out=180, in=90] (B.north);
+    \draw[thick, ->] (A.south) to (C);
+    \draw[thick, ->] (C.south) to (D.north);
+    \draw[thick, ->] (C.east) to[out=0, in=90] (E.north);
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{}
+  \begin{tikzpicture}[
+      overlay, xshift = 1.5cm, yshift = 1.5cm,
+      node distance = 2mm,
+      charge/.style = {
+        circle, draw = white, thick,
+        minimum size = 5mm
+      },
+      positive/.style = { fill = red!50 },
+      negative/.style = { fill = blue!50 },
+    ]
+
+    \node[font = {\large\bfseries}, align = center] (title) at (5.5,0) {Mit und Ohne\\ Symmetriezentrum};
+    \pause
+
+    \begin{scope}
+      \matrix[nodes = { charge }, row sep = 8mm, column sep = 8mm] {
+        \node[positive] {}; & \node[negative] (N) {}; & \node [positive] {}; \\
+        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
+        \node[positive] {}; & \node[negative] (S) {}; & \node [positive] {}; \\
+      };
+      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
+    \end{scope}
+    \pause
+
+    \begin{scope}[xshift=11cm]
+      \foreach \x/\t [count=\i] in {60/positive, 120/negative, 180/positive, 240/negative, 300/positive, 360/negative} {
+        \node[charge, \t] (C\i) at (\x:1.5cm) {};
+      }
+
+      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      \node[circle, draw=gray, fill=gray, outer sep = 0, inner sep = 0, minimum size = 3mm] {};
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+    \end{scope}
+    \pause
+
+	%% 
+    \node[below = of title] {Polarisation Feld \(\vec{E}_p\)};
+
+	%% hex with vertical pressure
+    \begin{scope}[xshift=11cm, yshift=-4.5cm]
+      \node[charge, positive, yshift=-2.5mm] (C1) at ( 60:1.5cm) {};
+      \node[charge, negative, yshift=-2.5mm] (C2) at (120:1.5cm) {};
+      \node[charge, positive, xshift=-2.5mm] (C3) at (180:1.5cm) {};
+      \node[charge, negative, yshift= 2.5mm] (C4) at (240:1.5cm) {};
+      \node[charge, positive, yshift= 2.5mm] (C5) at (300:1.5cm) {};
+      \node[charge, negative, xshift= 2.5mm] (C6) at (360:1.5cm) {};
+
+      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+
+      \foreach \d in {C1, C2} {
+        \draw[orange, very thick, <-] (\d) to ++(0,.7);
+      }
+
+      \foreach \d in {C4, C5} {
+        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
+      }
+
+      \node[white] (E) {\(\vec{E}_p\)};
+      \begin{scope}[node distance = .5mm]
+        \node[red!50, right = of E] {\(+\)};
+        \node[blue!50, left = of E] {\(-\)};
+      \end{scope}
+      % \draw[gray, thick, dotted] (E) to ++(0,2);
+      % \draw[gray, thick, dotted] (E) to ++(0,-2);
+    \end{scope}
+	\pause
+
+	%% square with vertical pressure 
+    \begin{scope}[yshift=-4.5cm]
+      \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
+        \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
+        \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
+        \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
+      };
+
+      \foreach \d in {NW, N, NE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,.7);
+      }
+
+      \foreach \d in {SW, S, SE} {
+        \draw[orange, very thick, <-] (\d) to ++(0,-.7);
+      }
+
+      \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
+    \end{scope}
+    \pause
+
+	%% hex with horizontal pressure
+    \begin{scope}[xshift=5.5cm, yshift=-4.5cm]
+      \node[charge, positive, yshift= 2.5mm] (C1) at ( 60:1.5cm) {};
+      \node[charge, negative, yshift= 2.5mm] (C2) at (120:1.5cm) {};
+      \node[charge, positive, xshift= 2.5mm] (C3) at (180:1.5cm) {};
+      \node[charge, negative, yshift=-2.5mm] (C4) at (240:1.5cm) {};
+      \node[charge, positive, yshift=-2.5mm] (C5) at (300:1.5cm) {};
+      \node[charge, negative, xshift=-2.5mm] (C6) at (360:1.5cm) {};
+
+      \draw[white] (C1) to (C2) to (C3) to (C4) to (C5) to (C6) to (C1);
+      % \draw[gray, dashed] (C2) to (C4) to (C6) to (C2);
+
+      \draw[orange, very thick, <-] (C6) to ++(.7,0);
+      \draw[orange, very thick, <-] (C3) to ++(-.7,0);
+
+      \node[white] (E) {\(\vec{E}_p\)};
+      \begin{scope}[node distance = .5mm]
+        \node[blue!50, right = of E] {\(-\)};
+        \node[red!50, left = of E] {\(+\)};
+      \end{scope}
+      % \draw[gray, thick, dotted] (E) to ++(0,2);
+      % \draw[gray, thick, dotted] (E) to ++(0,-2);
+    \end{scope}
+    \pause
+	  
+
+  \end{tikzpicture}
+\end{frame}
+
+\frame{
+  \frametitle{Licht in Kristallen}
+  \begin{columns}[T]
+    \begin{column}{.45\textwidth}
+      \onslide<2->{
+        Helmholtz Wellengleichung
+        \[
+          \nabla^2 \vec{E} = \ten{\varepsilon}\mu
+          \frac{\partial^2}{\partial t^2} \vec{E}
+        \]
+      }
+      \onslide<3->{
+        Ebene Welle
+        \[
+          \vec{E} = \vec{E}_0 \exp\left[i
+            \left(\vec{k}\cdot\vec{r} - \omega t \right)\right]
+        \]
+      }
+      \onslide<4->{
+        Anisotropisch Dielektrikum
+        \[
+          (\ten{K}\ten{\varepsilon})\vec{E} 
+            = \frac{k^2}{\mu \omega^2} \vec{E}
+          \implies
+          \Phi \vec{E} = \lambda \vec{E}
+        \]
+      }
+    \end{column}
+    \begin{column}{.55\textwidth}
+      \onslide<5->{
+        Eingenraum
+        \begin{align*}
+          U_\lambda &= \left\{ v : \Phi v = \lambda v \right\}
+          = \mathrm{null}\left(\Phi - \lambda I\right)
+        \end{align*}
+      }\onslide<6->{
+        Symmetriegruppe und Darstellung
+        \begin{align*}
+          G &= \left\{\mathbb{1}, r, \sigma, \dots \right\} \\
+          &\Phi : G \to O(n)
+        \end{align*}
+      }\onslide<7->{
+        Kann man \(U_\lambda\) von \(G\) herauslesen?
+        \only<7>{
+          \[
+            U_\lambda \stackrel{?}{=} f\left(\bigoplus_{g \in G} \Phi_g\right)
+          \]
+        }\only<8>{
+          \begin{align*}
+            \mathrm{Tr}\left[\Phi_r(g)\right] 
+              &= \sum_i n_i \mathrm{Tr}\left[\Psi_i(g)\right] \\
+            |G| &= \sum_i\mathrm{Tr}\left[\Psi_i(\mathbb{1})\right]
+          \end{align*}
+        }
+      }
+    \end{column}
+  \end{columns}
+}
+
+% \begin{frame}[fragile]
+%   \centering
+%   \tdplotsetmaincoords{70}{110}
+%   \begin{tikzpicture}[scale=2, tdplot_main_coords]
+%     \node[draw=white, thick, minimum size = 3cm, circle] {};
+%     % \foreach \x in {0, 120, 240} {
+%     % }
+%   \end{tikzpicture}
+% \end{frame}
+
+
+\end{document}

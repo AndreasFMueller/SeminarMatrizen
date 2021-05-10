@@ -1,0 +1,214 @@
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[cm]{manuscript}
+\usepackage{xcolor}
+
+\newcommand{\scene}[1]{\par\noindent[ #1 ]\par}
+\newenvironment{totranslate}{\color{blue!70!black}}{}
+
+\begin{document}
+\section{Das sind wir}
+\scene{Camera}
+
+\section{Ablauf}
+Zuerst werden wir Symmetrien in 2 Dimensionen anschauen, dann \"uberlegen wir
+kurz was es heisst f\"ur eine Symmetrie ``algebraisch'' zu sein. Von da aus
+kommt die dritte Dimension hinzu, die man besser mit Matrizen verstehen kann.
+Mit der aufgebauten Theorie werden wir versuchen Kristalle zu klassifizieren.
+Und zum Schluss kommen wir zu Anwendungen, welche f\"ur Ingenieure von
+Interesse sind.
+
+\section{intro}
+\scene{Spontan}
+
+\section{2D Geometrie}
+\scene{Intro}
+Wir fangen mit den 2 dimensionalen Symmetrien an, da man sie sich am
+einfachsten vorstellen kann. Eine Symmetrie eines Objektes beschreibt eine
+Aktion, welche nachdem sie auf das Objekt wirkt, das Objekt wieder gleich
+aussehen l\"asst.
+
+\scene{Viereck}
+Die einfachste Aktion, ist das Viereck zu nehmen, und wieder hinzulegen.
+Eine andere Aktion k\"onnte sein, das Objekt um eine Achse zu spiegeln,
+oder eine Rotation um 90 Grad.
+
+\scene{Zyklische Gruppe}
+Fokussieren wir uns auf die einfachste Klassen von Symmetrien: diejenigen die
+von einer reinen Drehung generiert werden. Wir sammeln diese in einer Gruppe
+\(G\), und notieren das sie von eine Rotation \(r\) generiert worden sind, mit
+diesen spitzen Klammern.
+
+Nehmen wir als Beispiel dieses Pentagon. Wenn wir \(r\) 5-mal anwenden, ist es
+dasselbe als wenn wir nichts gemacht h\"atten. Wenn wir es noch ein 6. mal
+drehen, entspricht dies dasselbe wie \(r\) nur 1 mal zu nutzen.
+
+\scene{Notation}
+So, die Gruppe setzt sich zusammen aus dem neutralen Element, und den Potenzen
+1 bis 4 von \(r\). Oder im allgemein Gruppen mit dieser Struktur, in welcher die
+Aktion \(n-1\) mal angewendet werden kann, heissen ``Zyklische Gruppe''.
+
+\scene{Diedergruppe}
+Nehmen wir nun auch noch die Spiegeloperation \(\sigma\) dazu. Weil wir jetzt 2
+Operationen haben, m\"ussen wir auch im Generator schreiben wie sie
+zusammenh\"angen.  Schauen wir dann uns genauer diesen Ausdr\"uck an.  Zweimal
+Spielegeln ist \"aquivalent zum neutralen Element, sowie 4 mal um 90 Grad
+drehen und 2 Drehspiegelungen, welche man auch Inversion nennt.
+
+\scene{Notation}
+Daraus k\"onnen wir wieder die ganze Gruppe erzeugen, die im allgemeinen den
+Symmetrien eines \(n\)-gons entsprechen.
+
+\scene{Kreisgruppe}
+Bis jetzt hatten wir nur diskrete Symmetrien, was nicht zwingend der Fall sein
+muss. Ein Ring kann man kontinuierlich drehen, und sieht dabei immer gleich
+aus.
+
+Diese Symmetrie ist auch als Kreisgruppe bekannt, die man sch\"on mit dem
+komplexen Einheitskreis definieren kann.
+
+\section{Algebra}
+\scene{Produkt mit \(i\)}
+\"Uberlegen wir uns eine spezielle algebraische Operation: Multiplikation mit
+der imagin\"aren Einheit. \(1\) mal \(i\) ist gleich \(i\). Wieder mal \(i\)
+ist \(-1\), dann \(-i\) und schliesslich kommen wir z\"uruck auf \(1\).  Diese
+fassen wir in eine Gruppe \(G\) zusammen. Oder sch\"oner geschrieben:. Sieht das
+bekannt aus?
+
+\scene{Morphismen}
+Das Gefühl, dass es sich um dasselbe handelt, kann wie folgt formalisiert
+werden.  Sei \(\phi\) eine Funktion von \(C_4\) zu \(G\) und ordnen wir zu
+jeder Symmetrieoperation ein Element aus \(G\). Wenn man die Zuordnung richtig
+definiert, dann sieht man die folgende Eigenschaft: Eine Operation nach eine
+andere zu nutzen, und dann die Funktion des Resultats zu nehmen, ist gleich wie
+die Funktion der einzelnen Operazionen zu nehmen und die Resultate zu
+multiplizieren. Dieses Ergebnis ist so bemerkenswert, dass es in der Mathematik
+einen Namen bekommen hat: Homorphismus, von griechisch "homos" dasselbe und
+"morphe" Form.  Manchmal auch so geschrieben. Ausserdem, wenn \(\phi\) eins zu
+eins ist, heisst es \emph{Iso}morphismus: "iso" gleiche Form. Was man
+typischerweise mit diesem Symbol schreibt.
+
+\scene{Animation}
+Sie haben wahrscheinlich schon gesehen, worauf das hinausläuft.  Dass die
+zyklische Gruppe \(C_4\) und \(G\) isomorph sind ist nicht nur Fachjargon der
+mathematik, sondern sie haben wirklich die selbe Struktur.
+
+\scene{Modulo}
+Das Beispiel mit der komplexen Einheit, war wahrscheinlich nicht so
+\"uberraschend. Aber was merkw\"urdig ist, ist das Beziehungen zwischen
+Symmetrien und Algebra auch in Bereichen gefunden werden, welche auf den ersten
+Blick, nicht geomerisch erscheinen. Ein R\"atsel für die Neugierigen: die Summe
+in der Modulo-Arithmetik.  Als Hinweis: Um die Geometrie zu finden denken Sie
+an einer Uhr.
+
+\section{3D Geometrie}
+2 Dimensionen sind einfacher zu zeichnen, aber leider leben wir im 3
+dimensionalen Raum.
+
+\scene{Zyklische Gruppe}
+Wenn wir unser bekanntes Viereck mit seiner zyklischer Symmetrie in 3
+Dimensionen betrachten, k\"onnen wir seine Drehachse sehen.
+
+\scene{Diedergruppe}
+Um auch noch die andere Symmetrie des Rechteckes zu sehen, ben\"otigen wir eine
+Spiegelachse \(\sigma\), die hier eine Spiegelebene ist.
+
+\scene{Transition}
+Um die Punktsymmetrien zu klassifizieren orientiert man sich an einer Achse, um
+welche sich die meisten Symmetrien drehen. Das geht aber nicht immer, wie beim
+Tetraeder.
+
+\scene{Tetraedergruppe}
+Diese Geometrie hat 4 gleichwertige Symmetrieachsen, die eben eine
+Symmetriegruppe aufbauen, welche kreativer weise Tetraedergruppe genannt wird.
+Vielleicht fallen Ihnnen weitere Polygone ein mit dieser Eigenschaft, bevor wir
+zum n\"achsten Thema weitergehen.
+
+\section{Matrizen}
+\scene{Titelseite}
+Nun gehen wir kurz auf den Thema unseres Seminars ein: Matrizen.  Das man mit
+Matrizen Dinge darstellen kann, ist keine Neuigkeit mehr, nach einem
+Semester MatheSeminar.  Also überrascht es wohl auch keinen, das man alle
+punktsymmetrischen Operationen auch mit Matrizen Formulieren kann.
+
+\scene{Matrizen}
+
+Sei dann \(G\) unsere Symmetrie Gruppe, die unsere abstrakte Drehungen und
+Spiegelungen enth\"ahlt. Die Matrix Darstellung dieser Gruppe, ist eine
+Funktion gross \(\Phi\), von \(G\) zur orthogonalen Gruppe \(O(3)\), die zu
+jeder Symmetrie Operation klein \(g\) eine Matrix gross \(\Phi_g\) zuordnet.
+
+Zur Erinnerung, die Orthogonale Gruppe ist definiert als die Matrizen, deren
+transponierte auch die inverse ist. Da diese Volumen und Distanzen erhalten,
+natuerlich nur bis zu einer Vorzeichenumkehrung, macht es Sinn, dass diese
+Punksymmetrien genau beschreiben.
+
+Nehmen wir die folgende Operationen als Beispiele. Die Matrix der trivialen
+Operation, dass heisst nichts zu machen, ist die Einheitsmatrix. Eine
+Spiegelung ist dasselbe aber mit einem Minus, und Drehungen sind uns schon
+dank Herrn M\"uller bekannt.
+
+\section{Kristalle}
+\scene{Spontan}
+
+\section{Piezo}
+\scene{Spontan}
+
+\section{Licht}
+Als Finale, haben wir ein schwieriges Problem aus der Physik. Das Ziel dieser
+Folie ist nicht jedes Zeichen zu versehen, sondern zu zeigen wie man von hier
+weiter gehen kann. Wir mochten sehen wie sich Licht in einem Kristall verhaltet.
+Genauer, wir m\"ochten die Amplitude einer
+elektromagnetischer Welle in einem Kristall beschreiben.
+
+Das Beispiel richtet sich mehr an Elektrotechnik Studenten, aber die Theorie
+ist die gleiche bei mechanischen Wellen in Materialien mit einer
+Spannungstensor wie dem, den wir letzte Woche gesehen haben.
+% Ganz grob gesagt, ersetzt man E durch Xi und epsilon durch das Sigma.
+
+Um eine Welle zu beschreiben, verwenden wir die Helmholtz-Gleichung, die einige
+von uns bereits in anderen Kursen gel\"ost haben.  Schwierig wird aber dieses
+Problem, wenn der Term vor der Zeitableitung ein Tensor ist (f\"ur uns eine Matrix).
+
+Zur Vereinfachung werden wir eine ebene Welle verwenden. Setzt man dieses E in
+die Helmholtz-Gleichung ein, erhält man folgendes zurück: ein Eigenwertproblem.
+
+Physikalisch bedeutet dies, dass die Welle in diesem Material ihre Amplitude in
+Abhängigkeit von der Ausbreitungsrichtung ändert.  Und die Eigenwerte sagen
+aus, wie stark die Amplitude der Welle in jeder Richtung skaliert wird.
+
+Ich sagte, in jede Richtung skaliert, aber welche Richtungen genau?
+Physikalisch hängt das von der kristallinen Struktur des Materials ab, aber
+mathematisch können wir sagen: in Richtung der Eigenvektoren!  Aber diesen
+Eigenraum zu finden, in dem die Eigenvektoren wohnen, ist beliebig schwierig. 
+
+Hier kommt unsere Gruppentheorie zu Hilfe. Wir können die Symmetrien unseres
+Kristalls zur Hilfe nehmen. Zu jeder dieser Symmetrien lässt sich bekanntlich eine
+einfache Matrix finden, deren Eigenraum ebenfalls relativ leicht zu finden ist.
+Zum Beispiel ist der Eigenraum der Rotation \(r\), die Rotationsachse, für die
+Reflexion \(\sigma\) eine Ebene, und so weiter.
+
+Nun ist die Frage, ob man diese Eingenraume der Symmetrienoperationen
+kombinieren kann um den Eigenraum des physikalisches Problems zu finden.
+
+Aber leider ist meine Zeit abgelaufen in der Recherche, also müssen Sie mir 2
+Dingen einfach glauben, erstens dass es einen Weg gibt, und zweitens dass eher
+nicht so schlimm ist, wenn man die Notation einmal gelernt hat.
+
+Nachdem wir an, wir haben den Eigenraum U gefunden, dann können wir einen
+(Eigen)Vektor E daraus nehmen und in ihm direkt lambda ablesen. Das sagt uns,
+wie die Amplitude der Welle, in diese Richtung gedämpft wurde.
+
+Diese Methode ist nicht spezifisch für dieses Problem, im Gegenteil, ich habe
+gesehen, dass sie in vielen Bereichen eingesetzt wird, wie z.B.:
+Kristallographie, Festkörperphysik, Molekülschwingungen in der Quantenchemie
+und numerische Simulationen von Membranen.
+
+\section{Outro}
+\scene{Camera}
+
+\end{document}
+% vim:et ts=2 sw=2:
