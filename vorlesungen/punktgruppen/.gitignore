@@ -1,8 +1,16 @@
 # directories
 __pycache__
 media/Tex
+
 media/images/crystal
+media/images/freezeframes
+
 media/videos
+media/audio
+
+media/Punktgruppen
+media/Punktgruppen.mp4
+
 build
 
 # files
