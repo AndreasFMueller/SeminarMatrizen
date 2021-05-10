@@ -15,6 +15,8 @@ config.tex_template.add_to_preamble(
 # scenes
 class Geometric2DSymmetries(Scene):
     def construct(self):
+        self.wait(5)
+
         self.intro()
         self.cyclic()
         self.dihedral()
@@ -33,6 +35,7 @@ class Geometric2DSymmetries(Scene):
         self.play(ApplyMethod(square.scale, 1.2))
         self.play(ApplyMethod(square.scale, 1/1.2))
         self.play(FadeOut(action))
+        self.wait()
 
         # show some reflections
         axis = DashedLine(2 * LEFT, 2 * RIGHT)
@@ -41,9 +44,7 @@ class Geometric2DSymmetries(Scene):
 
         self.play(Create(axis))
         self.play(Write(sigma))
-
         self.play(ApplyMethod(square.flip, RIGHT))
-        self.wait()
 
         for d in [UP + RIGHT, UP]:
             self.play(
@@ -53,9 +54,7 @@ class Geometric2DSymmetries(Scene):
             self.play(Rotate(sigma, -PI/4), run_time=.5)
             self.play(ApplyMethod(square.flip, d))
 
-        self.play(
-            FadeOutAndShift(sigma),
-            Uncreate(axis))
+        self.play(FadeOutAndShift(sigma), Uncreate(axis))
 
         # show some rotations
         dot = Dot(UP + RIGHT)
@@ -69,7 +68,7 @@ class Geometric2DSymmetries(Scene):
             self.play(
                 ReplacementTransform(last, newrot),
                 Rotate(figure, PI/2, about_point=ORIGIN))
-            self.wait()
+            self.wait(.5)
             last = newrot
 
         self.play(Uncreate(dot), FadeOut(square), FadeOut(last))
@@ -99,12 +98,13 @@ class Geometric2DSymmetries(Scene):
 
         group = MathTex(r"G = \langle r \rangle")
         self.play(Write(group), run_time = 2)
-        self.wait()
+        self.wait(3)
+
         self.play(ApplyMethod(group.to_edge, UP))
 
         actions = map(MathTex, [
             r"\mathbb{1}", r"r", r"r^2",
-            r"r^3", r"r^4", r"\mathbb{1}"])
+            r"r^3", r"r^4", r"\mathbb{1}", r"r"])
 
         action = next(actions, MathTex(r"r"))
 
@@ -119,6 +119,14 @@ class Geometric2DSymmetries(Scene):
                 Rotate(figure, 2*PI/5, about_point=ORIGIN))
             action = newaction
 
+        self.wait()
+        newaction = next(actions, MathTex(r"r"))
+        self.play(
+            ReplacementTransform(action, newaction),
+            Rotate(figure, 2*PI/5, about_point=ORIGIN))
+        action = newaction
+        self.wait(2)
+
         self.play(Uncreate(figure), FadeOut(action))
 
         whole_group = MathTex(
@@ -127,7 +135,7 @@ class Geometric2DSymmetries(Scene):
 
         self.play(ApplyMethod(group.move_to, ORIGIN))
         self.play(ReplacementTransform(group, whole_group))
-        self.wait()
+        self.wait(5)
 
         cyclic = MathTex(
             r"C_n = \langle r \rangle" 
@@ -158,10 +166,13 @@ class Geometric2DSymmetries(Scene):
             r"(\sigma r)^2 = \mathbb{1} \rangle")
 
         self.play(Write(group), run_time = 2)
-        self.wait()
+        self.wait(5)
+
         self.play(ApplyMethod(group.to_edge, UP))
         self.play(FadeIn(square))
+        self.wait()
 
+        # flips
         axis = DashedLine(2 * LEFT, 2 * RIGHT)
         sigma = MathTex(r"\sigma^2 = \mathbb{1}")
         sigma.next_to(axis, RIGHT)
@@ -250,6 +261,7 @@ class Geometric2DSymmetries(Scene):
 
         # show name
         self.play(Rotate(figure, PI/4), Write(group_name))
+        self.wait()
         self.play(Uncreate(figure))
 
         nsphere = MathTex(r"C_\infty \cong S^1 = \left\{z \in \mathbb{C} : |z| = 1\right\}")
@@ -264,12 +276,13 @@ class Geometric2DSymmetries(Scene):
 
         self.wait(5)
         self.play(FadeOut(nsphere_title), FadeOut(nsphere))
+        self.wait(2)
 
 
 class Geometric3DSymmetries(ThreeDScene):
     def construct(self):
         self.improper_rotation()
-        self.icosahedron()
+        self.tetrahedron()
 
     def improper_rotation(self):
         # changes the source of the light and camera
@@ -289,6 +302,18 @@ class Geometric3DSymmetries(ThreeDScene):
 
         self.move_camera(phi= 75 * DEGREES, theta = -80 * DEGREES)
 
+        # create rotation axis
+        axis = Line3D(start=[0,0,-2.5], end=[0,0,2.5])
+
+        axis_name = MathTex(r"r \in C_4")
+        # move to yz plane
+        axis_name.rotate(PI/2, axis = RIGHT)
+        axis_name.next_to(axis, OUT)
+
+        self.play(Create(axis))
+        self.play(Write(axis_name))
+        self.wait()
+
         # create sphere from slices
         cyclic_slices = []
         for i in range(4):
@@ -306,21 +331,16 @@ class Geometric3DSymmetries(ThreeDScene):
 
         self.play(FadeOut(square), *map(Create, cyclic_slices))
 
-        axis = Line3D(start=[0,0,-2.5], end=[0,0,2.5])
-
-        axis_name = MathTex(r"r \in C_4")
-        # move to yz plane
-        axis_name.rotate(PI/2, axis = RIGHT)
-        axis_name.next_to(axis, OUT)
-
-        self.play(Create(axis))
-        self.play(Write(axis_name))
-        self.wait()
-
         cyclic_sphere = VGroup(*cyclic_slices)
         for i in range(4):
             self.play(Rotate(cyclic_sphere, PI/2))
             self.wait()
+
+        new_axis_name = MathTex(r"r \in D_4")
+        # move to yz plane
+        new_axis_name.rotate(PI/2, axis = RIGHT)
+        new_axis_name.next_to(axis, OUT)
+        self.play(ReplacementTransform(axis_name, new_axis_name))
 
         # reflection plane
         self.play(FadeOut(cyclic_sphere), FadeIn(square))
@@ -340,12 +360,18 @@ class Geometric3DSymmetries(ThreeDScene):
         self.wait()
 
         self.move_camera(phi = 25 * DEGREES, theta = -75 * DEGREES)
+        self.wait()
 
+        condition = MathTex(r"(\sigma r)^2 = \mathbb{1}")
+        condition.next_to(square, DOWN);
+
+        self.play(Write(condition))
         self.play(Rotate(square, PI/2))
         self.play(Rotate(square, PI, RIGHT))
 
         self.play(Rotate(square, PI/2))
         self.play(Rotate(square, PI, RIGHT))
+        self.play(FadeOut(condition))
 
         self.move_camera(phi = 75 * DEGREES, theta = -80 * DEGREES)
 
@@ -375,14 +401,45 @@ class Geometric3DSymmetries(ThreeDScene):
             self.play(Rotate(dihedral_sphere, PI, RIGHT))
             self.wait()
 
-        self.wait(5)
+        self.wait(2)
+        self.play(*map(FadeOut, [dihedral_sphere, plane, plane_name, new_axis_name]), FadeIn(square))
+        self.wait(3)
+        self.play(*map(FadeOut, [square, axis]))
+        self.wait(3)
 
-    def icosahedron(self):
-        pass
+    def tetrahedron(self):
+        tet = Tetrahedron(edge_length=2)
+        self.play(FadeIn(tet))
+        
+        self.move_camera(phi = 75 * DEGREES, theta = -100 * DEGREES)
+        self.begin_ambient_camera_rotation(rate=.1)
+
+        axes = []
+        for coord in tet.vertex_coords:
+            axes.append((-2 * coord, 2 * coord))
+
+        lines = [
+            Line3D(start=s, end=e) for s, e in axes
+        ]
+
+        self.play(*map(Create, lines))
+        self.wait()
+
+        for axis in axes:
+            self.play(Rotate(tet, 2*PI/3, axis=axis[1]))
+            self.play(Rotate(tet, 2*PI/3, axis=axis[1]))
+
+        self.wait(5)
+        self.stop_ambient_camera_rotation()
+        self.wait()
+        self.play(*map(Uncreate, lines))
+        self.play(FadeOut(tet))
+        self.wait(5)
 
 
 class AlgebraicSymmetries(Scene):
     def construct(self):
+        self.wait(5)
         self.cyclic()
         # self.matrices()
 
@@ -406,7 +463,7 @@ class AlgebraicSymmetries(Scene):
         self.play(ReplacementTransform(product, group))
         self.wait(2)
 
-        # show Z4
+        # show C4
         grouppow =  MathTex(
             r"G &= \left\{ 1, i, i^2, i^3 \right\} \\",
             r"C_4 &= \left\{ \mathbb{1}, r, r^2, r^3 \right\}")
@@ -414,7 +471,8 @@ class AlgebraicSymmetries(Scene):
         self.wait(2)
 
         self.play(Write(grouppow[1]))
-        self.wait()
+        self.wait(4)
+        
         self.play(ApplyMethod(grouppow.to_edge, UP))
 
         # define morphisms
@@ -429,7 +487,7 @@ class AlgebraicSymmetries(Scene):
             r"\phi(r) &= i \\",
             r"\phi(r^2) &= i^2 \\",
             r"\phi(r^3) &= i^3 \\")
-        mappings.next_to(morphism, DOWN)
+        mappings.next_to(morphism, 2 * DOWN)
 
         self.play(Write(mappings))
         self.wait(3)
