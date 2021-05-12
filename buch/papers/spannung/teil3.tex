@@ -1,40 +1,94 @@
-%
-% teil3.tex -- Beispiel-File für Teil 3
-%
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
-%
-\section{Teil 3
-\label{spannung:section:teil3}}
-\rhead{Teil 3}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\section{Spannungsausbreitung\label{spannung:section:Invarianten}}
+\rhead{Invarianten}
+Trotz der Vereinfachung lässt sich mit den Invarianten die Realität adäquat abbilden.
+Als erste Bedingung stellt man folgendes Verhältnis auf:
 
-\subsection{De finibus bonorum et malorum
-\label{spannung:subsection:malorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+\[
+\sigma_{22}
+=
+\sigma_{33}
+\]
 
+Dies deshalb, da man von einem isotropen Bodenmaterial ausgeht.
+In Achse 22, Richtung 22 hat man den gleichen Boden wie in Achse 33 und Richtung 33.
+Das Verhalten bezüglich Kraftaufnahme, Dehnung Spannung ist somit dasselbe.
 
+Man führt die zwei Werte p als hydrostatische Spannung und q als deviatorische Spannung ein.
+Die Berechnung von p und q sieht wie folgt aus:
+
+\[
+p
+=
+\frac{\sigma_{11}+\sigma_{22}+\sigma_{33}}{3}
+\]
+
+oder durch Vereinfachung, da $\sigma_{22}=\sigma_{33}$ :
+
+\[
+p
+=
+\frac{\sigma_{11}+2\sigma_{33}}{3}
+\]
+
+\[
+q
+=
+\sigma_{11}-\sigma_{33}
+\]
+
+p ist das arithmetische Mittel von der Spannung im infinitesimalen Würfel.
+q ist die Differenz zwischen der Spannung in vertikaler Richtung und der Spannung in Richtung 2 und 3.
+Man kann p als Druckspannung und q als Schubspannung anschauen.
+
+Aus der Formel vom vorherigen Kapitel konnten wir die Spannungen berechnen.
+Deshalb kann man nun p und q in die Gleichung einsetzen.
+Die Dehnungen werden mit neuen Variablen eingeführt.
+Die Deviatorische Dehnung kann mit einer Schubdehnung verglichen werden.
+Die hydrostatische Dehnung kann mit einer Kompressionsdehnung verglichen werden.
+
+\[
+\overbrace{\sigma_{11}-\sigma_{33}}^{q}
+=
+\frac{3E}{2(1+\nu)} \overbrace{\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})}^{\varepsilon_{\nu}}
+\]
+
+\[
+\overbrace{\frac{\sigma_{11}+2\sigma_{33}}{3}}^{p}
+=
+\frac{E}{3(1-2\nu)} \overbrace{(\varepsilon_{11} - 2\varepsilon_{33})}^{\varepsilon_{s}}
+\]
+
+\[
+\varepsilon_{s}
+=
+Hydrostatische Dehnung [-]
+\]
+
+\[
+\varepsilon_{\nu}
+=
+Deviatorische Dehnung [-]
+\]
+
+Diese Komponenten kann man nun in die Vereinfachte Matrix einsetzen.
+Man hat dann eine Matrix multipliziert mit einem Vektor und erhält einen Vektor.
+
+\[
+\begin{pmatrix}
+	q\\
+	p
+\end{pmatrix}
+=
+\begin{pmatrix}
+	\frac{3E}{2(1+\nu)} & 0 \\
+	0 & \frac{E}{3(1-2\nu)}
+\end{pmatrix}
+\begin{pmatrix}
+	\varepsilon_{s}\\
+	\varepsilon_{\nu}
+\end{pmatrix}
+\]
+
+Mit dieser Formel lassen sich verschieden Parameter von Versuchen analysieren und berechnen.
+Ein solcher Versuch, den oft in der Geotechnik durchgeführt wird ist der Oedometer-Versuch.
+Im nächsten Kapitel wird die Anwendung der Matrix an diesem Versuch beschrieben.
