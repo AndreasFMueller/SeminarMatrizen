@@ -1,0 +1,231 @@
+%
+% chrind.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Chromatische Zahl und Unabhängigkeitszahl}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Chromatische Zahl}
+$\operatorname{chr}(G)=\mathstrut$
+minimale Anzahl Farben, die zum Einfärben eines Graphen $G$ nötig sind derart,
+dass benachbarte Knoten verschiedene Farben haben.
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\Ra{2}
+\def\Ri{1}
+\def\e{1.0}
+\def\r{0.2}
+
+\definecolor{rot}{rgb}{0.8,0,0.8}
+\definecolor{gruen}{rgb}{0.2,0.6,0.2}
+\definecolor{blau}{rgb}{1,0.6,0.2}
+
+\coordinate (PA) at ({\Ri*sin(0*72)},{\e*\Ri*cos(0*72)});
+\coordinate (PB) at ({\Ri*sin(1*72)},{\e*\Ri*cos(1*72)});
+\coordinate (PC) at ({\Ri*sin(2*72)},{\e*\Ri*cos(2*72)});
+\coordinate (PD) at ({\Ri*sin(3*72)},{\e*\Ri*cos(3*72)});
+\coordinate (PE) at ({\Ri*sin(4*72)},{\e*\Ri*cos(4*72)});
+
+\coordinate (QA) at ({\Ra*sin(0*72)},{\e*\Ra*cos(0*72)});
+\coordinate (QB) at ({\Ra*sin(1*72)},{\e*\Ra*cos(1*72)});
+\coordinate (QC) at ({\Ra*sin(2*72)},{\e*\Ra*cos(2*72)});
+\coordinate (QD) at ({\Ra*sin(3*72)},{\e*\Ra*cos(3*72)});
+\coordinate (QE) at ({\Ra*sin(4*72)},{\e*\Ra*cos(4*72)});
+
+\draw (PA)--(PC)--(PE)--(PB)--(PD)--cycle;
+\draw (QA)--(QB)--(QC)--(QD)--(QE)--cycle;
+\draw (PA)--(QA);
+\draw (PB)--(QB);
+\draw (PC)--(QC);
+\draw (PD)--(QD);
+\draw (PE)--(QE);
+
+\only<1>{
+        \fill[color=white] (PA) circle[radius=\r];
+        \fill[color=white] (PB) circle[radius=\r];
+        \fill[color=white] (PC) circle[radius=\r];
+        \fill[color=white] (PD) circle[radius=\r];
+        \fill[color=white] (PE) circle[radius=\r];
+        \fill[color=white] (QA) circle[radius=\r];
+        \fill[color=white] (QB) circle[radius=\r];
+        \fill[color=white] (QC) circle[radius=\r];
+        \fill[color=white] (QD) circle[radius=\r];
+        \fill[color=white] (QE) circle[radius=\r];
+}
+
+\only<2->{
+        \fill[color=blau] (PA) circle[radius=\r];
+        \fill[color=rot] (PB) circle[radius=\r];
+        \fill[color=rot] (PC) circle[radius=\r];
+        \fill[color=gruen] (PD) circle[radius=\r];
+        \fill[color=gruen] (PE) circle[radius=\r];
+
+        \fill[color=rot] (QA) circle[radius=\r];
+        \fill[color=blau] (QB) circle[radius=\r];
+        \fill[color=gruen] (QC) circle[radius=\r];
+        \fill[color=rot] (QD) circle[radius=\r];
+        \fill[color=blau] (QE) circle[radius=\r];
+}
+
+\draw (PA) circle[radius=\r];
+\draw (PB) circle[radius=\r];
+\draw (PC) circle[radius=\r];
+\draw (PD) circle[radius=\r];
+\draw (PE) circle[radius=\r];
+
+\draw (QA) circle[radius=\r];
+\draw (QB) circle[radius=\r];
+\draw (QC) circle[radius=\r];
+\draw (QD) circle[radius=\r];
+\draw (QE) circle[radius=\r];
+
+\node at ($0.5*(QC)+0.5*(QD)+(0,-0.2)$) [below] {$\operatorname{chr} G = 3$};
+
+\end{tikzpicture}
+\end{center}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{Unabhängigkeitszahl}
+$\operatorname{ind}(G)=\mathstrut$
+maximale Anzahl nicht benachbarter Knoten
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\def\Ra{2}
+\def\Ri{1}
+\def\e{1.0}
+\def\r{0.2}
+
+\definecolor{rot}{rgb}{0.8,0,0.8}
+\definecolor{gruen}{rgb}{0.2,0.6,0.2}
+\definecolor{blau}{rgb}{1,0.6,0.2}
+\definecolor{gelb}{rgb}{0,0,1}
+
+\coordinate (PA) at ({\Ri*sin(0*72)},{\e*\Ri*cos(0*72)});
+\coordinate (PB) at ({\Ri*sin(1*72)},{\e*\Ri*cos(1*72)});
+\coordinate (PC) at ({\Ri*sin(2*72)},{\e*\Ri*cos(2*72)});
+\coordinate (PD) at ({\Ri*sin(3*72)},{\e*\Ri*cos(3*72)});
+\coordinate (PE) at ({\Ri*sin(4*72)},{\e*\Ri*cos(4*72)});
+
+\coordinate (QA) at ({\Ra*sin(0*72)},{\e*\Ra*cos(0*72)});
+\coordinate (QB) at ({\Ra*sin(1*72)},{\e*\Ra*cos(1*72)});
+\coordinate (QC) at ({\Ra*sin(2*72)},{\e*\Ra*cos(2*72)});
+\coordinate (QD) at ({\Ra*sin(3*72)},{\e*\Ra*cos(3*72)});
+\coordinate (QE) at ({\Ra*sin(4*72)},{\e*\Ra*cos(4*72)});
+
+\draw (PA)--(PC)--(PE)--(PB)--(PD)--cycle;
+\draw (QA)--(QB)--(QC)--(QD)--(QE)--cycle;
+\draw (PA)--(QA);
+\draw (PB)--(QB);
+\draw (PC)--(QC);
+\draw (PD)--(QD);
+\draw (PE)--(QE);
+
+\foreach \n in {1,...,7}{
+	\only<\n>{\node[color=white] at (1,2.9) {$\n$};}
+}
+
+\fill[color=white] (PA) circle[radius=\r];
+\fill[color=white] (PB) circle[radius=\r];
+\fill[color=white] (PC) circle[radius=\r];
+\fill[color=white] (PD) circle[radius=\r];
+\fill[color=white] (PE) circle[radius=\r];
+\fill[color=white] (QA) circle[radius=\r];
+\fill[color=white] (QB) circle[radius=\r];
+\fill[color=white] (QC) circle[radius=\r];
+\fill[color=white] (QD) circle[radius=\r];
+\fill[color=white] (QE) circle[radius=\r];
+
+\only<4->{
+        \fill[color=rot] (QA) circle[radius={1.5*\r}];
+        \fill[color=rot!40] (QB) circle[radius=\r];
+        \fill[color=rot!40] (QE) circle[radius=\r];
+        \fill[color=rot!40] (PA) circle[radius=\r];
+}
+
+\only<5->{
+        \fill[color=blau] (PB) circle[radius={1.5*\r}];
+        \fill[color=blau!40] (PD) circle[radius=\r];
+        \fill[color=blau!40] (PE) circle[radius=\r];
+        \fill[color=blau!80,opacity=0.5] (QB) circle[radius=\r];
+}
+
+\only<6->{
+        \fill[color=gruen] (PC) circle[radius={1.5*\r}];
+        \fill[color=gruen!40] (QC) circle[radius=\r];
+        \fill[color=gruen!80,opacity=0.5] (PA) circle[radius=\r];
+        \fill[color=gruen!80,opacity=0.5] (PE) circle[radius=\r];
+}
+
+\only<7->{
+        \fill[color=gelb] (QD) circle[radius={1.5*\r}];
+        \fill[color=gelb!80,opacity=0.5] (QC) circle[radius=\r];
+        \fill[color=gelb!80,opacity=0.5] (QE) circle[radius=\r];
+        \fill[color=gelb!80,opacity=0.5] (PD) circle[radius=\r];
+}
+
+\only<-3|handout:0>{
+	\draw (QA) circle[radius=\r];
+}
+\only<4->{
+	\draw (QA) circle[radius={1.5*\r}];
+}
+
+\only<-4|handout:0>{
+	\draw (PB) circle[radius=\r];
+}
+\only<5->{
+	\draw (PB) circle[radius={1.5*\r}];
+}
+
+\only<-5|handout:0>{
+	\draw (PC) circle[radius=\r];
+}
+\only<6->{
+	\draw (PC) circle[radius={1.5*\r}];
+}
+
+\only<-6|handout:0>{
+	\draw (QD) circle[radius=\r];
+}
+\only<7->{
+	\draw (QD) circle[radius={1.5*\r}];
+}
+
+\draw (PA) circle[radius=\r];
+\draw (PD) circle[radius=\r];
+\draw (PE) circle[radius=\r];
+
+\draw (QB) circle[radius=\r];
+\draw (QC) circle[radius=\r];
+\draw (QE) circle[radius=\r];
+
+\only<4|handout:0>{
+\node at ($0.5*(QC)+0.5*(QD)+(0,-0.2)$) [below] {$\operatorname{ind} G = 1$};
+}
+\only<5|handout:0>{
+\node at ($0.5*(QC)+0.5*(QD)+(0,-0.2)$) [below] {$\operatorname{ind} G = 2$};
+}
+\only<6|handout:0>{
+\node at ($0.5*(QC)+0.5*(QD)+(0,-0.2)$) [below] {$\operatorname{ind} G = 3$};
+}
+\only<7->{
+\node at ($0.5*(QC)+0.5*(QD)+(0,-0.2)$) [below] {$\operatorname{ind} G = 4$};
+}
+
+\end{tikzpicture}
+\end{center}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
