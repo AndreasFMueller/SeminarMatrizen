@@ -31,5 +31,9 @@ chapter8 =								\
 	../slides/8/chrind.tex						\
 	../slides/8/chrindprop.tex					\
 	../slides/8/chroma1.tex						\
+	../slides/8/amax.tex						\
+	../slides/8/subgraph.tex					\
+	../slides/8/chrwilf.tex						\
+	../slides/8/weitere.tex						\
 	../slides/8/chapter.tex
 
