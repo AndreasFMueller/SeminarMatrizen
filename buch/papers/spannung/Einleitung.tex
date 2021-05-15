@@ -7,7 +7,7 @@ Besonderes Augenmerk liegt dabei auf dem Oedometer - Versuch.
 
 Bei dieser Untersuchung der zugehörigen Berechnungen hat man es mit Vektoren, Matrizen und Tensoren zu tun.
 Um die mathematische Untersuchung vorzunehmen, beschäftigt man sich zuerst mit den spezifischen Gegebenheiten und Voraussetzungen.
-Ebenfalls gilt es ein paar wichtige Begriffe und deren mathematisches Zeichen einzuführen,
+Ebenfalls gilt es ein paar wichtige Begriffe und deren mathematischen Zeichen einzuführen,
 damit sich den Berechnungen schlüssig folgen lässt.
 
 In diesem Kapitel hat man es insbesondere mit Spannungen und Dehnungen zu tun.
@@ -16,7 +16,7 @@ sondern eine Kraft geteilt durch Fläche.
 
 \section{Einführung wichtige Begriffe\label{spannung:section:Wichtige Begriffe}}
 \[
-l
+l_0
 =
 \text{Ausgangslänge [\si{\meter}]}
 \]
@@ -24,6 +24,11 @@ l
 \Delta l
 =
 \text{Längenänderung nach Kraftauftrag [\si{\meter}]}
+\]
+\[
+\Delta b
+=
+\text{Längenänderung in Querrichtung nach Kraftauftrag [\si{\meter}]}
 \]
 \[
 \varepsilon
@@ -38,12 +43,12 @@ l
 \[
 E
 =
-\text{Elastizitätsmodul}
+\text{Elastizitätsmodul [\si{\kilo\pascal}]}
 \]
 \[
 \nu
 =
-\text{Querdehnungszahl}
+\text{Querdehnungszahl; Poissonzahl [$-$]}
 \]
 \[
 F
@@ -58,7 +63,7 @@ A
 \[
 t
 =
-Tiefe\enspace[m]
+\text{Tiefe [\si{\meter}]}
 \]
 \[
 s
@@ -77,7 +82,7 @@ Beziehungen
 =
 \frac{\Delta b}{l_0}
 =
-\varepsilon_\upsilon
+\varepsilon\cdot\nu
 \]
 \[
 \sigma
@@ -85,18 +90,29 @@ Beziehungen
 \frac{N}{A}
 \]
 \[
-N
+F
 =
 \int_{A} \sigma dA
 \]
 \[
 \varepsilon^{\prime}
 =
-\frac{1}{l_0}\]
+\frac{1}{l_0}
+\]
 
-Der Begriff Tensor
-Tensoren werden unter anderem in der Elastizitätstheorie gebraucht.
+\section{Einführung wichtige Begriffe\label{spannung:section:Tensoren}}
+Tensoren wurden als erstes in der Elastizitätstheorie eingesetzt. (Quelle Herr Müller)
 In der Elastizitätstheorie geht es darum viele verschiedene Komponenten zu beschreiben.
-
-
-
+Mit einer Matrix oder einem Vektor kann man dies nicht mehr bewerkstelligen.
+Wenn man den dreidimensionalen Spannungszustand abbilden möchte, müsste man mehrere Vektoren haben.
+Deshalb wurden 1840 von Rowan Hamilton Tensoren in die Mathematik eingeführt.
+Woldemar Voigt hat den Begriff in die moderne Bedeutung von Skalar, Matrix und Vektor verallgemeinert.
+Albert Einstein hat Tensoren zudem in der allgemeinen Relativitätstheorie benutzt.
+Tensor sind eine Stufe höher als Matrizen. Matrizen sind 2. Stufe.
+Da Tensoren eine Stufe höher sind, kann man auch Matrizen, Vektoren und Skalare als Tensoren bezeichnen.
+Der Nachteil von den Tensoren ist, dass man die gewohnten Rechenregeln, die man bei Vektoren oder Matrizen kennt,
+nicht darauf anwenden kann. Man ist deshalb bestrebt die Tensoren als Vektoren und Matrizen darzustellen,
+damit man die gewohnten Rechenregeln darauf anwenden kann. (Quelle Wikipedia)
+In der vorliegenden Arbeit sind bereits alle Tensoren als Matrizen 2. Stufe abgebildet.
+Trotzdem kann man diese Matrizen wie vorher beschrieben als Tensor bezeichnen.
+Da diese als Matrizen abgebildet sind, dürfen wir die bekannten Rechenregeln auf unsere Tensoren anwenden.
