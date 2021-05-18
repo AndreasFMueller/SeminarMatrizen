@@ -1,0 +1,24 @@
+%
+% exponentialreihe.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Exponentialreihe}
+\begin{align*}
+h(s) &= \exp(tA_0 + sB) = \sum_{k=0}^\infty \frac{1}{k!} (tA_0 + sB)^k
+\\
+&=
+I + (tA_0 + sB) + \frac{1}{2!}(t^2A_0^2 + ts(A_0B + BA_0) + s^2B^2)
++ \frac{1}{3!}(t^3A_0^3 + t^2s(A_0^2B + A_0BA_0 + BA_0^2) + \dots)
++ \dots
+\\
+\frac{dg(s)}{ds}
+&=
+B + \frac1{2!}t(A_0B+BA_0) + \frac{1}{3!}t^2(A_0^2B+A_0BA_0+BA_0^2) + \dots
+\end{align*}
+\end{frame}
+\egroup
