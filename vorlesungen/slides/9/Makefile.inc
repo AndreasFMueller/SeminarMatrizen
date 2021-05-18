@@ -10,5 +10,7 @@ chapter9 =								\
 	../slides/9/irreduzibel.tex					\
 	../slides/9/stationaer.tex					\
 	../slides/9/pf.tex						\
+	../slides/9/pf/positiv.tex					\
+	../slides/9/pf/primitiv.tex					\
 	../slides/9/chapter.tex
 
