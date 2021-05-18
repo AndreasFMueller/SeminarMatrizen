@@ -12,5 +12,9 @@ chapter9 =								\
 	../slides/9/pf.tex						\
 	../slides/9/pf/positiv.tex					\
 	../slides/9/pf/primitiv.tex					\
+	../slides/9/pf/trennung.tex					\
+	../slides/9/pf/vergleich.tex					\
+	../slides/9/pf/vergleich3d.tex					\
+	../slides/9/pf/dreieck.tex					\
 	../slides/9/chapter.tex
 
