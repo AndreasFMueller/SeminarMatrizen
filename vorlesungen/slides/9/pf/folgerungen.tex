@@ -1,0 +1,194 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Folgerungen für $A>0$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Satz}
+$u\ge 0$ ein EV zum EW $ \lambda\ne 0$,
+dann ist $u>0$ und $\lambda >0$
+\end{block}
+\uncover<6->{%
+\begin{block}{Satz}
+$v$ ein EV zum EW $\lambda$ mit $|\lambda| = \varrho(A)$,
+dann ist $u=|v|$ mit $u_i=|v_i|$ ein EV mit EW $\varrho(A)$
+\end{block}}
+\uncover<29->{%
+\begin{block}{Satz}
+$v$ ein EV zum EW $\lambda$ mit $|\lambda|=\varrho(A)$,
+dann ist $\lambda=\varrho(A)$
+\end{block}}
+\uncover<46->{%
+\begin{block}{Satz}
+Der \only<57->{verallgemeinerte }Eigenraum zu EW $\varrho(A)$
+ist eindimensional
+\end{block}
+}
+\end{column}
+\only<-6>{
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis]
+\begin{itemize}
+\item<3->
+Vergleich: $Au>0$
+\item<4->
+$Au=\lambda u > 0$
+\item<5->
+$\lambda >0$ und $u>0$
+\end{itemize}
+\end{proof}
+\end{column}}
+\only<7-20>{
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis]
+\begin{align*}
+(Au)_i
+&\only<-8>{=
+\sum_j a_{ij}u_j}
+\only<8-9>{=
+\sum_j |a_{ij}v_j|}
+\only<9->{\ge}
+\only<9-10>{
+\biggl|\sum_j a_{ij}v_j\biggr|}
+\only<10>{=}
+\only<10-11>{
+|(Av)_i|}
+\only<11>{=}
+\only<11-12>{
+|\lambda v_i|}
+\only<12>{=}
+\only<12-13>{
+\varrho(A) |v_i|}
+\only<13>{=}
+\uncover<13->{
+\varrho(A) u_i}
+\hspace*{5cm}
+\\
+\uncover<14->{Au&\ge \varrho(A)u}
+\intertext{\uncover<15->{Vergleich}}
+\uncover<16->{A^2u&> \varrho(A)Au}
+\intertext{\uncover<17->{Trennung: $\exists \vartheta >1$ mit}}
+\uncover<18->{A^2u&\ge \vartheta \varrho(A) Au }\\
+\uncover<19->{A^3u&\ge (\vartheta \varrho(A))^2 Au }\\
+\uncover<20->{A^ku&\ge (\vartheta \varrho(A))^{k-1} Au }\\
+\end{align*}
+\end{proof}
+\end{column}}
+\only<21-29>{%
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis, Fortsetzung]
+Abschätzung der Operatornorm:
+\begin{align*}
+\|A^k\|\, |Au|
+\ge
+\|A^{k+1}u\|
+\uncover<22->{
+\ge
+(\vartheta\varrho(A))^k |Au|}
+\end{align*}
+\uncover<23->{Abschätzung des Spektralradius}
+\begin{align*}
+\uncover<24->{\|A^k\| &\ge (\vartheta\varrho(A))^k}
+\\
+\uncover<25->{\|A^k\|^{\frac1k} &\ge \vartheta \varrho(A)}
+\\
+\uncover<26->{\lim_{k\to\infty}\|A^k\|^{\frac1k} &\ge \vartheta \varrho(A)}
+\\
+\uncover<27->{\varrho(A) &\ge \underbrace{\vartheta}_{>1} \varrho(A)}
+\end{align*}
+\uncover<28->{Widerspruch: $u=v$}
+\end{proof}
+\end{column}}
+\only<30-46>{
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis]
+$u$ ist EV mit EW $\varrho(A)$:
+\[
+Au=\varrho(A)u
+\uncover<31->{\Rightarrow
+\sum_j a_{ij}|v_j| = {\color<38->{red}\varrho(A) |v_i|}}
+\]
+\uncover<33->{Andererseits: $Av=\lambda v$}
+\[
+\uncover<34->{\sum_{j}a_{ij}v_j=\lambda v_i}
+\]
+\uncover<35->{Betrag}
+\begin{align*}
+\uncover<36->{\biggl|\sum_j a_{ij}v_j\biggr|
+&=
+|\lambda v_i|}
+\uncover<37->{=
+{\color<38->{red}\varrho(A) |v_i|}}
+\uncover<39->{=
+\sum_j a_{ij}|v_j|}
+\end{align*}
+\uncover<40->{Dreiecksungleichung: $v_j=|v_j|c, c\in\mathbb{C}$}
+\[
+\uncover<41->{\lambda v = Av}
+\uncover<42->{= Acu}
+\uncover<43->{= c\varrho(A) u}
+\uncover<44->{= \varrho(A)v}
+\]
+\uncover<45->{$\Rightarrow
+\lambda=\varrho(A)
+$}
+\end{proof}
+\end{column}}
+\only<47-57>{
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis]
+\begin{itemize}
+\item<48-> $u>0$ ein EV zum EW $\varrho(A)$
+\item<49-> $v$ ein weiterer EV, man darf $v\in\mathbb{R}^n$ annehmen
+\item<50-> Da $u>0$ gibt es $c>0$ mit $u\ge cv$ aber $u\not > cv$
+\item<51-> $u-cv\ge 0$ aber $u-cv\not > 0$
+\item<52-> $A$ anwenden:
+\[
+\begin{array}{ccc}
+\uncover<53->{A(u-cv)}&\uncover<54->{>&0}
+\\
+\uncover<53->{\|}&&
+\\
+\uncover<53->{\varrho(A)(u-cv)}&\uncover<55->{\not>&0}
+\end{array}
+\]
+\uncover<56->{Widerspruch: $v$ existiert nicht}
+\end{itemize}
+\end{proof}
+\end{column}}
+\only<58->{
+\begin{column}{0.48\textwidth}
+\begin{proof}[Beweis]
+\begin{itemize}
+\item<59-> $Au=\varrho(A)u$ und $A^tp^t=\varrho(A)p^t$
+\item<60-> $u>0$ und $p>0$ $\Rightarrow$ $up>0$
+\item<61-> $px=0$, dann ist
+\[
+\uncover<62->{pAx}
+\only<62-63>{=
+(A^tp^t)^t x}
+\only<63-64>{=
+\varrho(A) (p^t)^t x}
+\uncover<64->{=
+\varrho(A) px}
+\uncover<65->{= 0}
+\]
+\uncover<66->{also ist $\{x\in\mathbb{R}^n\;|\; px=0\}$
+invariant}
+\item<67-> Annahme: $v\in \mathcal{E}_{\varrho(A)}$
+\item<68-> Dann muss es einen EV zum EW $\varrho(A)$ in 
+$\mathcal{E}_{\varrho(A)}$ geben
+\item<69-> Widerspruch: der Eigenraum ist eindimensional
+\end{itemize}
+\end{proof}
+\end{column}}
+\end{columns}
+\end{frame}
+\egroup
