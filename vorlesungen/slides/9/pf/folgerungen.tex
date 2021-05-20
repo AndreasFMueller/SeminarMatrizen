@@ -32,6 +32,7 @@ ist eindimensional
 \end{block}
 }
 \end{column}
+\ifthenelse{\boolean{presentation}}{
 \only<-6>{
 \begin{column}{0.48\textwidth}
 \begin{proof}[Beweis]
@@ -189,6 +190,14 @@ $\mathcal{E}_{\varrho(A)}$ geben
 \end{itemize}
 \end{proof}
 \end{column}}
+}{
+\begin{column}{0.48\textwidth}
+\begin{block}{}
+\usebeamercolor[fg]{title}
+Beweise: Buch Abschnitt 9.3 
+\end{block}
+\end{column}
+}
 \end{columns}
 \end{frame}
 \egroup
