@@ -22,5 +22,7 @@ chapter9 =								\
 	../slides/9/parrondo/spiela.tex					\
 	../slides/9/parrondo/spielb.tex					\
 	../slides/9/parrondo/spielbmod.tex				\
+	../slides/9/parrondo/kombiniert.tex				\
+	../slides/9/parrondo/deformation.tex				\
 	../slides/9/chapter.tex
 
