@@ -15,6 +15,7 @@
 Ein fairer Münzwurf entscheidet, ob
 Spiel $A$ oder Spiel $B$ gespielt wird
 \end{block}
+\uncover<2->{%
 \begin{block}{Übergangsmatrix}
 Münzwurf $X$
 \begin{align*}
@@ -24,44 +25,48 @@ P(X=\text{Kopf})\cdot A
 +
 P(X=\text{Zahl})\cdot B
 \\
-&=
+&\uncover<3->{=
 \begin{pmatrix}
            0&\frac{3}{8}&\frac{5}{8}\\
 \frac{3}{10}&          0&\frac{3}{8}\\
 \frac{7}{10}&\frac{5}{8}&          0
-\end{pmatrix}
+\end{pmatrix}}
 \end{align*}
-\end{block}
+\end{block}}
+\vspace{-8pt}
+\uncover<4->{%
 \begin{block}{Gewinnerwartung im Einzelspiel}
 \[
 p=\frac13U
 \Rightarrow
 U^t(G\odot C)p
-=
--\frac{1}{30}
+\uncover<5->{=
+-\frac{1}{30}}
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<6->{%
 \begin{block}{Iteriertes Spiel}
 \[
 \overline{p}=C\overline{p}
 \quad
-\Rightarrow
+\uncover<7->{\Rightarrow
 \quad
-\overline{p}=\frac{1}{709}\begin{pmatrix}245\\180\\284\end{pmatrix}
+\overline{p}=\frac{1}{709}\begin{pmatrix}245\\180\\284\end{pmatrix}}
 \]
-\end{block}
+\end{block}}
+\uncover<8->{%
 \begin{block}{Gewinnerwartung}
 \begin{align*}
 E(Z)
 &=
 U^t (G\odot C) \overline{p}
-=
-\frac{18}{709}
+\uncover<9->{=
+\frac{18}{709}}
 \end{align*}
-$C$ ist ein Gewinnspiel!
-\end{block}
+\uncover<10->{$C$ ist ein Gewinnspiel!}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

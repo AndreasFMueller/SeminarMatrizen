@@ -15,6 +15,7 @@
 Gewinn $\pm 1$, Wahrscheinlichkeit abhängig vom 3er-Rest des
 aktuellen Kapitals $K$:
 \begin{center}
+\uncover<2->{%
 \begin{tikzpicture}[>=latex,thick]
 \coordinate (A0) at (90:2);
 \coordinate (A1) at (210:2);
@@ -47,11 +48,12 @@ aktuellen Kapitals $K$:
 \node at (150:\R) {$\frac1{4}$};
 \node at (270:\R) {$\frac14$};
 
-\end{tikzpicture}
+\end{tikzpicture}}
 \end{center}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<3->{%
 \begin{block}{Markov-Kette $Y$}
 Übergangsmatrix
 \[
@@ -61,22 +63,37 @@ B=\begin{pmatrix}
 \frac{9}{10}&\frac34&0
 \end{pmatrix}
 \]
+\vspace{-10pt}
+
+\uncover<4->{%
 Gewinnmatrix:
+\vspace{-2pt}
 \[
 G=\begin{pmatrix*}[r]
 0&-1&1\\
 1&0&-1\\
 -1&1&0
 \end{pmatrix*}
-\]
-\end{block}
+\]}
+\end{block}}
+\vspace{-12pt}
+\uncover<5->{%
 \begin{block}{Gewinnerwartung}
 \begin{align*}
+&&&&
 E(Y)
 &=
 U^t(G\odot B)p
+\\
+p&={\textstyle\frac13}U
+&&\Rightarrow&
+E(Y)&={\textstyle\frac1{15}}
+\\
+\overline{p}&={\tiny\frac{1}{13}\begin{pmatrix}5\\2\\6\end{pmatrix}}
+&&\Rightarrow&
+E(Y)&=0
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

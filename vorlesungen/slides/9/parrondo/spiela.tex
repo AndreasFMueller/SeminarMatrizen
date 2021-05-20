@@ -16,35 +16,36 @@ Gewinn = Zufallsvariable $X$ mit Werten $\pm 1$
 \begin{align*}
 P(X=\phantom{+}1)
 &=
-\frac12+e
+\frac12\uncover<2->{+e}
 \\
 P(X=         - 1)
 &=
-\frac12-e
+\frac12\uncover<2->{-e}
 \end{align*}
-Bernoulli-Experiment mit $p=\frac12+e$
+Bernoulli-Experiment mit $p=\frac12\uncover<2->{+e}$
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<3->{
 \begin{block}{Gewinnerwartung}
 \begin{align*}
 E(X)
-&=
-P(X=1)\cdot (1)
+&=\uncover<4->{
+P(X=1)\cdot (1)}
 \\
 &\qquad
-+
-P(X=-1)\cdot (-1)
+\uncover<4->{+
+P(X=-1)\cdot (-1)}
 \\
-&=
+&\uncover<5->{=
 \biggl(\frac12+e\biggr)\cdot 1
 +
-\biggl(\frac12-e\biggr)\cdot (-1)
+\biggl(\frac12-e\biggr)\cdot (-1)}
 \\
-&=2e
+&\uncover<6->{=2e}
 \end{align*}
-$\Rightarrow$ {\usebeamercolor[fg]{title}Verlustspiel für $e<0$}
-\end{block}
+\uncover<7->{$\Rightarrow$ {\usebeamercolor[fg]{title}Verlustspiel für $e<0$}}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

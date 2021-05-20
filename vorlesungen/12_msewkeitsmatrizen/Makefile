@@ -31,3 +31,12 @@ fix1.jpg:	fix1.pdf
 	convert -density 300 fix1.pdf \
                 -resize 1920x1080 -units PixelsPerInch fix1.jpg
 
+parts:	part1.pdf part2.pdf
+
+part1.pdf:	MathSemMSE-12-wkeitsmatrizen.pdf
+	pdfjam --outfile part1.pdf --papersize '{16cm,9cm}' \
+		MathSemMSE-12-wkeitsmatrizen.pdf 1-160
+
+part2.pdf:	MathSemMSE-12-wkeitsmatrizen.pdf
+	pdfjam --outfile part2.pdf --papersize '{16cm,9cm}' \
+		MathSemMSE-12-wkeitsmatrizen.pdf 161-211

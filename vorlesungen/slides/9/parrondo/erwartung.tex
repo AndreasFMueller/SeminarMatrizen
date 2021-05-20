@@ -25,6 +25,7 @@ x_n&p_n=P(X=x_n)
 \]
 \end{center}
 \end{block}
+\uncover<4->{%
 \begin{block}{Einervektoren/-matrizen}
 \[
 U=\begin{pmatrix}
@@ -36,9 +37,10 @@ U=\begin{pmatrix}
 \in
 M_{n\times m}(\Bbbk)
 \]
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
 \begin{block}{Erwartungswerte}
 \begin{align*}
 E(X)
@@ -46,30 +48,33 @@ E(X)
 \sum_i x_ip_i
 =
 x^tp
-=
-U^t x\odot p
+\uncover<5->{=
+U^t x\odot p}
+\hspace*{3cm}
 \\
-E(X^2)
+\uncover<2->{E(X^2)
 &=
-\sum_i x_i^2p_i
-=
-(x\odot x)^tp
-=
-U^t (x\odot x) \odot p
+\sum_i x_i^2p_i}
+\ifthenelse{\boolean{presentation}}{
+\only<6>{=
+(x\odot x)^tp}}{}
+\uncover<7->{=
+U^t (x\odot x) \odot p}
 \\
-E(X^k)
+\uncover<3->{E(X^k)
 &=
-\sum_i x_i^kp_i
-=
-U^t x^{\odot k}\odot p
+\sum_i x_i^kp_i}
+\uncover<8->{=
+U^t x^{\odot k}\odot p}
 \end{align*}
+\uncover<9->{%
 Substitution:
 \begin{align*}
-\sum_i &\to U^t\\
-x_i^k &\to x^{\odot k}
-\end{align*}
-Kann für Übergangsmatrizen von Markov-Ketten verallgemeinert werden
-\end{block}
+\uncover<10->{\sum_i &\to U^t}\\
+\uncover<11->{x_i^k &\to x^{\odot k}}
+\end{align*}}%
+\uncover<12->{Kann für Übergangsmatrizen von Markov-Ketten verallgemeinert werden}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

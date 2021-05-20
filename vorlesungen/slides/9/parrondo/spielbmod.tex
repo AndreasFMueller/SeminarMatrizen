@@ -7,7 +7,7 @@
 \begin{frame}[t]
 \setlength{\abovedisplayskip}{5pt}
 \setlength{\belowdisplayskip}{5pt}
-\frametitle{Modifiziertes Spiel $B$}
+\frametitle{Modifiziertes Spiel $\tilde{B}$}
 \vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
@@ -39,13 +39,13 @@ aktuellen Kapitals $K$:
 \def\R{1.9}
 \def\r{0.7}
 
-\node at (30:{0.9*\r}) {\tiny $\frac{9}{10}+\varepsilon$};
-\node at (150:{0.9*\r}) {\tiny $\frac1{10}-\varepsilon$};
-\node at (270:\r) {$\frac34-\varepsilon$};
+\node at (30:{0.9*\r}) {\tiny $\frac{9}{10}\uncover<2->{+\varepsilon}$};
+\node at (150:{0.9*\r}) {\tiny $\frac1{10}\uncover<2->{-\varepsilon}$};
+\node at (270:\r) {$\frac34\uncover<2->{-\varepsilon}$};
 
-\node at (30:{1.1*\R}) {$\frac{3}{4}-\varepsilon$};
-\node at (150:{1.1*\R}) {$\frac1{4}+\varepsilon$};
-\node at (270:\R) {$\frac14+\varepsilon$};
+\node at (30:{1.1*\R}) {$\frac{3}{4}\uncover<2->{-\varepsilon}$};
+\node at (150:{1.1*\R}) {$\frac1{4}\uncover<2->{+\varepsilon}$};
+\node at (270:\R) {$\frac14\uncover<2->{+\varepsilon}$};
 
 \end{tikzpicture}
 \end{center}
@@ -56,14 +56,17 @@ aktuellen Kapitals $K$:
 Übergangsmatrix
 \[
 \tilde{B}=
-B+\varepsilon F
-=
+B\uncover<2->{+\varepsilon F}
+\uncover<3->{=
 B+\varepsilon\begin{pmatrix*}[r]
 0&1&-1\\
 -1&0&1\\
 1&-1&0
-\end{pmatrix*}
+\end{pmatrix*}}
 \]
+\vspace{-12pt}
+
+\uncover<4->{%
 Gewinnmatrix:
 \[
 G=\begin{pmatrix*}[r]
@@ -71,20 +74,29 @@ G=\begin{pmatrix*}[r]
 1&0&-1\\
 -1&1&0
 \end{pmatrix*}
-\]
+\]}
 \end{block}
+\vspace{-12pt}
+\uncover<5->{%
 \begin{block}{Gewinnerwartung}
 \begin{align*}
-E(\tilde{Y})
+\uncover<6->{E(\tilde{Y})
 &=
-U^t(G\odot \tilde{B})p
+U^t(G\odot \tilde{B})p}
 \\
+&\uncover<7->{=
+E(Y) + \varepsilon U^t(G\odot F)p}
+\uncover<8->{=
+{\textstyle\frac1{15}}+2\varepsilon}
+\\
+\uncover<9->{
+\text{rep.}
 &=
-E(Y) + \varepsilon U^t(G\odot F)p
-=
-\frac1{15}+2\varepsilon
+-{\textstyle\frac{294}{169}}\varepsilon+O(\varepsilon^2)
+\quad\text{Verlustspiel}
+}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

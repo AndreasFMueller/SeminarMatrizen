@@ -18,6 +18,7 @@ chapter9 =								\
 	../slides/9/pf/vergleich3d.tex					\
 	../slides/9/pf/dreieck.tex					\
 	../slides/9/pf/folgerungen.tex					\
+	../slides/9/parrondo/uebersicht.tex				\
 	../slides/9/parrondo/erwartung.tex				\
 	../slides/9/parrondo/spiela.tex					\
 	../slides/9/parrondo/spielb.tex					\

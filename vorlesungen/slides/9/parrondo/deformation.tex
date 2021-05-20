@@ -14,22 +14,31 @@
 \begin{block}{Verlustspiele}
 Durch Deformation (Parameter $e$ und $\varepsilon$) kann man
 aus $A_e$ und $B_\varepsilon$ Spiele mit negativer Gewinnerwartung machen
+\uncover<2->{%
 \begin{align*}
 E(X)&=0&&\rightarrow&E(X_e)&<0\\
 E(Y)&=0&&\rightarrow&E(Y_\varepsilon)&<0\\
-\end{align*}
+\end{align*}}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
 \begin{block}{Kombiniertes Spiel}
-Die Deformation für das Spiel $C$ startet mit Erwartungswert $\frac{18}{709}$
+\uncover<3->{%
+Die Deformation für das Spiel $C$ startet mit Erwartungswert $\frac{18}{709}$}%
 \begin{align*}
-E(Z)&=\frac{18}{709}
-&&\rightarrow&
-E(Z_*)&>0
+\uncover<4->{E(Z)&=\frac{18}{709}>0}
+&&\uncover<5->{\rightarrow&
+E(Z_*)&>0}
 \end{align*}
-Die Deformation ist immer noch ein Gewinnspiel
+\uncover<6->{Wegen Stetigkeit!}
+\\
+\uncover<5->{Die Deformation ist immer noch ein Gewinnspiel (für Parameter klein genug)}
 \end{block}
+\uncover<7->{%
+\begin{block}{Parrondo-Paradoxon}
+Zufällig zwischen zwei Verlustspielen auswählen kann trotzdem ein
+Gewinnspiel ergeben
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
