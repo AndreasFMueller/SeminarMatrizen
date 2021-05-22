@@ -8,5 +8,6 @@ dependencies-punktgruppen =	\
 	papers/punktgruppen/main.tex \
 	papers/punktgruppen/intro.tex \
 	papers/punktgruppen/symmetry.tex \
+	papers/punktgruppen/crystals.tex \
 	papers/punktgruppen/references.bib
 

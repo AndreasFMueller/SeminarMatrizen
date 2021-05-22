@@ -101,15 +101,20 @@ die Zyklische Gruppe heisst. Hier die Potenzen von \(r\) sind als wiederholte
 Komposition gemeint, d.h. \(r^n = r\circ r \circ \cdots r\circ r\).  Die
 Schreibweise mit den spitzen Klammern wird als Erzeugendensystem bezeichnet.
 Das liegt daran, dass alle Elemente der Symmetriegruppe aus Kombinationen einer
-Teilmenge erzeugt werden, die als erzeugende Elemente bezeichnet
-werden\cite{punktgruppen:pinter-algebra}.  Die Reflexionssymmetriegruppe ist
-nicht so interessant, da sie nur
+Teilmenge erzeugt werden, die als erzeugende Elemente bezeichnet werden.  Die
+Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
 \(\left\{\mathds{1}, \sigma\right\}\) enthält. Kombiniert man sie jedoch mit
 der Rotation, erhält man die so genannte Diedergruppe
 \[
 	D_n = \langle r, \sigma : r^{n-1} = \sigma^2 = (\sigma r)^2 = \mathds{1} \rangle
-	.
+		= \left\{
+				\mathds{1}, r, \ldots, r^{n-1}, \sigma, \sigma r, \ldots, \sigma r^{n-1}
+			\right\}.
 \]
+Diesmal muss die Generator-Notation die Beziehungen zwischen den beiden
+Operationen beinhalten. Die ersten beiden sind leicht zu erkennen, für die
+letzte empfehlen wir, sie an einem 2D-Quadrat auszuprobieren.
+
 Wir haben nun unseren Operationen Symbole gegeben, mit denen es tatsächlich
 möglich ist, eine nicht kommutative Algebra zu erstellen. Die naheliegende
 Frage ist dann, könnte es sein, dass wir bereits etwas haben, das dasselbe tut?
@@ -119,7 +124,7 @@ Natürlich, ja. Dafür führen wir den Begriff der Darstellung ein.
 	bzw.  \(\star\). Ein Homomorphismus ist eine Funktion \(f: G \to H\), so dass
 	für jedes \(a, b \in G\) gilt \(f(a\diamond b) = f(a) \star f(b)\).  Man
 	sagt, dass der Homomorphismus \(f\) \(G\) in \(H\) transformiert, oder dass
-	\(H\) eine Darstellung von \(G\) ist\cite{punktgruppen:pinter-algebra}.
+	\(H\) eine Darstellung von \(G\) ist.
 \end{definition}
 \begin{beispiel}
 	Die Elemente \(r^k \in C_n\), wobei \(0 < k < n\), stellen abstrakt eine
