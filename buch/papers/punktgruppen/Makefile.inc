@@ -6,5 +6,7 @@
 dependencies-punktgruppen =	\
 	papers/punktgruppen/packages.tex \
 	papers/punktgruppen/main.tex \
+	papers/punktgruppen/intro.tex \
+	papers/punktgruppen/symmetry.tex \
 	papers/punktgruppen/references.bib
 

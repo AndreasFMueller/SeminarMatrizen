@@ -1,0 +1,103 @@
+\section{Symmetrie}
+Das Wort Symmetrie ist sehr alt und hat sich seltsamerweise von seinem
+ursprünglichen griechischen Wort
+\(\mathrm{\sigma\nu\mu\mu\varepsilon\tau\rho\iota\alpha}\)
+\footnote{\emph{Simmetr\'ia}: ``ein gemeinsames Mass habend, gleichmässig,
+verhältnismässig''} fast nicht verändert. In der Alltagssprache mag es ein
+locker definierter Begriff sein, aber in der Mathematik hat Symmetrie eine sehr
+präzise Bedeutung.
+\begin{definition}[Symmetrie]
+	Ein mathematisches Objekt wird als symmetrisch bezeichnet, wenn es unter einer
+	bestimmten Operation invariant ist.
+\end{definition}
+
+Wenn der Leser noch nicht mit der Gruppentheorie in Berührung gekommen ist, ist
+vielleicht nicht ganz klar, was eine Operation ist, aber die Definition sollte
+trotzdem Sinn machen. Die Formalisierung dieser Idee wird bald kommen, aber
+zunächst wollen wir etwas Intuition aufbauen.
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+			node distance = 2cm,
+			shapetheme/.style = {
+				very thick, draw = black, fill = magenta!20!white,
+				minimum size = 2cm,
+			},
+			line/.style = {thick, draw = darkgray},
+			axis/.style = {line, dashed},
+			dot/.style = {
+				circle, draw = darkgray, fill = darkgray,
+				minimum size = 1mm, inner sep = 0, outer sep = 0,
+			},
+		]
+
+		\node[
+			shapetheme,
+			rectangle
+		] (R) {};
+		\node[dot] at (R) {};
+		\draw[axis] (R) ++(-1.5, 0) to ++(3, 0) node[right] {\(\sigma\)};
+
+		\node[
+			shapetheme,
+			regular polygon,
+			regular polygon sides = 5,
+			right = of R,
+		] (Ps) {};
+		\node[dot] (P) at (Ps) {};
+		\draw[line, dotted] (P) to ++(18:1.5);
+		\draw[line, dotted] (P) to ++(90:1.5);
+		\draw[line, ->] (P) ++(18:1.2) 
+			arc (18:90:1.2) node[midway, above right] {\(r, 72^\circ\)};
+
+		\node[
+			shapetheme,
+			circle, right = of P
+		] (Cs) {};
+		\node[dot] (C) at (Cs) {};
+		\draw[line, dotted] (C) to ++(1.5,0);
+		\draw[line, dotted] (C) to ++(60:1.5);
+		\draw[line, ->] (C) ++(1.2,0)
+			arc (0:60:1.2) node[midway, above right] {\(r, \alpha\)};
+
+	\end{tikzpicture}
+	\caption{
+		Beispiele für geometrisch symmetrische Formen.
+		\label{fig:punktgruppen:geometry-example}
+	}
+\end{figure}
+
+Die intuitivsten Beispiele kommen aus der Geometrie, daher werden wir mit
+einigen geometrischen Beispielen beginnen. Wie wir jedoch später sehen werden,
+ist das Konzept der Symmetrie eigentlich viel allgemeiner.  In Abbildung
+\ref{fig:punktgruppen:geometry-example} haben wir einige Formen, die
+offensichtlich symmetrisch sind.  Zum Beispiel hat ein Quadrat viele Achsen, um
+die es gedreht werden kann, ohne sein Aussehen zu verändern.  Regelmässige
+Polygone mit \(n\) Seiten sind gute Beispiele, um eine diskrete
+Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um
+einen Punkt um einen bestimmten Winkel \(360^\circ/n\) sie unverändert lässt.
+Das letzte Beispiel auf der rechten Seite ist eine unendliche
+Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für
+\(\alpha \in \mathbb{R}\) gibt, die die Form unverändert lassen.  Dies ist
+hoffentlich ausreichend, um die Bedeutung hinter der Notation zu verstehen, die
+nun eingeführt wird.
+
+\begin{definition}[Symmetriegruppe]
+	Sei \(g\) eine Operation, die ein mathematisches Objekt unverändert lässt.
+	Bei einer anderen Operation \(r\) definieren wir die Komposition \(r\circ g\)
+	als die Anwendung der Operationen nacheinander. Alle Operationen \(g_i\)
+	bilden unter Komposition eine Gruppe, die Symmetriegruppe genannt wird.
+\end{definition}
+
+Mit dem oben Gesagten können wir das \(n\)-Gon Beispiel formalisieren. Wenn wir
+\(r\) eine Drehung von \(2\pi/n\) sein lassen, gibt es eine wohlbekannte Symmetriegruppe
+\[
+	C_n = \left\{\mathbf{1}, r, r^2, \ldots, r^{n-1}\right\}
+\]
+die Zyklische Gruppe heisst.
+
+\begin{definition}[Gruppenwirkung]
+\end{definition}
+
+% vim:ts=2 sw=2 spell spelllang=de:
