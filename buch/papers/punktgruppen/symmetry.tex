@@ -85,7 +85,7 @@ nun eingeführt wird.
 
 \begin{definition}[Symmetriegruppe]
 	Sei \(g\) eine Operation, die ein mathematisches Objekt unverändert lässt.
-	Bei einer anderen Operation \(r\) definieren wir die Komposition \(r\circ g\)
+	Bei einer anderen Operation \(h\) definieren wir die Komposition \(h\circ g\)
 	als die Anwendung der Operationen nacheinander. Alle Operationen bilden unter
 	Komposition eine Gruppe, die Symmetriegruppe genannt wird.
 \end{definition}
@@ -146,5 +146,33 @@ Natürlich, ja. Dafür führen wir den Begriff der Darstellung ein.
 	komplexen Einheitskreis. Der Homomorphismus \(\phi: C_\infty \to \mathbb{C}\)
 	ist durch die Eulersche Formel \(\phi(r) = e^{i\alpha}\) gegeben.
 \end{beispiel}
+
+Die Symmetrien, die wir bis jetzt besprochen haben, haben immer mindestens
+einen Punkt unbesetzt gelassen. Im Fall der Rotation war es der Drehpunkt, bei
+der Spiegelung die Achse. Dies ist jedoch keine Voraussetzung für eine
+Symmetrie, da es Symmetrien gibt, die jeden Punkt zu einem anderen Punkt
+verschieben können. Ein aufmerksamer Leser wird bemerken, dass die
+unveränderten Punkte zum Eigenraum\footnote{Zur Erinnerung \(E_\lambda =
+\mathrm{null}(\Phi - \lambda I)\)} der Matrixdarstellung der Symmetrieoperation
+gehören.  Diesen Spezialfall, bei dem mindestens ein Punkt unverändert bleibt,
+nennt man Punktsymmetrie.
+\begin{definition}[Punktgruppe]
+	Wenn jede Operation in einer Symmetriegruppe die Eigenschaft hat, mindestens
+	einen Punkt unverändert zu lassen, sagt man, dass die Symmetriegruppe eine
+	Punktgruppe ist.
+\end{definition}
+Um das Konzept zu illustrieren, werden wir den umgekehrten Fall diskutieren:
+eine Symmetrie, die keine Punktsymmetrie ist, die aber in der Physik sehr
+nützlich ist, nämlich die Translationssymmetrie.  Von einem mathematischen
+Objekt \(x\) wird gesagt, dass es eine Translationssymmetrie \(Q\) hat, wenn es
+die Gleichung 
+\[
+	Q(x) = Q(x + a),
+\]
+für ein gewisses \(a\), erfüllt. Zum Beispiel besagt das erste Newtonsche
+Gesetz, dass ein Objekt, auf das keine Kraft einwirkt, eine
+zeitranslationsinvariante Geschwindigkeit hat, d.h. wenn \(\vec{F} = \vec{0}\)
+dann \(\vec{v}(t) = \vec{v}(t + \tau)\).
+
 
 % vim:ts=2 sw=2 spell spelllang=de:
