@@ -9,5 +9,6 @@ dependencies-punktgruppen =	\
 	papers/punktgruppen/intro.tex \
 	papers/punktgruppen/symmetry.tex \
 	papers/punktgruppen/crystals.tex \
+	papers/punktgruppen/piezo.tex \
 	papers/punktgruppen/references.bib
 
