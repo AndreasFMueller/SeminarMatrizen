@@ -119,15 +119,344 @@ Der Beweis von Satz~\ref{buch:satz:chrind} zeigt, dass man sich die
 chromatische Zahl als ein Mass dafür, wieviele solche anabhängige 
 Mengen in einem Grapehn untergebracht werden können.
 
+%
+% Chromatische Zahl und maximaler Grad
+%
 \subsection{Chromatische Zahl und maximaler Grad
 \label{buch:subsection:chr-und-maximaler-grad}}
+Wenn kein Knoten mehr als $d$ Nachbarn hat, dann reichen
+$d+1$ Farben immer, um diesen Knoten und seine Nachbarn einzufärben.
+Das heisst aber noch nicht, dass dann auch $d+1$ Farben zur
+Einfärbung des ganzen Graphen reichen.
+Genau dies garantiert jedoch der folgende Satz.
 
-\subsection{Maximaler Eigenwert von $A(G)$ maximaler Grad
+\begin{definition}
+Der {\em maximale Grad} 
+\(
+\max_{v\in V} \deg(v)
+\)
+wird mit $d$ bezeichnet.
+\end{definition}
+
+\begin{satz}
+\label{buch:graphen:satz:chrmaxgrad}
+Ist $G$ ein Graph mit maximalem Grad $d$, dann gilt 
+$\operatorname{chr}G \le d+1$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir führen den Beweis mit Hilfe von vollständiger Induktion nach der
+Anzahl Knoten eines Graphen.
+Ein Graph mit nur einem Knoten hat keine Kanten, der maximale Grad ist
+daher $0$ und $d+1=1$ Farbe reicht auch tatsächlich zur Einfärbung des
+einen Knotens.
+
+Wir nehmen jetzt an, die Behaupt sei für Graphen mit $n-1$ Knoten bereits
+bewiesen, ein Graph $G'$ mit $n-1$ Knoten und maximalem Grad $d'$ erfüllt
+also die Ungleichung $\operatorname{chr}G'\le d'+1$.
+
+Wir wählen jetzt einen beleibigen Knoten $v$ des Graphen $G$ und bilden
+den Graphen $G'$, der aus $G$ entsteht, indem man den Knoten $v$
+entfernt: $G'=G\setminus\{v\}$.
+Der maximale Grad $d'$ von $G'$ kann dabei nicht grösser werden, es ist
+also $d'\le d$.
+Da $G'$ genau $n-1$ Knoten hat, lässt er sich mit höchstens $d'+1\le d+1$
+Farben einfärben.
+Es muss jetzt also nur noch eine Farbe für den Knoten $v$ gefunden werden.
+Da $d$ der maximale Grad ist, hat $v$ höchstens $d$ Nachbarn, die höchstens
+$d$ verschiedene Farben haben können.
+Von den $d+1$ zur Verfügung stehenden Farben bleibt also mindestens eine
+übrig, mit der man den Knoten $v$ einfärben kann.
+Damit ist der Induktionsschritt gelungen und somit der Satz bewiesen.
+\end{proof}
+
+Das Argument im Beweis von Satz~\ref{buch:graphen:satz:chrmaxgrad}
+ist für alle Begriffe anwendbar, die sich bei der Bildung eines 
+Untergraphen auf ``monotone'' Art ändern.
+Die chromatische Zahl eines Untergraphen ist höchstens so gross wie die
+des ganzen Graphen. 
+Dann kann man eine Ungleichung für grosse Graphen schrittweise aus
+entsprechenden Ungleichungen für die kleineren Teilgraphen gewinnen.
+Ziel der folgenden Abschnitte ist zu zeigen, dass sich eine Grösse
+mit ähnlichen Eigenschaften aus dem Eigenwertspektrum der Adjazenzmatrix
+ablesen lässt.
+Daraus ergibt sich dann eine bessere Abschätzung der chromatischen Zahl
+eines Graphen.
+
+%
+% maximaler Eigenwert und maximaler Grad
+%
+\subsection{Maximaler Eigenwert von $A(G)$ und maximaler Grad
 \label{buch:subsection:maximaler-eigenwert}}
+Die Adjazenzmatrix $A(G)$ eines Graphen $G$  mit $n$ Knoten enthält unter
+anderem auch die Information über den Grad eines Knotens.
+Die Summe der Elemente einer Zeile oder einer Spalte ergibt einen Vektor,
+der die Grade der Knoten als Komponenten enthält.
+Ist $U$ ein $n$-dimensionaler Vektor aus lauter Einsen, dann ist
+ist $A(G)U$ ein Spaltenvektor bestehend aus den Zeilensummen der Matrix 
+$A(G)$ und
+$U^tA(G)$ ein Zeilenvektor bestehend aus den Spaltensummen.
+$A(G)U$ ist also der Vektor der Grade der Knoten.
 
-\subsection{$\alpha_{\text{max}}$ eines Untegraphen
+Das Skalarprodukt von $A(G)U$ mit $U$ ist die Summe der Grade.
+Somit ist
+\begin{equation}
+\frac{\langle A(G)U,U\rangle}{\langle U,U\rangle}
+=
+\frac{1}{\langle U,U\rangle}\sum_{v\in V}\deg(v)
+=
+\frac{1}{n}(d_1+\dots+d_n)
+\label{buch:graphen:eqn:AUdavg}
+\end{equation}
+der mittlere Grad, der mit $\overline{d}$ bezeichnet werden soll.
+
+Da $A(G)$ eine symmetrische Matrix ist, ist $A(G)$ diagonalisierbar,
+die Eigenwerte sind also alle reell.
+Es ist ausserdem bekannt, dass der Eigenvektor $f$ zum grössten Eigenwert
+$\alpha_{\text{max}}$ von $A(G)$
+den Bruch
+\[
+\frac{\langle A(G)f,f\rangle}{\langle f,f\rangle}
+\]
+für Vektoren $f\ne 0$ maximiert.
+Aus~\eqref{buch:graphen:eqn:AUdavg} folgt damit, dass
+\begin{equation}
+\overline{d}
+\le
+\alpha_{\text{max}}
+\label{buch:graphen:eqn:dqueramax}
+\end{equation}
+ist.
+
+In Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
+des nächsten Kapitels wird die Perron-Frobenius-Theorie positiver
+Matrizen vorgestellt, welche einer Reihe interessanter Aussagen
+über den betragsgrössten Eigenwert und den zugehörigen Eigenvektor
+macht.
+Die Adjazenz-Matrix ist eine nichtnegative Matrix und $\alpha_{\text{max}}$
+ist der grösste Eigenwert, also genau die Grösse, auf die die
+Sätze~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}
+und \label{buch:wahrscheinlichkeit:satz:perron-frobenius2}
+anwendbar sind.
+Dazu muss die Matrix allerdings primitiv sein, was gleichbedeutend
+ist damit, dass der Graph zusammenhängend ist.
+Im folgenden soll dies daher jeweils angenommen werden.
+
+\begin{satz}
+Ist $G$ ein zusammenhänger Graph mit $n$ Knoten und maximalem Grad $d$,
+dann gilt
+\[
+\frac1n\sum_{v\in V} \deg(v) 
+=
+\overline{d}
+\le \alpha_{\text{max}} \le d.
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Wir wissen aus \eqref{buch:graphen:eqn:dqueramax} bereits, dass
+$\overline{d}\le\alpha_{\text{max}}$ gilt, es bleibt also nur noch
+$\alpha_{\text{max}}\le d$ zu beweisen.
+
+Sei $f$ der Eigenvektor zum Eigenwert $\alpha_{\text{max}}$.
+Nach Satz~\label{buch:wahrscheinlichkeit:satz:perron-frobenius2}
+ist $f$ ein positiver Vektor mit der Eigenschaft $A(G)f=\alpha_{\text{max}}f$.
+Der Eigenvektor $f$ ist eine Funktion auf den Knoten des Graphen,
+die $v$-Komponente des Vektors $f$ für einen Vertex $v\in V$ ist $f(v)$.
+Die Eigenvektoreigenschaft bedeutet $(A(G)f)(v)=\alpha_{\text{max}} f(v)$.
+Die Adjazenzmatrix $A(G)$ enthält in Zeile $v$ Einsen genau für diejenigen
+Knoten $u\in V$, die zu $v$ benachbart sind.
+Schreiben wir $u\sim v$ für die Nachbarschaftsrelation, dann ist 
+\[
+(A(G)f)(v)
+=
+\sum_{u\sim v} f(u).
+\]
+Die Summe der Komponenten $A(G)f$ kann man erhalten durch Multiplikation
+von $A(G)f$ mit einem Zeilenvektor $U^t$ aus lauter Einsen, also
+\begin{equation}
+\begin{aligned}
+\sum_{v\in V}\sum_{u\sim v}f(v)
+&=
+U^tA(G)f
+=
+(U^tA(G))f
+=
+\begin{pmatrix}d_1&d_2&\dots&d_n\end{pmatrix} f
+\\
+&=
+\sum_{v\in V}\deg (v) f(v)
+\le
+\sum_{v\in V}df(v)
+=
+d
+\sum_{v\in V}f(v).
+\end{aligned}
+\label{buch:graphen:eqn:sumkomp}
+\end{equation}
+Andererseits ist $A(G)f=\alpha_{\text{max}}f$, die linke Seite
+von~\eqref{buch:graphen:eqn:sumkomp} ist daher
+\begin{equation}
+\sum_{v\in V}\sum_{u\sim v}f(v)
+=
+U^tA(G)f
+=
+\alpha_{\text{max}}
+U^tf
+=
+\alpha_{\text{max}} \sum_{v\in V}f(v).
+\label{buch:graphen:eqn:sumkomp2}
+\end{equation}
+Die Ungleichung~\eqref{buch:graphen:eqn:sumkomp}
+und die Gleichung~\eqref{buch:graphen:eqn:sumkomp2} ergeben zusammen
+die Ungleichung
+\[
+\alpha_{\text{max}} \sum_{v\in V}f(v)
+\le d\sum_{v\in V}f(v)
+\qquad\Rightarrow\qquad
+\alpha_{\text{max}} \le d,
+\]
+da die Summe der Komponenten des positiven Vektors $f$ nicht verschwinden
+kann.
+Damit ist die Ungleichung bewiesen.
+\end{proof}
+
+%
+% alpha_max eines Untergraphen
+%
+\subsection{$\alpha_{\text{max}}$ eines Untergraphen
 \label{buch:subsection:alphamax-eines-untergraphen}}
+Der grösste Eigenwert $\alpha_{\text{max}}$ ist ein potentieller 
+Anwärter für eine bessere Abschätzung der chromatischen Zahl.
+Bereits früher wurde bemerkt, dass dies auch bedeutet, dass man 
+das Verhalten des grössten Eigenwerts bei einem Übergang zu einem
+Untergraphen verstehen muss.
 
-\subsection{Chromatische Zahl und $\alpha_{\text{max}}$
+\begin{satz}
+\label{buch:graphen:satz:amaxuntergraph}
+Sei $G'$ ein echter Untergraph von $G$ mit Adjazenzmatrix $A(G')$ und
+grösstem Eigenwert $\alpha_{\text{max}}'=\varrho(A(G'))$, dann ist
+$\alpha_{\text{max}}' \le \alpha_{\text{max}}$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Sei $f'$ der positive Eigenvektor zum Eigenwert $\alpha_{\text{max}}'$
+der Matrix $A(G')$.
+$f'$ ist definiert auf der Menge $V'$ der Knoten von $G'$.
+Aus $f'$ lässt sich ein Vektor $g$ mit den Werten
+\[
+g(v)
+=
+\begin{cases}
+f'(v)&\qquad v\in V'\\
+    0&\qquad\text{sonst}
+\end{cases}
+\]
+konstruieren, der auf ganz $V$ definiert ist.
+
+Die Vektoren $f'$ und $g$ haben die gleichen Komponenten, also ist auch
+$\langle f',f'\rangle = \langle g,g\rangle$.
+Die Matrixelemente von $A(G')$ und $A(G)$ auf gemeinsamen Knoten $u,v\in V'$ 
+erfüllen $A(G')_{uv}\le A(G)_{uv}$, da jede Kante von $G'$ auch in $G$ ist.
+Daher gilt
+\[
+\langle A(G')f',f'\rangle
+\le
+\langle A(G)g,g\rangle,
+\]
+woraus sich die Ungleichung
+\[
+\alpha_{\text{max}}'
+=
+\frac{\langle A(G')f',f'\rangle}{\langle f',f'\rangle}
+=
+\frac{\langle A(G)g,g\rangle}{\langle g,g\rangle}
+\le
+\alpha_{\text{max}}
+\]
+ergibt, da $\alpha_{\text{max}}$ das Maximum von
+$\langle A(G)h,h\rangle/\langle h,h\rangle$ für alle Vektoren $h\ne 0$ ist.
+\end{proof}
+
+%
+% Der Satz von Wilf
+%
+\subsection{Chromatische Zahl und $\alpha_{\text{max}}$: Der Satz von Wilf
 \label{buch:subsection:chr-und-alpha-max}}
+Die in Satz~\ref{buch:graphen:satz:amaxuntergraph} beschriebene
+Eigenschaft von $\alpha_{\text{max}}$ beim Übergang zu einem Untergraphen
+ermöglich jetzt, eine besser Abschätzung für die chromatische Zahl
+zu finden.
+
+\begin{satz}[Wilf]
+\label{buch:graphen:satz:wilf}
+Sie $G$ ein zusammenhängder Graph und $\alpha_{\text{max}}$ der grösste
+Eigenwert seiner Adjazenzmatrix. Dann gilt
+\[
+\operatorname{chr}G\le \alpha_{\text{max}}+1.
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Wie der Satz~\ref{buch:graphen:satz:chrmaxgrad} kann auch der Satz von Wilf
+mit Hilfe von vollständiger Induktion über die Anzahl $n$ der Knoten
+bewiesen werden.
+
+Ein Graph mit nur einem Knoten hat die $0$-Matrix als Adjazenzmatrix,
+der maximale Eigenwert ist $\alpha_{\text{max}}=0$, und tatsächlich reicht
+$\alpha_{\text{max}}+1=1$ Farbe, um den einen Knoten einzufärben.
+
+Wir nehmen jetzt an, der Satz sei für Graphen mit $n-1$ Knoten bereits
+beweisen.
+Wir müssen dann zeigen, dass der Satz dann auch für Graphen mit $n$ Knoten
+gilt.
+
+Sei $v\in V$ ein Knoten minimalen Grades und $G'=G\setminus{v}$ der
+Untergraph, der entsteht, wenn der Knoten $v$ entfernt wird.
+Da $G'$ genau $n-1$ Knoten hat, gilt der Satz von Wilf für $G'$
+und daher kann $G'$ mit höchstens
+\[
+\operatorname{chr}G' \le 1 + \alpha_{\text{max}}'
+\]
+Farben eingefärbt werden.
+Nach Satz~\ref{buch:graphen:satz:amaxuntergraph} ist
+$\alpha_{\text{max}}'\le \alpha_{\text{max}}$,
+Also kann $G'$ mit höchstens $\alpha_{\text{max}}+1$ Farben eingefärbt werden.
+
+Da $v$ ein Knoten minimalen Grades ist, ist sein Grad
+$d(v)\le \overline{d}\le \alpha_{\text{max}}$.
+Die Nachbarn von $v$ haben also hächstens $\alpha_{\text{max}}$ verschiedene
+Farben, mit einer weiteren Farbe lässt sich also auch $G$ einfärben.
+Daraus folgt $\operatorname{chr}G\le \alpha_{\text{max}}+1$.
+\end{proof}
+
+\begin{figure}
+\centering
+\includegraphics{chapters/70-graphen/images/nine.pdf}
+\caption{Beispiel für einen Graphen, für den der
+Satz~\ref{buch:graphen:satz:wilf} von Wilf die bessere
+Abschätzung für die chromatische Zahl eines Graphen gibt als der
+maximale Grad.
+\label{buch:graphen:fig:wilfexample}}
+\end{figure}
+
+\begin{beispiel}
+Der Graph in Abbildung~\ref{buch:graphen:fig:wilfexample} 12 Kanten und 9
+Knoten, daher ist $\overline{d}\le \frac{24}{9}$.
+Der maximale Grad ist $4$ und durch explizite Rechnung mit Hilfe zum Beispiel
+von Octave ergibt, dass $\alpha_{\text{max}}\approx 2.9565$.
+Aus dem Satz von Wilf folgt, dass
+$\operatorname{chr}G\le \alpha_{\text{max}}+1$, und daraus ergibt sich
+$\operatorname{chr}G\le 3$.
+Tatsächlich ist die chromatische Zahl $\operatorname{chr}G=3$, da 
+der Graph mindestens ein Dreieck enthält.
+Der maximale Grad ist 4, somit gibt der
+Satz~\ref{buch:graphen:satz:chrmaxgrad}
+die Schranke 
+$\operatorname{chr}G\le 4+1=5$
+für die chromatische Zahl.
+Der Satz von Wilf ist also eine wesentliche Verbesserung.
+\end{beispiel}
+
+
 
