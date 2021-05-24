@@ -1,198 +1,133 @@
 %
-% spektral.tex
+% spektral.tex -- spektrale Graphentheorie
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Spektrale Graphentheorie
 \label{buch:section:spektrale-graphentheorie}}
 \rhead{Spektrale Graphentheorie}
-Die Laplace-Matrix codiert alle wesentliche Information eines
+Die Adjazenz-Matrix, die Grad-Matrix und damit natürlich auch
+die Laplace-Matrix codieren alle wesentliche Information eines
 ungerichteten Graphen.
 Sie operiert auf Vektoren, die für jeden Knoten des Graphen eine
 Komponente haben.
 Dies eröffnet die Möglichkeit, den Graphen über die linearalgebraischen
-Eigenschaften der Laplace-Matrix zu studieren.
+Eigenschaften dieser Matrizen zu studieren.
+Dieser Abschnitt soll diese Idee an dem ziemlich übersichtlichen Beispiel
+der chromatischen Zahl eines Graphen illustrieren.
 
-\subsection{Grapheigenschaften und Spektrum von $L$
-\label{buch:subsection:grapheigenschaften-und-spektrum-von-l}}
-TODO XXX 
+\subsection{Chromatische Zahl und Unabhängigkeitszahl
+\label{buch:subsection:chromatische-zahl}}
+Der Grad eines Knotens ist ein mass dafür, wie stark ein Graph
+``vernetzt'' ist.
+Je höher der Grad, desto mehr direkte Verbindungen zwischen Knoten gibt es.
+Noch etwas präziser können diese Idee die beiden mit Hilfe der
+chromatischen zahl und der Unabhängigkeitszahl erfasst werden.
 
-\subsection{Wärmeleitung auf einem Graphen
-\label{buch:subsection:waermeleitung-auf-einem-graphen}}
-Die Vektoren, auf denen die Laplace-Matrix operiert, können betrachtet
-werden als Funktionen, die jedem Knoten einen Wert zuordnen.
-Eine mögliche physikalische Interpretation davon ist die Temperaturverteilung
-auf dem Graphen.
-Die Kanten zwischen den Knoten erlauben der Wärmeenergie, von einem Knoten
-zu einem anderen zu fliessen.
-Je grösser die Temperaturdifferenz zwischen zwei Knoten ist, desto
-grösser ist der Wärmefluss und desto schneller ändert sich die Temperatur
-der beteiligten Knoten.
-Die zeitliche Änderung der Temperatur $T_i$ im Knoten $i$ ist proportional
-\[
-\frac{dT_i}{dt}
-=
-\sum_{\text{$j$ Nachbar von $i$}} \kappa (T_j-T_i)
-=
--
-\kappa
-\biggl(
-d_iT_i
--
-\sum_{\text{$j$ Nachbar von $i$}} T_j
-\biggr)
-\]
-Der Term auf der rechten Seite ist genau die Wirkung der 
-Laplace-Matrix auf dem Vektor $T$ der Temperaturen:
-\begin{equation}
-\frac{dT}{dt}
-=
--\kappa L T.
-\label{buch:graphen:eqn:waermeleitung}
-\end{equation}
-Der Wärmefluss, der durch die
-Wärmeleitungsgleichung~\eqref{buch:graphen:eqn:waermeleitung} beschrieben
-wird, codiert ebenfalls wesentliche Informationen über den Graphen.
-Je mehr Kanten es zwischen verschiedenen Teilen eines Graphen gibt,
-desto schneller findet der Wärmeaustausch zwischen diesen Teilen
-statt.
-Die Lösungen der Wärmeleitungsgleichung liefern also Informationen 
-über den Graphen.
+\begin{definition}
+Die {\em chromatische Zahl} $\operatorname{chr}G$ eines Graphen $G$ ist
+die minimale Anzahl von Farben, die Einfärben der Knoten eines Graphen
+nötig sind, sodass benachbarte Knoten verschiedene Farben haben.
+\index{chromatische Zahl}
+\end{definition}
 
-\subsection{Eigenwerte und Eigenvektoren
-\label{buch:subsection:ein-zyklischer-graph}}
-Die Wärmeleitungsgleichung~\eqref{buch:graphen:eqn:waermeleitung} 
-ist eine lineare Differentialgleichung mit konstanten Koeffizienten,
-die mit der Matrixexponentialfunktion gelöst werden.
-Die Lösung ist
-\[
-f(t) = e^{-\kappa Lt}f(0).
-\]
+\begin{definition}
+Eine Menge von Knoten eines Graphen heisst {\em unabhängig}, wenn 
+keine zwei Knoten im Graphen verbunden sind.
+Die {\em Unabhängigkeitszahl} $\operatorname{ind}G$ eines Graphen $G$
+ist die maximale Anzahl Knoten einer unabhängigen Menge.
+\index{Unabhängigkeitszahl}
+\end{definition}
 
-Die Berechnung der Lösung mit der Matrixexponentialreihe ist ziemlich
-ineffizient, da grosse Matrizenprodukte berechnet werden müssen.
-Da die Matrix $L$ symmetrisch ist, gibt es eine Basis aus 
-orthonormierten Eigenvektoren und die Eigenwerte sind reell.
-Wir bezeichnen die Eigenvektoren mit $f_1,\dots,f_n$  und die
-zugehörigen Eigenwerte mit $\lambda_i$.
-Die Funktion $f_i(t)= e^{-\kappa\lambda_it}f_i$ ist dann eine Lösung
-der Wärmeleitungsgleichung, denn die beiden Seiten
+Zwischen der chromatischen Zahl und der Unabhängigkeitszahl eines Graphen
+muss es einen Zusammenhang geben.
+Je mehr Verbingungen es im Graphen gibt, desto grösser wird die chromatische
+Zahl.
+Gleichzeitig wird es schwieriger für Mengen von Knoten, unabhängig zu sein.
+
+\begin{satz}
+\label{buch:satz:chrind}
+Ist $G$ ein Graph mit $n$ Knoten, dann gilt
+$\operatorname{chr}G\cdot\operatorname{ind}G\ge n$.
+\end{satz}
+
+\begin{proof}[Beweis]
+Eine minimale Färbung des Graphen mit $\operatorname{chr}G$ Farben
+teilt die Knoten in $\operatorname{chr}G$ Mengen $V_f$ von Knoten mit
+gleicher Farbe $f$ ein.
+Da diese Mengen einfarbig sind, sind sie unabhängig, enthalten also
+höchstens so viele Knoten, wie die Unabhängigkeitszahl erlaubt.
+Die Gesamtzahl der Knoten ist also
 \begin{align*}
-\frac{d}{dt}f_i(t)
+V
 &=
--\kappa\lambda_ie^{-\kappa\lambda_it}f_i
+\bigcup_{\text{$f$ eine Farbe}} V_f
+&&\Rightarrow&
+n
+&=
+\sum_{\text{$f$ eine Farbe}} |V_f| 
+\le
+\sum_{\text{$f$ eine Farbe}} \operatorname{ind}G
 =
--\kappa\lambda_i f_i(t)
+(\text{Anzahl Farben})\cdot \operatorname{ind}G
 \\
--\kappa Lf_i(t)
+&
+&&&
 &=
--\kappa e^{-\kappa\lambda_it} Lf_i
-=
--\kappa e^{-\kappa\lambda_it} \lambda_i f_i
-=
--\kappa \lambda_i f_i(t)
+\operatorname{chr}G \cdot \operatorname{ind}G
 \end{align*}
-von \eqref{buch:graphen:eqn:waermeleitung} stimmen überein.
+Damit ist $n\le \operatorname{chr}G\cdot\operatorname{ind}G$ gezeigt.
+\qedhere
+\end{proof}
 
-Eine Lösung der Wärmeleitungsgleichung zu einer beliebigen
-Anfangstemperaturverteilung $f$ kann durch Linearkombination aus 
-den Lösungen $f_i(t)$ zusammengesetzt werden.
-Dazu ist nötig, $f$ aus den Vektoren $f_i$ linear zu kombinieren.
-Da aber die $f_i$ orthonormiert sind, ist dies besonders einfach,
-die Koeffizienten sind die Skalarprodukte mit den Eigenvektoren:
-\[
-f=\sum_{i=1}^n \langle f_i,f\rangle f_i.
-\]
-Daraus kann man die allgmeine Lösungsformel
-\begin{equation}
-f(t)
-=
-\sum_{i=1}^n \langle f_i,f\rangle f_i(t)
-=
-\sum_{i=1}^n \langle f_i,f\rangle e^{-\kappa\lambda_i t}f_i
-\label{buch:graphen:eqn:eigloesung}
-\end{equation}
-ableiten.
+\begin{beispiel}
+In einem vollständigen Graphen ist jeder Knoten mit jedem anderen verbunden.
+Jede Menge mit zwei oder mehr Knoten kann daher nicht unabhängig sein, die
+Unabhängigkeitszahl ist daher $\operatorname{ind}G=1$.
+Andererseits ist für jeden Knoten eine eigene Farbe nötig, daher ist die
+chromatische Zahl $\operatorname{chr}G=n$.
+Die Ungleichung von Satz~\ref{buch:satz:chrind} ist erfüllt, sogar mit
+Gleichheit.
+Das Beispiel zeigt, dass die Ungleichung nicht ohne zusätzliche Annahmen
+verbessert werden kann.
+\end{beispiel}
 
-\subsection{Beispiel: Ein zyklischer Graph}
 \begin{figure}
 \centering
-\includegraphics{chapters/70-graphen/images/kreis.pdf}
-\caption{Beispiel Graph zur Illustration der verschiedenen Basen auf einem
-Graphen.
-\label{buch:graphen:fig:kreis}}
+\includegraphics{chapters/70-graphen/images/petersonchrind.pdf}
+\caption{Chromatische Zahl und Unabhängigkeitszahl des Peterson-Graphen.
+Die chromatische Zahl ist $3$, da der Graph sich mit drei Farben einfärben
+lässt (links).
+Die Unabhängigkeitszahl ist $4$, die vier grösseren Knoten im rechten
+Graphen sind unabhängig.
+Die Farben der kleinen Knoten sind die additive Mischung der Farben
+der grossen Knoten, mit denen sie verbunden sind.
+\label{buch:graphen:fig:chrindpeterson}}
 \end{figure}
-Wir illustrieren die im folgenden entwickelte Theorie an dem Beispielgraphen
-von Abbildung~\ref{buch:graphen:fig:kreis}.
-Besonders interessant sind die folgenden Funktionen:
-\[
-\left.
-\begin{aligned}
-s_m(k)
-&=
-\sin\frac{2\pi mk}{n}
-\\
-c_m(k)
-&=
-\cos\frac{2\pi mk}{n}
-\end{aligned}
-\;
-\right\}
-\quad
-\Rightarrow
-\quad
-e_m(k)
-=
-e^{2\pi imk/n}
-=
-c_m(k) + is_m(k).
-\]
-Das Skalarprodukt dieser Funktionen ist
-\[
-\langle e_m, e_{m'}\rangle
-=
-\frac1n
-\sum_{k=1}^n
-\overline{e^{2\pi i km/n}}
-e^{2\pi ikm'/n}
-=
-\frac1n
-\sum_{k=1}^n
-e^{\frac{2\pi i}{n}(m'-m)k}
-=
-\delta_{mm'}
-\]
-Die Funktionen bilden daher eine Orthonormalbasis des Raums der
-Funktionen auf $G$.
-Wegen $\overline{e_m} = e_{-m}$ folgt, dass für gerade $n$
-die Funktionen
-\[
-c_0, c_1,s_1,c_2,s_2,\dots c_{\frac{n}2-1},c_{\frac{n}2-1},c_{\frac{n}2}
-\]
-eine orthonormierte Basis.
 
+\begin{beispiel}
+Der Peterson-Graph $P$ von Abbildung~\ref{buch:graphen:fig:chrindpeterson}
+hat chromatische Zahl $\operatorname{chr}P=3$ und unabhängigkeitszahl
+$\operatorname{ind}P=4$.
+Die Ungleichung von Satz~\ref{buch:satz:chrind} ist erfüllt, sogar als
+Ungleichung: $\operatorname{chr}P\cdot\operatorname{ind}P=3\cdot 4=12>10=n$.
+\end{beispiel}
 
-Die Laplace-Matrix kann mit der folgenden Definition zu einer linearen
-Abbildung auf Funktionen auf dem Graphen gemacht werden.
-Sei $f\colon V\to \mathbb{R}$ und $L$ die Laplace-Matrix mit
-Matrixelementen $l_{vv'}$ wobei $v,v'\in V$ ist.
-Dann definieren wir die Funktion $Lf$ durch
-\[
-(Lf)(v)
-=
-\sum_{v'\in V} l_{vv'}f(v').
-\]
+Nach Definition ist Unabhängigkeitszahl ein Mass für die Grösse einer
+unabhängigen Menge von Punkten.
+Der Beweis von Satz~\ref{buch:satz:chrind} zeigt, dass man sich die
+chromatische Zahl als ein Mass dafür, wieviele solche anabhängige 
+Mengen in einem Grapehn untergebracht werden können.
 
-\subsection{Standardbasis und Eigenbasis
-\label{buch:subsection:standardbasis-und-eigenbasis}}
-Die einfachste Basis, aus der siche Funktionen auf dem Graphen linear
-kombinieren lassen, ist die Standardbasis.
-Sie hat für jeden Knoten $v$ des Graphen eine Basisfunktion mit den Werten
-\[
-e_v\colon V\to\mathbb R:v'\mapsto \begin{cases}
-1\qquad&v=v'\\
-0\qquad&\text{sonst.}
-\end{cases}
-\]
+\subsection{Chromatische Zahl und maximaler Grad
+\label{buch:subsection:chr-und-maximaler-grad}}
 
+\subsection{Maximaler Eigenwert von $A(G)$ maximaler Grad
+\label{buch:subsection:maximaler-eigenwert}}
+
+\subsection{$\alpha_{\text{max}}$ eines Untegraphen
+\label{buch:subsection:alphamax-eines-untergraphen}}
+
+\subsection{Chromatische Zahl und $\alpha_{\text{max}}$
+\label{buch:subsection:chr-und-alpha-max}}
 

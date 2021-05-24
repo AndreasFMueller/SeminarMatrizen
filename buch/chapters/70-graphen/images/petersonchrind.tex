@@ -1,0 +1,142 @@
+%
+% tikztemplate.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\Ra{2}
+\def\Ri{1}
+\def\e{1.0}
+\def\r{0.2}
+
+\begin{scope}[xshift=-3.5cm]
+
+\definecolor{rot}{rgb}{0.8,0,0.8}
+\definecolor{gruen}{rgb}{0.2,0.6,0.2}
+\definecolor{blau}{rgb}{1,0.6,0.2}
+
+\coordinate (PA) at ({\Ri*sin(0*72)},{\e*\Ri*cos(0*72)});
+\coordinate (PB) at ({\Ri*sin(1*72)},{\e*\Ri*cos(1*72)});
+\coordinate (PC) at ({\Ri*sin(2*72)},{\e*\Ri*cos(2*72)});
+\coordinate (PD) at ({\Ri*sin(3*72)},{\e*\Ri*cos(3*72)});
+\coordinate (PE) at ({\Ri*sin(4*72)},{\e*\Ri*cos(4*72)});
+
+\coordinate (QA) at ({\Ra*sin(0*72)},{\e*\Ra*cos(0*72)});
+\coordinate (QB) at ({\Ra*sin(1*72)},{\e*\Ra*cos(1*72)});
+\coordinate (QC) at ({\Ra*sin(2*72)},{\e*\Ra*cos(2*72)});
+\coordinate (QD) at ({\Ra*sin(3*72)},{\e*\Ra*cos(3*72)});
+\coordinate (QE) at ({\Ra*sin(4*72)},{\e*\Ra*cos(4*72)});
+
+\draw (PA)--(PC)--(PE)--(PB)--(PD)--cycle;
+\draw (QA)--(QB)--(QC)--(QD)--(QE)--cycle;
+\draw (PA)--(QA);
+\draw (PB)--(QB);
+\draw (PC)--(QC);
+\draw (PD)--(QD);
+\draw (PE)--(QE);
+
+\fill[color=blau] (PA) circle[radius=\r];
+\fill[color=rot] (PB) circle[radius=\r];
+\fill[color=rot] (PC) circle[radius=\r];
+\fill[color=gruen] (PD) circle[radius=\r];
+\fill[color=gruen] (PE) circle[radius=\r];
+
+\fill[color=rot] (QA) circle[radius=\r];
+\fill[color=blau] (QB) circle[radius=\r];
+\fill[color=gruen] (QC) circle[radius=\r];
+\fill[color=rot] (QD) circle[radius=\r];
+\fill[color=blau] (QE) circle[radius=\r];
+
+\draw (PA) circle[radius=\r];
+\draw (PB) circle[radius=\r];
+\draw (PC) circle[radius=\r];
+\draw (PD) circle[radius=\r];
+\draw (PE) circle[radius=\r];
+
+\draw (QA) circle[radius=\r];
+\draw (QB) circle[radius=\r];
+\draw (QC) circle[radius=\r];
+\draw (QD) circle[radius=\r];
+\draw (QE) circle[radius=\r];
+
+\node at (0,{-\Ra}) [below] {$\operatorname{chr}P=3\mathstrut$};
+
+\end{scope}
+
+\begin{scope}[xshift=3.5cm]
+\definecolor{rot}{rgb}{0.8,0,0.8}
+\definecolor{gruen}{rgb}{0.2,0.6,0.2}
+\definecolor{blau}{rgb}{1,0.6,0.2}
+\definecolor{gelb}{rgb}{0,0,1}
+
+\coordinate (PA) at ({\Ri*sin(0*72)},{\e*\Ri*cos(0*72)});
+\coordinate (PB) at ({\Ri*sin(1*72)},{\e*\Ri*cos(1*72)});
+\coordinate (PC) at ({\Ri*sin(2*72)},{\e*\Ri*cos(2*72)});
+\coordinate (PD) at ({\Ri*sin(3*72)},{\e*\Ri*cos(3*72)});
+\coordinate (PE) at ({\Ri*sin(4*72)},{\e*\Ri*cos(4*72)});
+
+\coordinate (QA) at ({\Ra*sin(0*72)},{\e*\Ra*cos(0*72)});
+\coordinate (QB) at ({\Ra*sin(1*72)},{\e*\Ra*cos(1*72)});
+\coordinate (QC) at ({\Ra*sin(2*72)},{\e*\Ra*cos(2*72)});
+\coordinate (QD) at ({\Ra*sin(3*72)},{\e*\Ra*cos(3*72)});
+\coordinate (QE) at ({\Ra*sin(4*72)},{\e*\Ra*cos(4*72)});
+
+\draw (PA)--(PC)--(PE)--(PB)--(PD)--cycle;
+\draw (QA)--(QB)--(QC)--(QD)--(QE)--cycle;
+\draw (PA)--(QA);
+\draw (PB)--(QB);
+\draw (PC)--(QC);
+\draw (PD)--(QD);
+\draw (PE)--(QE);
+
+\fill[color=rot] (QA) circle[radius={1.5*\r}];
+\fill[color=rot!40] (QB) circle[radius=\r];
+\fill[color=rot!40] (QE) circle[radius=\r];
+\fill[color=rot!40] (PA) circle[radius=\r];
+
+\fill[color=blau] (PB) circle[radius={1.5*\r}];
+\fill[color=blau!40] (PD) circle[radius=\r];
+\fill[color=blau!40] (PE) circle[radius=\r];
+\fill[color=blau!80,opacity=0.5] (QB) circle[radius=\r];
+
+\fill[color=gruen] (PC) circle[radius={1.5*\r}];
+\fill[color=gruen!40] (QC) circle[radius=\r];
+\fill[color=gruen!80,opacity=0.5] (PA) circle[radius=\r];
+\fill[color=gruen!80,opacity=0.5] (PE) circle[radius=\r];
+
+\fill[color=gelb] (QD) circle[radius={1.5*\r}];
+\fill[color=gelb!80,opacity=0.5] (QC) circle[radius=\r];
+\fill[color=gelb!80,opacity=0.5] (QE) circle[radius=\r];
+\fill[color=gelb!80,opacity=0.5] (PD) circle[radius=\r];
+
+\draw (PA) circle[radius=\r];
+\draw (PB) circle[radius={1.5*\r}];
+\draw (PC) circle[radius={1.5*\r}];
+\draw (PD) circle[radius=\r];
+\draw (PE) circle[radius=\r];
+
+\draw (QA) circle[radius={1.5*\r}];
+\draw (QB) circle[radius=\r];
+\draw (QC) circle[radius=\r];
+\draw (QD) circle[radius={1.5*\r}];
+\draw (QE) circle[radius=\r];
+
+\node at (0,{-\Ra}) [below] {$\operatorname{ind}P=4\mathstrut$};
+
+\end{scope}
+
+
+
+\end{tikzpicture}
+\end{document}
+

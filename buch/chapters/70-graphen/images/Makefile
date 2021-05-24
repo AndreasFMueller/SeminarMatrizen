@@ -3,11 +3,14 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	peterson.pdf adjazenzu.pdf adjazenzd.pdf kreis.pdf fundamental.pdf
+all:	peterson.pdf adjazenzu.pdf adjazenzd.pdf kreis.pdf fundamental.pdf \
+	petersonchrind.pdf
 
 peterson.pdf:	peterson.tex
 	pdflatex peterson.tex
 
+petersonchrind.pdf:	petersonchrind.tex
+	pdflatex petersonchrind.tex
 adjazenzu.pdf:	adjazenzu.tex
 	pdflatex adjazenzu.tex
 
