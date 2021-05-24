@@ -4,7 +4,7 @@
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
 all:	peterson.pdf adjazenzu.pdf adjazenzd.pdf kreis.pdf fundamental.pdf \
-	petersonchrind.pdf nine.pdf
+	petersonchrind.pdf nine.pdf gh.pdf
 
 peterson.pdf:	peterson.tex
 	pdflatex peterson.tex
@@ -25,4 +25,7 @@ fundamental.pdf:	fundamental.tex
 
 nine.pdf:	nine.tex
 	pdflatex nine.tex
+
+gh.pdf:	gh.tex
+	pdflatex gh.tex
 

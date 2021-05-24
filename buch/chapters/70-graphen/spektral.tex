@@ -56,8 +56,10 @@ Eine minimale Färbung des Graphen mit $\operatorname{chr}G$ Farben
 teilt die Knoten in $\operatorname{chr}G$ Mengen $V_f$ von Knoten mit
 gleicher Farbe $f$ ein.
 Da diese Mengen einfarbig sind, sind sie unabhängig, enthalten also
-höchstens so viele Knoten, wie die Unabhängigkeitszahl erlaubt.
-Die Gesamtzahl der Knoten ist also
+höchstens so viele Knoten, wie die Unabhängigkeitszahl erlaubt,
+also $|V_f|\le \operatorname{ind}G$.
+Da die Menge aller Knoten die Vereinigung der Mengen $V_f$ ist,
+ist die Gesamtzahl der Knoten 
 \begin{align*}
 V
 &=
@@ -66,15 +68,15 @@ V
 n
 &=
 \sum_{\text{$f$ eine Farbe}} |V_f| 
-\le
-\sum_{\text{$f$ eine Farbe}} \operatorname{ind}G
-=
-(\text{Anzahl Farben})\cdot \operatorname{ind}G
 \\
 &
 &&&
-&=
-\operatorname{chr}G \cdot \operatorname{ind}G
+&\le
+\sum_{\text{$f$ eine Farbe}} \operatorname{ind}G
+=
+(\text{Anzahl Farben})\cdot \operatorname{ind}G
+=
+\operatorname{chr}G \cdot \operatorname{ind}G.
 \end{align*}
 Damit ist $n\le \operatorname{chr}G\cdot\operatorname{ind}G$ gezeigt.
 \qedhere
@@ -117,7 +119,7 @@ Nach Definition ist Unabhängigkeitszahl ein Mass für die Grösse einer
 unabhängigen Menge von Punkten.
 Der Beweis von Satz~\ref{buch:satz:chrind} zeigt, dass man sich die
 chromatische Zahl als ein Mass dafür, wieviele solche anabhängige 
-Mengen in einem Grapehn untergebracht werden können.
+Mengen in einem Graphen untergebracht werden können.
 
 %
 % Chromatische Zahl und maximaler Grad
@@ -131,7 +133,7 @@ Einfärbung des ganzen Graphen reichen.
 Genau dies garantiert jedoch der folgende Satz.
 
 \begin{definition}
-Der {\em maximale Grad} 
+Der maximale Grad
 \(
 \max_{v\in V} \deg(v)
 \)
@@ -455,7 +457,8 @@ Satz~\ref{buch:graphen:satz:chrmaxgrad}
 die Schranke 
 $\operatorname{chr}G\le 4+1=5$
 für die chromatische Zahl.
-Der Satz von Wilf ist also eine wesentliche Verbesserung.
+Der Satz von Wilf ist also eine wesentliche Verbesserung, er liefert in
+diesem Fall den exakten Wert der chromatischen Zahl.
 \end{beispiel}
 
 
