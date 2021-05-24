@@ -6,11 +6,192 @@
 \section{Decodierung mit Fehler
 \label{reedsolomon:section:decmitfehler}}
 \rhead{fehlerhafte rekonstruktion}
-moin
+Im zweiten Teil zur Decodierung betrachten wir den Fall, dass unser Übertragungskanal nicht fehlerfrei ist.
+Wir legen daher den Fehlervektor
+\[
+u = [0, 0, 0, 3, 0, 0, 0, 0, 2, 0]
+\]
+fest, den wir zu unserem Übertragungsvektor als Fehler dazu addieren und somit
 
+\begin{center}
+
+\begin{tabular}{c | c r }
+	$v$ & & $[5,3,6,5,2,10,2,7,10,4]$\\
+	$u$ & $+$ & $[0,0,0,3,0,0,0,0,2,0]$\\
+	\hline
+	$w$ & & $[5,3,6,8,2,10,2,7,1,4]$\\
+\end{tabular}
+
+% alternative design
+%\begin{tabular}{c | c cccccccccccc }
+%	$v$ & & $[$&$5,$&$3,$&$6,$&$5,$&$2,$&$10,$&$2,$&$7,$&$10,$&$4$&$]$\\
+%	$u$ & $+$ & $[$&$0,$&$0,$&$0,$&$3,$&$0,$&$0,$&$0,$&$0,$&$2,$&$0$&$]$\\
+%	\hline
+%	$w$ & & $[$&$5,$&$3,$&$6,$&$8,$&$2,$&$10,$&$2,$&$7,$&$1,$&$4$&$]$\\
+%\end{tabular}
+
+\end{center}
+als Übertragungsvektor auf der Empfängerseite erhalten. 
+
+Wenn wir den Übertragungsvektor jetzt Rücktransformieren wie im vorherigen Kapitel erhalten wir
+\[
+r = [\underbrace{5,7,4,10,}_{Fehlerinfo}5,4,5,7,6,7].
+\]
+Im Vergleich zum vorherigen Kapitel sind die Fehlerkorrekturstellen jetzt $\neq 0$, was bedeutet, dass wir diesen Übertragungsvektor fehlerhaft empfangen haben und sich die Nachricht jetzt nicht mehr so einfach decodieren lässt.
+
+% warum wir die fehler suchen
+Da Reed-Solomon-Codes in der Lage sind, eine Nachricht aus weniger Stellen zu rekonstruieren als wir ursprünglich haben, so müssen wir nur die Fehlerhaften Stellen finden und eliminieren, damit wir unsere Nutzdaten rekonstruieren können.
+Damit stellt sich die Frage, wie wir die Fehlerstellen $e$ finden.
+Dafür wählen wir einen Primitiven Ansatz mit
+\begin{align}
+	m(X) & = 4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1 \\
+	r(X) & = 5X^9 + 7X^8 + 4X^7 + 10X^6 + 5X^5 + 4X^4 + 5X^3 + 7X^2 + 6X + 7 \\
+	e(X) & = r(X) - m(X).
+\end{align}
+Setzen wir jetzt unsere Einheitswurzel für $X$ ein, so erhalten wir
+\begin{center}
+\begin{tabular}{c c c c c c c c c c c}
+	\hline
+	$i$& $0$& $1$& $2$& $3$& $4$& $5$& $6$& $7$& $8$& $9$\\
+	\hline
+	$r(a^{i})$& $5$& $3$& $6$& $8$& $2$& $10$& $2$& $7$& $1$& $4$\\
+	$m(a^{i})$& $5$& $3$& $6$& $5$& $2$& $10$& $2$& $7$& $10$& $4$\\
+	$e(a^{i})$& $0$& $0$& $0$& $3$& $0$& $0$& $0$& $0$& $2$& $0$\\
+	\hline
+\end{tabular}
+\end{center}
+und damit die Information, dass an allen Stellen, die nicht Null sind, Fehler enthalten.
+Um jetzt alle nicht Nullstellen zu finden, wenden wir den Satz von Fermat an. 
 
 \subsection{Der Satz von Fermat
 \label{reedsolomon:subsection:fermat}}
-wer ist fermat?
+Der Satz von Fermat besagt, dass für
+\[
+f(X) = X^{q-1} -1 = 0
+\] 
+gilt, egal was wir für $q$ einsetzen.
+
+Für unser Beispiel erhalten wir
+\[
+f(X) = X^{10}-1 = 0 \qquad \text{für } X = \{1,2,3,4,5,6,7,8,9,10\}
+\]
+und können $f(X)$ auch umschreiben in
+\[
+f(X) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6)(X-a^7)(X-a^8)(X-a^9).
+\]
+Zur Überprüfung können wir unsere Einheitswurzel in $a$ einsetzen und werden sehen, dass wir für $f(X) = 0$ erhalten werden.
+Nach der gleichen Überlegung können wir jetzt auch $e(X)$ darstellen als
+\[
+e(X) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6)(X-a^7) \qquad \qquad (X-a^9) \cdot p(x),
+\]
+wobei $p(X)$ das Restpolynom ist und die Fehlerstellen beinhaltet.
+Wenn wir jetzt den grössten gemeinsamen Teiler von $f(X)$ und $e(X)$ berechnen, so erhalten wir mit
+\[
+\operatorname{ggT}(f(X),e(X)) = (X-a^0)(X-a^1)(X-a^2) \qquad \qquad (X-a^4)(X-a^5)(X-a^6)(X-a^7) \qquad \qquad (X-a^9)
+\]
+eine Liste von Nullstellen, an denen es keine Fehler gegeben hat.
+Da wir uns jedoch für eine Liste mit Nullstellen interessieren, an denen es Fehler gegeben hat berechnen wir stattdessen das kgV von $f(X)$ und $e(X)$ als
+\[
+\operatorname{kgV}(f(X),e(X)) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6)(X-a^7)(X-a^8)(X-a^9) \cdot q(X).
+\]
+Wir können das Resultat noch zerlegen in
+\[
+\operatorname{kgV}(f(X),e(X)) = d(X) \cdot e(X).
+\]
+Somit muss $d(X)$ eine Liste von Nullstellen enthalten an denen es Fehler gegeben hat.
+\[
+d(X) = (X-a^3)(X-a^8)
+\]
 
 
+und ist damit unser gesuchtes Lokatorpolynom.
+
+Das einzige Problem was jetzt noch bleibt ist, dass wir $e(X)$ berechnet haben aus
+\[
+e(X) = r(X) - m(X),
+\]
+wobei $m(X)$ auf der Empfängerseite unbekannt ist.
+Es sieht danach aus, das wir diesen Lösungsansatz nicht verwenden können, da uns ein entscheidender Teil fehlt.
+Bei einer näheren Betrachtung von $m(X)$ fällt uns aber auf, dass wir doch etwas über $m(X)$ wissen.
+Wir kennen nämlich die ersten vier Stellen, da diese für die Fehlerkorrektur zuständig sind und daher Null sein müssen.
+\[
+m = [0,0,0,0,?,?,?,?,?,?]
+\]
+An genau diesen Stellen liegt auch die Information, wo unsere Fehlerstellen liegen, was uns ermöglicht, den Teil von $e(X)$ zu berechnen, der uns auch interessiert.
+
+Wir können $e(X)$ also bestimmen als
+\[
+e(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)
+\]
+wobei $p(X)$ wiederum ein unbekanntes Restpolynom ist und
+\[
+f(X) = X^{10} - 1 = X^{10} + 10
+\]
+ist können wir so in einer ersten Instanz den grössten gemeinsamen Teiler von $f(X)$ und $e(X)$ berechnen.
+Dafür nehmen wir uns wiederum den Euklidischen Algorithmus zur Hilfe und berechnen so
+
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
+	X^{10}& & & & & & &+& 10& & & & &:&5X^9&+&7X^8&+& 4X^7&+&10X^6&+&p(X)&=&9X&+&5\\
+	X^{10}&+& 8X^9&+& 3X^8&+&2X^7&+& p(X)& &  & & & &   & & & & & &   & &  & & \\ \cline{1-9}
+	&& 3X^9&+& 8X^8&+& 9X^7&+& p(X)& &   & & & & & &   & &  & & \\
+	&& 3X^9&+& 2X^8&+& 9X^7&+& p(X)& &   & & & & & &   & &  & & \\ \cline{3-9}
+	& &    & &6X^8&+&0X^7&+&p(X)& &   & & & & & &   & &  & & \\
+\end{array}
+\]
+
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
+	5X^9&+& 7X^8&+& 4X^7&+& 10X^6&+& p(X)& & & & &:&6X^8&+&0X^7& & & & & & &=&10X&+&3\\
+	5X^9&+& 0X^8&+& p(X)& & & & & &  & & & &   & & & & & &   & &  & & \\ \cline{1-5}
+	&& 7X^8&+& p(X)& & & & & &   & & & & & &   & &  & & \\
+\end{array}
+\]
+und erhalten
+\[
+\operatorname{ggT}(f(X),e(X)) = 6X^8
+\]
+Mit den Resultaten, die wir vom Rechenweg des grössten gemeinsamen Teiler erhalten haben können wir jetzt auch das kleinste Gemeinsame Vielfache berechnen. Eine detailliertere Vorgehensweise findet man in Kapitel ???. 
+
+Aus diesem erweiterten Euklidischen Algorithmus erhalten wir 
+\begin{center}
+	
+	\begin{tabular}{| c | c | c c |}
+		\hline
+		$k$ &  $q_i$ & $e_i$ & $f_i$\\
+		\hline 
+		& & $0$& $1$\\
+		$0$& $9X + 5$& $1$& $0$\\
+		$1$& $10X + 3$& $9X+5$& $1$\\
+		$2$& & \textcolor{blue}{$2X^2 + 0X + 5$}& $10X + 3$\\
+		\hline
+	\end{tabular}	
+	
+\end{center}
+und erhalten auf diesem Weg den Faktor
+\[
+d(X) = 2X^2 + 5,
+\]
+den wir in 
+\[
+d(X) = 2(X-5)(X-6)
+\]
+zerlegen können.
+Da die unbekannten Stellen im Lokatorpolynom
+\[
+d(X) = (X-a^i)(X-a^i)
+\]
+sind, müssen wir nur noch $i$ berechnen als
+\begin{center}
+	$a^i = 5 \qquad \Rightarrow \qquad i = 3$
+	
+	$a^i = 6 \qquad \Rightarrow \qquad i = 8$.
+\end{center}
+
+Somit erhalten wir schliesslich
+\[
+d(X) = (X-a^3)(X-a^8)
+\]
+als unser Lokatorpolynom mit den Fehlerhaften Stellen.
