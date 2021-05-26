@@ -10,8 +10,11 @@ präzise Bedeutung.
 	Ein mathematisches Objekt wird als symmetrisch bezeichnet, wenn es unter einer
 	bestimmten Operation invariant ist.
 \end{definition}
+Die intuitivsten Beispiele kommen aus der Geometrie, daher werden wir mit
+einigen geometrischen Beispielen beginnen. Wie wir jedoch später sehen werden,
+ist das Konzept der Symmetrie eigentlich viel allgemeiner.  
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\begin{tikzpicture}[
 			node distance = 2cm,
@@ -65,17 +68,13 @@ präzise Bedeutung.
 
 \subsection{Geometrische Symmetrien}
 
-Die intuitivsten Beispiele kommen aus der Geometrie, daher werden wir mit
-einigen geometrischen Beispielen beginnen. Wie wir jedoch später sehen werden,
-ist das Konzept der Symmetrie eigentlich viel allgemeiner.  
-
 In Abbildung \ref{fig:punktgruppen:geometry-example} haben wir einige Formen,
 die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat Gerade, an
 deren gespiegelt werden kann, ohne sein Aussehen zu verändern.  Regelmässige
-Polygone mit \(n\) Seiten sind gute Beispiele, um eine diskrete
+Polygone mit \(n\) Seiten sind auch gute Beispiele, um eine diskrete
 Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um
-einen Punkt um einen bestimmten Winkel \(360^\circ/n\) sie unverändert lässt.
-Das letzte Beispiel auf der rechten Seite ist eine unendliche
+einen Punkt um einen bestimmten Winkel \(360^\circ/n\) die Figur unverändert
+lässt.  Das letzte Beispiel auf der rechten Seite ist eine unendliche
 Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für
 \(\alpha \in \mathbb{R}\) gibt, die die Form unverändert lassen.  Dies ist
 hoffentlich ausreichend, um die Bedeutung hinter der Notation zu verstehen, die
@@ -92,14 +91,15 @@ Mit dem oben Gesagten können wir das \(n\)-Gon Beispiel formalisieren. Wenn wir
 \(r\) eine Drehung von \(2\pi/n\) sein lassen, gibt es eine wohlbekannte Symmetriegruppe
 \[
 	C_n = \langle r \rangle
-		= \left\{\mathds{1}, r, r^2, \ldots, r^{n-1}\right\}
+		= \left\{\mathds{1}, r, r^2, \ldots, r^{n-1}\right\},
 \]
 die zyklische Gruppe heisst. Hier die Potenzen von \(r\) sind als wiederholte
-Komposition gemeint, d.h. \(r^n = r\circ r \circ \cdots r\circ r\).
-
-Die Schreibweise mit den spitzen Klammern wird als Erzeugendensystem bezeichnet.
+Komposition gemeint, d.h. \(r^n = r\circ r \circ \cdots r\circ r\).  Die
+Schreibweise mit den spitzen Klammern wird als Erzeugendensystem bezeichnet.
 Das liegt daran, dass alle Elemente der Symmetriegruppe aus Kombinationen einer
 Teilmenge erzeugt werden, die als erzeugende Elemente bezeichnet werden. 
+
+% TODO: more on generators
 
 Die Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
 \(\left\{\mathds{1}, \sigma\right\}\) enthält. Kombiniert man sie jedoch mit
@@ -111,21 +111,53 @@ der Rotation, erhält man die so genannte Diedergruppe
 		\right\}.
 \]
 Diesmal muss die Generator-Notation die Beziehungen zwischen den beiden
-Operationen beinhalten. Die ersten beiden sind leicht zu erkennen, für die
-letzte empfehlen wir, sie an einem 2D-Quadrat auszuprobieren.
+Operationen beinhalten. 
 
+% TODO
+% Die ersten beiden sind leicht zu erkennen, für die
+% letzte empfehlen wir, sie an einem 2D-Quadrat auszuprobieren.
+
+Die Symmetrieoperationen, die wir bis jetzt besprochen haben, haben immer
+mindestens einen Punkt gehabt, der wieder auf sich selbst abgebildet wird. Im
+Fall der Rotation war es der Drehpunkt, bei der Spiegelung die Punkte der
+Spiegelachse. Dies ist jedoch keine Voraussetzung für eine Symmetrie, da es
+Symmetrien gibt, die jeden Punkt zu einem anderen Punkt verschieben können.
+Diesen Spezialfall, bei dem mindestens ein Punkt unverändert bleibt, nennt man
+Punktsymmetrie.
+\begin{definition}[Punktgruppe]
+	Wenn jede Operation in einer Symmetriegruppe die Eigenschaft hat, mindestens
+	einen Punkt unverändert zu lassen, sagt man, dass die Symmetriegruppe eine
+	Punktgruppe ist.
+\end{definition}
+
+\subsection{Algebraische Symmetrien}
 Wir haben nun unseren Operationen Symbole gegeben, mit denen es tatsächlich
-möglich ist, eine nicht kommutative Algebra zu erstellen. Die naheliegende
-Frage ist dann, könnte es sein, dass wir bereits etwas haben, das dasselbe tut?
-Natürlich, ja. Dafür führen wir den Begriff der Darstellung ein.
-\begin{definition}[Darstellung einer Gruppe, Gruppenhomomorphismus]
+möglich ist, Gleichungen zu schreiben. Die naheliegende Frage ist dann, könnte
+es sein, dass wir bereits etwas haben, das dasselbe tut?  Natürlich, ja.
+Um es formaler zu beschreiben, werden wir ein einige Begriffe einführen.
+\begin{definition}[Gruppenhomomorphismus]
 	Seien \(G\) und \(H\) Gruppe mit unterschiedlicher Operation \(\diamond\)
 	bzw.  \(\star\). Ein Homomorphismus\footnote{ Für eine ausführlichere
 	Diskussion siehe \S\ref{buch:grundlagen:subsection:gruppen} im Buch.} ist
 	eine Funktion \(f: G \to H\), so dass für jedes \(a, b \in G\) gilt
 	\(f(a\diamond b) = f(a) \star f(b)\).  Man sagt, dass der Homomorphismus
-	\(f\) \(G\) in \(H\) transformiert, oder dass \(H\) eine Darstellung von
-	\(G\) ist.
+	\(f\) \(G\) in \(H\) transformiert.
+\end{definition}
+\begin{beispiel}
+	Die Rotationssymmetrie des Kreises \(C_\infty\), mit einem unendlichen
+	Kontinuum von Werten \(\alpha \in \mathbb{R}\), entspricht perfekt dem
+	komplexen Einheitskreis. Der Homomorphismus \(\phi: C_\infty \to \mathbb{C}\)
+	ist durch die Eulersche Formel \(\phi(r) = e^{i\alpha}\) gegeben.
+\end{beispiel}
+
+\begin{definition}[Darstellung einer Gruppe]
+	Die Darstellung einer Gruppe ist ein Homomorphismus, der eine Symmetriegruppe
+	auf eine Menge von Matrizen abbildet.
+	\[
+		\Phi: G \to \operatorname{GL}_n(\mathbb{R}).
+	\]
+	Äquivalent kann man sagen, dass ein Element aus der Symmetriegruppe auf einen
+	Vektorraum \(V\) wirkt, indem man definiert \(\Phi : G \times V \to V\).
 \end{definition}
 \begin{beispiel}
 	Die Elemente \(r^k \in C_n\), wobei \(0 < k < n\), stellen abstrakt eine
@@ -141,28 +173,8 @@ Natürlich, ja. Dafür führen wir den Begriff der Darstellung ein.
 	die zweite die Matrixmultiplikation. Man kann überprüfen, dass \(\Phi(r^2
 	\circ r) = \Phi(r^2)\Phi(r)\).
 \end{beispiel}
-\begin{beispiel}
-	Die Rotationssymmetrie des Kreises \(C_\infty\), mit einem unendlichen
-	Kontinuum von Werten \(\alpha \in \mathbb{R}\), entspricht perfekt dem
-	komplexen Einheitskreis. Der Homomorphismus \(\phi: C_\infty \to \mathbb{C}\)
-	ist durch die Eulersche Formel \(\phi(r) = e^{i\alpha}\) gegeben.
-\end{beispiel}
 
-Die Symmetrien, die wir bis jetzt besprochen haben, haben immer mindestens
-einen Punkt unbesetzt gelassen. Im Fall der Rotation war es der Drehpunkt, bei
-der Spiegelung die Achse. Dies ist jedoch keine Voraussetzung für eine
-Symmetrie, da es Symmetrien gibt, die jeden Punkt zu einem anderen Punkt
-verschieben können. Ein aufmerksamer Leser wird bemerken, dass die
-unveränderten Punkte zum Eigenraum\footnote{Zur Erinnerung \(E_\lambda =
-\mathrm{null}(\Phi - \lambda I)\), \(\vec{v}\in E_\lambda \implies \Phi \vec{v}
-= \lambda\vec{v}\)} der Matrixdarstellung der Symmetrieoperation gehören.
-Diesen Spezialfall, bei dem mindestens ein Punkt unverändert bleibt, nennt man
-Punktsymmetrie.
-\begin{definition}[Punktgruppe]
-	Wenn jede Operation in einer Symmetriegruppe die Eigenschaft hat, mindestens
-	einen Punkt unverändert zu lassen, sagt man, dass die Symmetriegruppe eine
-	Punktgruppe ist.
-\end{definition}
+%% TODO: title / fix continuity
 Um das Konzept zu illustrieren, werden wir den umgekehrten Fall diskutieren:
 eine Symmetrie, die keine Punktsymmetrie ist, die aber in der Physik sehr
 nützlich ist, nämlich die Translationssymmetrie.  Von einem mathematischen
