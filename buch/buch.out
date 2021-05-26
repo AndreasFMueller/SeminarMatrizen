@@ -1,0 +1,234 @@
+\BOOKMARK [-1][-]{part.1}{I Grundlagen}{}% 1
+\BOOKMARK [0][-]{chapter*.3}{Einleitung}{part.1}% 2
+\BOOKMARK [0][-]{chapter.1}{Zahlen }{part.1}% 3
+\BOOKMARK [1][-]{section.1.1}{Nat\374rliche Zahlen }{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Ganze Zahlen }{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Rationale Zahlen }{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Reelle Zahlen }{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.5}{Komplexe Zahlen }{chapter.1}% 8
+\BOOKMARK [0][-]{chapter.2}{Vektoren und Matrizen }{part.1}% 9
+\BOOKMARK [1][-]{section.2.1}{Lineare Algebra }{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.1.1}{Vektoren }{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.2}{Matrizen }{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.3}{Gleichungssysteme }{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.4}{Lineare Abbildungen }{section.2.1}% 14
+\BOOKMARK [1][-]{section.2.2}{Skalarprodukt }{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.1}{Bilinearformen und Skalarprodukte }{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.2}{Orthognormalbasis }{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.3}{Symmetrische und selbstadjungierte Abbilungen }{section.2.2}% 18
+\BOOKMARK [2][-]{subsection.2.2.4}{Orthogonale und unit\344re Matrizen }{section.2.2}% 19
+\BOOKMARK [2][-]{subsection.2.2.5}{Orthogonale Unterr\344ume }{section.2.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.6}{Andere Normen auf Vektorr\344umen }{section.2.2}% 21
+\BOOKMARK [1][-]{section.2.3}{Algebraische Strukturen }{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.3.1}{Gruppen }{section.2.3}% 23
+\BOOKMARK [2][-]{subsection.2.3.2}{Ringe und Moduln }{section.2.3}% 24
+\BOOKMARK [2][-]{subsection.2.3.3}{Algebren }{section.2.3}% 25
+\BOOKMARK [2][-]{subsection.2.3.4}{K\366rper }{section.2.3}% 26
+\BOOKMARK [1][-]{section.2.4}{Hadamard-Algebra }{chapter.2}% 27
+\BOOKMARK [2][-]{subsection.2.4.1}{Hadamard-Produkt }{section.2.4}% 28
+\BOOKMARK [2][-]{subsection.2.4.2}{Hadamard-Produkt und Matrizenalgebra }{section.2.4}% 29
+\BOOKMARK [2][-]{subsection.2.4.3}{Weitere Verkn\374pfungen }{section.2.4}% 30
+\BOOKMARK [0][-]{chapter.3}{Polynome }{part.1}% 31
+\BOOKMARK [1][-]{section.3.1}{Definitionen }{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.1.1}{Skalare }{section.3.1}% 33
+\BOOKMARK [2][-]{subsection.3.1.2}{Der Polynomring }{section.3.1}% 34
+\BOOKMARK [2][-]{subsection.3.1.3}{Grad }{section.3.1}% 35
+\BOOKMARK [2][-]{subsection.3.1.4}{Teilbarkeit }{section.3.1}% 36
+\BOOKMARK [2][-]{subsection.3.1.5}{Formale Potenzreihen }{section.3.1}% 37
+\BOOKMARK [1][-]{section.3.2}{Polynome als Vektoren }{chapter.3}% 38
+\BOOKMARK [2][-]{subsection.3.2.1}{Polynome beliebigen Grades }{section.3.2}% 39
+\BOOKMARK [2][-]{subsection.3.2.2}{Multiplikative Struktur }{section.3.2}% 40
+\BOOKMARK [1][-]{section.3.3}{Polynommultiplikation mit Matrizen }{chapter.3}% 41
+\BOOKMARK [1][-]{section.3.4}{Minimalpolynom }{chapter.3}% 42
+\BOOKMARK [0][-]{chapter.4}{Endliche K\366rper }{part.1}% 43
+\BOOKMARK [1][-]{section.4.1}{Der euklidische Algorithmus }{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.1.1}{Ganze Zahlen}{section.4.1}% 45
+\BOOKMARK [2][-]{subsection.4.1.2}{Matrixschreibweise }{section.4.1}% 46
+\BOOKMARK [2][-]{subsection.4.1.3}{Vereinfachte Durchf\374hrung }{section.4.1}% 47
+\BOOKMARK [2][-]{subsection.4.1.4}{Polynome}{section.4.1}% 48
+\BOOKMARK [1][-]{section.4.2}{Galois-K\366rper }{chapter.4}% 49
+\BOOKMARK [2][-]{subsection.4.2.1}{Arithmetik modulo p }{section.4.2}% 50
+\BOOKMARK [2][-]{subsection.4.2.2}{Charakteristik }{section.4.2}% 51
+\BOOKMARK [1][-]{section.4.3}{Wurzeln }{chapter.4}% 52
+\BOOKMARK [2][-]{subsection.4.3.1}{Irreduzible Polynome }{section.4.3}% 53
+\BOOKMARK [2][-]{subsection.4.3.2}{K\366rpererweiterungen }{section.4.3}% 54
+\BOOKMARK [2][-]{subsection.4.3.3}{Zerf\344llungsk\366rper }{section.4.3}% 55
+\BOOKMARK [0][-]{chapter.5}{Eigenwerte und Eigenvektoren }{part.1}% 56
+\BOOKMARK [1][-]{section.5.1}{Grundlagen }{chapter.5}% 57
+\BOOKMARK [2][-]{subsection.5.1.1}{Kern und Bild von Matrixpotenzen }{section.5.1}% 58
+\BOOKMARK [2][-]{subsection.5.1.2}{Invariante Unterr\344ume }{section.5.1}% 59
+\BOOKMARK [2][-]{subsection.5.1.3}{Nilpotente Matrizen }{section.5.1}% 60
+\BOOKMARK [2][-]{subsection.5.1.4}{Eigenwerte und Eigenvektoren }{section.5.1}% 61
+\BOOKMARK [2][-]{subsection.5.1.5}{Verallgemeinerte Eigenr\344ume }{section.5.1}% 62
+\BOOKMARK [2][-]{subsection.5.1.6}{Zerlegung in invariante Unterr\344ume }{section.5.1}% 63
+\BOOKMARK [2][-]{subsection.5.1.7}{Das charakteristische Polynom }{section.5.1}% 64
+\BOOKMARK [1][-]{section.5.2}{Normalformen }{chapter.5}% 65
+\BOOKMARK [2][-]{subsection.5.2.1}{Diagonalform}{section.5.2}% 66
+\BOOKMARK [2][-]{subsection.5.2.2}{Jordan-Normalform }{section.5.2}% 67
+\BOOKMARK [2][-]{subsection.5.2.3}{Reelle Normalform }{section.5.2}% 68
+\BOOKMARK [2][-]{subsection.5.2.4}{Obere Hessenberg-Form }{section.5.2}% 69
+\BOOKMARK [1][-]{section.5.3}{Funktionen einer Matrix }{chapter.5}% 70
+\BOOKMARK [2][-]{subsection.5.3.1}{Polynom-Funktionen }{section.5.3}% 71
+\BOOKMARK [2][-]{subsection.5.3.2}{Approximation von f\(A\) }{section.5.3}% 72
+\BOOKMARK [2][-]{subsection.5.3.3}{Potenzreihen }{section.5.3}% 73
+\BOOKMARK [2][-]{subsection.5.3.4}{Gelfand-Radius und Eigenwerte }{section.5.3}% 74
+\BOOKMARK [1][-]{section.5.4}{Numerische Verfahren zur Eigenwertbestimmung }{chapter.5}% 75
+\BOOKMARK [1][-]{section.5.5}{Spektraltheorie }{chapter.5}% 76
+\BOOKMARK [0][-]{chapter.6}{Permutationen }{part.1}% 77
+\BOOKMARK [1][-]{section.6.1}{Permutationen einer endlichen Menge }{chapter.6}% 78
+\BOOKMARK [2][-]{subsection.6.1.1}{Permutationen als 2n-Matrizen}{section.6.1}% 79
+\BOOKMARK [2][-]{subsection.6.1.2}{Zyklenzerlegung }{section.6.1}% 80
+\BOOKMARK [2][-]{subsection.6.1.3}{Konjugierte Elemente in Sn}{section.6.1}% 81
+\BOOKMARK [1][-]{section.6.2}{Permutationen und Transpositionen }{chapter.6}% 82
+\BOOKMARK [2][-]{subsection.6.2.1}{Zyklus und Permutationen aus Transpositionen}{section.6.2}% 83
+\BOOKMARK [2][-]{subsection.6.2.2}{Signum einer Permutation}{section.6.2}% 84
+\BOOKMARK [1][-]{section.6.3}{Permutationsmatrizen }{chapter.6}% 85
+\BOOKMARK [2][-]{subsection.6.3.1}{Matrizen}{section.6.3}% 86
+\BOOKMARK [2][-]{subsection.6.3.2}{Transpositionen}{section.6.3}% 87
+\BOOKMARK [2][-]{subsection.6.3.3}{Determinante und Vorzeichen}{section.6.3}% 88
+\BOOKMARK [1][-]{section.6.4}{Determinante }{chapter.6}% 89
+\BOOKMARK [0][-]{chapter.7}{Matrizengruppen }{part.1}% 90
+\BOOKMARK [1][-]{section.7.1}{Symmetrien }{chapter.7}% 91
+\BOOKMARK [1][-]{section.7.2}{Lie-Gruppen }{chapter.7}% 92
+\BOOKMARK [1][-]{section.7.3}{Lie-Algebren }{chapter.7}% 93
+\BOOKMARK [1][-]{section.7.4}{Homogene R\344ume }{chapter.7}% 94
+\BOOKMARK [0][-]{chapter.8}{Graphen }{part.1}% 95
+\BOOKMARK [1][-]{section.8.1}{Beschreibung von Graphen mit Matrizen }{chapter.8}% 96
+\BOOKMARK [2][-]{subsection.8.1.1}{Definition von Graphen }{section.8.1}% 97
+\BOOKMARK [2][-]{subsection.8.1.2}{Inzidenzmatrix}{section.8.1}% 98
+\BOOKMARK [2][-]{subsection.8.1.3}{Die Adjazenzmatrix und Laplace-Matrix }{section.8.1}% 99
+\BOOKMARK [1][-]{section.8.2}{Spektrale Graphentheorie }{chapter.8}% 100
+\BOOKMARK [1][-]{section.8.3}{Wavelets auf Graphen }{chapter.8}% 101
+\BOOKMARK [2][-]{subsection.8.3.1}{Funktionen auf einem Graphen und die Laplace-Matrix}{section.8.3}% 102
+\BOOKMARK [2][-]{subsection.8.3.2}{Standardbasis und Eigenbasis }{section.8.3}% 103
+\BOOKMARK [2][-]{subsection.8.3.3}{Wavelet-Basen }{section.8.3}% 104
+\BOOKMARK [0][-]{chapter.9}{Wahrscheinlichkeitsmatrizen }{part.1}% 105
+\BOOKMARK [1][-]{section.9.1}{Google-Matrix }{chapter.9}% 106
+\BOOKMARK [2][-]{subsection.9.1.1}{Ein Modell f\374r Webseitenbesucher }{section.9.1}% 107
+\BOOKMARK [2][-]{subsection.9.1.2}{Wahrscheinlichkeitsinterpretation }{section.9.1}% 108
+\BOOKMARK [2][-]{subsection.9.1.3}{``Freier Wille'' }{section.9.1}% 109
+\BOOKMARK [2][-]{subsection.9.1.4}{Wahrscheinlichkeitsverteilung }{section.9.1}% 110
+\BOOKMARK [1][-]{section.9.2}{Diskrete Markov-Ketten und Wahrscheinlichkeitsmatrizen }{chapter.9}% 111
+\BOOKMARK [2][-]{subsection.9.2.1}{Markov-Eigenschaft}{section.9.2}% 112
+\BOOKMARK [2][-]{subsection.9.2.2}{Diskrete Markov-Kette}{section.9.2}% 113
+\BOOKMARK [2][-]{subsection.9.2.3}{Absorbierende Zust\344nde}{section.9.2}% 114
+\BOOKMARK [1][-]{section.9.3}{Positive Vektoren und Matrizen }{chapter.9}% 115
+\BOOKMARK [2][-]{subsection.9.3.1}{Elementare Eigenschaften }{section.9.3}% 116
+\BOOKMARK [2][-]{subsection.9.3.2}{Die verallgemeinerte Dreiecksungleichung }{section.9.3}% 117
+\BOOKMARK [2][-]{subsection.9.3.3}{Der Satz von Perron-Frobenius }{section.9.3}% 118
+\BOOKMARK [1][-]{section.9.4}{Das Paradoxon von Parrondo }{chapter.9}% 119
+\BOOKMARK [2][-]{subsection.9.4.1}{Die beiden Teilspiele }{section.9.4}% 120
+\BOOKMARK [2][-]{subsection.9.4.2}{Kombination der Spiele }{section.9.4}% 121
+\BOOKMARK [0][-]{chapter.10}{Anwendungen in Kryptographie und Codierungstheorie }{part.1}% 122
+\BOOKMARK [1][-]{section.10.1}{Arithmetik f\374r die Kryptographie }{chapter.10}% 123
+\BOOKMARK [2][-]{subsection.10.1.1}{Potenzieren }{section.10.1}% 124
+\BOOKMARK [2][-]{subsection.10.1.2}{Rechenoperationen in Fp }{section.10.1}% 125
+\BOOKMARK [2][-]{subsection.10.1.3}{Rechenoperationen in F2l }{section.10.1}% 126
+\BOOKMARK [1][-]{section.10.2}{Kryptographie und endliche K\366rper }{chapter.10}% 127
+\BOOKMARK [2][-]{subsection.10.2.1}{Potenzen in Fp und diskreter Logarithmus }{section.10.2}% 128
+\BOOKMARK [2][-]{subsection.10.2.2}{Diffie-Hellman-Schl\374sseltausch }{section.10.2}% 129
+\BOOKMARK [2][-]{subsection.10.2.3}{Elliptische Kurven }{section.10.2}% 130
+\BOOKMARK [1][-]{section.10.3}{Advanced Encryption Standard \205 AES }{chapter.10}% 131
+\BOOKMARK [1][-]{section.10.4}{Fehlerkorrigierende Codes nach Reed-Solomon }{chapter.10}% 132
+\BOOKMARK [2][-]{subsection.10.4.1}{Was ist ein Code? }{section.10.4}% 133
+\BOOKMARK [2][-]{subsection.10.4.2}{Reed-Solomon-Code }{section.10.4}% 134
+\BOOKMARK [2][-]{subsection.10.4.3}{Decodierung }{section.10.4}% 135
+\BOOKMARK [0][-]{chapter.11}{Homologie }{part.1}% 136
+\BOOKMARK [1][-]{section.11.1}{Simplexe und simpliziale Komplexe }{chapter.11}% 137
+\BOOKMARK [2][-]{subsection.11.1.1}{Simplexe und Rand }{section.11.1}% 138
+\BOOKMARK [2][-]{subsection.11.1.2}{Triangulation }{section.11.1}% 139
+\BOOKMARK [1][-]{section.11.2}{Kettenkomplexe }{chapter.11}% 140
+\BOOKMARK [2][-]{subsection.11.2.1}{Randoperator von Simplexen }{section.11.2}% 141
+\BOOKMARK [2][-]{subsection.11.2.2}{Kettenkomplexe und Morphismen }{section.11.2}% 142
+\BOOKMARK [1][-]{section.11.3}{Homologie }{chapter.11}% 143
+\BOOKMARK [2][-]{subsection.11.3.1}{Homologie eines Kettenkomplexes }{section.11.3}% 144
+\BOOKMARK [2][-]{subsection.11.3.2}{Induzierte Abbildung }{section.11.3}% 145
+\BOOKMARK [2][-]{subsection.11.3.3}{Homologie eines simplizialen Komplexes }{section.11.3}% 146
+\BOOKMARK [1][-]{section.11.4}{Exaktheit und die Mayer-Vietoris-Folge }{chapter.11}% 147
+\BOOKMARK [2][-]{subsection.11.4.1}{Kurze exakte Folgen von Kettenkomplexen }{section.11.4}% 148
+\BOOKMARK [2][-]{subsection.11.4.2}{Schlangenlemma und lange exakte Folgen }{section.11.4}% 149
+\BOOKMARK [2][-]{subsection.11.4.3}{Mayer-Vietoris-Folge }{section.11.4}% 150
+\BOOKMARK [1][-]{section.11.5}{Fixpunkte }{chapter.11}% 151
+\BOOKMARK [2][-]{subsection.11.5.1}{Lefshetz-Spurformel }{section.11.5}% 152
+\BOOKMARK [2][-]{subsection.11.5.2}{Brower-Fixpunktsatz }{section.11.5}% 153
+\BOOKMARK [-1][-]{part.2}{II Anwendungen und weiterf\374hrende Themen}{}% 154
+\BOOKMARK [0][-]{chapter.12}{Thema}{part.2}% 155
+\BOOKMARK [1][-]{section.12.1}{Teil 0}{chapter.12}% 156
+\BOOKMARK [1][-]{section.12.2}{Teil 1 }{chapter.12}% 157
+\BOOKMARK [2][-]{subsection.12.2.1}{De finibus bonorum et malorum }{section.12.2}% 158
+\BOOKMARK [1][-]{section.12.3}{Teil 2 }{chapter.12}% 159
+\BOOKMARK [2][-]{subsection.12.3.1}{De finibus bonorum et malorum }{section.12.3}% 160
+\BOOKMARK [1][-]{section.12.4}{Teil 3 }{chapter.12}% 161
+\BOOKMARK [2][-]{subsection.12.4.1}{De finibus bonorum et malorum }{section.12.4}% 162
+\BOOKMARK [0][-]{chapter.13}{Thema}{part.2}% 163
+\BOOKMARK [1][-]{section.13.1}{Teil 0}{chapter.13}% 164
+\BOOKMARK [1][-]{section.13.2}{Teil 1 }{chapter.13}% 165
+\BOOKMARK [2][-]{subsection.13.2.1}{De finibus bonorum et malorum }{section.13.2}% 166
+\BOOKMARK [1][-]{section.13.3}{Teil 2 }{chapter.13}% 167
+\BOOKMARK [2][-]{subsection.13.3.1}{De finibus bonorum et malorum }{section.13.3}% 168
+\BOOKMARK [1][-]{section.13.4}{Teil 3 }{chapter.13}% 169
+\BOOKMARK [2][-]{subsection.13.4.1}{De finibus bonorum et malorum }{section.13.4}% 170
+\BOOKMARK [0][-]{chapter.14}{Thema}{part.2}% 171
+\BOOKMARK [1][-]{section.14.1}{Teil 0}{chapter.14}% 172
+\BOOKMARK [1][-]{section.14.2}{Teil 1 }{chapter.14}% 173
+\BOOKMARK [2][-]{subsection.14.2.1}{De finibus bonorum et malorum }{section.14.2}% 174
+\BOOKMARK [1][-]{section.14.3}{Teil 2 }{chapter.14}% 175
+\BOOKMARK [2][-]{subsection.14.3.1}{De finibus bonorum et malorum }{section.14.3}% 176
+\BOOKMARK [1][-]{section.14.4}{Teil 3 }{chapter.14}% 177
+\BOOKMARK [2][-]{subsection.14.4.1}{De finibus bonorum et malorum }{section.14.4}% 178
+\BOOKMARK [0][-]{chapter.15}{Thema}{part.2}% 179
+\BOOKMARK [1][-]{section.15.1}{Teil 0}{chapter.15}% 180
+\BOOKMARK [1][-]{section.15.2}{Teil 1 }{chapter.15}% 181
+\BOOKMARK [2][-]{subsection.15.2.1}{De finibus bonorum et malorum }{section.15.2}% 182
+\BOOKMARK [1][-]{section.15.3}{Teil 2 }{chapter.15}% 183
+\BOOKMARK [2][-]{subsection.15.3.1}{De finibus bonorum et malorum }{section.15.3}% 184
+\BOOKMARK [1][-]{section.15.4}{Teil 3 }{chapter.15}% 185
+\BOOKMARK [2][-]{subsection.15.4.1}{De finibus bonorum et malorum }{section.15.4}% 186
+\BOOKMARK [0][-]{chapter.16}{Iterierte Funktionsschemata}{part.2}% 187
+\BOOKMARK [1][-]{section.16.1}{Teil 0}{chapter.16}% 188
+\BOOKMARK [1][-]{section.16.2}{Teil 1 }{chapter.16}% 189
+\BOOKMARK [2][-]{subsection.16.2.1}{De finibus bonorum et malorum }{section.16.2}% 190
+\BOOKMARK [1][-]{section.16.3}{Teil 2 }{chapter.16}% 191
+\BOOKMARK [2][-]{subsection.16.3.1}{De finibus bonorum et malorum }{section.16.3}% 192
+\BOOKMARK [1][-]{section.16.4}{Teil 3 }{chapter.16}% 193
+\BOOKMARK [2][-]{subsection.16.4.1}{De finibus bonorum et malorum }{section.16.4}% 194
+\BOOKMARK [0][-]{chapter.17}{McEliece-Kryptosystem}{part.2}% 195
+\BOOKMARK [1][-]{section.17.1}{Teil 0}{chapter.17}% 196
+\BOOKMARK [1][-]{section.17.2}{Teil 1 }{chapter.17}% 197
+\BOOKMARK [2][-]{subsection.17.2.1}{De finibus bonorum et malorum }{section.17.2}% 198
+\BOOKMARK [1][-]{section.17.3}{Teil 2 }{chapter.17}% 199
+\BOOKMARK [2][-]{subsection.17.3.1}{De finibus bonorum et malorum }{section.17.3}% 200
+\BOOKMARK [1][-]{section.17.4}{Teil 3 }{chapter.17}% 201
+\BOOKMARK [2][-]{subsection.17.4.1}{De finibus bonorum et malorum }{section.17.4}% 202
+\BOOKMARK [0][-]{chapter.18}{Thema}{part.2}% 203
+\BOOKMARK [1][-]{section.18.1}{Teil 0}{chapter.18}% 204
+\BOOKMARK [1][-]{section.18.2}{Teil 1 }{chapter.18}% 205
+\BOOKMARK [2][-]{subsection.18.2.1}{De finibus bonorum et malorum }{section.18.2}% 206
+\BOOKMARK [1][-]{section.18.3}{Teil 2 }{chapter.18}% 207
+\BOOKMARK [2][-]{subsection.18.3.1}{De finibus bonorum et malorum }{section.18.3}% 208
+\BOOKMARK [1][-]{section.18.4}{Teil 3 }{chapter.18}% 209
+\BOOKMARK [2][-]{subsection.18.4.1}{De finibus bonorum et malorum }{section.18.4}% 210
+\BOOKMARK [0][-]{chapter.19}{Thema}{part.2}% 211
+\BOOKMARK [1][-]{section.19.1}{Teil 0}{chapter.19}% 212
+\BOOKMARK [1][-]{section.19.2}{Teil 1 }{chapter.19}% 213
+\BOOKMARK [2][-]{subsection.19.2.1}{De finibus bonorum et malorum }{section.19.2}% 214
+\BOOKMARK [1][-]{section.19.3}{Teil 2 }{chapter.19}% 215
+\BOOKMARK [2][-]{subsection.19.3.1}{De finibus bonorum et malorum }{section.19.3}% 216
+\BOOKMARK [1][-]{section.19.4}{Teil 3 }{chapter.19}% 217
+\BOOKMARK [2][-]{subsection.19.4.1}{De finibus bonorum et malorum }{section.19.4}% 218
+\BOOKMARK [0][-]{chapter.20}{Thema}{part.2}% 219
+\BOOKMARK [1][-]{section.20.1}{Teil 0}{chapter.20}% 220
+\BOOKMARK [1][-]{section.20.2}{Teil 1 }{chapter.20}% 221
+\BOOKMARK [2][-]{subsection.20.2.1}{De finibus bonorum et malorum }{section.20.2}% 222
+\BOOKMARK [1][-]{section.20.3}{Teil 2 }{chapter.20}% 223
+\BOOKMARK [2][-]{subsection.20.3.1}{De finibus bonorum et malorum }{section.20.3}% 224
+\BOOKMARK [1][-]{section.20.4}{Teil 3 }{chapter.20}% 225
+\BOOKMARK [2][-]{subsection.20.4.1}{De finibus bonorum et malorum }{section.20.4}% 226
+\BOOKMARK [0][-]{chapter.21}{Thema}{part.2}% 227
+\BOOKMARK [1][-]{section.21.1}{Teil 0}{chapter.21}% 228
+\BOOKMARK [1][-]{section.21.2}{Teil 1 }{chapter.21}% 229
+\BOOKMARK [2][-]{subsection.21.2.1}{De finibus bonorum et malorum }{section.21.2}% 230
+\BOOKMARK [1][-]{section.21.3}{Teil 2 }{chapter.21}% 231
+\BOOKMARK [2][-]{subsection.21.3.1}{De finibus bonorum et malorum }{section.21.3}% 232
+\BOOKMARK [1][-]{section.21.4}{Teil 3 }{chapter.21}% 233
+\BOOKMARK [2][-]{subsection.21.4.1}{De finibus bonorum et malorum }{section.21.4}% 234
