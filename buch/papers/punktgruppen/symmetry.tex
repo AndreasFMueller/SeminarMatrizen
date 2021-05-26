@@ -11,11 +11,6 @@ präzise Bedeutung.
 	bestimmten Operation invariant ist.
 \end{definition}
 
-Wenn der Leser noch nicht mit der Gruppentheorie in Berührung gekommen ist, ist
-vielleicht nicht ganz klar, was eine Operation ist, aber die Definition sollte
-trotzdem Sinn machen. Die Formalisierung dieser Idee wird bald kommen, aber
-zunächst wollen wir eine Intuition aufbauen.
-
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[
@@ -68,12 +63,15 @@ zunächst wollen wir eine Intuition aufbauen.
 	}
 \end{figure}
 
+\subsection{Geometrische Symmetrien}
+
 Die intuitivsten Beispiele kommen aus der Geometrie, daher werden wir mit
 einigen geometrischen Beispielen beginnen. Wie wir jedoch später sehen werden,
-ist das Konzept der Symmetrie eigentlich viel allgemeiner.  In Abbildung
-\ref{fig:punktgruppen:geometry-example} haben wir einige Formen, die
-offensichtlich symmetrisch sind.  Zum Beispiel hat ein Quadrat viele Achsen, um
-die es gedreht werden kann, ohne sein Aussehen zu verändern.  Regelmässige
+ist das Konzept der Symmetrie eigentlich viel allgemeiner.  
+
+In Abbildung \ref{fig:punktgruppen:geometry-example} haben wir einige Formen,
+die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat Gerade, an
+deren gespiegelt werden kann, ohne sein Aussehen zu verändern.  Regelmässige
 Polygone mit \(n\) Seiten sind gute Beispiele, um eine diskrete
 Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um
 einen Punkt um einen bestimmten Winkel \(360^\circ/n\) sie unverändert lässt.
@@ -95,14 +93,15 @@ Mit dem oben Gesagten können wir das \(n\)-Gon Beispiel formalisieren. Wenn wir
 \[
 	C_n = \langle r \rangle
 		= \left\{\mathds{1}, r, r^2, \ldots, r^{n-1}\right\}
-		= \mathbb{Z}/n\mathbb{Z},
 \]
-die Zyklische Gruppe heisst. Hier die Potenzen von \(r\) sind als wiederholte
-Komposition gemeint, d.h. \(r^n = r\circ r \circ \cdots r\circ r\).  Die
-Schreibweise mit den spitzen Klammern wird als Erzeugendensystem bezeichnet.
+die zyklische Gruppe heisst. Hier die Potenzen von \(r\) sind als wiederholte
+Komposition gemeint, d.h. \(r^n = r\circ r \circ \cdots r\circ r\).
+
+Die Schreibweise mit den spitzen Klammern wird als Erzeugendensystem bezeichnet.
 Das liegt daran, dass alle Elemente der Symmetriegruppe aus Kombinationen einer
-Teilmenge erzeugt werden, die als erzeugende Elemente bezeichnet werden.  Die
-Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
+Teilmenge erzeugt werden, die als erzeugende Elemente bezeichnet werden. 
+
+Die Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
 \(\left\{\mathds{1}, \sigma\right\}\) enthält. Kombiniert man sie jedoch mit
 der Rotation, erhält man die so genannte Diedergruppe
 \[
