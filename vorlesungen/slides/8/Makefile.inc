@@ -38,5 +38,6 @@ chapter8 =								\
 	../slides/8/wavelets/funktionen.tex				\
 	../slides/8/wavelets/laplacebasis.tex				\
 	../slides/8/wavelets/vektoren.tex				\
+	../slides/8/wavelets/fourier.tex				\
 	../slides/8/chapter.tex
 
