@@ -35,5 +35,8 @@ chapter8 =								\
 	../slides/8/subgraph.tex					\
 	../slides/8/chrwilf.tex						\
 	../slides/8/weitere.tex						\
+	../slides/8/wavelets/funktionen.tex				\
+	../slides/8/wavelets/laplacebasis.tex				\
+	../slides/8/wavelets/vektoren.tex				\
 	../slides/8/chapter.tex
 
