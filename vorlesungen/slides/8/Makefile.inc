@@ -39,5 +39,14 @@ chapter8 =								\
 	../slides/8/wavelets/laplacebasis.tex				\
 	../slides/8/wavelets/vektoren.tex				\
 	../slides/8/wavelets/fourier.tex				\
+	../slides/8/wavelets/lokalisierungsvergleich.tex		\
+	../slides/8/wavelets/frequenzlokalisierung.tex			\
+	../slides/8/wavelets/dilatation.tex				\
+	../slides/8/wavelets/matrixdilatation.tex			\
+	../slides/8/wavelets/gundh.tex					\
+	../slides/8/wavelets/dilbei.tex					\
+	../slides/8/wavelets/frame.tex					\
+	../slides/8/wavelets/framekonstanten.tex			\
+	../slides/8/wavelets/beispiel.tex				\
 	../slides/8/chapter.tex
 

@@ -14,8 +14,10 @@
 \begin{block}{Aufgabe}
 Gegeben: Funktion $f$ auf dem Graphen
 \\
-Gesucht: Koeffizienten $\hat{f}$ der Darstellung in der Laplace-Basis
+\uncover<2->{%
+Gesucht: Koeffizienten $\hat{f}$ der Darstellung in der Laplace-Basis}
 \end{block}
+\uncover<3->{%
 \begin{block}{Definition $\chi$-Matrix}
 Eigenwerte $0=\lambda_1<\lambda_2\le \dots \le \lambda_n$ von $L$
 \vspace{-10pt}
@@ -40,37 +42,44 @@ Eigenwerte $0=\lambda_1<\lambda_2\le \dots \le \lambda_n$ von $L$
 
 \end{tikzpicture}
 \end{center}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<4->{%
 \begin{block}{Transformation}
 $L$ symmetrisch
 \\
-$\Rightarrow$ 
-Die Eigenvektoren von $L$ können orthonormiert gewählt werden
+\uncover<5->{$\Rightarrow$ 
+Die Eigenvektoren von $L$ können orthonormiert gewählt werden}
 \\
-$\Rightarrow$ 
-Koeffizienten können durch Skalarprodukte ermittelt werden:
+\uncover<6->{$\Rightarrow$ 
+Koeffizienten können durch Skalarprodukte ermittelt werden:}
+\uncover<7->{%
 \[
 \hat{f}(k)
 =
+\hat{f}(\lambda_k)
+\uncover<8->{=
 \langle v_k, f\rangle
 \quad\Rightarrow\quad
-\hat{f}
-=
-\chi^tf
-\]
-$\chi$ ist die {\em Fourier-Transformation}
-\end{block}
+\hat{f}}
+\uncover<9->{=
+\chi^tf}
+\]}
+\uncover<10->{%
+$\chi$ ist die {\em Fourier-Transformation}}
+\end{block}}
+\uncover<11->{%
 \begin{block}{Rücktransformation}
 Eigenvektoren orthonormiert
 \\
-$\Rightarrow$
-$\chi$ orthogonal
+\uncover<12->{$\Rightarrow$
+$\chi$ orthogonal}
+\uncover<13->{
 \[
 \chi\chi^t = I
-\]
-\end{block}
+\]}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

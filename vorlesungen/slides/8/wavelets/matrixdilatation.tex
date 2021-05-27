@@ -1,0 +1,39 @@
+%
+% matrixdilatation.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Dilatation in Matrixform}
+Dilatationsfaktor $a$, skaliertes Wavelet beim Knoten $k$ mit Spektrum
+$\tilde{D}_{1/a}g$
+\begin{align*}
+D_{g,a}e_k
+&=
+\chi
+\begin{pmatrix}
+g(a\lambda_1)&      0      & \dots  &      0      \\
+      0      &g(a\lambda_2)& \dots  &      0      \\
+   \vdots    &    \vdots   & \ddots &    \vdots   \\
+      0      &      0      & \dots  &g(a\lambda_n)
+\end{pmatrix}
+\chi^t
+e_k
+\intertext{\uncover<2->{``verschmierter'' Standardbasisvektor am Knoten $k$}}
+\uncover<2->{D_he_k
+&=
+\chi
+\begin{pmatrix}
+h(\lambda_1)&     0      & \dots  &     0      \\
+     0      &h(\lambda_2)& \dots  &     0      \\
+  \vdots    &   \vdots   & \ddots &   \vdots   \\
+     0      &     0      & \dots  &h(\lambda_n)
+\end{pmatrix}
+\chi^t
+e_k}
+\end{align*}
+\end{frame}
+\egroup
