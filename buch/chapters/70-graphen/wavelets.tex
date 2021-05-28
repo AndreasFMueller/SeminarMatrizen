@@ -174,14 +174,14 @@ die in der Umgebung eines Knotens wie die Konstante Funktion aussehen.
 Das Mutter-Wavelet einer Wavelet-Analyse zeichnet definiert, in welchem Mass
 sich Funktionen im Orts- und im Frequenzraum lokalisieren lassen.
 Die Standardbasis der Funktionen auf einem Graphen repräsentieren die
-perfekte örtliche Lokalisierung, Eigenbasis der Laplace-Matrix repräsentiert
+perfekte örtliche Lokalisierung, Eigenbasis der Laplace-Matrix $L$ repräsentiert
 die perfekte Lokalisierung im Frequenzraum.
 Sei $g(\lambda)\ge 0$ eine Funktion im Frequenzraum, die für  $\lambda\to0$ und
 $\lambda\to\infty$ rasch abfällt mit einem Maximum irgendwo dazwischen
 (Abbildung~\ref{buch:graphs:fig:lokalisierung}).
 Sie kann als eine Lokalisierungsfunktion im Frequenzraum betrachtet werden.
 
-Die Matrix $g(I)$ bildet entfernt aus einer Funktion die ganz hohen und 
+Die Matrix $g(L)$ bildet entfernt aus einer Funktion die ganz hohen und 
 die ganz tiefen Frequenz, lokalisiert also die Funktionen im Frequenzraum.
 Die Standardbasisvektoren werden dabei zu Funktionen, die nicht mehr nur
 auf einem Knoten von $0$ verschieden sind, aber immer noch einigermassen
@@ -190,15 +190,15 @@ Natürlich sind vor allem die Werte auf den Eigenwerten
 $\lambda_0 < \lambda_1\le \dots\le \lambda_n$ der Laplace-Matrix
 von Interesse.
 
-Die Matrix $g(I)$ kann mit Hilfe der Spektraltheorie berechnet werden,
+Die Matrix $g(L)$ kann mit Hilfe der Spektraltheorie berechnet werden,
 was im vorliegenden Fall naheliegend ist, weil ja die Eigenvektoren von
 der Laplace-Matrix bereits bekannt sind.
 Die Matrix $\chi^t$ bildet die Standardbasisvektoren in die
 Eigenbasis-Vektoren ab, also in eine Zerlegung im Frequenzraum ab,
 $\chi$ vermittelt die Umkehrabbildung.
-Mit der Spektraltheorie findet man für die Abbildung $g(I)$ die Matrix
+Mit der Spektraltheorie findet man für die Abbildung $g(L)$ die Matrix
 \begin{equation}
-g(I)
+g(L)
 =
 \chi
 \begin{pmatrix}
@@ -214,7 +214,7 @@ g(\lambda_0)&0&\dots&0\\
 \subsubsection{Dilatation}
 Die Dilatation um $a$ im Ortsraum wird zu einer Dilatation um $1/a$ im
 Frequenzraum.
-Statt also nach einer echten Dilatation der Spaltenvektoren in $g(I)$
+Statt also nach einer echten Dilatation der Spaltenvektoren in $g(L)$
 zu suchen, kann man sich darauf verlegen, Funktionen zu finden, deren
 Spektrum von einer Funktionen lokalisiert worden ist, die eine Dilatation
 von $g$ ist.
@@ -225,9 +225,9 @@ Die zugehörigen Wavelet-Funktionen auf dem Graphen können wieder mit
 der Formel~\eqref{buch:graphen:eqn:mutterwavelet} berechnet werden,
 man erhält
 \begin{equation}
-\tilde{D}_{1/a_i}g(I)
+\tilde{D}_{1/a_i}g(L)
 =
-g_i(I)
+g_i(L)
 =
 \chi
 \begin{pmatrix}
@@ -238,30 +238,30 @@ g(a_i\lambda_0)&0&\dots&0\\
 \end{pmatrix}
 \chi^t .
 \end{equation}
-Die Spalten von $g_i(I)$ bilden wieder eine Menge von Funktionen, die
+Die Spalten von $g_i(L)$ bilden wieder eine Menge von Funktionen, die
 eine gemäss $g_i$ lokalisiertes Spektrum haben.
 
 \subsubsection{Vater-Wavelet}
 Wegen $g(0)=0$ wird die konstante Funktion, die Eigenvektor zum Eigenwert
-$\lambda_0=0$ ist, von den Abbildungen $g_i(I)$ auf $0$ abgebildet.
+$\lambda_0=0$ ist, von den Abbildungen $g_i(L)$ auf $0$ abgebildet.
 Andererseits ist diese Funktion nicht lokalisiert, man möchte Sie also
 für die Analyse nicht unbedingt verwenden.
 Man wählt daher eine Funktion $h(\lambda)$ mit $h(0)=1$ so, dass
 für $\lambda\to \infty$ der Wert $h(\lambda)$ genügend rasch gegen $0$
 geht.
-Die Matrix $h(I)$ bildet daher den konstanten Vektor nicht auf $0$ ab,
+Die Matrix $h(L)$ bildet daher den konstanten Vektor nicht auf $0$ ab,
 sondern lokalisiert ihn im Ortsraum.
-Wir erhalten daher in den Spalten von $h(I)$ Vektoren, die um die
+Wir erhalten daher in den Spalten von $h(L)$ Vektoren, die um die
 einzelnen Knoten lokalisiert sind.
 
 \subsubsection{Rekonstruktion}
-Die Operatoren $h(I)$ und $g_i(I)$ erzeugen analysieren eine Funktion
+Die Operatoren $h(L)$ und $g_i(L)$ erzeugen analysieren eine Funktion
 nach den verschiedenen Frequenzen mit den Skalierungsfaktoren $a_i$,
 aber die Rekonstruktion ist noch nicht klar.
 Diese wäre einfacher, wenn die Operatoren zusammen die identische
 Abbildung ergäben, wenn also
 \[
-h(I) + \sum_{i}g_i(I)=I
+h(L) + \sum_{i}g_i(L)=I
 \]
 gelten würde.
 Nach der Spektraltheorie gilt das nur, wenn für alle Eigenwerte
@@ -301,14 +301,14 @@ B\|v\|^2
 Die Zahlen $A$  und $B$ heissen die {\em Frame-Konstanten} des Frames.
 \end{definition}
 
-Die oben gefundenen Vektoren, die Spalten Vektoren von $h(I)$ und $g_i(I)$
+Die oben gefundenen Vektoren, die Spalten Vektoren von $h(L)$ und $g_i(L)$
 bilden daher ein Frame.
 Die Frame-Konstanten kann man unmittelbar ausrechnen.
 Der mittlere Term von \eqref{buch:graphen:eqn:frame} ist 
 \[
-\|h(I) v\|^2
+\|h(L) v\|^2
 +
-\sum_{i} \|g_i(I)v\|^2,
+\sum_{i} \|g_i(L)v\|^2,
 \]
 die durch die Funktion
 \[
