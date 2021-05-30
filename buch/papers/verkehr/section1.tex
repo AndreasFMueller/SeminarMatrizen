@@ -25,6 +25,7 @@ Der A*-Algorithmus ist ein heuristischer Suchalgorithmus, der den kürzesten Pfa
 Im Gegensatz zu einfachen Suchalgorithmen, wird beim A*-Algorithmus eine Schätzfunktion, die sogenannte Heuristik, verwendet. Dies ermöglicht ein zielgerichtetes Suchen und gleichzeitig wird die Laufzeit verringert. 
 Ausserdem findet der A*-Algorithmus immer eine optimale Lösung, sofern eine vorhanden ist.
 Der A*-Algorithmus wird als Verallgemeinerung gehandhabt und gilt als Erweiterung des Dijkstra-Algorithmus. 
+=======
 
 \subsubsection{Floyd-Warshall-Algorithmus}
 Der Floyd-Warshall-Algorithmus wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
@@ -34,8 +35,6 @@ Ein Kreis in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen
 \subsubsection{Euklidische Heuristik}
 Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
 Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
-
-
 
 \subsection{PageRank-Algorithmus}
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc..
@@ -55,7 +54,6 @@ A_{i,j}=\left\{ \begin{matrix}
  \right.
 \label{verkehr:Adja}
 \end{equation}
-
 
 
 Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1...n\right\}\end{equation}

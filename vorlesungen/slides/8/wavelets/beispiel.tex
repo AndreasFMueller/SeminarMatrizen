@@ -1,0 +1,44 @@
+%
+% beispiel.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\def\bild#1#2{
+\node at (0,0) [rotate=-90]
+{\includegraphics[width=#1\textwidth]{../../../SeminarWavelets/buch/papers/sgwt/images/#2}};
+}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Wavelets auf einer Kugel}
+\vspace{-10pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+
+\only<1>{ \bild{0.6}{wavelets-phi-sphere-334.pdf} }
+
+\only<2>{ \bild{0.6}{wavelets-psi-5-sphere-334.pdf} }
+\only<3>{ \bild{0.6}{wavelets-psi-4-sphere-334.pdf} }
+\only<4>{ \bild{0.6}{wavelets-psi-3-sphere-334.pdf} }
+\only<5>{ \bild{0.6}{wavelets-psi-2-sphere-334.pdf} }
+\only<6>{ \bild{0.6}{wavelets-psi-1-sphere-334.pdf} }
+
+\only<1>{ \node at (-7.6,2.8) [right] {Bandpass mit $g_1$}; }
+\only<2>{ \node at (-7.6,2.8) [right] {Bandpass mit $g_2$}; }
+\only<3>{ \node at (-7.6,2.8) [right] {Bandpass mit $g_3$}; }
+\only<4>{ \node at (-7.6,2.8) [right] {Bandpass mit $g_4$}; }
+\only<5>{ \node at (-7.6,2.8) [right] {Bandpass mit $g_5$}; }
+\only<6>{ \node at (-7.6,2.8) [right] {Tiefpass mit $h$}; }
+
+\only<1>{ \node at (-7.6,2) [right] {$D_{g,1/a_1}\chi_*$}; }
+\only<2>{ \node at (-7.6,2) [right] {$D_{g,1/a_2}\chi_*$}; }
+\only<3>{ \node at (-7.6,2) [right] {$D_{g,1/a_3}\chi_*$}; }
+\only<4>{ \node at (-7.6,2) [right] {$D_{g,1/a_4}\chi_*$}; }
+\only<5>{ \node at (-7.6,2) [right] {$D_{g,1/a_5}\chi_*$}; }
+\only<6>{ \node at (-7.6,2) [right] {$D_{h}\chi_*$}; }
+
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup

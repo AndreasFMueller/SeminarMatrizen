@@ -1,35 +1,63 @@
 \section{Einleitung\label{spannung:section:Einleitung}}
-In diesem Kapitel geht es darum die Matrix im dreidimensionalen Spannungszustand genauer zu untersuchen.
-In der Geotechnik wendet man solche Matrizen an, um Spannungen im Boden zu berechnen.
-Mit diesen Grundlagen dimensioniert man beispielsweise Böschungen, Fundationen, Dämme und Tunnels.
-Ebenfalls benötigt man diese Matrix, um aus Versuchen Kennzahlen über den anstehenden Boden zu gewinnen.
-Besonderes Augenmerk liegt dabei auf dem Oedometer - Versuch.
+In diesem Kapitel geht es darum das Hook'sche Gesetz im Dreidimensionalen zu beschreiben.
+Dieses beschreibt die Beziehung von Spannung und Dehnung von linear elastischen Materialien im Eindimensionalen.
+Durch variable Krafteinwirkungen entstehen in jedem Punkt des Materials eine Vielzahl an unterschiedlichen Spannungen.
+Jeder erdenkliche Punkt im Dreidimensionalen beschreibt daher einen entsprechenden individuellen Spannungszustand.
+Um das Hook'sche Gesetz für den 3D Spannungszustand formulieren zu können, reichen Skalare nicht aus.
+Darum werden Vektoren, Matrizen und Tensoren zur Hilfe gezogen.
+Diese allgemeine Spannungsformel ist Grundlage für Computerprogramme und geotechnische Versuche, wie der Oedometer-Versuch.
 
-Bei dieser Untersuchung der zugehörigen Berechnungen hat man es mit Vektoren, Matrizen und Tensoren zu tun.
 Um die mathematische Untersuchung vorzunehmen, beschäftigt man sich zuerst mit den spezifischen Gegebenheiten und Voraussetzungen.
 Ebenfalls gilt es ein paar wichtige Begriffe und deren mathematischen Zeichen einzuführen,
 damit sich den Berechnungen schlüssig folgen lässt.
 
-In diesem Kapitel hat man es insbesondere mit Spannungen und Dehnungen zu tun.
-Mit einer Spannung ist hier jedoch keine elektrische Spannung gemeint,
-sondern eine Kraft geteilt durch Fläche.
+\section{Spannungsausbreitung\label{spannung:section:Spannungsausbreitung}}
+\rhead{Spannungsausbreitung}
+Die Geotechnik ist eine Ingenieurdisziplin, bei welcher man Erdbau und den Erdbau tangierende Bauwerke dimensioniert.
+Sie beinhaltet aber auch die statische Beurteilung von Boden und Fels.
 
-\section{Einführung wichtige Begriffe\label{spannung:section:Wichtige Begriffe}}
+Belastet man den Boden mit einer Spannung
 \[
-l_0
+\sigma
 =
-\text{Ausgangslänge [\si{\meter}]}
+\frac{F}{A}
 \]
+, so wird diese in den Boden geleitet und von diesem kompensiert.
+Im Boden entstehen unterschiedlich hohe Zusatzspannung.
+Die Zusatzspannung scheint sich räumlich und berechenbar im Boden auszubreiten.
+Im Falle einer konstanten Flächenlast $\sigma$ (siehe Abbildung 1.1) breitet sich die Zusatzspannung zwiebelartig aus.
+Mit der Tiefe $t$ nimmt diese permanent ab (siehe Abbildung 1.2).
+Wie diese Geometrie der Ausbreitung ist wird durch viele Modelle und Ansätze näherungsweise beschrieben.
+Diese Zusatzspannung $\sigma$ ist aber sicher abhängig von $(x,y,t)$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild4.png}
+	\caption{Ausbreitung der Zusatzspannung im Boden}
+	\label{fig:Bild4}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild5.png}
+	\caption{Funktionen Spannung und Dehnung}
+	\label{fig:Bild5}
+\end{figure}
+
+Bei jeder dieser Zusatzspannung geht eine entsprechende Zusatzdehnung einher, welche eine Setzung bedeutet.
+Im einfachsten Fall kann modellhaft mit
 \[
-\Delta l
+\varepsilon
 =
-\text{Längenänderung nach Kraftauftrag [\si{\meter}]}
+\frac{\sigma}{E}
 \]
+die Setzung an einem Punkt an der Bodenoberfläche mit
 \[
-\Delta b
+s
 =
-\text{Längenänderung in Querrichtung nach Kraftauftrag [\si{\meter}]}
+\int_{0}^{\infty}\varepsilon\enspace dt
 \]
+berechnet werden mit:
 \[
 \varepsilon
 =
@@ -43,22 +71,7 @@ l_0
 \[
 E
 =
-\text{Elastizitätsmodul [\si{\kilo\pascal}]}
-\]
-\[
-\nu
-=
-\text{Querdehnungszahl; Poissonzahl [$-$]}
-\]
-\[
-F
-=
-\text{Kraft [\si{\kilo\newton}]}
-\]
-\[
-A
-=
-\text{Fläche [\si{\meter\squared}]}
+\text{Elastizitätsmodul; Young-Modul [\si{\kilo\pascal}]}
 \]
 \[
 t
@@ -71,48 +84,17 @@ s
 \text{Setzung, Absenkung [m]}
 \]
 
-Beziehungen
-\[
-\varepsilon
-=
-\frac{\Delta l}{l_0}
-\]
-\[
-\varepsilon_q
-=
-\frac{\Delta b}{l_0}
-=
-\varepsilon\cdot\nu
-\]
-\[
-\sigma
-=
-\frac{N}{A}
-\]
-\[
-F
-=
-\int_{A} \sigma dA
-\]
-\[
-\varepsilon^{\prime}
-=
-\frac{1}{l_0}
-\]
+In der praktischen Geotechnik wird man allerdings weitaus schwierigere Situationen antreffen.
+Ein Beispiel wäre eine Baugrube mit einem Baugrubenabschluss, wo ein Teil des Bodens abgetragen ist (siehe Abbildung 1.3).
+Die Ausbreitung der Zusatzspannung $\sigma(x,y,t)$ würde hier deutlich komplizierter ausfallen.
+Dies bedeutet auch eine komplexere Setzung der Bodenoberfläche infolge einer Flächenlast $\sigma$.
+Aus allen zusätzlichen Spannungen müssen die adäquaten Dehnung mit Hilfe einer Spannungsgleichung berechnet werden.
+Diese beruht auf Annahmen nach Hooke auf einem linear elastischen Boden.
+Generell wird im Ingenieurwesen versucht Phänomene möglichst nach dem Hook'schen Gesetz abbilden zu können.
 
-\section{Einführung wichtige Begriffe\label{spannung:section:Tensoren}}
-Tensoren wurden als erstes in der Elastizitätstheorie eingesetzt. (Quelle Herr Müller)
-In der Elastizitätstheorie geht es darum viele verschiedene Komponenten zu beschreiben.
-Mit einer Matrix oder einem Vektor kann man dies nicht mehr bewerkstelligen.
-Wenn man den dreidimensionalen Spannungszustand abbilden möchte, müsste man mehrere Vektoren haben.
-Deshalb wurden 1840 von Rowan Hamilton Tensoren in die Mathematik eingeführt.
-Woldemar Voigt hat den Begriff in die moderne Bedeutung von Skalar, Matrix und Vektor verallgemeinert.
-Albert Einstein hat Tensoren zudem in der allgemeinen Relativitätstheorie benutzt.
-Tensor sind eine Stufe höher als Matrizen. Matrizen sind 2. Stufe.
-Da Tensoren eine Stufe höher sind, kann man auch Matrizen, Vektoren und Skalare als Tensoren bezeichnen.
-Der Nachteil von den Tensoren ist, dass man die gewohnten Rechenregeln, die man bei Vektoren oder Matrizen kennt,
-nicht darauf anwenden kann. Man ist deshalb bestrebt die Tensoren als Vektoren und Matrizen darzustellen,
-damit man die gewohnten Rechenregeln darauf anwenden kann. (Quelle Wikipedia)
-In der vorliegenden Arbeit sind bereits alle Tensoren als Matrizen 2. Stufe abgebildet.
-Trotzdem kann man diese Matrizen wie vorher beschrieben als Tensor bezeichnen.
-Da diese als Matrizen abgebildet sind, dürfen wir die bekannten Rechenregeln auf unsere Tensoren anwenden.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild3.png}
+	\caption{Beispiel Lastauftrag auf Boden}
+	\label{fig:Bild3}
+\end{figure}

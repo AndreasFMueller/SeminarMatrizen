@@ -1,0 +1,46 @@
+%
+% lokalisierungsvergleich.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Lokalisierung}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Ortsraum}
+Ortsraum$\mathstrut=V$
+\begin{itemize}
+\item<3-> Standardbasis
+\item<5-> lokalisiert in den Knoten
+\item<7-> die meisten $\hat{f}(k)$ gross
+\item<9-> vollständig delokalisiert im Frequenzraum
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Frequenzraum}
+\uncover<2->{Frequenzraum $\mathstrut=\{\lambda_1,\lambda_2,\dots,\lambda_n\}$}
+\begin{itemize}
+\item<4-> Laplace-Basis
+\item<6-> lokalisiert in den Eigenwerten
+\item<8-> die meisten Komponenten gross
+\item<10-> vollständig delokalisiert im Ortsraum
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\uncover<11->{%
+\begin{block}{Plan}
+Gesucht sind Funktionen auf dem Graphen derart, die
+\begin{enumerate}
+\item<12-> in der Nähe einzelner Knoten konzentriert/lokalisiert sind und
+\item<13-> deren Fourier-Transformation in der Nähe einzelner Eigenwerte 
+konzentriert/lokalisiert ist
+\end{enumerate}
+\end{block}}
+\end{frame}
+\egroup
