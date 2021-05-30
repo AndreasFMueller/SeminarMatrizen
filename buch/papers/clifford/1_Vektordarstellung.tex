@@ -1,0 +1,71 @@
+\section{Teil 0\label{clifford:section:Vektoroperationen}}
+\rhead{Vektoroperationen}
+\rhead{Vektordarstellung}
+Vektoren können neben der üblichen Darstellung, auch als Linearkombination aus Basisvektoren dargestellt werden
+\begin{equation}
+    \begin{split}
+    \textbf{a} 
+    &=
+    \begin{pmatrix} 
+    a_1 \\ a_2 \\ \vdots \\ a_n   
+    \end{pmatrix} 
+    =
+    a_1 \begin{pmatrix}
+    1 \\ 0 \\ \vdots \\ 0  
+    \end{pmatrix} 
+    + 
+    a_2\begin{pmatrix} 
+    0 \\ 1 \\ \vdots \\ 0  
+    \end{pmatrix} + \dots 
+    + 
+    a_n\begin{pmatrix}
+    0 \\ 0 \\ \vdots \\ 1  
+    \end{pmatrix} \\\ 
+    &= 
+    a_1\textbf{e}_1 
+    +
+    a_2\textbf{e}_2
+    + 
+    \dots + a_n\textbf{e}_n
+    = 
+    \sum_{i=1}^{n} a_i \textbf{e}_i
+    \qquad
+    a_i \in \mathbb{R}
+    , \textbf{e}_i \in \mathbb{R}^n.
+    \end{split}
+\end{equation}
+Diese Basisvektoren sollen orthonormal sein und um die Darstellung zu vereinfachen werden sie durch $\textbf{e}_1 , \textbf{e}_2, ...$ ersetzt.
+\begin{beispiel}
+Linearkombination von Basisvektoren in $\mathbb{R}^4$
+    \begin{equation}
+        \begin{pmatrix} 
+        42 \\ 2 \\ 1291 \\ 4    
+        \end{pmatrix} 
+        = 
+        42 \begin{pmatrix}
+        1 \\ 0 \\ 0 \\ 0 
+        \end{pmatrix} 
+        +
+        2 \begin{pmatrix} 
+        0 \\ 1 \\ 0 \\ 0 
+        \end{pmatrix}
+        +
+        1291 
+        \begin{pmatrix} 
+        0 \\ 0 \\ 1 \\ 0 
+        \end{pmatrix} 
+        +
+        4 \begin{pmatrix} 
+        0 \\ 0 \\ 0 \\ 1 
+        \end{pmatrix} 
+        = 
+        42\textbf{e}_1
+        + 
+        2\textbf{e}_2
+        + 
+        1291\textbf{e}_3
+        + 
+        4\textbf{e}_4
+    \end{equation}
+\end{beispiel}
+Wobei Beispiel für einen vier dimensionalen Vektor ist, dies kann selbstverständlich für beliebig viele Dimensionen nach demselben Schema erweitert werden.

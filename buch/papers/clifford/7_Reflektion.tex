@@ -1,0 +1,32 @@
+%
+% teil1.tex -- Beispiel-File für das Paper
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Reflektion/ Spiegelung}
+Die Spiegelung ist eine grundlegende, geometrische Operation, aus welcher man weitere, wie beispielsweise die später beschriebene Rotation, ableiten kann. Da die Geometrische Algebra für geometrische Anwendungen ausgelegt ist, sollte die Reflektion auch eine einfache, praktische Formulierung besitzen. \\HIER BILD
+\subsection{linearen Algebra}
+Aus der linearen Algebra ist bekannt, dass man eine Reflektion wie folgt beschreiben kann.
+\begin{align} \label{RefLinAlg}
+	\mathbf{v^{'}} = \mathbf{v} - 2 \cdot \mathbf{v_{\perp u}}
+\end{align}
+Dabei stellt $\mathbf{u}$ die Spiegelachse dar.
+Es scheint für diese Formel aber umständlich zu sein, weitere Reflektionen, mit weiteren Spiegelachsen, anzufügen. Man kann die Abbildung des Vektors auf den Reflektierten Vektor auch als Matrix schreiben, welche aus den Komponenten des zu der Spiegelachse orthonormalen Vektors $\mathbf{\hat{n}}$ besteht.
+\\MATRIZEN O(2) und O(3) zeigen\\
+Diese Matrizen gehören der Matrizengruppe $O(n)$ an....
+\subsection{geometrischen Algebra}
+Die Geometrische Algebra leitet aus der obigen Formel (\ref{RefLinAlg}) eine einfache und intuitive Form her, welche auch für weitere Operationen einfach erweitert werden kann.
+\begin{align}
+	\mathbf{v'} = \mathbf{uvu^{-1}}
+\end{align}
+wobei die Inverse eines Vektors so definiert ist, dass multipliziert mit sich selbst das neutrale Element 1 ergibt.
+\begin{align}
+	u^{-1} = \dfrac{u}{|u|^2} \Rightarrow uu^{-1} = 1
+\end{align}
+verwendet man für $\mathbf{u}$ nur einen Einheitsvektor $\mathbf{\hat{u}}$, welcher die Länge 1 besitzt, wird somit die Formel reduziert zu einer beidseitigen Multiplikation von $\mathbf{\hat{u}}$.
+\begin{align}
+	\mathbf{v'} = \mathbf{\hat{u}v\hat{u}}
+\end{align}
+Im Gegensatz zu den Abbildungen in der linearen Algebra, welche in jeder anderen Dimension durch andere Matrizen beschrieben werden müssen, ist es in der geometrischen Algebra immer der gleiche Vorgehensweise.
+Zudem ist diese kompakte Schreibweise in der linearen Algebra nicht möglich, da keine Multiplikation von Vektoren definiert ist. 
+\\BEISPIEL?
