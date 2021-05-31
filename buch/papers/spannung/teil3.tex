@@ -1,80 +1,86 @@
-\section{Spannungsausbreitung\label{spannung:section:Invarianten}}
-\rhead{Invarianten}
-Trotz der Vereinfachung lässt sich mit den Invarianten die Realität adäquat abbilden.
-Als erste Bedingung stellt man folgendes Verhältnis auf:
+\section{Die geotechnischen Invarianten\label{spannung:section:Die geotechnischen Invarianten}}
+\rhead{Die geotechnischen Invarianten}
+In vielen Fällen in der Geotechnik und auch in Versuchen hat man gleichmässige Belastungen über eine grössere Fläche.
+Durch eine solche Belastung auf den Boden, entstehen gleichermassen Spannungen in Richtung $2$ und $3$,
+wenn man von einem isotropen Bodenmaterial ausgeht.
+Folglich gilt:
 
 \[
 \sigma_{22}
 =
 \sigma_{33}
-\]
 .
-
-Dies deshalb, da man von einem isotropen Bodenmaterial ausgeht.
-In Achse 22, Richtung 22 hat man den gleichen Boden wie in Achse 33 und Richtung 33.
-Das Verhalten bezüglich Kraftaufnahme, Dehnung Spannung ist somit dasselbe.
-
-Man führt die zwei Werte p als hydrostatische Spannung und q als deviatorische Spannung ein.
-Die Berechnung von p und q sieht wie folgt aus:
-
+\]
+Dadurch wird der Spannungszustand vereinfacht.
+Diesen vereinfachten Spannungszustand kann man mit den zwei geotechnischen Invarianten abbilden.
+Die erste Invariante ist die volumetrische Spannung
 \[
 p
 =
 \frac{\sigma_{11}+\sigma_{22}+\sigma_{33}}{3}
+,
 \]
-
-oder durch Vereinfachung, da $\sigma_{22}=\sigma_{33}$ :
-
+welche als arithmetisches Mittel aller Normalspannungen im infinitesimalen Würfel definiert ist.
+Die zweite Invariante ist die deviatorische Spannung
+\[
+q
+=
+\sqrt{\frac{(\sigma_{11}-\sigma_{22})^{2}+(\sigma_{11}-\sigma_{33})^{2}+(\sigma_{22}-\sigma_{33})^{2}}{2}}
+.
+\]
+Diese Zusammenhänge werden im Skript [\cite{spannung:Stoffgesetze und numerische Modellierung in der Geotechnik}] aufgezeigt.
+Die hydrostatische Spannung $p$ kann gemäss Gleichung (Nr) als
 \[
 p
 =
 \frac{\sigma_{11}+2\sigma_{33}}{3}
 \]
-
+vereinfacht werden.
+Die deviatorische Spannung $q$ wird gemäss Gleichung (Nr) als
 \[
 q
 =
 \sigma_{11}-\sigma_{33}
 \]
-.
+vereinfacht. Man kann $p$ als Isotrop und $q$ als Schub betrachten.
 
-p ist das arithmetische Mittel von der Spannung im infinitesimalen Würfel.
-q ist die Differenz zwischen der Spannung in vertikaler Richtung und der Spannung in Richtung 2 und 3.
-Man kann p als Druckspannung und q als Schubspannung anschauen.
-
-Aus der Formel vom vorherigen Kapitel konnten wir die Spannungen berechnen.
-Deshalb kann man nun p und q in die Gleichung einsetzen.
-Die Dehnungen werden mit neuen Variablen eingeführt.
-Die Deviatorische Dehnung kann mit einer Schubdehnung verglichen werden.
-Die hydrostatische Dehnung kann mit einer Kompressionsdehnung verglichen
-
-\[
-\overbrace{\sigma_{11}-\sigma_{33}}^{q}
-=
-\frac{3E}{2(1+\nu)} \overbrace{\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})}^{\varepsilon_{\nu}}
-\]
-
+Die Invarianten können mit der Spannungsformel (Nr..xxx) berechnet werden.
+Durch geschickte Umformung dieser Gleichung, lassen sich die Module als Faktor separieren.
+Dabei entstehen spezielle Faktoren mit den Dehnungskomponenten.
+So ergibt sich
 \[
 \overbrace{\frac{\sigma_{11}+2\sigma_{33}}{3}}^{p}
 =
-\frac{E}{3(1-2\nu)} \overbrace{(\varepsilon_{11} - 2\varepsilon_{33})}^{\varepsilon_{s}}
+\frac{E}{3(1-2\nu)} \overbrace{(\varepsilon_{11} - 2\varepsilon_{33})}^{\varepsilon_{v}}
 \]
-
+und
 \[
+\overbrace{\sigma_{11}-\sigma_{33}}^{q}
+=
+\frac{3E}{2(1+\nu)} \overbrace{\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})}^{\varepsilon_{s}}
+.
+\]
+Die Faktoren mit den Dehnungskomponenten können so mit
+\[
+\varepsilon_{v}
+=
+(\varepsilon_{11} - 2\varepsilon_{33})
+\qquad
+\text{und}
+\qquad
 \varepsilon_{s}
 =
-\text{Hydrostatische Dehnung} [-]
+\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})
 \]
+eingeführt werden, mit
+\begin{align*}
+	\varepsilon_{v} &= \text{Hydrostatische Dehnung [-]} \\
+	\varepsilon_{s} &= \text{Deviatorische Dehnung [-].}
+\end{align*}
+Die hydrostatische Dehnung $\varepsilon_{v}$ kann mit einer Kompression verglichen werden.
+Die deviatorische Dehnung $\varepsilon_{s}$  kann mit einer Verzerrung verglichen werden.
 
-\[
-\varepsilon_{\nu}
-=
-\text{Deviatorische Dehnung} [-]
-\]
-
-werden.
-
-Diese Komponenten kann man nun in die Vereinfachte Matrix
+Diese zwei Gleichungen kann man durch die Matrixschreibweise
 \[
 \begin{pmatrix}
 	q\\
@@ -87,12 +93,13 @@ Diese Komponenten kann man nun in die Vereinfachte Matrix
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{s}\\
-	\varepsilon_{\nu}
+	\varepsilon_{v}
 \end{pmatrix}
 \]
-einsetzen.
-Man hat dann eine Matrix multipliziert mit einem Vektor und erhält einen Vektor.
+(sollte nummeriert sein) vereinfachen.
+Man hat so eine Matrix multipliziert mit einem Vektor und erhält einen Vektor.
+Änderungen des Spannungszustandes können mit dieser Gleichung vollumfänglich erfasst werden.
 
-Mit dieser Formel lassen sich verschieden Parameter von Versuchen analysieren und berechnen.
-Ein solcher Versuch, den oft in der Geotechnik durchgeführt wird ist der Oedometer-Versuch.
+Mit dieser Formel lassen sich verschieden Ergebnisse von Versuchen analysieren und berechnen.
+Ein solcher Versuch, den oft in der Geotechnik durchgeführt wird, ist der Oedometer-Versuch.
 Im nächsten Kapitel wird die Anwendung der Matrix an diesem Versuch beschrieben.
