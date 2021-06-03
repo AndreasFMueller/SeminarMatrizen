@@ -13,8 +13,8 @@
 \begin{column}{0.48\textwidth}
 \begin{block}{$\mathbb{C}$-Hilbertraum $H$}
 \begin{enumerate}
-\item $\mathbb{C}$-Vektorraum, muss nicht endlichdimensional sein
-\item Sesquilineares Skalarprodukt
+\item<2-> $\mathbb{C}$-Vektorraum, muss nicht endlichdimensional sein
+\item<3-> Sesquilineares Skalarprodukt
 \[
 \langle \cdot,\cdot\rangle
 \colon H \to \mathbb{C}: (x,y) \mapsto \langle x,y\rangle
@@ -23,36 +23,40 @@ Dazugehörige Norm:
 \[
 \|x\| = \sqrt{\langle x,x\rangle}
 \]
-\item Vollständigkeit: jede Cauchy-Folge konvergiert
+\item<4-> Vollständigkeit: jede Cauchy-Folge konvergiert
 \end{enumerate}
-Ohne Vollständigkeit: {\em Prähilbertraum}
+\uncover<5->{%
+Ohne Vollständigkeit: {\em Prähilbertraum}}
 \end{block}
+\uncover<6->{%
 \begin{block}{$\mathbb{R}$-Hilbertraum}
 Vollständiger $\mathbb{R}$-Vektorraum mit bilinearem Skalarprodukt
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<7->{%
 \begin{block}{Vollständigkeit}
 \begin{itemize}
-\item $(x_n)_{n\in\mathbb{N}}$ ist eine Cauchy-Folge:
+\item<8-> $(x_n)_{n\in\mathbb{N}}$ ist eine Cauchy-Folge:
 Für alle $\varepsilon>0$ gibt es $N>0$ derart, dass
 \[
 \| x_n-x_m\| < \varepsilon\quad\forall n,m>N
 \]
-\item Grenzwert existiert: $\exists x\in H$ derart, dass es für alle
+\item<9-> Grenzwert existiert: $\exists x\in H$ derart, dass es für alle
 $\varepsilon >0$ ein $N>0$ gibt derart, dass
 \[
 \|x_n-x\|<\varepsilon\quad\forall n>N
 \]
 \end{itemize}
-\end{block}
+\end{block}}
+\uncover<10->{%
 \begin{block}{Cauchy-Schwarz-Ungleichung}
 \[
 |\langle x,y\rangle|
 \le  \|x\| \cdot \|y\|
 \]
 Gleichheit für linear abhängige $x$ und $y$
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

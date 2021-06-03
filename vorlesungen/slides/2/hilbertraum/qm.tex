@@ -18,6 +18,7 @@ $L^2$-Funktionen auf $\mathbb{R}^3$
 \]
 \end{block}
 \vspace{-6pt}
+\uncover<2->{%
 \begin{block}{Wahrscheinlichkeitsinterpretation}
 \[
 |\psi(x)|^2 = \left\{
@@ -25,24 +26,27 @@ $L^2$-Funktionen auf $\mathbb{R}^3$
 Wahrscheinlichkeitsdichte für Position $x$ des Teilchens
 \end{minipage}\right.
 \]
-\end{block}
+\end{block}}
 \vspace{-6pt}
+\uncover<3->{%
 \begin{block}{Skalarprodukt}
 \[
 \langle\psi,\psi\rangle
 =
 \int_{\mathbb{R}^3} |\psi(x)|^2\,dx = 1
 \]
-\end{block}
+\end{block}}
 \vspace{-6pt}
+\uncover<4->{%
 \begin{block}{Messgrösse $A$}
 Selbstadjungierter Operator $A$
 \\
-$\rightarrow$
-Hilbertbasis $|i\rangle$ von EV von $A$
-\end{block}
+\uncover<5->{$\rightarrow$
+Hilbertbasis $|i\rangle$ von EV von $A$}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<6->{%
 \begin{block}{Überlagerung}
 \begin{align*}
 |\psi\rangle
@@ -50,32 +54,36 @@ Hilbertbasis $|i\rangle$ von EV von $A$
 \sum_i
 w_i|i\rangle
 \\
-\langle \psi|\psi\rangle
+\uncover<7->{\langle \psi|\psi\rangle
 &=
-\sum_i |w_i|^2 \qquad\text{(Plancherel)}
+\sum_i |w_i|^2 \qquad\text{(Plancherel)}}
 \end{align*}
+\uncover<8->{%
 $|w_i|^2=|\langle \psi|i\rangle|^2$ Wahrscheinlichkeit für Zustand $|i\rangle$
-\end{block}
+}
+\end{block}}
+\uncover<9->{%
 \begin{block}{Erwartungswert}
 \begin{align*}
 E(A)
-&=
-\sum_i |w_i|^2 \alpha_i
-=
-\sum_i \overline{w}_i\alpha_i w_i 
+&\uncover<10->{=
+\sum_i |w_i|^2 \alpha_i}
+\uncover<11->{=
+\sum_i \overline{w}_i\alpha_i w_i }
+\hspace{5cm}
 \\
-&=
-\sum_{i,j} \overline{w}_j\alpha_i w_i \langle j|i\rangle
-=
-\sum_{i} \overline{w}_j\langle j| \sum_i \alpha_i w_i |i\rangle
+&\only<12>{=
+\sum_{i,j} \overline{w}_j\alpha_i w_i \langle j|i\rangle}
+\uncover<13->{=
+\sum_{i} \overline{w}_j\langle j| \sum_i \alpha_i w_i |i\rangle}
 \\
-&=
+&\uncover<14->{=
 \sum_{i,j} \overline{w}_j w_i \langle j|
-A|i\rangle
-=
-\langle \psi| A |\psi\rangle
+A|i\rangle}
+\uncover<15->{=
+\langle \psi| A |\psi\rangle}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

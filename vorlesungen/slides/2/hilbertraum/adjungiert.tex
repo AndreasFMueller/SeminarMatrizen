@@ -13,16 +13,16 @@
 \begin{column}{0.48\textwidth}
 \begin{block}{Definition}
 \begin{itemize}
-\item
+\item<2->
 $A\colon H\to L$ lineare Abbildung zwischen Hilberträumen, $y\in L$
-\item
+\item<3->
 \[
 H\to\mathbb{C}
 :
 x\mapsto \langle y, Ax\rangle_L
 \]
 ist eine lineare Abbildung $H\to\mathbb{C}$
-\item
+\item<4->
 Nach dem Darstellungssatz gibt es $v\in H$ mit
 \[
 \langle y,Ax\rangle_L = \langle v,x\rangle_H
@@ -30,22 +30,25 @@ Nach dem Darstellungssatz gibt es $v\in H$ mit
 \forall x\in H
 \]
 \end{itemize}
+\uncover<5->{%
 Die Abbildung 
 \[
 L\to H
 :
 y\mapsto v =: A^*y
 \]
-heisst {\em adjungierte Abbildung}
+heisst {\em adjungierte Abbildung}}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<6->{%
 \begin{block}{Endlichdimensional (Matrizen)}
 \[
 A^* = \overline{A}^t
 \]
-\end{block}
+\end{block}}
 \vspace{-8pt}
+\uncover<7->{%
 \begin{block}{Selbstabbildungen}
 Für Operatoren $A\colon H\to H$ ist $A^*\colon H\to H$
 \[
@@ -55,24 +58,25 @@ Für Operatoren $A\colon H\to H$ ist $A^*\colon H\to H$
 \quad
 \forall x,y\in H
 \]
-\end{block}
+\end{block}}
 \vspace{-8pt}
+\uncover<9->{%
 \begin{block}{Selbstadjungierte Operatoren}
 \[
 A=A^*
-\;\Leftrightarrow\;
+\uncover<10->{\;\Leftrightarrow\;
 \langle x,Ay \rangle
 =
-\langle A^*x,y \rangle
-=
-\langle Ax,y \rangle
+\langle A^*x,y \rangle}
+\uncover<11->{=
+\langle Ax,y \rangle}
 \]
-Matrizen:
+\uncover<12->{Matrizen:
 \begin{itemize}
-\item hermitesch
-\item für reelle Hilberträume: symmetrisch
-\end{itemize}
-\end{block}
+\item<13-> hermitesch
+\item<14-> für reelle Hilberträume: symmetrisch
+\end{itemize}}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

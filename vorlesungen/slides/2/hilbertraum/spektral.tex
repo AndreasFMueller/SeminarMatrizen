@@ -19,69 +19,73 @@ Hilbertraum $H$
 $A\colon H\to H$ linear
 \end{itemize}
 \end{block}
+\uncover<2->{%
 \begin{block}{Eigenwerte}
 $x\in H$ ein EV von $A$ zum EW $\lambda\ne 0$
 \begin{align*}
-\langle x,x\rangle
+\uncover<3->{\langle x,x\rangle
 &=
 \frac1{\lambda}
-\langle x,\lambda x\rangle
-=
+\langle x,\lambda x\rangle}
+\uncover<3->{=
 \frac1{\lambda}
-\langle x,Ax\rangle
+\langle x,Ax\rangle}
 \\
-&=
+&\uncover<4->{=
 \frac1{\lambda}
-\langle Ax,x\rangle
-=
+\langle Ax,x\rangle}
+\uncover<5->{=
 \frac{\overline{\lambda}}{\lambda}
-\langle x,x\rangle
+\langle x,x\rangle}
 \\
-\frac{\overline{\lambda}}{\lambda}&=1
+\uncover<6->{\frac{\overline{\lambda}}{\lambda}&=1
 \quad\Rightarrow\quad
-\overline{\lambda} = \lambda
-\quad\Rightarrow\quad
-\lambda\in\mathbb{R}
+\overline{\lambda} = \lambda}
+\uncover<7->{\quad\Rightarrow\quad
+\lambda\in\mathbb{R}}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<8->{%
 \begin{block}{Orthogonalität}
 $u,v$ EV zu EW $\mu,\lambda\in \mathbb{R}\setminus\{0\}$, $\overline{\mu}=\mu\ne\lambda$
 \begin{align*}
+\uncover<9->{
 \langle u,v\rangle
 &=
 \frac{1}{\mu}
-\langle \mu u,v\rangle
-=
+\langle \mu u,v\rangle}
+\uncover<10->{=
 \frac{1}{\mu}
-\langle Au,v\rangle
+\langle Au,v\rangle}
 \\
-&=
+&\uncover<11->{=
 \frac{1}{\mu}
-\langle u,Av\rangle
-=
+\langle u,Av\rangle}
+\uncover<12->{=
 \frac{1}{\mu}
-\langle u,\lambda v\rangle
-=
+\langle u,\lambda v\rangle}
+\uncover<13->{=
 \frac{\lambda}{\mu}
-\langle u,v\rangle
+\langle u,v\rangle}
 \\
-\Rightarrow
+\uncover<14->{\Rightarrow
 \;
 0
 &=
 \underbrace{\biggl(\frac{\lambda}{\mu}-1\biggr)}_{\displaystyle \ne 0}
-\langle u,v\rangle
-\;\Rightarrow\;
-\langle u,v\rangle = 0
+\langle u,v\rangle}
+\uncover<15->{\;\Rightarrow\;
+\langle u,v\rangle = 0}
 \end{align*}
-EV zu verschiedenen EW sind orthogonal
-\end{block}
+\uncover<16->{EV zu verschiedenen EW sind orthogonal}
+\end{block}}
 \end{column}
 \end{columns}
+\uncover<17->{%
 \begin{block}{Spektralsatz}
 Es gibt eine Hilbertbasis von $H$ aus Eigenvektoren von $A$
-\end{block}
+\end{block}}
 \end{frame}
 \egroup

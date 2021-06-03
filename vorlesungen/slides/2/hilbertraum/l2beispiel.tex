@@ -13,7 +13,7 @@
 \begin{column}{0.48\textwidth}
 \begin{block}{Definition}
 \begin{itemize}
-\item Quadratsummierbare Folgen von komplexen Zahlen
+\item<2-> Quadratsummierbare Folgen von komplexen Zahlen
 \[
 l^2
 =
@@ -21,15 +21,15 @@ l^2
 (x_k)_{k\in\mathbb{N}}\,\bigg|\, \sum_{k=0}^\infty |x_k|^2 < \infty
 \biggr\}
 \]
-\item Skalarprodukt:
+\item<3-> Skalarprodukt:
 \begin{align*}
 \langle x,y\rangle
 &=
 \sum_{k=0}^\infty \overline{x}_ky_k,
 &
-\|x\|^2 = \sum_{k=0}^\infty |x_k|^2
+\uncover<4->{\|x\|^2 = \sum_{k=0}^\infty |x_k|^2}
 \end{align*}
-\item Vollständigkeit,
+\item<5-> Vollständigkeit,
 Konvergenz: Cauchy-Schwarz-Ungleichung
 \[
 \biggl|
@@ -43,37 +43,39 @@ Konvergenz: Cauchy-Schwarz-Ungleichung
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<6->{%
 \begin{block}{Standardbasisvektoren}
 \begin{align*}
 e_i
 &=
 (0,\dots,0,\underset{\underset{\textstyle i}{\textstyle\uparrow}}{1},0,\dots)
 \\
-(e_i)_k &= \delta_{ik}
+\uncover<7->{(e_i)_k &= \delta_{ik}}
 \end{align*}
-sind orthonormiert:
+\uncover<8->{sind orthonormiert:
 \begin{align*}
 \langle e_i,e_j\rangle
 &=
 \sum_k \overline{\delta}_{ik}\delta_{jk}
-=
-\delta_{ij}
-\end{align*}
-\end{block}
+\uncover<9->{=
+\delta_{ij}}
+\end{align*}}
+\end{block}}
 \vspace{-16pt}
+\uncover<10->{%
 \begin{block}{Analyse}
 $x_k$ kann mit Skalarprodukten gefunden werden:
 \begin{align*}
 \hat{x}_i
 =
 \langle e_i,x\rangle
-&=
-\sum_{k=0}^\infty \overline{\delta}_{ik}  x_k
-=
-x_i
+&\uncover<11->{=
+\sum_{k=0}^\infty \overline{\delta}_{ik}  x_k}
+\uncover<12->{=
+x_i}
 \end{align*}
-(Fourier-Koeffizienten)
-\end{block}
+\uncover<13->{(Fourier-Koeffizienten)}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

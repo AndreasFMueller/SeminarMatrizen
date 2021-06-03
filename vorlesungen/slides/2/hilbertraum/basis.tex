@@ -14,24 +14,27 @@
 \begin{block}{Definition}
 Eine Menge $\mathcal{B}=\{b_k|k>0\}$ ist eine Hilbertbasis, wenn
 \begin{itemize}
-\item $\mathcal{B}$ ist orthonormiert: $\langle b_k,b_l\rangle=\delta_{kl}$
-\item Der Unterraum $\langle b_k|k>0\rangle\subset H$ ist
+\item<2-> $\mathcal{B}$ ist orthonormiert: $\langle b_k,b_l\rangle=\delta_{kl}$
+\item<3-> Der Unterraum $\langle b_k|k>0\rangle\subset H$ ist
 dicht:
 Jeder Vektor von $H$ kann beliebig genau durch Linearkombinationen von $b_k$
 approximiert werden.
 \end{itemize}
-Ein Hilbertraum mit einer Hilbertbasis heisst {\em separabel}
+\uncover<4->{%
+Ein Hilbertraum mit einer Hilbertbasis heisst {\em separabel}}
 \end{block}
+\uncover<5->{%
 \begin{block}{Endlichdimensional}
 Der Algorithmus bricht nach endlich vielen Schritten ab.
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<6->{%
 \begin{block}{Konstruktion}
 Iterativ: $\mathcal{B}_0=\emptyset$
 \begin{enumerate}
-\item $V_k = \langle \mathcal{B}_k \rangle$
-\item Wenn $V_k\ne H$, wähle einen Vektor
+\item<7-> $V_k = \langle \mathcal{B}_k \rangle$
+\item<8-> Wenn $V_k\ne H$, wähle einen Vektor
 \begin{align*}
 x\in V_k^{\perp}
 &=
@@ -44,17 +47,18 @@ x\in H\;|\; x\perp V_k
 x\perp y\;\forall y\in V_k
 \}
 \end{align*}
-\item $b_{k+1} = x/\|x\|$
+\item<9-> $b_{k+1} = x/\|x\|$
 \[
 \mathcal{B}_{k+1} = \mathcal{B}_k\cup \{b_{k+1}\}
 \]
 \end{enumerate}
+\uncover<10->{%
 Wenn $H$ separabel ist, dann ist
 \[
 \mathcal{B} = \bigcup_{k} \mathcal{B}_k
 \]
-eine Hilbertbasis für $H$
-\end{block}
+eine Hilbertbasis für $H$}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

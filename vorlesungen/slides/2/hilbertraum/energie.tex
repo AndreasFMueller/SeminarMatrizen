@@ -11,6 +11,7 @@
 \vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.30\textwidth}
+\uncover<2->{%
 \begin{block}{Totale Energie}
 Hamilton-Funktion
 \begin{align*}
@@ -21,7 +22,8 @@ H
 &=
 \frac{p^2}{2m} + V(x)
 \end{align*}
-\end{block}
+\end{block}}
+\uncover<3->{%
 \begin{block}{Quantisierungsregel}
 \begin{align*}
 \text{Variable}&\to \text{Operator}
@@ -30,22 +32,25 @@ x_k & \to x_k
 \\
 p_k & \to \frac{\hbar}{i} \frac{\partial}{\partial x_k}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.66\textwidth}
+\uncover<4->{%
 \begin{block}{Energie-Operator}
 \[
 H
 =
 -\frac{\hbar^2}{2m}\Delta + V(x)
 \]
-\end{block}
+\end{block}}
+\uncover<5->{%
 \begin{block}{Eigenwertgleichung}
 \[
 -\frac{\hbar^2}{2m}\Delta\psi(x,t) + V(x)\psi(x,t) = E\psi(x,t)
 \]
 Zeitunabhängige Schrödingergleichung
-\end{block}
+\end{block}}
+\uncover<6->{%
 \begin{block}{Zeitabhängigkeit = Schrödingergleichung}
 \[
 -\frac{\hbar}{i}
@@ -54,8 +59,8 @@ Zeitunabhängige Schrödingergleichung
 =
 -\frac{\hbar^2}{2m}\Delta\psi(x,t) + V(x)\psi(x,t)
 \]
-Eigenwertgleichung durch Separation von $t$
-\end{block}
+\uncover<7->{Eigenwertgleichung durch Separation von $t$}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

@@ -15,24 +15,27 @@
 $H$ Hilbertraum mit Hilbert-Basis
 $\mathcal{B}=\{b_k\;|\; k>0\}$, $x\in H$
 \end{block}
+\uncover<2->{%
 \begin{block}{Analyse: Fourier-Koeffizienten}
 \begin{align*}
 a_k = \hat{x}_k &=\langle b_k, x\rangle
 \\
-\hat{x}&=\mathcal{F}x
+\uncover<3->{\hat{x}&=\mathcal{F}x}
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-10pt}
+\uncover<4->{%
 \begin{block}{Synthese: Fourier-Reihe}
 \begin{align*}
 \tilde{x}
 &=
 \sum_k a_k b_k
-=
-\sum_k \langle x,b_k\rangle b_k
+\uncover<5->{=
+\sum_k \langle x,b_k\rangle b_k}
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-6pt}
+\uncover<6->{%
 \begin{block}{Analyse von $\tilde{x}$}
 \begin{align*}
 \langle b_l,\tilde{x}\rangle
@@ -40,18 +43,19 @@ a_k = \hat{x}_k &=\langle b_k, x\rangle
 \biggl\langle
 b_l,\sum_{k}\langle b_k,x\rangle b_k
 \biggr\rangle
-=
-\sum_k \langle b_k,x\rangle\langle b_l,b_k\rangle
-=
-\sum_k \langle b_k,x\rangle\delta_{kl}
-=
-\langle b_l,x\rangle
-=
-\hat{x}_l
+\uncover<7->{=
+\sum_k \langle b_k,x\rangle\langle b_l,b_k\rangle}
+\uncover<8->{=
+\sum_k \langle b_k,x\rangle\delta_{kl}}
+\uncover<9->{=
+\langle b_l,x\rangle}
+\uncover<10->{=
+\hat{x}_l}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<11->{%
 \begin{block}{Plancherel-Gleichung}
 \begin{align*}
 \|\tilde{x}\|^2
@@ -63,21 +67,23 @@ b_l,\sum_{k}\langle b_k,x\rangle b_k
 \sum_l \hat{x}_lb_l
 \biggr\rangle
 \\
-&=
-\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\langle b_k,b_l\rangle
-=
-\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\delta_{kl}
+&\uncover<12->{=
+\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\langle b_k,b_l\rangle}
+\uncover<13->{=
+\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\delta_{kl}}
 \\
+\uncover<14->{
 \|\tilde{x}\|^2
 &=
-\sum_k |\hat{x}_k|^2
-=
-\|\hat{x}\|_{l^2}^2
-=
-\|\mathcal{F}x\|_{l^2}^2
+\sum_k |\hat{x}_k|^2}
+\uncover<15->{=
+\|\hat{x}\|_{l^2}^2}
+\uncover<16->{=
+\|\mathcal{F}x\|_{l^2}^2}
 \end{align*}
-\end{block}
+\end{block}}
 \vspace{-12pt}
+\uncover<17->{%
 \begin{block}{Isometrie}
 \begin{align*}
 \mathcal{F}
@@ -86,10 +92,10 @@ H \to l^2
 \colon
 x\mapsto \hat{x}
 \end{align*}
-Alle separablen Hilberträume sind isometrisch zu $l^2$ via
+\uncover<18->{Alle separablen Hilberträume sind isometrisch zu $l^2$ via
 %Fourier-Transformation
-$\mathcal{F}$
-\end{block}
+$\mathcal{F}$}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}

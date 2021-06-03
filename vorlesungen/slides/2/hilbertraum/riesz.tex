@@ -17,36 +17,44 @@ $V$ ein Vektorraum, $V^*$ der Raum aller Linearformen
 f\colon V\to \mathbb{C}
 \]
 \end{block}
+\uncover<3->{%
 \begin{block}{Beispiel: $l^\infty$}
 $l^\infty=\text{beschränkte Folgen in $\mathbb{C}$}$,
 Linearformen:
 \begin{align*}
+\uncover<4->{
 f(x)
 &=
-\sum_{i=0}^\infty f_ix_i
+\sum_{i=0}^\infty f_ix_i}
 \\
+\uncover<5->{
 \|f\|
 &=
 \sup_{\|x\|_{\infty}\le 1}
-|f(x)|
-=
-\sum_{k\in\mathbb{N}} |f_k|
+|f(x)|}
+\uncover<6->{=
+\sum_{k\in\mathbb{N}} |f_k|}
 \\
+\uncover<7->{
 \Rightarrow
 l^{\infty*}
 &=
-l^1
-\qquad(\ne l^2)
+l^1}
+\uncover<9->{\qquad(\ne l^2)}
 \\
+\uncover<8->{
 &=\{\text{summierbare Folgen in $\mathbb{C}$}\}
+}
 \end{align*}
 
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<2->{%
 \begin{block}{Beispiel: $\mathbb{C}^n$}
 ${\mathbb{C}^n}^* = \mathbb{C}^n$
-\end{block}
+\end{block}}
+\uncover<10->{%
 \begin{theorem}[Riesz]
 Zu einer stetigen Linearform $f\colon H\to\mathbb{C}$ gibt es $v\in H$ mit
 \[
@@ -54,12 +62,14 @@ f(x) = \langle v,x\rangle
 \quad\forall x\in H
 \]
 und $\|f\| = \|v\|$
-\end{theorem}
+\end{theorem}}
+\uncover<11->{%
 \begin{block}{Dualraum von $H$}
 $H^*=H$
-\end{block}
+\end{block}}%
+\uncover<12->{%
 Der Hilbertraum ist die ``intuitiv richtige, unendlichdimensionale''
-Verallgemeinerung von $\mathbb{C}^n$
+Verallgemeinerung von $\mathbb{C}^n$}
 \end{column}
 \end{columns}
 \end{frame}

@@ -14,34 +14,37 @@
 \begin{block}{Vektorrraum $W$}
 Funktionen $f\colon \Omega\to\mathbb{C}$
 \begin{itemize}
-\item
+\item<2->
 $f\in L^2(\Omega)$
-\item
+\item<3->
 $\nabla f\in L^2(\Omega)$
-\item
+\item<4->
 homogene Randbedingungen:
 $f_{|\partial \Omega}=0$
 \end{itemize}
 \end{block}
+\uncover<5->{%
 \begin{block}{Skalarprodukt}
 \begin{align*}
 \langle f,g\rangle_W
-&=
-\int_\Omega \overline{\nabla f}(x)\cdot\nabla g(x)\,d\mu(x)
+&\uncover<6->{=
+\int_\Omega \overline{\nabla f}(x)\cdot\nabla g(x)\,d\mu(x)}
 \\
-&\qquad + \int_{\Omega} \overline{f}(x)\,g(x)\,d\mu(x)
+&\uncover<7->{\qquad + \int_{\Omega} \overline{f}(x)\,g(x)\,d\mu(x)}
 \\
-&=\langle f,-\Delta g + g\rangle_{L^2(\Omega)}
+&\uncover<8->{=\langle f,-\Delta g + g\rangle_{L^2(\Omega)}}
 \end{align*}
-\end{block}
+\end{block}}
 \end{column}
 \begin{column}{0.48\textwidth}
+\uncover<9->{%
 \begin{block}{Vollständigkeit}
 \dots
-\end{block}
+\end{block}}
+\uncover<10->{%
 \begin{block}{Anwendung}
 ``Ein Hilbertraum für jedes partielle Differentialgleichungsproblem''
-\end{block}
+\end{block}}
 \end{column}
 \end{columns}
 \end{frame}
