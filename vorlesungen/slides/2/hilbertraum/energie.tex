@@ -1,0 +1,62 @@
+%
+% energie.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Energie --- Zeitentwicklung --- Schrödinger}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.30\textwidth}
+\begin{block}{Totale Energie}
+Hamilton-Funktion
+\begin{align*}
+H
+&=
+\frac12mv^2 + V(x)
+\\
+&=
+\frac{p^2}{2m} + V(x)
+\end{align*}
+\end{block}
+\begin{block}{Quantisierungsregel}
+\begin{align*}
+\text{Variable}&\to \text{Operator}
+\\
+x_k & \to x_k
+\\
+p_k & \to \frac{\hbar}{i} \frac{\partial}{\partial x_k}
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.66\textwidth}
+\begin{block}{Energie-Operator}
+\[
+H
+=
+-\frac{\hbar^2}{2m}\Delta + V(x)
+\]
+\end{block}
+\begin{block}{Eigenwertgleichung}
+\[
+-\frac{\hbar^2}{2m}\Delta\psi(x,t) + V(x)\psi(x,t) = E\psi(x,t)
+\]
+Zeitunabhängige Schrödingergleichung
+\end{block}
+\begin{block}{Zeitabhängigkeit = Schrödingergleichung}
+\[
+-\frac{\hbar}{i}
+\frac{\partial}{\partial t}
+\psi(x,t)
+=
+-\frac{\hbar^2}{2m}\Delta\psi(x,t) + V(x)\psi(x,t)
+\]
+Eigenwertgleichung durch Separation von $t$
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

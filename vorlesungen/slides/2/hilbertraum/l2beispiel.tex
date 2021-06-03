@@ -7,22 +7,73 @@
 \begin{frame}[t]
 \setlength{\abovedisplayskip}{5pt}
 \setlength{\belowdisplayskip}{5pt}
-\frametitle{Beispiel: $l^2$}
+\frametitle{Beispiele: $\mathbb{R},\mathbb{R}^2,\dots,\mathbb{R}^n,\dots,l^2$}
 \vspace{-20pt}
 \begin{columns}[t,onlytextwidth]
 \begin{column}{0.48\textwidth}
 \begin{block}{Definition}
 \begin{itemize}
-\item Folgen von komplexen Zahlen
+\item Quadratsummierbare Folgen von komplexen Zahlen
 \[
 l^2
 =
-\{(x_k)_{k\in\mathbb{N}}\,|\, x_k \in\mathbb{C}\}
+\biggl\{
+(x_k)_{k\in\mathbb{N}}\,\bigg|\, \sum_{k=0}^\infty |x_k|^2 < \infty
+\biggr\}
+\]
+\item Skalarprodukt:
+\begin{align*}
+\langle x,y\rangle
+&=
+\sum_{k=0}^\infty \overline{x}_ky_k,
+&
+\|x\|^2 = \sum_{k=0}^\infty |x_k|^2
+\end{align*}
+\item Vollständigkeit,
+Konvergenz: Cauchy-Schwarz-Ungleichung
+\[
+\biggl|
+\sum_{k=0}^\infty \overline{x}_ky_k
+\biggr|
+\le
+\sum_{k=0}^\infty |x_k|^2
+\sum_{l=0}^\infty |y_l|^2
 \]
 \end{itemize}
 \end{block}
 \end{column}
 \begin{column}{0.48\textwidth}
+\begin{block}{Standardbasisvektoren}
+\begin{align*}
+e_i
+&=
+(0,\dots,0,\underset{\underset{\textstyle i}{\textstyle\uparrow}}{1},0,\dots)
+\\
+(e_i)_k &= \delta_{ik}
+\end{align*}
+sind orthonormiert:
+\begin{align*}
+\langle e_i,e_j\rangle
+&=
+\sum_k \overline{\delta}_{ik}\delta_{jk}
+=
+\delta_{ij}
+\end{align*}
+\end{block}
+\vspace{-16pt}
+\begin{block}{Analyse}
+$x_k$ kann mit Skalarprodukten gefunden werden:
+\begin{align*}
+\hat{x}_i
+=
+\langle e_i,x\rangle
+&=
+\sum_{k=0}^\infty \overline{\delta}_{ik}  x_k
+=
+x_i
+\end{align*}
+(Fourier-Koeffizienten)
+\end{block}
 \end{column}
 \end{columns}
 \end{frame}

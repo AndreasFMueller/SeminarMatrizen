@@ -1,0 +1,62 @@
+%
+% laplace.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Höhere Dimension}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.44\textwidth}
+\begin{block}{Problem}
+Gegeben: $\Omega\subset\mathbb{R}^n$ ein Gebiet
+\\
+Gesucht: Lösungen von $\Delta u=0$ mit $u_{|\partial\Omega}=0$
+\end{block}
+\begin{block}{Funktionen}
+Hilbertraum $H$ der Funktionen $f:\overline{\Omega}\to\mathbb{C}$
+mit $f_{|\partial\Omega}=0$
+\end{block}
+\begin{block}{Skalarprodukt}
+\[
+\langle f,g\rangle
+=
+\int_{\Omega} \overline{f}(x) g(x)\,d\mu(x)
+\]
+\end{block}
+\begin{block}{Laplace-Operator}
+\[
+\Delta \psi = \operatorname{div}\operatorname{grad}\psi
+\]
+\end{block}
+\end{column}
+\begin{column}{0.52\textwidth}
+\begin{block}{Selbstadjungiert}
+\begin{align*}
+\langle f,\Delta g\rangle
+&=
+\int_{\Omega} \overline{f}(x)\operatorname{div}\operatorname{grad}g(x)\,d\mu(x)
+\\
+&=
+\int_{\partial\Omega}
+\underbrace{\overline{f}(x)}_{\displaystyle=0}\operatorname{grad}g(x)\,d\nu(x)
+\\
+&\qquad
+-
+\int_{\Omega}
+\operatorname{grad}\overline{f}(x)\cdot \operatorname{grad}g(x)
+\,d\mu(x)
+\\
+&=\int_{\Omega}\operatorname{div}\operatorname{grad}\overline{f}(x)g(x)\,d\mu(x)
+\\
+&=
+\langle \Delta f,g\rangle
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
