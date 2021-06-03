@@ -17,5 +17,10 @@ chapter2 =								\
 	../slides/2/frobeniusanwendung.tex				\
 	../slides/2/quotient.tex					\
 	../slides/2/quotientv.tex					\
+	../slides/2/hilbertraum/definition.tex				\
+	../slides/2/hilbertraum/l2beispiel.tex				\
+	../slides/2/hilbertraum/basis.tex				\
+	../slides/2/hilbertraum/plancherel.tex				\
+	../slides/2/hilbertraum/l2.tex					\
 	../slides/2/chapter.tex
 

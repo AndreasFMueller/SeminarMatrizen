@@ -1,0 +1,75 @@
+%
+% plancherel.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Plancherel-Gleichung}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Hilbertraum mit Hilbert-Basis}
+$H$ Hilbertraum mit Hilbert-Basis
+$\mathcal{B}=\{b_k\;|\; k>0\}$, $x\in H$
+\end{block}
+\begin{block}{Analyse: Fourier-Koeffizienten}
+\begin{align*}
+a_k &= \hat{x}_k=\langle b_k, x\rangle
+\end{align*}
+\end{block}
+\begin{block}{Synthese: Fourier-Reihe}
+\begin{align*}
+\tilde{x}
+&=
+\sum_k a_k b_k
+=
+\sum_k \langle x,b_k\rangle b_k
+\end{align*}
+\end{block}
+\begin{block}{Analyse von $\tilde{x}$}
+\begin{align*}
+\langle b_l,\tilde{x}\rangle
+&=
+\biggl\langle
+b_l,\sum_{k}\langle b_k,x\rangle b_k
+\biggr\rangle
+=
+\sum_k \langle b_k,x\rangle\langle b_l,b_k\rangle
+=
+\sum_k \langle b_k,x\rangle\delta_{kl}
+=
+\langle b_l,x\rangle
+=
+\hat{x}_l
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Plancherel-Gleichung}
+\begin{align*}
+\|\tilde{x}\|^2
+&=
+\langle \tilde{x},\tilde{x}\rangle
+=
+\biggl\langle
+\sum_k \hat{x}_kb_k,
+\sum_l \hat{x}_lb_l
+\biggr\rangle
+\\
+&=
+\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\langle b_k,b_l\rangle
+=
+\sum_{k,l} \overline{\hat{x}}_k\hat{x}_l\delta_{kl}
+\\
+\|\tilde{x}\|^2
+&=
+\sum_k |\hat{x}_k|^2
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

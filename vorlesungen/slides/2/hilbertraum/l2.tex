@@ -1,0 +1,57 @@
+%
+% l2.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$L^2$-Hilbertraum}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Definition}
+\begin{itemize}
+\item
+Vektorraum: Funktionen
+\[
+f\colon [a,b] \to \mathbb{C}
+\]
+\item
+Sesquilineares Skalarprodukt
+\[
+\langle f,g\rangle
+=
+\int_a^b \overline{f(x)}\, g(x) \,dx
+\]
+\item
+Norm:
+\[
+\|f\|^2 = \int_a^b |f(x)|^2\,dx
+\]
+\item Vollständigkeit?
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\begin{block}{Vollständigkeit}
+\begin{itemize}
+\item
+Funktioniert nicht für Riemann-Integral
+\item
+Erweiterung des Integrals auf das sogenannte Lebesgue-Integral (nach
+Henri Lebesgue)
+\item
+Abzählbare Mengen spielen keine Rolle $\rightarrow$ Nullmengen
+\item
+Funktionen $\rightarrow$ Klassen von Funktionen, die sich auf einer Nullmenge
+unterscheiden
+\item
+Konvergenz-Satz von Lebesgue $\rightarrow$ es funktioniert
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup
