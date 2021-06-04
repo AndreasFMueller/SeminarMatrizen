@@ -3,38 +3,106 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Teil 2 
+\section{Fraktale mit IFS 
 \label{ifs:section:teil2}}
 \rhead{Teil 2}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+Wollen wir nun eine bestimmte Art anschauen, wie man Fraktale machen kann.
+Zur veranschaulichung dieser Methode nehmen wir das Sierpinski Dreieck.
+\begin{figure}
+	\label{ifs:sierpinski10}
+	\centering
+	\includegraphics[width=0.5\textwidth]{papers/ifs/images/sierpinski}
+	\caption{Sierpinski-Dreieck}
+\end{figure}
+Wenn man das Dreieck genau anschaut, erkennt man schnell, dass es aus drei kleineren Kopien seiner selbst besteht.
+Es ist also ein Selbstähnliches Konstrukt.
+Diese Eigenschaft wollen wir uns zunutze machen.
 
-\subsection{De finibus bonorum et malorum
+
+Wir definieren das Dreieck mit kantenlänge 1 als Menge $X$.
+Ausserdem bestimmen wir drei Funktionen, welche die gesamte Menge auf eine ihrer kleineren Kopien abbildet
+\begin{align*}
+	f_1(x,y)
+	= 
+	\begin{pmatrix}
+		\frac{1}{2} & 0 \\
+		0 & \frac{1}{2} \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	,\quad
+	f_2(x,y)
+	= 
+	\begin{pmatrix}
+		\frac{1}{2} & 0 \\
+		0 & \frac{1}{2} \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+		\frac{1}{2} \\
+		0
+	\end{pmatrix}
+	, \quad
+	f_3(x,y)
+	= 
+	\begin{pmatrix}
+		\frac{1}{2} & 0 \\
+		0 & \frac{1}{2} \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+		\frac{1}{4} \\
+		\frac{1}{2}
+	\end{pmatrix}\\
+\end{align*}
+$f_1$ bildet das Dreieck auf das Teilstück unten links ab, $f_2$ auf das Teilstück unten rechts und $f_3$ auf das obere Teilstück.
+Wendet man alle drei Funktionen auf das Sierpinski-Dreieck an, entsteht also wieder ein Sierpinski-Dreieck.
+\begin{align*}
+	X = \bigcup\limits_{i = 1}^{3} f_i(X)
+\end{align*}
+Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktionen auf eine beliebige Startmenge anwenden, konvergeiert die Menge gegen das Sierpinski-Dreieck.
+\begin{figure}
+	\label{ifs:sierpconst}
+	\centering
+	\subfigure[]{
+		\label{ifs:sierpconsta}
+		\includegraphics[width=0.25\textwidth]{papers/ifs/images/sierpinski1}}
+	\subfigure[]{
+		\label{ifs:sierpconstb}
+		\includegraphics[width=0.25\textwidth]{papers/ifs/images/sierpinski2}} 
+	\subfigure[]{
+		\label{ifs:sierpconstc}
+		\includegraphics[width=0.25\textwidth]{papers/ifs/images/sierpinski3}}
+	\subfigure[]{
+		\label{ifs:sierpconstd}
+		\includegraphics[width=0.25\textwidth]{papers/ifs/images/sierpinski6}}
+	\caption{Konstruktion eines Sierpinski-Dreiecks mit einem Schwarzen Quadrat als Start\\
+		(a) 1. Iteration (b) 2. Iteration (c) 3. Iteration (d) 5. Iteration}
+\end{figure}
+Im Beispiel der Abbildung \ref{ifs:sierpconst} sehen wir, wie das Bild nach jeder Iteration dem Sierpinski-Dreieck ähnlicher wird.
+Der Abstand zum Original wird immer kleiner, und konvergiert bei unendlich Iterationen gegen null.
+
+\subsection{Iterierte Funktionensysteme
 \label{ifs:subsection:bonorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+In diesem Unterkapitel wollen wir die Erkenntniss, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck genereieren können, verallgemeinern.
+TODO TEXT
 
-
+$S_1_...,S_n$ sind Kontraktionen auf die Menge $D \subset \mathbb{R}^n$. Es gilt
+\begin{align}
+	|S_i(x) - S_i(y)| \leq c_i|x - y|
+\end{align}
+für jedes i mit einem $c_i < 1$. Dann existiert eine eindeutige kompakte Menge $F$ für die gilt
+\begin{equation}
+	F = \bigcup\limits_{i = 1}^{m} S_i(F)
+\end{equation}
+TODO Text
