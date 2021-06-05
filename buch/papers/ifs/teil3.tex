@@ -68,7 +68,7 @@ Die Parameter $s$ und $g$ beschreiben die Änderung des Grautones. $s$ veränder
 $s$ und $g$ werden mit der linearen Regression ermittelt. 
 \begin{align*}
 	z' = sz + g \\
-	f(\tilde{D_j}) \text{, Funktion um Grauton von Pixel zu erhalten}  \\
+	f(\tilde{D_j}) \text{, Funktion um das Bild eins Blockes zu erhalten}  \\
 	s = \frac{cov(f(R_i), f(\tilde{D_j}))}{var(\tilde{D_j})} \\
 	g = E(f(R_i)) - s E(f(\tilde{D_j}))
 \end{align*}
@@ -85,4 +85,11 @@ Am Ende des Verfahrens haben wir also für jeden $R_i$ einen passenden $D_i$ mit
 \subsubsection{Rekonstruktion des Bildes}
 Mit den Gefundenen Abbildungen lässt sich das Bild generieren.
 Wir beginnen wie schon im letzten Kapitel mit einer beliebigen Startmenge.
-In unserem Fall ist dieses ein Bild derselben Grösse.
+In unserem Fall ist dieses ein Bild  $f_0$ derselben Grösse.
+Nun ersetzen wir jedes $R_i$ mit der Transformierten des zugehörigen Domain-Blocks $T(G_j)$.
+Dies wird verkürzt als Operator $W$ geschrieben.
+So erhalten wir ein neues Bild $f_1 = W(f_0)$.
+Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen unterschied fesstellen. Die Iteration hat nun ihren Fixpunkt, das Bild, erreicht.
+
+TODO Bilder Beispiel
+TODO Performance und Kompressonsverhältnis
