@@ -1,0 +1,139 @@
+%
+% teil3.tex -- Beispiel-File für Teil 3
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Codierung eines Beispiels
+\label{reedsolomon:section:codebsp}}
+\rhead{Koerper Festlegen}
+
+Um die Funktionsweise eines Reed-Solomon-Codes besser zu verstehen werden wir die einzelnen Probleme und ihre Lösungen anhand eines Beispiels betrachten.
+Da wir in Endlichen Körpern Rechnen werden wir zuerst solch ein Körper festlegen. Dabei müssen wir die \textcolor{red}{Definition 4.6} berücksichtigen, die besagt, dass nur Primzahlen für endliche Körper in Frage kommen.
+Wir legen für unser Beispiel den endlichen Körper $q = 11$ fest. 
+Alle folgenden Berechnungen wurden mit den beiden Restetabellen \textcolor{red}{xx} und \textcolor{red}{yy} durchgeführt.
+Aus den Tabellen folgt auch, dass uns nur die Zahlen \[\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}\] zur Verfügung stehen.
+
+% die beiden Restetabellen von F_11
+%\input{papers/reedsolomon/restetabelle1}
+%\input{papers/reedsolomon/restetabelle2}
+
+Die grösse des endlichen Körpers legt auch fest, wie gross unsere Nachricht $n$ bestehend aus Nutzdatenteil und Fehlerkorrekturteil sein kann und beträgt in unserem Beispiel
+\[
+n = q - 1 = 10 \text{ Zahlen}.
+\]
+
+Im nächsten Schritt bestimmen wir, wie viele Fehler $t$ maximal während der Übertragung auftreten dürfen, damit wir sie noch korrigieren können.
+Unser Beispielcode sollte in der Lage sein
+\[
+t = 2
+\]
+Fehlerstellen korrigieren zu können.
+
+Die Grösse des Nutzdatenteils hängt von der Grösse der Nachricht sowie der Anzahl der Fehlerkorrekturstellen. Je robuster der Code sein muss, desto weniger Platz für Nutzdaten $k$ bleibt in der Nachricht übrig.
+Bei maximal 2 Fehler können wir noch
+\[
+k = n - 2t = 6\text{ Zahlen}
+\]
+übertragen. 
+
+Zusammenfassend haben wir einen Codeblock mit der Länge von 10 Zahlen definiert, der 6 Zahlen als Nutzlast beinhaltet und in der Lage ist aus 2 fehlerhafte Stellen im Block die ursprünglichen Nutzdaten rekonstruieren kann. Zudem werden wir im weiteren feststellen, dass dieser Code maximal 4 Fehlerstellen erkennen, diese aber nicht rekonstruieren kann.
+
+Wir legen nun die Nachricht
+\[
+m = [0,0,0,0,4,7,2,5,8,1]
+\]
+fest, die wir gerne an einen Empfänger übertragen möchten, wobei die vorderen vier Nullstellen für die Fehlerkorrektur zuständig sind.
+Die Nachricht können wir auch als Polynom 
+\[
+m(X) = 4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1
+\] 
+darstellen.
+
+\subsection{Der Ansatz der diskreten Fouriertransformation
+	\label{reedsolomon:subsection:diskFT}}
+
+In einem vorherigen Kapitel (???) haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulerische Zahl $\mathrm{e}$ in $\mathbb{F}_{11}$ nicht existiert. 
+Wir suchen also eine Zahl $a^i$, die in endlichen Körpern existiert und den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken kann.
+Dazu schreiben wir
+\[
+\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}
+\]
+um in 
+\[
+\mathbb{Z}_{11}\setminus\{0\} = \{a^0, a^1, a^2, a^3, a^4, a^5, a^6, a^7, a^8, a^9\}.
+\]
+
+Wenn wir alle möglichen Werte für $a$ einsetzen, also
+
+%\begin{align}
+%a = 0 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\} \\
+%a = 1 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\} \\
+%a = 2 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 2, 4, 8, 5, 10, 9, 7, 3, 6\} \\
+%a = 3 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 3, 9, 5, 4, 1, 3, 9, 5, 4\} \\
+%a = 4 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 4, 5, 9, 3, 1, 4, 5, 9, 3\} \\
+%a = 5 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 5, 3, 4, 9, 1, 5, 3, 4, 9\} \\
+%a = 6 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 6, 3, 7, 9, 10, 5, 8, 4, 2\} \\
+%a = 7 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\} \\
+%a = 8 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\} \\
+%a = 9 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\} \\
+%a = 10 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}
+%\end{align}
+
+\begin{center}
+\begin{tabular}{c r c l}
+%$a = 0 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\}$ \\
+$a = 1 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\}$ \\
+$a = 2 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 2, 4, 8, 5, 10, 9, 7, 3, 6\}$ \\
+$a = 3 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 3, 9, 5, 4, 1, 3, 9, 5, 4\}$ \\
+$a = 4 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 4, 5, 9, 3, 1, 4, 5, 9, 3\}$ \\
+$a = 5 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 5, 3, 4, 9, 1, 5, 3, 4, 9\}$ \\
+$a = 6 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 6, 3, 7, 9, 10, 5, 8, 4, 2\}$ \\
+$a = 7 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\}$ \\
+$a = 8 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\}$ \\
+$a = 9 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\}$ \\
+$a = 10 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$	
+\end{tabular}
+\end{center}
+
+so fällt uns auf, dass die Zahlen $2,6,7,8$ tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em Primitive Einheitswurzel \em genannt. 
+Für das Beispiel wählen wir die Zahl $a^i = 8$.
+Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetzen.
+
+\begin{center}
+	\begin{tabular}{c}
+		$m(8^0) = 4 \cdot 1 + 7 \cdot 1 + 2 \cdot 1 + 5 \cdot 1 + 8 \cdot 1 + 1 = 5$ \\
+		$m(8^1) = 4 \cdot 8 + 7 \cdot 8 + 2 \cdot 8 + 5 \cdot 8 + 8 \cdot 8 + 1 = 3$ \\
+		\vdots
+	\end{tabular}
+\end{center}
+
+Für eine elegantere Formulierung stellen wir das ganze als Matrix dar, wobei $m$ unser Nachrichtenvektor, $A$ die Transformationsmatrix und $v$ unser Übertragungsvektor ist. 
+	
+\[
+v = A \cdot m \qquad \Rightarrow \qquad v = \begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&	8^9\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
+	8^0&	8^3&	8^6&	8^9& 8^{12}& 8^{15}& 8^{18}& 8^{21}& 8^{24}& 8^{27}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& 8^{24}& 8^{28}& 8^{32}& 8^{36}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& 8^{30}& 8^{35}& 8^{40}& 8^{45}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& 8^{36}& 8^{42}& 8^{48}& 8^{54}\\
+	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& 8^{42}& 8^{49}& 8^{56}& 8^{63}\\
+	8^0&	8^8& 8^{16}& 8^{24}& 8^{32}& 8^{40}& 8^{48}& 8^{56}& 8^{64}& 8^{72}\\
+	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& 8^{54}& 8^{63}& 8^{72}& 8^{81}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	1 \\ 8 \\ 5 \\ 2 \\ 7 \\ 4 \\ 0 \\ 0 \\ 0 \\ 0 \\
+\end{pmatrix}
+\]
+
+Somit bekommen wir für unseren Übertragungsvektor
+\[
+v = [5,3,6,5,2,10,2,7,10,4],
+\]
+den wir jetzt über einen beliebigen Nachrichtenkanal versenden können.
+
+\textbf{NOTES}
+
+warum wird 0 weggelassen?
