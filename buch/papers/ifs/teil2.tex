@@ -105,4 +105,28 @@ für jedes i mit einem $c_i < 1$. Dann existiert eine eindeutige kompakte Menge 
 \begin{equation}
 	F = \bigcup\limits_{i = 1}^{m} S_i(F)
 \end{equation}
-TODO Text
+Weiter definieren wir die Transformation S auf kompakte Mengen ohne die leere Menge.
+\begin{equation}
+	S(E) = \bigcup\limits_{i = 1}^m S_i(E)
+\end{equation}
+Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) = S(S^{k-1}(E))$, und für jedes $i$ $S_i(E) \subset E$, gilt
+\begin{equation}
+	F = \bigcap\limits_{k = 1}^{\infty} S^k(E).
+\end{equation}
+In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt, gegen eine eindeutige Menge konvergiert.
+Dies für jede Startmenge, solange diese ihre Transformierten wieder beinhaltet.
+Auf den Beweis wird verzichtet.
+\subsection{Beispiel: Barnsley-Farn}
+\begin{figure}
+	\label{ifs:farn}
+	\centering
+	\makebox[\textwidth][c]{
+		\includegraphics[width=1.4\textwidth]{papers/ifs/images/farn}}
+	\caption{Barnsley-Farn}
+\end{figure}
+\begin{figure}
+	\label{ifs:farncolor}
+	\centering
+	\includegraphics[width=0.7\textwidth]{papers/ifs/images/farncolor}
+	\caption{Vier Transformationen des Barnsley-Farn}
+\end{figure}
