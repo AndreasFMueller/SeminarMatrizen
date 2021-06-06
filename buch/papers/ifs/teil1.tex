@@ -11,8 +11,8 @@ Bevor wir die IFS genauer ansehen, schauen wir uns Fraktale genauer an.
 \subsection{Was sind Fraktale?
 \label{ifs:subsection:finibus}}
 Über die genaue Definition von Fraktalen sind sich die Mathematiker noch nicht einig. 
-In diesem Kapitel orientieren wir uns an den Eigneschaften welche Kenneth Flaconer in seinem Buch Fractal Geometry beschreibt.
-Von einem Fraktal $F$ können wir folgende Eigneschaften erwarten:
+In diesem Kapitel orientieren wir uns an den Eigenschaften welche Kenneth Falconer in seinem Buch Fractal Geometry beschreibt.
+Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten:
 \begin{enumerate}
 	\item $F$ hat eine unendlich feine Struktur
 	\item $F$ kann nicht mit der klassischen Geometrie beschrieben werden.
@@ -24,10 +24,10 @@ Von einem Fraktal $F$ können wir folgende Eigneschaften erwarten:
 	\label{ifs:subsection:lilkoch}}
 Diese Eigenschaften möchten wir nun anhand der Koch Kurve näher anschauen.
 In \ref{ifs:kochkurve8} sehen wir die Koch Kurve. Wie man schon erahnen kann, besteht die aus lauter kleineren Kopien von sich selber. 
-Den Konstruktionvorgang sehen wir in \ref{ifs:kochconst}.
+Den Konstruktionsvorgang sehen wir in \ref{ifs:kochconst}.
 Gestartet wird mit einer einzelnen Strecke der Länge $a$.
 Diese wird in ersten Schritt mit vier gleich langen Streckenabschnitte der Länge $\frac{a}{3}$ ersetzt.
-In \ref{ifs:kochconstb} ist die Anordnung dieser vier Streckenabschnitte ersichtilich. 
+In \ref{ifs:kochconstb} ist die Anordnung dieser vier Streckenabschnitte ersichtlich. 
 Dieser Schritt wird nun für jeden der resultierten Streckenabschnitten wiederholt.
 Die Kurve besteht also aus vier kleineren Kopien von der ganzen Kurve, was auch unter Selbstähnlichkeit bekannt ist.
 
@@ -63,7 +63,7 @@ Die Länge der Kurve lasst sich einfach berechnen.
 	\Rightarrow \quad
 	\lim_{n\to\infty} a  \left( \frac{4}{3}\right)^n = \infty
 \end{align*}
-In jedem Schritt wird die Länge um den Faktor $\frac{4}{3}$ verglängert. Somit divergiert die Länge gegen Unendlich. 
+In jedem Schritt wird die Länge um den Faktor $\frac{4}{3}$ verlängert. Somit divergiert die Länge gegen Unendlich. 
 Die Fläche unter der Kurve lässt sich folgendermassen berechnen
 \begin{align*}
 	A_0 = 0 , \quad A_1 = \left( \frac{a}{3}\right)^2 \frac{\sqrt{3}}{4} = a^2 \frac{\sqrt{3}}{36}\\
@@ -71,14 +71,14 @@ Die Fläche unter der Kurve lässt sich folgendermassen berechnen
 	A_3 = A_1 + A_2 + 4^2 \left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 + \left( \frac{4}{9}\right)^2 A_1	 
 \end{align*}
 Wir sehen, dass mit jedem Schritt die neu dazugekommene Fläche um $\frac{4}{9}$ kleiner ist.
-Daraus resultiert eine konvergierende Geometrische Rheie.
+Daraus resultiert eine konvergierende Geometrische Reihe.
 \begin{align*}
 	A_n = A_1 \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n =  a^2 \frac{\sqrt{3}}{36} \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n \\
 	\lim_{n\to\infty} a^2 \frac{\sqrt{3}}{36} \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n = \frac{\sqrt{3}}{20} a^2
 \end{align*}
 Wie wir sehen ist die Kochkurve ein Konstrukt mit endlicher Fläche, aber unendlichem Umfang.
-Zu guter letzt bestimmen wir die Dimension der Kurve. 
-Es gibt viele verschidene Arten die Dimension zu definieren. Diese können dann auch unterschiedliche Resultate liefern.
+Zu guter Letzt bestimmen wir die Dimension der Kurve. 
+Es gibt viele verschiedene Arten die Dimension zu definieren. Diese können dann auch unterschiedliche Resultate liefern.
 Vor allem im Zusammenhang mit Fraktalen findet man in der Literatur viele verschiedene Arten.
 In diesem Beispiel werden wir die Ähnlichkeits-Dimension.
 \begin{align*}

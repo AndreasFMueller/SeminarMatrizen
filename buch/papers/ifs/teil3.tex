@@ -7,12 +7,12 @@
 \label{ifs:section:teil3}}
 \rhead{Fraktale Bildkomprimierung}
 Mit dem Prinzip dieser IFS ist es auch möglich Bilder zu Komprimieren.
-Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Fractals Everywhere einen wichtigen beitrag zum verständnis von Fraktalen geiefert hat.
+Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Fractals Everywhere einen wichtigen Beitrag zum Verständnis von Fraktalen geliefert hat.
 Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
 In diesem Unterkapitel wollen wir eine Methode dafür anschauen.
 
 
-Bis jetzt wurde in Zusammenhnag mit IFS immer erwähnt, dass die Transformationen auf die ganze Menge angewendet werden.
+Bis jetzt wurde in Zusammenhang mit IFS immer erwähnt, dass die Transformationen auf die ganze Menge angewendet werden.
 Dies muss jedoch nicht so sein. 
 Es gibt auch einen Attraktor, wenn die Transformationen nur Teile der Menge auf die ganze Menge abbilden.
 Diese Eigenschaft wollen wir uns in der Fraktalen Bildkompression zunutze machen.
@@ -25,11 +25,11 @@ Doch wie Finden wir die richtigen Affinen Transformationen, welche als IFS das B
 In der Beschreibung des Verfahrens wird sich auf Graustufenbilder bezogen. Wie das Verfahren für Farbbilder verwendet werden kann, wird später erläutert.
 
 In einem ersten Schritt teilen wir das Bild in disjunkte benachbarte $b \times b$ Pixel-Quadrate auf. Diese Blöcke nennen wir Range-Blöcke der Menge $R=\{R_0,R_1,...R_m\}$
-Im nächesten Schritt teilen wir das Bild in alle möglichen $2b \times 2b$ Pixel-Quadrate auf. Diese sind die Domain-Blöcke der Menge $D = \{D_0,D_1,...D_n\}$. 
+Im nächsten Schritt teilen wir das Bild in alle möglichen $2b \times 2b$ Pixel-Quadrate auf. Diese sind die Domain-Blöcke der Menge $D = \{D_0,D_1,...D_n\}$. 
 Im dritten und letzten Schritt wird für jeden Range-Block $R_i$ ein Domain-Block $D_j$ gesucht, welcher ihm am ähnlichsten ist.
 
 \subsubsection{Finden des ähnlichsten $D_j$}
-Zuerst braucen wir die Transformation um ein Element aus $D$ auf ein Element von $R$ Abzubilden.
+Zuerst brauchen wir die Transformation um ein Element aus $D$ auf ein Element von $R$ Abzubilden.
 \begin{align*}
 	T(x,y,z) = 
 	\begin{pmatrix}
@@ -52,15 +52,15 @@ Zuerst braucen wir die Transformation um ein Element aus $D$ auf ein Element von
 Diese Transformation bildet den Pixel $P$ auf Koordinate $(x,y)$ und Graustufe $z$ auf den Pixel $P'$ ab.
 
 Da wir mit Pixeln arbeiten, sind die Transformationen in der Ebene Beschränkt.
-Diese wird durch die Paramenter $a,b,c$ und $d$ bestimmt.
-Mögliche Transfomrationen sind auf folgende Liste Beschränkt:
+Diese wird durch die Parameter $a,b,c$ und $d$ bestimmt.
+Mögliche Transformationen sind auf folgende Liste Beschränkt:
 \begin{itemize}
-	\item Identische Transformation, keine änderung
+	\item Identische Transformation, keine Änderung
 	\item Drehung um 90, 180 oder 270 Grad.
 	\item Spiegelung an der vertikalen, horizontalen und den Diagonalachsen.
 \end{itemize}
 $\alpha$ und $\beta$ verschieben den Pixel an die richtige Stelle.
-Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möcheen, müssen wir zuerst $G_j$ um $1/2$ skalieren.
+Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möchten, müssen wir zuerst $G_j$ um $1/2$ skalieren.
 Dies erreichen wir, indem wir alle disjunkten $2 \times 2$ px Blöcke mit einem Pixel des Grautones deren Mittelwertes ersetzen.
 Skaliert und transformiert erhalten wir $\tilde{D_j}$
 
@@ -72,8 +72,8 @@ $s$ und $g$ werden mit der linearen Regression ermittelt.
 	s = \frac{cov(f(R_i), f(\tilde{D_j}))}{var(\tilde{D_j})} \\
 	g = E(f(R_i)) - s E(f(\tilde{D_j}))
 \end{align*}
-Mit diesen Parameteren haben wir nun die Transformation vollständig bestimmt.
-Um zu beurteilen ob der Domain-Block $D_j$ mit der gefundenen Transfromation $T$ dem Range-Block $R_i$ genügend ähnlich ist, berechnet man den quadratischen Abstand $e$.
+Mit diesen Parametern haben wir nun die Transformation vollständig bestimmt.
+Um zu beurteilen ob der Domain-Block $D_j$ mit der gefundenen Transformation $T$ dem Range-Block $R_i$ genügend ähnlich ist, berechnet man den quadratischen Abstand $e$.
 \begin{align*}
 	e = d(f(R_i), f(T(D_j)))
 \end{align*}
@@ -89,7 +89,7 @@ In unserem Fall ist dieses ein Bild  $f_0$ derselben Grösse.
 Nun ersetzen wir jedes $R_i$ mit der Transformierten des zugehörigen Domain-Blocks $T(G_j)$.
 Dies wird verkürzt als Operator $W$ geschrieben.
 So erhalten wir ein neues Bild $f_1 = W(f_0)$.
-Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen unterschied fesstellen. Die Iteration hat nun ihren Fixpunkt, das Bild, erreicht.
+Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen unterschied feststellen. Die Iteration hat nun ihren Fixpunkt, das Bild, erreicht.
 
 TODO Bilder Beispiel
 TODO Performance und Kompressonsverhältnis
