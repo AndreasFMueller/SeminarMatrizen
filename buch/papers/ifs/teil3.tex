@@ -91,5 +91,17 @@ Dies wird verkürzt als Operator $W$ geschrieben.
 So erhalten wir ein neues Bild $f_1 = W(f_0)$.
 Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen unterschied feststellen. Die Iteration hat nun ihren Fixpunkt, das Bild, erreicht.
 
+\subsubsection{Farbbilder}
+Dieses Verfahren mit Graustufenbilder lässt sich ganz einfach auf Farbbilder erweitern.
+Jeder Pixel eines Farbbildes besteht aus einem Rot, Grün und Blauwert (RGB).
+Teilt man ein Bild in die drei Farbkanäle auf, das heisst, es wird nur noch ein Farbwert benutzt, erhält man drei Bilder, welche wie ein Graustufenbild sind.
+Nun wendet man auf jeden dieser Farbkanalbilder den Algorithmus an, und fügt nach der Rekonstruktion die Kanäle wieder zusammen. 
+
+\subsubsection{Performance des Verfahren}
+Dieser Grundalgorithmus der Fraktalen Bildkompression ist offensichtlich recht langsam und skaliert auch schlecht mit grösseren Bilder.
+Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nie so schnell wie zum Beispiel das jpeg verfahren.
+
+\subsection{Beispiel}
+Kommen wir nun zu einem Beispiel
 TODO Bilder Beispiel
 TODO Performance und Kompressonsverhältnis

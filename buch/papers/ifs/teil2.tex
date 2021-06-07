@@ -117,6 +117,67 @@ In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausge
 Dies für jede Startmenge, solange diese ihre Transformierten wieder beinhaltet.
 Auf den Beweis wird verzichtet.
 \subsection{Beispiel: Barnsley-Farn}
+Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein weiteres Fraktal, welches mit einem IFS generiert werden kann.
+Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine grosse Ähnlichkeit zum ganzen Farn haben.
+\begin{align*}
+	{S_1(x,y)}
+	= 
+	\begin{pmatrix}
+		0 & 0 \\
+		0 & 0.16 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix}, \quad
+	{S_2(x,y)}
+	= 
+	\begin{pmatrix}
+		0.85 & 0.04 \\
+		-0.04 & 0.85 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+		0 \\
+		1.6
+	\end{pmatrix}\\
+	{S_3(x,y)}
+	= 
+	\begin{pmatrix}
+		0.2 & -0.26 \\
+		0.23 & 0.22 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+		0 \\
+		1.6
+	\end{pmatrix}, \quad
+	{S_4(x,y)}
+	= 
+	\begin{pmatrix}
+		-0.15 & 0.28 \\
+		0.26 & 0.24 \\
+	\end{pmatrix}
+	\begin{pmatrix}
+		x\\
+		y\\
+	\end{pmatrix} 
+	+
+	\begin{pmatrix}
+		0 \\
+		0.44
+	\end{pmatrix}\\
+\end{align*}
+In der Abbildung \ref{ifs:farncolor} sehen wir die vier Transformationen farblich dargestellt.
+$S_1$
 \begin{figure}
 	\label{ifs:farn}
 	\centering
