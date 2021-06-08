@@ -102,6 +102,42 @@ Dieser Grundalgorithmus der Fraktalen Bildkompression ist offensichtlich recht l
 Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nie so schnell wie zum Beispiel das jpeg verfahren.
 
 \subsection{Beispiel}
-Kommen wir nun zu einem Beispiel
-TODO Bilder Beispiel
-TODO Performance und Kompressonsverhältnis
+Kommen wir nun zu einem Beispiel.
+Wir Verwenden dafür den oben beschriebenen Algorithmus.
+Die Range-Blöcke wurden $4\times4$ gewählt und die Dommain dementsprechend $8\times8$.
+Um etwas Zeit bei der Komprimierung zu ersparen, wurden nur disjunkte Domain-Blöcke gebraucht.
+Als erstes Beispiel wählen wir das 360x360px Bild von Rapperswil in Abbildung \ref{ifs:original}.
+Der Algorithmus liefert uns für jeden Range-Block die benötigten Parameter.
+Mit diesen lässt sich das Bild im Anschluss wieder Rekonstruieren.
+
+Als Startbild wird ein mittelgraues 360x360px Bild gewählt, Abbildung \ref{ifs:bild0}.
+Nun lassen wir das IFS laufen.
+Wie wir in Abbildung \ref{ifs:rappirecoa} sehen, ist schon nach der ersten Iteration das Bild schon erkennbar.
+Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
+\begin{figure}
+	\label{ifs:original}
+	\centering
+	\includegraphics[width=0.4\textwidth]{papers/ifs/images/original}
+	\caption{Original Bild von Rapperswil}
+\end{figure}
+\begin{figure}
+	\label{ifs:bild0}
+	\centering
+	\includegraphics[width=0.4\textwidth]{papers/ifs/images/rapperswil}
+	\caption{Startbild}
+\end{figure}
+
+\begin{figure}
+	\label{ifs:rappireco}
+	\centering
+	\subfigure[]{
+		\label{ifs:rappirecoa}
+		\includegraphics[width=0.32\textwidth]{papers/ifs/images/rapperswil01}}
+	\subfigure[]{
+		\label{ifs:rappirecob}
+		\includegraphics[width=0.32\textwidth]{papers/ifs/images/rapperswil001}} 
+	\subfigure[]{
+		\label{ifs:rappirecoc}
+		\includegraphics[width=0.32\textwidth]{papers/ifs/images/rapperswil04}}
+	\caption{(a) 1. Iteration (b) 2. Iteration (c) 5. Iteration}
+\end{figure}

@@ -177,7 +177,24 @@ Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine gross
 	\end{pmatrix}\\
 \end{align*}
 In der Abbildung \ref{ifs:farncolor} sehen wir die vier Transformationen farblich dargestellt.
-$S_1$
+
+$S_1$ erstellt den Stiel des Farnblattes (rot).
+Die Transformation bildet das Gesamte Blatt auf die Y-Achse ab.
+$S_2$ (grün) erstellt den Hauptteil des Farnes. 
+Sie verkleinert und dreht das gesamte Bild und stellt es auf das Ende des Stiels aus $S_1$.
+$S_3$ bildet das gesamte Blatt auf das blaue Teilblatt unten Links ab.
+$S_4$ Spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
+
+Wir führen im Zusammenhang mit dem Barnsley-Farn noch eine weitere Methode ein, um IFS auszuführen.
+Bis jetzt wurde immer davon gesprochen, die Transformationen auf die gesamte Menge anzuwenden.
+Bei komplizierteren IFS welche viele Iterationen brauchen, bis man den Attraktor erkennen kann, ist diese Methode ziemlich rechenintensiv.
+Eine Alternative ist das Chaos-Game. 
+Bei dieser Methode werden die Transformationen nicht auf die Menge angewendet, sondern nur auf einen einzelnen Punkt.
+Der Startpunkt kann dabei ein beliebiger Punkt in $E$ sein.
+Es wird bei jedem Iterationsschritt nur eine Transformation, welche zufällig gewählt wurde, angewendet.
+Da, wie wir beim Barnsley-Farn gut sehen, dass nicht jede Transformation gleich viel des Bildes ausmacht, werden diese beim Chaos-Game gewichtet.
+Die Gewichtung erfolgt über den Anteil der Gesamtmasse.
+Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ in $7\%$ der Iterationen ausgeführt. 
 \begin{figure}
 	\label{ifs:farn}
 	\centering
