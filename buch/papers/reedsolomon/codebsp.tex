@@ -87,9 +87,6 @@ in
 \mathbb{Z}_{11}\setminus\{0\} = \{a^0, a^1, a^2, a^3, a^4, a^5, a^6, a^7, a^8, a^9\}.
 \]
 umzuschreiben.
-
-Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
-
 % Old Text
 %Wir suchen also eine Zahl $a$, die in endlichen Körpern existiert und den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken kann.
 %Dazu schreiben wir
@@ -102,7 +99,6 @@ Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
 %\]
 %
 %Wenn wir alle möglichen Werte für $a$ einsetzen, also
-
 %\begin{align}
 %a = 0 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\} \\
 %a = 1 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\} \\
@@ -117,6 +113,10 @@ Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
 %a = 10 : \qquad \mathbb{Z}_{11}\setminus\{0\} = \{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}
 %\end{align}
 
+\subsubsection{Die primitiven Einheitswurzeln
+	\label{reedsolomon:subsection:primsqrt}}
+
+Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
 \begin{center}
 \begin{tabular}{c r c l}
 %$a = 0 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\}$ \\
@@ -133,11 +133,15 @@ $a = 10 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 10, 1, 10, 1, 10,
 \end{tabular}
 \end{center}
 so fällt uns auf, dass für $a$ die Zahlen $2,6,7,8$ erhalten, die tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em Primitive Einheitswurzel \em genannt. 
-Wenden wir diese Vorgehensweise auch für andere Endliche Körper an, so werden wir sehen, dass wir immer mindestens zwei solcher Einheitswurzel finden werden. Somit ist es uns überlassen, eine dieser Einheitswurzeln auszuwählen, mit der wir weiter rechnen wollen.
+Wenden wir diese Vorgehensweise auch für andere Endliche Körper an, so werden wir sehen, dass wir immer mindestens zwei solcher Einheitswurzel finden werden. Somit ist es uns überlassen, eine dieser Einheitswurzeln auszuwählen, mit der wir weiter rechnen wollen. Für das Beispiel wählen wir die Zahl $a^i = 8$.
 
-Für das Beispiel wählen wir die Zahl $a^i = 8$.
-Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetzen.
+\subsubsection{Bildung einer Transformationsmatrix
+	\label{reedsolomon:subsection:transMat}}
 
+Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. Für die Codierung müssen wir alle $a^i$ in das Polynom $m(X)$ einsetzen. Da wir $a^i = 8^i$ gewählt haben  ergibt sich daraus 
+%
+%Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetzen.
+%
 \begin{center}
 	\begin{tabular}{c}
 		$m(8^0) = 4 \cdot 1^5 + 7 \cdot 1^4 + 2 \cdot 1^3 + 5 \cdot 1^2 + 8 \cdot 1^1 + 1 = 5$ \\
@@ -146,12 +150,12 @@ Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetz
 		$m(8^9) = 4 \cdot 7^5 + 7 \cdot 7^4 + 2 \cdot 7^3 + 5 \cdot 7^2 + 8 \cdot 7^1 + 1 = 4$
 	\end{tabular}
 \end{center}
-
+unser Übertragungsvektor. Um das ganze noch ein wenig übersichtlicher zu gestalten können wir die Polynome zu einer Matrix zusammenfassen und bildet so unsere Transformationsmatrix $A$.
 
 \subsection{Allgemeine Codierung
 	\label{reedsolomon:subsection:algCod}}
 
-Für eine elegantere Formulierung stellen wir das ganze als Matrix dar, wobei $m$ unsere Nachricht, $A$ die Transformationsmatrix und $v$ unser Übertragungsvektor ist.	
+Für die Codierung benötigen wir die Nachricht $m$, die Codiert werden soll sowie die Transformationsmatrix $A$. Daraus erhalten wir den Übertragungsvektor $v$. Setzen wir die Zahlen aus dem Beispiel ein erhalten wir folgende Darstellung.
 \[
 v = A \cdot m \qquad \Rightarrow \qquad v = \begin{pmatrix}
 	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
@@ -170,7 +174,7 @@ v = A \cdot m \qquad \Rightarrow \qquad v = \begin{pmatrix}
 	1 \\ 8 \\ 5 \\ 2 \\ 7 \\ 4 \\ 0 \\ 0 \\ 0 \\ 0 \\
 \end{pmatrix}
 \]
-Somit bekommen wir für unseren Übertragungsvektor
+Für unseren Übertragungsvektor resultiert
 \[
 v = [5,3,6,5,2,10,2,7,10,4],
 \]

@@ -3,41 +3,50 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Decodierung ohne Fehler
+\section{Decodierung: Ansatz ohne Fehler
 \label{reedsolomon:section:decohnefehler}}
 \rhead{fehlerlose rekonstruktion}
-Im ersten Teil zur Decodierung des Übertragungsvektor betrachten wir den Übertragungskanal als fehlerfrei.
-Wir erhalten also unseren Übertragungsvektor
+
+In diesem Abschnitt betrachten wie die Überlegung, wie wir auf der Empfängerseite die Nachricht aus dem empfangenen Übertragungsvektor erhalten. Nach einer einfachen Überlegung müssen wir den Übertragungsvektor decodieren, was auf den ersten Blick nicht allzu kompliziert sein sollte, solange wir davon ausgehen können, dass es während der Übertragung keine Fehler gegeben hat. Wir betrachten deshalb den Übertragungskanal als fehlerfrei.
+
+Der Übertragungsvektor empfangen wir also als
 \[
 v = [5,3,6,5,2,10,2,7,10,4].
 \]
-
-Gesucht ist nun einen Weg, mit dem wir auf unseren Nachrichtenvektor zurückrechnen können.
-Ein banaler Ansatz ist das Invertieren der Glechung
+% Old Text
+%Im ersten Teil zur Decodierung des Übertragungsvektor betrachten wir den Übertragungskanal als fehlerfrei.
+%Wir erhalten also unseren Übertragungsvektor
+%\[
+%v = [5,3,6,5,2,10,2,7,10,4].
+%\]
+Nach einem banalen Ansatz ist die Decodierung die Inverse der Codierung. Dank der Matrixschreibweise lässt sich dies relativ einfach umsetzen.
+% Old Text
+%Gesucht ist nun einen Weg, mit dem wir auf unseren Nachrichtenvektor zurückrechnen können.
+%Ein banaler Ansatz ist das Invertieren der Glechung
 \[
-v = A \cdot m \qquad \Rightarrow \qquad m = A^{-1} \cdot v.
+v = A \cdot m \qquad \Rightarrow \qquad m = A^{-1} \cdot v
 \]
-
-Nur stellt sich dann die Frage, wie wir auf die Inverse der Matix $A$ kommen.
+Nur stellt sich jetzt die Frage, wie wir die Inverse von $A$ berechnen.
 Dazu können wir wiederum den Ansatz der Fouriertransformation uns zur Hilfe nehmen,
 jedoch betrachten wir jetzt deren Inverse.
 Definiert ist sie als
 \[
 F(\omega) = \int_{-\infty}^{\infty} f(t) \mathrm{e}^{-j\omega t} dt \qquad \Rightarrow \qquad \mathfrak{F}^{-1}(F(\omega)) = f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega.
 \]
-
-In unserem Fall suchen wir also eine inverse für die Primitive Einheitswurzel $a$, also
+Damit beschäftigen wir uns im Abschnitt \ref{reedsolomon:subsection:algdec} weiter, konkret suchen wir momentan aber eine Inverse für unsere primitive Einheitswurzel $a$. 
 \[
-8^1 \qquad \Rightarrow \qquad 8^{-1}.
+8^1 \qquad \rightarrow \qquad 8^{-1}
 \]
+Mit einem solchen Problem haben wir uns bereits in Abschnitt \ref{buch:section:euklid} befasst und so den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
 
-Im Abschnitt \textcolor{red}{4.1} haben wir den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
+% Old Text
+%Im Abschnitt \textcolor{red}{4.1} haben wir den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
 
-\subsection{Der Euklidische Algorithmus
-\label{reedsolomon:subsection:eukAlgo}}
+\subsection{Inverse der primitiven Einheitswurzel
+\label{reedsolomon:subsection:invEinh}}
 
-Die Funktionsweise des euklidischen Algorithmus ist im Kapitel \textcolor{red}{4.1} ausführlich beschrieben.
-Für unsere Anwendung wählen wir die Parameter $a_i = 8$ und $b_i = 11$.
+Die Funktionsweise des euklidischen Algorithmus ist im Kapitel \ref{buch:section:euklid} ausführlich beschrieben.
+Für unsere Anwendung wählen wir die Parameter $a = 8$ und $b = 11$ ($\mathbb{F}_{11}$).
 Daraus erhalten wir 
 
 \begin{center}
@@ -67,20 +76,21 @@ Daraus erhalten wir
 \end{tabular}
 
 \end{center}
+als Inverse der primitiven Einheitswurzel. Die inverse Transformationsmatrix $A^{-1}$ bilden wir indem wir jetzt die inverse primitive Einheitswurzel anstelle der primitiven Einheitswurzel in die Matrix einsetzen. 
 
-als Inverse der Primitiven Einheitswurzel.
+\subsection{Allgemeine Decodierung
+	\label{reedsolomon:subsection:algdec}}
 
-Nun haben wir fast alles für die Rücktransformation beisammen. Wie auch bei der Inversen Fouriertransformation haben wir nun einen Vorfaktor
+Wir haben jetzt fast alles für eine erfolgreiche Rücktransformation beisammen. Wir haben aber noch nicht alle Aspekte der inversen diskreten Fouriertransformation befolgt, so fehlt uns noch einen Vorfaktor
 \[
 m = \textcolor{red}{s} \cdot A^{-1} \cdot v
 \]
 den wir noch bestimmen müssen. 
-Glücklicherweise lässt der sich analog wie bei der Inversen Fouriertransformation bestimmen und beträgt
+Glücklicherweise lässt der sich analog wie bei der inversen diskreten Fouriertransformation bestimmen und beträgt
 \[
 s = \frac{1}{10}.
 \]
-Da $\frac{1}{10} = 10^{-1}$ entspricht können wir $s$ ebenfalls mit dem euklidischen Algorithmus bestimmen und stellen fest, dass $10^{-1} = 10$ ergibt.
-Somit lässt sich der Nachrichtenvektor einfach bestimmen mit
+Da $\frac{1}{10} = 10^{-1}$ entspricht können wir $s$ ebenfalls mit dem euklidischen Algorithmus bestimmen und stellen fest, dass $10^{-1} = 10$ in $\mathbb{F}_{11}$ ergibt. Somit lässt sich der Nachrichtenvektor einfach bestimmen mit
 \[
 m = 10 \cdot A^{-1} \cdot v \qquad \Rightarrow \qquad m = 10 \cdot \begin{pmatrix}
 	7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0\\
