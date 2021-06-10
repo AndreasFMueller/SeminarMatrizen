@@ -7,9 +7,9 @@
 \label{reedsolomon:section:endlichekoerper}}
 \rhead{Problemstellung}
 
-TODO:
+\textcolor{red}{TODO: (warten auf den 1. Teil)}
 
-Das rechnen in endlichen Körpern bietet einige Vorteile:
+Das Rechnen in endlichen Körpern bietet einige Vorteile:
 
 \begin{itemize}
 	\item Konkrete Zahlen: In endlichen Körpern gibt es weder rationale noch komplexe Zahlen. Zudem beschränken sich die möglichen Rechenoperationen auf das Addieren und Multiplizieren. Somit können wir nur ganze Zahlen als Resultat erhalten.
@@ -20,4 +20,4 @@ Das rechnen in endlichen Körpern bietet einige Vorteile:
 
 Um jetzt eine Nachricht in den endlichen Körpern zu konstruieren legen wir fest, dass diese Nachricht aus einem Nutzdatenteil und einem Fehlerkorrekturteil bestehen muss. Somit ist die zu übertragende Nachricht immer grösser als die Daten, die wir übertragen wollen. Zudem müssen wir einen Weg finden, den Fehlerkorrekturteil so aus den Nutzdaten zu berechnen, dass wir die Nutzdaten auf der Empfängerseite wieder rekonstruieren können, sollte es zu einer fehlerhaften Übertragung kommen.
 
-Nun stellt sich die Frage, wie wir eine Fehlerhafte Nachricht korrigieren können, ohne ihren ursprünglichen Inhalt zu kennen. Der Reed-Solomon-Code erzielt dies, indem aus dem Fehlerkorrekturteil ein sogenanntes "Lokatorpolynom" generiert werden kann. Dieses Polynom gibt dem Emfänger an, welche Stellen in der Nachricht feherhaft sind. 
+Nun stellt sich die Frage, wie wir eine fehlerhafte Nachricht korrigieren können, ohne ihren ursprünglichen Inhalt zu kennen. Der Reed-Solomon-Code erzielt dies, indem aus dem Fehlerkorrekturteil ein sogenanntes ``Lokatorpolynom'' generiert werden kann. Dieses Polynom gibt dem Emfänger an, welche Stellen in der Nachricht feherhaft sind. 
