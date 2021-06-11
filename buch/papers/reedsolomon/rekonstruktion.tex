@@ -1,24 +1,25 @@
 %
-% teil3.tex -- Beispiel-File für Teil 3
+% rekonstruktion.tex
+% Autor: Michael Steiner
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Nachricht Rekonstruieren
 \label{reedsolomon:section:rekonstruktion}}
 \rhead{Rekonstruktion}
-Im letzten Kapitel haben wir eine Möglichkeit gefunden, wie wir die Fehlerhaften Stellen lokalisieren können.
+Im letzten Kapitel haben wir eine Möglichkeit gefunden, wie wir die fehlerhaften Stellen lokalisieren können.
 Mit diesen Stellen soll es uns nun möglich sein, aus dem fehlerhaften empfangenen Nachrichtenvektor wieder unsere Nachricht zu rekonstruieren.
 Das Lokatorpolynom
 \[
-d(X) = (X - a^3)(X-a^8)
+l(X) = (X - a^3)(X-a^8)
 \]
-markiert dabei diese Fehlerhaften Stellen im Übertragungsvektor
+markiert dabei diese fehlerhaften Stellen im Übertragungsvektor
 \[
 w = [5,3,6,8,2,10,2,7,1,4].
 \]
 Als Ausgangslage verwenden wir die Matrix, mit der wir den Nachrichtenvektor ursprünglich codiert haben.
-Unser Ziel ist es wie auch schon im Kapitel X.X (Rekonstuktion ohne Fehler) eine Möglichkeit zu finden, wie wir den Übertragungsvektor decodieren können. 
-Aufgrund der Fehlerstellen müssen wir aber davon ausgehen, das wir nicht mehr den gleichen Weg verfolgen können wie wir im Kapitel X.X angewendet haben.
+Unser Ziel ist es wie auch schon im Abschnitt \ref{reedsolomon:section:decohnefehler} eine Möglichkeit zu finden, wie wir den Übertragungsvektor decodieren können. 
+Aufgrund der Fehlerstellen müssen wir aber davon ausgehen, das wir nicht mehr den gleichen Weg verfolgen können wie wir im Abschnitt \ref{reedsolomon:section:decohnefehler} angewendet haben.
 
 Wir stellen also die Matrix auf und markieren gleichzeitig die Fehlerstellen.
 \[
@@ -82,21 +83,21 @@ Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, das di
 \end{pmatrix}
 =
 \begin{pmatrix}
-	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    \textcolor{green}{8^0}&    \textcolor{green}{8^0}&    \textcolor{green}{8^0}&    \textcolor{green}{8^0}\\
-	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	\textcolor{green}{8^6}&	   \textcolor{green}{8^7}&    \textcolor{green}{8^8}&    \textcolor{green}{8^9}\\
-	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& \textcolor{green}{8^{12}}& \textcolor{green}{8^{14}}& \textcolor{green}{8^{16}}& \textcolor{green}{8^{18}}\\
-	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& \textcolor{green}{8^{24}}& \textcolor{green}{8^{28}}& \textcolor{green}{8^{32}}& \textcolor{green}{8^{36}}\\
-	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& \textcolor{green}{8^{30}}& \textcolor{green}{8^{35}}& \textcolor{green}{8^{40}}& \textcolor{green}{8^{45}}\\
-	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& \textcolor{green}{8^{36}}& \textcolor{green}{8^{42}}& \textcolor{green}{8^{48}}& \textcolor{green}{8^{54}}\\
-	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& \textcolor{green}{8^{42}}& \textcolor{green}{8^{49}}& \textcolor{green}{8^{56}}& \textcolor{green}{8^{63}}\\
-	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& \textcolor{green}{8^{54}}& \textcolor{green}{8^{63}}& \textcolor{green}{8^{72}}& \textcolor{green}{8^{81}}\\
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	\textcolor{darkgreen}{8^6}&	   \textcolor{darkgreen}{8^7}&    \textcolor{darkgreen}{8^8}&    \textcolor{darkgreen}{8^9}\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& \textcolor{darkgreen}{8^{12}}& \textcolor{darkgreen}{8^{14}}& \textcolor{darkgreen}{8^{16}}& \textcolor{darkgreen}{8^{18}}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& \textcolor{darkgreen}{8^{24}}& \textcolor{darkgreen}{8^{28}}& \textcolor{darkgreen}{8^{32}}& \textcolor{darkgreen}{8^{36}}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& \textcolor{darkgreen}{8^{30}}& \textcolor{darkgreen}{8^{35}}& \textcolor{darkgreen}{8^{40}}& \textcolor{darkgreen}{8^{45}}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& \textcolor{darkgreen}{8^{36}}& \textcolor{darkgreen}{8^{42}}& \textcolor{darkgreen}{8^{48}}& \textcolor{darkgreen}{8^{54}}\\
+	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& \textcolor{darkgreen}{8^{42}}& \textcolor{darkgreen}{8^{49}}& \textcolor{darkgreen}{8^{56}}& \textcolor{darkgreen}{8^{63}}\\
+	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& \textcolor{darkgreen}{8^{54}}& \textcolor{darkgreen}{8^{63}}& \textcolor{darkgreen}{8^{72}}& \textcolor{darkgreen}{8^{81}}\\
 \end{pmatrix}
 \cdot
 \begin{pmatrix}
-	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor{green}{m_6} \\ \textcolor{green}{m_7} \\ \textcolor{green}{m_8} \\ \textcolor{green}{m_9} \\
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor{darkgreen}{m_6} \\ \textcolor{darkgreen}{m_7} \\ \textcolor{darkgreen}{m_8} \\ \textcolor{darkgreen}{m_9} \\
 \end{pmatrix}
 \]
-Wir nehmen die Entsprechenden Spalten aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
+Wir nehmen die entsprechenden Spalten aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
 \[
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ \textcolor{red}{7} \\ \textcolor{red}{4} \\
