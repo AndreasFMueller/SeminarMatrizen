@@ -9,7 +9,7 @@
 Mit dem Prinzip dieser IFS ist es auch möglich Bilder zu Komprimieren.
 Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Fractals Everywhere einen wichtigen Beitrag zum Verständnis von Fraktalen geliefert hat.
 Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
-In diesem Unterkapitel wollen wir eine Methode dafür anschauen.
+In diesem Unterkapitel wollen wir eine Methode dafür anschauen.\cite{ifs:Rousseau2012}
 
 
 Bis jetzt wurde in Zusammenhang mit IFS immer erwähnt, dass die Transformationen auf die ganze Menge angewendet werden.
@@ -17,10 +17,10 @@ Dies muss jedoch nicht so sein.
 Es gibt auch einen Attraktor, wenn die Transformationen nur Teile der Menge auf die ganze Menge abbilden.
 Diese Eigenschaft wollen wir uns in der Fraktalen Bildkompression zunutze machen.
 Sie ermöglicht uns Ähnlichkeiten zwischen kleineren Teilen des Bildes zunutze machen.
-Es ist wohl nicht Falsch zu sagen, dass Ähnlichkeiten zur gesamten Menge, wie wir sie zum Beispiel beim Barnsley Fern gesehen haben, bei Bilder aus dem Alltag eher selten anzutreffen sind.
+Es ist wohl nicht falsch zu sagen, dass Ähnlichkeiten zur gesamten Menge, wie wir sie zum Beispiel beim Barnsley Farn gesehen haben, bei Bilder aus dem Alltag eher selten anzutreffen sind.
 Doch wie Finden wir die richtigen Affinen Transformationen, welche als IFS das Bild als Attraktor haben?
 
-\subsection{Titel
+\subsection{das Kompressionsverfahren
 \label{ifs:subsection:malorum}}
 In der Beschreibung des Verfahrens wird sich auf Graustufenbilder bezogen. Wie das Verfahren für Farbbilder verwendet werden kann, wird später erläutert.
 
@@ -114,21 +114,20 @@ Als Startbild wird ein mittelgraues 360x360px Bild gewählt, Abbildung \ref{ifs:
 Nun lassen wir das IFS laufen.
 Wie wir in Abbildung \ref{ifs:rappirecoa} sehen, ist schon nach der ersten Iteration das Bild schon erkennbar.
 Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
-\begin{figure}
-	\label{ifs:original}
+\begin{figure}	
 	\centering
 	\includegraphics[width=0.4\textwidth]{papers/ifs/images/original}
 	\caption{Original Bild von Rapperswil}
+	\label{ifs:original}
 \end{figure}
 \begin{figure}
-	\label{ifs:bild0}
 	\centering
 	\includegraphics[width=0.4\textwidth]{papers/ifs/images/rapperswil}
 	\caption{Startbild}
+	\label{ifs:bild0}
 \end{figure}
 
 \begin{figure}
-	\label{ifs:rappireco}
 	\centering
 	\subfigure[]{
 		\label{ifs:rappirecoa}
@@ -140,4 +139,5 @@ Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen
 		\label{ifs:rappirecoc}
 		\includegraphics[width=0.32\textwidth]{papers/ifs/images/rapperswil04}}
 	\caption{(a) 1. Iteration (b) 2. Iteration (c) 5. Iteration}
+		\label{ifs:rappireco}
 \end{figure}

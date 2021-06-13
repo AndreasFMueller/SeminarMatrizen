@@ -8,10 +8,9 @@
 \rhead{Problemstellung}
 Bevor wir die IFS genauer ansehen, schauen wir uns Fraktale genauer an.
 
-\subsection{Was sind Fraktale?
-\label{ifs:subsection:finibus}}
-Über die genaue Definition von Fraktalen sind sich die Mathematiker noch nicht einig. 
-In diesem Kapitel orientieren wir uns an den Eigenschaften welche Kenneth Falconer in seinem Buch Fractal Geometry beschreibt.
+
+Über die genaue Definition von Fraktalen sind sich die Mathematiker nicht einig. 
+In diesem Kapitel orientieren wir uns an den Eigenschaften welche Kenneth Falconer in seinem Buch Fractal Geometry \cite{ifs:fractal-geometry} beschreibt.
 Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten:
 \begin{enumerate}
 	\item $F$ hat eine unendlich feine Struktur
@@ -23,8 +22,8 @@ Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten:
 \subsection{Koch Kurve
 	\label{ifs:subsection:lilkoch}}
 Diese Eigenschaften möchten wir nun anhand der Koch Kurve näher anschauen.
-In \ref{ifs:kochkurve8} sehen wir die Koch Kurve. Wie man schon erahnen kann, besteht die aus lauter kleineren Kopien von sich selber. 
-Den Konstruktionsvorgang sehen wir in \ref{ifs:kochconst}.
+In \ref{ifs:kochkurve8} sehen wir die Koch Kurve. Wie man schon erahnen kann, besteht sie aus lauter kleineren Kopien von sich selber. 
+Den Konstruktionsvorgang ist in Abbildung \ref{ifs:kochconst} dargestellt.
 Gestartet wird mit einer einzelnen Strecke der Länge $a$.
 Diese wird in ersten Schritt mit vier gleich langen Streckenabschnitte der Länge $\frac{a}{3}$ ersetzt.
 In \ref{ifs:kochconstb} ist die Anordnung dieser vier Streckenabschnitte ersichtlich. 
@@ -33,14 +32,13 @@ Die Kurve besteht also aus vier kleineren Kopien von der ganzen Kurve, was auch 
 
 
 \begin{figure}
-	\label{ifs:kochkurve8}
 	\centering
 	\includegraphics{papers/ifs/images/koch8}
 	\caption{Koch Kurve}
+	\label{ifs:kochkurve8}
 \end{figure}
 
 \begin{figure}
-	\label{ifs:kochconst}
 	\centering
 	\subfigure[]{
 		\label{ifs:kochconsta}
@@ -52,7 +50,7 @@ Die Kurve besteht also aus vier kleineren Kopien von der ganzen Kurve, was auch 
 		\label{kochconstc}
 		\includegraphics[width=0.32\textwidth]{papers/ifs/images/koch2}}
 	\caption{(a) Start (b) 1. Iteration (c) 2. Iteration}
-	\label{fig:foobar}
+	\label{ifs:kochconst}
 \end{figure}
 
 Die resultierende Kurve hat ein paar interessante Eigenschaften.
@@ -80,7 +78,7 @@ Wie wir sehen ist die Kochkurve ein Konstrukt mit endlicher Fläche, aber unendl
 Zu guter Letzt bestimmen wir die Dimension der Kurve. 
 Es gibt viele verschiedene Arten die Dimension zu definieren. Diese können dann auch unterschiedliche Resultate liefern.
 Vor allem im Zusammenhang mit Fraktalen findet man in der Literatur viele verschiedene Arten.
-In diesem Beispiel werden wir die Ähnlichkeits-Dimension.
+In diesem Beispiel werden wir die Ähnlichkeits-Dimension \cite{ifs:fractal-geometry}.
 \begin{align*}
 	D = - \frac{log(N)}{log(\epsilon)}
 \end{align*}
