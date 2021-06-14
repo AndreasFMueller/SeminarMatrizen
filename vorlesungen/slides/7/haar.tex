@@ -1,0 +1,84 @@
+%
+% haar.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Haar-Mass}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Invariantes Mass}
+Auf jeder lokalkompakten Gruppe $G$ gibt es ein \only<2->{invariantes }%
+Integral
+\begin{align*}
+\uncover<2->{\text{rechts:}}&&
+\int_G f(g)\,d\mu(g)
+&\uncover<2->{=
+\int_G f(gh)\,d\mu(g)}
+\\
+\uncover<3->{
+\text{links:}&&
+\int_G f(g)\,d\mu(g)
+&=
+\int_G f(hg)\,d\mu(g)}
+\end{align*}
+
+\end{block}
+\uncover<7->{%
+\begin{block}{Modulus-Funktion}
+$\mu$ linksinvariant, dann ist die Rechtsverschiebung ebenfalls
+linksinvariant
+\[
+\int_G f(gh) \, d\mu(g)
+\uncover<8->{
+=
+\int_G f(g) \Delta(h)\, d\mu(g)
+}
+\]
+\uncover<9->{$\Delta(h)$ heisst Modulus-Funktion}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{Beispiel: $G=\mathbb{R}$}
+\[
+\int_Gf(g)\,d\mu(g)
+=
+\int_{-\infty}^{\infty} f(x)\,dx
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<5->{%
+\begin{block}{Beispiel: $\operatorname{SO}(2)$}
+\[
+\int_{\operatorname{SO}(2)}
+f(g)\,d\mu(g)
+=
+\frac{1}{2\pi}
+\int_{0}^{2\pi} f(D_{\alpha})\,d\alpha
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<6->{%
+\begin{block}{Beispiel: $G$ endlich}
+\[
+\int_G f(g)\,d\mu(g) = \frac{1}{|G|}\sum_{g\in G}f(g)
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<10->{%
+\begin{block}{Unimodular}
+$\Delta(h)=1$ heisst rechtsinvariant = linksinvariant
+\\
+\uncover<11->{%
+$G$ kompakt $\Rightarrow$ unimodular
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

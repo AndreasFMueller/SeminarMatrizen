@@ -1,0 +1,157 @@
+%
+% scherungen.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{blau}{rgb}{0,0.8,1}
+\definecolor{blau}{rgb}{0,0.6,0}
+\def\s{1.1}
+
+\begin{scope}[xshift=-4.6cm]
+
+	\fill[color=blue!20] (0,0) rectangle (2,2);
+	\fill[color=red!40,opacity=0.5] (0,0) -- (2,\s) -- (2,{2+\s}) -- (0,2)
+		-- cycle;
+
+	\foreach \x in {-1,...,3}{
+		\draw[color=blau]  (\x,-1) -- (\x,3);
+		\draw[color=blau]  (-1,\x) -- (3,\x);
+	}
+
+	\begin{scope}
+		\clip (-1,-1) rectangle (3,3);
+		\foreach \x in {-1,...,3}{
+			\draw[color=orange] (\x,-1) -- (\x,3);
+			\draw[color=orange] (-1,{\x-0.5*\s}) -- (3,{\x+1.5*\s});
+		}
+	\end{scope}
+
+	\draw[->] (-1.1,0) -- (3.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-1.1) -- (0,3.5) coordinate[label={right:$y$}];
+
+	\node[color=blue] at (0,2) [above left] {$1$};
+	\node[color=blue] at (2,0) [below right] {$1$};
+	\draw[->,color=blue] (0,0) -- (2,0);
+	\draw[->,color=blue] (0,0) -- (0,2);
+
+	\draw[->,color=red] (0,0) -- (2,\s);
+	\draw[->,color=red] (0,0) -- (0,2);
+
+	\node[color=red] at (2,\s) [below right] {$(1,t)$};
+
+	\node at (0,0) [below right] {$O$};
+	\node at (1,-1.1) [below] {$\displaystyle
+		\begin{aligned}
+		M &= \begin{pmatrix}0&0\\1&0 \end{pmatrix}
+		\\
+		e^{Mt}
+		&=
+		\begin{pmatrix}1&0\\t&1 \end{pmatrix}
+		\end{aligned}
+	$};
+\end{scope}
+
+\begin{scope}
+	\fill[color=blue!20] (0,0) rectangle (2,2);
+	\fill[color=red!40,opacity=0.5] (0,0) -- (2,0) -- ({2+\s},2) -- (\s,2)
+		-- cycle;
+
+	\foreach \x in {-1,...,3}{
+		\draw[color=blau]  (\x,-1) -- (\x,3);
+		\draw[color=blau]  (-1,\x) -- (3,\x);
+	}
+
+	\begin{scope}
+		\clip (-1,-1) rectangle (3,3);
+		\foreach \x in {-1,...,3}{
+			\draw[color=orange] (-1,\x) -- (3,\x);
+			\draw[color=orange] ({\x-0.5*\s},-1) -- ({\x+1.5*\s},3);
+		}
+	\end{scope}
+
+	\draw[->] (-1.1,0) -- (3.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-1.1) -- (0,3.5) coordinate[label={right:$y$}];
+
+	\node[color=blue] at (0,2) [above left] {$1$};
+	\node[color=blue] at (2,0) [below right] {$1$};
+	\draw[->,color=blue] (0,0) -- (2,0);
+	\draw[->,color=blue] (0,0) -- (0,2);
+
+	\draw[->,color=red] (0,0) -- (2,0);
+	\draw[->,color=red] (0,0) -- (\s,2);
+
+	\node[color=red] at (\s,2) [above left] {$(t,1)$};
+
+	\node at (0,0) [below right] {$O$};
+	
+	\node at (1,-1.1) [below] {$\displaystyle
+		\begin{aligned} N &= \begin{pmatrix}0&1\\0&0 \end{pmatrix}
+		\\
+		e^{Nt}
+		&=
+		\begin{pmatrix}1&t\\0&1 \end{pmatrix}
+		\end{aligned}
+	$};
+\end{scope}
+
+\begin{scope}[xshift=3.6cm,yshift=0cm]
+	\def\punkt#1#2{({1.6005*(#1)+0.4114*(#2)},{-0.2057*(#1)+0.5719*(#2)})}
+	\fill[color=blue!20] (0,0) rectangle (2,2);
+	\fill[color=red!40,opacity=0.5]
+		(0,0) -- \punkt{2}{0} -- \punkt{2}{2} -- \punkt{0}{2} -- cycle;
+
+	\foreach \x in {0,...,4}{
+		\draw[color=blau]  (\x,-1) -- (\x,3);
+	}
+	\foreach \y in {-1,...,3}{
+		\draw[color=blau]  (0,\y) -- (4,\y);
+	}
+
+	\begin{scope}
+		\clip (-0,-1) rectangle (4,3);
+		\foreach \x in {-1,...,6}{
+			\draw[color=orange] \punkt{\x}{-3} -- \punkt{\x}{6};
+			\draw[color=orange] \punkt{-3}{\x} -- \punkt{6}{\x};
+		}
+	\end{scope}
+
+	\draw[->] (-0.1,0) -- (4.3,0) coordinate[label={$x$}];
+	\draw[->] (0,-1.1) -- (0,3.5) coordinate[label={right:$y$}];
+
+	\node[color=blue] at (0,2) [above left] {$1$};
+	\node[color=blue] at (2,0) [below right] {$1$};
+	\draw[->,color=blue] (0,0) -- (2,0);
+	\draw[->,color=blue] (0,0) -- (0,2);
+
+	\draw[->,color=red] (0,0) -- \punkt{2}{0};
+	\draw[->,color=red] (0,0) -- \punkt{0}{2};
+
+	\node at (0,0) [below right] {$O$};
+	
+	\node at (2,-1.1) [below] {$\displaystyle
+		\begin{aligned} D &= \begin{pmatrix}0.5&0.4\\-0.2&-0.5 \end{pmatrix}
+		\\
+		e^{D\cdot 1}
+		&=
+		\begin{pmatrix}
+			   1.6005 & 0.4114\\
+			  -0.2057 & 0.5719
+		\end{pmatrix}
+		\end{aligned}
+	$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

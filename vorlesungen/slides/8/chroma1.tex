@@ -1,0 +1,56 @@
+%
+% chroma1.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Schranke für $\operatorname{chr}(G)$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.40\textwidth}
+\begin{block}{Proposition}
+Ist $G$ ein Graph mit maximalem Grad $d$, dann gilt
+\[
+\operatorname{chr}(G) \le d + 1
+\]
+\end{block}
+\uncover<2->{%
+\begin{block}{Beispiel}
+\begin{itemize}
+\item<3->
+Peterson-Graph $G$: maximaler Grad ist $d=3$, aber
+\[
+\operatorname{chr}(G)
+=
+3
+< d+1=4
+\]
+\item<4->
+Voller Graph $V$: maximaler Grad ist $d=n-1$,
+\[
+\operatorname{chr}(V) = n = d+1
+\]
+\end{itemize}
+\end{block}}
+\end{column}
+\begin{column}{0.58\textwidth}
+\uncover<4->{%
+\begin{proof}[Beweis]
+Mit vollständiger Induktion, d.~h.~Annahme: Graphen mit $<n$ Knoten und
+maximalem Grad $d$ lassen sich mit höchstens $d+1$ Farben färben.
+\begin{itemize}
+\item<5-> $X$ ein Graph mit $n$ Knoten
+\item<6-> entferne den Knoten $v\in X$, $X'=X\setminus\{v\}$
+\item<7-> $X'$ lässt sich mit höchstens $d+1$ Farben einfärben
+\item<8-> $v$ hat höchstens $d$ Nachbarn, die höchsten $d$ verschiedene
+Farben haben
+\item<9-> Es bleibt eine Farbe für $v$
+\end{itemize}
+\end{proof}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

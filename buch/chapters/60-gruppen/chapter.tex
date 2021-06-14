@@ -7,11 +7,41 @@
 \label{buch:chapter:matrizengruppen}}
 \lhead{Matrizengruppen}
 \rhead{}
+Matrizen können dazu verwendet werden, Symmetrien von geometrischen oder
+physikalischen Systemen zu beschreiben.
+Neben diskreten Symmetrien wie zum Beispiel Spiegelungen gehören dazu
+auch kontinuierliche Symmetrien wie Translationen oder Invarianz einer
+phyisikalischen Grösse über die Zeit.
+Solche Symmetrien müssen durch Matrizen beschrieben werden können,
+die auf stetige oder sogar differenzierbare Art von der Zeit abhängen.
+Die Menge der Matrizen, die zur Beschreibung solcher Symmetrien benutzt
+werden, muss also eine zusätzliche Struktur haben, die ermöglicht, 
+sinnvoll über Stetigkeit und Differenzierbarkeit bei Matrizen
+zu sprechen.
+
+Die Menge der Matrizen bilden zunächst eine Gruppe,
+die zusätzliche differenziarbare Struktur macht daraus
+eine sogenannte Lie-Gruppe.
+Die Ableitungen nach einem Parameter liegen in der sogenannten
+Lie-Algebra, einer Matrizen-Algebra mit dem antisymmetrischen
+Lie-Klammer-Produkt $[A,B]=AB-BA$, auch Kommutator genannt.
+Lie-Gruppe und Lie-Algebra sind eng miteinander verknüpft,
+so eng, dass sich die meisten Eigenschaften der Gruppe aus den Eigenschaften
+der Lie-Gruppe aus der Lie-Algebra ableiten lassen.
+Die Verbindung wird hergestellt durch die Exponentialabbildung.
+Ziel dieses Kapitels ist, die Grundzüge dieses interessanten 
+Zusammenhangs darzustellen.
 
 \input{chapters/60-gruppen/symmetrien.tex}
 \input{chapters/60-gruppen/lie-gruppen.tex}
 \input{chapters/60-gruppen/lie-algebren.tex}
-\input{chapters/60-gruppen/homogen.tex}
+%\input{chapters/60-gruppen/homogen.tex}
 
-
+\section*{Übungsaufgaben}
+\rhead{Übungsaufgaben}
+\aufgabetoplevel{chapters/60-gruppen/uebungsaufgaben}
+\begin{uebungsaufgaben}
+\uebungsaufgabe{6002}
+\uebungsaufgabe{6001}
+\end{uebungsaufgaben}
 

@@ -1,0 +1,87 @@
+%
+% sn.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Nichtauflösbarkeit von $S_n$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Die symmetrische Gruppe $S_n$}
+Permutationen auf $n$ Elementen
+\[
+\sigma
+=
+\begin{pmatrix}
+1&2&3&\dots&n\\
+\sigma(1)&\sigma(2)&\sigma(3)&\dots&\sigma(n)
+\end{pmatrix}
+\]
+\end{block}
+\vspace{-10pt}
+\uncover<2->{%
+\begin{block}{Signum}
+$t(\sigma)=\mathstrut$ Anzahl Transpositionen
+\[
+\operatorname{sgn}(\sigma)
+=
+(-1)^{t(\sigma)}
+=
+\begin{cases}
+\phantom{-}1&\text{$t(\sigma)$ gerade}
+\\
+-1&\text{$t(\sigma)$ ungerade}
+\end{cases}
+\]
+Homomorphismus!
+\end{block}}
+\uncover<3->{%
+\begin{block}{Die alternierende Gruppe $A_n$}
+\vspace{-12pt}
+\[
+A_n = \ker \operatorname{sgn}
+=
+\{\sigma\in  S_n\;|\;\operatorname{sgn}(\sigma)=1\}
+\]
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<4->{%
+\begin{block}{Normale Untergruppe}
+\begin{itemize}
+\item
+$H\triangleleft G$ wenn $gHg^{-1}\subset G\;\forall g\in G$
+\item
+$G/N$ ist wohldefiniert
+\end{itemize}
+\end{block}}
+\vspace{-10pt}
+\uncover<5->{%
+\begin{block}{Einfache Gruppe}
+$G$ einfach $\Leftrightarrow$
+\[
+H\triangleleft G
+\;
+\Rightarrow
+\;
+\text{$H=\{e\}$ oder $H=G$}
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<6->{%
+\begin{block}{$n\ge 5 \Rightarrow A_n \text{ einfach}$}
+\begin{enumerate}
+\item<7-> Zeigen, dass $A_5$ einfach ist
+\item<8-> Vollständige Induktion: $A_n$ einfach $\Rightarrow A_{n+1}$ einfach
+\end{enumerate}
+\uncover<9->{%
+$\Rightarrow$ i.~A.~keine Lösung der 
+einer Polynomgleichung vom Grad $\ge 5$ durch Radikale
+}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

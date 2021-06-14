@@ -1,0 +1,93 @@
+%
+% phasenraum.tex -- 
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\m{1}
+\def\K{0.444}
+
+\pgfmathparse{sqrt(\K/\m)}
+\xdef\o{\pgfmathresult}
+
+\def\punkt#1#2{ ({#2*cos(#1)},{\o*#2*sin(#1)}) }
+
+\foreach \r in {0.5,1,...,6}{
+	\draw plot[domain=0:359,samples=360]
+			({\r*cos(\x)},{\o*\r*sin(\x)}) -- cycle;
+}
+
+\def\tangente#1#2{
+		\pgfmathparse{#2/\m}
+		\xdef\u{\pgfmathresult}
+
+		\pgfmathparse{-#1*\K}
+		\xdef\v{\pgfmathresult}
+
+		\pgfmathparse{sqrt(\u*\u+\v*\v)}
+		\xdef\l{\pgfmathresult}
+
+		\fill[color=blue] (#1,#2) circle[radius=0.03];
+		\draw[color=blue,line width=0.5pt]
+			({#1-0.2*\u/\l},{#2-0.2*\v/\l})
+			--
+			({#1+0.2*\u/\l},{#2+0.2*\v/\l});
+}
+
+\foreach \x in {-6.25,-5.75,...,6.3}{
+	\foreach \y in {-4.25,-3.75,...,4.3}{
+		\tangente{\x}{\y}
+	}
+}
+
+%\foreach \x in {0.5,1,...,5.5,6}{
+%	\tangente{\x}{0}
+%	\tangente{-\x}{0}
+%	\foreach \y in {0.5,1,...,4}{
+%		\tangente{\x}{\y}
+%		\tangente{-\x}{\y}
+%		\tangente{\x}{-\y}
+%		\tangente{-\x}{-\y}
+%	}
+%}
+%\foreach \y in {0.5,1,...,4}{
+%	\tangente{0}{\y}
+%	\tangente{0}{-\y}
+%}
+
+\fill[color=white,opacity=0.7] \punkt{60}{4} rectangle \punkt{59}{5.8};
+\fill[color=white,opacity=0.7] \punkt{0}{4} rectangle \punkt{18}{4.9};
+
+\draw[->,color=red,line width=1.4pt]
+	plot[domain=0:60,samples=360]
+		({4*cos(\x)},{\o*4*sin(\x)});
+
+\draw[->] (-6.5,0) -- (6.7,0) coordinate[label={$x$}];
+\draw[->] (0,-4.5) -- (0,4.7) coordinate[label={right:$p$}];
+
+\fill[color=red] \punkt{60}{4} circle[radius=0.08];
+\node[color=red] at \punkt{60}{4} [above right]
+	{$\begin{pmatrix}x(t)\\p(t)\end{pmatrix}$};
+
+\fill[color=red] \punkt{0}{4} circle[radius=0.08];
+\node[color=red] at \punkt{0}{4} [above right]
+	{$\begin{pmatrix}x_0\\0\end{pmatrix}$};
+
+\fill[color=white] (4,0) circle[radius=0.05];
+\node at (3.9,0) [below right] {$x_0$};
+\fill (0,{\o*4}) circle[radius=0.05];
+\node at (0.1,{\o*4+0.05}) [below left] {$\omega x_0$};
+
+\end{tikzpicture}
+\end{document}
+

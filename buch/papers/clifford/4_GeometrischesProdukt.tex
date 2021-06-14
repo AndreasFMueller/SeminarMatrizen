@@ -1,0 +1,59 @@
+\subsection{Geometrisches Produkt}
+Die Multiplikation von zwei Vektoren nennt man in der Clifford Algebra das geometrische Produkt, dieses können wir nun als Summe aus dem Skalar- und dem äusseren Produkt darstellen
+\begin{equation}
+    \textbf{u}\textbf{v} = \textbf{u}\cdot \textbf{v} + \textbf{u} \wedge \textbf{v}.
+\end{equation}
+Dieses Additionszeichen zwischen diesen zwei Produkten mag vielleicht ein wenig eigenartig wirken, da uns das Skalarprodukt ein Skalar und das äussere Produkt einen Bivektor zurück gibt. Was bedeutet es nun also diese beiden Elemente zu addieren?
+Man kann sich die Addition wie bei den komplexen Zahlen vorstellen, wobei die imaginäre Einheit auch nicht explizit zu dem reelen Teil addiert werden kann, sondern die zwei Teile zusammen ein Objekt, eine komplexe Zahl bilden. 
+Dieses Objekt, also die Summe von verschiedenen Elemente der Clifford Algebra, wird Multivektor genannt.
+\begin{definition}
+Ein Multivektor besteht aus den verschiedenen Bauteilen, wie zum Beispiel Vektoren, Bivektoren oder Trivektoren (Volumen mit einer Richtung), der Clifford Algebra.
+\begin{equation}
+    M = \sum \left ( \prod a_i\textbf{e}_j \right)
+\end{equation}
+\end{definition}
+Besteht eine Clifford Algebra aus n Basisvektoren so hat sie n Dimensionen, dies wird nicht wie in der linearen Algebra mit $\mathbb{R}^n$ sondern mit $\mathbb{G}^n$ beschrieben. 
+\begin{beispiel}
+Allgemeiner Multivektor in $\mathbb{G}^3$
+\begin{equation}
+    M = a 
+    + 
+    \underbrace{b\textbf{e}_1 + c\textbf{e}_2 + d\textbf{e}_3}_{\text{Vektorteil}} 
+    +
+    \underbrace{f\textbf{e}_1\textbf{e}_2 + g\textbf{e}_1\textbf{e}_3 + h\textbf{e}_2\textbf{e}_3 }_{\text{Bivektorteil}} 
+    +   
+    \underbrace{k\textbf{e}_1\textbf{e}_2\textbf{e}_3}_{\text{Trivektorteil}}
+\end{equation}
+\end{beispiel}
+\begin{definition}
+Um das Produkt von Basisvektoren in Zukunft darzustellen wird folgende Notation definiert
+    \begin{equation}
+        e_ie_j = e_{ij}
+    \end{equation}
+\end{definition}
+Nun da das geometrische Produkt vollständig definiert wurde können Multiplikationstabellen für verschiedene Dimensionen $\mathbb{G}^n$ erstellt werden. In \ref{tab:multip} ist dies für  $\mathbb{G}^3$ gemacht.
+\begin{table}
+    \caption{Multiplikationstabelle für $\mathbb{G^3}$}
+    \label{tab:multip}
+    \begin{center}
+    \begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+     \hline
+     1 & $\textbf{e}_1$ & $\textbf{e}_2$ &$\textbf{e}_3$ & $\textbf{e}_{12}$ & $\textbf{e}_{13}$ & $\textbf{e}_{23}$ & $\textbf{e}_{123}$\\
+     \hline
+     $\textbf{e}_1$ & 1 & $\textbf{e}_{12}$ & $\textbf{e}_{12}$ & $\textbf{e}_2$ & $\textbf{e}_3$ & $\textbf{e}_{123}$ & $\textbf{e}_{23}$\\
+     \hline
+     $\textbf{e}_2$ & $-\textbf{e}_{12}$ & 1 & $\textbf{e}_{23}$ & $-\textbf{e}_1$ & $-\textbf{e}_{123}$ & $\textbf{e}_3$ & $-\textbf{e}_{13}$\\
+     \hline
+     $\textbf{e}_3$ & $-\textbf{e}_{13}$ & $-\textbf{e}_{23}$ & 1 & $\textbf{e}_{123}$ & $-\textbf{e}_1$ & $-\textbf{e}_2$ & $\textbf{e}_{12}$\\
+     \hline
+     $\textbf{e}_{12}$ & -$\textbf{e}_2$ & $\textbf{e}_1$& $\textbf{e}_{123}$ & -1 & $-\textbf{e}_{23}$ & $\textbf{e}_{13}$ &  $-\textbf{e}_{3}$\\
+     \hline
+     $\textbf{e}_{13}$ & $-\textbf{e}_{3}$ & $-\textbf{e}_{123}$ & $\textbf{e}_{1}$ & $\textbf{e}_{23}$ & -1 & $-\textbf{e}_{12}$ &  $\textbf{e}_{2}$\\
+     \hline
+     $\textbf{e}_{23}$ &  $\textbf{e}_{123}$ & $-\textbf{e}_{3}$ & $\textbf{e}_{2}$ & $-\textbf{e}_{13}$ & $\textbf{e}_{12}$ & -1 & $-\textbf{e}_{1}$ \\
+     \hline
+     $\textbf{e}_{123}$ & $\textbf{e}_{23}$ & $-\textbf{e}_{13}$ & $\textbf{e}_{12}$ & $-\textbf{e}_{3}$& $\textbf{e}_{2}$ & $-\textbf{e}_{1}$ & -1 \\
+     \hline
+    \end{tabular}
+    \end{center}
+\end{table}

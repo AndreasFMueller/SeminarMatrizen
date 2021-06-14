@@ -7,5 +7,6 @@
 CHAPTERFILES = $(CHAPTERFILES)						\
 	chapters/70-graphen/beschreibung.tex				\
 	chapters/70-graphen/spektral.tex				\
+	chapters/70-graphen/waerme.tex					\
 	chapters/70-graphen/wavelets.tex				\
 	chapters/70-graphen/chapter.tex

@@ -1,0 +1,9 @@
+\babel@toc {ngerman}{}
+\beamer@sectionintoc {1}{Einführung}{2}{0}{1}
+\beamer@sectionintoc {2}{Polynom Ansatz}{5}{0}{2}
+\beamer@sectionintoc {3}{Diskrete Fourier Transformation}{13}{0}{3}
+\beamer@sectionintoc {4}{Reed-Solomon in Endlichen Körpern}{27}{0}{4}
+\beamer@sectionintoc {5}{Codierung eines Beispiels}{29}{0}{5}
+\beamer@sectionintoc {6}{Decodierung ohne Fehler}{31}{0}{6}
+\beamer@sectionintoc {7}{Decodierung mit Fehler}{36}{0}{7}
+\beamer@sectionintoc {8}{Nachricht Rekonstruieren}{43}{0}{8}

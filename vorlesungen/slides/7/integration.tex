@@ -1,0 +1,66 @@
+%
+% integration.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Invariante Integration}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Koordinatenwechsel}
+Die Koordinatentransformation
+$f\colon\mathbb{R}^n\to\mathbb{R}^n:x\to y$
+hat die Ableitungsmatrix
+\[
+t_{ij}
+=
+\frac{\partial y_i}{\partial x_j}
+\]
+\uncover<2->{%
+$n$-faches Integral
+\begin{gather*}
+\int\dots\int
+h(f(x))
+\det
+\biggl(
+\frac{\partial y_i}{\partial x_j}
+\biggr)
+\,dx_1\,\dots dx_n
+\\
+=
+\int\dots\int
+h(y)
+\,dy_1\,\dots dy_n
+\end{gather*}}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{auf einer Lie-Gruppe}
+Koordinatenwechsel sind Multiplikationen mit einer
+Matrix $g\in G$
+\end{block}}
+\uncover<4->{%
+\begin{block}{Volumenelement in $I$}
+Man muss nur das Volumenelement in $I$ in einem beliebigen
+Koordinatensystem definieren:
+\[
+dV = dy_1\,\dots\,dy_n
+\]
+\end{block}}
+\uncover<5->{%
+\begin{block}{Volumenelement in $g$}
+\[
+\text{``\strut}g\cdot dV\text{\strut''}
+=
+\det(g) \, dy_1\,\dots\,dy_n
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

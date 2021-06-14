@@ -1,0 +1,47 @@
+%
+% runden.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$n$ Runden}
+\vspace{-23pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Verschlüsselung}
+In Runde $i=0,\dots,n-1$
+\begin{enumerate}
+\item<2-> Wende die $S$-Box auf alle Bytes des Blocks an
+\item<3-> Führe den Zeilenschift durch
+\item<4-> Mische die Spalten
+\item<5-> Berechne den Schlüsselblock $i$  ($i=0$: ursprünglicher Schlüssel)
+\item<6-> Addiere (XOR) den Rundenschlüssel
+\end{enumerate}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<7->{%
+\begin{block}{Entschlüsselung}
+In Runde $i=0,\dots,n-1$
+\begin{enumerate}
+\item<8-> Addiere den Rundenschlüssel $n-1-i$
+\item<9-> Invertiere Spaltenmischung (mit $C^{-1}$)
+\item<10-> Invertiere den Zeilenshift
+\item<11-> Wende $S^{-1}$ an auf jedes Byte
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<12->{%
+\begin{block}{Charakteristika}
+\begin{itemize}
+\item<13-> Invertierbar
+\item<14-> Skalierbar: beliebig grosse Blöcke (Vielfache von 32\,bit)
+\item<15-> Keine ``magischen'' Schritte
+\end{itemize}
+\end{block}}
+\end{frame}
+\egroup

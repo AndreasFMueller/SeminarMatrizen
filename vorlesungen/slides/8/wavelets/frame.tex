@@ -1,0 +1,66 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Graph Wavelet Frame}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Frame-Vektoren}
+Zu Dilatationsfaktoren $A=\{a_i\,|\,i=1,\dots,N\}$
+konstruiere das Frame
+\begin{align*}
+F=
+\{&D_he_1,\dots,D_he_n,\\
+  &Dg_1e_1,\dots,Dg_1e_n,\\
+  &Dg_2e_1,\dots,Dg_2e_n,\\
+  &\dots\\
+  &Dg_Ne_1,\dots,Dg_Ne_n\}
+\end{align*}
+\uncover<2->{Notation:
+\begin{align*}
+v_{0,k}
+&=
+D_he_k
+\\
+v_{i,k}
+&=
+Dg_ie_k
+\end{align*}}
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{Frameoperator}
+\begin{align*}
+\mathcal{T}\colon \mathbb{R}^n\to\mathbb{R}^{nN}
+:
+v
+&\mapsto
+\begin{pmatrix}
+\uncover<4->{\langle D_he_1,v\rangle}\\
+\uncover<4->{\vdots}\\
+\uncover<4->{\langle D_he_n,v\rangle}\\
+\hline
+\uncover<5->{\langle D_{g_1}e_1,v\rangle}\\
+\uncover<5->{\vdots}\\
+\uncover<5->{\langle D_{g_1}e_n,v\rangle}\\
+\hline
+\uncover<6->{\vdots}\\
+\uncover<6->{\vdots}\\
+\hline
+\uncover<7->{\langle D_{g_N}e_1,v\rangle}\\
+\uncover<7->{\vdots}\\
+\uncover<7->{\langle D_{g_N}e_n,v\rangle}
+\end{pmatrix}
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

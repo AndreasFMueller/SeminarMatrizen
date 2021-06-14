@@ -1,0 +1,60 @@
+%
+% subgraph.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$\alpha_{\text{max}}$ eines Untergraphen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Satz}
+$X'$ ein echter Untergraph von $X$ mit Adjazenzmatrix $A'$ und grösstem
+Eigenwert $\alpha_{\text{max}}'$
+\[
+\alpha_{\text{max}}' \le \alpha_{\text{max}}
+\]
+\end{block}
+\uncover<2->{$V'$ die Knoten von $X'$}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{proof}[Beweis]
+\begin{itemize}
+\item<4->
+$f'$ der positive Eigenvektor von $A'$
+\item<5->
+Definiere 
+\[
+g(v)
+=
+\begin{cases}
+f'(v) &\qquad v\in V'\\
+0     &\qquad \text{sonst}
+\end{cases}
+\]
+\item<6-> Skalarprodukte:
+\begin{align*}
+\uncover<7->{\langle f',f'\rangle &= \langle g,g\rangle}
+\\
+\uncover<8->{\langle A'f',f'\rangle &\le \langle Ag,g\rangle}
+\end{align*}
+\item<9-> Vergleich
+\[
+\alpha_{\text{max}}'
+=
+\frac{\langle A'f',f'\rangle}{\langle f',f'\rangle}
+\uncover<10->{\le 
+\frac{\langle Ag,g\rangle}{\langle g,g\rangle}}
+\uncover<11->{\le
+\alpha_{\text{max}}}
+\]
+\end{itemize}
+\end{proof}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

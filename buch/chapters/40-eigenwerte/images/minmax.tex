@@ -1,0 +1,134 @@
+%
+% minmax.tex -- minimum und maximum
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+\def\mittellinie{
+	plot[domain=0:6.2832,samples=400]
+		({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159))})
+}
+
+\begin{scope}
+	\fill[color=darkgreen!20]
+		plot[domain=0:6.2832,samples=360]
+			({\x},{sin(180*\x/3.1415)})
+		--
+		plot[domain=6.2832:0,samples=360]
+			({\x},{cos(180*\x/3.1415)})
+		-- cycle;
+	\foreach \x in {0.5,1,...,6}{
+		\draw[color=darkgreen]
+			({\x},{sin(180*\x/3.1415)})
+			--
+			({\x},{cos(180*\x/3.1415)});
+	}
+
+	\node[color=darkgreen] at (2,-0.8) [left] {$|f(x)-g(x)|$};
+	\draw[color=darkgreen,line width=0.3pt] (2,-0.8) -- (2.5,-0.7);
+
+	\draw[color=blue,line width=1.4pt] plot[domain=0:6.29,samples=360]
+		({\x},{sin(180*\x/3.1415)});
+	\draw[color=red,line width=1.4pt] plot[domain=0:6.29,samples=360]
+		({\x},{cos(180*\x/3.1415)});
+	\draw[color=purple!50,line width=1.4pt] \mittellinie;
+	\node[color=purple!50] at (6.2832,0.5) [right] {$\frac12(f(x)+g(x))$};
+
+	\draw[->] (-0.1,0) -- (6.5,0) coordinate[label={below:$x$}];
+	\draw[->] (0,-1.1) -- (0,1.3) coordinate[label={right:$y$}];
+
+
+	\xdef\x{2}
+	\node[color=blue] at (\x,{sin(180*\x/3.1415)}) [above right] {$f(x)$};
+	\pgfmathparse{2.5*3.14159-\x}
+	\xdef\x{\pgfmathresult}
+	\node[color=red] at (\x,{cos(180*\x/3.1415)}) [above left] {$g(x)$};
+
+\end{scope}
+
+\draw[->,line width=4pt,color=gray!40] ({3.1415-1},-1.3) -- ({3.1415-2.3},-3);
+\draw[->,line width=4pt,color=gray!40] ({3.1415+1},-1.3) -- ({3.1415+2.3},-3);
+
+\node at ({3.1415-1.75},-2.15) [left] {$\frac12(f(x)+g(x))+\frac12|f(x)-g(x)|$};
+\node at ({3.1415+1.75},-2.15) [right] {$\frac12(f(x)+g(x))-\frac12|f(x)-g(x)|$};
+
+\def\s{(-0.1)}
+
+\begin{scope}[xshift=-3.4cm,yshift=-4.6cm]
+	\fill[color=darkgreen!20]
+		\mittellinie
+		--
+		plot[domain=6.2832:0,samples=400]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)+abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))})
+		-- cycle;
+	\foreach \x in {0.5,1,...,6}{
+		\draw[color=darkgreen]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)+abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))})
+			--
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159))});
+	}
+	\draw[color=darkgreen,line width=1.4pt]
+		plot[domain=6.2832:0,samples=400]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)+abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))});
+
+	\node[color=darkgreen] at (2,-0.3) [left] {$|f(x)-g(x)|$};
+	\draw[color=darkgreen,line width=0.3pt] (2,-0.3) -- (2.5,0.2);
+
+	\draw[color=purple!50,line width=1.4pt] \mittellinie;
+	\pgfmathparse{0.75*3.1415+\s}
+	\xdef\x{\pgfmathresult}
+	\node[color=darkgreen] at (\x,{sin(180*\x/3.1415)}) [above right]
+		{$\max(f(x),g(x))$};
+	\node[color=purple!50] at ({1.25*3.1415},-0.7) [below]
+		{$\frac12(f(x)+g(x))$};
+	\draw[->] (-0.1,0) -- (6.5,0) coordinate[label={$x$}];
+	\draw[->] (0,-1.1) -- (0,1.3) coordinate[label={right:$y$}];
+\end{scope}
+
+
+\begin{scope}[xshift=+3.4cm,yshift=-4.6cm]
+	\fill[color=darkgreen!20]
+		\mittellinie
+		--
+		plot[domain=6.2832:0,samples=400]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)-abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))})
+		-- cycle;
+	\foreach \x in {0.5,1,...,6}{
+		\draw[color=darkgreen]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)-abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))})
+			--
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159))});
+	}
+	\draw[color=darkgreen,line width=1.4pt]
+		plot[domain=6.2832:0,samples=400]
+			({\x},{0.5*(sin(180*\x/3.14159)+cos(180*\x/3.14159)-abs(sin(180*\x/3.14159)-cos(180*\x/3.14159)))});
+
+	\node[color=darkgreen] at (3,0.3) [right] {$|f(x)-g(x)|$};
+	\draw[color=darkgreen,line width=0.3pt] (3,0.3) -- (2.5,-0.4);
+
+	\draw[color=purple!50,line width=1.4pt] \mittellinie;
+	\pgfmathparse{0.75*3.1415-\s}
+	\xdef\x{\pgfmathresult}
+	\node[color=darkgreen] at (\x,{cos(180*\x/3.1415)}) [below left]
+		{$\min(f(x),g(x))$};
+	\node[color=purple!50] at ({0.25*3.1415},0.7) [above right]
+		{$\frac12(f(x)+g(x))$};
+	\draw[->] (-0.1,0) -- (6.5,0) coordinate[label={$x$}];
+	\draw[->] (0,-1.1) -- (0,1.3) coordinate[label={right:$y$}];
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

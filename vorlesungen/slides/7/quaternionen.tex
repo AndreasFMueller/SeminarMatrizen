@@ -1,0 +1,74 @@
+%
+% quaternionen.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Quaternionen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Quaternionen}
+$4$-dimensionaler $\mathbb{R}$-Vektorraum
+\[
+\mathbb{H}
+=
+\langle 1,i,j,k\rangle_{\mathbb{R}}
+\]
+mit Rechenregeln
+\[
+i^2=j^2=k^2=ijk=-1
+\]
+$x=x_0+x_1i+x_2j+x_3k\in\mathbb{H}$
+\begin{itemize}
+\item<2-> Realteil: $\operatorname{Re}x=x_0$
+\item<3-> Vektorteil: $\operatorname{Im}x=x_1i+x_2j+x_3k$
+\item<4-> Konjugation: $\overline{x}=\operatorname{Re}x-\operatorname{Im}x$
+\item<5-> Norm: $|x|^2 = x\overline{x} = x_0^2+x_1^2+x_2^2+x_3^2$
+\item<6-> Inverse: $x^{1}= \overline{x}/x\overline{x}$
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.50\textwidth}
+\uncover<7->{%
+\begin{block}{Skalarprodukt und Vektorprodukt}
+\begin{align*}
+pq
+&=
+\operatorname{Re}p \operatorname{Re}q
+-
+\operatorname{Im}p\cdot \operatorname{Im}q
+\\
+&\phantom{=}
++
+\operatorname{Re}p\operatorname{Im}q
++
+\operatorname{Im}p\operatorname{Re}q
++
+\operatorname{Im}p\times\operatorname{Im}q
+\end{align*}
+\end{block}}
+\uncover<8->{%
+\begin{block}{Einheitsquaternionen}
+$q\in \mathbb{H}$, $|q|=1, q^{-1}=\overline{q}$
+\end{block}}
+\uncover<9->{%
+\begin{block}{Polardarstellung}
+\[
+q = \cos\frac{\alpha}2 + \vec{n} \sin\frac{\alpha}2
+\]
+\vspace{-8pt}
+\begin{itemize}
+\item<10->
+Drehmatrix: 9 Parameter, 6 Bedingungen
+\item<11->
+Quaternionen: 4 Parameter, 1 Bedingung
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

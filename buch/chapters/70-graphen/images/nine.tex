@@ -1,0 +1,67 @@
+%
+% nine.tex -- Nine node graph to illustrate Wilf's theorem
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\def\kante#1#2{
+        \draw[shorten >= 0.2cm,shorten <= 0.2cm] (#1) -- (#2);
+}
+\def\knoten#1#2{
+                \fill[color=#2!30] (#1) circle[radius=0.2];
+                \draw[color=#2] (#1) circle[radius=0.2];
+                \draw (#1) circle[radius=0.2];
+}
+\def\R{1.5}
+\definecolor{rot}{rgb}{1,0,0}
+\definecolor{gruen}{rgb}{0,0.6,0}
+\definecolor{blau}{rgb}{0,0,1}
+
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\coordinate (A) at (0:\R);
+\coordinate (B) at (40:\R);
+\coordinate (C) at (80:\R);
+\coordinate (D) at (120:\R);
+\coordinate (E) at (160:\R);
+\coordinate (F) at (200:\R);
+\coordinate (G) at (240:\R);
+\coordinate (H) at (280:\R);
+\coordinate (I) at (320:\R);
+
+\knoten{A}{rot}
+\knoten{B}{blau}
+\knoten{C}{gruen}
+\knoten{D}{blau}
+\knoten{E}{rot}
+\knoten{F}{blau}
+\knoten{G}{rot}
+\knoten{H}{gruen}
+\knoten{I}{blau}
+
+\kante{A}{B}
+\kante{B}{C}
+\kante{C}{D}
+\kante{D}{E}
+\kante{E}{F}
+\kante{F}{G}
+\kante{G}{H}
+\kante{H}{I}
+\kante{I}{A}
+
+\kante{A}{C}
+\kante{A}{D}
+\kante{D}{G}
+
+
+\end{tikzpicture}
+\end{document}
+

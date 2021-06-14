@@ -1,0 +1,166 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Kommutator in $\operatorname{SO}(3)$}
+\vspace{-20pt}
+\begin{center}
+\begin{tikzpicture}[>=latex,thick]
+\def\t{14.0cm}
+\ifthenelse{\boolean{presentation}}{
+\only<1>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c01.jpg}};}
+\only<2>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c02.jpg}};}
+\only<3>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c03.jpg}};}
+\only<4>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c04.jpg}};}
+\only<5>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c05.jpg}};}
+\only<6>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c06.jpg}};}
+\only<7>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c07.jpg}};}
+\only<8>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c08.jpg}};}
+\only<9>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c09.jpg}};}
+\only<10>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c10.jpg}};}
+\only<11>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c11.jpg}};}
+\only<12>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c12.jpg}};}
+\only<13>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c13.jpg}};}
+\only<14>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c14.jpg}};}
+\only<15>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c15.jpg}};}
+\only<16>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c16.jpg}};}
+\only<17>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c17.jpg}};}
+\only<18>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c18.jpg}};}
+\only<19>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c19.jpg}};}
+\only<20>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c20.jpg}};}
+\only<21>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c21.jpg}};}
+\only<22>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c22.jpg}};}
+\only<23>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c23.jpg}};}
+\only<24>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c24.jpg}};}
+\only<25>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c25.jpg}};}
+\only<26>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c26.jpg}};}
+\only<27>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c27.jpg}};}
+\only<28>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c28.jpg}};}
+\only<29>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c29.jpg}};}
+\only<30>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c30.jpg}};}
+\only<31>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c31.jpg}};}
+\only<32>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c32.jpg}};}
+\only<33>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c33.jpg}};}
+\only<34>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c34.jpg}};}
+\only<35>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c35.jpg}};}
+\only<36>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c36.jpg}};}
+\only<37>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c37.jpg}};}
+\only<38>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c38.jpg}};}
+\only<39>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c39.jpg}};}
+\only<40>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c40.jpg}};}
+\only<41>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c41.jpg}};}
+\only<42>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c42.jpg}};}
+\only<43>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c43.jpg}};}
+\only<44>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c44.jpg}};}
+\only<45>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c45.jpg}};}
+\only<46>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c46.jpg}};}
+\only<47>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c47.jpg}};}
+\only<48>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c48.jpg}};}
+\only<49>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c49.jpg}};}
+\only<50>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c50.jpg}};}
+\only<51>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c51.jpg}};}
+\only<52>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c52.jpg}};}
+\only<53>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c53.jpg}};}
+\only<54>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c54.jpg}};}
+\only<55>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c55.jpg}};}
+\only<56>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c56.jpg}};}
+\only<57>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c57.jpg}};}
+\only<58>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c58.jpg}};}
+\only<59>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c59.jpg}};}
+}{}
+\only<60>{\node at (0,0) {
+\includegraphics[width=\t]{../slides/7/images/c/c60.jpg}};}
+\coordinate (A) at (-0.3,3);
+\coordinate (B) at (-1.1,2);
+\coordinate (C) at (-2.1,-1.2);
+\draw[->,color=red,line width=1.4pt]
+	(A)
+	to[out=-143,in=60]
+	(B)
+	to[out=-120,in=80]
+	(C);
+%\fill[color=red] (B) circle[radius=0.08];
+\node[color=red] at (-1.2,1.5) [above left] {$D_{x,\alpha}$};
+\coordinate (D) at (0.3,3.2);
+\coordinate (E) at (1.8,2.8);
+\coordinate (F) at (5.2,-0.3);
+\draw[->,color=blue,line width=1.4pt]
+	(D)
+	to[out=-10,in=157]
+	(E)
+	to[out=-23,in=120]
+	(F);
+\fill[color=blue] (E) circle[radius=0.08];
+\node[color=blue] at (2.4,2.4) [above right] {$D_{y,\beta}$};
+\draw[->,color=darkgreen,line width=1.4pt]
+	(0.7,-3.1) to[out=1,in=-160] (3.9,-2.6);
+\node[color=darkgreen] at (2.5,-3.4) {$D_{z,\gamma}$};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+\egroup

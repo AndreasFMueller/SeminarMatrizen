@@ -1,0 +1,108 @@
+%
+% normalbeispiel.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\definecolor{darkred}{rgb}{0.8,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Beispiele für normale Matrizen}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.49\textwidth}
+\uncover<3->{%
+\begin{block}{Symmetrisch und Antisymmetrisch}
+$A\in M_n(\mathbb{C})$
+\begin{align*}
+A&=\pm A^t &&\Rightarrow &AA^* &=A\overline{A^t} =\pm A\overline{A}
+\\
+ &      &&            &     &=\pm\overline{A}A =\overline{A^t}A
+\\
+ &      &&            &     &=A^*A
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.49\textwidth}
+\uncover<4->{%
+\begin{block}{Orthogonal}
+$A\in M_n(\mathbb{R})\;\Rightarrow\; A^*=A^t$
+\begin{align*}
+AA^t&=I &&\Rightarrow& AA^*&=AA^t=I\\
+    &   &&           &     &=A^tA=A^*A
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+\vspace{-15pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.49\textwidth}
+\uncover<1->{%
+\begin{block}{Hermitesch und Antihermitesch}
+$A\in M_n(\mathbb{C})$
+\begin{align*}
+A&=\pm A^* &&\Rightarrow &AA^* &=\pm A^2=A^*A
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.49\textwidth}
+\uncover<2->{%
+\begin{block}{Unitär}
+$A\in M_n(\mathbb{C})$
+\begin{align*}
+AA^*&=I &&\Rightarrow& AA^*=I=A^*A
+\end{align*}
+\end{block}}
+\end{column}
+\end{columns}
+%\uncover<5->{%
+%\begin{block}{Weitere}
+%$N\in M_n(\mathbb{C})$ nilpotent, $N^k=0$\uncover<11->{
+%$\Rightarrow$
+%normal für $l=k-l\Rightarrow l=\frac{k}{2}$}
+%\uncover<6->{%
+%\[
+%\left.
+%\begin{aligned}
+%A  &=N^l+(N^t)^{k-l}
+%\\
+%A^t&=(N^t)^l+N^{k-1}
+%\end{aligned}
+%\right\}
+%\uncover<7->{%
+%\Rightarrow
+%\left\{
+%\begin{aligned}
+%\mathstrut
+%A^t A
+%&\only<8>{=
+%((N^t)^l+N^{k-l}) (N^l+(N^t)^{k-l})}
+%\uncover<9->{=
+%{\color<10>{darkgreen}(N^t)^lN^l}
+%\only<9>{+
+%{\color{orange}(N^t)^k}}
+%+
+%{\color<10>{darkred}N^{k-l}(N^t)^{k-l}}
+%\only<9>{+
+%{\color{orange}N^k}}}
+%\\
+%\mathstrut
+%A A^t
+%&\only<8>{= 
+%(N^l+(N^t)^{k-l})((N^t)^l+N^{k-l})}
+%\uncover<9->{=
+%{\color<10>{darkred}N^l(N^t)^l}
+%+
+%\only<9>{{\color{orange}N^k}
+%+
+%{\color{orange}(N^t)^k}
+%+}
+%{\color<10>{darkgreen}(N^t)^{k-l}N^{k-l}}}
+%\end{aligned}
+%\right.}
+%\hspace{20cm}
+%\]}
+%\end{block}}
+\end{frame}

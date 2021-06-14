@@ -1,0 +1,110 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Drehungen mit Quaternionen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Drehung?}
+Abbildung von $\vec{x}$ mit $\operatorname{Re}\vec{x}=0$:
+\[
+\varrho_{q}
+\colon
+\vec{x}\mapsto  q\vec{x}q^{-1} = q\vec{x}\overline{q}
+\]
+\end{block}
+\uncover<2->{%
+\begin{block}{Achse}
+\begin{align*}
+\varrho_q(q)
+&=
+qq\overline{q}
+\uncover<3->{=
+q(qq^{-1})}
+\uncover<4->{=
+q}
+\end{align*}
+\end{block}}
+\uncover<4->{%
+\begin{block}{Norm}
+\begin{align*}
+|\varrho_q(\vec{x})|^2
+&=
+q\vec{x}\overline{q}\overline{(q\vec{x}\overline{q})}
+\uncover<5->{=
+q\vec{x}\overline{q}\overline{\overline{q}}\overline{\vec{x}}\overline{q}
+}
+\\
+&\uncover<6->{=
+q\vec{x}(\overline{q}q)\overline{\vec{x}}\overline{q}}
+\uncover<7->{=
+q(\vec{x}\overline{\vec{x}})\overline{q}}
+\uncover<8->{=
+q\overline{q}|\vec{x}|^2}
+\\
+&\uncover<9->{=
+|\vec{x}|^2}
+\end{align*}
+\uncover<10->{%
+$\Rightarrow$ $\varrho_q\in\operatorname{O}(3)$}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<11->{%
+\begin{block}{Drehung!}
+$\vec{a},\vec{b},\vec{n}$ bilden ein on.~Rechtssystem
+\begin{align*}
+\uncover<12->{
+qa
+&=
+c\vec{a}+s\vec{n}\times \vec{a}}
+\uncover<13->{=
+c\vec{a} + s\vec{b}}
+\\
+\uncover<14->{
+q\vec{a}\overline{q}
+&=
+(c\vec{a}+s\vec{b}) c
+-(c\vec{a}+s\vec{b})\times s\vec{n}}
+\\
+&\uncover<15->{=
+c^2 \vec{a}+ sc\vec{b}
++sc\vec{b} - s^2 \vec{a}}
+\\
+&\uncover<16->{=
+\vec{a} \cos\alpha  +\vec{b} \sin\alpha }
+\end{align*}
+\vspace{-5pt}
+\uncover<17->{wegen
+%\vspace{-5pt}
+\[
+\begin{aligned}
+\cos\alpha &= \cos^2\frac{\alpha}2 - \sin^2\frac{\alpha}2 &&=c^2-s^2
+\\
+\sin\alpha &= 2\cos\frac{\alpha}2\sin\frac{\alpha}2&&=2cs
+\end{aligned}\]}
+\end{block}}
+\vspace{-18pt}
+\uncover<18->{%
+\begin{block}{Matrix}
+\[
+D
+=
+\tiny
+\begin{pmatrix}
+1-2(q_2^2+q_3^2)&-2q_0q_3+2q_1q_2&-2q_0q_2+2q_1q_3\\
+ 2q_0q_3+2q_1q_2&1-2(q_1^2+q_3^2)&-2q_0q_1+2q_2q_3\\
+-2q_0q_2+2q_1q_3& 2q_0q_1+2q_2q_3&1-2(q_1^2+q_2^2)
+\end{pmatrix}
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

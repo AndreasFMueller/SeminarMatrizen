@@ -28,8 +28,19 @@ buch.ind:	buch.idx
 separate:	buch.aux buch.pdf
 	bash splitpapers
 
-numerik.pdf:	
-	pdfjam --outfile numerik.pdf \
+matrizen.pdf:	
+	pdfjam --outfile matrizen.pdf \
 		../cover/front.pdf 1,{} \
 		buch.pdf 1-504 \
 		../cover/back.pdf {},1
+
+tests:	test1.pdf test2.pdf test3.pdf
+
+test1.pdf:	common/test-common.tex common/test1.tex aufgaben1.tex
+	pdflatex common/test1.tex
+
+test2.pdf:	common/test-common.tex common/test1.tex aufgaben2.tex
+	pdflatex common/test2.tex
+
+test3.pdf:	common/test-common.tex common/test1.tex aufgaben3.tex
+	pdflatex common/test3.tex

@@ -1,0 +1,71 @@
+%
+% charakteristisk.tex
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Primkörper und Charakteristik}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Primkörper}
+$1\in\Bbbk$
+\begin{enumerate}
+\item<2->
+$n\cdot 1\ne 0\;\forall n\in\mathbb{N}$\uncover<3->{:
+$\Rightarrow$
+$\mathbb{Z}\subset \Bbbk$}
+\uncover<4->{%
+$\Rightarrow$
+$\mathbb{Q}\subset \Bbbk$}
+\item<5->
+$\{n\mathbb{Z}\;|\;
+\text{$n\cdot 1 = 0$ in $\Bbbk$}\}
+=
+p\mathbb{Z}$
+\uncover<6->{
+$\Rightarrow$
+$\mathbb{F}_p\subset \Bbbk$}
+\end{enumerate}
+\end{block}
+\uncover<7->{%
+\begin{block}{Primkörper}
+Der Primkörper $\operatorname{Prim}(\Bbbk)$
+eines Körpers $\Bbbk$ ist der kleinste in $\Bbbk$
+enthaltene Körper
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<8->{%
+\begin{block}{Charakteristik}
+\vspace{-10pt}
+\[
+\operatorname{char}(\Bbbk)
+=
+\begin{cases}
+\uncover<9->{p&\qquad \operatorname{Prim}(\Bbbk) = \mathbb{F}_p}\\
+\uncover<10->{0&\qquad \operatorname{Prim}(\Bbbk) = \mathbb{Q}}
+\end{cases}
+\]
+\vspace{-10pt}
+\end{block}}
+\uncover<11->{%
+\begin{block}{Vektorraum}
+$\Bbbk$ ist ein Vektorraum über $\operatorname{Prim}(\Bbbk)$
+durch Einschränkung der Multiplikation auf $\operatorname{Prim}(\Bbbk)$
+(Körperstruktur vergessen)
+\end{block}}
+\uncover<12->{%
+\begin{block}{Endliche Körper}
+\begin{itemize}
+\item<13->
+Endliche Körper haben immer Charakteristik $p\ne 0$
+\item<14->
+$\Bbbk$ ist eine endlichdimensionaler $\mathbb{F}_p$-Vektorraum
+\end{itemize}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}

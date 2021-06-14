@@ -1,0 +1,107 @@
+%
+% wurzelapprox.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{5.7}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\input{wa.tex}
+
+\begin{scope}[xshift=-0.63cm]
+
+\draw[->] (-0.01,0) -- (1.05,0) coordinate[label={$t$}];
+
+\begin{scope}
+	\clip (0,0) rectangle (1,1.01);
+	\draw[color=blue,line width=1.6pt] \pfada;
+	\draw[color=blue,line width=1.2pt] \pfadb;
+	\draw[color=blue,line width=1.2pt] \pfadc;
+	\draw[color=blue,line width=1.2pt] \pfadd;
+	\draw[color=blue,line width=1.2pt] \pfade;
+	\draw[color=blue,line width=1.2pt] \pfadf;
+	\draw[color=blue,line width=1.2pt] \pfadg;
+	\draw[color=blue,line width=1.2pt] \pfadh;
+	\draw[color=blue,line width=1.2pt] \pfadi;
+	\draw[color=blue,line width=1.2pt] \pfadj;
+
+	\draw[color=red,line width=1.6pt]
+		plot[domain=0:1.01,samples=100] ({\x*\x},{\x});
+\end{scope}
+
+\node[color=red] at (0.5,0.707) [above,rotate={atan(0.5)}] {$\sqrt{t}$};
+
+\draw[->] (0,-0.01) -- (0,1.05) coordinate[label={right:$u_n(t)$}];
+
+\foreach \x in {2,4,...,8}{
+	\draw ({0.1*\x},-0.01) -- ({0.1*\x},0.01);
+	\node at ({0.1*\x},-0.01) [below] {0.\x\strut};
+	\draw (-0.01,{0.1*\x}) -- (0.01,{0.1*\x});
+	\node at (-0.01,{0.1*\x}) [left] {0.\x\strut};
+}
+\draw (1,-0.01) -- (1,0.01);
+\node at (1,-0.01) [below] {1.0\strut};
+\node at (0,-0.01) [below] {0\strut};
+
+\draw (-0.01,1) -- (0.01,1);
+\node at (-0.01,1) [left] {1.0\strut};
+
+\node[color=blue] at (1.01,0) [above left] {$u_0(t)$};
+\node[color=blue] at (1,0.51) [below left,rotate={atan(0.5)}] {$u_1(t)$};
+\node[color=blue] at (1,{0.86+0.03}) [below left,rotate={atan(0.86)}] {$u_2(t)$};
+\node[color=blue] at (1,1.00) [below left,rotate={atan(0.5)}] {$u_3(t)$};
+
+\end{scope}
+
+\begin{scope}[xshift=0.63cm]
+
+\begin{scope}
+	\clip (0,0) rectangle (1,1.01);
+	\draw[color=darkgreen,line width=1.2pt] \fehlera;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerb;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerc;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerd;
+	\draw[color=darkgreen,line width=1.2pt] \fehlere;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerf;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerg;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerh;
+	\draw[color=darkgreen,line width=1.2pt] \fehleri;
+	\draw[color=darkgreen,line width=1.2pt] \fehlerj;
+\end{scope}
+
+\draw[->] (0,-0.01) -- (0,1.05) coordinate[label={right:${\color{red}\sqrt{t}}-{\color{blue}u_n(t)}$}];
+\draw[->] (-0.01,0) -- (1.05,0) coordinate[label={$t$}];
+
+\foreach \x in {2,4,...,9}{
+	\draw ({0.1*\x},-0.01) -- ({0.1*\x},0.01);
+	\node at ({0.1*\x},-0.01) [below] {0.\x\strut};
+	\draw (-0.01,{0.1*\x}) -- (0.01,{0.1*\x});
+	\node at (-0.01,{0.1*\x}) [left] {0.\x\strut};
+}
+\draw (1,-0.01) -- (1,0.01);
+\node at (1,-0.01) [below] {1.0\strut};
+\node at (0,-0.01) [below] {0\strut};
+
+\draw (-0.01,1) -- (0.01,1);
+\node at (-0.01,1) [left] {1.0\strut};
+
+\node[color=darkgreen] at (1,1) [below left,rotate={atan(0.5)}] {$n=0$};
+\node[color=darkgreen] at (1,0.5) [above left] {$n=1$};
+\node[color=darkgreen] at (1,0.13) [above left,rotate=-13] {$n=2$};
+\node[color=darkgreen] at (1,0.00) [above left,rotate=-9] {$n=3$};
+
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

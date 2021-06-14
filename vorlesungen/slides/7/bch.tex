@@ -1,0 +1,76 @@
+%
+% bch.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Baker-Campbell-Hausdorff-Formel}
+$g(t),h(t)\in G
+\uncover<2->{\Rightarrow \exists A,B\in LG\text{ mit }
+g(t)=\exp At, h(t)=\exp Bt}$
+\uncover<3->{%
+\begin{align*}
+g(t)
+&=
+I + At + \frac{A^2t^2}{2!} + \frac{A^3t^3}{3!} + \dots,
+&
+h(t)
+&=
+I + Bt + \frac{B^2t^2}{2!} + \frac{B^3t^3}{3!} + \dots
+\end{align*}}
+\uncover<5->{%
+\begin{block}{Kommutator in G: $c(t) = g(t)h(t)g(t)^{-1}h(t)^{-1}$}
+\begin{align*}
+\uncover<6->{c(t)
+&=
+\biggl(
+  {\color<7,9-11,13-15,19-21>{red}I}
+  + {\color<8,16-19>{red}A}t
+  + \frac{{\color<12>{red}A^2}t^2}{2!}
+  + \dots
+\biggr)
+\biggl(
+  {\color<7,8,10-12,14-15,17-18,21>{red}I}
+  + {\color<9,16,19-20>{red}B}t
+  + \frac{{\color<13>{red}B^2}t^2}{2!}
+  + \dots
+\biggr)
+\exp(-{\color<10,14,17,19,21>{red}A}t)
+\exp(-{\color<11,15,18,20-21>{red}B}t)
+}
+\\
+&\uncover<7->{={\color<7>{red}I}}
+\uncover<8->{+t(
+   \uncover<8->{  {\color<8>{red}A}}
+   \uncover<9->{+ {\color<9>{red}B}}
+   \uncover<10->{- {\color<10>{red}A}}
+   \uncover<11->{- {\color<11>{red}B}}
+)}
+\uncover<12->{+\frac{t^2}{2!}(
+  \uncover<12->{  {\color<12>{red}A^2}}
+  \uncover<13->{+ {\color<13>{red}B^2}}
+  \uncover<14->{+ {\color<14>{red}A^2}}
+  \uncover<15->{+ {\color<15>{red}B^2}}
+)}
+\\
+&\phantom{\mathstrut=I}
+\uncover<12->{+t^2(
+     \uncover<16->{  {\color<16>{red}AB}}
+     \uncover<17->{- {\color<17>{red}A^2}}
+     \uncover<18->{- {\color<18>{red}AB}}
+     \uncover<19->{- {\color<19>{red}BA}}
+     \uncover<20->{- {\color<20>{red}B^2}}
+     \uncover<21->{+ {\color<21>{red}AB}}
+)}
+\uncover<22->{+t^3(\dots)+\dots}
+\\
+&\uncover<23->{=
+I + \frac{t^2}{2}[A,B] + o(t^3)
+}
+\end{align*}}
+\end{block}
+\end{frame}
+\egroup

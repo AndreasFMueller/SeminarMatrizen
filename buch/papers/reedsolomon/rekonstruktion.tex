@@ -1,0 +1,185 @@
+%
+% rekonstruktion.tex
+% Autor: Michael Steiner
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Nachricht Rekonstruieren
+\label{reedsolomon:section:rekonstruktion}}
+\rhead{Rekonstruktion}
+Im letzten Kapitel haben wir eine Möglichkeit gefunden, wie wir die fehlerhaften Stellen lokalisieren können.
+Mit diesen Stellen soll es uns nun möglich sein, aus dem fehlerhaften empfangenen Nachrichtenvektor wieder unsere Nachricht zu rekonstruieren.
+Das Lokatorpolynom
+\[
+l(X) = (X - a^3)(X-a^8)
+\]
+markiert dabei diese fehlerhaften Stellen im Übertragungsvektor
+\[
+w = [5,3,6,8,2,10,2,7,1,4].
+\]
+Als Ausgangslage verwenden wir die Matrix, mit der wir den Nachrichtenvektor ursprünglich codiert haben.
+Unser Ziel ist es wie auch schon im Abschnitt \ref{reedsolomon:section:decohnefehler} eine Möglichkeit zu finden, wie wir den Übertragungsvektor decodieren können. 
+Aufgrund der Fehlerstellen müssen wir aber davon ausgehen, das wir nicht mehr den gleichen Weg verfolgen können wie wir im Abschnitt \ref{reedsolomon:section:decohnefehler} angewendet haben.
+
+Wir stellen also die Matrix auf und markieren gleichzeitig die Fehlerstellen.
+\[
+\textcolor{gray}{
+	\begin{pmatrix}
+		a^0 \\ a^1 \\ a^2 \\ \textcolor{red}{a^3} \\ a^4 \\ a^5 \\ a^6 \\ a^7 \\ \textcolor{red}{a^8} \\ a^9 \\
+\end{pmatrix}}
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ \textcolor{red}{8} \\ 2 \\ 10 \\ 2 \\ 7 \\ \textcolor{red}{1} \\ 4 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&	8^9\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
+	\textcolor{red}{8^0}&	\textcolor{red}{8^3}&	\textcolor{red}{8^6}&	\textcolor{red}{8^9}& \textcolor{red}{8^{12}}& \textcolor{red}{8^{15}}& \textcolor{red}{8^{18}}& \textcolor{red}{8^{21}}& \textcolor{red}{8^{24}}& \textcolor{red}{8^{27}}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& 8^{24}& 8^{28}& 8^{32}& 8^{36}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& 8^{30}& 8^{35}& 8^{40}& 8^{45}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& 8^{36}& 8^{42}& 8^{48}& 8^{54}\\
+	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& 8^{42}& 8^{49}& 8^{56}& 8^{63}\\
+	\textcolor{red}{8^0}&	\textcolor{red}{8^8}& \textcolor{red}{8^{16}}& \textcolor{red}{8^{24}}& \textcolor{red}{8^{32}}& \textcolor{red}{8^{40}}& \textcolor{red}{8^{48}}& \textcolor{red}{8^{56}}& \textcolor{red}{8^{64}}& \textcolor{red}{8^{72}}\\
+	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& 8^{54}& 8^{63}& 8^{72}& 8^{81}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ m_6 \\ m_7 \\ m_8 \\ m_9 \\
+\end{pmatrix}
+\]
+Die rot markierten Stellen im Übertragungsvektor enthalten Fehler und bringt uns daher kein weiterer Nutzen. 
+Aus diesem Grund werden diese Stellen aus dem Vektor entfernt, was wir hier ohne Probleme machen können, da dieser Code ja über Fehlerkorrekturstellen verfügt, deren Aufgabe es ist, eine bestimmte Anzahl an Fehler kompensieren zu können.
+Die dazugehörigen Zeilen in der Matrix werden ebenfalls entfernt, da die Matrix gleich viele Zeilen wie im Übertragungsvektor aufweisen muss, damit man ihn decodieren kann.
+
+Daraus resultiert
+\[
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ 7 \\ 4 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	8^6&	8^7&    8^8&    8^9\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& 8^{12}& 8^{14}& 8^{16}& 8^{18}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& 8^{24}& 8^{28}& 8^{32}& 8^{36}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& 8^{30}& 8^{35}& 8^{40}& 8^{45}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& 8^{36}& 8^{42}& 8^{48}& 8^{54}\\
+	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& 8^{42}& 8^{49}& 8^{56}& 8^{63}\\
+	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& 8^{54}& 8^{63}& 8^{72}& 8^{81}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ m_6 \\ m_7 \\ m_8 \\ m_9 \\
+\end{pmatrix}
+.
+\]
+Die Matrix ist jedoch nicht mehr quadratisch, was eine Rekonstruktion durch Inversion ausschliesst. 
+Um die quadratische Form wieder herzustellen müssen wir zwei Spalten aus der Matrix entfernen.
+Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, das die Nachricht aus Nutzdatenteil und Fehlerkorrekturteil besteht, wobei der letzteres bekanntlich aus lauter Nullstellen besteht.
+\[
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ 7 \\ 4 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}&    \textcolor{darkgreen}{8^0}\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5&	\textcolor{darkgreen}{8^6}&	   \textcolor{darkgreen}{8^7}&    \textcolor{darkgreen}{8^8}&    \textcolor{darkgreen}{8^9}\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}& \textcolor{darkgreen}{8^{12}}& \textcolor{darkgreen}{8^{14}}& \textcolor{darkgreen}{8^{16}}& \textcolor{darkgreen}{8^{18}}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}& \textcolor{darkgreen}{8^{24}}& \textcolor{darkgreen}{8^{28}}& \textcolor{darkgreen}{8^{32}}& \textcolor{darkgreen}{8^{36}}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}& \textcolor{darkgreen}{8^{30}}& \textcolor{darkgreen}{8^{35}}& \textcolor{darkgreen}{8^{40}}& \textcolor{darkgreen}{8^{45}}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}& \textcolor{darkgreen}{8^{36}}& \textcolor{darkgreen}{8^{42}}& \textcolor{darkgreen}{8^{48}}& \textcolor{darkgreen}{8^{54}}\\
+	8^0&	8^7& 8^{14}& 8^{21}& 8^{28}& 8^{35}& \textcolor{darkgreen}{8^{42}}& \textcolor{darkgreen}{8^{49}}& \textcolor{darkgreen}{8^{56}}& \textcolor{darkgreen}{8^{63}}\\
+	8^0&	8^9& 8^{18}& 8^{27}& 8^{36}& 8^{45}& \textcolor{darkgreen}{8^{54}}& \textcolor{darkgreen}{8^{63}}& \textcolor{darkgreen}{8^{72}}& \textcolor{darkgreen}{8^{81}}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor{darkgreen}{m_6} \\ \textcolor{darkgreen}{m_7} \\ \textcolor{darkgreen}{m_8} \\ \textcolor{darkgreen}{m_9} \\
+\end{pmatrix}
+\]
+Wir nehmen die entsprechenden Spalten aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
+\[
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ \textcolor{red}{7} \\ \textcolor{red}{4} \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}\\
+	\textcolor{red}{8^0}&	\textcolor{red}{8^7}& \textcolor{red}{8^{14}}& \textcolor{red}{8^{21}}& \textcolor{red}{8^{28}}& \textcolor{red}{8^{35}}\\
+	\textcolor{red}{8^0}&	\textcolor{red}{8^9}& \textcolor{red}{8^{18}}& \textcolor{red}{8^{27}}& \textcolor{red}{8^{36}}& \textcolor{red}{8^{45}}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\
+\end{pmatrix}
+.
+\]
+Die roten Zeilen können wir aufgrund der Überbestimmtheit ebenfalls entfernen und erhalten so die gesuchte quadratische Matrix
+\[
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
+	8^0&	8^1&	8^2&	8^3&	8^4&	8^5\\
+	8^0&	8^2&	8^4&	8^6&	8^8& 8^{10}\\
+	8^0&	8^4&	8^8& 8^{12}& 8^{16}& 8^{20}\\
+	8^0&	8^5& 8^{10}& 8^{15}& 8^{20}& 8^{25}\\
+	8^0&	8^6& 8^{12}& 8^{18}& 8^{24}& 8^{30}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\
+\end{pmatrix}
+.
+\]
+Nun können wir den Gauss-Algorithmus anwenden um die Matrix zu Invertieren.
+\[
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	1&  1& 1&  1& 1&  1\\
+	1&  8& 9&  6& 4& 10\\
+	1&  9& 4&  3& 5&  1\\
+	1&  4& 5&  9& 3&  1\\
+	1& 10& 1& 10& 1& 10\\
+	1&  3& 9&  5& 4&  1\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\
+\end{pmatrix}
+\qquad
+\Rightarrow
+\qquad
+\begin{pmatrix}
+	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	6&  4&  4&  6& 2&  1\\
+	2&  7& 10&  3& 4&  7\\
+	1&  8&  9&  8& 3&  4\\
+	3&  6&  6&  4& 5&  9\\
+	10& 10&  9&  8& 1&  6\\
+	1&  9&  6&  4& 7&  6\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\
+\end{pmatrix}
+\]
+Multiplizieren wir nun aus, erhalten wir unseren Nutzdatenteil
+\[
+m = [4,7,2,5,8,1]
+\]
+zurück, den wir ursprünglich versendet haben.
+

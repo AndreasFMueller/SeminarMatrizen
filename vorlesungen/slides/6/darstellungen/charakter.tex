@@ -1,0 +1,108 @@
+%
+% chrakter.tex -- Charakter einer Darstellung
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Charakter einer Darstellung}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.44\textwidth}
+\begin{block}{Definition}
+$\varrho\colon G\to\operatorname{GL}_n(\mathbb{C})$ eine Darstellung.
+\\
+Der {\em Charakter} von $\varrho$ ist die Abbildung
+\[
+\chi_{\varrho}
+\colon
+G\to \mathbb{C}^n
+:
+g\mapsto \chi_{\varrho}(g)=\operatorname{Spur}\varrho(g)
+\]
+\end{block}
+\uncover<2->{%
+\begin{block}{Eigenschaften}
+\begin{enumerate}
+\item
+$\chi_{\varrho}(e) = n$
+\item<6->
+$\chi_{\varrho}(g^{-1}) = \overline{\chi_{\varrho}(g)}$
+\item<15->
+$\chi_{\varrho}(hgh^{-1}) = \chi_{\varrho}(g)$
+\end{enumerate}
+\uncover<21->{%
+Aus 3. folgt, dass Charaktere {\em Klassenfunktionen} sind}
+\end{block}}
+\end{column}
+\begin{column}{0.52\textwidth}
+\uncover<2->{%
+\begin{block}{Begründung}
+\begin{enumerate}
+\item<3->
+$\chi_{\varrho}(e)
+=
+\operatorname{Spur}\varrho(e)
+\uncover<4->{=
+\operatorname{Spur}I_n}
+\uncover<5->{=
+n}
+$
+\item<6->
+$g$ hat endliche Ordnung, d.~h.~$g^k=e$
+\\
+\uncover<7->{%
+$\lambda_i$ in der Jordan-NF erfüllen $\lambda_i^k=1$}
+\\
+$\uncover<8->{\Rightarrow|\lambda_i|=1}
+\uncover<9->{\Rightarrow \lambda_i^{-1} = \overline{\lambda_i}}$
+\begin{align*}
+\uncover<10->{
+\llap{$\chi_{\varrho}(g^{-1})$}
+&=
+\operatorname{Spur}(\varrho(g^{-1}))}
+\uncover<11->{=
+\sum_{i} n_i\overline{\lambda_i}}
+\\[-4pt]
+&\uncover<12->{=
+\overline{
+\sum_{i} n_i\lambda_i
+}}
+\uncover<13->{=
+\operatorname{Spur}\varrho(g)}
+\uncover<14->{=
+\chi_{\varrho}(g)}
+\end{align*}
+\item<16->
+Durch Nachrechnen:
+\begin{align*}
+\chi_{\varrho}(hgh^{-1})
+&\uncover<17->{=
+\operatorname{Spur}
+(
+\varrho(h)
+\varrho(g)
+\varrho(h^{-1})
+)}
+\\
+&\uncover<18->{=
+\operatorname{Spur}
+(
+\varrho(h^{-1})
+\varrho(h)
+\varrho(g)
+)}
+\\
+&\uncover<19->{=
+\operatorname{Spur}\varrho(g)}
+\uncover<20->{=
+\chi_{\varrho}(g)}
+\end{align*}
+\end{enumerate}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

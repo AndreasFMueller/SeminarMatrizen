@@ -1,0 +1,233 @@
+Eine Drehung eines Vektors $\vec{x}$ der Ebene $\mathbb{R}^2$
+um den Winkel $\alpha$ gefolgt von einer Translation um $\vec{t}$
+ist gegeben durch $D_\alpha\vec{x}+\vec{t}$.
+Darauf lässt sich jedoch die Theorie der Matrizengruppen nicht
+darauf anwenden, weil die Operation nicht die Form einer Matrixmultiplikation
+schreiben.
+Die Drehung und Translation kann in eine Matrix zusammengefasst werden,
+indem zunächst die Ebene mit
+\[
+\mathbb{R}^2\to\mathbb{R}^3
+:
+\begin{pmatrix}x\\y\end{pmatrix}
+\mapsto
+\begin{pmatrix}x\\y\\1\end{pmatrix}
+\qquad\text{oder in Vektorschreibweise }\qquad
+\vec{x}\mapsto\begin{pmatrix}\vec{x}\\1\end{pmatrix}
+\]
+in den dreidimensionalen Raum eingebettet wird.
+Die Drehung und Verschiebung kann damit in der Form
+\[
+\begin{pmatrix}D_\alpha\vec{x}+\vec{t}\\1
+\end{pmatrix}
+=
+\begin{pmatrix}D_\alpha&\vec{t}\\0&1\end{pmatrix}
+\begin{pmatrix}\vec{x}\\1\end{pmatrix}
+\]
+als Matrizenoperation geschrieben werden.
+Die Gruppe der Drehungen und Verschiebungen der Ebene ist daher
+die Gruppe
+\[
+G
+=
+\left\{
+\left.
+A
+=
+\begin{pmatrix}
+D_\alpha&\vec{t}\\
+0&1
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\alpha & -\sin\alpha & t_x \\
+\sin\alpha &  \cos\alpha & t_y \\
+     0     &       0     &  1
+\end{pmatrix}
+\;
+\right|
+\;
+\alpha\in\mathbb{R},\vec{t}\in\mathbb{R}^2
+\right\}
+\]
+Wir kürzen die Elemente von $G$ auch als $(\alpha,\vec{t})$ ab.
+\begin{teilaufgaben}
+\item
+Verifizieren Sie, dass das Produkt zweier solcher Matrizen 
+$(\alpha_1,\vec{t}_1)$ und $(\alpha_2,\vec{t}_2)$
+wieder die selbe Form $(\alpha,\vec{t})$ hat und berechnen Sie
+$\alpha$ und $\vec{t}_j$.
+\item
+Bestimmen Sie das inverse Element zu $(\alpha,\vec{t}) \in G$.
+\item
+Die Elemente der Gruppe $G$ sind parametrisiert durch den Winkel $\alpha$
+und die Translationskomponenten $t_x$ und $t_y$.
+Rechnen Sie nach, dass
+\[
+\alpha\mapsto \begin{pmatrix} D_{\alpha}&0\\0&1\end{pmatrix},
+\quad
+t_x\mapsto
+\begin{pmatrix} I&\begin{pmatrix}t_x\\0\end{pmatrix}\\0&1\end{pmatrix},
+\qquad
+t_y\mapsto
+\begin{pmatrix} I&\begin{pmatrix}0\\t_y\end{pmatrix}\\0&1\end{pmatrix}
+\]
+Einparameteruntergruppen von $G$ sind.
+\item
+Berechnen Sie die Tangentialvektoren $D$, $X$ und $Y$,
+die zu den Einparameteruntergruppen von c) gehören.
+\item
+Berechnen Sie die Lie-Klammer für alle Paare von Tangentialvektoren.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Die Wirkung beider Gruppenelemente auf dem Vektor $\vec{x}$ ist
+\begin{align*}
+\begin{pmatrix}D_{\alpha_1}&\vec{t}_1\\0&1\end{pmatrix}
+\begin{pmatrix}D_{\alpha_2}&\vec{t}_2\\0&1\end{pmatrix}
+\begin{pmatrix}\vec{x}\\1\end{pmatrix}
+&=
+\begin{pmatrix}D_{\alpha_1}&\vec{t}_1\\0&1\end{pmatrix}
+\begin{pmatrix}D_{\alpha_2}\vec{x}+\vec{t}_2\\1\end{pmatrix}
+=
+\begin{pmatrix}
+D_{\alpha_1}(D_{\alpha_2}\vec{x}+\vec{t}_2)+\vec{t}_1\\1
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+D_{\alpha_1}D_{\alpha_2}\vec{x} + D_{\alpha_1}\vec{t}_2+\vec{t}_1\\1
+\end{pmatrix}
+=
+\begin{pmatrix}
+D_{\alpha_1+\alpha_2}&D_{\alpha_1}\vec{t}_2+\vec{t}_1\\
+0&1
+\end{pmatrix}
+\begin{pmatrix}\vec{x}\\1\end{pmatrix}.
+\end{align*}
+Das Produkt in der Gruppe $G$ kann daher
+\[
+(\alpha_1,\vec{t}_1) (\alpha_2,\vec{t}_2)
+=
+(\alpha_1+\alpha_2,\vec{t}_1+D_{\alpha_1}\vec{t}_2)
+\]
+geschrieben werden.
+\item
+Die Inverse der Abbildung $\vec{x}\mapsto \vec{y}=D_\alpha\vec{x}+\vec{t}$
+kann gefunden werden, indem man auf der rechten Seite nach $\vec{x}$
+auflöst:
+\begin{align*}
+\vec{y}&=D_\alpha\vec{x}+\vec{t}
+&&\Rightarrow&
+D_{\alpha}^{-1}( \vec{y}-\vec{t}) &= \vec{x}
+\\
+&&&& \vec{x} &= D_{-\alpha}\vec{y} + (-D_{-\alpha}\vec{t})
+\end{align*}
+Die Inverse von $(\alpha,\vec{t})$ ist also $(-\alpha,-D_{-\alpha}\vec{t})$.
+\item
+Da $D_\alpha$ eine Einparameteruntergruppe von $\operatorname{SO}(2)$ ist,
+ist $\alpha\mapsto (D_\alpha,0)$ ebenfalls eine Einparameteruntergruppe.
+Für die beiden anderen gilt
+\[
+\biggl(I,\begin{pmatrix}t_{x1}\\0\end{pmatrix}\biggr)
+\biggl(I,\begin{pmatrix}t_{x2}\\0\end{pmatrix}\biggr)
+=
+\biggl(I,\begin{pmatrix}t_{x1}+t_{x2}\\0\end{pmatrix}\biggr)
+\quad\text{und}\quad
+\biggl(I,\begin{pmatrix}0\\t_{y1}\end{pmatrix}\biggr)
+\biggl(I,\begin{pmatrix}0\\t_{y2}\end{pmatrix}\biggr)
+=
+\biggl(I,\begin{pmatrix}0\\t_{y1}+t_{y2}\end{pmatrix}\biggr),
+\]
+also sind dies auch Einparameteruntergruppen.
+\item
+Die Ableitungen sind
+\begin{align*}
+D
+&=
+\frac{d}{d\alpha}\begin{pmatrix}D_\alpha&0\\0&1\end{pmatrix}\bigg|_{\alpha=0}
+=
+\begin{pmatrix}J&0\\0&0\end{pmatrix}
+=
+\begin{pmatrix}
+0&-1&0\\
+1& 0&0\\
+0& 0&0
+\end{pmatrix}
+\\
+X
+&=
+\frac{d}{dt_x}
+\left.
+\begin{pmatrix}I&\begin{pmatrix}t_x\\0\end{pmatrix}\\0&1\end{pmatrix}
+\right|_{t_x=0}
+=
+\begin{pmatrix}
+0&0&1\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+&
+Y
+&=
+\frac{d}{dt_y}
+\left.
+\begin{pmatrix}I&\begin{pmatrix}0\\t_y\end{pmatrix}\\0&1\end{pmatrix}
+\right|_{t_y=0}
+=
+\begin{pmatrix}
+0&0&0\\
+0&0&1\\
+0&0&0
+\end{pmatrix}
+\end{align*}
+\item
+Die Vertauschungsrelationen sind
+\begin{align*}
+[D,X]
+&=
+DX-XD
+=
+\begin{pmatrix}
+0&0&0\\
+0&0&1\\
+0&0&0
+\end{pmatrix}
+-
+\begin{pmatrix}
+0&0&0\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+=
+Y
+\\
+[D,Y]
+&=
+DY-YD
+=
+\begin{pmatrix}
+0&0&-1\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+-
+\begin{pmatrix}
+0&0&0\\
+0&0&0\\
+0&0&0
+\end{pmatrix}
+=
+-X
+\\
+[X,Y]
+&=
+XY-YX
+=
+0-0=0
+\qedhere
+\end{align*}
+\end{teilaufgaben}
+\end{loesung}
