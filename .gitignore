@@ -13,8 +13,6 @@ buch*.pdf
 *.toc
 .build/
 *.synctex.gz
-<<<<<<< HEAD:.gitignore
 *.DS_Store
-=======
->>>>>>> a787d334bf167a0d878fde6b03369a8817bcf691:buch/.gitignore
+
 
