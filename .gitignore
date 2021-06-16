@@ -13,4 +13,6 @@ buch*.pdf
 *.toc
 .build/
 *.synctex.gz
+*.DS_Store
+
 
