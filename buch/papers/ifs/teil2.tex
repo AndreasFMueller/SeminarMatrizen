@@ -14,13 +14,13 @@ Zur Veranschaulichung dieser Methode nehmen wir das Sierpinski Dreieck.
 	\caption{Sierpinski-Dreieck}
 	\label{ifs:sierpinski10}
 \end{figure}
-Wenn man das Dreieck genau anschaut, erkennt man schnell, dass es aus drei kleineren Kopien seiner selbst besteht.
-Es ist also ein Selbstähnliches Konstrukt.
+Es besteht aus drei kleineren Kopien von sich selbst.
+Es ist also ein Selbstähnliches Gebilde.
 Diese Eigenschaft wollen wir uns zunutze machen.
 
 
 Wir definieren das Dreieck mit Kantenlänge 1 als Menge $X$.
-Ausserdem bestimmen wir drei Funktionen, welche die gesamte Menge auf eine ihrer kleineren Kopien abbildet
+Ausserdem bestimmen wir drei Funktionen
 \begin{align*}
 	f_1(x,y)
 	= 
@@ -63,13 +63,15 @@ Ausserdem bestimmen wir drei Funktionen, welche die gesamte Menge auf eine ihrer
 	\begin{pmatrix}
 		\frac{1}{4} \\
 		\frac{1}{2}
-	\end{pmatrix}\\
+	\end{pmatrix},
 \end{align*}
+welche die gesamte Menge auf eine ihrer kleineren Kopien abbildet
 $f_1$ bildet das Dreieck auf das Teilstück unten links ab, $f_2$ auf das Teilstück unten rechts und $f_3$ auf das obere Teilstück.
-Wendet man alle drei Funktionen auf das Sierpinski-Dreieck an, entsteht also wieder ein Sierpinski-Dreieck.
+Wendet man alle drei Funktionen auf das Sierpinski-Dreieck an
 \begin{align*}
-	X = \bigcup\limits_{i = 1}^{3} f_i(X)
+	X = \bigcup\limits_{i = 1}^{3} f_i(X),
 \end{align*}
+entsteht also wieder ein Sierpinski-Dreieck.
 Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktionen auf eine beliebige Startmenge anwenden, konvergiert die Menge gegen das Sierpinski-Dreieck.
 \begin{figure}	
 	\centering
@@ -90,11 +92,11 @@ Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktion
 	\label{ifs:sierpconst}
 \end{figure}
 Im Beispiel der Abbildung \ref{ifs:sierpconst} sehen wir, wie das Bild nach jeder Iteration dem Sierpinski-Dreieck ähnlicher wird.
-Der Abstand zum Original wird immer kleiner, und konvergiert bei unendlich Iterationen gegen null.
+Der Abstand zum Original wird immer kleiner, und konvergiert gegen null.
 
 \subsection{Iterierte Funktionensysteme
 \label{ifs:subsection:bonorum}}
-In diesem Unterkapitel wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
+In diesem Abschnitt wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
 
 
 $S_1,...,S_n$ sind Kontraktionen auf die Menge $D \subset \mathbb{R}^n$. Es gilt
@@ -114,10 +116,11 @@ Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) =
 	F = \bigcap\limits_{k = 1}^{\infty} S^k(E).
 \end{equation}
 In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt, gegen eine eindeutige Menge konvergiert.
+Diese Menge ist auch als Attraktor des IFS bekannt.
 Dies für jede Startmenge, solange diese ihre Transformierten wieder beinhaltet.
 Auf den Beweis wird verzichtet.
 \subsection{Beispiel: Barnsley-Farn}
-Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein weiteres Fraktal, welches mit einem IFS generiert werden kann.
+Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein Beispiel eines Fraktal, welches mit einem IFS generiert werden kann.
 Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine grosse Ähnlichkeit zum ganzen Farn haben.
 \begin{align*}
 	{S_1(x,y)}
@@ -183,9 +186,9 @@ Die Transformation bildet das Gesamte Blatt auf die Y-Achse ab.
 $S_2$ (grün) erstellt den Hauptteil des Farnes. 
 Sie verkleinert und dreht das gesamte Bild und stellt es auf das Ende des Stiels aus $S_1$.
 $S_3$ bildet das gesamte Blatt auf das blaue Teilblatt unten Links ab.
-$S_4$ Spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
-
-Wir führen im Zusammenhang mit dem Barnsley-Farn \cite{ifs:barnsleyfern} noch eine weitere Methode ein, um IFS auszuführen.
+$S_4$ spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
+\subsection{Chaosspiel}
+Wir führen im Zusammenhang mit dem Barnsley-Farn \cite{ifs:barnsleyfern} noch eine weitere Methode ein, um ein IFS zu zeichnen.
 Bis jetzt wurde immer davon gesprochen, die Transformationen auf die gesamte Menge anzuwenden.
 Bei komplizierteren IFS welche viele Iterationen brauchen, bis man den Attraktor erkennen kann, ist diese Methode ziemlich rechenintensiv.
 Eine Alternative ist das Chaosspiel \cite{ifs:chaos}. 
@@ -207,4 +210,11 @@ Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ 
 	\includegraphics[width=0.7\textwidth]{papers/ifs/images/farncolor}
 	\caption{Vier Transformationen des Barnsley-Farn}
 	\label{ifs:farncolor}
+\end{figure}
+\begin{figure}	
+	\centering
+	\makebox[\textwidth][c]{
+		\includegraphics[width=1.4\textwidth]{papers/ifs/images/farnnotweight}}
+	\caption{Chaosspiel ohne Gewichtung}
+	\label{ifs:farnNoWeight}
 \end{figure}
