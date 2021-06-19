@@ -65,7 +65,7 @@ Ausserdem bestimmen wir drei Funktionen
 		\frac{1}{2}
 	\end{pmatrix},
 \end{align*}
-welche die gesamte Menge auf eine ihrer kleineren Kopien abbildet
+welche die gesamte Menge auf eine ihrer kleineren Kopien abbildet.
 $f_1$ bildet das Dreieck auf das Teilstück unten links ab, $f_2$ auf das Teilstück unten rechts und $f_3$ auf das obere Teilstück.
 Wendet man alle drei Funktionen auf das Sierpinski-Dreieck an
 \begin{align*}
@@ -99,31 +99,36 @@ Der Abstand zum Original wird immer kleiner, und konvergiert gegen null.
 In diesem Abschnitt wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
 
 
-$S_1,...,S_n$ sind Kontraktionen auf die Menge $D \subset \mathbb{R}^n$. Es gilt
+$S_1,\dots,S_n$ sind Kontraktionen auf die Menge $D \subset \mathbb{R}^n$. Es gilt
 \begin{align}
 	|S_i(x) - S_i(y)| \leq c_i|x - y|
 \end{align}
-für jedes i mit einem $c_i < 1$. Dann existiert eine eindeutige kompakte Menge $F$ für die gilt
+für jedes i mit einem $c_i < 1$.
+Der Banachsche Fixpunktsatz besagt, dass für solche Kontraktionen ein Eindeutiges $A$ existiert, für das $S(A) = A$ gilt.
+Den Beweis kann man in \cite{ifs:Rousseau2012} nachlesen.
+Hat man nicht nur eine sondern mehrere Kontraktionen, dann existiert eine eindeutige kompakte Menge $F$ für die gilt
 \begin{equation}
-	F = \bigcup\limits_{i = 1}^{m} S_i(F)
+	F = \bigcup\limits_{i = 1}^{m} S_i(F).
 \end{equation}
-Weiter definieren wir die Transformation S auf kompakte Mengen ohne die leere Menge.
+Weiter definieren wir die Transformation S auf kompakte Mengen $E$ ohne die leere Menge.
 \begin{equation}
 	S(E) = \bigcup\limits_{i = 1}^m S_i(E)
 \end{equation}
 Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) = S(S^{k-1}(E))$, und für jedes $i$ $S_i(E) \subset E$, gilt
 \begin{equation}
 	F = \bigcap\limits_{k = 1}^{\infty} S^k(E).
+	\label{ifs:ifsForm}
 \end{equation}
 In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt, gegen eine eindeutige Menge konvergiert.
 Diese Menge ist auch als Attraktor des IFS bekannt.
-Dies für jede Startmenge, solange diese ihre Transformierten wieder beinhaltet.
-Auf den Beweis wird verzichtet.
+Der Beweis für die Existenz eines eindeutigen Attraktors ist in \cite{ifs:fractal-geometry} beschrieben. 
+Aus diesem Beweis folgt, dass die Startmenge $E$, anders als in \ref{ifs:ifsForm} beschrieben ist, beliebig sein kann, 
 \subsection{Beispiel: Barnsley-Farn}
 Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein Beispiel eines Fraktal, welches mit einem IFS generiert werden kann.
 Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine grosse Ähnlichkeit zum ganzen Farn haben.
-\begin{align*}
-	{S_1(x,y)}
+Die vier affinen Transformationen
+\begin{align}
+	& {S_1(x,y)}
 	= 
 	\begin{pmatrix}
 		0 & 0 \\
@@ -132,9 +137,9 @@ Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine gross
 	\begin{pmatrix}
 		x\\
 		y\\
-	\end{pmatrix}, \quad
+	\end{pmatrix}, \quad &
 	{S_2(x,y)}
-	= 
+	&= 
 	\begin{pmatrix}
 		0.85 & 0.04 \\
 		-0.04 & 0.85 \\
@@ -148,7 +153,7 @@ Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine gross
 		0 \\
 		1.6
 	\end{pmatrix}\\
-	{S_3(x,y)}
+	& {S_3(x,y)}
 	= 
 	\begin{pmatrix}
 		0.2 & -0.26 \\
@@ -162,9 +167,9 @@ Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine gross
 	\begin{pmatrix}
 		0 \\
 		1.6
-	\end{pmatrix}, \quad
+	\end{pmatrix}, \quad &
 	{S_4(x,y)}
-	= 
+	&= 
 	\begin{pmatrix}
 		-0.15 & 0.28 \\
 		0.26 & 0.24 \\
@@ -178,26 +183,44 @@ Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine gross
 		0 \\
 		0.44
 	\end{pmatrix}\\
-\end{align*}
-In der Abbildung \ref{ifs:farncolor} sehen wir die vier Transformationen farblich dargestellt.
-
+	\label{ifs:farnFormel}
+\end{align}
+, welche für die konstruktion des Farns benötigt werden sind in der Abbildung \ref{ifs:farncolor} farblich dargestellt.
+Das gesamte Farnblatt ist in der schwarzen Box.
+Auf diese werden die Transformationen angewendet
 $S_1$ erstellt den Stiel des Farnblattes (rot).
 Die Transformation bildet das Gesamte Blatt auf die Y-Achse ab.
 $S_2$ (grün) erstellt den Hauptteil des Farnes. 
 Sie verkleinert und dreht das gesamte Bild und stellt es auf das Ende des Stiels aus $S_1$.
 $S_3$ bildet das gesamte Blatt auf das blaue Teilblatt unten Links ab.
 $S_4$ spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
-\subsection{Chaosspiel}
-Wir führen im Zusammenhang mit dem Barnsley-Farn \cite{ifs:barnsleyfern} noch eine weitere Methode ein, um ein IFS zu zeichnen.
+\subsection{Erzeugung eines Bildes mit einem IFS}
+Es gibt zwei verschiedene Methoden um ein Bild mit einem IFS zu erzeugen.
+Die erste Methode ist wahrscheinlich die intuitivste. 
+Wir beginnen mit einm Startbild, zum Beispiel ein Schwarzes Quadrat, und bilden dieses mit den affinen Transformationen des IFS ab.
+Das neue Bild, dass entsteht, ist die nächste Iterierte.
+Dieses wird wieder mit den Transformationen abgebildet.
+Wir wiederholen den letzten schritt, bis wir zufrieden mit der neusten Iterierten sind.
+Diesen Vorgang haben wir beim Sierpinski-Dreieck in Abbildung \ref{ifs:sierpconst} gebraucht.
+
+
+Die zweite Methode ist das Chaosspiel \cite{ifs:chaos}. 
 Bis jetzt wurde immer davon gesprochen, die Transformationen auf die gesamte Menge anzuwenden.
-Bei komplizierteren IFS welche viele Iterationen brauchen, bis man den Attraktor erkennen kann, ist diese Methode ziemlich rechenintensiv.
-Eine Alternative ist das Chaosspiel \cite{ifs:chaos}. 
-Bei dieser Methode werden die Transformationen nicht auf die Menge angewendet, sondern nur auf einen einzelnen Punkt.
+Bei komplizierteren IFS welche viele Iterationen brauchen, bis man den Attraktor erkennen kann, ist die erste Methode ziemlich rechenintensiv.
+Beim Chaosspiel werden die Transformationen nicht auf die Menge angewendet, sondern nur auf einen einzelnen Punkt.
 Der Startpunkt kann dabei ein beliebiger Punkt in $E$ sein.
 Es wird bei jedem Iterationsschritt nur eine Transformation, welche zufällig gewählt wurde, angewendet.
-Da, wie wir beim Barnsley-Farn gut sehen, dass nicht jede Transformation gleich viel des Bildes ausmacht, werden diese beim Chaosspiel gewichtet.
-Die Gewichtung erfolgt über den Anteil der Gesamtmasse.
-Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ in $7\%$ der Iterationen ausgeführt. 
+Da, wie wir beim Barnsley-Farn gut sehen, nicht jede Transformation gleich viel des Bildes ausmacht, werden diese beim Chaosspiel gewichtet.
+Je mehr eine Transformation kontrahiert, desto weniger Punkte braucht es um die resultierende Teilabbildung darzustellen.
+Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ in $7\%$ der Iterationen ausgeführt.
+Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, $S_1$, einiges weniger Punkte braucht als der grüne Hauptteil des Blattes, $S_2$.
+
+In Abbildung \ref{ifs:farnNoWeight} wurden die vier gleich stark gewichtet.
+Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn kaum nicht so gut abgebildet ist.
+
+
+
+
 \begin{figure}	
 	\centering
 	\makebox[\textwidth][c]{
@@ -207,8 +230,8 @@ Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ 
 \end{figure}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{papers/ifs/images/farncolor}
-	\caption{Vier Transformationen des Barnsley-Farn}
+	\includegraphics[width=\textwidth]{papers/ifs/images/farncolor2}
+	\caption{Vier Transformationen des Barnsley-Farn in unterschiedlichen Farben}
 	\label{ifs:farncolor}
 \end{figure}
 \begin{figure}	

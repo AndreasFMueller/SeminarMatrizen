@@ -17,7 +17,7 @@ Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten:
 	\item $F$ kann nicht mit der klassischen Geometrie beschrieben werden.
 	\item Oftmals hat $F$ eine Form von Selbstähnlichkeit.
 	\item Die 'fraktale Dimension' ist grösser als die topologische Dimension
-	\item Viele Fraktale lassen sich einfach beschrieben
+	\item Viele Fraktale lassen sich einfach beschrieben TODO
 \end{enumerate}
 \subsection{Koch Kurve
 	\label{ifs:subsection:lilkoch}}
@@ -29,6 +29,7 @@ Diese wird in ersten Schritt durch vier gleich langen Streckenabschnitte der Lä
 In \ref{ifs:kochconstb} ist die Anordnung dieser vier Streckenabschnitte ersichtlich. 
 Dieser Schritt wird nun für jeden der resultierten Streckenabschnitten wiederholt.
 Die Kurve besteht also aus vier kleineren Kopien der ganzen Kurve, was auch unter Selbstähnlichkeit bekannt ist.
+Man spricht von einer selbstähnlichen Menge, wenn sich diese Menge überdecken lässt mit echten Teilmengen, die zur ganzen Menge ähnlich sind.
 
 
 \begin{figure}
@@ -61,16 +62,16 @@ Die Länge der Kurve der jeweiligen Iteration lässt sich mit
 	\Rightarrow \quad
 	\lim_{n\to\infty} a  \left( \frac{4}{3}\right)^n = \infty
 \end{align*}
-beschreiben.
+berechnen.
 In jedem Schritt wird die Länge um den Faktor $\frac{4}{3}$ verlängert. Daraus resultiert, dass die Länge gegen $\infty$ divergiert. 
 
 
 Die Fläche unter der Kurve lässt sich folgendermassen berechnen
 \begin{align*}
-	A_0 = 0 \\
-	A_1 = \left( \frac{a}{3}\right)^2 \frac{\sqrt{3}}{4} = a^2 \frac{\sqrt{3}}{36}\\
-	A_2 = A_1 + 4\left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 \\ 
-	A_3 = A_1 + A_2 + 4^2 \left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 + \left( \frac{4}{9}\right)^2 A_1	 
+	A_0 &= 0 \\
+	A_1 &= \left( \frac{a}{3}\right)^2 \frac{\sqrt{3}}{4} = a^2 \frac{\sqrt{3}}{36}\\
+	A_2 &= A_1 + 4\left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 \\ 
+	A_3 &= A_1 + A_2 + 4^2 \left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 + \left( \frac{4}{9}\right)^2 A_1.
 \end{align*}
 Wir sehen, dass mit jedem Schritt die neu dazugekommene Fläche um $\frac{4}{9}$ kleiner ist.
 Die Gesamtfläche ist daher gegeben durch die geometrische Reihe,
@@ -81,7 +82,7 @@ mit dem Grenzwert
 \begin{align*}
 	\lim_{n\to\infty} a^2 \frac{\sqrt{3}}{36} \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n = \frac{\sqrt{3}}{20} a^2. 
 \end{align*}
-Wie wir sehen ist die Koch-Kurve eine Kurve mit endlicher Fläche, aber unendlicher Umfang.
+Wie wir sehen ist die Koch-Kurve ein Objekt mit endlicher Fläche, aber unendlichem Umfang.
 
 
 Zu guter Letzt bestimmen wir die Dimension der Kurve. 

@@ -9,7 +9,7 @@
 Mit dem Prinzip dieser IFS ist es auch möglich Bilder zu Komprimieren.
 Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Fractals Everywhere einen wichtigen Beitrag zum Verständnis von Fraktalen geliefert hat.
 Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
-In diesem Unterkapitel wollen wir eine Methode dafür anschauen.\cite{ifs:Rousseau2012}
+In diesem Unterkapitel wollen wir eine Methode dafür anschauen, wie sie in \cite{ifs:Rousseau2012} beschrieben ist.
 
 
 Bis jetzt wurde in Zusammenhang mit IFS immer erwähnt, dass die Transformationen, welche das IFS bilden, auf die gesamte Menge.
@@ -132,7 +132,9 @@ Nun wendet man auf jeden dieser Farbkanalbilder den Algorithmus an, und fügt na
 
 \subsubsection{Performance des Verfahren}
 Dieser Grundalgorithmus der fraktalen Bildkompression ist recht langsam und skaliert auch schlecht für grössere Bilder.
-Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nie so schnell wie zum Beispiel das JPEG-Verfahren.
+Dies resultiert aus eigenen Experimenten.
+Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nicht so schnell wie zum Beispiel das JPEG-Verfahren.
+Es wurden bessere Algorithmen der fraktalen Bildkompression entwickelt, doch auch diese können, vor allem in der Laufzeit, noch nicht mit herkömmlichen Komprimierungsverfahren mithalten.
 
 \subsection{Beispiel}
 Wir Verwenden dafür den oben beschriebenen Algorithmus, welcher uns für jeden Range-Block die benötigten Parameter liefert.
