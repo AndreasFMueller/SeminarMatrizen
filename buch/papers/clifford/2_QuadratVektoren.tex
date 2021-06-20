@@ -1,0 +1,110 @@
+\subsection{Quadrat von Vektoren}
+Was eine Addition von Vektoren bedeutet ist sehr intuitiv und auch leicht geometrisch darzustellen, was allerdings das Produkt von Vektoren ergibt mag anfänglich unintuitiv wirken. 
+Was soll es schon heissen zwei Vektoren miteinander zu multiplizieren? 
+\newline
+Im Folgenden werden wir versuchen diese Operation ähnlich intuitiv darzustellen.
+\newline
+Um sinnvoll eine neue Operation zwischen zwei Elementen einer Algebra, in diesem Fall Vektoren, zu definieren, muss man überlegen, was das Ziel dieser Operation ist. 
+Als grundsätzliches Ziel wird definiert, dass das Quadrat eines Vektor dessen Länge im Quadrat ergibt, da dies auch in vielen anderen Bereichen der Mathematik,zum Beispiel bei komplexen Zahlen, auch so definiert ist.  
+\newline 
+Zusätzlich wollen wir auch das Assoziativgesetz und das Kommutativgesetz für Skalare beibehalten. Wobei das Kommutativgesetz leider, oder wie man sehen wird zum Glück, in der geometrischen Algebra im generellen nicht mehr gilt. Das heisst wir dürfen ausklammern \ref{eq:assoziativ} und die Position von Skalaren im Produkt ändern \ref{eq:kommSkalar}, allerdings nicht die Position der Vektoren \ref{eq:kommVector}.
+\begin{equation}
+    \label{eq:assoziativ}
+    \textbf{e}_i(\textbf{e}_j + \textbf{e}_k) 
+    = 
+    \textbf{e}_i\textbf{e}_j + \textbf{e}_i\textbf{e}_k 
+\end{equation}
+\begin{equation}
+    \label{eq:kommSkalar}
+    a\textbf{e}_ib\textbf{e}_j 
+    = 
+    ab\textbf{e}_i\textbf{e}_j
+\end{equation}
+\begin{equation}
+    \label{eq:kommVector}
+    \textbf{e}_i\textbf{e}_j 
+    \neq 
+    \textbf{e}_j\textbf{e}_i
+\end{equation}
+Betrachten wir nun mit diesen Regeln das Quadrat eines Vektors.
+\begin{align}
+    \textbf{a}^2 &= 
+    \left ( 
+    \sum_{i=1}^{n} a_i \textbf{e}_i 
+    \right ) 
+    \left ( 
+    \sum_{i=1}^{n} a_i \textbf{e}_i 
+    \right )
+    \label{eq:quad_a_1}
+    \\
+    &= 
+    \textcolor{red}{\sum_{i=1}^{n} a_i^2\textbf{e}_i^2} 
+    + 
+    \textcolor{blue}{\sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j } 
+    \label{eq:quad_a_2}
+    \\
+    &= \textcolor{cyan}{\sum_{i=1}^{n} a_i^2} + \textcolor{orange}{\sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j}.
+    \label{eq:quad_a_3}
+\end{align}
+
+\begin{beispiel}
+Quadrat eines Vektors in $\mathbb{R}^2$
+\begin{equation}
+    \begin{split}
+    \textbf{a}^2 
+    &= (a_1\textbf{e}_1+a_2\textbf{e}_2)(a_1\textbf{e}_1+a_2\textbf{e}_2) \\\
+    &= \textcolor{red}{a_1^2\textbf{e}_1^2 + a_2^2\textbf{e}_2^2} 
+    + \textcolor{blue}{a_1\textbf{e}_1a_2\textbf{e}_2 + a_2\textbf{e}_2a_1\textbf{e}_2}   \\\
+    & = \textcolor{cyan}{a_1^2 + a_2^2} + \textcolor{orange}{a_1b\textbf{e}_1a_2\textbf{e}_2 + a_2\textbf{e}_2a_1\textbf{e}_2}
+    \end{split}
+\end{equation}
+
+\end{beispiel}
+Der Vektor wird in \ref{eq:quad_a_1} als Linearkombination geschrieben.
+Das Quadrat kann, wie in \ref{eq:quad_a_2} gezeigt, in zwei Summen aufteilen werden , wobei die roten Summe die quadrierten Terme und die blaue Summe die Mischterme beinhaltet. 
+\newline
+Da $\textbf{e}_i^2 = 1$ gilt, da zuvor vorausgesetzt wurde, dass man mit orthonormalen Einheitsvektoren arbeitet, wird dies nun eingesetzt ergibt sich \ref{eq:quad_a_3}
+\newline
+Die hellblaue Teil ist nun bereits Länge im Quadrat eines Vektors, also das Ziel der Multiplikation. 
+Daher muss der restliche Teil dieser Gleichung null ergeben. 
+Aus dieser Erkenntnis leiten wir in \ref{eq:Mischterme_Null} weitere Eigenschaften für die Multiplikation her.
+\begin{equation}
+    \label{eq:Mischterme_Null}
+    \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j  = \textcolor{blue}{a_1a_2(\textbf{e}_1\textbf{e}_2 + \textbf{e}_2\textbf{e}_1)} + a_1a_3(\textbf{e}_1\textbf{e}_3 + \textbf{e}_3\textbf{e}_1) + \dots =  0
+\end{equation}
+Da dies für beliebige $a_i$ gelten muss werden alle Terme bis auf $a_1$ und $a_2$ gleich null gesetzt. Somit fallen alle Terme bis auf den blauen weg. Wird dies weiter vereinfacht ergibt sich
+\begin{equation}
+\begin{split}
+    a_1a_2(\textbf{e}_1\textbf{e}_2 + \textbf{e}_2\textbf{e}_1) &= 0 \\
+    a_1a_2\textbf{e}_1\textbf{e}_2 &= -a_1a_2\textbf{e}_2\textbf{e}_1 \\
+    \textbf{e}_1\textbf{e}_2 &= -\textbf{e}_2\textbf{e}_1.
+\end{split}
+\end{equation}
+\begin{satz}
+    Die Multiplikation von Vektoren ist antikommutativ, wenn die multiplizierten Vektoren orthogonal sind.
+    \begin{equation}
+        \textbf{e}_i\textbf{e}_j = -\textbf{e}_j\textbf{e}_i \qquad \textbf{e}_i \perp \textbf{e}_j
+    \end{equation}
+\end{satz}
+Dieses Wissen reicht nun bereits um alle Produkte der Basisvektoren zu berechnen, was in \ref{tab:multip_vec} gemacht wurde.
+\begin{table}
+\caption{Multiplikationstabelle für Vektoren}
+\label{tab:multip_vec}
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c| } 
+ \hline
+  & $\textbf{e}_1$ & $\textbf{e}_2$ & $\dots$ & $\textbf{e}_{n-1}$ & $\textbf{e}_{n}$ \\
+  \hline
+ $\textbf{e}_1$ & 1 & $\textbf{e}_1\textbf{e}_2$ & $\dots$ & $\textbf{e}_1\textbf{e}_{n-1}$ & $\textbf{e}_1\textbf{e}_{n}$ \\
+ \hline
+ $\textbf{e}_2$ & $-\textbf{e}_1\textbf{e}_2$ & 1 & $\dots$ & $\textbf{e}_2\textbf{e}_{n-1}$ & $\textbf{e}_2\textbf{e}_{n}$ \\
+ \hline
+ $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \\
+ \hline
+ $\textbf{e}_{n-1}$ & $-\textbf{e}_1\textbf{e}_{n-1}$ & $-\textbf{e}_2\textbf{e}_{n-1}$  & $\dots$ & $1$ & $\textbf{e}_{n-1}\textbf{e}_{n}$ \\
+ \hline
+ $\textbf{e}_{n}$ & $-\textbf{e}_1\textbf{e}_{n}$ & $-\textbf{e}_2\textbf{e}_{n}$  & $\dots$ & $-\textbf{e}_{n-1}\textbf{e}_{n}$ & 1 \\
+ \hline
+\end{tabular}
+\end{center}
+\end{table}

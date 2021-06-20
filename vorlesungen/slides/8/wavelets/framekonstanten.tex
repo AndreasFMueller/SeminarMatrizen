@@ -1,0 +1,71 @@
+%
+% template.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+%\setlength{\abovedisplayskip}{5pt}
+%\setlength{\belowdisplayskip}{5pt}
+\frametitle{Framekonstanten}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Definition}
+Eine Menge $\mathcal{F}$ von Vektoren heisst ein Frame,
+falls es Konstanten $A$ und $B$ gibt derart, dass
+\[
+A\|v\|^2
+\le
+\|\mathcal{T}v\|^2
+\sum_{b\in\mathcal{F}} |\langle b,v\rangle|^2
+\le
+B\|v\|^2
+\]
+\uncover<2->{$A>0$ garantiert Invertierbarkeit}
+\end{block}
+\uncover<3->{%
+\begin{block}{$\|\mathcal{T}v\|$ für Graph-Wavelets}
+\begin{align*}
+\|\mathcal{T}v\|^2
+&=
+\sum_k |\langle D_he_k,v\rangle|^2
++
+\sum_{i,k} |\langle D_{g_i}e_k, v\rangle|^2
+\\
+&\uncover<4->{=
+\sum_k |h(\lambda_k) \hat{v}(k)|^2
++
+\sum_{k,i} |g_i(\lambda_k) \hat{v}(k)|^2}
+\end{align*}
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<5->{%
+\begin{block}{$A$ und $B$}
+Frame-Norm-Funktion
+\begin{align*}
+f(\lambda)
+&=
+h(\lambda)
++
+\sum_i g_i(\lambda)
+\\
+&\uncover<6->{=
+h(\lambda)
++
+\sum_i g(a_i\lambda)}
+\end{align*}
+\uncover<7->{Abschätzung für Frame-Konstanten
+\begin{align*}
+A&\uncover<8->{=
+\min_{i} f(\lambda_i)}
+\\
+B&\uncover<9->{=
+\max_{i} f(\lambda_i)}
+\end{align*}}
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

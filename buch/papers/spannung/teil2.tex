@@ -1,34 +1,22 @@
 \section{Dreiachsiger Spannungszustand\label{spannung:section:Dreiachsiger_Spannungszustand}}
-\rhead{Proportionalität Spannung-Dehnung}
-Wie im Kapitel Spannungsausbreitung beschrieben herrscht in jedem Punkt ein anderer Spannungszustand.
-Um die Spannung im Boden genauer untersuchen zu können, führt man einen infinitesimales Bodenteilchen ein.
-Das Bodenteilchen ist geometrisch gesehen ein Würfel.
-An diesem Bodenteilchen trägt man die Spannungen ein in alle Richtungen.
-
+\rhead{Dreiachsiger Spannungszustand}
+Durch komplexe Spannungsausbreitungen im Boden entstehen im 3D Spannungszustand unterschiedliche Normal- und Schubspannungen.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
-	\caption{Infinitesimales Bodenteilchen}
-	\label{fig:infintesimaler-wurfel}
+	\includegraphics[width=0.4\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
+	\caption{Beispiel eines Spannungszustandes; Vergrösserung eines infinitesimalen Bodenteilchen}
+	\label{fig:infinitesimalerWuerfel}
 \end{figure}
-
-An diesem infinitesimalen Bodenteilchen hat man ein räumliches Koordinatensystem, die Achsen $(1,2,3)$.
-Die Achsen vom Koordinatensystem zeigen aus den 3 ersichtlichen Flächen heraus.
-Pro ersichtliche Fläche haben wir eine Normalspannung und zwei Schubspannungen.
-Im Gegensatz zum eindimensionalen Zustand entstehen bei einer Belastung des Bodenteilchens eine Vielzahl an Spannungen.
-Es entstehen diverse Normal- und Schubspannungen.
-Die Schubspannungen befinden sich an der Fläche, sie gehen rechtwinklig von den Achsen weg.
-Die Schubspannungen auf einer Fläche stehen im 90 Grad Winkel zueinander.
-Geschrieben werden diese mit $\sigma$, mit jeweils zwei Indizes.
-Die Indizes geben uns an, in welche Richtung die Spannungen zeigen.
-Der erste Index ist die Fläche auf welcher man sich befindet.
-Der zweite Index gibt an, in welche Richtung die Spannung zeigt, dabei referenzieren die Indizes auch auf die Achsen $(1,2,3)$.
-Bei den Spannungen sind immer positive als auch negative Spannungen möglich.
-Es können also Druck- oder Zugspannungen sein.
-
-Zunächst wird untenstehend der allgemeine Spannungszustand betrachtet.
-
-Spannungstensor 2. Stufe i,j $\in$ {1,2,3}
+Ein Tensor 0. Stufe, sprich ein Skalar, kann lediglich den 1D Spannungszustand beschreiben.
+Um den 3D Spannungszustandes als ein mathematisches Objekt darstellen zu können, wird ein Tensor 2. Stufe, sprich eine Matrix, eingesetzt.
+Die Spannungen sind durch die zwei Indizes
+\[
+i, j\in\left\{1, 2, 3\right\}
+\]
+definiert.
+Daher ergeben sich die neun Spannungen.
+Die nachfolgenden Zusammenhänge sind in \cite{spannung:Voigtsche-Notation} beschrieben.
+Dieser Spannungstensor kann schliesslich mit $3^2$ Einträgen als $3\times3$ Matrix mit
 \[
 \overline{\sigma}
 =
@@ -39,7 +27,41 @@ Spannungstensor 2. Stufe i,j $\in$ {1,2,3}
 	\sigma_{21} & \sigma_{22} & \sigma_{23} \\
 	\sigma_{31} & \sigma_{32} & \sigma_{33}
 \end{pmatrix}
+\]
+dargestellt werden und beschreibt somit den gesamten Spannungszustand.
+Die Dehnungen wirken in die gleichen Richtungen wie die korrespondierenden Spannungen und sind durch die zwei Indizes
+\[
+k, l\in\left\{1, 2, 3\right\}
+\]
+definiert.
+Der Dehnungstensor ist ebenfalls ein Tensor 2. Stufe und kann somit auch als $3\times3$ Matrix mit
+\[
+\overline{\varepsilon}
 =
+\varepsilon_{kl}
+=
+\begin{pmatrix}
+	\varepsilon_{11} & \varepsilon_{12} & \varepsilon_{13} \\ 
+	\varepsilon_{21} & \varepsilon_{22} & \varepsilon_{23} \\
+	\varepsilon_{31} & \varepsilon_{32} & \varepsilon_{33}
+\end{pmatrix}
+\]
+dargestellt werden und beschreibt den gesamten Dehnungszustand.
+
+Der Spannungs- und Dehnungstensor 2. Stufe kann je in einen Tensor 1. Stufe überführt werden, welches ein Spaltenvektor ist.
+Gemäss der Hadamard-Algebra dürfen Zeile um Zeile in eine Spalte notiert werden, sodass es einen Spaltenvektor ergibt.
+So ergibt sich der Spannungsvektor
+
+\[
+\overline{\sigma}
+=
+\sigma_{ij}
+=
+\begin{pmatrix}
+	\sigma_{11} & \sigma_{12} & \sigma_{13} \\ 
+	\sigma_{21} & \sigma_{22} & \sigma_{23} \\
+	\sigma_{31} & \sigma_{32} & \sigma_{33}
+\end{pmatrix}
 \qquad
 \Rightarrow
 \qquad
@@ -57,9 +79,7 @@ Spannungstensor 2. Stufe i,j $\in$ {1,2,3}
 	\sigma_{33}
 \end{pmatrix}
 \]
-
-Dehnungstensor 2. Stufe k,l $\in$ {1,2,3}
-
+und Dehnungsvektor
 \[
 \overline{\varepsilon}
 =
@@ -70,7 +90,6 @@ Dehnungstensor 2. Stufe k,l $\in$ {1,2,3}
 	\varepsilon_{21} & \varepsilon_{22} & \varepsilon_{23} \\
 	\varepsilon_{31} & \varepsilon_{32} & \varepsilon_{33}
 \end{pmatrix}
-=
 \qquad
 \Rightarrow
 \qquad
@@ -87,13 +106,22 @@ Dehnungstensor 2. Stufe k,l $\in$ {1,2,3}
 	\varepsilon_{32} \\
 	\varepsilon_{33}
 \end{pmatrix}
+.
 \]
+Um die Beziehung von Spannung und Dehnung, welche mit Tensoren 2. Stufe ausgedrückt werden, zu beschreiben, wird ein Elastizitätstensor 4. Stufe benötigt.
+Dieser ist im 1D Spannungszustand ein Tensor 0. Stufe und somit ein Skalar, der Elastizitätsmodul $E$.
 
-Bei diesen zwei obenstehenden Formeln kann man sehen wie Matrizen zu einem Vektor umgewandelt wurden.
-Unter dem Kapitel Hadamard-Algebra kann man sehen, dass man dabei Zeile um Zeile in eine Spalte schreiben kann,
-sodass es einen Vektor ergibt.
-
-Elastizitätstensor 4. Stufe i,j,k,l $\in$ {1,2,3}
+Dieser Elastizitätstensor 4. Stufe kann als Tensor 2. Stufe, sprich als Matrix, dargestellt werden.
+So wird die Spannungsgleichung stark vereinfacht, da nun eine Matrix auf einen Vektor operiert.
+Dieser Tensor muss für eine Spannung jeden Einfluss aus allen 9 Dehnungen mit Konstanten erfassen.
+Dies bedeutet um eine von 9 Spannungen berechnen zu können müssen alle 9 Dehnung mit unterschiedlichen Faktoren summiert werden.
+Es ergeben sich $9^2$ Einträge, welches mit den 4 Indizes
+\[
+i, j, k, l\in\left\{1, 2, 3\right\}
+,
+\]
+die zueinander verknüpft werden müssen, zu begründen ist.
+Es ergeben sich $3^4$ Einträge, sprich eine $9\times9$ Matrix, welche allgemein
 \[
 \overline{\overline{C}}
 =
@@ -104,32 +132,46 @@ C_{1111} & C_{1112} & C_{1113} & C_{1121} & C_{1122} & C_{1123} & C_{1131} & C_{
 C_{1211} & C_{1212} & C_{1213} & C_{1221} & C_{1222} & C_{1223} & C_{1231} & C_{1232} & C_{1233} \\
 C_{1311} & C_{1312} & C_{1313} & C_{1321} & C_{1322} & C_{1323} & C_{1331} & C_{1332} & C_{1333} \\
 C_{2111} & C_{2112} & C_{2113} & C_{2121} & C_{2122} & C_{2123} & C_{2131} & C_{2132} & C_{2133} \\
-C_{2211} & C_{2212} & C_{1113} & C_{2221} & C_{2222} & C_{2223} & C_{2231} & C_{2232} & C_{2233} \\
+C_{2211} & C_{2212} & C_{2213} & C_{2221} & C_{2222} & C_{2223} & C_{2231} & C_{2232} & C_{2233} \\
 C_{2311} & C_{2312} & C_{2313} & C_{2321} & C_{2322} & C_{2323} & C_{2331} & C_{2332} & C_{2333} \\
 C_{3111} & C_{3112} & C_{3113} & C_{3121} & C_{3122} & C_{3123} & C_{3131} & C_{3132} & C_{3133} \\
 C_{3211} & C_{3212} & C_{3213} & C_{3221} & C_{3222} & C_{3223} & C_{3231} & C_{3232} & C_{3233} \\
 C_{3311} & C_{3312} & C_{3313} & C_{3321} & C_{3322} & C_{3323} & C_{3331} & C_{3332} & C_{3333}
 \end{pmatrix}
 \]
-
-Dieser Elastizitätstensor muss eine quadratische Matrix mit $3^{4}$ Einträgen ergeben,
-da die Basis mit den drei Richtungen $1, 2, 3$ und die Potenz mit den 4 Indizes mit je $1, 2, 3$ definiert sind.
-Dies gibt daher eine 9 x 9 Matrix, welche zudem symmetrisch ist.
-
+geschrieben werden kann.
+Dieser Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
 Folglich gilt:
 \[
 \overline{\overline{C}}
 =
 \overline{\overline{C}}~^{T}
+.
 \]
-
-Allgemeine Spannungsgleichung (mit Vektoren und Tensor)
+Die allgemeine Spannungsgleichung lautet nun:
 \[
 \vec\sigma
 =
 \overline{\overline{C}}\cdot\vec{\varepsilon}
+.
 \]
-
+Die Konstanten $C$ werden nun nach dem Hook'schen Gesetz mit Hilfe des Elastizitätsmoduls $E$ definiert.
+Da dieser Modul durch die eindimensionale Betrachtung definiert ist,
+muss für die dreidimensionale Betrachtung eine weitere Kennzahl eingeführt werden.
+Dies ist die Querdehnungszahl $\nu$ (auch Poisson-Zahl), welche durch
+\[
+\nu
+=
+\frac{\varepsilon_q}{\varepsilon}
+=
+\frac{\Delta b}{b_0}
+\]
+und
+\begin{align*}
+	\varepsilon     &= \text{Längsdehnung [$-$]} \\
+	\varepsilon_q   &= \text{Querdehnung [$-$]}
+\end{align*}
+definiert ist. Trägt man die Konstanten in die Matrix ein, ergibt sich
 \[
 \begin{pmatrix}
 	\sigma_{11}\\
@@ -166,34 +208,66 @@ Allgemeine Spannungsgleichung (mit Vektoren und Tensor)
 	\varepsilon_{32} \\
 	\varepsilon_{33}
 \end{pmatrix}
+,
 \]
-
-Man kann das zudem auch als Indexnotation aufschreiben.
-
+welche ebenfalls als Indexnotation mit
 \[
 \sigma_{ij}
 =
-=
-\sum_k=1^3
-\sum_l=1^3
+\sum_{k=1}^3
+\sum_{l=1}^3
 C_{ijkl}\cdot\varepsilon_{kl}
 \]
-
-Um die Berechnung an einem Beispiel zu veranschaulichen:
-
+ausgedrückt werden kann.
+Die Normalspannung $\sigma_{22}$ lässt sich exemplarisch als
 \[
 \sigma_{22}
 =
 \frac{E\cdot\nu}{(1+\nu)(1-2\nu)}\cdot\varepsilon_{11}+\frac{E}{(1+\nu)}\cdot\varepsilon_{22}+\frac{E\cdot\nu}{(1+\nu)(1-2\nu)}\cdot\varepsilon_{33}
 \]
+berechnen.
 
-Anhand dem Tensor der allgemeinen Spannungsgleichung kann man zwar eine Symmetrie erkennen.
-Die verschiedenen Einträge wechseln sich aber mit einander ab und es gibt keine klaren Blöcke mit nur einem gleichen Eintrag.
-Man greift deshalb auf die Voigt'sche Notation zurück.
+Man betrachte nun die Eigenschaften des Elastizitätstensors.
+Dieser ist quadratisch und symmetrisch, die verschiedenen Einträge wechseln sich aber miteinander ab.
+Es ergeben sich keine Blöcke mit einheitlichen Einträgen.
 
-
-Zur Notation wird die Voigt'sche Notation benutzt. Das sieht wie folgt aus:
-
+Allerdings weiss man, dass im isotropen Boden der Spannungs-, Dehnungs- und daher auch Elastizitätstensor symmetrisch sind.
+Wäre dem nicht so, würde sich das Material je nach Richtung unterschiedlich elastisch verhalten.
+Diese Symmetrie setzt daher voraus, dass
+\[
+\sigma_{12}
+=
+\sigma_{21}
+,
+\qquad
+\sigma_{13}
+=
+\sigma_{31}
+,
+\qquad
+\sigma_{23}
+=
+\sigma_{32}
+\]
+und folglich auch
+\[
+\varepsilon_{12}
+=
+\varepsilon_{21}
+,
+\qquad
+\varepsilon_{13}
+=
+\varepsilon_{31}
+,
+\qquad
+\varepsilon_{23}
+=
+\varepsilon_{32}
+\]
+gilt.
+Diese Eigenschaft wird durch die Voigt'sche Notation \cite{spannung:Voigtsche-Notation} ausgenutzt, um die Gleichung vereinfachen zu können.
+Durch diese Symmetrie gilt
 \[
 \overline{\sigma}
 =
@@ -206,9 +280,11 @@ Zur Notation wird die Voigt'sche Notation benutzt. Das sieht wie folgt aus:
 \begin{pmatrix}
 	\sigma_{11} & \sigma_{12} & \sigma_{13} \\ 
   	            & \sigma_{22} & \sigma_{23} \\
-	        sym &             & \sigma_{33} 
+	 \text{sym} &             & \sigma_{33} 
 \end{pmatrix}
+\qquad
 \Rightarrow
+\qquad
 \vec{\sigma}
 =
 \begin{pmatrix}
@@ -220,22 +296,7 @@ Zur Notation wird die Voigt'sche Notation benutzt. Das sieht wie folgt aus:
 	\sigma_{12}
 \end{pmatrix}
 \]
-
-In der Voigt'sche Notation hat man die Reihenfolge von der Ecke links oben, diagonal zur Ecke rechts unten.
-Danach ist noch $\sigma_{23}$, $\sigma_{13}$ und $\sigma_{12}$ aufzuschreiben um den Vektor zu erhalten.
-
-Eine weitere Besonderheit ist die Symmetrie der Matrix.
-So entspricht $\sigma_{23}$ dem Wert $\sigma_{32}$ und $\sigma_{13}$ dem Wert $\sigma_{31}$.
-Dies ist dadurch bedingt, dass die Kräfte in seitlicher Richtung im Boden die gleichen Werte annehmen.
-Man hat in dieser Berechnung ein isotropes Material.
-Im infinitesimalen Körper muss ein Gleichgewicht vorherrschen.
-Ist kein Gleichgewicht vorhanden, würde sich der Körper zu drehen beginnen.
-Es macht somit keinen Unterschied, ob man auf der Achse 2 in Richtung 3 geht,
-oder auf der Achse 3 in Richtung 2.
-
-Da die Spannung proportional zur Dehnung ist, kann man die ganze Voigt'sche Notation auch mit der Dehnung ausdrücken.
-Auch hier wandelt man das ganze gemäss der Reihenfolge in einen Vektor um.
-
+und entsprechend
 \[
 \overline{\varepsilon}
 =
@@ -247,7 +308,7 @@ Auch hier wandelt man das ganze gemäss der Reihenfolge in einen Vektor um.
 =
 \begin{pmatrix}
 	\varepsilon_{11} & \varepsilon_{12} & \varepsilon_{13} \\ 
-	                 & \varepsilon_{22} & \varepsilon_{23} \\
+	& \varepsilon_{22} & \varepsilon_{23} \\
 	\text{sym}       &                  & \varepsilon_{33}
 \end{pmatrix}
 \qquad
@@ -263,30 +324,49 @@ Auch hier wandelt man das ganze gemäss der Reihenfolge in einen Vektor um.
 	\varepsilon_{13} \\
 	\varepsilon_{12}
 \end{pmatrix}
+.
 \]
 
-
-Mit der hergeleiteten Beziehung für die Spannungsgleichung anhand vom E-Modul,
-der allgemeinen linearen Spannungsgleichung kann man diese Beziehungen neu aufschreiben.
-Man benötigt dazu den zuvor berechneten Dehnungsvektor.
-Die Gleichung besagt:
-\[
-\text{Spannungsvektor}
-=
-\text{Elastizitätstensor}\cdot\text{Dehnungsvektor}
-\]
+Aus den Vereinfachungen der Voigt'schen Notation lassen sich die Spannungs- und Dehnungstensoren als Spaltenvektoren mit je sechs Einträgen darstellen.
+Der Elastizitätstensor kann entsprechend auf eine $6\times6$ Matrix reduziert werden.
+Es lässt sich nun eine reduzierte allgemeine Spannungsgleichung mit
 \[
 \vec{\sigma}
 =
 \overline{\overline{C}}\cdot\vec{\varepsilon}
 \]
-
-Die Vektoren haben je 6 Einträge. Um das ganze auszudrücken braucht es einen 6 x 6 Elastizitätstensor.
-Der Tensor hat sich also im Vergleich zum 9 x 9 Tensor verkleinert.
-Dies ist deshalb der Fall, da man in den Achsen 2 und 3 Symmetrien hat.
-Dadurch kann man die Einträge $(\varepsilon_{21}=\varepsilon_{12}; \varepsilon_{31}=\varepsilon_{13}; \varepsilon_{32}=\varepsilon_{23})$
-zusammenfassen und drei Einträge verschwinden, da drei Dehnungen gleich sind.
-Das ganze sieht dann wie folgt aus:
+beziehungsweise
+\[
+\begin{pmatrix}
+	\sigma_{11} \\
+	\sigma_{22} \\
+	\sigma_{33} \\
+	\sigma_{23} \\
+	\sigma_{13} \\
+	\sigma_{12}
+\end{pmatrix}
+=
+\begin{pmatrix}
+	C_{1111} & C_{1122} & C_{1133} & C_{1123} & C_{1113} & C_{1112} \\
+	C_{2211} & C_{2222} & C_{2233} & C_{2223} & C_{2213} & C_{2212} \\
+	C_{3311} & C_{3322} & C_{3333} & C_{3323} & C_{3313} & C_{3312} \\
+	C_{2311} & C_{2322} & C_{2333} & C_{2323} & C_{2313} & C_{2312} \\
+	C_{1311} & C_{1322} & C_{1333} & C_{1323} & C_{1313} & C_{1312} \\
+	C_{1211} & C_{1222} & C_{1233} & C_{1223} & C_{1213} & C_{1212}
+\end{pmatrix}
+\begin{pmatrix}
+	\varepsilon_{11} \\
+	\varepsilon_{22} \\
+	\varepsilon_{33} \\
+	\varepsilon_{23} \\
+	\varepsilon_{13} \\
+	\varepsilon_{12}
+\end{pmatrix}
+\]
+beschreiben.
+Die Spannung $\sigma_{11}$ beispielsweise erhält man, wenn man die sechs Produkte aus den Konstanten $C$ und Dehnungen $\varepsilon$ summiert.
+Die Symmetrieeigenschaft des Elastizitätstensors bleibt auch hier erhalten.
+Somit lässt sich die reduzierte allgemeine Spannungsgleichung mit
 
 \[
 \begin{pmatrix}
@@ -299,12 +379,12 @@ Das ganze sieht dann wie folgt aus:
 \end{pmatrix}
 =
 \begin{pmatrix}
-	C_{11} & C_{12} & C_{13} & C_{14} & C_{15} & C_{16} \\
-	C_{21} & C_{22} & C_{23} & C_{24} & C_{25} & C_{26} \\
-	C_{31} & C_{32} & C_{33} & C_{34} & C_{35} & C_{36} \\
-	C_{41} & C_{42} & C_{43} & C_{44} & C_{45} & C_{46} \\
-	C_{51} & C_{52} & C_{53} & C_{54} & C_{55} & C_{56} \\
-	C_{61} & C_{62} & C_{63} & C_{64} & C_{65} & C_{66}
+	  C_{1111} & C_{1122} & C_{1133} & C_{1123} & C_{1113} & C_{1112} \\
+	           & C_{2222} & C_{2233} & C_{2223} & C_{2213} & C_{2212} \\
+	           &          & C_{3333} & C_{3323} & C_{3313} & C_{3312} \\ 
+	           &          &          & C_{2323} & C_{2313} & C_{2312} \\ 
+               &          &          &          & C_{1313} & C_{1312} \\
+    \text{sym} &          &          &          &          & C_{1212} 
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{11} \\
@@ -315,43 +395,9 @@ Das ganze sieht dann wie folgt aus:
 	\varepsilon_{12}
 \end{pmatrix}
 \]
-
-Die Spannung $\sigma_{11}$ besteht somit aus Anteilen von all diesen sechs Konstanten und den verschiedenen Dehnungen.
-Zuvor bei der Voigt'schen Notation hat man jedoch gesehen, dass die Tensoren symmetrisch sind.
-Folglich muss auch dieser Elastizitätstensor symmetrisch sein.
-Das sind folgendermassen aus:
-
-\[
-\begin{pmatrix}
-	\sigma_{11} \\
-	\sigma_{22} \\
-	\sigma_{33} \\
-	\sigma_{23} \\
-	\sigma_{13} \\
-	\sigma_{12}
-\end{pmatrix}
-=
-\begin{pmatrix}
-	  C_{11} & C_{12} & C_{13} & C_{14} & C_{15} & C_{16} \\
-	         & C_{22} & C_{23} & C_{24} & C_{25} & C_{26} \\
-	         &        & C_{33} & C_{34} & C_{35} & C_{36} \\ 
-	         &        &        & C_{44} & C_{45} & C_{46} \\ 
-             &        &        &        & C_{55} & C_{56} \\
-  \text{sym} &        &        &        &        & C_{66} 
-\end{pmatrix}
-\begin{pmatrix}
-	\varepsilon_{11} \\
-	\varepsilon_{22} \\
-	\varepsilon_{33} \\
-	\varepsilon_{23} \\
-	\varepsilon_{13} \\
-	\varepsilon_{12}
-\end{pmatrix}
-\]
-
-Die Konstanten $C$ kann man nun anders ausdrücken.
-Und zwar bewerkstelligt man dies mithilfe vom Hook'schen Gesetz.
-
+beschreiben.
+Die Konstanten $C$ werden wieder nach dem Hook'schen Gesetz definiert.
+Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
 \[
 \begin{pmatrix}
 	\sigma_{11}\\
@@ -379,25 +425,26 @@ Und zwar bewerkstelligt man dies mithilfe vom Hook'schen Gesetz.
 	\varepsilon_{13}\\
 	\varepsilon_{12}
 \end{pmatrix}
+.
 \]
 
-Mithilfe der Poissonzahl, welche uns die Querdehnung angibt,
-sprich wie viel sich der Körper in Querrichtung verformt und dem E-Modul kann man alle Konstanten ausdrücken.
-Bei einigen fällt auf, dass diese 0 werden. Der Tensor besagt also,
-dass diese jeweiligen Konstanten keinen Einfluss auf unsere Spannung haben.
-Man sieht nun auch ganz gut, dass sich im Vergleich bei der allgemeinen Darstellung der Spannungsgleichung,
-die Einträge verschoben haben. Man hat nun eine sehr vorteilhafte Anordnung der verschiedenen Blöcke im Tensor.
-Als Beispiel kann man sich $\sigma_{33}$ anschauen.
-Es ist ersichtlich, dass die Konstante $C_{31}$, $C_{32}$, $C_{33}$, $C_{35}$  und $C_{36}$ keinen Einfluss auf $\sigma_{33}$ haben.
-Dies kann wie folgt erklärt werden. Auf Achse 3 geht $\sigma_{33}$ in Richtung 3.
-Der Einfluss von $C_{31}$, Achse 3 in Richtung 1 hat keinen Einfluss auf $\sigma_{33}$.
+Im Elastizitätstensor fallen zwei $3\times3$ Blöcke auf, welche nur Einträge mit $0$ haben. Der Tensor besagt also,
+dass diese jeweiligen Dehnungen keinen Einfluss auf unsere Spannung haben.
+Man sieht nun auch ganz gut, dass sich im Vergleich zu der allgemeinen Spannungsgleichung, die Einträge verschoben haben.
+Da nach Voigt zuerst die Normalspannungen und anschliessend die Schubspannungen notiert worden sind, ergeben sich die  $3\times3$ Blöcke.
 
-Von  $\overline{\overline{C}}$ bildet man nun die Inverse Matrix $\overline{\overline{C}}~^{-1}$ stellt sich die ganze Gleichung um.
+Man betrachte als Beispiel die Berechnung von $\sigma_{33}$.
+Es ist ersichtlich, dass die Schubdehnungen keinen Einfluss auf $\sigma_{33}$ haben.
+Der Einfluss der zu $\sigma_{33}$ äquivalenten Dehnung $\varepsilon_{33}$ hat den grössten Einfluss.
+Die anderen Normalspannungen $\sigma_{11}$ und $\sigma_{22}$ haben einen unter anderem mit $\nu$ korrigierten Einfluss.
+
+Von  $\overline{\overline{C}}$ bildet man noch die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$ um die Gleichung umstellen zu können.
+Dadurch erhält man die Dehnungsgleichung:
 
 \[
 \vec{\varepsilon}
 =
-\overline{\overline{C}}~^{-1}\cdot \vec{\sigma}
+\overline{\overline{C}}\mathstrut^{-1}\cdot \vec{\sigma}
 \]
 
 \[
@@ -427,25 +474,18 @@ Von  $\overline{\overline{C}}$ bildet man nun die Inverse Matrix $\overline{\ove
 	\sigma_{13}\\
 	\sigma_{12}
 \end{pmatrix}
+.
 \]
-
-Die zwei Blöcke links unten und rechts oben sind immer noch vorhanden.
-Im Vergleich wo wir die Inverse noch nicht gemacht haben hat sich das nicht geändert.
-Um die Einflüsse der Parameter zu veranschaulichen schreibt man folgende Gleichung.
-
+Die zwei $3\times3$ Blöcke links unten und rechts oben sind folglich noch vorhanden.
+Um wieder die Einflüsse der Parameter veranschaulichen zu können berechnet man die Dehnung
 \[
 \varepsilon_{22}
 =
 \frac{1}{E}\sigma_{22} - \frac{\nu}{E}\sigma_{11} - \frac{\nu}{E}\sigma_{33}
+=
+\frac{1}{E}\cdot(\sigma_{22}-\nu\cdot\sigma_{11}-\nu\cdot\sigma_{33})
+.
 \]
-
-$\varepsilon_{22}$ beschreibt die Dehnung in Achse 2 und in Richtung 2.
-In erster Linie hängt $\varepsilon_{22}$ von $\sigma_{22}$ ab.
-Wenn die Poisson - Zahl grösser wird oder $\sigma_{11}$ oder $\sigma_{33}$, dann wird dadurch die Dehnung $\varepsilon_{22}$ kleiner.
-Das heisst, auf Kosten von Verformung in anderer Richtung als Achse 2 Richtung 2 erfolgt die Verformung an anderer Stelle.
-Wiederum hat die Schubspannung auf $\sigma_{11}$ keinen Einfluss.
-
-Nun kennt man die Beziehung der 6 Dehnungen mit den 6 Spannungen.
-In der Geotechnik wäre das aufgrund der vielen Komponenten sehr umständlich um damit Berechnungen zu machen.
-Es braucht daher eine Vereinfachung mit Invarianten, welche im nächsten Kapitel beschrieben sind.
-
+Diese hängt wieder am meisten von $\sigma_{22}$ ab.
+Ist die Querdehnung $\nu$ grösser, so wird die Dehnung $\varepsilon_{22}$ reduziert.
+Bei inkompressiblen Medien, bei welchen keine Dehnungen und nur identische Normalspannungen auftreten können, ist folglich $\nu=0.5$.

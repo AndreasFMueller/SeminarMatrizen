@@ -1,0 +1,28 @@
+%
+% teil3.tex -- Beispiel-File für Teil 3
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{komplexe Zahlen}
+\rhead{komplexe Zahlen}
+Die komplexen Zahlen finden eine Vielzahl von Anwendungsgebiete in den Ingenieurwissenschaften. Das liegt daran, weil die komplexen Zahlen Rotationen und Schwingungen gut beschreiben können. Nachdem vorherigen Kapitel überrascht es wahrscheinlich nicht viele, dass es möglich ist Komplexe Zahlen in der geometrischen Algebra darzustellen. Sie können durch die geraden Grade der 2 Dimensionalen geometrischen Algebra vollständig beschrieben werden: $\mathbb{G}_2^+ \cong \mathbb{C}$. Das bedeutet eine komplexe Zahl kann durch ein Skalar (Grade 0) und einem Bivektor (Grade 2) dargestellt werden. Als Abkürzung nehme ich die Bezeichnung $g_n \in  \mathbb{G}_2^+$.
+\begin{align}
+	a_0 + a_1 j \cong a_0 + a_1 e_{12} = g_n;\quad a_0, a_1 \in \mathbb{R}
+\end{align}
+oder in Polarform.
+\begin{align}
+	|r|e^{\theta j} \cong |r|e^{\theta e_{12}} = g_n; \quad r, \theta \in \mathbb{R}
+\end{align}
+Man beachte, dass wenn wir, wie bei den komplexen Zahlen, Elemente von $\mathbb{G}_2^+$ miteinander Multiplizieren, ist es nicht, wie im Kapitel Rotation bei der Formel (\ref{rotGA})beschrieben, eine Multiplikation von zwei $g_n$ mit einem Vektor. Im 2 dimensionalen bewirken beide Multiplikationen grundsätzlich das Gleiche (eine Drehstreckung), aber die Multiplikation von mehreren $g_n$ ist kommutativ, wie wir es von den komplexen zahlen kennen.
+\begin{align}
+	\begin{split}
+		&(a + b \mathbf{e_{12}})(c + d \mathbf{e_{12}}) = (c + d \mathbf{e_{12}})(a + b \mathbf{e_{12}})\\
+		&(a + b \mathbf{e_{12}})(x\mathbf{e_1}+y\mathbf{e_2})(c + d \mathbf{e_{12}}) \not= (a + b \mathbf{e_{12}})(c + d \mathbf{e_{12}})(x\mathbf{e_1}+y\mathbf{e_2})
+	\end{split}
+\end{align}
+Um später die Auswirkung der Quaternionen besser zu verstehen, möchte ich kurz darauf eingehen, was ein $g_n$ für eine Auswirkung auf einen Vektor hat.
+Wir kennen diesen Effekt schon von den komplexen Zahlen. Wenn eine komplexe Zahl $c_1=a+bj$ mit einer zweiten $c_2=c+dj$ multipliziert wird, dann kann man diese so aufteilen.
+\begin{align}
+	c = (a + bj)(c + dj) = c\cdot(a+bj) + dj\cdot(a+bj)
+\end{align}
+Wobei $c\cdot(a+bj)$ die jetzige komplexe Zahl $c_1$ um den Faktor $c$ steckt und $dj\cdot(a+bj)$ die um 90° im gegenuhrzeigersinn gedrehte Zahl $c_1$ um den Faktor $d$ streckt. Diese Anteile addiert ergeben, dann den um $c_2$ drehgestreckten Vektor $c_1$. Die wirklichen Vorteile der geometrischen Algebra werden sich aber erst bei den Quaternionen zeigen.
