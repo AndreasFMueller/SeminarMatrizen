@@ -11,14 +11,14 @@ Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Frac
 Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
 In diesem Unterkapitel wollen wir eine Methode dafür anschauen, wie sie in \cite{ifs:Rousseau2012} beschrieben ist.
 
-
-Bis jetzt wurde in Zusammenhang mit IFS immer erwähnt, dass die Transformationen, welche das IFS bilden, auf die gesamte Menge.
-Dies muss jedoch nicht so sein. 
-Es gibt auch einen Attraktor, wenn die Transformationen nur Teile der Menge auf die ganze Menge abbilden.
-Diese Eigenschaft wollen wir uns in der Fraktalen Bildkompression zunutze machen.
-Sie ermöglicht uns Ähnlichkeiten zwischen kleineren Teilen des Bildes zunutze machen.
 Es ist wohl nicht falsch zu sagen, dass Ähnlichkeiten zur gesamten Menge, wie wir sie zum Beispiel beim Barnsley Farn gesehen haben, bei Bilder aus dem Alltag eher selten anzutreffen sind.
-Doch wie finden wir die richtigen affinen Transformationen, welche als IFS das Bild als Attraktor haben?
+Ein IFS, wie wir es in \ref{ifs:subsection:IteratedFunktionensysteme} definiert haben, wird uns also nicht weiter helfen.
+Die Lösung dazu sind Partitionierte IFS (PIFS) \cite{ifs:pifs}.
+In \ref{ifs:transformation} wurde definiert, dass die Kontraktionen $S_i$ bei IFS auf die gesamte Menge $E$ angewendet werden.
+Bei einem PIFS wird der Attraktor in disjunkte Teilmengen aufgeteilt. 
+Für jede dieser Teilmengen $R_i$ braucht es dann eine grössere Teilmenge, welche mit einer affinen Transformation eine zu $R_i$ ähnliche Menge bildet.
+Wir müssen nicht mehr Ähnlichkeiten zum ganzen Bild finden, sondern zwischen Teilen des Bildes.
+Doch wie finden wir das PIFS, welches das Bild als Attraktor hat?
 
 \subsection{das Kompressionsverfahren
 \label{ifs:subsection:malorum}}
@@ -29,9 +29,12 @@ Ein Bild ist also eine Funktion, die jedem Pixel einen Grauwert $z$ zuweist
 \begin{align*}
 	z = f(x,y).
 \end{align*} 
+
+Wir suchen ein PIFS welches das zu komprimierende Bild als Attraktor hat.
 In einem ersten Schritt teilen wir das Bild in disjunkte benachbarte $b \times b$ Pixel-Quadrate auf. Diese Blöcke nennen wir Range-Blöcke der Menge $R=\{R_0,R_1,...R_m\}$
 Im nächsten Schritt teilen wir das Bild in alle möglichen $2b \times 2b$ Pixel-Quadrate auf. Diese sind die Domain-Blöcke der Menge $D = \{D_0,D_1,...D_n\}$. 
 Im dritten und letzten Schritt wird für jeden Range-Block $R_i$ ein Domain-Block $D_j$ gesucht, welcher ihm am ähnlichsten ist.
+Zwei Beispiele wie solche Domain-, und Range-Block Paare aussehen können, sehen wir in Abbildung \ref{ifs:FIC}
 
 \subsubsection{Finden des ähnlichsten $D_j$}
 Zuerst brauchen wir die Transformation 
@@ -114,6 +117,12 @@ Die Kombination von $D_j$ und $T_i$, welche den kleinsten Abstand $e$ hat, ist d
 Diese Schritte führen wir für jeden Range-Block $R_i$ aus.
 Am Ende des Algorithmus haben wir für jeden Range-Block den zugehörigen Domain-Block und Transformation gefunden.
 
+\begin{figure}	
+	\centering
+	\includegraphics[width=\textwidth]{papers/ifs/images/FIC}
+	\caption{Domain-, und Range-Block Paare in Grün und Rot}
+	\label{ifs:FIC}
+\end{figure}
 
 \subsubsection{Rekonstruktion des Bildes}
 Mit den gefundenen Abbildungen lässt sich das Bild generieren.
@@ -144,7 +153,7 @@ Um etwas Zeit bei der Komprimierung zu ersparen, wurden nur disjunkte Domain-Bl�
 Als erstes Beispiel wählen wir das 360x360px Bild von Rapperswil in Abbildung \ref{ifs:original}.
 Das Startbild ist ein mittelgraues 360x360px Bild, Abbildung \ref{ifs:bild0}.
 Es kann jedoch ein beliebiges Startbild
-Nun lassen wir das IFS laufen.
+Nun lassen wir das PIFS laufen.
 Wie wir in Abbildung \ref{ifs:rappirecoa} sehen, ist schon nach der ersten Iteration das Bild schon erkennbar.
 Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
 \begin{figure}	

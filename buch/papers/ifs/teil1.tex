@@ -6,18 +6,18 @@
 \section{Fraktale
 \label{ifs:section:teil1}}
 \rhead{Problemstellung}
-Bevor wir die IFS genauer ansehen, schauen wir uns Fraktale genauer an.
+Bevor wir die IFS ansehen, schauen wir uns Fraktale genauer an.
 
 
 Über die genaue Definition von Fraktalen sind sich die Mathematiker nicht einig. 
 In diesem Kapitel orientieren wir uns an den Eigenschaften welche Kenneth Falconer in seinem Buch Fractal Geometry \cite{ifs:fractal-geometry} beschreibt.
-Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten:
+Von einem Fraktal $F$ können wir folgende Eigenschaften erwarten: 
 \begin{enumerate}
 	\item $F$ hat eine unendlich feine Struktur
 	\item $F$ kann nicht mit der klassischen Geometrie beschrieben werden.
 	\item Oftmals hat $F$ eine Form von Selbstähnlichkeit.
 	\item Die 'fraktale Dimension' ist grösser als die topologische Dimension
-	\item Viele Fraktale lassen sich einfach beschrieben TODO
+	\item Viele Fraktale lassen sich auf eine simple Art definieren. Es genügen zum Beispiel nur wenige Funktionen, welche rekursiv ausgeführt werden, um ein Fraktal zu definieren.  
 \end{enumerate}
 \subsection{Koch Kurve
 	\label{ifs:subsection:lilkoch}}
@@ -74,7 +74,7 @@ Die Fläche unter der Kurve lässt sich folgendermassen berechnen
 	A_3 &= A_1 + A_2 + 4^2 \left( \frac{a}{3^2}\right)^2 \frac{\sqrt{3}}{4} = A_1 + \frac{4}{9} A_1 + \left( \frac{4}{9}\right)^2 A_1.
 \end{align*}
 Wir sehen, dass mit jedem Schritt die neu dazugekommene Fläche um $\frac{4}{9}$ kleiner ist.
-Die Gesamtfläche ist daher gegeben durch die geometrische Reihe,
+Die Gesamtfläche ist daher gegeben durch die konvergierende geometrische Reihe,
 \begin{align*}
 	A_n = A_1 \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n =  a^2 \frac{\sqrt{3}}{36} \sum_{i = 0}^{n-1} \left( \frac{4}{9}\right)^n \\
 \end{align*}
@@ -89,7 +89,7 @@ Zu guter Letzt bestimmen wir die Dimension der Kurve.
 Es gibt viele verschiedene Methoden die Dimension zu definieren. Diese können dann auch unterschiedliche Resultate liefern.
 Vor allem im Zusammenhang mit Fraktalen findet man in der Literatur unterschiedliche Arten.
 In diesem Beispiel werden wir die Ähnlichkeits-Dimension \cite{ifs:fractal-geometry}.
-Die Ähnlichkeits-Dimension ist das Verhältnis der Logarithmen der Anzahl Kopien $N$ des Originales und deren Skalierungsfaktor $\epsilon$
+Die Ähnlichkeits-Dimension $D$ ist das Verhältnis der Logarithmen der Anzahl Kopien $N$ des Originales und deren Skalierungsfaktor $\epsilon$
   
 \begin{align*}
 	D = - \frac{\log N}{\log \epsilon }.

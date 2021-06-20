@@ -95,7 +95,7 @@ Im Beispiel der Abbildung \ref{ifs:sierpconst} sehen wir, wie das Bild nach jede
 Der Abstand zum Original wird immer kleiner, und konvergiert gegen null.
 
 \subsection{Iterierte Funktionensysteme
-\label{ifs:subsection:bonorum}}
+\label{ifs:subsection:IteratedFunktionensysteme}}
 In diesem Abschnitt wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
 
 
@@ -110,9 +110,10 @@ Hat man nicht nur eine sondern mehrere Kontraktionen, dann existiert eine eindeu
 \begin{equation}
 	F = \bigcup\limits_{i = 1}^{m} S_i(F).
 \end{equation}
-Weiter definieren wir die Transformation S auf kompakte Mengen $E$ ohne die leere Menge.
+Weiter definieren wir die Transformation S auf kompakte Mengen $E$ ohne die leere Menge
 \begin{equation}
-	S(E) = \bigcup\limits_{i = 1}^m S_i(E)
+	S(E) = \bigcup\limits_{i = 1}^m S_i(E).
+	\label{ifs:transformation}
 \end{equation}
 Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) = S(S^{k-1}(E))$, und für jedes $i$ $S_i(E) \subset E$, gilt
 \begin{equation}
@@ -122,7 +123,8 @@ Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) =
 In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt, gegen eine eindeutige Menge konvergiert.
 Diese Menge ist auch als Attraktor des IFS bekannt.
 Der Beweis für die Existenz eines eindeutigen Attraktors ist in \cite{ifs:fractal-geometry} beschrieben. 
-Aus diesem Beweis folgt, dass die Startmenge $E$, anders als in \ref{ifs:ifsForm} beschrieben ist, beliebig sein kann, 
+Aus diesem Beweis folgt, dass die Startmenge $E$, anders als in \ref{ifs:ifsForm} beschrieben ist, beliebig sein kann.
+
 \subsection{Beispiel: Barnsley-Farn}
 Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein Beispiel eines Fraktal, welches mit einem IFS generiert werden kann.
 Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine grosse Ähnlichkeit zum ganzen Farn haben.
@@ -194,14 +196,17 @@ $S_2$ (grün) erstellt den Hauptteil des Farnes.
 Sie verkleinert und dreht das gesamte Bild und stellt es auf das Ende des Stiels aus $S_1$.
 $S_3$ bildet das gesamte Blatt auf das blaue Teilblatt unten Links ab.
 $S_4$ spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
-\subsection{Erzeugung eines Bildes mit einem IFS}
-Es gibt zwei verschiedene Methoden um ein Bild mit einem IFS zu erzeugen.
+\subsection{Erzeugung eines Bildes zu einem IFS}
+Es gibt zwei verschiedene Methoden um das Bild zu einem IFS zu erzeugen.
 Die erste Methode ist wahrscheinlich die intuitivste. 
 Wir beginnen mit einm Startbild, zum Beispiel ein Schwarzes Quadrat, und bilden dieses mit den affinen Transformationen des IFS ab.
 Das neue Bild, dass entsteht, ist die nächste Iterierte.
 Dieses wird wieder mit den Transformationen abgebildet.
 Wir wiederholen den letzten schritt, bis wir zufrieden mit der neusten Iterierten sind.
+
 Diesen Vorgang haben wir beim Sierpinski-Dreieck in Abbildung \ref{ifs:sierpconst} gebraucht.
+In Abbildung \ref{ifs:sierpinski10} ist die zehnte Iterierte zu sehen.
+Weitere Iterationen hätten in dieser Darstellungsgrösse kaum mehr einen Unterschied gemacht.
 
 
 Die zweite Methode ist das Chaosspiel \cite{ifs:chaos}. 
@@ -216,8 +221,12 @@ Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3 \& S_4$ 
 Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, $S_1$, einiges weniger Punkte braucht als der grüne Hauptteil des Blattes, $S_2$.
 
 In Abbildung \ref{ifs:farnNoWeight} wurden die vier gleich stark gewichtet.
-Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn kaum nicht so gut abgebildet ist.
+Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn nicht so gut abgebildet wird.
 
+Am besten sieht man den Effekt einer schlechten Gewichtung in Abbildung \ref{ifs:farnrightWeight}.
+Hier wurde $S_4$, welches für das rechte untere Teilblatt zuständig ist, mit nur $1\%$ statt $7\%$ gewichtet.
+Man sieht, wie sich der Mangel an Punkten auf die anderen Abbildungen das Farnblattes auswirkt.
+In jeder Kopie des ganzen Farns fehlen die Punkte für dieses rechte untere Teilblatt.
 
 
 
@@ -234,10 +243,15 @@ Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}
 	\caption{Vier Transformationen des Barnsley-Farn in unterschiedlichen Farben}
 	\label{ifs:farncolor}
 \end{figure}
+
 \begin{figure}	
 	\centering
-	\makebox[\textwidth][c]{
-		\includegraphics[width=1.4\textwidth]{papers/ifs/images/farnnotweight}}
-	\caption{Chaosspiel ohne Gewichtung}
-	\label{ifs:farnNoWeight}
+	\subfigure[]{
+		\label{ifs:farnNoWeight}
+		\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnnotweight}}
+	\subfigure[]{
+		\label{ifs:farnrightWeight}
+		\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnrightwight}}
+	\caption{(a) Chaosspiel ohne Gewichtung (b) $S_4$ zu wenig gewichtet}
+	\label{ifs:farnweight}
 \end{figure}
