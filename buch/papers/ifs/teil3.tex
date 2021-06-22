@@ -87,13 +87,13 @@ Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möchten, müs
 Dies erreichen wir, indem wir alle disjunkten $2 \times 2$ px Blöcke mit einem Pixel des Grautones deren Mittelwertes ersetzen.
 
 
-Die Parameter $s_i$ und $g_i$ beschreiben die Änderung des Grautones. $s$ verändert den Kontrast und $g$ verschiebt die Töne auf die richtige Helligkeit, sie bilden die lineare Funktion
+Die Parameter $s_i$ und $g_i$ beschreiben die Änderung des Grautones. $s$ verändert den Kontrast und $g$ verschiebt die Grautöne auf die richtige Helligkeit, sie bilden die lineare Funktion
 \begin{align*}
 	z' = s_i z + g_i.
 \end{align*}
 Für die Bestimmung dieser Parameter führen wir zuerst die Bildfunktionen $f_{R_i}$ und $\tilde{f_{R_i}}$ ein.
 $f_{R_i}$ ist die Bildfunktion des Range-Blockes $R_i$ und $\tilde{f_{R_i}}$ ist die Bildfunktion des zuerst Skalierten und dann mit \ref{ifs:affTrans} transformierten Domain-Blocks $D_j$.
-$s$ und $g$ werden mit der einfachen linearen Regression ermittelt. 
+
 Wir suchen $s_i$ und $g_i$ so das
 \begin{align*}
 	f_{R_i} = s_i \tilde{f_{R_i}} + g_i = \bar{f_{R_i}}.
