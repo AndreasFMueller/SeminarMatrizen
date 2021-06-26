@@ -155,6 +155,17 @@ Die allgemeine Spannungsgleichung lautet nun:
 \overline{\overline{C}}\cdot\vec{\varepsilon}
 .
 \]
+
+Als Indexnotation
+\[
+\sigma_{ij}
+=
+\sum_{k=1}^3
+\sum_{l=1}^3
+C_{ijkl}\cdot\varepsilon_{kl}
+\]
+kann dies ebenfalls geschrieben werden.
+
 Die Konstanten $C$ werden nun nach dem Hook'schen Gesetz mit Hilfe des Elastizitätsmoduls $E$ definiert.
 Da dieser Modul durch die eindimensionale Betrachtung definiert ist,
 muss für die dreidimensionale Betrachtung eine weitere Kennzahl eingeführt werden.
@@ -208,17 +219,8 @@ definiert ist. Trägt man die Konstanten in die Matrix ein, ergibt sich
 	\varepsilon_{32} \\
 	\varepsilon_{33}
 \end{pmatrix}
-,
+.
 \]
-welche ebenfalls als Indexnotation mit
-\[
-\sigma_{ij}
-=
-\sum_{k=1}^3
-\sum_{l=1}^3
-C_{ijkl}\cdot\varepsilon_{kl}
-\]
-ausgedrückt werden kann.
 Die Normalspannung $\sigma_{22}$ lässt sich exemplarisch als
 \[
 \sigma_{22}
@@ -308,7 +310,7 @@ und entsprechend
 =
 \begin{pmatrix}
 	\varepsilon_{11} & \varepsilon_{12} & \varepsilon_{13} \\ 
-	& \varepsilon_{22} & \varepsilon_{23} \\
+	                 & \varepsilon_{22} & \varepsilon_{23} \\
 	\text{sym}       &                  & \varepsilon_{33}
 \end{pmatrix}
 \qquad
@@ -397,8 +399,8 @@ Somit lässt sich die reduzierte allgemeine Spannungsgleichung mit
 \]
 beschreiben.
 Die Konstanten $C$ werden wieder nach dem Hook'schen Gesetz definiert.
-Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
-\[
+Dies ergibt die Spannungsformel, welche weit möglichst vereinfacht ist:
+\begin{equation}
 \begin{pmatrix}
 	\sigma_{11}\\
 	\sigma_{22}\\
@@ -426,7 +428,8 @@ Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
 	\varepsilon_{12}
 \end{pmatrix}
 .
-\]
+\label{spannung:Spannungsgleichung}
+\end{equation}
 
 Im Elastizitätstensor fallen zwei $3\times3$ Blöcke auf, welche nur Einträge mit $0$ haben. Der Tensor besagt also,
 dass diese jeweiligen Dehnungen keinen Einfluss auf unsere Spannung haben.
