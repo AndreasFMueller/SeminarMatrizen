@@ -4,6 +4,19 @@
 # (c) 2020 Prof Dr Andreas Mueller
 #
 
-images:
-	@echo "no images to be created in punktgruppen"
+TIKZFIGURES := \
+	tikz/combine-symmetries.tex \
+	tikz/lattice.tex \
+	tikz/piezo-atoms.tex \
+	tikz/piezo.tex \
+	tikz/projections.tex
+
+FIGURES := $(patsubst tikz/%.tex, figures/%.pdf, $(TIKZFIGURES))
+
+.PHONY: images
+images: $(FIGURES)
+
+figures/%.pdf: tikz/%.tex
+	mkdir -p figures
+	pdflatex --output-directory=figures $<
 
