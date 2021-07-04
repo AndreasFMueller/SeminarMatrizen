@@ -5,14 +5,14 @@
 %
 \section{Codierung eines Beispiels
 \label{reedsolomon:section:codebsp}}
-\rhead{Koerper Festlegen}
+\rhead{Codierung eines Beispiels}
 
 Um die Funktionsweise eines Reed-Solomon-Codes besser zu verstehen werden wir die einzelnen Probleme und ihre Lösungen anhand eines Beispiels betrachten.
-Da wir in Endlichen Körpern Rechnen werden wir zuerst solch einen Körper festlegen. Dabei müssen wir die \textcolor{red}{Definition 4.6 (wie verweist man auf eine definition?)} berücksichtigen, die besagt, dass nur Primzahlen für endliche Körper in Frage kommen.
-Wir legen für unser Beispiel den endlichen Körper mit $q = 11$ fest.
+Da wir in endlichen Körpern rechnen, werden wir zuerst solch einen Körper festlegen. Dabei müssen wir die \textcolor{red}{Definition 4.6 (verweis auf eine Definition im Buch ohne label)} berücksichtigen, die besagt, dass nur Primzahlen für endliche Körper in Frage kommen.
+Wir legen für unser Beispiel den endlichen Körper $\mathbb{F}_{q}$ mit $q = 11$ fest.
 Zur Hilfestellung können dazu die beiden Tabellen \ref{reedsolomon:subsection:adtab} und
-\ref{reedsolomon:subsection:mptab} hinzugezogen werden. Diese Tabellen enthalten sämtliche Resultate aller gültigen Operationen \textcolor{red}{(Notiz: nach meinem Wissen gibt es ja nur addition und multiplikation als gültige operationen)}, die in diesem Körper durchgeführt werden können.
-Aus der Definition der Endlichen Körper (ersichtlich auch in den Tabellen) folgt, dass uns nur die Zahlen \[\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}\] zur verfügung stehen und somit $11 = 0$ gelten muss.
+\ref{reedsolomon:subsection:mptab} hinzugezogen werden. Diese Tabellen enthalten die Resultate der arithmetischen Operationen im Körper $\mathbb{F}_{11}$, die durchgeführt werden können.
+Aus der Definition der endlichen Körper (ersichtlich auch in den Tabellen) folgt, dass uns nur die Zahlen \[\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}\] zur Verfügung stehen und somit $11 = 0$ gelten muss.
 
 % OLD TEXT
 %Alle folgenden Berechnungen wurden mit den beiden Restetabellen \ref{reedsolomon:subsection:adtab} und \ref{reedsolomon:subsection:mptab} durchgeführt.
@@ -22,7 +22,7 @@ Aus der Definition der Endlichen Körper (ersichtlich auch in den Tabellen) folg
 %\input{papers/reedsolomon/restetabelle1}
 %\input{papers/reedsolomon/restetabelle2}
 
-Anhand der Menge uns zur Verfügung stehenden Zahlen wird auch festgelegt, wie viele Zahlen ein Nachrichtenblock $n$, bestehend aus Nutzdatenteil und Fehlerkorrekturteil, umfassen kann.
+Die Menge uns zur Verfügung stehender Zahlen legt auch fest, wie viele Zahlen ein Nachrichtenblock $n$, bestehend aus Nutzdatenteil und Fehlerkorrekturteil, umfassen kann.
 Der Nachrichtenblock im Beispiel besteht aus
 \[
 n = q - 1 = 10 \text{ Zahlen},
@@ -52,16 +52,16 @@ k = n - 2t = 6\text{ Zahlen}
 \]
 übertragen. 
 
-Zusammenfassend haben wir einen Nachrichtenblock mit der Länge von 10 Zahlen definiert, der 6 Zahlen als Nutzlast beinhaltet und in der Lage ist aus 2 fehlerhafte Stellen im Block die ursprünglichen Nutzdaten zu rekonstruieren. Zudem werden wir im weiteren feststellen, dass dieser Code maximal vier Fehlerstellen erkennen, diese aber nicht rekonstruieren kann.
+Zusammenfassend haben wir einen Nachrichtenblock mit der Länge von 10 Zahlen definiert, der 6 Zahlen als Nutzlast beinhaltet und in der Lage ist, aus 2 fehlerhafte Stellen im Block die ursprünglichen Nutzdaten zu rekonstruieren. Zudem werden wir im weiteren feststellen, dass dieser Code maximal vier Fehlerstellen erkennen, diese aber nicht rekonstruieren kann.
 
-Wir legen nun die Nachricht
+Wir legen nun für das Beispiel die Nachricht
 \[
 m = [0,0,0,0,4,7,2,5,8,1]
 \]
 fest, die wir gerne an einen Empfänger übertragen möchten, wobei die vorderen vier Stellen für die Fehlerkorrektur zuständig sind.
-Solange diese Stellen vor dem Codieren und nach dem Decodieren den Wert null haben, so ist die Nachricht Fehlerfrei übertragen worden.
+Solange diese Stellen vor dem Codieren und nach dem Decodieren den Wert null haben, so ist die Nachricht fehlerfrei übertragen worden.
 
-Da wir in den folgenden Abschnitten mit Polynomen arbeiten, stellen wir die Nachicht auch noch als Polynom
+Da wir in den folgenden Abschnitten mit Polynomen arbeiten, stellen wir die Nachricht auch noch als Polynom
 \[
 m(X) = 4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1
 \] 
@@ -77,8 +77,8 @@ dar.
 \subsection{Der Ansatz der diskreten Fouriertransformation
 	\label{reedsolomon:subsection:diskFT}}
 
-In einem vorherigen Kapitel \textcolor{red}{(???)} haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulerische Zahl $e$ in endlichen Körpern nicht existiert.
-Wir legen deshalb die Zahl $a$ fest. Diese Zahl soll die gleichen aufgaben haben, wie $e^{\frac{j}{2 \pi}}$ in der Diskreten Fouriertransformation, nur mit dem Unterschied, dass $a$ in $\mathbb{F}_{11}$ existiert. Dazu soll $a$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken, um
+In einem vorherigen Abschnitt \textcolor{red}{(???)} haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulerische Zahl $e$ in endlichen Körpern nicht existiert.
+Wir wählen deshalb eine Zahl $a$, die die gleichen Aufgaben haben soll wie $e^{\frac{j}{2 \pi}}$ in der diskreten Fouriertransformation, nur mit dem Unterschied, dass $a$ in $\mathbb{F}_{11}$ ist. Dazu soll die Potenz von $a$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken, um
 \[
 \mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}
 \]
@@ -118,27 +118,41 @@ umzuschreiben.
 
 Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
 \begin{center}
-\begin{tabular}{c r c l}
-%$a = 0 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\}$ \\
-$a = 1 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\}$ \\
-$a = 2 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 2, 4, 8, 5, 10, 9, 7, 3, 6\}$ \\
-$a = 3 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 3, 9, 5, 4, 1, 3, 9, 5, 4\}$ \\
-$a = 4 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 4, 5, 9, 3, 1, 4, 5, 9, 3\}$ \\
-$a = 5 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 5, 3, 4, 9, 1, 5, 3, 4, 9\}$ \\
-$a = 6 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 6, 3, 7, 9, 10, 5, 8, 4, 2\}$ \\
-$a = 7 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\}$ \\
-$a = 8 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\}$ \\
-$a = 9 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\}$ \\
-$a = 10 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$	
+\begin{tabular}{c c c c c c c}
+$a = 1$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 2$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 2, 4, 8, 5, 10, 9, 7, 3, 6\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 3$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 3, 9, 5, 4, 1, 3, 9, 5, 4\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 4$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 4, 5, 9, 3, 1, 4, 5, 9, 3\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 5$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 5, 3, 4, 9, 1, 5, 3, 4, 9\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 6$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 6, 3, 7, 9, 10, 5, 8, 4, 2\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 7$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 8$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 9$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 10$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
 \end{tabular}
 \end{center}
-so fällt uns auf, dass für $a$ die Zahlen $2,6,7,8$ erhalten, die tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em Primitive Einheitswurzel \em genannt. 
-Wenden wir diese Vorgehensweise auch für andere Endliche Körper an, so werden wir sehen, dass wir immer mindestens zwei solcher Einheitswurzel finden werden. Somit ist es uns überlassen, eine dieser Einheitswurzeln auszuwählen, mit der wir weiter rechnen wollen. Für das Beispiel wählen wir die Zahl $a^i = 8$.
+%\begin{center}
+%\begin{tabular}{c r c l}
+%%$a = 0 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{0, 0, 0, 0, 0, 0, 0, 0, 0, 0\}$ \\
+%$a = 1 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\}$ \\
+%$a = 2 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 2, 4, 8, 5, 10, 9, 7, 3, 6\}$ \\
+%$a = 3 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 3, 9, 5, 4, 1, 3, 9, 5, 4\}$ \\
+%$a = 4 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 4, 5, 9, 3, 1, 4, 5, 9, 3\}$ \\
+%$a = 5 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 5, 3, 4, 9, 1, 5, 3, 4, 9\}$ \\
+%$a = 6 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 6, 3, 7, 9, 10, 5, 8, 4, 2\}$ \\
+%$a = 7 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\}$ \\
+%$a = 8 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\}$ \\
+%$a = 9 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\}$ \\
+%$a = 10 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$	
+%\end{tabular}
+%\end{center}
+so fällt uns auf, dass für $a$ die Zahlen $2,6,7,8$ erhalten, die tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em primitive Einheitswurzel \em genannt. 
+Wenden wir diese Vorgehensweise auch für andere endliche Körper an, so werden wir sehen, dass wir immer mindestens zwei solcher Einheitswurzel finden werden. Somit ist es uns überlassen, eine dieser Einheitswurzel auszuwählen, mit der wir weiter rechnen wollen. Für das Beispiel wählen wir die Zahl $a = 8$.
 
 \subsubsection{Bildung einer Transformationsmatrix
 	\label{reedsolomon:subsection:transMat}}
 
-Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. Für die Codierung müssen wir alle $a^i$ in das Polynom $m(X)$ einsetzen. Da wir $a^i = 8^i$ gewählt haben  ergibt sich daraus 
+Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. Für die Codierung müssen wir alle $a^i$ in das Polynom $m(X)$ einsetzen. Da wir $a^i = 8^i$ gewählt haben, ergibt sich daraus 
 %
 %Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetzen.
 %
@@ -150,12 +164,13 @@ Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu
 		$m(8^9) = 4 \cdot 7^5 + 7 \cdot 7^4 + 2 \cdot 7^3 + 5 \cdot 7^2 + 8 \cdot 7^1 + 1 = 4$
 	\end{tabular}
 \end{center}
-unser Übertragungsvektor. Um das ganze noch ein wenig übersichtlicher zu gestalten können wir die Polynome zu einer Matrix zusammenfassen und bildet so unsere Transformationsmatrix $A$.
+als unser Übertragungsvektor. 
 
 \subsection{Allgemeine Codierung
 	\label{reedsolomon:subsection:algCod}}
+Um das Ganze noch ein wenig übersichtlicher zu gestalten können wir die Polynome zu einer Matrix zusammenfassen, die unsere Transformationsmatrix $A$ bildet.
 
-Für die Codierung benötigen wir die Nachricht $m$, die Codiert werden soll sowie die Transformationsmatrix $A$. Daraus erhalten wir den Übertragungsvektor $v$. Setzen wir die Zahlen aus dem Beispiel ein erhalten wir folgende Darstellung.
+Für die allgemeine Codierung benötigen wir die Nachricht $m$, die codiert werden soll, sowie die Transformationsmatrix $A$. Daraus erhalten wir den Übertragungsvektor $v$. Setzen wir die Zahlen aus dem Beispiel ein erhalten wir folgende Darstellung:
 \[
 v = A \cdot m \qquad \Rightarrow \qquad v = \begin{pmatrix}
 	8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0&    8^0\\
@@ -173,6 +188,7 @@ v = A \cdot m \qquad \Rightarrow \qquad v = \begin{pmatrix}
 \begin{pmatrix}
 	1 \\ 8 \\ 5 \\ 2 \\ 7 \\ 4 \\ 0 \\ 0 \\ 0 \\ 0 \\
 \end{pmatrix}
+.
 \]
 Für unseren Übertragungsvektor resultiert
 \[

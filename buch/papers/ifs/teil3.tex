@@ -9,33 +9,41 @@
 Mit dem Prinzip dieser IFS ist es auch möglich Bilder zu Komprimieren.
 Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch Fractals Everywhere einen wichtigen Beitrag zum Verständnis von Fraktalen geliefert hat.
 Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
-In diesem Unterkapitel wollen wir eine Methode dafür anschauen.\cite{ifs:Rousseau2012}
+In diesem Unterkapitel wollen wir eine Methode dafür anschauen, wie sie in \cite{ifs:Rousseau2012} beschrieben ist.
 
-
-Bis jetzt wurde in Zusammenhang mit IFS immer erwähnt, dass die Transformationen auf die ganze Menge angewendet werden.
-Dies muss jedoch nicht so sein. 
-Es gibt auch einen Attraktor, wenn die Transformationen nur Teile der Menge auf die ganze Menge abbilden.
-Diese Eigenschaft wollen wir uns in der Fraktalen Bildkompression zunutze machen.
-Sie ermöglicht uns Ähnlichkeiten zwischen kleineren Teilen des Bildes zunutze machen.
 Es ist wohl nicht falsch zu sagen, dass Ähnlichkeiten zur gesamten Menge, wie wir sie zum Beispiel beim Barnsley Farn gesehen haben, bei Bilder aus dem Alltag eher selten anzutreffen sind.
-Doch wie Finden wir die richtigen Affinen Transformationen, welche als IFS das Bild als Attraktor haben?
+Ein IFS, wie wir es in \ref{ifs:subsection:IteratedFunktionensysteme} definiert haben, wird uns also nicht weiter helfen.
+Die Lösung dazu sind Partitionierte IFS (PIFS) \cite{ifs:pifs}.
+In \ref{ifs:transformation} wurde definiert, dass die Kontraktionen $S_i$ bei IFS auf die gesamte Menge $E$ angewendet werden.
+Bei einem PIFS wird der Attraktor in disjunkte Teilmengen aufgeteilt. 
+Für jede dieser Teilmengen $R_i$ braucht es dann eine grössere Teilmenge, welche mit einer affinen Transformation eine zu $R_i$ ähnliche Menge bildet.
+Wir müssen nicht mehr Ähnlichkeiten zum ganzen Bild finden, sondern zwischen Teilen des Bildes.
+Doch wie finden wir das PIFS, welches das Bild als Attraktor hat?
 
 \subsection{das Kompressionsverfahren
 \label{ifs:subsection:malorum}}
-In der Beschreibung des Verfahrens wird sich auf Graustufenbilder bezogen. Wie das Verfahren für Farbbilder verwendet werden kann, wird später erläutert.
+Wir beschränken das Verfahren für Graustufenbilder. Wie das Verfahren für Farbbilder verwendet werden kann, wird später erläutert.
+Ein Graustufenbild kann man als Pixelraster mit einer x und y Achse verstehen.
+Jedem dieser Pixel wird ein Grauwert zugeordnet.
+Ein Bild ist also eine Funktion, die jedem Pixel einen Grauwert $z$ zuweist
+\begin{align*}
+	z = f(x,y).
+\end{align*} 
 
+Wir suchen ein PIFS welches das zu komprimierende Bild als Attraktor hat.
 In einem ersten Schritt teilen wir das Bild in disjunkte benachbarte $b \times b$ Pixel-Quadrate auf. Diese Blöcke nennen wir Range-Blöcke der Menge $R=\{R_0,R_1,...R_m\}$
 Im nächsten Schritt teilen wir das Bild in alle möglichen $2b \times 2b$ Pixel-Quadrate auf. Diese sind die Domain-Blöcke der Menge $D = \{D_0,D_1,...D_n\}$. 
 Im dritten und letzten Schritt wird für jeden Range-Block $R_i$ ein Domain-Block $D_j$ gesucht, welcher ihm am ähnlichsten ist.
+Zwei Beispiele wie solche Domain-, und Range-Block Paare aussehen können, sehen wir in Abbildung \ref{ifs:FIC}
 
 \subsubsection{Finden des ähnlichsten $D_j$}
-Zuerst brauchen wir die Transformation um ein Element aus $D$ auf ein Element von $R$ Abzubilden.
+Zuerst brauchen wir die Transformation 
 \begin{align*}
-	T(x,y,z) = 
+	T_i(x,y,z) = 
 	\begin{pmatrix}
-		a & b & 0 \\
-		c & d & 0 \\
-		0 & 0 & s
+		a_i & b_i & 0 \\
+		c_i & d_i & 0 \\
+		0 & 0 & s_i
 	\end{pmatrix}
 	\begin{pmatrix}
 		x \\
@@ -44,52 +52,86 @@ Zuerst brauchen wir die Transformation um ein Element aus $D$ auf ein Element vo
 	\end{pmatrix}
 	+
 	\begin{pmatrix}
-		\alpha \\
-		\beta \\
-		g
+		\alpha_i \\
+		\beta_i \\
+		g_i
 	\end{pmatrix}
 \end{align*}
-Diese Transformation bildet den Pixel $P$ auf Koordinate $(x,y)$ und Graustufe $z$ auf den Pixel $P'$ ab.
-
-Da wir mit Pixeln arbeiten, sind die Transformationen in der Ebene Beschränkt.
-Diese wird durch die Parameter $a,b,c$ und $d$ bestimmt.
-Mögliche Transformationen sind auf folgende Liste Beschränkt:
+um ein Element aus $D$ auf ein Element von $R$ Abzubilden.
+Wenn wir die Grauwerte ausser acht lassen, haben wir die affine Abbildung
+\begin{align}
+	t_i(x,y) = 	
+	\begin{pmatrix}
+		a_i & b_i \\
+		c_i & d_i
+	\end{pmatrix}
+	\begin{pmatrix}
+		x \\
+		y
+	\end{pmatrix}
+	+
+	\begin{pmatrix}
+		\alpha_i \\
+		\beta_i
+	\end{pmatrix}.
+\label{ifs:affTrans}
+\end{align}
+Da wir mit Pixeln arbeiten, ist die Auswahl der möglichen Abbildungen begrenzt.
+Wir sind auf folgende acht Abbildungen beschränkt:
 \begin{itemize}
 	\item Identische Transformation, keine Änderung
 	\item Drehung um 90, 180 oder 270 Grad.
 	\item Spiegelung an der vertikalen, horizontalen und den Diagonalachsen.
 \end{itemize}
-$\alpha$ und $\beta$ verschieben den Pixel an die richtige Stelle.
 Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möchten, müssen wir zuerst $G_j$ um $1/2$ skalieren.
 Dies erreichen wir, indem wir alle disjunkten $2 \times 2$ px Blöcke mit einem Pixel des Grautones deren Mittelwertes ersetzen.
-Skaliert und transformiert erhalten wir $\tilde{D_j}$
 
-Die Parameter $s$ und $g$ beschreiben die Änderung des Grautones. $s$ verändert den Kontrast und $g$ verschiebt die Töne auf die richtige Helligkeit. 
-$s$ und $g$ werden mit der linearen Regression ermittelt. 
+
+Die Parameter $s_i$ und $g_i$ beschreiben die Änderung des Grautones. $s$ verändert den Kontrast und $g$ verschiebt die Grautöne auf die richtige Helligkeit, sie bilden die lineare Funktion
 \begin{align*}
-	z' = sz + g \\
-	f(\tilde{D_j}) \text{, Funktion um das Bild eins Blockes zu erhalten}  \\
-	s = \frac{cov(f(R_i), f(\tilde{D_j}))}{var(\tilde{D_j})} \\
-	g = E(f(R_i)) - s E(f(\tilde{D_j}))
+	z' = s_i z + g_i.
 \end{align*}
-Mit diesen Parametern haben wir nun die Transformation vollständig bestimmt.
-Um zu beurteilen ob der Domain-Block $D_j$ mit der gefundenen Transformation $T$ dem Range-Block $R_i$ genügend ähnlich ist, berechnet man den quadratischen Abstand $e$.
+Für die Bestimmung dieser Parameter führen wir zuerst die Bildfunktionen $f_{R_i}$ und $\tilde{f_{R_i}}$ ein.
+$f_{R_i}$ ist die Bildfunktion des Range-Blockes $R_i$ und $\tilde{f_{R_i}}$ ist die Bildfunktion des zuerst Skalierten und dann mit \ref{ifs:affTrans} transformierten Domain-Blocks $D_j$.
+
+Wir suchen $s_i$ und $g_i$ so das
 \begin{align*}
-	e = d(f(R_i), f(T(D_j)))
+	f_{R_i} = s_i \tilde{f_{R_i}} + g_i = \bar{f_{R_i}}.
+\end{align*}
+Die Parameter lassen sich mit
+\begin{align*}	
+	s = \frac{\operatorname{cov}(f_{R_i}), f(\tilde{f_{R_i}}))}{\operatorname{var}(\tilde{f_{R_i}})} \\
+	g = E(f_{R_i}) - s E(f(\tilde{f_{R_i}}))
+\end{align*}
+berechnen.
+Mit diesen Parametern haben wir nun die Transformation vollständig bestimmt.
+Um zu beurteilen wie ähnlich der Domain-Block $D_j$ mit der gefundenen Transformation $T$ dem Range-Block ist, berechnet man den quadratischen Abstand
+\begin{align*}
+	e = d(f_{R_i}, \bar{f_{R_i}}).
 \end{align*}
 Dieser Abstand sollte so klein wie möglich sein.
-Die beste Kombination von $D_j$ und $T_i$ ist also diese, welche den kleinsten Abstand zum Block $R_i$ hat, und somit am ähnlichsten ist.
 
-Am Ende des Verfahrens haben wir also für jeden $R_i$ einen passenden $D_i$ mit der zugehörigen Abbildung $T_i$ gefunden.
+Wir bestimmen die Parameter $s$ und $g$ für jede der acht möglichen affinen Abbildungen und das mit jedem Domain-Block.
+Die Kombination von $D_j$ und $T_i$, welche den kleinsten Abstand $e$ hat, ist die beste.
+
+Diese Schritte führen wir für jeden Range-Block $R_i$ aus.
+Am Ende des Algorithmus haben wir für jeden Range-Block den zugehörigen Domain-Block und Transformation gefunden.
+
+\begin{figure}	
+	\centering
+	\includegraphics[width=\textwidth]{papers/ifs/images/FIC}
+	\caption{Domain-, und Range-Block Paare in Grün und Rot}
+	\label{ifs:FIC}
+\end{figure}
 
 \subsubsection{Rekonstruktion des Bildes}
-Mit den Gefundenen Abbildungen lässt sich das Bild generieren.
+Mit den gefundenen Abbildungen lässt sich das Bild generieren.
 Wir beginnen wie schon im letzten Kapitel mit einer beliebigen Startmenge.
 In unserem Fall ist dieses ein Bild  $f_0$ derselben Grösse.
 Nun ersetzen wir jedes $R_i$ mit der Transformierten des zugehörigen Domain-Blocks $T(G_j)$.
 Dies wird verkürzt als Operator $W$ geschrieben.
 So erhalten wir ein neues Bild $f_1 = W(f_0)$.
-Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen unterschied feststellen. Die Iteration hat nun ihren Fixpunkt, das Bild, erreicht.
+Dieses Vorgehen führen wir iteriert aus bis wir von $f_n = W(f_{n-1})$ zu $f_{n-1}$ kaum mehr einen Unterschied feststellen. Die Iteration hat nun ihren Attraktor, das Bild, erreicht.
 
 \subsubsection{Farbbilder}
 Dieses Verfahren mit Graustufenbilder lässt sich ganz einfach auf Farbbilder erweitern.
@@ -98,20 +140,20 @@ Teilt man ein Bild in die drei Farbkanäle auf, das heisst, es wird nur noch ein
 Nun wendet man auf jeden dieser Farbkanalbilder den Algorithmus an, und fügt nach der Rekonstruktion die Kanäle wieder zusammen. 
 
 \subsubsection{Performance des Verfahren}
-Dieser Grundalgorithmus der Fraktalen Bildkompression ist offensichtlich recht langsam und skaliert auch schlecht mit grösseren Bilder.
-Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nie so schnell wie zum Beispiel das jpeg verfahren.
+Dieser Grundalgorithmus der fraktalen Bildkompression ist recht langsam und skaliert auch schlecht für grössere Bilder.
+Dies resultiert aus eigenen Experimenten.
+Man kann die Laufzeit zwar verbessern indem man die Domain-Blöcke auch disjunkt macht, und für weniger detailreiche Bilder ein grösseres $b$ wählt, jedoch wird er auch so nicht so schnell wie zum Beispiel das JPEG-Verfahren.
+Es wurden bessere Algorithmen der fraktalen Bildkompression entwickelt, doch auch diese können, vor allem in der Laufzeit, noch nicht mit herkömmlichen Komprimierungsverfahren mithalten.
 
 \subsection{Beispiel}
-Kommen wir nun zu einem Beispiel.
-Wir Verwenden dafür den oben beschriebenen Algorithmus.
+Wir Verwenden dafür den oben beschriebenen Algorithmus, welcher uns für jeden Range-Block die benötigten Parameter liefert.
+Mit diesen lässt sich das Bild im Anschluss wieder Rekonstruieren.
 Die Range-Blöcke wurden $4\times4$ gewählt und die Dommain dementsprechend $8\times8$.
 Um etwas Zeit bei der Komprimierung zu ersparen, wurden nur disjunkte Domain-Blöcke gebraucht.
 Als erstes Beispiel wählen wir das 360x360px Bild von Rapperswil in Abbildung \ref{ifs:original}.
-Der Algorithmus liefert uns für jeden Range-Block die benötigten Parameter.
-Mit diesen lässt sich das Bild im Anschluss wieder Rekonstruieren.
-
-Als Startbild wird ein mittelgraues 360x360px Bild gewählt, Abbildung \ref{ifs:bild0}.
-Nun lassen wir das IFS laufen.
+Das Startbild ist ein mittelgraues 360x360px Bild, Abbildung \ref{ifs:bild0}.
+Es kann jedoch ein beliebiges Startbild
+Nun lassen wir das PIFS laufen.
 Wie wir in Abbildung \ref{ifs:rappirecoa} sehen, ist schon nach der ersten Iteration das Bild schon erkennbar.
 Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
 \begin{figure}	

@@ -14,29 +14,31 @@ Folglich gilt:
 Dadurch wird der Spannungszustand vereinfacht.
 Diesen vereinfachten Spannungszustand kann man mit den zwei geotechnischen Invarianten abbilden.
 Die erste Invariante ist die volumetrische Spannung
-\[
+\begin{equation}
 p
 =
 \frac{\sigma_{11}+\sigma_{22}+\sigma_{33}}{3}
+\label{spannung:Invariante_p}
 ,
-\]
+\end{equation}
 welche als arithmetisches Mittel aller Normalspannungen im infinitesimalen Würfel definiert ist.
 Die zweite Invariante ist die deviatorische Spannung
-\[
+\begin{equation}
 q
 =
 \sqrt{\frac{(\sigma_{11}-\sigma_{22})^{2}+(\sigma_{11}-\sigma_{33})^{2}+(\sigma_{22}-\sigma_{33})^{2}}{2}}
+\label{spannung:Invariante_q}
 .
-\]
+\end{equation}
 Diese Zusammenhänge werden im Skript [\cite{spannung:Stoffgesetze-und-numerische-Modellierung-in-der-Geotechnik}] aufgezeigt.
-Die hydrostatische Spannung $p$ kann gemäss Gleichung (Nr) als
+Die hydrostatische Spannung $p$ kann gemäss Gleichung \eqref{spannung:Invariante_p} als
 \[
 p
 =
 \frac{\sigma_{11}+2\sigma_{33}}{3}
 \]
 vereinfacht werden.
-Die deviatorische Spannung $q$ wird gemäss Gleichung (Nr) als
+Die deviatorische Spannung $q$ wird gemäss Gleichung \eqref{spannung:Invariante_q}als
 \[
 q
 =
@@ -44,7 +46,7 @@ q
 \]
 vereinfacht. Man kann $p$ als Isotrop und $q$ als Schub betrachten.
 
-Die Invarianten können mit der Spannungsformel (Nr..xxx) berechnet werden.
+Die Invarianten können mit der Spannungsformel \eqref{spannung:Spannungsgleichung} berechnet werden.
 Durch geschickte Umformung dieser Gleichung, lassen sich die Module als Faktor separieren.
 Dabei entstehen spezielle Faktoren mit den Dehnungskomponenten.
 So ergibt sich
@@ -81,7 +83,7 @@ Die hydrostatische Dehnung $\varepsilon_{v}$ kann mit einer Kompression verglich
 Die deviatorische Dehnung $\varepsilon_{s}$  kann mit einer Verzerrung verglichen werden.
 
 Diese zwei Gleichungen kann man durch die Matrixschreibweise
-\[
+\begin{equation}
 \begin{pmatrix}
 	q\\
 	p
@@ -95,11 +97,12 @@ Diese zwei Gleichungen kann man durch die Matrixschreibweise
 	\varepsilon_{s}\\
 	\varepsilon_{v}
 \end{pmatrix}
-\]
-(sollte nummeriert sein) vereinfachen.
+\label{spannung:Matrixschreibweise}
+\end{equation}
+vereinfachen.
 Man hat so eine Matrix multipliziert mit einem Vektor und erhält einen Vektor.
 Änderungen des Spannungszustandes können mit dieser Gleichung vollumfänglich erfasst werden.
 
-Mit dieser Formel lassen sich verschieden Ergebnisse von Versuchen analysieren und berechnen.
+Mit dieser Formel \eqref{spannung:Matrixschreibweise} lassen sich verschieden Ergebnisse von Versuchen analysieren und berechnen.
 Ein solcher Versuch, den oft in der Geotechnik durchgeführt wird, ist der Oedometer-Versuch.
 Im nächsten Kapitel wird die Anwendung der Matrix an diesem Versuch beschrieben.
