@@ -15,7 +15,8 @@ TIKZFIGURES := \
 	tikz/lattice.tex \
 	tikz/piezo-atoms.tex \
 	tikz/piezo.tex \
-	tikz/projections.tex
+	tikz/projections.tex \
+	tikz/symmetric-shapes.tex
 
 FIGURES := $(patsubst tikz/%.tex, figures/%.pdf, $(TIKZFIGURES))
 
