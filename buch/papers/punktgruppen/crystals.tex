@@ -18,25 +18,65 @@ Die Innereien eines Kristalles sind glücklicherweise relativ einfach definiert.
 Ein zweidimensionales Beispiel eines solchen Muster ist Abbildung \ref{fig:punktgruppen:lattice}.
 Für die Überschaubarkeit haben wir ein simples Motiv eines einzelnen grauen Punktes gewählt und betrachten dies nur in Zwei Dimensionen.
 Die eingezeichneten Vektoren $\vec{a}$ und $\vec{b}$ sind die kleinstmöglichen Schritte im Raum bis sich das Kristallgitter wiederholt.
-Wird ein beliebiger grauer Gitterpunkt in \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von $\vec{a}$ und $\vec{b}$ verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
+Wird ein beliebiger grauer Gitterpunkt in \ref{fig:punktgruppen:lattice} gewählt 
+und um eine ganzzahlige Linearkombination von $\vec{a}$ und $\vec{b}$ verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
 Im Dreidimensionalen-Raum können alle Gitterpunkte mit derselben Idee und einem zusätzlichen Vektor $\vec{c}$ also 
 \[
-    \vec{r} = n_1 \vec{a} + n_2 \vec{b} + n_3 \vec{c}   
+    \vec{r} = n_1 \vec{a} + n_2 \vec{b} + n_3 \vec{c}   %maby Problem weil n bei $C_n$ auch verwendet wird
 \]
 erreicht werden sofern $\{n_1,n_2,n_3\} \in \mathbb{Z}$ sind.
-Sind die Vektoren  $\vec{a}$ , $\vec{b}$ , $\vec{c}$ gegeben , ist ein Kristallgitter eindeutig beschrieben, weswegen sie  auch als Grundvektoren bekannt sind.
+Sind die Vektoren  $\vec{a}$ , $\vec{b}$ , $\vec{c}$ gegeben ,
+ist ein Kristallgitter eindeutig beschrieben, weswegen sie  auch als Grundvektoren bekannt sind.
 
 \subsection{Translationssymmetrie}
 Da sich das ganze Kristallgitter wiederholt, wiederholen sich auch dessen Eigenschaften periodisch mit den Grundvektoren.
-Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, da die Umgebungen aller Punkte Identisch sind. 
-Mit anderen worten: Das Kristallgitter $ G $ ist \emph{Translationssymmetrisch} in der Translation 
+Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, 
+da die Umgebungen aller Punkte Identisch sind. 
+Mit anderen worten: Jedes Kristallgitter $ G $ ist \emph{Translationssymmetrisch} in der Translation 
 \[
     Q_i(G) = G + \vec{a_i}
 \] wobei der Vektor $a_i$ ein Grundvektor sein muss.
-Da die Translationssymmetrie beliebig oft mit allen Grundvektoren angewendet werden kann, können wir auch sagen, dass alle Verschiebungen um eine Linearkombination der Vektoren $\vec{a}$ , $\vec{b}$ und $\vec{c}$ erlaubt sind oder kurz, um $\vec{r}$. 
-Verschiebungen um $\vec{r}$ bewirken demnach keine Veränderungen, solange wir ein unendlich grosses Kristallgitter verschieben.
+Da die Translationssymmetrie beliebig oft mit allen Grundvektoren angewendet werden kann, 
+können wir auch sagen, dass alle Verschiebungen um eine Linearkombination 
+der Vektoren $\vec{a}$ , $\vec{b}$ und $\vec{c}$ erlaubt sind oder kurz, um $\vec{r}$. 
+Verschiebungen um $\vec{r}$ bewirken demnach keine Veränderungen, 
+solange wir ein unendlich grosses Kristallgitter verschieben.
 
 \subsection{Limitierte Kristallsymmetrien}
  Die Translationssymmetrie ist wohl keine grosse Überraschung, wenn man die Abbildung \ref{fig:punktgruppen:lattice} betrachtet.
- Was nicht direkt ersichtlich ist, ist das auch wenn die Grundvektoren frei gewählt werden, können nur Rotationssymmetrische Kristalle erzeugt werden mit Winkel $\alpha \in \{ 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ\}$.
+ Was nicht direkt ersichtlich ist, ist das auch wenn die Grundvektoren frei gewählt werden können, 
+ können nur Kristalle erzeugt werden mit Rotationssymmetrien mit Winkel $\alpha \in \{ 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ\}$.
 
+\begin{figure}
+    \centering
+    \includegraphics[]{papers/punktgruppen/figures/combine-symmetries}
+    \caption{Translations und Rotationssymmetrisches Kristallgitter}
+    \label{fig:punktgruppen:rot-geometry}
+\end{figure}
+
+ \subsubsection{Translationssymmetrie $Q$ und Rotationssymmetrie $C_\alpha$}     % Müssen uns auf eine schreibweise für Symmetrie Operationen einigen oder sicher am Ende überprüfen
+ In Abbildung \ref{fig:punktgruppen:rot-geometry} Sehen wir Gitterpunkte und deren Zusammenhänge.
+
+ \begin{itemize}
+     \item  $A$ ist unser erster Gitterpunkt. 
+            
+     \item  $A'$ ist gegeben, weil wir $A$ mit der Translation $Q$ verschieben und wir wissen, 
+            dass nach einer Translation wieder ein Gitterpunkt an der Verschobenen Stelle sein muss.           
+     \item $B$ entsteht, weil wir die Rotationssymmetrie $C_\alpha$ auf den Punkt $A$ anwenden.
+            Dadurch dreht sich das ganze Gitter um den Winkel $\alpha$. 
+            Für uns bedeutet dies lediglich, dass unser zweiter Punkt $A'$ abgedreht wird.
+            An der neuen Position von $A'$ muss also auch ein Punkt sein um die Rotationssymmetrie zu erfüllen.
+      \item $B$ ist unser Name für diesen neuen Punkt. 
+            Da auch die Eigenschaften des Kristallgitter periodisch mit dem Gitter sein müssen, dürfen wir $C_\alpha$ auch auf $A'$ anwenden.
+            Also wenden wir $C_\alpha$ invertiert
+            \footnote{Die Rotationssymmetrie muss auch iin die andere Richtung funktionieren. 
+            Genauere Überlegungen werden dem Leser überlassen, da die Autoren sich nicht explizit mit dieser Frage Auseinander gesetzt haben.} 
+            auch auf $A'$ an. 
+            Dies dreht $A$ auf einen neuen Punkt.
+     \item $B'$ ist kein zufälliger Name für diesen neuen Punkt, denn wir wissen, dass zwischen allen Punkten eine Translationssymmetrie bestehen muss.
+            Die Translationssymmetrie zwischen $B$ und $B'$ ist hier als $Q'$ bezeichnet.
+ \end{itemize}  
+ 
+
+
+%"beweis", das Rotationssymmetrien auch immer invers gehen?
