@@ -26,8 +26,8 @@ ist das Konzept der Symmetrie eigentlich viel allgemeiner.
 \subsection{Geometrische Symmetrien}
 
 In Abbildung \ref{fig:punktgruppen:geometry-example} haben wir einige Formen,
-die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat Gerade, an
-deren gespiegelt werden kann, ohne sein Aussehen zu verändern.  Regelmässige
+die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat eine Gerade, an
+deren es gespiegelt werden kann, ohne sein Aussehen zu verändern.  Regelmässige
 Polygone mit \(n\) Seiten sind auch gute Beispiele, um eine diskrete
 Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um
 einen Punkt um einen bestimmten Winkel \(360^\circ/n\) die Figur unverändert
@@ -37,13 +37,21 @@ Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für
 hoffentlich ausreichend, um die Bedeutung hinter der Notation zu verstehen, die
 nun eingeführt wird.
 
+% Vieleicht eine kurze Einführung in für die Definition, ich habe das gefühl, dass in der Definition die Symmetrie-Operation und die Gruppe auf einmal erklährt wird 
+\subsubsection{Symetriegruppe}
+	Ein Objekt kann mehr als nur eine Symmetrie aufweisen.
+	Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example}
+	nicht nur um $\sigma$ sondern auch Diagonal gespiegelt werden oder um $90^\circ$ gedreht werden.
+	Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
+
 \begin{definition}[Symmetriegruppe]
 	Sei \(g\) eine Operation, die ein mathematisches Objekt unverändert lässt.
 	Bei einer anderen Operation \(h\) definieren wir die Komposition \(h\circ g\)
 	als die Anwendung der Operationen nacheinander. Alle Operationen bilden unter
 	Komposition eine Gruppe, die Symmetriegruppe genannt wird.
-\end{definition}
+\end{definition} % ich lese diese  Definition ein wenig holprig, vieleicht können wir sie zusammen anschauen
 
+% Nach meinem Geschmack könne es hier auch eine einleitung wie mein Beispiel geben dammit man den Text flüssiger lesen kann 
 \begin{definition}[Zyklische Untergruppe, Erzeuger]
 	Sei \(g\) ein Element einer Symmetriegruppe \(G\). Alle möglichen
 	Kompositionen von \(g\) und \(g^{-1}\) bilden eine sogenannte zyklische
