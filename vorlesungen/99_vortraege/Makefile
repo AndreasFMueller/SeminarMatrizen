@@ -15,7 +15,8 @@ MathSem-99-vortraege.pdf:	MathSem-99-vortraege.tex $(SOURCES)
 vortraege-handout.pdf:	vortraege-handout.tex $(SOURCES)
 	pdflatex vortraege-handout.tex
 
-thumbnail:	thumbnail1.jpg thumbnail2.jpg thumbnail3.jpg thumbnail4.jpg 
+thumbnail:	thumbnail1.jpg thumbnail2.jpg thumbnail3.jpg thumbnail4.jpg \
+		thumbnail5.jpg
 
 thumbnail1.pdf:	MathSem-99-vortraege.pdf
 	pdfjam --outfile thumbnail1.pdf --papersize '{16cm,9cm}' \
@@ -44,6 +45,13 @@ thumbnail4.pdf:	MathSem-99-vortraege.pdf
 thumbnail4.jpg:	thumbnail4.pdf
 	convert -density 300 thumbnail4.pdf \
                 -resize 1920x1080 -units PixelsPerInch thumbnail4.jpg
+
+thumbnail5.pdf:	MathSem-99-vortraege.pdf
+	pdfjam --outfile thumbnail5.pdf --papersize '{16cm,9cm}' \
+		MathSem-99-vortraege.pdf 5
+thumbnail5.jpg:	thumbnail5.pdf
+	convert -density 300 thumbnail5.pdf \
+                -resize 1920x1080 -units PixelsPerInch thumbnail5.jpg
 
 fix1.pdf:	MathSem-99-vortraege.pdf
 	pdfjam --outfile fix1.pdf --papersize '{16cm,9cm}' \

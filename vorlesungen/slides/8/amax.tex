@@ -1,0 +1,86 @@
+%
+% amax.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{$\alpha_{\text{max}}$ und $d$}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.44\textwidth}
+\begin{block}{Definition}
+$\alpha_{\text{max}}$ ist der grösste Eigenwert der Adjazenzmatrix
+\end{block}
+\uncover<2->{
+\begin{block}{Fakten}
+\begin{itemize}
+\item<3->
+Der Eigenwert $\alpha_{\text{max}}$ ist einfach
+\item<4->
+Es gibt einen positiven Eigenvektor $f$ zum Eigenwert $\alpha_{\text{max}}$
+\item<5->
+$f$ maximiert
+\[
+\frac{\langle Af,f\rangle}{\langle f,f\rangle}
+=
+\alpha_{\text{max}}
+\]
+\end{itemize}
+Herkunft: Perron-Frobenius-Theorie positiver Matrizen (nächste Woche)
+\end{block}}
+\end{column}
+\begin{column}{0.52\textwidth}
+\uncover<6->{%
+\begin{block}{Mittlerer Grad}
+\[
+\overline{d}
+=
+\frac1{n} \sum_{v} \operatorname{deg}(v)
+\le
+\alpha_{\text{max}}
+\le
+d
+\]
+\end{block}}
+\vspace{-10pt}
+\uncover<7->{%
+\begin{proof}[Beweis]
+\begin{itemize}
+\item Konstante Funktion $1$ anstelle von $f$:
+\[
+\frac{\langle A1,1\rangle}{\langle 1,1\rangle}
+\uncover<8->{=
+\frac{\sum_v \operatorname{deg}(v)}{n}}
+\uncover<9->{=
+\overline{d}}
+\uncover<10->{\le
+\alpha_{\text{max}}}
+\]
+\item<11-> Komponenten von $Af$ summieren:
+\begin{align*}
+\uncover<12->{
+\alpha_{\text{max}}
+f(v) &= (Af)(v)}\uncover<13->{ = \sum_{u\sim v} f(u)}
+\\
+\uncover<14->{\alpha_{\text{max}}
+\sum_{v}f(v)
+&=
+\sum_v
+\operatorname{deg}(v) f(v)}
+\\
+&\uncover<15->{\le
+d\sum_v f(v)}
+\;
+\uncover<16->{\Rightarrow
+\;
+\alpha_{\text{max}} \le d}
+\end{align*}
+\end{itemize}
+\end{proof}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

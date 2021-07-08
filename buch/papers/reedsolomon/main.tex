@@ -1,10 +1,10 @@
 %
 % main.tex -- Paper zum Thema <reedsolomon>
 %
-% (c) 2020 Hochschule Rapperswil
+% (c) 2021 Joshua Bär und Michael Steiner, Hochschule Rapperswil
 %
-\chapter{Thema\label{chapter:reedsolomon}}
-\lhead{Thema}
+\chapter{Reed-Solomon-Code\label{chapter:reedsolomon}}
+\lhead{Reed-Solomon-Code}
 \begin{refsection}
 \chapterauthor{Joshua Bär und Michael Steiner}
 
@@ -27,10 +27,25 @@ Bilden Sie auch für Formeln kurze Zeilen, einerseits der besseren
 Übersicht wegen, aber auch um GIT die Arbeit zu erleichtern.
 \end{itemize}
 
+% Joshua
 \input{papers/reedsolomon/teil0.tex}
 \input{papers/reedsolomon/teil1.tex}
 \input{papers/reedsolomon/teil2.tex}
 \input{papers/reedsolomon/teil3.tex}
+
+% Michael
+\input{papers/reedsolomon/endlichekoerper}
+\input{papers/reedsolomon/codebsp}
+\input{papers/reedsolomon/decohnefehler}
+\input{papers/reedsolomon/decmitfehler}
+\input{papers/reedsolomon/rekonstruktion}
+\input{papers/reedsolomon/zusammenfassung}
+%\input{papers/reedsolomon/anwendungen}		-> geplant
+\input{papers/reedsolomon/hilfstabellen}
+
+\nocite{reedsolomon:weitz}
+\nocite{reedsolomon:informationkommunikation}
+%\nocite{reedsolomon:mendezmueller}
 
 \printbibliography[heading=subbibliography]
 \end{refsection}

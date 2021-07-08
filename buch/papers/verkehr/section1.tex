@@ -1,0 +1,70 @@
+\section{Einführung}
+\label{section:verkehr/einfuehrung}
+
+\subsection{Verkehrsnetze}
+Das Verkehrsnetz besteht aus allen Anlagen, auf oder unter der Erdoberfläche, auf denen eine räumliche Fortbewegung von Personen oder auch Gütern stattfindet. Verkehrsnetze sind ein Bestandteil der Verkehrsinfrastruktur, die auf topografischen Karten festgehalten werden. Sie umfassen den Schienenverkehr, alle Strassen und Wege, wie auch Flugplätze und alle dazugehörigen Bauwerke. 
+Aus verkehrsgeografischer Sicht besteht das Verkehrsnetz aus Kanten, Knotenpunkten und dem Hinterland. Die Knotenpunkte werden auch hier durch die Kanten verbunden, die den Verkehrsstrom aufnehmen, wobei das Hinterland durch einzelne Knoten versorgt wird. Die Aufteilung in Kanten und Knotenpunkte ermöglicht eine Vereinfachung komplexer Verkehrsnetze, damit sie mittels der Graphentheorie untersucht werden können.
+Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim
+Aufbau eines Verkehrsnetzes sein. Es kann aber auch versucht werden, die Bau- und Unterhaltskosten des Verkehrsnetzes in einem gewissen Rahmen zu halten. Aus diesen Vorgaben ergibt sich dann, je nach dem was gewünscht wird, eine grob- oder feinmaschige Struktur des Netzes. 
+Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
+
+\subsection{Suchalgorithmen}
+
+\subsubsection{Dijkstra-Algorithmus}
+Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Infomratikprofessor Edsger Dijkstra. Den Algorithmus hat er im Jahr 1959 erfunden.
+Der Algorithmus von Dijkstra ist ein Greedy-Algorithmus (gieriger Algorithmus), der schrittweise einen Folgezustand auswählt, damit beim Zeitpunkt der Wahl der grösste Gewinn bzw. das beste Ergebnis erzielt werden kann. 
+Trotz der Schnelligkeit der Greedy-Algorithmen, können viele Probleme nicht optimal gelöst werden.
+Vereinfacht wird beim Dijkstra-Algorithmus, ausgehend von einem Startknoten so lange dem kürzesten Pfad gefolgt, bis der Zielknoten erreicht wird. Dabei muss für jeden besuchten Knoten die Kostenfunktion als auch der Pfad dahin (vorheriger Knoten) gespeichert werden.
+Dadurch wird hingegen garantiert, dass, wenn der Zielknoten erreicht wird, auch der kürzeste Pfad gefunden wurde.
+Grundlegende Voraussetzung für den Dijkstra-Algorithmus ist die strikte Positivität der Kantengewichte. Andernfalls würde ein wiederholtes Ablaufen einer Kante mit negativem Gewicht zu einer stetigen Reduktion der Kostenfunktion führen, was zu einer unendlichen Schlaufe führen würde.
+
+\subsubsection{A*-Algorithmus}
+Suchalgorithmen werden nach einfachen (uninformierte) und heuristischen (informierten) Algorithmen unterschieden. Während einfache Algorithmen den Suchraum intuitiv durchsuchen, beziehen heuristische Algorithmen Wissen über den Suchraum mit ein.
+Der A*-Algorithmus geht auf seine Erfinder Peter Hart, Nils Nilsson und Bertram Raphael zurück, die den Algorithmus erstmals im Jahr 1968 beschrieben.
+Der A*-Algorithmus ist ein heuristischer Suchalgorithmus, der den kürzesten Pfad zwischen zwei Knoten in einem Graphen mit positiven Kantengewichten berechnet.
+Im Gegensatz zu einfachen Suchalgorithmen, wird beim A*-Algorithmus eine Schätzfunktion, die sogenannte Heuristik, verwendet. Dies ermöglicht ein zielgerichtetes Suchen und gleichzeitig wird die Laufzeit verringert. 
+Ausserdem findet der A*-Algorithmus immer eine optimale Lösung, sofern eine vorhanden ist.
+Der A*-Algorithmus wird als Verallgemeinerung gehandhabt und gilt als Erweiterung des Dijkstra-Algorithmus. 
+=======
+
+\subsubsection{Floyd-Warshall-Algorithmus}
+Der Floyd-Warshall-Algorithmus wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
+Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die kürzesten , beziehungsweise die optimalsten Wege zwischen allen Paaren von Knoten berechnet, sofern der Graph keinen negativen Kreis (Zyklus) aufweist.
+Ein Kreis in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.
+
+\subsubsection{Euklidische Heuristik}
+Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
+Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
+
+\subsection{PageRank-Algorithmus}
+Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc..
+Beim PageRank-Algorithmus handelt es sich um den Algorithmus von Google, aus dem die Google-Matrix abgeleitet wird.
+Die Google-Matrix ist eine immens grosse Matrix mit Millionen Zeilen und Spalten, die für die schnelle und vor allem exakte Bestimmung der PageRanks (Gewichtung) eine grosse Bedeutung hat.
+Der PageRank-Algorithmus analysiert und gewichtet beispielsweise die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur. 
+Der PageRank wird umso höher, je mehr hochwertige Links auf eine Webseite verweisen und je höher die Gewichtung einer Webseite ist, desto grösser ist der Effekt.\\
+Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche gilt.
+
+%THEORIE...
+Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseinander, wie eine Suchmaschine wie Google Suchresultate bewertet und somit sortieren soll. Öfters aufgerufene Resultate sollen schliesslich höher gewichtet werden. Dabei wird angenommen, dass eine Website populärer ist, je mehr andere Websites darauf verweisen.
+
+\begin{equation}
+A_{i,j}=\left\{ \begin{matrix}
+1 & \text{Kante von $j$ nach $i$} \\ 0 & \text{keine Kante von $j$ nach $i$}  
+\end{matrix}
+ \right.
+\label{verkehr:Adja}
+\end{equation}
+
+
+Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1...n\right\}\end{equation}
+Beim PageRank-Algorithmus wird eine abgewandelte Form der Adjazenz-Matrix verwendet.
+Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt.
+\begin{equation} P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \end{equation}
+Anschliessend multipliziert man diese Matrix $P$ mit einem Spaltenvektor $\Vec{r_0}$ mit $n$ Einträgen, für welchen gilt:
+\begin{equation} \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1...n\right\} \end{equation}
+Dieser Vektor stellt ein neutrales Ranking dar. Alle Knoten werden gleich gewichtet.
+Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das "erste" Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt.
+\begin{equation} \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\end{equation}
+somit
+\begin{equation} \Vec{r_i} = P^i\cdot\Vec{r_0}\end{equation}
+Der Vektor $\Vec{r_i}$ konvergiert zu einem Eigenvektor von $P$ und stellt das abschliessende Ranking dar.

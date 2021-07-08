@@ -1,0 +1,64 @@
+%
+% positiv.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Positive und nichtnegative Matrizen}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Positive Matrix\strut}
+Eine Matrix $A$ heisst positiv, wenn
+\[
+a_{ij} > 0\quad\forall i,j
+\]
+Man schreibt $A>0\mathstrut$
+\end{block}
+\uncover<2->{%
+\begin{block}{Relation $>\mathstrut$}
+Man schreibt $A>B$ wenn $A-B > 0\mathstrut$
+\end{block}}
+\uncover<5->{%
+\begin{block}{Wahrscheinlichkeitsmatrix}
+\[
+W=\begin{pmatrix}
+0.7&0.2&0.1\\
+0.2&0.6&0.1\\
+0.1&0.2&0.8
+\end{pmatrix}
+\]
+Spaltensumme$\mathstrut=1$, Zeilensumme$\mathstrut=?$
+\end{block}}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<3->{%
+\begin{block}{Nichtnegative Matrix\strut}
+Eine Matrix $A$ heisst nichtnegativ, wenn
+\[
+a_{ij} \ge 0\quad\forall i,j
+\]
+Man schreibt $A\ge 0\mathstrut$
+\end{block}}
+\uncover<4->{%
+\begin{block}{Relation $\ge\mathstrut$}
+Man schreibt $A\ge B$ wenn $A-B \ge 0\mathstrut$
+\end{block}}
+\uncover<6->{%
+\begin{block}{Permutationsmatrix}
+\[
+P=\begin{pmatrix}
+0&0&1\\
+1&0&0\\
+0&1&0
+\end{pmatrix}
+\]
+Genau eine $1$ in jeder Zeile/Spalte
+\end{block}}
+\end{column}
+\end{columns}
+\end{frame}
+\egroup

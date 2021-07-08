@@ -1,0 +1,73 @@
+%
+% test.tex -- Gemeinsamer Rahmen für Kurztests
+%
+% (c) 2021 Prof. Dr. Andreas Mueller, OST Ostschweizer Fachhochschule
+%
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+\geometry{papersize={210mm,297mm},total={165mm,260mm}}
+\usepackage{ngerman}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage[all]{xy}
+\usepackage{txfonts}
+\usepackage{alltt}
+\usepackage{verbatim}
+\usepackage{paralist}
+\usepackage{makeidx}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{standalone}
+\usepackage{environ}
+\usepackage{tikz}
+\input{../common/linsys.tex}
+\newcounter{beispiel}
+\newenvironment{beispiele}{
+\bgroup\smallskip\parindent0pt\bf Beispiele\egroup
+
+\begin{list}{\arabic{beispiel}.}
+  {\usecounter{beispiel}
+  \setlength{\labelsep}{5mm}
+  \setlength{\rightmargin}{0pt}
+}}{\end{list}}
+\newcounter{uebungsaufgabe}
+% environment fuer uebungsaufgaben
+\newenvironment{uebungsaufgaben}{
+\begin{list}{\arabic{uebungsaufgabe}.}
+  {\usecounter{uebungsaufgabe}
+  \setlength{\labelwidth}{2cm}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelsep}{5mm}
+  \setlength{\rightmargin}{0pt}
+  \setlength{\itemindent}{0pt}
+}}{\end{list}\vfill\pagebreak}
+\newenvironment{teilaufgaben}{
+\begin{enumerate}
+\renewcommand{\labelenumi}{\alph{enumi})}
+}{\end{enumerate}}
+% Loesung
+\NewEnviron{loesung}{%
+\begin{proof}[Lösung]%
+\renewcommand{\qedsymbol}{$\bigcirc$}
+\BODY
+\end{proof}}
+\NewEnviron{bewertung}{\relax}
+\NewEnviron{diskussion}{
+\BODY
+}
+\RenewEnviron{loesung}{\relax}
+\RenewEnviron{diskussion}{\relax}
+\newenvironment{hinweis}{%
+\renewcommand{\qedsymbol}{}
+\begin{proof}[Hinweis]}{\end{proof}}
+

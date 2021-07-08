@@ -1,0 +1,58 @@
+%
+% sturm.tex -- slide template
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\bgroup
+\begin{frame}[t]
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\frametitle{Sturm-Liouville-Problem}
+\vspace{-20pt}
+\begin{columns}[t,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\begin{block}{Wellengleichung}
+Saite mit variabler Massedichte führt auf die DGL
+\[
+-y''(t) + q(t) y(t) = \lambda y(t),
+\quad
+q(t) > 0
+\]
+mit Randbedingungen $y(0)=y(1)=0$
+\end{block}
+\end{column}
+\begin{column}{0.48\textwidth}
+\uncover<2->{%
+\begin{block}{Sturm-Liouville-Operator}
+\[
+A=-\frac{d^2}{dt^2} + q(t) = -D^2 + p
+\]
+auf differenzierbaren Funktionen $\Omega=[0,1]\to\mathbb{C}$ mit Randwerten
+\[
+f(0)=f(1)=0
+\]
+\end{block}}
+\end{column}
+\end{columns}
+\uncover<3->{%
+\begin{block}{Selbstadjungiert}
+\begin{align*}
+\langle f,Ag \rangle
+&\uncover<4->{=
+\langle f,-D^2 g\rangle + \langle f,qg\rangle
+=
+-
+\int_0^1 \overline{f}(t) \frac{d^2}{dt^2}g(t)\,dt
++\langle f,qg\rangle}
+\\
+&\uncover<5->{=-\underbrace{[\overline{f}(t)g'(t)]_0^1}_{\displaystyle=0}
++\int_0^1 \overline{f}'(t)g'(t)\,dt
++\langle f,qg\rangle}
+\uncover<6->{=-\int_0^1 \overline{f}''(t)g(t)\,dt
++\langle qf,g\rangle}
+\\
+&\uncover<7->{=\langle Af,g\rangle}
+\end{align*}
+\end{block}}
+\end{frame}
+\egroup
