@@ -5,96 +5,120 @@
 %
 \section{Rotation}
 \rhead{Rotation}
-Eine Rotation kann man aus zwei, aufeinanderfolgende Reflektionen bilden. Das war für mich zuerst eine verwirrende Aussage, da man aus den vorherig gezeigten Formeln annehmen könnte, dass die Reflektion schon für eine Drehung ausreicht. Obwohl sich die Längen, Winkel und Volumen sich bei einer Reflektion, wie bei einer Rotation, nicht ändert, sind sie doch verschieden, da die Orientierung bei der Reflektion invertiert wird. Stellt man sich beispielsweise ein Objekt in 3D vor und spiegelt dieses an einer Fläche, dann ist es unmöglich nur durch eine Rotation (egal an welchem Punkt) das ursprüngliche Objekt deckungsgleich auf das Gespiegelte zu drehen. Hingegen ist es wiederum möglich ein zweifach gespiegeltes Objekt durch eine Drehung zu erreichen. Das liegt daran, da die Orientierung zwei mal invertiert wurde.
+
+Eine Rotation kann man aus zwei, aufeinanderfolgende Spiegelung bilden. Das war für mich zuerst eine verwirrende Aussage, da man aus den vorherig gezeigten Formeln annehmen könnte, dass die Spiegelung schon für eine Drehung ausreicht. Obwohl sich die Längen, Winkel und Volumen sich bei einer Spiegelung, wie bei einer Rotation, nicht ändert, sind sie doch verschieden, da die Orientierung bei der Spiegelung invertiert wird. Stellt man sich beispielsweise ein Objekt im Dreidimensionalen vor und spiegelt dieses an einer Fläche, dann ist es unmöglich nur durch eine Rotation (egal an welchem Punkt) das ursprüngliche Objekt deckungsgleich auf das Gespiegelte zu drehen. Hingegen ist es wiederum möglich ein zweifach gespiegeltes Objekt durch eine Drehung zu erreichen. Das liegt daran, da die Orientierung zweimal invertiert wurde.
 \\BILD
 
-\subsection{linearen Algebra}
-In der linearen Algebra haben wir Drehungen durch die Matrizen der Gruppe $SO(n)$ beschrieben. Die SO(2) werden beispielsweise auf diese Weise gebildet.
+\subsection{Linearen Algebra}
+In der linearen Algebra haben wir Drehungen durch die Matrizen der Gruppe $\text{SO}(n)$ beschrieben. Die $\text{SO}(2)$  werden beispielsweise auf diese Weise gebildet.
 \begin{align}
 	D = 
 	\begin{pmatrix}
-		cos(\alpha) & sin(\alpha) \\
-		-sin(\alpha) & cos(\alpha) 
+		\cos(\alpha) & \sin(\alpha) \\
+		-\sin(\alpha) & \cos(\alpha) 
 	\end{pmatrix}
 \end{align}
+Diese Drehmatrizen gehören der speziellen orthogonalen Matrizengruppe $D\in \text{SO}(n) = \text{SL}_n(\mathbb{R})\enspace \cap \enspace \text{O}(n)$ an. $\text{SL}_n(\mathbb{R})$ beinhaltet die Matrizen mit scherenden Eigenschaften. Diese Drehmatrizen haben die Eigenschaft $D^t D = E \enspace \land \enspace det(D)=1$. Dadurch dass die $det(D) = 1$ und nicht $-1$ sein kann fallen alle Spiegelungen aus der Menge raus. $det(D) = -1$ bedeutet, dass eine Orientierungsinversion stattfindet.  
+\\BILD Mengen Spezieller Matrizen von Herrn Müller Präsentation
 
-\subsection{geometrischen Algebra}
-Da wir jetzt aus der Geometrie wissen, dass eine Rotation durch zwei Reflektionen gebildet werden kann, können wir die Rotation einfach herleiten.
+\subsection{Geometrische Algebra}
+Da wir jetzt aus der Geometrie wissen, dass eine Rotation durch zwei Spiegelungen gebildet werden kann, können wir die Rotation mit der Formel \eqref{RefGA} einfach herleiten.
 \begin{align} \label{rotGA}
-	v'' = wv'w^{-1} = w(uvu^{-1})w^{-1} 
+	\mathbf{v}'' = \mathbf{wv}'\mathbf{w}^{-1} = \mathbf{w}(\mathbf{uvu}^{-1})\mathbf{w}^{-1} 
 \end{align}
-Die Vektoren $\mathbf{w}$ und $\mathbf{u}$ bilden hier wiederum die Spiegelachsen. Diese versuchen wir jetzt noch zu verbessern. Dazu leiten wir zuerst die bekannte Polarform her. (Anmerkung: Hier wird eine Rotation auf der $\mathbf{e_{12}}$ Ebene hergeleitet. Weitere Drehungen können in höheren Dimensionen durch Linearkombinationen von Drehungen in den $\mathbf{e_{ij}}, i\not=j$ Ebenen erreicht werden)
+Die Vektoren $\mathbf{w}$ und $\mathbf{u}$ bilden hier wiederum die Spiegelachsen. Diese Formel versuchen wir jetzt noch durch Umstrukturierung zu verbessern. 
+\subsubsection{Polarform und Exponentialform}
+Dazu leiten wir zuerst die Exponentialform her. (Anmerkung: Hier wird eine Rotation auf der $\mathbf{e}_{12}$ Ebene hergeleitet. Weitere Drehungen können in höheren Dimensionen durch Linearkombinationen von Drehungen in den $\mathbf{e}_{ij}, i\not=j$ Ebenen erreicht werden). Dafür verwenden wir die Polarform des Vektors.
 \begin{align}
-	\mathbf{w} = |w| \left[\cos(\theta_w) e_1 + \sin(\theta_w) e_2\right]
+	\mathbf{w} = |\mathbf{w}| \left(\cos(\theta_w) \mathbf{e}_1 + \sin(\theta_w) \mathbf{e}_2\right)
 \end{align}
-Dabei können wir ausnützen, dass $e_1^2 = 1$ ist. Was nichts ändert wenn wir es einfügen. Zudem klammern wir dann $e_1$ aus. 
+Dabei können wir ausnützen, dass $\mathbf{e}_1^2 = 1$ ist. Was nichts ändert wenn wir es einfügen. Zudem klammern wir dann $\mathbf{e}_1$ aus. 
+\begin{align}\label{e1ausklammern}
+	\mathbf{w} = |\mathbf{w}| \left(\cos(\theta_w) \mathbf{e}_1 + \sin(\theta_w) \mathbf{e}_1\mathbf{e}_1\mathbf{e}_2\right)
+\end{align}
 \begin{align}
-	\mathbf{w} = |w| \left[\cos(\theta_w) e_1 + \sin(\theta_w) e_1e_1e_2\right] 
+	\mathbf{w} = |\mathbf{w}|\mathbf{e}_1\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12}\right)
 \end{align}
-\begin{align} \label{e1ausklammern}
-	\mathbf{w} = |w|e_1\left[\cos(\theta_w)+ \sin(\theta_w) e_{12}\right]
-\end{align}
-Durch die Reihenentwicklung ist es uns jetzt möglich den Term in eckigen Klammern mit der e-Funktion zu schreiben.
+Durch die Reihenentwicklung der $\sin$ und $\cos$ Funktionen
 \begin{align}
-	\mathbf{w} = |w|\mathbf{e_1} e^{\theta_w \mathbf{e_{12}}}
+	\sin(\theta_w)\mathbf{e}_{12}&=\sum _{n=0}^{\infty }(-1)^{n}{\frac {\theta_w^{2n+1}}{(2n+1)!}}\mathbf{e}_{12} =\theta_w\mathbf{e}_{12}-{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}-\cdots \\
+	cos(\theta_w)&=\sum _{n=0}^{\infty }(-1)^{n}{\frac {\theta_w^{2n}}{(2n)!}} =1-{\frac {\theta_w^{2}}{2!}}+{\frac {\theta_w^{4}}{4!}}-\cdots
 \end{align}
-Man kann es so interpretieren, dass der Einheitsvektor $e_1$ um die Länge w gestreckt und um $theta_w$ gedreht wird.
-Nun werden wir den Effekt von zwei aneinandergereihten Vektoren $(wu)$ betrachten.
+ist es uns leicht möglich die $\sin$ und $\cos$ Terme in die Exponentialfunktion umzuwandeln. Dabei verwenden wir zusätzlich noch unsere Erkenntnis, dass $\mathbf{e}_{12}^2=-1, \enspace\mathbf{e}_{12}^3=-\mathbf{e}_{12}, ...$
 \begin{align}
-	\mathbf{wu} = |w|\mathbf{e_1} e^{\theta_w \mathbf{e_{12}}}||u||\mathbf{e_1} e^{\theta_u \mathbf{e_{12}}}
+	\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12} &= 1+\theta_w\mathbf{e}_{12}-{\frac {\theta_w^{2}}{2!}}-{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}+{\frac {\theta_w^{4}}{4!}}+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}-\cdots\\
+	\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12} &= 1 \mathbf{e}_{12}^0+\theta_w\mathbf{e}_{12}^1+{\frac {\theta_w^{2}}{2!}}\mathbf{e}_{12}^2+{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}^3+{\frac {\theta_w^{4}}{4!}}\mathbf{e}_{12}^4+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}^5-\cdots\\
 \end{align}
-Um die beiden $\mathbf{e_1}$ zu kürzen, können wir die Reihenfolge des exponential Terms mit $\mathbf{e_1}$ wechseln, indem man bei der Gleichung (\ref{e1ausklammern}), anstatt mit $\mathbf{e_1e_1e_2}$ mit $\mathbf{e_2e_1e_1}$ erweitert. 
+Aus der Reihenentwicklung der Exponentialfunktion folgt nun
+\begin{align}
+	&e^{\theta_w\mathbf{e}_{12}}=\sum _{n=0}^{\infty }{\frac {(\theta_w\mathbf{e}_{12})^{n}}{n!}}={\frac {(\theta_w\mathbf{e}_{12})^{0}}{0!}}+{\frac {(\theta_w\mathbf{e}_{12})^{1}}{1!}}+{\frac {(\theta_w\mathbf{e}_{12})^{2}}{2!}}+{\frac {(\theta_w\mathbf{e}_{12})^{3}}{3!}}+\cdots\\
+	&\Rightarrow \mathbf{w} = |w|\mathbf{e}_1 e^{\theta_w \mathbf{e}_{12}} = |w|\mathbf{e}_1\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12}\right)
+\end{align}
+Man kann es so interpretieren, dass der Einheitsvektor $\mathbf{e}_1$ um die Länge $|\mathbf{w}|$ gestreckt und um $\theta_w$ gedreht wird.
+\subsubsection{Vektormultiplikation}
+Nun werden wir den Effekt von zwei aneinandergereihten Vektoren $\mathbf{wu}$ betrachten.
+\begin{align}
+	\mathbf{wu} = |\mathbf{w}|\mathbf{e}_1 e^{\theta_w \mathbf{e}_{12}}|u|\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}
+\end{align}
+Um die beiden $\mathbf{e}_1$ zu kürzen, können wir die Reihenfolge des Exponentialterms mit $\mathbf{e}_1$ wechseln, indem man bei der Gleichung \eqref{e1ausklammern}, anstatt mit $\mathbf{e}_1\mathbf{e}_1\mathbf{e}_2$ mit $\mathbf{e}_2\mathbf{e}_1\mathbf{e}_1$ erweitert. 
 \begin{align} 
-	\mathbf{w} = |w|\left[\cos(\theta_w)+ \sin(\theta_w) \mathbf{e_2e_1}\right]\mathbf{e_1}
+	\mathbf{w} = |\mathbf{w}|\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_2\mathbf{e}_1\right)\mathbf{e}_1
 \end{align}
-Da $\mathbf{e_2e_1 = -e_{12}}$ können wir einfach den Winkel negieren.
-Jetzt können wir wieder $e_1e_1 = 1$ kürzen. Die Längen können als Skalare beliebig verschoben werden und die exponential Terme zusammengefasst werden.
+Da $\mathbf{e}_2\mathbf{e}_1 = -\mathbf{e}_1\mathbf{e}_2$ können wir einfach den Winkel negieren und $e_1e_1 = 1$ kürzen. Die Längen können als Skalare beliebig verschoben werden und die Exponentialterme zusammengefasst werden.
 \begin{align}
-	\mathbf{wu} = |w||u|e^{-\theta_w \mathbf{e_{12}}}\mathbf{e_1}\mathbf{e_1} e^{\theta_u \mathbf{e_{12}}}
+	\mathbf{wu} = |\mathbf{w}||\mathbf{u}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}
 \end{align}
 \begin{align}
-	\mathbf{wu} = |w||u|e^{(\theta_u-\theta_w) \mathbf{e_{12}}}
+	\mathbf{wu} = |\mathbf{w}||\mathbf{u}|e^{(\theta_u-\theta_w) \mathbf{e}_{12}}
 \end{align}
-der Term $\mathbf{u^{-1}w^{-1}}$ kann durch die selbe Methode zusammengefasst werden. 
+der Term $\mathbf{u}^{-1}\mathbf{w}^{-1}$ kann durch die selbe Methode zusammengefasst werden. 
 \begin{align}
-	\mathbf{u^{-1}w^{-1}} = \dfrac{1}{|w||u|}e^{(\theta_w-\theta_u) \mathbf{e_{12}}}
+	\mathbf{u}^{-1}\mathbf{w}^{-1} = \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{(\theta_w-\theta_u) \mathbf{e}_{12}}
 \end{align}
-Dabei definieren wir den Winkel zwischen den Vektoren  $\mathbf{w}$ und $\mathbf{u}$ als $\theta = \theta_w - \theta_u$. Setzten wir nun unsere neuen Erkenntnisse in die Gleichung (\ref{rotGA}) ein.
+Dabei definieren wir den Winkel zwischen den Vektoren  $\mathbf{w}$ und $\mathbf{u}$ als $\theta = \theta_w - \theta_u$. 
+\subsubsection{Umstrukturierte Drehungsgleichung}
+Setzten wir nun unsere neuen Erkenntnisse in die Gleichung \eqref{rotGA} ein.
 \begin{align}
-	\mathbf{v''} = |w||u|e^{-\theta \mathbf{e_{12}}} v \dfrac{1}{|w||u|}e^{\theta \mathbf{e_{12}}}
+	\mathbf{v''} = |\mathbf{w}||\mathbf{u}|e^{-\theta \mathbf{e}_{12}} v \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{\theta \mathbf{e}_{12}}
 \end{align}
-HIER DEFINITION/IST WICHTIGE FORMEL
-\begin{align}
-	\mathbf{v''} = e^{-\theta \mathbf{e_{12}}} v e^{\theta \mathbf{e_{12}}}
-\end{align}
-Wir wissen nun, dass das diese beidseitige Multiplikation die Länge von $\mathbf{v}$ nicht verändert, da sich die Längen von $\mathbf{w}$ und $\mathbf{u}$ kürzen. Betrachten wir nun den Effekt der Exponentialterme auf $\mathbf{v}$. Dabei Teilen wir den Vektor $\mathbf{v}$ auf in einen Anteil $\mathbf{v_\parallel}$, welcher auf der Ebene $\mathbf{e_{12}}$ liegt, und einen Anteil $\mathbf{v_\perp}$, welcher senkrecht zu der Ebene steht.
+\begin{satz}
+	Vereinfachte Drehungsgleichung in Exponentialschreibweise
+	\begin{align}
+		\mathbf{v''} = e^{-\theta \mathbf{e}_{12}} v e^{\theta \mathbf{e}_{12}}
+	\end{align}
+\end{satz}
+
+Wir wissen nun, dass das diese beidseitige Multiplikation die Länge von $\mathbf{v}$ nicht verändert, da sich die Längen von $\mathbf{w}$ und $\mathbf{u}$ kürzen. Betrachten wir nun den Effekt der Exponentialterme auf $\mathbf{v}$. Dabei Teilen wir den Vektor $\mathbf{v}$ auf in einen Anteil $\mathbf{v_\parallel}$, welcher auf der Ebene $\mathbf{e}_{12}$ liegt, und einen Anteil $\mathbf{v_\perp}$, welcher senkrecht zu der Ebene steht.
 \begin{align} \label{RotAufPerpPar}
-	\mathbf{v''} = e^{-\theta \mathbf{e_{12}}} (\mathbf{v_\perp + v_\parallel}) e^{\theta \mathbf{e_{12}}}
+	\mathbf{v}'' = e^{-\theta \mathbf{e}_{12}} (\mathbf{v_\perp + v_\parallel}) e^{\theta \mathbf{e}_{12}}
 \end{align}
 \begin{align}
-	\mathbf{v''} = e^{-\theta \mathbf{e_{12}}} \mathbf{v_\perp} e^{\theta \mathbf{e_{12}}} + e^{-\theta \mathbf{e_{12}}} \mathbf{v_\parallel} e^{\theta \mathbf{e_{12}}}
+	\mathbf{v}'' = e^{-\theta \mathbf{e}_{12}} \mathbf{v_\perp} e^{\theta \mathbf{e}_{12}} + e^{-\theta \mathbf{e}_{12}} \mathbf{v_\parallel} e^{\theta \mathbf{e}_{12}}
 \end{align}
 Auf eine allgemeine Herleitung wird hier zwar verzichtet, aber man kann zeigen, dass die Reihenfolge so vertauscht werden kann. Der Winkel wird dabei beim parallelen Term negiert.
 \begin{align}
-	\mathbf{v''} = \mathbf{v_\perp} e^{-\theta \mathbf{e_{12}}}  e^{\theta \mathbf{e_{12}}} +  \mathbf{v_\parallel} e^{-(-\theta) \mathbf{e_{12}}} e^{\theta \mathbf{e_{12}}}
+	\mathbf{v}'' = \mathbf{v_\perp} e^{-\theta \mathbf{e}_{12}}  e^{\theta \mathbf{e}_{12}} +  \mathbf{v_\parallel} e^{-(-\theta) \mathbf{e}_{12}} e^{\theta \mathbf{e}_{12}}
 \end{align}
 \begin{align}
-	\mathbf{v''} = \mathbf{v_\perp} +  \mathbf{v_\parallel} e^{2\theta \mathbf{e_{12}}}
+	\mathbf{v}'' = \mathbf{v_\perp} +  \mathbf{v_\parallel} e^{2\theta \mathbf{e}_{12}}
 \end{align}
-Man kann an dieser Gleichung sehen, dass nur der parallele Anteil des Vektors $\mathbf{v}$ auf der Ebene $\mathbf{e_{12}}$ um $2\theta$ gedreht wird. Der senkrechte Anteil bleibt gleich. Wichtig dabei zu sehen ist, dass nur der Winkel zwischen den Vektoren $\mathbf{w}$ und $\mathbf{u}$ von Bedeutung ist. Die Länge und Richtung der einzelnen Vektoren spielt keine Rolle. 
-\\BEISPIEL
-\begin{align}
-	\begin{split}
-		&\mathbf{v} = 1\mathbf{e_1} + 2\mathbf{e_2} + 3\mathbf{e_3}\quad\Rightarrow\quad \mathbf{v_\parallel} = 1\mathbf{e_1} + 2\mathbf{e_2}; \quad \mathbf{v_\perp} = 3\mathbf{e_3}\\ &\mathbf{wu} = 1e^{(-\pi/2) \mathbf{e_{12}}} = 1[\cos(-\pi/2)\mathbf{e_1}+\sin(-\pi/2)\mathbf{e_2}] = -\mathbf{e_2}; \\ &\mathbf{u^{-1}w^{-1}} = 1e^{(\pi/2) \mathbf{e_{12}}} = \mathbf{e_2}
-	\end{split}
-\end{align}
-\begin{align}
-	\begin{split}
-		\mathbf{v''} = &\mathbf{(wu)v(u^{-1}w^{-1})} \\ 
-		&-\mathbf{e_2} (1\mathbf{e_1} + 2\mathbf{e_2} + 3\mathbf{e_3}) \mathbf{e_2} \\
-		& -1\mathbf{e_2e_1e_2} - 2\mathbf{e_2e_2e_2} - 3\mathbf{e_2e_3e_2} \\
-		& 1\mathbf{e_2e_2e_1} - 2\mathbf{e_2} + 3\mathbf{e_2e_2e_3} \\
-		& 1\mathbf{e_1} - 2\mathbf{e_2} + 3\mathbf{e_3}
-	\end{split}
-\end{align}
+Man kann an dieser Gleichung sehen, dass nur der parallele Anteil des Vektors $\mathbf{v}$ auf der Ebene $\mathbf{e}_{12}$ um $2\theta$ gedreht wird. Der senkrechte Anteil bleibt gleich. Wichtig dabei zu sehen ist, dass nur der Winkel zwischen den Vektoren $\mathbf{w}$ und $\mathbf{u}$ von Bedeutung ist. Die Länge und Richtung der einzelnen Vektoren spielt keine Rolle. 
+\begin{beispiel}
+	\begin{align}
+		\begin{split}
+			\mathbf{v} &= 1\mathbf{e}_1 + 2\mathbf{e}_2 + 3\mathbf{e}_3\quad\Rightarrow\quad \mathbf{v_\parallel} = 1\mathbf{e}_1 + 2\mathbf{e}_2 \quad \mathbf{v_\perp} = 3\mathbf{e}_3\\ 
+			\mathbf{wu} &= 1e^{(-\pi/2) \mathbf{e}_{12}} = 1[\cos(-\pi/2)\mathbf{e}_1+\sin(-\pi/2)\mathbf{e}_2] = -\mathbf{e}_2 \\
+			\mathbf{u}^{-1}\mathbf{w}^{-1} &= 1e^{(\pi/2) \mathbf{e}_{12}} = \mathbf{e}_2
+		\end{split}
+	\end{align}
+	\begin{align}
+		\begin{split}
+			\mathbf{v}'' = &(\mathbf{wu})\mathbf{v}(\mathbf{u}^{-1}\mathbf{w}^{-1}) \\ 
+			&-\mathbf{e}_2 (1\mathbf{e}_1 + 2\mathbf{e}_2 + 3\mathbf{e}_3) \mathbf{e}_2 \\
+			& -1\mathbf{e}_2\mathbf{e}_1\mathbf{e}_2 - 2\mathbf{e}_2\mathbf{e}_2\mathbf{e}_2 - 3\mathbf{e}_2\mathbf{e}_3\mathbf{e}_2 \\
+			& 1\mathbf{e}_2\mathbf{e}_2\mathbf{e}_1 - 2\mathbf{e}_2 + 3\mathbf{e}_2\mathbf{e}_2\mathbf{e}_3 \\
+			& 1\mathbf{e}_1 - 2\mathbf{e}_2 + 3\mathbf{e}_3
+		\end{split}
+	\end{align}
+\end{beispiel}
 Man sieht, dass sich der Vektor $\mathbf{v_\parallel}$ sich um $2\cdot90^\circ$ gedreht hat und der Vektor $\mathbf{v_\perp}$ unverändert blieb.
