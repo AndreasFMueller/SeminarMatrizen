@@ -1,0 +1,108 @@
+%
+% einleitung.tex -- Beispiel-File für die Einleitung
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Pauli-Matrizen}
+\rhead{Pauli-Matrizen}
+
+Was ist der beste Weg um einen Computeralgorithmus für die Rechenoperationen in der Clifford-Algebra zu erstellen? Man könnte versuchen ein textueller Rechner zu implementieren der für die Elemente $\mathbf{e}_i$ hartkodierte Vereinfachungen ausführt 
+\begin{beispiel}
+	der Algorithmus weiss, dass er $a\mathbf{e}_1\cdot b\mathbf{e}_1$ zu $ab\cdot1$ vereinfachen kann
+	\begin{align}
+		3\mathbf{e}_1 \cdot 2\mathbf{e}_1 + 3\mathbf{e}_2 \Rightarrow 6 + 3\mathbf{e}_2
+	\end{align}
+\end{beispiel}
+Dies ist aber sehr ineffizient. Die Pauli-Matrizen bilden eine elegante und schnellere Alternative, welche für die dreidimensionale Clifford-Algebra verwendet werden können und alle Operationen aus der Clifford-Algebra gleich wie die Matrixoperationen ausführen lassen.
+\begin{definition} \label{def:defPauli}
+	vier Pauli-Matrizen ($\mathbf{e}_0$ = Skalare)
+	\begin{align}
+		\mathbf{e}_0 = E = 
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix}\quad
+		\mathbf{e}_1 =
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix}\quad
+		\mathbf{e}_2 =
+		\begin{pmatrix}
+			0 & -j \\
+			j & 0
+		\end{pmatrix}\quad
+		\mathbf{e}_3 =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{pmatrix}\quad	
+	\end{align}
+	durch normale Matrizenmultiplikation lassen sich die restlichen Basiselemente der dreidimensionalen Clifford-Algebra herleiten
+	\begin{align}
+		\mathbf{e}_{12} =  
+		\begin{pmatrix}
+			j & 0 \\
+			0 & -j
+		\end{pmatrix}\quad
+		\mathbf{e}_{23} =
+		\begin{pmatrix}
+			0 & j \\
+			j & 0
+		\end{pmatrix}\quad
+		\mathbf{e}_{31} =
+		\begin{pmatrix}
+			0 & 1 \\
+			-1 & 0
+		\end{pmatrix}\quad
+		\mathbf{e}_{123} =
+		\begin{pmatrix}
+			j & 0 \\
+			0 & j
+		\end{pmatrix}\quad	
+	\end{align}
+\end{definition}
+Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-Algebra für die Basiselemente definiert hat.
+\begin{align}
+	\mathbf{e}_1^2 &= \mathbf{e}_0 =
+	\begin{pmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{pmatrix}^2 = 
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix}\\
+	\mathbf{e}_{12}^2 &= -\mathbf{e}_0 =
+	\begin{pmatrix}
+		j & 0 \\
+		0 & -j
+	\end{pmatrix}^2 = 
+	\begin{pmatrix}
+		-1 & 0 \\
+		0 & -1
+	\end{pmatrix}
+\end{align}
+Man kann bei der Definition \ref{def:defPauli} sehen, dass alle Matrizen linear unabhängig voneinander sind. Das bedeutet, dass wenn man die Matrizen der Basiselemente normal addiert und zu einer grossen Matrix zusammenfasst und anschliessend wieder herausgelesen werden können.
+\begin{definition}
+	Multivektor mit Pauli-Matrizen
+	\begin{align}
+		M &= a_0\mathbf{e}_0 + a_1\mathbf{e}_1 + a_2\mathbf{e}_3 + a_{12}\mathbf{e}_{12} + a_{23}\mathbf{e}_{23} + a_{31}\mathbf{e}_{31} + a_{123}\mathbf{e}_{123}\\
+		M &=
+		\begin{pmatrix}
+			(a_0+a_3) + (a_{12}+a_{123})j & (a_1+a_{31})+(-a_2+a_{23})j \\
+			(a_1-a_{31})+(a_2+a_{23})j & (a_0-a_3)+(-a_{12}+a_{123})j
+		\end{pmatrix}  
+	\end{align}
+\end{definition}
+\begin{beispiel}
+	\begin{align}
+		M &= \begin{pmatrix}
+			1 & 0 \\
+			0 & 0
+		\end{pmatrix}\\
+		&\Rightarrow a_0 + a_3 = 1 \land a_0 - a_3 = 0\\
+		&\Rightarrow a_0 = 0.5 \land a_3 = 0.5\\
+		M &= 0.5 \mathbf{e}_0 + 0.5 \mathbf{e}_3
+	\end{align}
+\end{beispiel}
