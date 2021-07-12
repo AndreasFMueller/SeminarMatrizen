@@ -1,0 +1,257 @@
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{intersections}
+\usetikzlibrary{math}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{calc}
+
+\begin{document}
+\begin{tikzpicture}[
+    classcirc/.style = {
+      draw = gray, thick, circle,
+      minimum size = 12mm,
+      inner sep = 0pt, outer sep = 0pt,
+    },
+    classlabel/.style = {
+      below right = 5mm
+    },
+    round/.style = {
+      draw = orange, thick, circle,
+      minimum size = 1mm,
+      inner sep = 0pt, outer sep = 0pt,
+    },
+    cross/.style = {
+      cross out, draw = magenta, thick,
+      minimum size = 1mm, 
+      inner sep = 0pt, outer sep = 0pt
+    },
+  ]
+  \matrix [row sep = 3mm, column sep = 0mm] {
+    \node[classcirc] (C1)  {} node[classlabel] {\(C_{1}\)};  & 
+    \node[classcirc] (C2)  {} node[classlabel] {\(C_{2}\)};  &
+    \node[classcirc] (C3)  {} node[classlabel] {\(C_{3}\)};  &
+    \node[classcirc] (Ci)  {} node[classlabel] {\(C_{i}\)};  &
+
+    \node[classcirc] (Cs)  {} node[classlabel] {\(C_{s}\)};  &
+    \node[classcirc] (C3i) {} node[classlabel] {\(C_{3i}\)}; &
+    \node[classcirc] (C2h) {} node[classlabel] {\(C_{2h}\)}; &
+    \node[classcirc] (D2)  {} node[classlabel] {\(D_{2}\)};  \\
+
+    \node[classcirc] (D3d) {} node[classlabel] {\(D_{3d}\)}; &
+    \node[classcirc] (C2v) {} node[classlabel] {\(C_{2v}\)}; & 
+    \node[classcirc] (D2h) {} node[classlabel] {\(D_{2h}\)}; & 
+    \node[classcirc] (D3)  {} node[classlabel] {\(D_{3}\)};  &
+
+    \node[classcirc] (C4)  {} node[classlabel] {\(C_{4}\)};  &
+    \node[classcirc] (C6)  {} node[classlabel] {\(C_{6}\)};  &
+    \node[classcirc] (D3dP) {} node[classlabel] {\(D_{3d}\)}; &
+    \node[classcirc] (S4)  {} node[classlabel] {\(S_{4}\)};  \\
+
+    \node[classcirc] (S3)  {} node[classlabel] {\(S_{3}\)};  &
+    \node[classcirc, dashed] (T)   {} node[classlabel] {\(T_{}\)};   &
+    \node[classcirc] (C4h) {} node[classlabel] {\(C_{4h}\)}; &
+    \node[classcirc] (C6h) {} node[classlabel] {\(C_{6h}\)}; &
+
+    \node[classcirc, dashed] (Th)  {} node[classlabel] {\(T_{h}\)};  &
+    \node[classcirc] (C4v) {} node[classlabel] {\(C_{4v}\)}; &
+    \node[classcirc] (C6v) {} node[classlabel] {\(C_{6v}\)}; &
+    \node[classcirc, dashed] (Td)  {} node[classlabel] {\(T_{d}\)};  \\
+    
+    \node[classcirc] (D2d) {} node[classlabel] {\(D_{2d}\)}; &
+    \node[classcirc] (D3h) {} node[classlabel] {\(D_{3h}\)}; &
+    \node[classcirc, dashed] (O)   {} node[classlabel] {\(O_{}\)};   &
+    \node[classcirc] (D4)  {} node[classlabel] {\(D_{4}\)};  &
+
+    \node[classcirc] (D6)  {} node[classlabel] {\(D_{6}\)};  &
+    \node[classcirc, dashed] (Oh)  {} node[classlabel] {\(O_{h}\)};  &
+    \node[classcirc] (D4h) {} node[classlabel] {\(D_{4h}\)}; &
+    \node[classcirc] (D6h) {} node[classlabel] {\(D_{6h}\)}; \\
+  };
+
+
+  \node[cross] at ($(C1)+(4mm,0)$) {};
+
+  
+  \node[cross] at ($(C2)+(4mm,0)$) {};
+  \node[cross] at ($(C2)-(4mm,0)$) {};
+
+
+  \node[cross] at ($(C3)+(  0:4mm)$) {};
+  \node[cross] at ($(C3)+(120:4mm)$) {};
+  \node[cross] at ($(C3)+(240:4mm)$) {};
+
+
+  \node[cross] at ($(Ci)+(4mm,0)$) {};
+  \node[round] at ($(Ci)-(4mm,0)$) {};
+
+
+  \node[cross] at ($(Cs)+(4mm,0)$) {};
+  \node[round] at ($(Cs)+(4mm,0)$) {};
+
+
+  \node[cross] at ($(C3i)+(  0:4mm)$) {};
+  \node[cross] at ($(C3i)+(120:4mm)$) {};
+  \node[cross] at ($(C3i)+(240:4mm)$) {};
+  \node[round] at ($(C3i)+( 60:4mm)$) {};
+  \node[round] at ($(C3i)+(180:4mm)$) {};
+  \node[round] at ($(C3i)+(300:4mm)$) {};
+
+
+  \node[cross] at ($(C2h)+(4mm,0)$) {};
+  \node[cross] at ($(C2h)-(4mm,0)$) {};
+  \node[round] at ($(C2h)+(4mm,0)$) {};
+  \node[round] at ($(C2h)-(4mm,0)$) {};
+
+
+  \node[cross] at ($(D2)+( 20:4mm)$) {};
+  \node[cross] at ($(D2)+(200:4mm)$) {};
+  \node[round] at ($(D2)+(160:4mm)$) {};
+  \node[round] at ($(D2)+(340:4mm)$) {};
+
+
+  \foreach \x in {0, 120, 240} {
+    \node[cross] at ($(D3d)+({\x+15}:4mm)$) {};
+    \node[cross] at ($(D3d)+({\x-15}:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 180} {
+    \node[cross] at ($(C2v)+({\x+15}:4mm)$) {};
+    \node[cross] at ($(C2v)+({\x-15}:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 180} {
+    \node[cross] at ($(D2h)+({\x+15}:4mm)$) {};
+    \node[cross] at ($(D2h)+({\x-15}:4mm)$) {};
+    \node[round] at ($(D2h)+({\x+15}:4mm)$) {};
+    \node[round] at ($(D2h)+({\x-15}:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 120, 240} {
+    \node[cross] at ($(D3)+({\x+15}:4mm)$) {};
+    \node[round] at ($(D3)+({\x-15}:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 90, 180, 270} {
+    \node[cross] at ($(C4)+(\x:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 60, 120, 180, 240, 300} {
+    \node[cross] at ($(C6)+(\x:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 120, 240} {
+    \node[cross] at ($(D3dP)+({\x+15}:4mm)$) {};
+    \node[cross] at ($(D3dP)+({\x-15}:4mm)$) {};
+    \node[round] at ($(D3dP)+({\x+15+60}:4mm)$) {};
+    \node[round] at ($(D3dP)+({\x-15+60}:4mm)$) {};
+  }
+
+
+  \node[cross] at ($(S4)+(4mm,0)$) {};
+  \node[cross] at ($(S4)-(4mm,0)$) {};
+  \node[round] at ($(S4)+(0,4mm)$) {};
+  \node[round] at ($(S4)-(0,4mm)$) {};
+
+
+  \foreach \x in {0, 120, 240} {
+    \node[cross] at ($(S3)+(\x:4mm)$) {};
+    \node[round] at ($(S3)+(\x:4mm)$) {};
+  }
+
+
+  %% TODO: T
+
+
+  \foreach \x in {0, 90, 180, 270} {
+    \node[cross] at ($(C4h)+(\x:4mm)$) {};
+    \node[round] at ($(C4h)+(\x:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 60, 120, 180, 240, 300} {
+    \node[cross] at ($(C6h)+(\x:4mm)$) {};
+    \node[round] at ($(C6h)+(\x:4mm)$) {};
+  }
+
+
+  %% TODO: Th
+
+
+  \foreach \x in {0, 90, 180, 270} {
+    \node[cross] at ($(C4v)+(\x+15:4mm)$) {};
+    \node[cross] at ($(C4v)+(\x-15:4mm)$) {};
+  }
+
+
+
+  \foreach \x in {0, 60, 120, 180, 240, 300} {
+    \node[cross] at ($(C6v)+(\x+10:4mm)$) {};
+    \node[cross] at ($(C6v)+(\x-10:4mm)$) {};
+  }
+
+
+  %% TODO: Td
+
+
+  \foreach \x in {0, 180} {
+    \node[cross] at ($(D2d)+({\x+15}:4mm)$) {};
+    \node[round] at ($(D2d)+({\x-15}:4mm)$) {};
+
+    \node[round] at ($(D2d)+({\x+15+90}:4mm)$) {};
+    \node[cross] at ($(D2d)+({\x-15+90}:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 120, 240} {
+    \node[cross] at ($(D3h)+({\x+15}:4mm)$) {};
+    \node[cross] at ($(D3h)+({\x-15}:4mm)$) {};
+    \node[round] at ($(D3h)+({\x+15}:4mm)$) {};
+    \node[round] at ($(D3h)+({\x-15}:4mm)$) {};
+  }
+
+
+  %% TODO: O
+
+
+  \foreach \x in {0, 90, 180, 270} {
+    \node[cross] at ($(D4)+({\x+15}:4mm)$) {};
+    \node[round] at ($(D4)+({\x-15}:4mm)$) {};
+  }
+
+  \foreach \x in {0, 60, 120, 180, 240, 300} {
+    \node[cross] at ($(D6)+({\x+10}:4mm)$) {};
+    \node[round] at ($(D6)+({\x-10}:4mm)$) {};
+  }
+
+
+  % TODO Oh
+
+
+  \foreach \x in {0, 90, 180, 270} {
+    \node[cross] at ($(D4h)+(\x+15:4mm)$) {};
+    \node[cross] at ($(D4h)+(\x-15:4mm)$) {};
+    \node[round] at ($(D4h)+(\x+15:4mm)$) {};
+    \node[round] at ($(D4h)+(\x-15:4mm)$) {};
+  }
+
+
+  \foreach \x in {0, 60, 120, 180, 240, 300} {
+    \node[cross] at ($(D6h)+({\x+10}:4mm)$) {};
+    \node[cross] at ($(D6h)+({\x-10}:4mm)$) {};
+    \node[round] at ($(D6h)+({\x+10}:4mm)$) {};
+    \node[round] at ($(D6h)+({\x-10}:4mm)$) {};
+  }
+\end{tikzpicture}
+\end{document}
