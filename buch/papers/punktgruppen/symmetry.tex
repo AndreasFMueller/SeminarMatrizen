@@ -39,10 +39,11 @@ nun eingeführt wird.
 
 % Vieleicht eine kurze Einführung in für die Definition, ich habe das gefühl, dass in der Definition die Symmetrie-Operation und die Gruppe auf einmal erklährt wird 
 \subsubsection{Symetriegruppe}
-	Ein Objekt kann mehr als nur eine Symmetrie aufweisen.
-	Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example}
-	nicht nur um $\sigma$ sondern auch Diagonal gespiegelt werden oder um $90^\circ$ gedreht werden.
-	Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
+\texttt{TODO: review this paragraph, explain what is \(\mathds{1}\).}
+Ein Objekt kann mehr als nur eine Symmetrie aufweisen.
+Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example}
+nicht nur um $\sigma$ sondern auch Diagonal gespiegelt werden oder um $90^\circ$ gedreht werden.
+Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
 
 \begin{definition}[Symmetriegruppe]
 	Sei \(g\) eine Operation, die ein mathematisches Objekt unverändert lässt.
@@ -85,6 +86,8 @@ Erzeugendensystemen komplexere Strukturen aufbauen.
 	Definitionsgleichungen bauen ein Erzeugendensysteme.
 \end{definition}
 
+\texttt{TODO: should put examples for generators?} \\
+
 Die Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
 \(\left\{\mathds{1}, \sigma\right\}\) enthält. Kombiniert man sie jedoch mit
 der Rotation, erhält man die so genannte Diedergruppe
@@ -112,7 +115,7 @@ Punktsymmetrie.
 Wir haben nun unseren Operationen Symbole gegeben, mit denen es tatsächlich
 möglich ist, Gleichungen zu schreiben. Die naheliegende Frage ist dann, könnte
 es sein, dass wir bereits etwas haben, das dasselbe tut?  Natürlich, ja.
-Um es formaler zu beschreiben, werden wir ein einige Begriffe einführen.
+Um es formaler zu beschreiben, werden wir einige Begriffe einführen.
 \begin{definition}[Gruppenhomomorphismus]
 	Seien \(G\) und \(H\) Gruppe mit unterschiedlicher Operation \(\diamond\)
 	bzw.  \(\star\). Ein Homomorphismus\footnote{ Für eine ausführlichere
@@ -152,19 +155,20 @@ Um es formaler zu beschreiben, werden wir ein einige Begriffe einführen.
 	\circ r) = \Phi(r^2)\Phi(r)\).
 \end{beispiel}
 
+\texttt{TODO: rewrite section on translational symmetry.}
 %% TODO: title / fix continuity
-Um das Konzept zu illustrieren, werden wir den umgekehrten Fall diskutieren:
-eine Symmetrie, die keine Punktsymmetrie ist, die aber in der Physik sehr
-nützlich ist, nämlich die Translationssymmetrie.  Von einem mathematischen
-Objekt \(U\) wird gesagt, dass es eine Translationssymmetrie \(Q(x) = x + a\)
-hat, wenn es die Gleichung 
-\[
-	U(x) = U(Q(x)) = U(x + a),
-\]
-für ein gewisses \(a\), erfüllt. Zum Beispiel besagt das erste Newtonsche
-Gesetz, dass ein Objekt, auf das keine Kraft einwirkt, eine
-zeitranslationsinvariante Geschwindigkeit hat, d.h. wenn \(\vec{F} = \vec{0}\)
-dann \(\vec{v}(t) = \vec{v}(t + \tau)\).
+% Um das Konzept zu illustrieren, werden wir den umgekehrten Fall diskutieren:
+% eine Symmetrie, die keine Punktsymmetrie ist, die aber in der Physik sehr
+% nützlich ist, nämlich die Translationssymmetrie.  Von einem mathematischen
+% Objekt \(U\) wird gesagt, dass es eine Translationssymmetrie \(Q(x) = x + a\)
+% hat, wenn es die Gleichung 
+% \[
+% 	U(x) = U(Q(x)) = U(x + a),
+% \]
+% für ein gewisses \(a\), erfüllt. Zum Beispiel besagt das erste Newtonsche
+% Gesetz, dass ein Objekt, auf das keine Kraft einwirkt, eine
+% zeitranslationsinvariante Geschwindigkeit hat, d.h. wenn \(\vec{F} = \vec{0}\)
+% dann \(\vec{v}(t) = \vec{v}(t + \tau)\).
 
 % \subsection{Sch\"onflies notation} 
 

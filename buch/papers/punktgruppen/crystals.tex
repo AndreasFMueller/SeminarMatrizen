@@ -11,7 +11,8 @@ Die Innereien eines Kristalles sind glücklicherweise relativ einfach definiert.
     \centering
     \includegraphics[]{papers/punktgruppen/figures/lattice}
     \caption{
-        Zweidimensionales Kristallgitter
+        Zweidimensionales Kristallgitter.
+        \texttt{TODO: make wider and shorter}
         \label{fig:punktgruppen:lattice}
     }
 \end{figure}
@@ -52,7 +53,10 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
 \begin{figure}
     \centering
     \includegraphics[]{papers/punktgruppen/figures/combine-symmetries}
-    \caption{Translations und Rotationssymmetrisches Kristallgitter}
+    \caption{
+        Translations und Rotationssymmetrisches Kristallgitter
+        \texttt{TODO: make wider and change color (yellow)}
+    }
     \label{fig:punktgruppen:rot-geometry}
 \end{figure}
 
@@ -61,9 +65,9 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
 
  \begin{itemize}
      \item  $A$ ist unser erster Gitterpunkt. 
-            
+
      \item  $A'$ ist gegeben, weil wir $A$ mit der Translation $Q$ um einen Grundvektor verschieben und wir wissen, 
-            dass nach einer Translation wieder ein Gitterpunkt an der Verschobenen Stelle sein muss.           
+            dass nach einer Translation wieder ein Gitterpunkt an der Verschobenen Stelle sein muss.
      \item $B$ entsteht, weil wir die Rotationssymmetrie $C_\alpha$ auf den Punkt $A$ anwenden.
             Dadurch dreht sich das ganze Gitter um den Winkel $\alpha$. 
             Für uns bedeutet dies lediglich, dass unser zweiter Punkt $A'$ abgedreht wird.
@@ -87,18 +91,18 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
  \]
  Die Strecke $x$ lässt sich auch mit hilfe der Trigonometrie und dem angenommenen Rotationswinkel $\alpha$ ausdrücken:
  \[
-    n|Q| = |Q| + 2|Q|sin(\alpha - \pi/2)
+    n|Q| = |Q| + 2|Q|\sin(\alpha - \pi/2)
  \]
  Wir können mit $|Q|$ dividieren um unabhängig von der Läge des Grundvektors zu werden, 
  was auch Sinn macht, da eine Skalierung eines Kristalles seine Symmetrieeigenschaften nicht tangieren soll. 
  Zusätzlich können wir den Sinusterm vereinfachen.
  \[
-     n = 1 - 2cos\alpha
-     \alpha = cos^{-1}(\frac{1-n}{2})
+     n = 1 - 2\cos\alpha
+     \alpha = \cos^{-1}\left(\frac{1-n}{2}\right)
  \]
  Dies schränkt die möglichen Rotationssymmetrien auf 
  \[
-     \alpha \in \{ 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ\}
+     \alpha \in \left\{ 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ\right\}
  \]
 ein.
 
