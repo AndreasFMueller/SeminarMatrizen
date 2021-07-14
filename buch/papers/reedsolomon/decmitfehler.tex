@@ -1,7 +1,7 @@
 %
-% teil3.tex -- Beispiel-File für Teil 3
+% decmitfehler.tex -- Decodierung mit Fehler
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2021 Michael Steiner, Hochschule Rapperswil
 %
 \section{Decodierung: Ansatz mit Fehlerkorrektur
 \label{reedsolomon:section:decmitfehler}}
@@ -16,7 +16,7 @@ Der Übertragungskanal im Beispiel weisst jetzt den Fehlervektor
 u = [0, 0, 0, 3, 0, 0, 0, 0, 2, 0]
 \]
 auf.
-Senden wir jetzt unser Übertragungsvektor $v$ durch diesen Kanal addiert sich der Fehlervektor $u$ auf unsere Übertragung und wir erhalten 
+Senden wir jetzt unser Übertragungsvektor $v$ durch diesen Kanal, addiert sich der Fehlervektor $u$ auf unsere Übertragung und wir erhalten 
 \begin{center}
 	
 	\begin{tabular}{c | c r }
@@ -127,7 +127,7 @@ Setzen wir jetzt unsere Einheitswurzel aus dem Beispiel ein so erhalten wir
 \end{tabular}
 \end{center}
 und damit die Information, dass allen Stellen, die nicht Null sind, Fehler enthalten. 
-Aus der Tabelle lesen wir, das in unserem Beispiel die Fehler an der Stelle drei und acht zu finden sind.
+Aus der Tabelle lesen wir ab, das in unserem Beispiel die Fehler an der Stelle drei und acht zu finden sind.
 
 Für das einfache Bestimmen von Hand mag dies ja noch ausreichen, jedoch können wir mit diesen Stellen nicht das Lokatorpolynom bestimmen, denn dafür bräuchten wir alle Nullstellen, an denen es Fehler gegeben hat (also sozusagen genau das umgekehrte). Um dies zu erreichen wenden wir eine andere Herangehensweise und nehmen uns den Satz von Fermat sowie den kleinsten gemeinsamen Teiler zur Hilfe.
 
@@ -140,7 +140,7 @@ f(X) = X^{q-1} -1 = 0
 \] 
 gilt für jedes $X$. Setzen wir das $q$ von unserem Beispiel ein
 \[
-f(X) = X^{10}-1 = 0 \qquad \text{für } X = \{1,2,3,4,5,6,7,8,9,10\}
+f(X) = X^{10}-1 = 0 \qquad \text{für } X \in \{1,2,3,4,5,6,7,8,9,10\}
 \]
 und stellen dies als Faktorisierung dar. So ergibt sich die Darstellung 
 \[
@@ -173,7 +173,7 @@ Das kgV hat nämlich die Eigenschaft sämtliche Nullstellen zu finden, also nich
 ersichtlich ist.
 Aus dem vorherigen Abschnitt wissen wir auch, dass $d(X)$ alle korrekten Nullstellen beinhaltet. Teilen wir das kgV jetzt auf in 
 \[
-\operatorname{kgV}(f(X),d(X)) = d(X) \cdot l(X)
+\operatorname{kgV}(f(X),d(X)) = d(X) \cdot l(X),
 \]
 sollten wir für $l(X)$ eine Liste mit allen fehlerhaften Nullstellen erhalten.
 Somit ist 
@@ -192,14 +192,16 @@ In Abschnitt \ref{reedsolomon:section:decmitfehler} haben wir
 d(X) = r(X) - m(X)
 \]
 in Abhängigkeit von $m(X)$ berechnet. 
-Jedoch haben wir ausser acht gelassen, dass $m(X)$ auf der Empfängerseite nicht existiert und somit gänzlich unbekannt ist.
+Jedoch haben wir ausser acht gelassen, dass $m(X)$ auf der Empfängerseite nicht verfügbar und somit gänzlich unbekannt ist.
 Es scheint so als würde dieser Lösungsansatz, den wir bisher verfolgt haben, nicht funktioniert.
-Wir könnten uns höchstens noch fragen, ob wir tatsächlich nichts über den Nachrichtenvektor im Beispiel wissen. Wenn wir noch einmal den Vektor betrachten als
+Wir könnten uns höchstens noch fragen, ob wir tatsächlich nichts über den Nachrichtenvektor im Beispiel wissen. 
+
+Wenn wir noch einmal den Vektor betrachten als
 \[
 m = [0,0,0,0,4,7,2,5,8,1]
 \]
-fällt uns aber auf, dass wir doch etwas über diesen Vektor wissen, nämlich den Wert der ersten $2t$ (im Beispiel vier) stellen.
-Im Normalfall sollen diese nämlich den Wert null betragen und somit sind nur die letzten $k$ stellen (im Beispiel sechs) für uns unbekannt, dargestellt als
+fällt uns aber auf, dass wir doch etwas über diesen Vektor wissen, nämlich den Wert der ersten $2t$ (im Beispiel vier) Stellen.
+Im Normalfall sollen diese nämlich den Wert $0$ haben und somit sind nur die letzten $k$ Stellen (im Beispiel sechs) für uns unbekannt, dargestellt als
 \[
 m = [0,0,0,0,?,?,?,?,?,?].
 \]
