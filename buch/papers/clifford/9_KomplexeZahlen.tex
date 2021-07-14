@@ -6,18 +6,19 @@
 \section{Komplexe Zahlen}
 \rhead{Komplexe Zahlen}
 
-Die komplexen Zahlen finden eine Vielzahl von Anwendungsgebiete in den Ingenieurwissenschaften. Das liegt daran, weil die komplexen Zahlen Rotationen und Schwingungen gut beschreiben können. Nachdem vorherigen Kapitel überrascht es wahrscheinlich nicht viele, dass es möglich ist komplexe Zahlen in der geometrischen Algebra darzustellen. Sie können durch die geraden Grade der 2 Dimensionalen geometrischen Algebra vollständig beschrieben werden: $G_2^+(\mathbb{R}) \cong \mathbb{C}$. Das bedeutet eine komplexe Zahl kann durch ein Skalar (Grad 0) und einem Bivektor (Grad 2) dargestellt werden. Als Abkürzung nehme ich die Bezeichnung $\mathbf{g}_n \in  G_2^+(\mathbb{R})$.
+Die komplexen Zahlen finden eine Vielzahl von Anwendungsgebiete in den Ingenieurwissenschaften. Das liegt daran, weil die komplexen Zahlen Rotationen und Schwingungen gut beschreiben können. Nach dem vorherigen Kapitel überrascht es wahrscheinlich nicht viele, dass es möglich ist komplexe Zahlen in der geometrischen Algebra darzustellen. Sie können durch die geraden Grade der 2 Dimensionalen geometrischen Algebra vollständig beschrieben werden: $\mathbf{g}_n \in G_2^+(\mathbb{R}) \cong \mathbb{C}$. Das bedeutet eine komplexe Zahl kann durch ein Skalar (Grad 0) und einem Bivektor (Grad 2) dargestellt werden
 \begin{align}
-	a_0 + a_1 j \cong a_0 + a_1 \mathbf{e}_{12} = \mathbf{g}_n\quad a_0, a_1 \in \mathbb{R}
-\end{align}
-oder in Polarform.
-\begin{align}
+	a_0 + a_1 j \cong a_0 + a_1 \mathbf{e}_{12} = \mathbf{g}_n\quad a_0, a_1 \in \mathbb{R}\\
 	|r|e^{\theta j} \cong |r|e^{\theta \mathbf{e}_{12}} = \mathbf{g}_n; \quad r, \theta \in \mathbb{R}
+\end{align}
+weil $j$ und $\mathbf{e}_{12}$ beide die Eigenschaft besitzen quadriert $-1$ zu ergeben
+\begin{align}
+	j^2 = -1\quad \mathbf{e}_{12}^2 = -1
 \end{align}
 Man beachte, dass wenn wir, wie bei den komplexen Zahlen, Elemente von $G_2^+(\mathbb{R})$ miteinander Multiplizieren, ist es nicht, wie im Kapitel Rotation bei der Formel (\ref{rotGA})beschrieben, eine Multiplikation von zwei $g_n$ mit einem Vektor. Im zweidimensionalen bewirken beide Multiplikationen grundsätzlich das Gleiche (eine Drehstreckung), aber die Multiplikation von mehreren $g_n$ ist kommutativ, wie wir es von den komplexen Zahlen kennen.
 \begin{align}
 	\mathbf{g}_1\mathbf{g}_2 = \mathbf{g}_2\mathbf{g}_1 \quad&\Leftrightarrow\quad (a + b \mathbf{e}_{12})(f + g \mathbf{e}_{12}) = (f + g \mathbf{e}_{12})(a + b \mathbf{e}_{12})\\
-	\mathbf{g}_1\mathbf{v}\mathbf{g}_2\not= \mathbf{g}_2\mathbf{v}\mathbf{g}_1 \quad&\Leftrightarrow\quad(a + b \mathbf{e}_{12})(x\mathbf{e}_1+y\mathbf{e}_2)(f + g \mathbf{e}_{12}) \not= (a + b \mathbf{e}_{12})(f + g \mathbf{e}_{12})(x\mathbf{e}_1+y\mathbf{e}_2)
+	\mathbf{g}_1\mathbf{v}\not= \mathbf{v}\mathbf{g}_1 \quad&\Leftrightarrow\quad(a + b \mathbf{e}_{12})(x\mathbf{e}_1+y\mathbf{e}_2)\not= (x\mathbf{e}_1+y\mathbf{e}_2)(a + b \mathbf{e}_{12})
 \end{align}
 Um später die Auswirkung der Quaternionen besser zu verstehen, möchte ich kurz darauf eingehen, was ein $g_n$ für eine Auswirkung auf einen Vektor hat.
 Wir kennen diesen Effekt schon von den komplexen Zahlen. Wenn eine komplexe Zahl $c_1=a+bj$ mit einer zweiten $c_2=f+gj$ multipliziert wird, dann kann man diese so aufteilen.
