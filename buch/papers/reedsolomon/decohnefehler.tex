@@ -33,11 +33,12 @@ Definiert ist sie als
 \[
 F(\omega) = \int_{-\infty}^{\infty} f(t) \mathrm{e}^{-j\omega t} dt \qquad \Rightarrow \qquad \mathfrak{F}^{-1}(F(\omega)) = f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega.
 \]
-Damit beschäftigen wir uns im Abschnitt \ref{reedsolomon:subsection:sfaktor} weiter, konkret suchen wir momentan aber eine Inverse für unsere primitive Einheitswurzel $a$. 
+Im wesentlichen ändert sich bei der inversen diskreten Fouriertransformation $e^{j/2\pi}$ zu $e^{-j/2\pi}$. Zusätzlich benötigt die inverse noch einen Korrekturfaktor $1/n$. Wir erwarten daher, dass wir auch im endlichen Körper $A$ die Zahl $a$ durch $a^{-1}$ ersetzen können. Mit der primitiven Einheitswurzel ergibt das 
+%Damit beschäftigen wir uns im Abschnitt \ref{reedsolomon:subsection:sfaktor} weiter, konkret suchen wir momentan aber eine Inverse für unsere primitive Einheitswurzel $a$. 
 \[
-8^1 \qquad \rightarrow \qquad 8^{-1}
+8^1 \qquad \rightarrow \qquad 8^{-1}.
 \]
-Mit einem solchen Problem haben wir uns bereits in Abschnitt \ref{buch:section:euklid} befasst und so den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
+Mit einem solchen Problem haben wir uns bereits in Abschnitt \ref{buch:section:euklid} befasst und so den euklidischen Algorithmus kennengelernt, den wir auf diesen Fall anwenden können.
 
 % Old Text
 %Im Abschnitt \textcolor{red}{4.1} haben wir den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
@@ -76,7 +77,9 @@ Daraus erhalten wir
 \end{tabular}
 
 \end{center}
-als Inverse der primitiven Einheitswurzel. Die inverse Transformationsmatrix $A^{-1}$ bilden wir, indem wir jetzt die inverse primitive Einheitswurzel anstelle der primitiven Einheitswurzel in die Matrix einsetzen:
+als Inverse der primitiven Einheitswurzel.
+Alternativ können wir das Resultat auch aus der Tabelle \ref{reedsolomon:subsection:mptab} ablesen.
+Die inverse Transformationsmatrix $A^{-1}$ bilden wir, indem wir jetzt die inverse primitive Einheitswurzel anstelle der primitiven Einheitswurzel in die Matrix einsetzen:
 \[
 \begin{pmatrix}
 	8^0 & 8^0 & 8^0 & 8^0 & \dots & 8^0 \\
@@ -102,9 +105,9 @@ als Inverse der primitiven Einheitswurzel. Die inverse Transformationsmatrix $A^
 \subsection{Der Faktor $s$
 	\label{reedsolomon:subsection:sfaktor}}
 Die diskrete Fouriertransformation benötigt für die Inverse einen Vorfaktor von $\frac{1}{2\pi}$.
-Primitiv nehmen wir an, dass wir für die Inverse Transformationsmatrix ebenfalls einen benötigen.
+Wir müssen also damit rechnen, dass wir für die Inverse Transformationsmatrix ebenfalls einen solchen Vorfaktor benötigen.
 Nur stellt sich jetzt die Frage, wie wir diesen Vorfaktor in unserem Fall ermitteln können.
-Dafür betrachten wir eine Regel aus der Linearen Algebra, nämlich dass
+Dafür betrachten wir eine Regel aus der linearen Algebra, nämlich dass
 
 \[
 A \cdot A^{-1} = E
@@ -148,7 +151,7 @@ Aus der letzten Matrix folgt, dass wir
 \[
 s = \dfrac{1}{10}
 \]
-als unseren Vorfaktor setzen müssen um die Gleichung \ref{reedsolomon:equation:sfaktor} zu erfüllen. Da wir in $\mathbb{F}_{11}$ nur mit ganzen Zahlen arbeiten schreiben wir $\frac{1}{10}$ in $10^{-1}$ um und bestimmen diese Inverse erneut mit dem euklidischen Algorithmus und erhalten für $10^{-1} = 10$ als unseren Vorfaktor in $\mathbb{F}_{11}$.
+als unseren Vorfaktor setzen müssen um, die Gleichung \ref{reedsolomon:equation:sfaktor} zu erfüllen. Da wir in $\mathbb{F}_{11}$ nur mit ganzen Zahlen arbeiten, schreiben wir $\frac{1}{10}$ in $10^{-1}$ um und bestimmen diese Inverse erneut mit dem euklidischen Algorithmus. So erhalten wir $10^{-1} = 10$ als Vorfaktor in $\mathbb{F}_{11}$.
 %
 %erfüllt wird. Wir schreiben den Bruch um in $\frac{1}{10} = 10^{-1}$ und wenden darauf erneut den euklidischen Algorithmus an und erhalten somit den Vorfaktor $10^{-1} = 10 = s$ in $\mathbb{F}_{11}$.
 %

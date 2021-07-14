@@ -7,11 +7,10 @@
 \label{reedsolomon:section:codebsp}}
 \rhead{Codierung eines Beispiels}
 
-Um die Funktionsweise eines Reed-Solomon-Codes besser zu verstehen werden wir die einzelnen Probleme und ihre Lösungen anhand eines Beispiels betrachten.
-Da wir in endlichen Körpern rechnen, werden wir zuerst solch einen Körper festlegen. Dabei müssen wir die \textcolor{red}{Definition 4.6 (verweis auf eine Definition im Buch ohne label)} berücksichtigen, die besagt, dass nur Primzahlen für endliche Körper in Frage kommen.
+Um die Funktionsweise eines Reed-Solomon-Codes besser zu verstehen, werden wir die einzelnen Probleme und ihre Lösungen anhand eines Beispiels betrachten.
+Da wir in endlichen Körpern rechnen, werden wir zuerst solch einen Körper festlegen. Dabei müssen wir die Definition \ref{buch:endlichekoerper:def:galois-koerper} berücksichtigen, die besagt, dass nur Primzahlen für endliche Körper in Frage kommen.
 Wir legen für unser Beispiel den endlichen Körper $\mathbb{F}_{q}$ mit $q = 11$ fest.
-Zur Hilfestellung können dazu die beiden Tabellen \ref{reedsolomon:subsection:adtab} und
-\ref{reedsolomon:subsection:mptab} hinzugezogen werden. Diese Tabellen enthalten die Resultate der arithmetischen Operationen im Körper $\mathbb{F}_{11}$, die durchgeführt werden können.
+Zur Hilfestellung zum Rechnen in $\mathbb{F}_{11}$ können die beiden Tabellen \ref{reedsolomon:subsection:adtab} und \ref{reedsolomon:subsection:mptab} hinzugezogen werden. Diese Tabellen enthalten die Resultate der arithmetischen Operationen im Körper $\mathbb{F}_{11}$, die durchgeführt werden können.
 Aus der Definition der endlichen Körper (ersichtlich auch in den Tabellen) folgt, dass uns nur die Zahlen \[\mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}\] zur Verfügung stehen und somit $11 = 0$ gelten muss.
 
 % OLD TEXT
@@ -78,15 +77,16 @@ dar.
 	\label{reedsolomon:subsection:diskFT}}
 
 In einem vorherigen Abschnitt \textcolor{red}{(???)} haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulerische Zahl $e$ in endlichen Körpern nicht existiert.
-Wir wählen deshalb eine Zahl $a$, die die gleichen Aufgaben haben soll wie $e^{\frac{j}{2 \pi}}$ in der diskreten Fouriertransformation, nur mit dem Unterschied, dass $a$ in $\mathbb{F}_{11}$ ist. Dazu soll die Potenz von $a$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken, um
+Wir wählen deshalb eine Zahl $a$, die die gleichen Aufgaben haben soll wie $e^{\frac{j}{2 \pi}}$ in der diskreten Fouriertransformation, nur mit dem Unterschied, dass $a$ in $\mathbb{F}_{11}$ ist. Dazu soll die Potenz von $a$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken.
+Dazu ändern wir die Darstellung von
 \[
 \mathbb{F}_{11} = \{0,1,2,3,4,5,6,7,8,9,10\}
 \]
-in
+in die von $a$ abhängige Schreibweise 
 \[
 \mathbb{Z}_{11}\setminus\{0\} = \{a^0, a^1, a^2, a^3, a^4, a^5, a^6, a^7, a^8, a^9\}.
 \]
-umzuschreiben.
+%Jetzt brauchen wir nur noch eine geeignete Zahl für $a$ zu finden.
 % Old Text
 %Wir suchen also eine Zahl $a$, die in endlichen Körpern existiert und den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken kann.
 %Dazu schreiben wir
@@ -116,7 +116,7 @@ umzuschreiben.
 \subsubsection{Die primitiven Einheitswurzeln
 	\label{reedsolomon:subsection:primsqrt}}
 
-Wenn wir jetzt sämtliche Zahlen von $\mathbb{F}_{11}$ in $a$ einsetzen
+Wenn wir jetzt Zahlen von $\mathbb{F}_{11}$ an Stelle von $a$ einsetzen, erhalten wir
 \begin{center}
 \begin{tabular}{c c c c c c c}
 $a = 1$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 1, 1, 1, 1, 1, 1, 1, 1, 1\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
@@ -128,7 +128,7 @@ $a = 6$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 6, 3, 7, 9, 1
 $a = 7$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 7, 5, 2, 3, 10, 4, 6, 9, 8\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
 $a = 8$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 8, 9, 6, 4, 10, 3, 2, 5, 7\}$ & $ = $ & $\mathbb{F}_{11}\setminus\{0\}$ \\
 $a = 9$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 9, 4, 3, 5, 1, 9, 4, 3, 5\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
-$a = 10$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$ \\
+$a = 10$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$ & $\neq$ & $\mathbb{F}_{11}\setminus\{0\}$. \\
 \end{tabular}
 \end{center}
 %\begin{center}
@@ -146,13 +146,15 @@ $a = 10$ & $\Rightarrow$ & $\{a^i | 0 \le i \le 10\}$ & $=$ & $\{1, 10, 1, 10, 1
 %$a = 10 :$& $\qquad \mathbb{Z}_{11}\setminus\{0\}$ &$=$& $\{1, 10, 1, 10, 1, 10, 1, 10, 1, 10\}$	
 %\end{tabular}
 %\end{center}
-so fällt uns auf, dass für $a$ die Zahlen $2,6,7,8$ erhalten, die tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em primitive Einheitswurzel \em genannt. 
+Es fällt auf, dass wir für $a$ die Zahlen $2,6,7,8$ Mengen erhalten, die tatsächlich den gesamten Zahlenraum von $\mathbb{F}_{11}$ abbilden. Solche Zahlen werden \em primitive Einheitswurzel \em genannt. 
 Wenden wir diese Vorgehensweise auch für andere endliche Körper an, so werden wir sehen, dass wir immer mindestens zwei solcher Einheitswurzel finden werden. Somit ist es uns überlassen, eine dieser Einheitswurzel auszuwählen, mit der wir weiter rechnen wollen. Für das Beispiel wählen wir die Zahl $a = 8$.
 
 \subsubsection{Bildung einer Transformationsmatrix
 	\label{reedsolomon:subsection:transMat}}
 
-Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. Für die Codierung müssen wir alle $a^i$ in das Polynom $m(X)$ einsetzen. Da wir $a^i = 8^i$ gewählt haben, ergibt sich daraus 
+Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. 
+Für die Codierung setzen wir alle Zahlen in $\mathbb{F}_{11}\setminus\{0\}$ nacheinander in $m(X)$ ein. Da wir zuvor eine von $a$ abhängige Schreibweise gewählt haben setzen wir stattdessen $a^i$ ein mit $a = 8$ als die von uns gewählten primitiven Einheitswurzel. Daraus ergibt sich
+%Für die Codierung müssen wir alle $a^i$ in das Polynom $m(X)$ einsetzen. Da wir $a^i = 8^i$ gewählt haben, ergibt sich daraus 
 %
 %Damit wir unsere Nachricht codieren können, müssen wir $8^i$ in $m(X)$ einsetzen.
 %
@@ -168,7 +170,7 @@ als unser Übertragungsvektor.
 
 \subsection{Allgemeine Codierung
 	\label{reedsolomon:subsection:algCod}}
-Um das Ganze noch ein wenig übersichtlicher zu gestalten können wir die Polynome zu einer Matrix zusammenfassen, die unsere Transformationsmatrix $A$ bildet.
+Um das Ganze noch ein wenig übersichtlicher zu gestalten, können wir die Polynome zu einer Matrix zusammenfassen, die unsere Transformationsmatrix $A$ bildet.
 
 Für die allgemeine Codierung benötigen wir die Nachricht $m$, die codiert werden soll, sowie die Transformationsmatrix $A$. Daraus erhalten wir den Übertragungsvektor $v$. Setzen wir die Zahlen aus dem Beispiel ein erhalten wir folgende Darstellung:
 \[
