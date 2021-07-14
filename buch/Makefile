@@ -19,7 +19,6 @@ buch.pdf:	buch.tex $(TEXFILES) buch.ind $(BLXFILES)
 	bibtex buch
 
 buch.idx:	buch.tex $(TEXFILES) images
-	touch buch.ind
 	pdflatex buch.tex
 
 buch.ind:	buch.idx

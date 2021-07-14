@@ -10,5 +10,9 @@ dependencies-punktgruppen =	\
 	papers/punktgruppen/symmetry.tex \
 	papers/punktgruppen/crystals.tex \
 	papers/punktgruppen/piezo.tex \
-	papers/punktgruppen/references.bib
-
+	papers/punktgruppen/references.bib \
+    papers/punktgruppen/tikz/combine-symmetries.tex \
+	papers/punktgruppen/tikz/lattice.tex \
+	papers/punktgruppen/tikz/piezo-atoms.tex \
+	papers/punktgruppen/tikz/piezo.tex \
+	papers/punktgruppen/tikz/projections.tex

@@ -5,57 +5,82 @@
 %
 \section{Quaternionen}
 \rhead{Quaternionen}
-Wie die komplexen Zahlen eine Erweiterung der reellen Zahlen sind, sind die Quaternionen eine Erweiterung der komplexen Zahlen für den 3 dimensionalen Raum. Sie haben, wie die komplexen Zahlen, eine dreh-streckende Eigenschaft.
+
+Wie die komplexen Zahlen eine Erweiterung der reellen Zahlen sind, sind die Quaternionen eine Erweiterung der komplexen Zahlen für den dreidimensionalen Raum. Sie haben, wie die komplexen Zahlen, eine dreh-streckende Eigenschaft.
 Sie finden beispielsweise in der Computergraphik und in der Robotik Anwendung.
 Die Quaternionen werden so definiert.
 \begin{align}
-	q = w + xi + yj + zk; \quad w,x,y,z \in \mathbb{R};\enspace q \in \mathbb{H}
+	q = w + xi + yj + zk \quad w,x,y,z \in \mathbb{R}\enspace q \in \mathbb{H}
 \end{align}
 Eine Drehstreckung wird dabei mit dieser Formel erreicht. 
 \begin{align} \label{QuatRot}
 	\begin{split} 
 		&v'' = qvq^{-1};\quad q,v,q^{-1} \in \mathbb{H}\\
-		&Re(q) = Re(q^{-1});\enspace Im(q) = -Im(q^-1)
+		&\operatorname{Re}(q) = \operatorname{Re}(q^{-1})\quad \operatorname{Im}(q) = -\operatorname{Im}(q^{-1})
 	\end{split}
 \end{align}
-Die Quaternionen besitzen im Gegensatz zu dem komplexen Zahlen 3 imaginäre Einheiten $i,j,k$. Wieso 3? Weil es in der dritten Dimension 3 Drehachsen gibt, anstatt nur eine. Nun haben wir ein kleines Problem. Wie sollen wir die Quaternionen darstellen? Wir bräuchten 4 Achsen für die 3 Imaginären Einheiten und die eine reelle Einheit. Ein weiterer Nachteil in visueller Hinsicht entsteht beim Anwenden eines Quaternion auf einen Vektor. Sie befinden sich nicht im gleichen Raum und müssen zuerst ineinander umgewandelt werden, um damit zu rechnen, wie man bei $v$ in der Formel (\ref{QuatRot}) sieht.
+Man könnte sich nun fragen wieso es drei imaginäre Einheiten $i,j,k$ gibt und nicht zwei, was doch näherliegender wäre. Der Grund liegt darin, weil es in der dritten Dimension 3 Drehachsen gibt, anstatt nur eine. In der geometrischen Algebra ist es leicht herauszufinden wie viele Imaginärteile für jede weitere Dimension existieren. Dabei muss man nur die Anzahl der unabhängigen Bivektoren ermitteln. In der vierten Dimension würden es beispielsweise durch alle Vektorkombinationen von $\mathbf{e}_1, \mathbf{e}_2,\mathbf{e}_3, \mathbf{e}_4$ insgesamt 8 Bivektoren existieren (Nicht 16, da $\mathbf{e}_{ij} = -\mathbf{e}_{ji}$ nicht unabhängig voneinander sind).
 
-\subsection{geometrischen Algebra}
-Die geometrische Algebra besitzt die Fähigkeit beide Probleme zu lösen. Die Quaternionen können, wie schon im 2 dimensionalen Fall durch die gerade Grade $\mathbb{G}_3^+ \cong \mathbb{H}$ dargestellt werden. Da wir uns jetzt aber in $\mathbb{G}_3$ befinden haben wir 3 Basisvektoren $e_1, e_2, e_3$ und können somit 3 Bivektoren bilden $e_{12}, e_{23}, e_{31}$.
-\begin{align}
-	\mathbf{q} = w + x\mathbf{e_{12}} + y\mathbf{e_{23}} + z\mathbf{e_{31}}; \quad w,x,y,z \in \mathbb{R};\enspace q \in \mathbb{G}_3^+
-\end{align}
+Leider haben wir nun bei der Darstellung der Quaternionen ein kleines Problem. Wir bräuchten insgesamt vier Achsen. Drei für die imaginären Einheiten und eine für die reelle Einheit. Ein weiterer Nachteil in visueller Hinsicht entsteht beim Anwenden eines Quaternion auf einen Vektor. Sie befinden sich nicht im gleichen Raum und müssen zuerst ineinander umgewandelt werden, um damit zu rechnen, wie man bei $v \in \mathbb{H}$ in der Formel (\ref{QuatRot}) sieht.
+
+\subsection{Geometrische Algebra}
+Die geometrische Algebra besitzt die Fähigkeit beide Probleme zu lösen. Die Quaternionen können, wie schon im 2 dimensionalen Fall durch die gerade Grade $G_3^+(\mathbb{R}) \cong \mathbb{H}$ dargestellt werden. Da wir uns jetzt aber in $G_3(\mathbb{R})$ befinden haben wir drei Basisvektoren $\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$ und können somit drei Bivektoren bilden $\mathbf{e}_{12}, \mathbf{e}_{23}, \mathbf{e}_{31}$.
+\begin{definition}
+	Multivektoren mit Drehstreckenden Eigenschaften in $G_3(\mathbb{R})$ (gleichbedeutend zu Quaternionen)
+	\begin{align}
+		\mathbf{q} = w + x\mathbf{e}_{12} + y\mathbf{e_{23}} + z\mathbf{e_{31}}; \quad w,x,y,z \in \mathbb{R};\enspace \mathbf{q} \in \mathbb{G}_3^+
+	\end{align}
+\end{definition}
+
 Die Probleme werden dadurch gelöst, da wir die Bivektoren im Raum nicht durch einzelne Achsen darstellen müssen, sondern sie als eine orientiere Fläche darstellen können. Anstatt die Vektoren in Quaternionen umzurechnen, können wir jetzt die Vektoren separat im gleichen Raum darstellen. 
 \\BILD VEKTOR, QUATERNION IN G3\\
 Wie schon im 2 dimensionalen Fall beschreibt ein Bivektor, um wie viel der um 90 grad gedrehte orginale Vektor gestreckt wird. Dabei dreht jeder Bivektor den Vektor um eine andere Achse.
 \\BILD?\\
-In der Computergraphik und Robotik macht eine Drehstreckung aber nicht viel Sinn. Wieso sollte ein Objekt bei einer Drehung zusätzlich noch grösser werden? Darum verwendet man sogenannte Einheitsquaternion, welche den Betrag $|q|=1$ haben. Sie rotieren die Objekte bzw. Vektoren lediglich.
+In der Computergraphik und Robotik macht eine Drehstreckung aber nicht viel Sinn. Wieso sollte ein Objekt bei einer Drehung zusätzlich noch grösser werden? Darum verwendet man sogenannte Einheitsquaternionen, welche den Betrag $|q|=1$ haben. Sie rotieren die Objekte bzw. Vektoren lediglich.
+\begin{definition}
+	Einheitsquaternionen
+	\begin{align}
+		\mathbf{q} = \cos(\alpha) + sin(\alpha)(x\mathbf{e}_{12} + y\mathbf{e}_{23} + z\mathbf{e}_{31})
+	\end{align}
+\end{definition}
+Dabei ist definiert, dass $x^2+y^2+z^2=1$. Somit beträgt der Betrag von immer $\mathbf{q}$ immer 1.
 \begin{align}
-	\mathbf{q} = \cos(\alpha) + sin(\alpha)(x\mathbf{e_{12}} + y\mathbf{e_{23}} + z\mathbf{e_{31}})
+	|\mathbf{q}| = \sqrt{cos(\alpha)^2 + sin(\alpha)^2(x^2+y^2+z^2) } = \sqrt{cos(\alpha)^2 + sin(\alpha)^2} = 1
 \end{align}
-wobei definiert ist, dass $x^2+y^2+z^2=1$. Somit beträgt der Betrag immer 1.
-\begin{align}
-	|q| = \sqrt{cos(\alpha)^2 + sin(\alpha)^2(x^2+y^2+z^2) } = \sqrt{cos(\alpha)^2 + sin(\alpha)^2} = 1
-\end{align}
-Man verwendet um einen Vektor zu drehen wieder die gleiche Formel, wie auch schon im 2 dimensionalen Fall.
-\begin{align} \label{QuatRot}
+Um einen Vektor zu drehen, verwendet man wieder die gleiche Formel, wie auch schon im zweidimensionalen Fall.
+\begin{align} \label{QuatRotGA}
 	\begin{split} 
-		&v'' = qvq^{-1}\\
-		&Re(q) = Re(q^{-1});\enspace Im(q) = -Im(q^-1)
+		&\mathbf{v}'' = \mathbf{qvq}^{-1}\\
+		&\operatorname{Re}(\mathbf{q}) = \operatorname{Re}(\mathbf{q}^{-1});\enspace \operatorname{Im}(\mathbf{q}) = -\operatorname{Im}(\mathbf{q}^-1)
 	\end{split}
 \end{align}
 Es ist wichtig bei Quaternionen für eine reine Drehstreckung mit $q$ und $q^{-1}$ beidseitig zu multiplizieren, sonst werden die senkrechten Anteile zu den Bivektorebenen ebenfalls beeinflusst, wie man im Kapitel Rotation bei der Formel (\ref{RotAufPerpPar}) sehen kann
-
-\subsection{Gimbal-Lock und Interpolation}
-
+\\BEISPIEL DREHUNG 90 grad um zwei Achsen\\
+\\BILD addition Bivektoren zu Beipsiel?\\
+\subsection{Interpolation}
+In der Computergrafik wird Interpolation verwendet, um eine flüssige Drehbewegung zu erreichen. Dabei wird die gewünschte Drehbewegungen des Objektes in kleinere aufgeteilt. Man kann dabei mit zwei verschiedenen Systemen arbeiten. 
+\begin{itemize}
+	\item Mit den Eulerschen Winkeln, welche für die Meisten zwar intuitiver sind, aber dafür Nachteile haben, worauf ich in diesem Abschnitt eingehen werde. Dabei kann eine ganze Drehbewegung $\mathbf{v}'' = R\mathbf{v}$ durch die Drehmatrix $R$ dargestellt werden. 
+	\begin{align}
+		\begin{split}
+			&R = R_z(\gamma) R_y(\beta) R_x(\alpha)\\
+			&R = 
+			\begin{pmatrix} 
+				\cos(\gamma) & -\sin(\gamma) & 0\\ \sin(\gamma) & \cos(\gamma) & 0 \\ 0 & 0 & 1 
+			\end{pmatrix}
+			\begin{pmatrix}
+				\cos(\beta) &  0 & \sin(\beta)\\ 0 & 1 & 0 \\ -\sin(\beta) & 0 & \cos(\beta)
+			\end{pmatrix}
+			\begin{pmatrix} 
+				1 & 0 & 0 \\ 0 & \cos(\alpha) & -\sin(\alpha)\\ 0 & \sin(\alpha) & \cos(\alpha)
+			\end{pmatrix}
+		\end{split}
+	\end{align}
+	Wichtig dabei zu sehen ist, dass die Drehbewegungen durch die einzelnen Matrizen nacheinander ausgeführt werden. Das bedeutet, wenn man die Reihenfolge vertauscht, bekommt man eine völlig andere Drehung. Man kann die Auswirkungen der Reihenfolge gut bei einem Gimbal (REF zu BILD) sehen. Die Matrix ganz links ist die, welche als letztes Angewendet wird. Somit bildet sie die Drehung des äusseren Rings, welche auch die zwei inneren Ringe und das Objekt mitdreht. Die Matrix ganz rechts hingegen bildet nur die Drehung des inneren Rings, welche nur das Objekt selber dreht. Man kann dabei erkennen, dass vorgehen dabei sehr intuitiv ist, aber es kompliziert sein kann eine gewünschte Drehbewegung auszuführen, da sich beim Drehen der äusseren Achse, sich auch die Inneren drehen. Das bedeutet, wenn man sich eine Drehbewegung um die anfängliche x Achse mit $R_x(\alpha_2)$ wünscht, und vorher eine beliebige Drehung $R = R_z(\gamma_1) R_y(\beta_1) R_x(\alpha_1)$ ausgeführt hat, bekommt man nicht das richtige Ergebnis, da die anfängliche x-Achse durch die Drehmatrizen $R_z(\gamma_1)$ und $R_y(\beta_1)$ zu einer neuen, lokalen x-Achse wurde. 
+	\item Andererseits mit den Quaternionen, welche die besondere Eigenschaft haben, dass eine Drehung immer um die globale Achsen ausgeführt wird, egal in welcher Rotationsposition sich das Objekt befindet.
+\end{itemize}
+Für Spielentwickler ist es darum meist sinnvoller Quaternionen für Drehbewegungen anzuwenden, als sich mit komplizierten Berechnungen mit Eulerschen Winkeln herumzuschlagen.
+\subsection{Gimbal-Lock}
+Ein weiterer Nachteil der Eulerschen Winkel ist das Gimbal-Lock. Es entsteht dann, wenn der äussere Ring Deckungsgleich über denn Inneren gedreht wird. Dabei verliert das Gimbal eine Drehrichtung, da der äussere und Innere Ring nun die gleiche Drehrichtung besitzen. Dies kann beispielsweise Probleme bei Spielen bei der Berechnung der Interpolation führen. Man hat das bei älteren Spielen dann gesehen, wenn plötzlich Gliedmassen bei den Spielermodellen in unnatürlichen Richtungen gesprungen sind.
 \subsection{Fazit}
 andere Darstellungsweise. Besser für Verständnis => komplexe Zahlen erscheinen ähnlicher zu Quaternionen? Eine Sprache für alle Geometrische Probleme
-
-
-\begin{tikzpicture}
-	\draw[thin,gray!40] (-3,-3) grid (3,3);
-	\draw[<->] (-3,0)--(3,0) node[right]{$x$};
-	\draw[<->] (0,-3)--(0,3) node[above]{$y$};
-	\draw[line width=2pt,blue,-stealth](0,0)--(1,1) node[anchor=south west]{$\boldsymbol{u}$};
-	\draw[line width=2pt,red,-stealth](0,0)--(-1,-1) node[anchor=north east]{$\boldsymbol{-u}$};
-\end{tikzpicture}
