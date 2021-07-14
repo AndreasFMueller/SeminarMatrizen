@@ -23,14 +23,14 @@
   ]
 
   \begin{scope}
-	\clip (-2,-2) rectangle (3,4);
+	\clip (-2,-2) rectangle (7,2);
 	\foreach \y in {-7,-6,...,7} {
 	  \foreach \x in {-7,-6,...,7} {
 		\node[dot, xshift=3mm*\y] (N\x\y) at (\x, \y) {};
 	  }
 	}
   \end{scope}
-  \draw[black, thick] (-2, -2) rectangle (3,4);
+  \draw[black, thick] (-2, -2) rectangle (7,2);
 
   \draw[red!80!black, thick, ->] 
 	(N00) to node[midway, below] {\(\vec{a}_1\)} (N10);

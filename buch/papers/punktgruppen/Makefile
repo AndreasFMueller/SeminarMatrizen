@@ -11,9 +11,13 @@ SOURCES := \
 	symmetry.tex
 
 TIKZFIGURES := \
+	tikz/atoms-grid-still.tex \
+	tikz/atoms-grid-force.tex \
+	tikz/atoms-piezo-still.tex \
+	tikz/atoms-piezo-force-vertical.tex \
+	tikz/atoms-piezo-force-horizontal.tex \
 	tikz/combine-symmetries.tex \
 	tikz/lattice.tex \
-	tikz/piezo-atoms.tex \
 	tikz/piezo.tex \
 	tikz/projections.tex \
 	tikz/symmetric-shapes.tex
