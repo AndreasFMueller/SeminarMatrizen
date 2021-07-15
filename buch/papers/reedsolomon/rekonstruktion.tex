@@ -1,10 +1,9 @@
 %
-% rekonstruktion.tex
-% Autor: Michael Steiner
+% rekonstruktion.tex -- Rekonstruktion
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% (c) 2021 Michael Steiner, Hochschule Rapperswil
 %
-\section{Nachricht Rekonstruieren
+\section{Nachricht rekonstruieren
 \label{reedsolomon:section:rekonstruktion}}
 \rhead{Rekonstruktion der Nachricht}
 Im letzten Abschnitt haben wir eine Möglichkeit gefunden, wie wir die fehlerhaften Stellen lokalisieren können.
@@ -49,7 +48,7 @@ Wir stellen also die Matrix auf und markieren gleichzeitig die Fehlerstellen:
 \end{pmatrix}
 .
 \]
-Die rot markierten Stellen im Übertragungsvektor enthalten Fehler und bringt uns daher keinen weiterer Nutzen. 
+Die rot markierten Stellen im Übertragungsvektor enthalten Fehler und bringt uns daher keinen weiteren Nutzen. 
 Aus diesem Grund werden diese Stellen aus dem Vektor entfernt, was wir hier ohne Probleme machen können, da dieser Code ja über Fehlerkorrekturstellen verfügt, deren Aufgabe es ist, eine bestimmte Anzahl an Fehler kompensieren zu können.
 Die dazugehörigen Zeilen in der Matrix werden ebenfalls entfernt, da die Matrix gleich viele Zeilen wie im Übertragungsvektor aufweisen muss, damit man ihn decodieren kann.
 
@@ -78,6 +77,7 @@ Daraus resultiert
 Die Matrix ist jedoch nicht mehr quadratisch, was eine Rekonstruktion durch Inversion ausschliesst. 
 Um die quadratische Form wieder herzustellen müssen wir zwei Spalten aus der Matrix entfernen.
 Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, das die Nachricht aus Nutzdatenteil und Fehlerkorrekturteil besteht, wobei der letzteres bekanntlich aus lauter Nullstellen besteht.
+Wir nehmen die markierten Spalten in
 \[
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ 7 \\ 4 \\
@@ -98,7 +98,7 @@ Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, das di
 	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor{darkgreen}{m_6} \\ \textcolor{darkgreen}{m_7} \\ \textcolor{darkgreen}{m_8} \\ \textcolor{darkgreen}{m_9} \\
 \end{pmatrix}
 \]
-Wir nehmen die entsprechenden Spalten aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
+aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
 \[
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ \textcolor{red}{7} \\ \textcolor{red}{4} \\

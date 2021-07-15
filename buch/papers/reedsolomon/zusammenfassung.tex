@@ -1,15 +1,66 @@
+%
+% zusammenfassung.tex -- Zusammenfassung
+%
+% (c) 2021 Michael Steiner, Hochschule Rapperswil
+%
 \section{Zusammenfassung
 \label{reedsolomon:section:zf}}
 \rhead{Zusammenfassung}
 Dieser Abschnitt beinhaltet eine Übersicht über die Funktionsweise eines Reed-Solomon-Codes für beliebige endliche Körper.
 
-TODO:
-
 \subsubsection{Schritt 1: primitives Element}
+Zu Beginn soll entschieden werden, in welchem endlichen Körper $\mathbb{F}_{q}$ gerechnet werden soll. 
+Ausserdem muss im gewählten Körper eine primitive Einheitswurzel gefunden, bzw. bestimmt werden. 
 
 \subsubsection{Schritt 2: Codierung}
+Für die Codierung wird die Nachricht als Koeffizienten des Polynoms $m(X)$ geschrieben, anschliessend wird $a^i$ in $m(X)$ eingesetzt. 
+Daraus ergibt sich die Codierungsmatrix
+\[
+A(a) = 
+\begin{pmatrix}
+a^0 & a^0 & a^0 & \dots \\
+a^0 & a^1 & a^2 & \dots \\
+a^0 & a^2 & a^4 & \dots \\
+\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+.
+\]
+Mit dieser Matrix können wir den Nachrichtenblock zum Übertragungsvektor codieren. 
 
 \subsubsection{Schritt 3: Decodierung ohne Fehler}
+Im ersten Schritt zur Decodierung muss geprüft werden, ob der Übertragungsvektor Fehler beinhaltet.
+Ist dies nicht der Fall, so kann die Matrix $A(a)$ invertiert werden mit
+\[
+A(a)^{-1} = \frac{1}{q-1} \cdot A(a^{-1}).
+\]
+Die Codierungsmatrix ändert sich somit zur Decodierungsmatrix
+\[
+\begin{pmatrix}
+	a^0 & a^0 & a^0 & \dots \\
+	a^0 & a^1 & a^2 & \dots \\
+	a^0 & a^2 & a^4 & \dots \\
+	\vdots&\vdots&\vdots &\ddots
+\end{pmatrix}
+= 
+\frac{1}{q-1}
+\cdot
+\begin{pmatrix}
+	a^0 & a^0 & a^0 & \dots \\
+	a^0 & a^{-1} & a^{-2} & \dots \\
+	a^0 & a^{-2} & a^{-4} & \dots \\
+	\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}
+.
+\]
+Daraus lässt sich der Nachrichtenblock aus dem Übertragungsvektor rekonstruieren.
 
 \subsubsection{Schritt 4: Decodierung mit Fehler}
-
+Sollte der Übertragungsvektor fehlerhaft empfangen werden, so kann der Nachrichtenblock nicht durch invertieren der Matrix rekonstruiert werden.
+Zur Lokalisierung der Fehlerstellen nehmen wir das Polynom $f(X)$ zur Hilfe, welches wir über den Satz von Fermat bestimmt haben.
+Berechnen wir daraus das $\operatorname{kgV}$ von $f(X)$ und $d(X)$, so erhalten wir ein Lokatorpolynom.
+Durch das bestimmen der Exponenten erhalten wir die Fehlerhaften Stellen im Übertragungsvektor.
+Für die Rekonstruktion stellen wir ein Gleichungssystem auf und entfernen daraus die Fehlerhaften Zeilen.
+Im Anschluss kann das verkleinerte Gleichungssystem gelöst werden. 
+Als Resultat erhalten wir die fehlerfreie Nachricht.
+%Aus diesem Grund suchen wir nach einem Lokatorpolynom, welches uns die Fehlerhaften Stellen im Übertragungsvektor anzeigt.
+%Dazu nehmen wir das Polynom $f(X)$, welches wir durch den Satz von Fermat erhalten, und berechnen so das $\operatorname{kgV}(f(X),d(X))$ und kommen so auf das Lokatorpolynom $l(X)$. Durch das bestimmen von den Exponenten erhalten wir die Fehlerstellen, welche wir aus dem Gleichungssystem entfernen müssen. Übrig bleibt das berechnen dieses Gleichungssystems. 
