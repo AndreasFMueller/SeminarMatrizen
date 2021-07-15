@@ -6,7 +6,7 @@
 \section{Spiegelung}
 \rhead{Spiegelung}
 
-Die Spiegelung ist eine grundlegende, geometrische Operation, aus welcher man weitere, wie beispielsweise die später beschriebene Rotation, ableiten kann. Da die Geometrische Algebra für geometrische Anwendungen ausgelegt ist, sollte die Reflexion auch eine einfache, praktische Formulierung besitzen.
+Die Spiegelung ist eine grundlegende, geometrische Operation, aus welcher man weitere, wie beispielsweise die später beschriebene Rotation, ableiten kann. Da die geometrische Algebra für geometrische Anwendungen ausgelegt ist, sollte die Spiegelung auch eine einfache, praktische Formulierung besitzen.
 \begin{figure}
 	\centering
 	\begin{tikzpicture}
@@ -31,48 +31,53 @@ Die Spiegelung ist eine grundlegende, geometrische Operation, aus welcher man we
 \subsection{Linearen Algebra}
 Aus der linearen Algebra ist bekannt, dass man eine Spiegelung an einer Ebene wie folgt beschreiben kann.
 \begin{definition}
-	Die Spiegelungsgleichung in der linearen Algebra mit dem Normalenvektor $\mathbf{\hat{n}}$ zur Spiegelebene
+	Die Spiegelungsgleichung in der linearen Algebra mit dem Normalenvektor $\mathbf{\hat{n}}$ zur Spiegelebene ist
 	\begin{equation} \label{RefLinAlg}
-		\mathbf{v^{'}} = \mathbf{v} - 2 \cdot \mathbf{v_{\parallel \hat{n}}} = \mathbf{v} - 2 \cdot \mathbf{v_{\perp u}}
+		\mathbf{v^{'}} = \mathbf{v} - 2 \cdot \mathbf{v_{\parallel \hat{n}}} = \mathbf{v} - 2 \cdot \mathbf{v_{\perp u}}.
 	\end{equation}
-	Per Definition sind $\mathbf{v_{\parallel \hat{n}}} = \mathbf{v_{\perp u}}$. In der geometrischen Algebra verwenden wir aber in den Formeln Vektoren, welche Spiegelachsen repräsentieren.
+	Per Definition sind $\mathbf{v_{\parallel \hat{n}}} = \mathbf{v_{\perp u}}$. In der geometrischen Algebra verwenden wir aber in den Formeln Vektoren, welche Spiegelachsen, nicht Spiegelebenen, repräsentieren.
 \end{definition}
-Es scheint für diese Formel aber umständlich zu sein, weitere Spiegelungen, mit weiteren Spiegelachsen, anzufügen. Man kann dafür aber die Abbildung des Vektors auf den gespiegelten Vektor auch als Matrix schreiben, welche aus den Komponenten des Normalenvektors $\mathbf{\hat{n}}$ der Ebene besteht.
-\begin{align} 
-	\mathbf{\hat{n}}\perp \mathbf{u}\quad \land \quad |\mathbf{\hat{n}}| = 1
+Es scheint für diese Formel aber umständlich zu sein, weitere Spiegelungen mit weiteren Spiegelebenen anzufügen. Man kann diese Abbildung aber auch als Matrix schreiben. Sei $\mathbf{\hat{n}}$ ein Normalenvektor auf die Spiegelungs-Achse bzw. -Ebene, also $\mathbf{\hat{n}}\perp \mathbf{u}$, und sei ausserdem normiert $|\mathbf{\hat{n}}| = 1$, dann kann man die Spiegelung durch die Matrix
+\begin{align}
+	S = E - 2\dfrac{1}{|\mathbf{n}|^2}\mathbf{nn}^t
 \end{align}
+beschrieben werden. In der zweiten und dritten Dimension ergibt die Berechnung
 \begin{align} \label{Spiegelmatrizen}
-	S = E - 2\dfrac{1}{|\mathbf{n}|^2}\mathbf{nn}^t \enspace\Rightarrow\enspace
 	S_2 = \begin{pmatrix}
 		1-2n_1^2 & -2n_1n_2 \\
 		-2n_1n_2 & 1-2n_2^2
 	\end{pmatrix} \quad
-	S_2 = \begin{pmatrix}
+	S_3 = \begin{pmatrix}
 		1-2n_1^2 & -2n_1n_2 & -2n_1n_3\\
 		-2n_1n_2 & 1-2n_2^2 & -2n_2n_3\\
 		-2n_1n_3 & -2n_2n_3 & 1-2n_3^2\\
-	\end{pmatrix}
+	\end{pmatrix}.
 \end{align}
-Diese Spiegelmatrizen gehören der orthogonalen Matrizengruppe $S\in \text{O}(n)$ an. Die Matrizengruppe $\text{O}(n)$ haben die Eigenschaft $S^t S = E$, was bedeutet, dass die Länge und Winkel bei der Abbildung beibehalten bleiben. Zusätzlich sind die Spiegelmatrizen symmetrisch $S^t = S$. Somit liefert zweimal dieselbe Spiegelung wieder die identische Abbildung.
+Diese Spiegelmatrizen gehören der orthogonalen Matrizengruppe $S\in \text{O}(n)$ an. Die Matrizengruppe $\text{O}(n)$ haben die Eigenschaft $S^t S = E$, was bedeutet, dass die Länge und Winkel bei der Abbildung beibehalten bleiben. Zusätzlich sind die Spiegelmatrizen symmetrisch, es gilt $S^t = S$. Somit liefert zweimal dieselbe Spiegelung wieder die identische Abbildung, wie man aus
+\begin{align}
+	S^t S = S^2 = E
+\end{align}
+schliessen kann.
+
 \subsection{Geometrische Algebra}
-Die Geometrische Algebra leitet aus der obigen Formel \eqref{RefLinAlg} für eine Spiegelung eine einfache und intuitive Form her, welche auch für weitere Operationen erweitert werden kann.
+Um die folgenden Formeln zu verstehen, definieren wir zuerst die Inverse eines Vektors, welche in dieser Form nicht in der linearen Algebra nicht existiert.
 \begin{definition}
-	Die Spiegelungsgleichung in der geometrischen Algebra mit der Spiegelachse $\mathbf{u}$
+	Die Inverse eines Vektors wird definiert als
+	\begin{align}
+		\mathbf{u}^{-1} = \dfrac{\mathbf{u}}{|\mathbf{u}|^2} \Rightarrow \mathbf{uu}^{-1} = \dfrac{\mathbf{u}^2}{|\mathbf{u}|^2} = 1.
+	\end{align}
+	Wie schon aus anderen algebraischen Strukturen bekannt, ergibt ein Element, hier $\mathbf{u}$, multipliziert mit dessen Inversen, hier $\mathbf{u}^{-1}$, das neutrale Element der Struktur, hier 1.
+\end{definition}
+Die geometrische Algebra leitet aus der obigen Formel \eqref{RefLinAlg} für eine Spiegelung eine einfache und intuitive Form her, welche auch für weitere Operationen erweitert werden kann.
+\begin{definition}
+	Die Spiegelungsgleichung in der geometrischen Algebra mit der Spiegelachse $\mathbf{u}$ ist definiert als
 	\begin{align}\label{RefGA}
 		\mathbf{v}' = \mathbf{uvu}^{-1}
 	\end{align}
 \end{definition}
 
-Die Inverse $\mathbf{u}^{-1}$ eines Vektors $\mathbf{u}$ existiert in der geometrischen Algebra und ist dabei so definiert.
-\begin{definition}
-	Die Inverse multipliziert mit dem Vektor selbst ergibt das neutrale Element 1
-	\begin{align}
-		\mathbf{u}^{-1} = \dfrac{\mathbf{u}}{|\mathbf{u}|^2} \Rightarrow \mathbf{uu}^{-1} = \dfrac{\mathbf{u}^2}{|\mathbf{u}|^2} = 1
-	\end{align}
-\end{definition}
-
-verwendet man für $\mathbf{u}$ nur einen Einheitsvektor $\mathbf{\hat{u}}$, welcher die Länge 1 besitzt, wird somit die Formel reduziert zu einer beidseitigen Multiplikation von $\mathbf{\hat{u}}$.
+verwendet man für $\mathbf{u}$ nur einen Einheitsvektor $\mathbf{\hat{u}}$, welcher die Länge 1 besitzt, wird die Gleichung zu
 \begin{align}
 	\mathbf{v'} = \mathbf{\hat{u}v\hat{u}}
 \end{align}
-Im Gegensatz zu den Abbildungen in der linearen Algebra, welche in jeder anderen Dimension, wie bei der Definition \eqref{Spiegelmatrizen} ersichtlich, durch andere Matrizen beschrieben werden müssen, ist es in der geometrischen Algebra immer der gleiche Vorgehensweise. Zudem ist diese kompakte Schreibweise in der linearen Algebra nicht möglich, da bis auf das Vektorprodukt in der dritten Dimension keine Multiplikation von Vektoren definiert ist. 
+vereinfacht. Im Gegensatz zu den Abbildungen in der linearen Algebra, welche in jeder anderen Dimension, durch andere Matrizen \eqref{Spiegelmatrizen} beschrieben werden müssen, ist es in der geometrischen Algebra immer der gleiche Vorgehensweise. Zudem ist diese kompakte Schreibweise in der linearen Algebra nicht möglich, da bis auf das Vektorprodukt in der dritten Dimension keine Multiplikation von Vektoren definiert ist. 

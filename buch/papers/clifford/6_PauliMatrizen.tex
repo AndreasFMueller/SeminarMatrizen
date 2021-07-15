@@ -14,9 +14,9 @@ Was ist der beste Weg um einen Computeralgorithmus für die Rechenoperationen in
 	\end{align}
 \end{beispiel}
 Ein textueller Algorithmus ist aber sehr ineffizient. Die Pauli-Matrizen bilden eine elegante und schnellere Alternative, welche für die dreidimensionale Clifford-Algebra verwendet werden können und alle Operationen aus der Clifford-Algebra gleich wie die Matrixoperationen ausführen lassen.
-\begin{definition} \label{def:defPauli}
+\begin{definition} \label{def:defPauli} 
 	Die Matrizen
-	\begin{align}
+	\begin{align} \label{Pauli}
 		\mathbf{e}_0 = E = 
 		\begin{pmatrix}
 			1 & 0 \\
@@ -41,9 +41,9 @@ Ein textueller Algorithmus ist aber sehr ineffizient. Die Pauli-Matrizen bilden 
 	heissen Pauli-Matrizen ($\mathbf{e}_0$ = Skalare)
 \end{definition}
 Die Matrix-Multiplikationen der Pauli-Matrizen führt auf die gleichen algebraischen Relationen, wie die Multiplikation der Elemente $\mathbf{e}_0, \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$. So lassen sich auch die restlichen Elemente der Clifford-Algebra erzeugen.
-\begin{definition} \label{def:defPauli2}
+\begin{definition} \label{def:defPauli2} 
 	Die Bivektoren und Trivektoren hergeleitet aus den Pauli-Matrizen sind
-	\begin{align}
+	\begin{align} \label{Pauli2}
 		\mathbf{e}_{12} =  
 		\begin{pmatrix}
 			j & 0 \\
@@ -63,10 +63,10 @@ Die Matrix-Multiplikationen der Pauli-Matrizen führt auf die gleichen algebrais
 		\begin{pmatrix}
 			j & 0 \\
 			0 & j
-		\end{pmatrix}
+		\end{pmatrix}.
 	\end{align}
 \end{definition}
-Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-Algebra für die Basiselemente definiert hat. Zum Beispiel gilt in der Clifford-Algebra $\mathbf{e}_1^2=\mathbf{e}_0$ und $\mathbf{e}_{12}^2=-\mathbf{e}_0$, genau die selbe Relation gilt auch für die zugehörigen Matrizen, wie man durch die Matrizenrechnung
+Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-Algebra für die Basiselemente definiert hat. Zum Beispiel gilt in der Clifford-Algebra $\mathbf{e}_1^2=\mathbf{e}_0$ und $\mathbf{e}_{12}^2=-\mathbf{e}_0$, genau die selbe Relation gilt auch für die zugehörigen Matrizen, wie man durch die Matrizenrechnungen
 \begin{align}
 	\mathbf{e}_1^2 &=
 	\begin{pmatrix}
@@ -76,7 +76,7 @@ Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-
 	\begin{pmatrix}
 		1 & 0 \\
 		0 & 1
-	\end{pmatrix}= \mathbf{e}_0 \\
+	\end{pmatrix}= \mathbf{e}_0 \quad\text{und}\\
 	\mathbf{e}_{12}^2 &=
 	\begin{pmatrix}
 		j & 0 \\
@@ -89,10 +89,13 @@ Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-
 \end{align}
 bestätigt. Man kann bei den Definitionen \ref{def:defPauli} und \ref{def:defPauli2} sehen, dass alle Matrizen linear unabhängig voneinander sind. Das bedeutet, dass wenn man die Matrizen der Basiselemente normal addiert und zu einer Matrix zusammenfasst, kann man anschliessend die einzelnen Anteile der Basiselemente wieder herausgelesen.
 \begin{hilfssatz}
-	Ein beliebiger Multivektor erhält die Form
+	Ein beliebiger Multivektor
 	\begin{align} \label{MultiVektorAllg}
-		M &= a_0\mathbf{e}_0 + a_1\mathbf{e}_1 + a_2\mathbf{e}_3 + a_{12}\mathbf{e}_{12} + a_{23}\mathbf{e}_{23} + a_{31}\mathbf{e}_{31} + a_{123}\mathbf{e}_{123}\\
-		M &=
+		M = a_0\mathbf{e}_0 + a_1\mathbf{e}_1 + a_2\mathbf{e}_3 + a_{12}\mathbf{e}_{12} + a_{23}\mathbf{e}_{23} + a_{31}\mathbf{e}_{31} + a_{123}\mathbf{e}_{123}\\
+	\end{align}
+	erhält durch das einsetzten der Formel Matrizen \eqref{Pauli} und \eqref{Pauli2} die Form
+	\begin{align}
+		M =
 		\begin{pmatrix}
 			(a_0+a_3) + (a_{12}+a_{123})j & (a_1+a_{31})+(-a_2+a_{23})j \\
 			(a_1-a_{31})+(a_2+a_{23})j & (a_0-a_3)+(-a_{12}+a_{123})j
