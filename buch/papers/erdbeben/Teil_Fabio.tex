@@ -1,0 +1,110 @@
+\section{Kalman Filter}
+\subsection{Was ist ein Erdbeben?}
+Für das Verständnis möchten wir zuerst klären, was ein Erdbeben genau ist.
+Das soll uns helfen, eine Verknüpfung zwischen dem Naturphänomen und der mathematischen Lösungsfindung herzustellen.
+
+Unter einem Erdbeben verstehen wir eine Erschütterung des Erdkörpers.
+Dabei reiben zwei tektonische Platten aneinander, welche aber sich durch die Gesteinsverzahnung gegenseitig blockieren.
+Aufgrund dieser Haftreibung entstehen Spannungen, die sich immer mehr bis zum Tipping Point aufbauen.
+Irgendwann ist der Punkt erreicht, in dem die Scherfestigkeit der Gesteine überwunden wird.
+Wenn dies passiert, entladet sich die aufgebaute Spannung und setzt enorme Energien frei, die wir als Erdbeben wahrnehmen.
+
+Ein Erdbeben pflanzt sich vom Erdbebenherd in allen Richtungen gleich aus.
+Vergleichbar ist, wenn man einen Stein in einen Teich wirft und die Wellen beobachten kann, die sich ausbreiten.
+
+Wir möchten nun mittels Kalman-Filter die Erdbebenbeschleunigung herausfinden.
+Die Erdbebenbeschleunigung ist in der Praxis zur Entwicklung von Erdbebengefährdungskarten, sowie der Ausarbeitung von Baunormen für erdbebengerechte Bauweise von Bedeutung.
+
+
+\subsection{Künstliche Erdbebendaten}
+Nun möchten wir anhand eines eigenen Beispiels das Kalman-Filter anwenden.
+Wir müssen Erdbebendaten künstlich erzeugen, um sie in das Filter zu geben und somit den Prozess zu starten.
+Dafür nehmen wir die Formel für harmonische gedämpfte Schwingungen, die
+
+\begin{equation}
+	y = A \sin(\omega t e^{-lambda t})
+\end{equation} 
+
+lautet.
+
+
+
+
+A ist die Amplitude der Schwingung und beschreibt die Heftigkeit eines Erdbebens, die Magnitude.
+Omega repräsentiert die Erdbebenfrequenz, die in der Realität zwischen 1 Hz und 30 Hz betragen kann.
+Wir wählen als Erwartungswert 15 Herz und für die Standardabweichung 1 Hz.
+Lambda ist die Bodendämpfung, für die wir 0.2 wählen.
+Wir haben diese Zahl aus der Literatur entnommen und ist für das Bauwesen bedeutend.
+Je grösser Lambda gewählt wird, desto stärker wirkt die Dämpfung der Massenschwingung.
+Die Funktion ist zeitabhängig und wir lassen pro Sekunde zehn Messwerte generieren.
+
+Die Frequenz soll im Matlab als Zufallszahl generiert werden.
+Mit dem Golay-Filter glätten wir unsere Werte, um unser Output näher an die Realität zu bringen. 
+Zusätzlich werden Ausreisser nicht vernachlässigt und wirken geglättet in unsere Datenmenge.
+
+Grafik einfügen
+
+In der Grafik erkennen wir in den Sekunden 0 bis 10, dass die Sinuskurve gezackt ist.
+Das deutet darauf hin, dass die Frequenz des Erdbebens einen hohen Einfluss auf die Masse des Seismographen hat.
+Ab der 10. Sekunde bis zu tend, pendelt sich die Masse in ihre Eigenfrequenz ein und verhält sich unabhängiger vom Erdbeben.
+
+\subsection{Versuch}
+Um den Kalman-Filter auszuprobieren, setzen wir nun Werte ein.
+Für die Systemparameter wählen wir m=1.0, D = 0.3 und k = 0.1 und fügen es in die Differentialgleichung
+
+\begin{equation}
+	m\ddot x + 2k \dot x + Dx = f	
+\end{equation} 
+
+ein und erhalten
+
+\begin{equation}
+	1\ddot x + 0.1 \dot x + 0.3x = f	
+\end{equation} 
+
+
+\subsubsection*{Prozessrauschkovarianzmatrix $Q$}
+
+
+
+
+
+\begin{equation}
+	Q = \left(
+	\begin{array}{ccc} 	
+		(5 \cdot 10^{-5})^2 & 0 & 0 \\ 
+		0 & (1 \cdot 10^{-5})^2 & 0\\ 
+		0 & 0& ( 1 )^2\\
+	\end{array}\right)  
+\end{equation} 
+
+
+
+
+
+\subsection{Resultate}
+
+Vergleichen wir die künstlichen Messdaten mit der geschätzten Schwingung des Kalman-Filters, stellen wir fest, dass wir eine gute Methode gefunden haben, die Erdbebenbeschleunigung zu schätzen.
+Obwohl die künstlichen Daten mit einer random-Funktion erzeugt werden, kann das Kalman-Filter präzise Vorhersagungen bilden.
+
+Für die Differentialgleichung zweiter Ordnung brauchen wir im Matlab die Funktion ode45.
+Mit dieser Funktion können wir Differentialgleichungen auflösen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+In Matlab fügen wir die Formel und unsere definierten Werte ein.
+Die Frequenz generieren wir mit einem Zufallscode, 
+Mit einem Zufallscode und einen Zeitraum 
+
+Matlabcode einfügen
+
