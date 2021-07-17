@@ -1,0 +1,128 @@
+%
+% einleitung.tex -- Beispiel-File für die Einleitung
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Pauli-Matrizen}
+\rhead{Pauli-Matrizen}
+
+Was ist der beste Weg um einen Computeralgorithmus für die Rechenoperationen in der Clifford-Algebra zu erstellen? Man könnte versuchen einen textuellen Rechner zu implementieren der für die Elemente $\mathbf{e}_i$ hartkodierte Vereinfachungen ausführt.
+\begin{beispiel}
+	Der Algorithmus weiss, dass er $a\mathbf{e}_1\cdot b\mathbf{e}_1$ zu $ab\cdot1$ vereinfachen kann. Dies ermöglicht zum Beispiel die Vereinfachung
+	\begin{align}
+		3\mathbf{e}_1 \cdot 2\mathbf{e}_1 + 3\mathbf{e}_2 \Rightarrow 6 + 3\mathbf{e}_2
+	\end{align}
+\end{beispiel}
+Ein textueller Algorithmus ist aber sehr ineffizient. Die Pauli-Matrizen bilden eine elegante und schnellere Alternative, welche für die dreidimensionale Clifford-Algebra verwendet werden können und alle Operationen aus der Clifford-Algebra gleich wie die Matrixoperationen ausführen lassen.
+\begin{definition} \label{def:defPauli} 
+	Die Matrizen
+	\begin{align} \label{Pauli}
+		\mathbf{e}_0 = E = 
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1
+		\end{pmatrix},\quad
+		\mathbf{e}_1 =
+		\begin{pmatrix}
+			0 & 1 \\
+			1 & 0
+		\end{pmatrix},\quad
+		\mathbf{e}_2 =
+		\begin{pmatrix}
+			0 & -j \\
+			j & 0
+		\end{pmatrix},\quad
+		\mathbf{e}_3 =
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1
+		\end{pmatrix}	
+	\end{align}
+	heissen Pauli-Matrizen ($\mathbf{e}_0$ = Skalare)
+\end{definition}
+Die Matrix-Multiplikationen der Pauli-Matrizen führt auf die gleichen algebraischen Relationen, wie die Multiplikation der Elemente $\mathbf{e}_0, \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$. So lassen sich auch die restlichen Elemente der Clifford-Algebra erzeugen.
+\begin{definition} \label{def:defPauli2} 
+	Die Bivektoren und Trivektoren hergeleitet aus den Pauli-Matrizen sind
+	\begin{align} \label{Pauli2}
+		\mathbf{e}_{12} =  
+		\begin{pmatrix}
+			j & 0 \\
+			0 & -j
+		\end{pmatrix}\quad
+		\mathbf{e}_{23} =
+		\begin{pmatrix}
+			0 & j \\
+			j & 0
+		\end{pmatrix}\quad
+		\mathbf{e}_{31} =
+		\begin{pmatrix}
+			0 & 1 \\
+			-1 & 0
+		\end{pmatrix}\enspace\text{und}\enspace
+		\mathbf{e}_{123} =
+		\begin{pmatrix}
+			j & 0 \\
+			0 & j
+		\end{pmatrix}.
+	\end{align}
+\end{definition}
+Dabei ist wichtig, dass sich die Matrizen gleich verhalten, wie es die Clifford-Algebra für die Basiselemente definiert hat. Zum Beispiel gilt in der Clifford-Algebra $\mathbf{e}_1^2=\mathbf{e}_0$ und $\mathbf{e}_{12}^2=-\mathbf{e}_0$, genau die selbe Relation gilt auch für die zugehörigen Matrizen, wie man durch die Matrizenrechnungen
+\begin{align}
+	\mathbf{e}_1^2 &=
+	\begin{pmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{pmatrix}^2 = 
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & 1
+	\end{pmatrix}= \mathbf{e}_0 \quad\text{und}\\
+	\mathbf{e}_{12}^2 &=
+	\begin{pmatrix}
+		j & 0 \\
+		0 & -j
+	\end{pmatrix}^2 = 
+	\begin{pmatrix}
+		-1 & 0 \\
+		0 & -1
+	\end{pmatrix} = -\mathbf{e}_0 
+\end{align}
+bestätigt. Man kann bei den Definitionen \ref{def:defPauli} und \ref{def:defPauli2} sehen, dass alle Matrizen linear unabhängig voneinander sind. Das bedeutet, dass wenn man die Matrizen der Basiselemente normal addiert und zu einer Matrix zusammenfasst, kann man anschliessend die einzelnen Anteile der Basiselemente wieder herausgelesen.
+\begin{hilfssatz}
+	Ein beliebiger Multivektor
+	\begin{align} \label{MultiVektorAllg}
+		M = a_0\mathbf{e}_0 + a_1\mathbf{e}_1 + a_2\mathbf{e}_3 + a_{12}\mathbf{e}_{12} + a_{23}\mathbf{e}_{23} + a_{31}\mathbf{e}_{31} + a_{123}\mathbf{e}_{123}\\
+	\end{align}
+	erhält durch das einsetzten der Formel Matrizen \eqref{Pauli} und \eqref{Pauli2} die Form
+	\begin{align}
+		M =
+		\begin{pmatrix}
+			(a_0+a_3) + (a_{12}+a_{123})j & (a_1+a_{31})+(-a_2+a_{23})j \\
+			(a_1-a_{31})+(a_2+a_{23})j & (a_0-a_3)+(-a_{12}+a_{123})j
+		\end{pmatrix}.\label{MultivektorMatirx}
+	\end{align}
+\end{hilfssatz}
+Die Anteile treten zudem immer paarweise auf und können somit immer je durch zwei Gleichungen bestimmt werden.
+\begin{beispiel}
+	Die Matrix
+	\begin{align}
+		M &= 
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & -1j
+		\end{pmatrix}
+	\end{align}
+	soll als Multivektor in der Form \eqref{MultiVektorAllg} geschrieben werden. Dafür entnehmen wir aus \eqref{MultivektorMatirx} die Gleichungen
+	\begin{align}
+		a_0 + a_3 = 1,\quad a_0 - a_3 = 0,\quad a_{12}+a_{123} = 0\enspace\text{und}\enspace -a_{12}+a_{123}=-1
+	\end{align}
+	aus denen man auf
+	\begin{align}
+		a_0 = \dfrac{1}{2},\quad a_3 = \dfrac{1}{2},\quad a_{12}=\dfrac{1}{2}\enspace\text{und}\enspace a_{123}=-\dfrac{1}{2}
+	\end{align}
+	schliessen kann. Da die restlichen Realteile und Imaginärteile 0 sind, werden die anderen Anteile ebenfalls 0 sein. Daher ist
+	\begin{align}
+		M = \dfrac{1}{2} \mathbf{e}_0+ \dfrac{1}{2} \mathbf{e}_3 + \dfrac{1}{2} \mathbf{e}_{12} - \dfrac{1}{2} \mathbf{e}_{123}.
+	\end{align}
+\end{beispiel}
+Die Clifford-Algebra ist bei der Darstellung durch Matrizen kein Ausnahmefall. Es lässt sich theoretisch jede algebraische Struktur durch Matrizen darstellen.

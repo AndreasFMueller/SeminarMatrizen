@@ -12,6 +12,29 @@
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 
+\lstset{
+  extendedchars=true,
+  basicstyle=\ttfamily,
+  literate=%
+  {€}{\euro}1%
+  {§}{\S}1%
+  {°}{\textdegree{}}1%
+  {ä}{{\"a}}1%
+  {ö}{{\"o}}1%
+  {ü}{{\"u}}1%
+  {ß}{{\ss}}1%
+  {Ä}{{\"A}}1%
+  {Ö}{{\"O}}1%
+  {Ü}{{\"U}}1%
+  {µ}{\textmu}1%
+  {¹}{{\textsuperscript{1}}}1%
+  {²}{{\textsuperscript{2}}}1%
+  {³}{{\textsuperscript{3}}}1%
+  {¼}{\textonequarter}1%
+  {½}{\textonehalf}1%
+  {¢}{\textcent}1%
+}
+
 \lstdefinestyle{Matlab}{
   numbers=left,
   belowcaptionskip=1\baselineskip,
