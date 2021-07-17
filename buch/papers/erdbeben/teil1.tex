@@ -17,7 +17,7 @@
 Da wir die äussere Kraft nicht direkt messen können, benötigen wir ein Werkzeug, welches aus der gemessenen Position, die Krafteinwirkung auf unsere System schätzt. 
 Dies ist eine Typische Anwendung für den linearen Kalman-Filter.
 Unser Ziel ist es, anhand der Messung die eigentlich interessante Grösse $f$ zu bestimmen. 
-Dabei wird durch eine deterministische Vorhersage, in dem der Zustand \cdot Eigendynamik des Systems gerechnet. 
+Dabei wird durch eine deterministische Vorhersage, in dem der Zustand * Eigendynamik des Systems gerechnet. 
 Die Idee dahinter ist, dass das Kalman-Filter die nicht-deterministische Grösse $f$ anhand der Messung und der Vorhersage zu bestimmen.
 
 Für mehrere Dimensionen (x,y,z) würde der Pythagoras für das System benötigt werden.
@@ -262,46 +262,4 @@ Dabei beginnt das Filter mit dem Anfangszustand für $k=0$
 
 
 6. Die Outputs von $k$ werden die Inputs für ${k-1}$ und werden wieder im Schritt 1 verwendet
-\end{document}
-
-
-@article{faragher_understanding_2012,
-	title = {Understanding the Basis of the Kalman Filter Via a Simple and Intuitive Derivation [Lecture Notes]},
-	volume = {29},
-	issn = {1053-5888},
-	url = {http://ieeexplore.ieee.org/document/6279585/},
-	doi = {10.1109/MSP.2012.2203621},
-	pages = {128--132},
-	number = {5},
-	journaltitle = {{IEEE} Signal Processing Magazine},
-	shortjournal = {{IEEE} Signal Process. Mag.},
-	author = {Faragher, Ramsey},
-	urldate = {2021-07-09},
-	date = {2012-09}
-}
-@article{Wikipedia,
-	title = Kalmanfilter},
-	url = {https://de.wikipedia.org/wiki/Kalman-Filter},
-	pages = {128--132},
-	number = {5},
-	urldate = {2021-07-09},	
-}
-
-@article{mueller_deconvolving_2008,
-	title = {Deconvolving oscillatory transients with a {Kalman} filter},
-	url = {http://arxiv.org/abs/0809.4676},
-	abstract = {This paper describes a method to filter oscillatory transients from measurements of a time series which were at least an order of magnitude larger than the signal to be measured. Based on a Kalman filter, it has an optimality property and a natural scaling parameter that allows to tune it to high resolution or low noise.},
-	urldate = {2021-07-09},
-	journal = {arXiv:0809.4676 [math]},
-	author = {Mueller, Andreas},
-	month = sep,
-	year = {2008},
-	note = {arXiv: 0809.4676},
-	keywords = {93E11, Mathematics - Optimization and Control},
-	annote = {Comment: 12 pages, 9 figures},
-
-
-
-
-
 
