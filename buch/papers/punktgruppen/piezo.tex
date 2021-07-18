@@ -19,10 +19,17 @@ Der Aufbau und somit auch die Symmetrie des Kristalles sind daher relevant für 
 
 \begin{figure}
     \centering
-    \includegraphics[]{papers/punktgruppen/figures/piezo-atoms} 
+    \begin{tabular}{c |c}
+      \subfigure[][\label{fig:punktgruppen:atoms-piezo}]{\includegraphics{papers/punktgruppen/figures/atoms-piezo-still}} &
+      \subfigure[][\label{fig:punktgruppen:atoms-grid}]{\includegraphics{papers/punktgruppen/figures/atoms-grid-still}} \\
+      \subfigure[][\label{fig:punktgruppen:atoms-piezo-fv}]{\includegraphics{papers/punktgruppen/figures/atoms-piezo-force-vertical}}
+      \hspace{2mm}
+      \subfigure[][\label{fig:punktgruppen:atoms-piezo-fh}]{\includegraphics{papers/punktgruppen/figures/atoms-piezo-force-horizontal}}
+      \hspace{3mm} & \hspace{3mm}
+      \subfigure[][\label{fig:punktgruppen:atoms-grid-f}]{\includegraphics{papers/punktgruppen/figures/atoms-grid-force}} \\
+    \end{tabular}
     \caption{
         Kristallstrukturen mit und ohne piezoelektrischer Eigenschaft.
-        \texttt{TODO: adapt figure for paper with subfigure markers.}
     }
     \label{fig:punktgruppen:atomPiezo}
 \end{figure}
@@ -32,19 +39,15 @@ Die Polarisation resultiert über eine gesamte Oberfläche eines Kristalles, ent
 Wir wollen dazu die verschiedenen Kristallstrukturen auf Abbildung \ref{fig:punktgruppen:atomPiezo} diskutieren.
 In Abbildung \ref{fig:punktgruppen:atomPiezo} gilt für alle Strukturen, dass rote Kreise Positive Ionen und blaue negative Ionen repräsentieren. 
 %liste oder anderes format?..
-Struktur$(a)$ zeigt ein piezoelektrisches Material in Ruhe. Struktur $(b)$ ist dasselbe Kristallgitter, jedoch wird es senkrecht belastet. 
+Struktur \subref{fig:punktgruppen:atoms-piezo} zeigt ein piezoelektrisches Material in Ruhe. Struktur \subref{fig:punktgruppen:atoms-piezo-fv} ist dasselbe Kristallgitter, jedoch wird es senkrecht belastet. 
 Eingezeichnet ist auch das elektrische Feld, welches entsteht, weil mitlleren Ladungsträger weiter auseinander gerdrückt werden.
-Als hilfe zur Vorstellung kann man $(b)$ zwischen zwei leitende Platten setzen, 
-so wird ersichtlich, dass mit wachsendem Druck eine negative Ladung an die rechte Platte gedrückt wird,
-während sich die positiven Ionen weiter entfernen. 
-$(d)$ ist nicht piezoelektrisch.
-Dies wird ersichtlich, wenn man $(d)$ unterdruck setzt und sich die Struktur zu $(e)$ verformt.
-Setzt man  $(e)$ gedanklich auch zwischen zwei leitende Platten scheint es als würden rechts mehr Positive Ionen in die Platte gedrückt werden 
-und links umgekehrt.
+Als hilfe zur Vorstellung kann man \subref{fig:punktgruppen:atoms-piezo-fv} zwischen zwei leitende Platten setzen, so wird ersichtlich, dass mit wachsendem Druck eine negative Ladung an die rechte Platte gedrückt wird, während sich die positiven Ionen weiter entfernen. 
+\subref{fig:punktgruppen:atoms-grid} ist nicht piezoelektrisch.
+Dies wird ersichtlich, wenn man \subref{fig:punktgruppen:atoms-grid} unterdruck setzt und sich die Struktur zu \subref{fig:punktgruppen:atoms-grid-f} verformt.
+Setzt man \subref{fig:punktgruppen:atoms-grid-f} gedanklich auch zwischen zwei leitende Platten scheint es als würden rechts mehr Positive Ionen in die Platte gedrückt werden und links umgekehrt.
 Dies ist aber nicht mehr der Fall, wenn der Kristall nach oben und periodisch wiederholt.
-Struktur $(c)$ zeigt $(a)$ in unter horizontaler Belastung. 
-Was in zwischen $(b)$ und $(c)$ zu beobachten ist, ist dass das entstandene Ladungsdifferenz orthogonal zu der angelegten Kraft entsteht,
-im Gegensatz zu $(b)$.
+Struktur \subref{fig:punktgruppen:atoms-piezo-fh} zeigt \subref{fig:punktgruppen:atoms-piezo} in unter horizontaler Belastung. 
+Was in zwischen $(b)$ und $(c)$ zu beobachten ist, ist dass das entstandene Ladungsdifferenz orthogonal zu der angelegten Kraft entsteht, im Gegensatz zu $(b)$.
 Daraus kann man schlissen, dass $(a)$ keine Rotationssymmetrie von $90^\circ$ besitzen kann, weil die Eigenschaften ändern bei einer $90^\circ$ Drehung. 
 Das Fehlen dieser Rotationssymmetrie kann mit betrachten von $(a)$ bestätigt werden. 
 
