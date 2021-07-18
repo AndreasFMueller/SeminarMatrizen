@@ -32,7 +32,7 @@ figures/%.pdf: tikz/%.tex
 	pdflatex --output-directory=figures $<
 
 .PHONY: standalone
-standalone: standalone.tex $(SOURCES)
+standalone: standalone.tex $(SOURCES) $(FIGURES)
 	mkdir -p standalone
 	cd ../..; \
 		pdflatex \
