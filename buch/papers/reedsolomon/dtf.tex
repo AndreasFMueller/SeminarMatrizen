@@ -3,13 +3,17 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Diskrete Fourien Transformation
+\section{Diskrete Fourier Transformation
 \label{reedsolomon:section:dtf}}
 \rhead{Umwandlung mit DTF}
 Um die Polynominterpolation zu umgehen, gehen wir nun über in die Fourientransformation.
 Dies wird weder eine erklärung der Forientransorfmation noch ein genauer gebrauch
 für den Reed-Solomon-Code. Dieser Abschnitt zeigt nur wie die Fourientransformation auf Fehler reagiert.
-wobei sie dann bei späteren Berchnungen ganz nütlich ist.
+wobei sie dann bei späteren Berchnungen ganz nützlich ist.
+
+\subsection{Diskrete Fourientransformation Zusamenhang
+\label{reedsolomon:subsection:dtfzusamenhang}}
+Die Diskrete Fourientransformation ist definiert als
 
 \subsection{Übertragungsabfolge
 \label{reedsolomon:subsection:Übertragungsabfolge}}
@@ -22,9 +26,7 @@ Kommen nuun drei Fehler... hinzu zu diesem codierten Signal sind diese nicht zu 
 Nach dem Empfangen... und decodieren ... erkennt man die fehlerhafte information in den Punkten 64 bis 100.
 Filtert man nur diese Punkte heraus und Transformiert sie mit Fourier erhält man die stellen an denen die Fehler sich eingeschlichen haben.
 
-\subsection{Diskrete Fourientransformation Zusamenhang
-\label{reedsolomon:subsection:dtfzusamenhang}}
-Die Diskrete Fourientransformation ist definiert als
-....
+
+
 
 

@@ -8,51 +8,65 @@
 \rhead{Problemstellung}
 Das Problem liegt darin Informationen, Zahlen, 
 zu Übertragen und Fehler zu erkennen.
-Beim Reed-Solomon-Code kann man nicht nur Fehler erkenen, 
+Beim Reed-Solomon-Code kann man nicht nur Fehler erkennen, 
 man kann sogar einige Fehler korrigieren.
 
 \rhead{Polynom-Ansatz}
-Eine Idee ist die Daten, 
-ein Polynom zu bilden und dieses dann mit bestimmten Punkten überträgt.
+Eine Idee ist aus den Daten 
+ein Polynom zu bilden.
+Diese Polynomfunktion bei bestimmten Werten, ausrechnet und diese Punkte dann überträgt.
 Nehmen wir als beisbiel die Zahlen \textcolor{blue}{2}, \textcolor{blue}{1}, \textcolor{blue}{5},
 welche uns dann das Polynom 
 \begin{equation}
 p(x)
 =
-2x^2 + 1x + 5 
+\textcolor{blue}{2}x^2 + \textcolor{blue}{1}x + \textcolor{blue}{5}
 \label{reedsolomon:equation1}
 \end{equation}
 ergeben.
-Übertragen werden nun die stellen 1, 2, 3\dots 7 dieses Polynomes.
-Grafisch sieht man dies dann im Abbild //TODO
-Wenn ein Fehler sich in die Übertragung eingeschlichen hatt, muss der Leser/Empfänger erkennen, welches das Richtige Polynom ist.
-Der Leser/Empfänger weiss, mit welchem Grad das Polynom entwickelt wurde. 
+Übertragen werden nun die Werte an den stellen 1, 2, 3\dots 7 dieses Polynomes.
+Grafisch sieht man dies dann in Abbildung % TODO
+Wenn ein Fehler sich in die Übertragung eingeschlichen hatt, muss der Leser/Empfänger diesen erkennen und das Polynom rekonstruieren.
+Der Leser/Empfänger weiss, den Grad des Polynoms und dessen Werte übermittelt wurden. 
 \subsection{Beispiel}
-Für das Beispeil aus der Gleichung \ref{reedsolomon:equation1},
+Für das Beispeil aus der Gleichung \eqref{reedsolomon:equation1},
 ist ein Polynome zweiten Grades durch drei Punkte eindeutig bestimmbar.
 Hat es Fehler in der Übertragunge gegeben, kann man diese erkennen,
 da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen.
 Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
 Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
 gegenüber dem mit 5 Punkten falsch liegt.
-Werden es mehr Fehler kann nur erkennt werden das das Polynom nicht stimmt.
-Das Orginale Polynom kann aber nicht mehr gefunden werden.
-Dabei sollten mehr Übertragungspunkte gegeben werden.
+Werden es mehr Fehler kann nur erkennt werden, dass das Polynom nicht stimmt.
+Das orginale Polynom kann aber nicht mehr gefunden werden.
+Dafür sind mehr übertragene Werte nötig.
 
 \section{Fehlerbestimmung
 \label{reedsolomon:section:Fehlerbestimmmung}}
 So wird ein Muster indentifiziert, welches genau vorherbestimmen kann,
 wie gross das Polynom sein muss und wie viele Übertragungspunkte gegeben werden müssen.
-Durch ein klein wenig Überlegung ist klar das die anzahl Zahlen (Daten, ab hier verwenden wir das Wort Nutzlast),
-die dan Entschlüsselt werden sollen den Grad des Polynoms minus 1 ergeben.
+Um zu bestimmen wie viel Fehler erkennt und korriegiert werden können.
+Die Anzahl Zahlen (Daten, ab hier verwenden wir das Wort Nutzlast),
+die Entschlüsselt werden sollen, brauchen die gleiche Anzahl an  Polynomgraden, beginnend bei Grad 0. ( \( k-1 \) )
 Für die Anzahl an Übertragungspunkte, muss bestimmt werden wieviel Fehler erkennt und korrigiert werden sollen.
-Mit Hilfe der Tabelle.... sieht man das es bei $$t$$ Fehlern und $$k$$ Nutzlast,
-für das Übertragen $$k+2t$$ Punkte gegben werden müssen.
-
-Ein toller Nebeneffekt ist das dadurch auch $$2t$$ Fehler erkannt werden. 
-um zurück auf unser Beispiel zu kommen, 
-können von den 7 Übertragungspunkten bis zu $$2t = 2*2 = 4 $$ Punkten falsch liegen 
-und es wird kein eindeutiges Polynom 2ten Grades erkannt, und somit die Nutzlast Daten als fehlerhaft deklariert.
-
-Ein Polynom durch Punkt mit Polynom Interpolation zu rekonstruieren ist schwierig und Fehleranfällig.
+Mit Hilfe der Tabelle, sieht man das es bei $t$ Fehlern und $k$ Nutzlast Zahlen,
+$k+2t$ Punkte übertragen werden müssen.
+\begin{center}
+    \begin{tabular}{ c c c } 
+        \hline
+        Nutzlas & Fehler & Übertragen \\
+        \hline 
+        3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
+        4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
+        3 & 3 & 9 Werte eines Polynoms vom Grad 2 \\ 
+        \hline
+        $k$ & $t$ & $k+2t$ Werte eines Polynoms vom Grad $k-1$ \\ 
+        \hline
+    \end{tabular}
+\end{center}
+Ein toller Nebeneffekt ist das dadurch auch $2t$ Fehler erkannt werden. 
+Um zurück auf unser Beispiel zu kommen, 
+können von den 7 Übertragungspunkten bis zu $2t = 2\cdot2 = 4 $ Punkten falsch liegen 
+und es wird kein eindeutiges Polynom zweiten Grades erkannt, und somit die Nutzlast Daten als fehlerhaft deklariert.
+Um aus den Übertragenen Zahlen wieder die Nutzlastzahlen zu bekommen könnte man eine Polynominterpolation anwenden,
+doch die Punkte mit Polynominterpolation zu einem Polynom zu rekonstruieren ist schwierig und Fehleranfällig.
 
