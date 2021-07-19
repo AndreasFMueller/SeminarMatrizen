@@ -113,7 +113,7 @@ Die Digital Video Disc funktioniert nach dem selben Konzept mit grösseren Codeb
 \end{figure}
 
 \subsection{QR-Codes}
-Quick Response Codes oder auch QR-Codes funktionieren nach einem sehr ähnlichen Prinzip wie in unserem Beispiel der Abschnitte \ref{reedsolomon:section:codebsp} - \ref{reedsolomon:section:rekonstruktion} nur das QR-Codes in einem $\mathbb{F}_{256}$ Körper arbeiten. Die Physische Grösse eines Codes ist stark abhängig von der Grösse der Codierung sowie dem Fehlerkorrektur-Level. Es ist so auf dem ersten Blick nicht ersichtlich, wie viel Nutzinformationen ein Qr-Code enthält. Die QR-Codes in Abbildung \ref{fig:qr} zeigen jeweils die Gleiche Information mit unterschiedlichem Fehlerkorrektur-Level. Codes mit einem höheren Korrektur-Level können auch für Desingner-Codes Zweckentfremdet werden. Dabei wird z.B. das Firmenlogo oder einen Schriftzug über den Qr-Code gelegt, ohne das die Funktion des Codes beeinträchtigt wird. Ein Beispiel dazu ist ebenfalls unter Abbildung \ref{fig:qr} \textcolor{red}{(noch nicht erstellt + beschreibung anpassen)} zu finden. 
+Quick Response Codes oder auch QR-Codes funktionieren nach einem sehr ähnlichen Prinzip wie in unserem Beispiel der Abschnitte \ref{reedsolomon:section:codebsp} - \ref{reedsolomon:section:rekonstruktion} nur das QR-Codes in einem $\mathbb{F}_{256}$ Körper arbeiten. Die Physische Grösse eines Codes ist stark abhängig von der Grösse der Codierung sowie dem Fehlerkorrektur-Level. Es ist so auf dem ersten Blick nicht ersichtlich, wie viel Nutzinformationen ein Qr-Code enthält. Die QR-Codes in Abbildung \ref{fig:qr} zeigen jeweils die Gleiche Information mit unterschiedlichem Fehlerkorrektur-Level. Codes mit einem höheren Korrektur-Level können auch für Designer-Codes Zweckentfremdet werden. Dabei wird z.B. das Firmenlogo oder einen Schriftzug über den Qr-Code gelegt, ohne das die Funktion des Codes beeinträchtigt wird. Ein Beispiel dazu ist unter Abbildung \ref{fig:designqr} zu finden. 
 
 % 
 
@@ -130,6 +130,30 @@ Quick Response Codes oder auch QR-Codes funktionieren nach einem sehr ähnlichen
 	\subfigure[]{
 	\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/qrcode_l}
 	}
-	\caption{(a) High Level Code, (b) Low Level Code}
+%	\subfigure[]{
+%	\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode_ohnelogo}
+%	}
+%	\subfigure[]{
+%	\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode}
+%	}
+	\caption{Anhand der grösse würde man darauf schliessen, dass bei (a) mehr Informationen Codiert sind als bei (b). Tatsächlich aber beinhalten beide Codes die gleiche Information. Das liegt daran, da die Fehlerkorrekturfähigkeit von QR-Codes sich in insgesamt vier Levels aufteilen lassen. Der höchste Fehlerkorrektur-Level, der bei (a) angewendet wurde, ist in der Lage, bis zu 30\% der Daten wiederherzustellen. Der kleinste Level schafft etwa 7\%, der in (b) veranschaulicht wird. Da die Grösse also nichts über die Menge an Daten aussagt, könnte es sich bei (a) auch um einen Code mit viel Nutzdaten und kleinem Fehlerkorrektur-Level handeln. Der Unterschied ist von Auge nicht sichtbar.}
 	\label{fig:qr}
+\end{figure}
+
+\begin{figure}
+	\centering
+%	\subfigure[]{
+%		\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/qrcode_h}
+%	}
+%	\subfigure[]{
+%		\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/qrcode_l}
+%	}
+	\subfigure[]{
+		\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode_ohnelogo}
+	}
+	\subfigure[]{
+		\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode}
+	}
+	\caption{Während (a) noch ein unveränderter QR-Code repräsentiert, handelt es sich bei (b) nun um einen Designer-QR-Code. Beide Codes verfügen über einen mittleren Fehlerkorrektur-Level von theoretisch 15\%. Da bei (b) jetzt einen Teil des Codes durch ein Logo verdeckt wird, schränkt sich dadurch die Fehlerkorrekturfähigkeit je nach grösse des verdeckten Teils mehr oder weniger stark ein. Unser Designer-Code in (b) ist nur noch in der Lage etwa 9\% des Codes zu rekonstruieren.}
+	\label{fig:designqr}
 \end{figure}
