@@ -2,35 +2,83 @@
 \label{section:verkehr/einfuehrung}
 
 \subsection{Verkehrsnetze}
-Das Verkehrsnetz besteht aus allen Anlagen, auf oder unter der Erdoberfläche, auf denen eine räumliche Fortbewegung von Personen oder auch Gütern stattfindet. Verkehrsnetze sind ein Bestandteil der Verkehrsinfrastruktur, die auf topografischen Karten festgehalten werden. Sie umfassen den Schienenverkehr, alle Strassen und Wege, wie auch Flugplätze und alle dazugehörigen Bauwerke. 
+Das Verkehrsnetz besteht aus allen Anlagen, auf oder unter der Erdoberfläche, auf denen eine räumliche Fortbewegung von Personen oder auch Gütern stattfindet. Verkehrsnetze sind ein Bestandteil der Verkehrsinfrastruktur, die auf topografischen Karten festgehalten werden. Sie umfassen den Schienenverkehr, alle Strassen und Wege, wie auch Flugplätze und alle dazugehörigen Bauwerke.
 Aus verkehrsgeografischer Sicht besteht das Verkehrsnetz aus Kanten, Knotenpunkten und dem Hinterland. Die Knotenpunkte werden auch hier durch die Kanten verbunden, die den Verkehrsstrom aufnehmen, wobei das Hinterland durch einzelne Knoten versorgt wird. Die Aufteilung in Kanten und Knotenpunkte ermöglicht eine Vereinfachung komplexer Verkehrsnetze, damit sie mittels der Graphentheorie untersucht werden können.
-Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim
-Aufbau eines Verkehrsnetzes sein. Es kann aber auch versucht werden, die Bau- und Unterhaltskosten des Verkehrsnetzes in einem gewissen Rahmen zu halten. Aus diesen Vorgaben ergibt sich dann, je nach dem was gewünscht wird, eine grob- oder feinmaschige Struktur des Netzes. 
+Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim Aufbau eines Verkehrsnetzes sein. Es kann aber auch versucht werden, die Bau- und Unterhaltskosten des Verkehrsnetzes in einem gewissen Rahmen zu halten. Aus diesen Vorgaben ergibt sich dann, je nach dem was gewünscht wird, eine grob- oder feinmaschige Struktur des Netzes.
 Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
 
 \subsection{Suchalgorithmen}
 
 \subsubsection{Dijkstra-Algorithmus}
 Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Infomratikprofessor Edsger Dijkstra. Den Algorithmus hat er im Jahr 1959 erfunden.
-Der Algorithmus von Dijkstra ist ein Greedy-Algorithmus (gieriger Algorithmus), der schrittweise einen Folgezustand auswählt, damit beim Zeitpunkt der Wahl der grösste Gewinn bzw. das beste Ergebnis erzielt werden kann. 
+Der Algorithmus von Dijkstra ist ein Greedy-Algorithmus (gieriger Algorithmus), der schrittweise einen Folgezustand auswählt, damit beim Zeitpunkt der Wahl der grösste Gewinn bzw. das beste Ergebnis erzielt werden kann.
 Trotz der Schnelligkeit der Greedy-Algorithmen, können viele Probleme nicht optimal gelöst werden.
 Vereinfacht wird beim Dijkstra-Algorithmus, ausgehend von einem Startknoten so lange dem kürzesten Pfad gefolgt, bis der Zielknoten erreicht wird. Dabei muss für jeden besuchten Knoten die Kostenfunktion als auch der Pfad dahin (vorheriger Knoten) gespeichert werden.
 Dadurch wird hingegen garantiert, dass, wenn der Zielknoten erreicht wird, auch der kürzeste Pfad gefunden wurde.
 Grundlegende Voraussetzung für den Dijkstra-Algorithmus ist die strikte Positivität der Kantengewichte. Andernfalls würde ein wiederholtes Ablaufen einer Kante mit negativem Gewicht zu einer stetigen Reduktion der Kostenfunktion führen, was zu einer unendlichen Schlaufe führen würde.
 
+Gegeben sei ein Netzwerk mit $n$ Knoten und dem Startknoten $a$.
+Alle Kanten sind mit $k(i, j)$ bewertet.
+Gesucht wird der kürzeste Pfad zwischen dem Startknoten und allen übrigen Knoten im Netz.
+$D(i)$ ist die kürzeste Distanz vom Startknoten $a$ zum Knoten $i, V(i)$ ist der unmittelbare Vorgängerknoten vom Knoten $i$ auf dem kürzesten Weg vom Startknoten $a$ zum Konten $i$ und die Menge $M$ ist die Menge einer bestimmten Auswahl an Knoten.
+
+Dabei gilt
+\begin{equation}M={a}\end{equation}
+\begin{equation}D(a)=0\end{equation} wobei
+\begin{equation}D(i)=\infty\end{equation} und
+\begin{equation}i \neq a \end{equation}
+Ausserdem gilt \begin{equation}V(i)=(-) \text{für alle Knoten $i$}\end{equation}\\
+
+%THEORIE...
+Iteration
+
+1. Auswahl eines Knotens \begin{equation} K\in M \text{mit} D(K)=D(i);i\in M\end{equation}
+
+2. Für alle Nachfolger $N(j)$ vom Knoten $K$ gilt:
+\begin{equation}D(K) + k_Kj < D(j)\end{equation} dann wird \begin{equation}D(j) = D(K) + k_Kj, V(j) = K\end{equation} gesetzt und somit wird der Knoten $j$ in die Menge $M$ aufgenommen.
+
+3. Der ausgewählte Knoten \begin{equation}K\in M\text{wird aus der Menge herausgelöscht}\end{equation}\\
+Diese drei Schritte werden so lange wiederholt bis gilt
+\begin{equation}M=\{\}\end{equation}
+
 \subsubsection{A*-Algorithmus}
 Suchalgorithmen werden nach einfachen (uninformierte) und heuristischen (informierten) Algorithmen unterschieden. Während einfache Algorithmen den Suchraum intuitiv durchsuchen, beziehen heuristische Algorithmen Wissen über den Suchraum mit ein.
 Der A*-Algorithmus geht auf seine Erfinder Peter Hart, Nils Nilsson und Bertram Raphael zurück, die den Algorithmus erstmals im Jahr 1968 beschrieben.
 Der A*-Algorithmus ist ein heuristischer Suchalgorithmus, der den kürzesten Pfad zwischen zwei Knoten in einem Graphen mit positiven Kantengewichten berechnet.
-Im Gegensatz zu einfachen Suchalgorithmen, wird beim A*-Algorithmus eine Schätzfunktion, die sogenannte Heuristik, verwendet. Dies ermöglicht ein zielgerichtetes Suchen und gleichzeitig wird die Laufzeit verringert. 
+Im Gegensatz zu einfachen Suchalgorithmen, wird beim A*-Algorithmus eine Schätzfunktion, die sogenannte Heuristik, verwendet. Dies ermöglicht ein zielgerichtetes Suchen und gleichzeitig wird die Laufzeit verringert.
 Ausserdem findet der A*-Algorithmus immer eine optimale Lösung, sofern eine vorhanden ist.
-Der A*-Algorithmus wird als Verallgemeinerung gehandhabt und gilt als Erweiterung des Dijkstra-Algorithmus. 
-=======
+Der A*-Algorithmus wird als Verallgemeinerung gehandhabt und gilt als Erweiterung des Dijkstra-Algorithmus.
+
+\subsubsection{Anwendung A*-Algorithmus}
+Wie oben erwähnt basiert der A*-Algorithmus auf dem Shortest-Path-Algorithmus von Dijkstra. Gemäss dem Algorihtmus von Dijkstra werden von einem Startknoten aus die jeweiligen Nachbarknoten, die Nachbarknoten der Nachbarknoten usw. verarbeitet. Die Kantengewichte werden dabei aufsummiert und die Priorität wird auf die Kante gelegt, die das geringste Gewicht aufweist. Mit diesem Verfahren wird sichergestellt, dass die erste gefundene Lösung auch die optimalste Lösung darstellt.\\
+
+Die Kantengewichte werden für jeden Knoten in Form einer Funktion dargestellt
+\begin{equation}f(n)=g(n)\end{equation} mit
+\begin{equation}g(n)=\text{Summe aller Kantengewichte vom Startknoten bis n}\end{equation}\\
+Der A*-Algorithmus erweitert die Vorgehensweise des Algorithmus von Dijkstra um die Heuristik $h(n)$, die für jeden Knoten $n$ die geschätzte Entfernung zum Zielknoten beschreibt.
+Somit gilt:
+\begin{equation}f(n)=g(n)+h(n)\end{equation}\\
+Wie auch der Algorithmus von Dijkstra findet der A*-Algorithmus die optimalste Lösung.
 
 \subsubsection{Floyd-Warshall-Algorithmus}
-Der Floyd-Warshall-Algorithmus wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
-Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die kürzesten , beziehungsweise die optimalsten Wege zwischen allen Paaren von Knoten berechnet, sofern der Graph keinen negativen Kreis (Zyklus) aufweist.
-Ein Kreis in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.
+Der Floyd-Warshall-Algorithmus, auch Tripel-Algorithmus genannt, wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
+Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die kürzesten , beziehungsweise die optimalsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph aber keinen negativen Kreis (Zyklus) aufweist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
+Ein Kreis (Zyklus) in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.\\
+Der Floyd-Warshall-Algorithmus besteht grundsätzlich aus Floyd's Berechnung der kürzesten Distanzen zwischen zwei Knoten und Warshall's Konstruktion der kürzesten Wege. Werden diese beiden Teilgebiete zusammengefügt, ergibt sich der Floyd-Warshall-Algorithmus.
+
+\subsubsection{Anwendung Floyd-Warshall-Algorithmus}
+
+Wie oben erwähnt, besteht der Floyd-Warshall-Algorithmus aus dem Teil von Floyd zur Berechnung der kürzesten Pfade und dem Teil von Warshall zur Konstruktion der kürzesten Pfade.
+
+%THEORIE...
+Als erstes wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W[i, j]$ erstellt.
+Der Algorithmus berechnet danach in einer Hauptschleife alle Knoten $k$ von 1 bis $n$.
+Dabei versucht er in jeder Iteration alle Wege von $i$ nach $j$ durch die Wege $(i, k)$ und $(k, j)$ zu verbessern.
+Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der Algorithmus aktualisiert.
+
+Die aktuelle Gewichtung der Pfade wird mit
+\begin{equation}d[i, j]=min[d[i,j], d[i,k] + d[k,i]]\end{equation}
+ermittelt.
 
 \subsubsection{Euklidische Heuristik}
 Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
@@ -40,7 +88,7 @@ Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc..
 Beim PageRank-Algorithmus handelt es sich um den Algorithmus von Google, aus dem die Google-Matrix abgeleitet wird.
 Die Google-Matrix ist eine immens grosse Matrix mit Millionen Zeilen und Spalten, die für die schnelle und vor allem exakte Bestimmung der PageRanks (Gewichtung) eine grosse Bedeutung hat.
-Der PageRank-Algorithmus analysiert und gewichtet beispielsweise die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur. 
+Der PageRank-Algorithmus analysiert und gewichtet beispielsweise die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur.
 Der PageRank wird umso höher, je mehr hochwertige Links auf eine Webseite verweisen und je höher die Gewichtung einer Webseite ist, desto grösser ist der Effekt.\\
 Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche gilt.
 
@@ -49,7 +97,7 @@ Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseina
 
 \begin{equation}
 A_{i,j}=\left\{ \begin{matrix}
-1 & \text{Kante von $j$ nach $i$} \\ 0 & \text{keine Kante von $j$ nach $i$}  
+1 & \text{Kante von $j$ nach $i$} \\ 0 & \text{keine Kante von $j$ nach $i$}
 \end{matrix}
  \right.
 \label{verkehr:Adja}
