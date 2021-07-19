@@ -1,8 +1,8 @@
-#
-# f.m -- Reed-Solomon-Visualisierung mit FFT
-#
-# (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
-#
+%
+% f.m -- Reed-Solomon-Visualisierung mit FFT
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+
 N = 64;
 b = 32;
 l = N + b;
@@ -59,3 +59,15 @@ plot(locator);
 xlim([1, l]);
 title("Locator");
 pause()
+
+writematrix(abs(signal), 'signal.txt')
+writematrix(abs(codiert), 'codiert.txt')
+writematrix(fehler, 'fehler.txt')
+writematrix(abs(empfangen), 'empfangen.txt')
+writematrix(abs(decodiert), 'decodiert.txt')
+writematrix(abs(syndrom), 'syndrom.txt')
+writematrix(locator, 'locator.txt')
+
+
+
+

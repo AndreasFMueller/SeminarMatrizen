@@ -31,7 +31,8 @@ Der Leser/Empfänger weiss, den Grad des Polynoms und dessen Werte übermittelt 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2.pdf}
+	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2}
+    %\input{papers/reedsolomon/images/polynom2.tex}
 	\caption{Polynom \eqref{reedsolomon:equation1}}
 	\label{fig:polynom}
 \end{figure}
@@ -43,7 +44,7 @@ Hat es Fehler in der Übertragunge gegeben, kann man diese erkennen,
 da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen.
 Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
 Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
-gegenüber dem mit 5 Punkten falsch liegt.
+gegenüber dem mit 5 Punkten falsch liegt.\ref{fig:polynom}
 Werden es mehr Fehler kann nur erkennt werden, dass das Polynom nicht stimmt.
 Das orginale Polynom kann aber nicht mehr gefunden werden.
 Dafür sind mehr übertragene Werte nötig.
@@ -58,6 +59,7 @@ die Entschlüsselt werden sollen, brauchen die gleiche Anzahl an  Polynomgraden,
 Für die Anzahl an Übertragungspunkte, muss bestimmt werden wieviel Fehler erkennt und korrigiert werden sollen.
 Mit Hilfe der Tabelle, sieht man das es bei $t$ Fehlern und $k$ Nutzlast Zahlen,
 $k+2t$ Punkte übertragen werden müssen.
+
 \begin{center}
     \begin{tabular}{ c c c } 
         \hline
@@ -71,6 +73,7 @@ $k+2t$ Punkte übertragen werden müssen.
         \hline
     \end{tabular}
 \end{center}
+
 Ein toller Nebeneffekt ist das dadurch auch $2t$ Fehler erkannt werden. 
 Um zurück auf unser Beispiel zu kommen, 
 können von den 7 Übertragungspunkten bis zu $2t = 2\cdot2 = 4 $ Punkten falsch liegen 
