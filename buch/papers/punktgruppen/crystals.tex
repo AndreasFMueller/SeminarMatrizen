@@ -30,7 +30,7 @@ ist ein Kristallgitter eindeutig beschrieben, weswegen sie auch als Grundvektore
 
 %TODOO fix Q define without vector symb. -> ask naoki
 
-\subsection{Translationssymmetrie}
+\subsection{Translationssymmetrie} 
 Da sich das ganze Kristallgitter wiederholt, wiederholen sich auch dessen Eigenschaften periodisch mit den Grundvektoren.
 Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, 
 da die Umgebungen aller Punkte identisch sind. 
@@ -44,11 +44,11 @@ der Vektoren $\vec{a}$ , $\vec{b}$ und $\vec{c}$ erlaubt sind oder kurz, um $\ve
 Verschiebungen um $\vec{r}$ bewirken demnach keine Veränderungen, 
 solange wir ein unendlich grosses Kristallgitter verschieben.
 
-\subsection{Limitierte Kristallsymmetrien}
+\subsection{Limitierte Kristallsymmetrien} \label{txt:punktgruppen: Translationssymmetrie}
  Die Translationssymmetrie ist wohl keine grosse Überraschung, wenn man die Abbildung \ref{fig:punktgruppen:lattice} betrachtet.
- Was nicht direkt ersichtlich ist, ist dass auch wenn die Grundvektoren frei gewählt werden können, 
- sind nur rotationssymmetrische Kristalle ganz bestimmter Rotationswinkel möglich.
-
+ Was nicht direkt ersichtlich ist, dass bei beliebigen Grundvektoren nicht beliebige Symmetrien erstellt werden können.
+ Die geforderte Translationssymmetrie eines Kristalles schränkt weitere Symmetrien deutlich ein.
+  
 \begin{figure}
     \centering
     \includegraphics[]{papers/punktgruppen/figures/combine-symmetries}
@@ -126,14 +126,30 @@ wobei die gestrichelten Klassen aus Gründen der Überschaubarkeit nicht im Deta
 
 
 \subsubsection{Schönflies-Symbilok}
-Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:Kristallkassen} ist mit ihrem Schöönflies-Symbol bezeichnet.
+Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:Kristallkassen} ist mit ihrem zugehörigen Schöönflies-Symbol bezeichnet.
 Die Schönflies-Symbolik stammt von dem Mathematiker Arthur Moritz Schönflies, 
-welcher sich unter anderem mit der Klasifizierung der Kristallklassen auseinandergesetzt hat.
+welcher sich unter anderem mit der Klasifizierung der Punktgruppen auseinandergesetzt hat.
 Er hat Untergruppen gebildet, welche als Grossbuchstaben in Abbildung \ref{fig:punktgruppen:Kristallkassen} zu sehen sind.
-Anschaulich ist als Beispiel die Drehgruppe \[C\].
-Die Elemente einer Untergruppe werden erst mit ihren Zusätzen eindeutig wie \[C_{3i}\], 
-was für eine dreifache Rotationssymmetrie mit einem Inversionszentrum steht.
-
+Da nicht alle Symmetriegruppen in Kristallen möglich sind, werden nicht alle Untergruppen von Schönflies verwendet.
+Es ist nur die Drehgruppe \(C\), Diedergruppe \(D\) Drehspiegelgruppe \(S\), Tetraedergruppe \(T\) und die Oktaedergruppe \(O\).
+Für die eindeutige zuweisung in eine Kristallklasse werden noch identifizierende Merkmale als Subskript notiert.
+Bei der Untergruppe \(C\) werden beispielsweise die möglichen Rotationssymmetrien gezeigt.
+Dank Abschintt \ref{txt:punktgruppen: Translationssymmetrie} wissen wir, wieso auf \(C\) nur ganz bestimmte Subskripte folgen.
+Da das Subskript \(n\) von \(C_n\) zeigt, dass es sich um eine \(n\)-fache Rotationssymmetrie handelt.
+Inzwischen wissen wir auch, dass \(C_5\) auf der Abbildung \ref{fig:punktgruppen:Kristallkassen} nicht vorkommen darf, da 
+\[
+    360^\circ/5 =  72^\circ
+\]
+was nach Abschnitt \ref{txt:punktgruppen: Translationssymmetrie} in einem Kristall keine mögliche Rotationssymmetrie ist.
+Sind im Subskript Buchstaben, definieren diese weitere Symmetrieeigenschaften der Klasse.
+Wie zum Beispiel ein Inversionszentrum
+\footnote{Ein Objekt mit Inversionszentrum ist Punktsymmetrisch im Inversionszentrum.}
+\(i\) oder eine horizontale
+\footnote{Als Orientierungspunkt wird die Symmetrieachse höchster Ordnung (\(n\)) als vertikal definiert} 
+Spiegelachse \(h\). 
+Zu beachten ist jedoch, dass manche Symmetriegruppen mit mehreren Schönflies-Symbolen beschieben werden können.
+\(C_{3i}\) beschreibt genau das selbe wie \(S_6\), da eine dreifache Rotationssymmetrie mit einem Inversionszentrum einer
+sechsfachen Drehspiegelsymmetrie entspricht.
 
 
 
