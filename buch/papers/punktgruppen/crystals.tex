@@ -36,7 +36,7 @@ Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmög
 da die Umgebungen aller Punkte identisch sind. 
 Mit anderen Worten: Jedes Kristallgitter $ G $ ist \emph{Translationssymmetrisch} in der Translation 
 \[
-    Q_i(G) = G + \vec{a}_i
+    \vec{Q}_i(G) = G + \vec{a}_i
 \] wobei der Vektor $\vec{a}_i$ ein Grundvektor sein muss.
 Da die Translationssymmetrie beliebig oft mit allen Grundvektoren angewendet werden kann, 
 können wir auch sagen, dass alle Verschiebungen um eine Linearkombination 
@@ -64,7 +64,8 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
  \begin{itemize}
      \item  \(A\) ist unser erster Gitterpunkt. 
 
-     \item  \(A'\) ist gegeben, weil wir \(A\) mit der Translation \(\vec{Q}\) um einen Grundvektor verschieben und wir wissen, dass nach einer Translation wieder ein Gitterpunkt an der verschobenen Stelle sein muss.
+     \item  \(A'\) ist gegeben, weil wir \(A\) mit der Translation \(\vec{Q}\) um einen Grundvektor verschieben und wir wissen, 
+            dass nach einer Translation wieder ein Gitterpunkt an der verschobenen Stelle sein muss.
      \item \(B\) entsteht, weil wir die Rotationssymmetrie \(C_\alpha\) auf den Punkt \(A\) anwenden.
          Dadurch dreht sich das ganze Gitter um den Winkel \(\alpha\). 
          Für uns bedeutet dies lediglich, dass unser zweiter Punkt \(A'\) abgedreht wird.
@@ -77,13 +78,13 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
          auch auf \(A'\) an. 
          Dies dreht \(A\) auf einen neuen Punkt.
      \item \(B'\) ist kein zufälliger Name für diesen neuen Punkt, denn wir wissen, dass zwischen allen Punkten eine Translationssymmetrie bestehen muss.
-         Die Translationssymmetrie zwischen \(B\) und \(B'\) ist hier als \(\vec{Q}'\) bezeichnet.
+         Die  Translationssymmetrie zwischen \(B\) und \(B'\) ist hier als \(\vec{Q}'\) bezeichnet.
  \end{itemize}  
  Mit den gegebenen Punkten lassen sich geometrische Folgerungen ziehen.
- Wir beginnen, indem wir die Länge \(Q\) der Translation \(\vec{Q}\) mit jener von \(\vec{Q}'\) vergleichen.
+ Wir beginnen, indem wir die Länge der Verschiebung \(|\vec{Q}| = Q\) setzen und \(|\vec{Q}'| = Q'\).
  Aus Abbildung \ref{fig:punktgruppen:rot-geometry} ist ersichtlich, dass \(Q' = Q + 2x\).
- Ist \(\vec{Q}\) ein Grundvektor so muss \(Q'\) ein ganzes vielfaches von \(Q\) sein.
- Also
+ Da \(\vec{Q}\) eine Translation um ein Grundvektor ist , muss \(\vec{Q}'\) ein ganzes vielfaches von \(\vec{Q}\) sein.
+ Demnach auch die Längen
  \[
     Q' = nQ = Q + 2x
  \]
@@ -91,7 +92,8 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
  \[
     nQ = Q + 2Q\sin(\alpha - \pi/2)
  \]
- Wir können durch \(Q\) dividieren um unabhängig von der Läge des Grundvektors zu werden, was auch Sinn macht, da eine Skalierung eines Kristalles seine Symmetrieeigenschaften nicht tangiert.
+ Wir können durch \(Q\) dividieren um unabhängig von der Läge des Grundvektors zu werden, was auch Sinn macht, 
+ da eine Skalierung eines Kristalles seine Symmetrieeigenschaften nicht tangiert.
  Zusätzlich können wir den Sinusterm vereinfachen.
  \[
      n = 1 - 2\cos\alpha \quad\iff\quad
