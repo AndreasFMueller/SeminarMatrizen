@@ -1,0 +1,33 @@
+% polynome1
+%-------------------
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\newcommand{\teiler}{40}
+\begin{document}
+
+
+\begin{tikzpicture}[>=latex,thick]
+
+	\begin{axis}[
+		axis lines = left,
+		xlabel = \(x\),
+		ylabel = {\(f(x)\)},
+		]
+		%Below the red parabola is defined
+		\addplot[
+		color=blue,
+		]
+		coordinates {
+			(0,23.1)(10,27.5)(20,32)(30,37.8)(40,44.6)(60,61.8)(80,83.8)(100,114)
+		};
+		%Here the blue parabola is defined
+		
+	\end{axis}
+\end{tikzpicture}
+\end{document}
+

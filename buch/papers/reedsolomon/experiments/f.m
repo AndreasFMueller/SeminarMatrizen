@@ -51,6 +51,7 @@ syndrom(1:N,1) = zeros(N,1)
 plot(abs(syndrom));
 xlim([1, l]);
 title("Syndrom");
+
 pause()
 
 locator = abs(fft(syndrom))
@@ -60,14 +61,12 @@ xlim([1, l]);
 title("Locator");
 pause()
 
-writematrix(abs(signal), 'signal.txt')
-writematrix(abs(codiert), 'codiert.txt')
-writematrix(fehler, 'fehler.txt')
-writematrix(abs(empfangen), 'empfangen.txt')
-writematrix(abs(decodiert), 'decodiert.txt')
-writematrix(abs(syndrom), 'syndrom.txt')
-writematrix(locator, 'locator.txt')
 
-
-
+writematrix([transpose(counter), abs(signal)], 'signal.txt')
+writematrix([transpose(counter), abs(codiert)], 'codiert.txt')
+writematrix([transpose(counter), fehler], 'fehler.txt')
+writematrix([transpose(counter), abs(empfangen)], 'empfangen.txt')
+writematrix([transpose(counter), abs(decodiert)], 'decodiert.txt')
+writematrix([transpose(counter), abs(syndrom)], 'syndrom.txt')
+writematrix([transpose(counter), locator], 'locator.txt')
 

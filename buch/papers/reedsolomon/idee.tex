@@ -25,29 +25,34 @@ p(x)
 \end{equation}
 ergeben.
 Übertragen werden nun die Werte an den stellen 1, 2, 3\dots 7 dieses Polynomes.
-Grafisch sieht man dies dann in Abbildung 
+Grafisch sieht man dies dann in Abbildung \ref{fig:polynom}, 
+mit den Punkten, $p(1),p(2),...,p(7) = (\textcolor{green}{8}, 
+\textcolor{green}{15}, \textcolor{green}{26},
+\textcolor{green}{41}, \textcolor{green}{60}, 
+\textcolor{green}{83}, \textcolor{green}{110})$
 Wenn ein Fehler sich in die Übertragung eingeschlichen hatt, muss der Leser/Empfänger diesen erkennen und das Polynom rekonstruieren.
 Der Leser/Empfänger weiss, den Grad des Polynoms und dessen Werte übermittelt wurden. 
-
-\begin{figure}
-	\centering
-	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2}
-    %\input{papers/reedsolomon/images/polynom2.tex}
-	\caption{Polynom }
-	\label{fig:polynom}
-\end{figure}
 
 \subsection{Beispiel}
 Für das Beispeil aus der Gleichung \eqref{reedsolomon:equation1},
 ist ein Polynome zweiten Grades durch drei Punkte eindeutig bestimmbar.
-Hat es Fehler in der Übertragunge gegeben, kann man diese erkennen,
-da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen.
+Hat es Fehler in der Übertragunge gegeben,(Bei Abbildung \ref{fig:polynom}\textcolor{red}{roten Punkte}) kann man diese erkennen,
+da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen. 
+(Bei Abbildung \ref{fig:polynom}\textcolor{green}{grünen Punkte})
 Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
 Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
 gegenüber dem mit 5 Punkten falsch liegt.\ref{fig:polynom}
 Werden es mehr Fehler kann nur erkennt werden, dass das Polynom nicht stimmt.
 Das orginale Polynom kann aber nicht mehr gefunden werden.
 Dafür sind mehr übertragene Werte nötig.
+
+\begin{figure}
+	\centering
+	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2}
+    \input{papers/reedsolomon/images/polynom2.tex}
+	\caption{Polynom $p(x)$ \eqref{reedsolomon:equation1}}
+	\label{fig:polynom}
+\end{figure}
 
 \section{Fehlerbestimmung
 \label{reedsolomon:section:Fehlerbestimmmung}}
