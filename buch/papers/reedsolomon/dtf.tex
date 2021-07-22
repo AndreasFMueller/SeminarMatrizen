@@ -3,28 +3,53 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Diskrete Fourien Transformation
+\section{Diskrete Fourier Transformation
 \label{reedsolomon:section:dtf}}
 \rhead{Umwandlung mit DTF}
 Um die Polynominterpolation zu umgehen, gehen wir nun über in die Fourientransformation.
 Dies wird weder eine erklärung der Forientransorfmation noch ein genauer gebrauch
 für den Reed-Solomon-Code. Dieser Abschnitt zeigt nur wie die Fourientransformation auf Fehler reagiert.
-wobei sie dann bei späteren Berchnungen ganz nütlich ist.
-
-\subsection{Übertragungsabfolge
-\label{reedsolomon:subsection:Übertragungsabfolge}}
-Das Signal.... sind die Daten, Zahlen welche übertragen werden sollen.
-Das speziell ist das wir 100 Punkte übertragen und von 64 bis 100,
-werden nur Null Punkte übertragen, dies weiss auch unser Empfänger.
-Nun wird das Signal in Abbildung... codiert...
-Somit wird die Information jedes Punktes auf das ganze spektrum von 0 bis 100 übertragen.
-Kommen nuun drei Fehler... hinzu zu diesem codierten Signal sind diese nicht zu erkennen.
-Nach dem Empfangen... und decodieren ... erkennt man die fehlerhafte information in den Punkten 64 bis 100.
-Filtert man nur diese Punkte heraus und Transformiert sie mit Fourier erhält man die stellen an denen die Fehler sich eingeschlichen haben.
+wobei sie dann bei späteren Berchnungen ganz nützlich ist.
 
 \subsection{Diskrete Fourientransformation Zusamenhang
 \label{reedsolomon:subsection:dtfzusamenhang}}
 Die Diskrete Fourientransformation ist definiert als
-....
+	\[
+	\label{ft_discrete}
+	\hat{c}_{k} 
+	= \frac{1}{N} \sum_{n=0}^{N-1}
+	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
+	\]
+, wenn man nun 
+	\[
+	w = e^{-\frac{2\pi j}{N} k}
+	\]
+ersetzte, und $N$ konstantbleibt, erhält man
+	\[
+	\hat{c}_{k}=\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
+	\]
+was überaust ähnlich zu unserem Polynomidee ist.
+\subsection{Übertragungsabfolge
+\label{reedsolomon:subsection:Übertragungsabfolge}}
 
+\begin{enumerate}[1)]
+\item Das Signal hat 64 die Daten, Zahlen welche übertragen werden sollen. 
+Dabei zusätzlich nach 16 Fehler abgesichert, macht insgesamt 96 Übertragungszahlen.
+\item Nun wurde mittels der schnellen diskreten Fourientransformation diese 96 codiert.
+Das heisst alle information ist in alle Zahlenvorhanden.
+\item Nun kommen drei Fehler dazu an den Übertragungsstellen 7, 21 und 75.
+\item Dieses wird nun Empfangen und mittels inversen diskreten Fourientransormation, wieder rücktransformiert.
+\item Nun sieht man den Fehler im Decodieren in den Übertragungsstellen 64 bis 96.
+\item Nimmt man nun nur diese Stellen 64 bis 96, auch Syndrom genannt, und Transformiert diese.
+\item Bekommt man die Fehlerstellen im Locator wieder, zwar nichtso genau, dennoch erkkent man wo die Fehler stattgefunden haben.
+\end{enumerate}
 
+\begin{figure}
+	\centering
+	\resizebox{0.9\textwidth}{!}{
+	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/plot.pdf}
+    \input{papers/reedsolomon/images/plotfft.tex}
+	}
+	\caption{Übertragungsabfolge \ref{reedsolomon:subsection:Übertragungsabfolge}}
+	\label{fig:sendorder}
+\end{figure}
