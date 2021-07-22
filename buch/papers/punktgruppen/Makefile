@@ -20,6 +20,7 @@ TIKZFIGURES := \
 	tikz/lattice.tex \
 	tikz/piezo.tex \
 	tikz/projections.tex \
+	tikz/stereographic-projections.tex \
 	tikz/symmetric-shapes.tex
 
 FIGURES := $(patsubst tikz/%.tex, figures/%.pdf, $(TIKZFIGURES))
