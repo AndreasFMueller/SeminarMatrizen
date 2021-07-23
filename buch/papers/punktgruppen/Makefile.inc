@@ -11,15 +11,15 @@ dependencies-punktgruppen =	\
 	papers/punktgruppen/crystals.tex \
 	papers/punktgruppen/piezo.tex \
 	papers/punktgruppen/references.bib \
-	paers/punktgruppen/tikz/atoms-grid-force.tex \
-	paers/punktgruppen/tikz/atoms-grid-still.tex \
-	paers/punktgruppen/tikz/atoms-piezo-force-horizontal.tex \
-	paers/punktgruppen/tikz/atoms-piezo-force-vertical.tex \
-	paers/punktgruppen/tikz/atoms-piezo-still.tex \
-	paers/punktgruppen/tikz/combine-symmetries.tex \
-	paers/punktgruppen/tikz/lattice.tex \
-	paers/punktgruppen/tikz/piezo-atoms.tex \
-	paers/punktgruppen/tikz/piezo.tex \
-	paers/punktgruppen/tikz/projections.tex \
-	paers/punktgruppen/tikz/stereographic-projections.tex \
-	paers/punktgruppen/tikz/symmetric-shapes.tex
+	papers/punktgruppen/tikz/atoms-grid-force.tex \
+	papers/punktgruppen/tikz/atoms-grid-still.tex \
+	papers/punktgruppen/tikz/atoms-piezo-force-horizontal.tex \
+	papers/punktgruppen/tikz/atoms-piezo-force-vertical.tex \
+	papers/punktgruppen/tikz/atoms-piezo-still.tex \
+	papers/punktgruppen/tikz/combine-symmetries.tex \
+	papers/punktgruppen/tikz/lattice.tex \
+	papers/punktgruppen/tikz/piezo-atoms.tex \
+	papers/punktgruppen/tikz/piezo.tex \
+	papers/punktgruppen/tikz/projections.tex \
+	papers/punktgruppen/tikz/stereographic-projections.tex \
+	papers/punktgruppen/tikz/symmetric-shapes.tex
