@@ -13,7 +13,7 @@ dependencies-clifford =							\
 	papers/clifford/3_MultiplikationVektoren.tex			\
 	papers/clifford/4_GeometrischesProdukt.tex			\
 	papers/clifford/5_PolareDarstellung.tex				\
-	papers/clifford/6_Dirac-Matrizen.tex				\
+	papers/clifford/6_PauliMatrizen.tex				\
 	papers/clifford/7_Reflektion.tex				\
 	papers/clifford/8_Rotation.tex					\
 	papers/clifford/9_KomplexeZahlen.tex				\
