@@ -50,9 +50,9 @@
   % \draw[->] (O) -- ++(0,0,1.5*\l);
 
   % gray unit circle
-  \tdplotdrawarc[gray, dashed]{(O)}{\l}{0}{360}{}{};
-  \draw[gray, dashed] (-\l, 0, 0) to (\l, 0, 0);
-  \draw[gray, dashed] (0, -\l, 0) to (0, \l, 0);
+  \tdplotdrawarc[gray, thick]{(O)}{\l}{0}{360}{}{};
+  \draw[gray, dotted] (-\l, 0, 0) to (\l, 0, 0);
+  \draw[gray, dotted] (0, -\l, 0) to (0, \l, 0);
 
   % meridians
   \foreach \phi in {0, 30, 60, ..., 150}{
@@ -71,19 +71,37 @@
   \coordinate (A) at (\px,\py,\pz);
   \coordinate (Aproj) at ({\px * \l / (\l + \pz)}, {\py * \l / (\l + \pz)}, 0);
 
-  % projection line
-  \draw[] (A) to (SP);
+  % dot below and its projection
+  \pgfmathsetmacro{\phi}{-60}
+  \pgfmathsetmacro{\theta}{120}
+
+  \pgfmathsetmacro{\px}{cos(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\py}{sin(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\pz}{cos(\theta)*\l})
+
+  \coordinate (B) at (\px,\py,\pz);
+  \coordinate (Bproj) at ({\px * \l / (\l - \pz)}, {\py * \l / (\l - \pz)}, 0);
+
+  % projection lines
+  \draw[gray] (A) to (SP);
   \draw[gray] (SP) to (O) to (Aproj);
 
-  % dot
+  \draw[gray] (B) to (NP);
+  \draw[gray] (NP) to (O) to (Bproj);
+
+  % dots
   \draw (O) node[dot] {};
   \draw (SP) node[dot] {};
-  \draw (A) node[dot, fill=magenta] {};
+  \draw (NP) node[dot] {};
+  \draw (A) node[dot, fill = magenta, minimum size = 1.5mm] {};
+  \draw (B) node[dot, fill = orange, minimum size = 1.5mm] {};
+
+  % projection markers
   \draw[very thick, magenta] 
     (Aproj) ++(.15,0) to ($(Aproj)+(-.15, 0)$)
     (Aproj) ++(0,.15) to ($(Aproj) +(0, -.15)$);
 
-  % \draw (O) to ({cos(\phi)*\l}, {sin(\phi)*\l}, 0);
+  \tdplotdrawarc[orange, very thick]{(Bproj)}{.1}{0}{360}{}{};
 
 \end{tikzpicture}
 \end{document}
