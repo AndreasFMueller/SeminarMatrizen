@@ -18,27 +18,25 @@ Die Innereien eines Kristalles sind glücklicherweise relativ einfach definiert.
 \subsection{Kristallgitter}
 Ein zweidimensionales Beispiel eines solchen Muster ist Abbildung \ref{fig:punktgruppen:lattice}.
 Für die Überschaubarkeit haben wir ein simples Motiv eines einzelnen grauen Punktes dargestellt und betrachten dies nur in zwei Dimensionen.
-Die eingezeichneten Vektoren \(\vec{a}\) und \(\vec{b}\) sind die kleinstmöglichen Schritte im Raum bis sich das Kristallgitter wiederholt.
-Wird ein beliebiger grauer Gitterpunkt in \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von \(\vec{a}\) und \(\vec{b}\) verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
+Die eingezeichneten Vektoren \(\vec{a}_1\) und \(\vec{a}_2\) sind die kleinstmöglichen Schritte im Raum bis sich das Kristallgitter wiederholt.
+Wird ein beliebiger grauer Gitterpunkt in \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von \(\vec{a}_1\) und \(\vec{a}_2\) verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
 Im dreidimensionalen Raum können alle Gitterpunkte mit derselben Idee und einem zusätzlichen Vektor \(\vec{c}\) also
 \[
-    \vec{r} = n_1 \vec{a} + n_2 \vec{b} + n_3 \vec{c}
+	\vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3 = \sum_i n_i \vec{a}_i
 \]
-erreicht werden sofern $\{n_1,n_2,n_3\} \in \mathbb{Z}$ sind.
-Sind die Vektoren  $\vec{a}$ , $\vec{b}$ , $\vec{c}$ gegeben,
-ist ein Kristallgitter eindeutig beschrieben, weswegen sie auch als Grundvektoren bekannt sind.
+erreicht werden sofern \(n_1,n_2,n_3 \in \mathbb{Z}\) sind.
+Sind die Vektoren  \(\vec{a}_1\), \(\vec{a}_2\), \(\vec{a}_3\) gegeben, ist ein Kristallgitter eindeutig beschrieben, weswegen sie auch als Grundvektoren bekannt sind.
 
 \subsection{Translationssymmetrie} 
 Da sich das ganze Kristallgitter wiederholt, wiederholen sich auch dessen Eigenschaften periodisch mit den Grundvektoren.
-Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, 
-da die Umgebungen aller Punkte identisch sind. 
+Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, da die Umgebungen aller Punkte identisch sind. 
 Mit anderen Worten: Jedes Kristallgitter $ G $ ist \emph{Translationssymmetrisch} in der Translation 
 \[
     \vec{Q}_i(G) = G + \vec{a}_i
 \] wobei der Vektor $\vec{a}_i$ ein Grundvektor sein muss.
 Da die Translationssymmetrie beliebig oft mit allen Grundvektoren angewendet werden kann, 
 können wir auch sagen, dass alle Verschiebungen um eine Linearkombination 
-der Vektoren $\vec{a}$ , $\vec{b}$ und $\vec{c}$ erlaubt sind oder kurz, um $\vec{r}$. 
+der Vektoren $\vec{a}_1$ , $\vec{a}_2$ und $\vec{a}_3$ erlaubt sind oder kurz, um $\vec{r}$. 
 Verschiebungen um $\vec{r}$ bewirken demnach keine Veränderungen, 
 solange wir ein unendlich grosses Kristallgitter verschieben.
 
