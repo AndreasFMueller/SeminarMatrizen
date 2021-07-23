@@ -28,8 +28,6 @@ erreicht werden sofern $\{n_1,n_2,n_3\} \in \mathbb{Z}$ sind.
 Sind die Vektoren  $\vec{a}$ , $\vec{b}$ , $\vec{c}$ gegeben,
 ist ein Kristallgitter eindeutig beschrieben, weswegen sie auch als Grundvektoren bekannt sind.
 
-%TODOO fix Q define without vector symb. -> ask naoki
-
 \subsection{Translationssymmetrie} 
 Da sich das ganze Kristallgitter wiederholt, wiederholen sich auch dessen Eigenschaften periodisch mit den Grundvektoren.
 Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, 
@@ -44,7 +42,7 @@ der Vektoren $\vec{a}$ , $\vec{b}$ und $\vec{c}$ erlaubt sind oder kurz, um $\ve
 Verschiebungen um $\vec{r}$ bewirken demnach keine Veränderungen, 
 solange wir ein unendlich grosses Kristallgitter verschieben.
 
-\subsection{Limitierte Kristallsymmetrien} \label{txt:punktgruppen: Translationssymmetrie}
+\subsection{Limitierte Kristallsymmetrien} \label{txt:punktgruppen:Translationssymmetrie}
  Die Translationssymmetrie ist wohl keine grosse Überraschung, wenn man die Abbildung \ref{fig:punktgruppen:lattice} betrachtet.
  Was nicht direkt ersichtlich ist, dass bei beliebigen Grundvektoren nicht beliebige Symmetrien erstellt werden können.
  Die geforderte Translationssymmetrie eines Kristalles schränkt weitere Symmetrien deutlich ein.
@@ -58,7 +56,18 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
     \label{fig:punktgruppen:rot-geometry}
 \end{figure}
 
- \subsubsection{Translationssymmetrie $Q$ in Kombination mit Rotationssymmetrie $C_\alpha$}     % Müssen uns auf eine schreibweise für Symmetrie Operationen einigen oder sicher am Ende überprüfen
+\begin{satz}
+   Die Rotationssymmetrien eines Kristalls sind auf 2-fach, 3-fach, 4-fach und 6-fach beschränkt.
+   Mit anderen Worten: Es sind nur Drehwinkel von
+    0\(^{\circ}\),
+    60\(^{\circ}\),
+    90\(^{\circ}\),
+    120\(^{\circ}\) und
+    180\(^{\circ}\)
+   erlaubt.
+\end{satz}
+
+\begin{proof}
  In Abbildung \ref{fig:punktgruppen:rot-geometry} sehen wir Gitterpunkte und deren Zusammenhänge.
 
  \begin{itemize}
@@ -66,13 +75,13 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
 
      \item  \(A'\) ist gegeben, weil wir \(A\) mit der Translation \(\vec{Q}\) um einen Grundvektor verschieben und wir wissen, 
             dass nach einer Translation wieder ein Gitterpunkt an der verschobenen Stelle sein muss.
-     \item \(B\) entsteht, weil wir die Rotationssymmetrie \(C_\alpha\) auf den Punkt \(A\) anwenden.
-         Dadurch dreht sich das ganze Gitter um den Winkel \(\alpha\). 
+     \item \(B\) entsteht, weil wir die Rotationssymmetrie \(C_n\) auf den Punkt \(A\) anwenden.
+         Dadurch dreht sich das ganze Gitter um den Winkel \(360^\circ/n\). 
          Für uns bedeutet dies lediglich, dass unser zweiter Punkt \(A'\) abgedreht wird.
          An der neuen Position \(B\) von \(A'\) muss also auch ein Punkt des Gitters sein, um die Rotationssymmetrie zu erfüllen.
      \item \(B\) ist unser Name für diesen neuen Punkt.
-         Da auch die Eigenschaften des Kristallgittes periodisch mit dem Gitter sein müssen, dürfen wir \(C_\alpha\) auch auf \(A'\) anwenden.
-         Also wenden wir \(C_\alpha\) invertiert
+         Da auch die Eigenschaften des Kristallgittes periodisch mit dem Gitter sein müssen, dürfen wir \(C_n\) auch auf \(A'\) anwenden.
+         Also wenden wir \(C_n\) invertiert
          \footnote{Eine Rotationssymmetrie muss auch in die inverse Richtung funktionieren.
          Genauere Überlegungen hierzu werden dem Leser überlassen, da sich die Autoren nicht explizit mit dieser Frage Auseinander gesetzt haben.} 
          auch auf \(A'\) an. 
@@ -104,6 +113,7 @@ solange wir ein unendlich grosses Kristallgitter verschieben.
      \alpha \in \left\{ 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ\right\}
  \)
 ein.
+\end{proof}
 
 \begin{figure}
     \centering
