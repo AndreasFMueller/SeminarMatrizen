@@ -26,22 +26,19 @@ ist das Konzept der Symmetrie eigentlich viel allgemeiner.
 \subsection{Geometrische Symmetrien}
 
 In Abbildung \ref{fig:punktgruppen:geometry-example} haben wir einige Formen,
-die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat eine Gerade, an
-deren es gespiegelt werden kann, ohne sein Aussehen zu verändern.  Regelmässige
-Polygone mit \(n\) Seiten sind auch gute Beispiele, um eine diskrete
-Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um
-einen Punkt um einen bestimmten Winkel \(360^\circ/n\) die Figur unverändert
-lässt.  Das letzte Beispiel auf der rechten Seite ist eine unendliche
-Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für
-\(\alpha \in \mathbb{R}\) gibt, die die Form unverändert lassen.
-
-% Vieleicht eine kurze Einführung in für die Definition, ich habe das gefühl, dass in der Definition die Symmetrie-Operation und die Gruppe auf einmal erklährt wird 
-\subsubsection{Symetriegruppe}
-\texttt{TODO: review this paragraph, explain what is \(\mathds{1}\).}
-Ein Objekt kann mehr als nur eine Symmetrie aufweisen.
-Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example}
-nicht nur um $\sigma$ sondern auch Diagonal gespiegelt werden oder um $90^\circ$ gedreht werden.
-Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
+die offensichtlich symmetrisch sind.  Zum Beispiel hat das Quadrat eine Gerade,
+an deren es gespiegelt werden kann, ohne sein Aussehen zu verändern.
+Regelmässige Polygone mit \(n\) Seiten sind auch gute Beispiele, um eine
+diskrete Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine
+Drehung um einen Punkt um einen bestimmten Winkel \(360^\circ/n\) die Figur
+unverändert lässt.  Das letzte Beispiel auf der rechten Seite ist eine
+unendliche Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele
+Werte für \(\alpha \in \mathbb{R}\) gibt, die die Form unverändert lassen.  Ein
+Objekt kann mehr als nur eine Symmetrie aufweisen.  Als Beispiel, kann das
+Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example} nicht nur um
+\(\sigma\) sondern auch Diagonal gespiegelt werden oder um \(90^\circ\) gedreht
+werden.  Fasst man die möglichen Symmetrien zusammen, entsteht eine
+Symmetriegruppe.
 
 \begin{definition}[Symmetriegruppe]
 	Sei \(g\) eine umkehrbare Operation, die ein mathematisches Objekt
@@ -51,7 +48,18 @@ Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
 	wird.
 \end{definition} % ich lese diese  Definition ein wenig holprig, vieleicht können wir sie zusammen anschauen
 
-% Nach meinem Geschmack könne es hier auch eine einleitung wie mein Beispiel geben dammit man den Text flüssiger lesen kann 
+Ausserdem benötigen wir zur Bildung einer Gruppe ein neutrales Element, das wir
+mit \(\mathds{1}\) bezeichnen. Die Anwendung der neutralen Operation ist
+gleichbedeutend damit, alles unverändert zu lassen. \(\mathds{1}\) ist auch
+äquivalent dazu, eine Operation anzuwenden und sie dann rückgängig zu machen
+(ihre Umkehrung anzuwenden).
+Die Definition der Symmetriegruppe ist mit der Kompositionsoperation gegeben,
+es wird aber auch oft als Multiplikation geschrieben. Das liegt daran, dass
+manchmal die Zusammensetzung algebraisch durch eine Multiplikation berechnet
+wird. Die Verwendung einer multiplikativen Schreibweise ermöglicht es, einige
+Ausdrücke kompakter zu schreiben, z.B. durch Verwendung von Potenzen \(r^n =
+r\circ r \circ \cdots r\circ r\) für eine wiederholte Komposition. 
+
 \begin{definition}[Zyklische Untergruppe, Erzeuger]
 	Sei \(g\) ein Element einer Symmetriegruppe \(G\). Alle möglichen
 	Kompositionen von \(g\) und \(g^{-1}\) bilden eine sogenannte zyklische
@@ -59,18 +67,28 @@ Fässt man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
 	erzeugte Untergruppe \(\langle g \rangle = \left\{ g^k : k \in \mathbb{Z}
 	\right\}\) wird mit spitzen Klammern bezeichnet.
 \end{definition}
+\begin{beispiel}
+	Um die Syntax zu verstehen, betrachten Sie eine durch \(a\) erzeugte Gruppe
+	\(G = \langle a \rangle\).  Das bedeutet, dass \(G\) die Elemente \(a, aa,
+	aaa, \ldots\) sowie \(a^{-1}, a^{-1}a^{-1}, \ldots\) und ein neutrales
+	Element \(\mathds{1} = aa^{-1}\) enthält.
+\end{beispiel}
+\begin{beispiel}
+	Nun zu einem sinnvolleren Beispiel, wir können das \(n\)-Gon Beispiel
+	formalisieren.  Bezeichnen wir mit \(r\) eine Drehung im Gegenuhrzeigersinn
+	von \(360^\circ/n\) um einen Punkt.  Diese Definition reicht aus, um die
+	gesamte Symmetriegruppe
+	\[
+		C_n = \langle r \rangle
+			= \left\{\mathds{1}, r, r^2, \ldots, r^{n-1}\right\}
+	\]
+	der Drehungen eines \(n\)-Gons zu erzeugen. Das liegt daran, dass wir durch
+	die mehrfache Verwendung von \(r\) jeden Winkel erzeugen k\"onnen, der die
+	Rotationssymmetrie bewahrt. In ähnlicher Weise, aber weniger interessant die
+	Reflexionssymmetriegruppe \(\langle\sigma\rangle\) enthält nur
+	\(\left\{\mathds{1}, \sigma\right\}\), weil \(\sigma^2 = \mathds{1}\).
+\end{beispiel}
 
-Damit können wir das \(n\)-Gon Beispiel formalisieren.
-Bezeichnen wir mit \(r\) eine Drehung im Gegenuhrzeigersinn von \(360^\circ/n\)
-um einen Punkt.  Diese Definition reicht aus, um die gesamte Symmetriegruppe
-\[
-	C_n = \langle r \rangle
-		= \left\{\mathds{1}, r, r^2, \ldots, r^{n-1}\right\}
-\]
-der Drehungen eines \(n\)-Gons zu erzeugen. Das liegt daran, dass wir durch die
-mehrfache Verwendung von \(r\) jeden Winkel erzeugen k\"onnen, der die
-Rotationssymmetrie bewahrt. Hier die Potenzen von \(r\) sind als wiederholte
-Komposition gemeint, dass heisst \(r^n = r\circ r \circ \cdots r\circ r\).
 Wenn wir diese Idee nun erweitern, können wir mit einem Erzeugendensystemen
 komplexere Strukturen aufbauen.
 
@@ -84,18 +102,24 @@ komplexere Strukturen aufbauen.
 	in den Klammern angegeben. Die erzeugende Elementen zusammen mit der
 	Definitionsgleichungen bauen ein Erzeugendensysteme.
 \end{definition}
-
-\texttt{TODO: should put examples for generators?} \\
-
-Die Reflexionssymmetriegruppe ist nicht so interessant, da sie nur
-\(\left\{\mathds{1}, \sigma\right\}\) enthält. Kombiniert man sie jedoch mit
-der Rotation, erhält man die so genannte Diedergruppe
-\[
-	D_n = \langle r, \sigma : r^{n-1} = \sigma^2 = (\sigma r)^2 = \mathds{1} \rangle
-		= \left\{
-				\mathds{1}, r, \ldots, r^{n-1}, \sigma, \sigma r, \ldots, \sigma r^{n-1}
-		\right\}.
-\]
+\begin{beispiel}
+	Wir werden nun alle Symmetrien eines \(n\)-Gons beschreiben, was bedeutet,
+	dass wir die Operationen \(r\) und \(\sigma\) kombinieren. Die
+	Definitionsgleichungen sind \(r^n = \mathds{1}\), \(\sigma^2 =
+	\mathds{1}\) und \((\sigma r)^2 = \mathds{1}\).
+	Die ersten beiden sind ziemlich offensichtlich. Die letzte wird oft auch als
+	Inversion bezeichnet, weil die Anwendung von \(\sigma r\) dasselbe ist wie
+	das Ziehen einer Linie von einem Punkt, die durch den Ursprung geht, und das
+	Verschieben des Punktes auf die andere Seite des Nullpunkts. Wenn man das
+	zweimal macht, geht man zurück zum Anfangspunkt.
+	Daraus ergibt sich die so genannte Diedergruppe 
+	\begin{align*}
+		D_n &= \langle r, \sigma : r^n = \sigma^2 = (\sigma r)^2 = \mathds{1} \rangle \\
+			&= \left\{
+					\mathds{1}, r, \ldots, r^{n-1}, \sigma, \sigma r, \ldots, \sigma r^{n-1}
+			\right\}.
+	\end{align*}
+\end{beispiel}
 
 Die Symmetrieoperationen, die wir bis jetzt besprochen haben, haben immer
 mindestens einen Punkt gehabt, der wieder auf sich selbst abgebildet wird. Im
@@ -105,16 +129,16 @@ Symmetrien gibt, die jeden Punkt zu einem anderen Punkt verschieben können.
 Diesen Spezialfall, bei dem mindestens ein Punkt unverändert bleibt, nennt man
 Punktsymmetrie.
 \begin{definition}[Punktgruppe]
-	Wenn jede Operation in einer Symmetriegruppe die Eigenschaft hat, mindestens
-	einen Punkt unverändert zu lassen, sagt man, dass die Symmetriegruppe eine
-	Punktgruppe ist.
+	Wenn es einen Punkt gibt, der von jeder Gruppenoperation unverändert gelassen
+	wird, sagt man, dass die Symmetriegruppe eine Punktgruppe ist.
 \end{definition}
 
 \subsection{Algebraische Symmetrien}
 Wir haben nun unseren Operationen Symbole gegeben, mit denen es tatsächlich
-möglich ist, Gleichungen zu schreiben. Die naheliegende Frage ist dann, könnte
-es sein, dass wir bereits etwas haben, das dasselbe tut?  Natürlich, ja.
-Um es formaler zu beschreiben, werden wir einige Begriffe einführen.
+möglich ist, Gleichungen zu schreiben.  Die folgende Frage ist dann, ob wir
+bereits mathematische Objekte haben, mit denen wir Gleichungen schreiben, die
+sich auf die gleiche Weise verhalten. Die Antwort lautet natürlich ja.  Um es
+formaler zu beschreiben, werden wir einige Begriffe einführen.
 \begin{definition}[Gruppenhomomorphismus]
 	Seien \(G\) und \(H\) Gruppe mit unterschiedlicher Operation \(\diamond\)
 	bzw.  \(\star\). Ein Homomorphismus\footnote{ Für eine ausführlichere
@@ -154,7 +178,6 @@ Um es formaler zu beschreiben, werden wir einige Begriffe einführen.
 	\circ r) = \Phi(r^2)\Phi(r)\).
 \end{beispiel}
 
-\texttt{TODO: rewrite section on translational symmetry.}
 %% TODO: title / fix continuity
 % Um das Konzept zu illustrieren, werden wir den umgekehrten Fall diskutieren:
 % eine Symmetrie, die keine Punktsymmetrie ist, die aber in der Physik sehr
