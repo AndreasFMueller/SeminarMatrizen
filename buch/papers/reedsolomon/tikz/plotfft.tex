@@ -1,77 +1,75 @@
-% polynome1
-%-------------------
+%
+% Plot der Übertrangungsabfolge ins FFT und zurück mit IFFT
+%
 \documentclass[tikz]{standalone}
 \usepackage{amsmath}
 \usepackage{times}
-\usepackage{txfonts}
 \usepackage{pgfplots}
-\usepackage{csvsimple}
 \usepackage{pgfplotstable}
+\usepackage{csvsimple}
 \usepackage{filecontents}
-\usetikzlibrary{arrows,intersections,math}
-\newcommand{\x}{10}
-\newcommand{\y}{-8}
-\begin{document}
 
+
+\begin{document}
 \begin{tikzpicture}[]
-	
+
 	%---------------------------------------------------------------
 	%Knote
-	\matrix[draw = none, column sep=20mm, row sep=4mm]{
+	\matrix[draw = none, column sep=25mm, row sep=2mm]{
 		\node(signal)  []    {
-			\begin{tikzpicture}
-				\begin{axis}[ 
-					title = {\Large {Signal}}, 
-					xlabel={Anzahl Übertragene Zahlen},
-					xtick={0,20,40,64,80,98},]
-					\addplot[blue] table[col sep=comma] {signal.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}
+				[title = {\Large {Signal}}, 
+				xtick={0,20,40,64,80,98},]
+				\addplot[blue] table[col sep=comma] {tikz/signal.txt};
+			\end{axis}
 		\end{tikzpicture}}; &
 		
 		\node(codiert) []    {
-			\begin{tikzpicture}
-				\begin{axis}[title = {\Large {Codiert}}]
-					\addplot[] table[col sep=comma] {codiert.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Codiert}}]
+				\addplot[] table[col sep=comma] {tikz/codiert.txt};
+			\end{axis}
 		\end{tikzpicture}}; \\
-		
+			
 		&\node(fehler) []    {
-			\begin{tikzpicture}
-				\begin{axis}[scale=0.6, title = {\Large {Fehler}}]
-					\addplot[red] table[col sep=comma] {fehler.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[scale=0.6, title = {\Large {Fehler}},
+				xtick={7,21,75}]
+				\addplot[red] table[col sep=comma] {tikz/fehler.txt};
+			\end{axis}
 		\end{tikzpicture}};\\
 		
 		\node(decodiert) []    {
-			\begin{tikzpicture}
-				\begin{axis}[title = {\Large {Decodiert}}]
-					\addplot[blue] table[col sep=comma] {decodiert.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Decodiert}}]
+				\addplot[blue] table[col sep=comma] {tikz/decodiert.txt};
+			\end{axis}
 		\end{tikzpicture}}; &
-		
+	
 		\node(empfangen) []    {
-			\begin{tikzpicture}
-				\begin{axis}[title = {\Large {Empfangen}}]
-					\addplot[] table[col sep=comma] {empfangen.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Empfangen}}]
+				\addplot[] table[col sep=comma] {tikz/empfangen.txt};
+			\end{axis}
 		\end{tikzpicture}};\\
-		
+	
 		\node(syndrom) []   {
-			\begin{tikzpicture}
-				\begin{axis}[title = {\Large {Syndrom}}]
-					\addplot[blue] table[col sep=comma] {syndrom.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Syndrom}}]
+				\addplot[blue] table[col sep=comma] {tikz/syndrom.txt};
+			\end{axis}
 		\end{tikzpicture}}; &
-		
+	
 		\node(locator) []    {
-			\begin{tikzpicture}
-				\begin{axis}[title = {\Large {Locator}}]
-					\addplot[] table[col sep=comma] {locator.txt};
-				\end{axis}
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Locator}}]
+				\addplot[] table[col sep=comma] {tikz/locator.txt};
+			\end{axis}
 		\end{tikzpicture}};\\
 	};
 	%-------------------------------------------------------------
-	%FFT & IFFT deskription
+		%FFT & IFFT deskription
 	
 	\draw[thin,gray,dashed] (0,12) to (0,-12);
 	\node(IFFT)  [scale=0.7]  at (0,12.3)   {IFFT};
@@ -97,7 +95,5 @@
 	\node[circle, draw, fill =lightgray] at (decodiert.north west) {5};
 	\node[circle, draw, fill =lightgray] at (syndrom.north west) {6};
 	\node[circle, draw, fill =lightgray] at (locator.north west) {7};
-	
-\end{tikzpicture}
+\end{tikzpicture}	
 \end{document}
-

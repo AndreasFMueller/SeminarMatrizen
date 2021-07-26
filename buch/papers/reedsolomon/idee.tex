@@ -1,15 +1,22 @@
 %
-% teil1.tex -- Beispiel-File für das Paper
+% idee.tex -- Beispiel-File für das Paper
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Idee
 \label{reedsolomon:section:idee}}
 \rhead{Problemstellung}
+Um beim Datenübertragen Fehler zu erkennen, könnte man die Daten jeweils doppelt senden,
+und so jeweilige Fehler zu erkennen.
+Doch nur schon um Fehler zu erkennen werden überproportional viele Daten doppelt und dreifach gesendet.
+Der Reed-Solomon-Code macht dies auf eine andere, clevere Weise.
 Das Problem liegt darin Informationen, Zahlen, 
 zu Übertragen und Fehler zu erkennen.
 Beim Reed-Solomon-Code kann man nicht nur Fehler erkennen, 
 man kann sogar einige Fehler korrigieren.
+Der unterschied des Fehler erkennen und korrigiren, ist das beim Erkennen nur die Frage kommt hat es Fehler oder keine,
+beim korrigieren muss man den Fehler erkennun und dann zusätzlich noch den original Wert rekonstruieren.
+Auch eine variante wäre es die Daten nach einem Fehler einfach nochmals zu senden, was bei Reed-Solomon-Code-Anwendungen nicht immer sinnvolll ist. \ref(reedsolomon:section:anwendung)
 
 \rhead{Polynom-Ansatz}
 Eine Idee ist aus den Daten 
@@ -48,8 +55,8 @@ Dafür sind mehr übertragene Werte nötig.
 
 \begin{figure}
 	\centering
-	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2}
-    \input{papers/reedsolomon/images/polynom2.tex}
+	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/polynom2}
+    %\input{papers/reedsolomon/images/polynom2.tex}
 	\caption{Polynom $p(x)$ \eqref{reedsolomon:equation1}}
 	\label{fig:polynom}
 \end{figure}

@@ -14,20 +14,27 @@ wobei sie dann bei späteren Berchnungen ganz nützlich ist.
 \subsection{Diskrete Fourientransformation Zusamenhang
 \label{reedsolomon:subsection:dtfzusamenhang}}
 Die Diskrete Fourientransformation ist definiert als
-	\[
-	\label{ft_discrete}
+\begin{equation}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	\]
+	\label{reedsolomon:DFT}
+\end{equation}
+
 , wenn man nun 
-	\[
-	w = e^{-\frac{2\pi j}{N} k}
-	\]
+\begin{equation}
+	w =
+	e^{-\frac{2\pi j}{N} k}
+	\label{reedsolomon:DFT_summand}
+\end{equation}
+
 ersetzte, und $N$ konstantbleibt, erhält man
-	\[
-	\hat{c}_{k}=\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
-	\]
+\begin{equation}
+	\hat{c}_{k}=
+	\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
+	\label{reedsolomon:DFT_polynom}
+\end{equation}
+
 was überaust ähnlich zu unserem Polynomidee ist.
 \subsection{Übertragungsabfolge
 \label{reedsolomon:subsection:Übertragungsabfolge}}
@@ -47,8 +54,8 @@ Das heisst alle information ist in alle Zahlenvorhanden.
 \begin{figure}
 	\centering
 	\resizebox{0.9\textwidth}{!}{
-	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/plot.pdf}
-    \input{papers/reedsolomon/images/plotfft.tex}
+	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/plotfft}
+    %\input{papers/reedsolomon/images/plotfft.tex}
 	}
 	\caption{Übertragungsabfolge \ref{reedsolomon:subsection:Übertragungsabfolge}}
 	\label{fig:sendorder}
