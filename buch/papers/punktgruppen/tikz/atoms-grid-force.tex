@@ -1,0 +1,42 @@
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{intersections}
+\usetikzlibrary{math}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{calc}
+
+\begin{document}
+  \begin{tikzpicture}[
+      >=latex, 
+      node distance = 2mm,
+      charge/.style = {
+        circle, draw = black, thick,
+        minimum size = 5mm
+      },
+      positive/.style = { fill = red!50 },
+      negative/.style = { fill = blue!50 },
+    ]
+
+    \matrix[nodes = { charge }, row sep = 5mm, column sep = 1cm] {
+      \node[positive] (NW) {}; & \node[negative] (N) {}; & \node [positive] (NE) {}; \\
+      \node[negative] (W) {}; & \node[positive] {}; & \node [negative] (E) {}; \\
+      \node[positive] (SW) {}; & \node[negative] (S) {}; & \node [positive] (SE) {}; \\
+    };
+
+    \foreach \d in {NW, N, NE} {
+      \draw[orange, very thick, <-] (\d) to ++(0,.7);
+    }
+
+    \foreach \d in {SW, S, SE} {
+      \draw[orange, very thick, <-] (\d) to ++(0,-.7);
+    }
+
+    \draw[gray, dashed] (W) to (N) to (E) to (S) to (W);
+  \end{tikzpicture}
+\end{document}
