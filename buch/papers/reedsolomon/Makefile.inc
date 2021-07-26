@@ -6,9 +6,17 @@
 dependencies-reedsolomon =						\
 	papers/reedsolomon/packages.tex					\
 	papers/reedsolomon/main.tex					\
-	papers/reedsolomon/references.bib				\
-	papers/reedsolomon/teil0.tex					\
-	papers/reedsolomon/teil1.tex					\
-	papers/reedsolomon/teil2.tex					\
-	papers/reedsolomon/teil3.tex
+	papers/reedsolomon/einleitung.tex				\
+	papers/reedsolomon/idee.tex					\
+	papers/reedsolomon/dtf.tex					\
+	papers/reedsolomon/endlichekoerper.tex				\
+	papers/reedsolomon/codebsp.tex					\
+	papers/reedsolomon/decohnefehler.tex				\
+	papers/reedsolomon/decmitfehler.tex				\
+	papers/reedsolomon/rekonstruktion.tex				\
+	papers/reedsolomon/zusammenfassung.tex				\
+	papers/reedsolomon/anwendungen.tex				\
+	papers/reedsolomon/hilfstabellen.tex				\
+	papers/reedsolomon/references.bib				
+
 
