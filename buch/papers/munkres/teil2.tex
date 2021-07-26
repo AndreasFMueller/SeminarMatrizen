@@ -3,38 +3,86 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Teil 2 
+\section{Das Zuordnungsproblem
 \label{munkres:section:teil2}}
-\rhead{Teil 2}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\rhead{Das Zuordnungsproblem}
+Das (lineare) Zuordnungsproblem ist ein diskretes Optimierungsproblem aus
+der Graphentheorie.
+Es handelt sich um einen Spezialfall eines maximalen Matchings
+minimalen Gewichtes in einem bipartiten, gewichteten Graphen
 
-\subsection{De finibus bonorum et malorum
+Vereinfacht gesagt sind Zuordnungsprobleme spezielle Transportprobleme.
+Der Unterschied zu klassischen Transportproblemen liegen darin,
+dass hier nicht Mengen möglichst kostenminimal von einem zum anderen
+Ort transportiert werden sollen, sondern es geht um die kostenminimale
+Zuordnung von z.~B.~Personen, oder Bau-Materialien auf bestimmte
+Orte, Stellen oder Aufgaben.
+Dabei sind alle Angebots- und Bedarfsmenge gleich 1 
+\begin{equation}
+a_{i}=b_{j}=1
+\end{equation}
+
+\subsection{Zuordnungsproblem in Netzwerkdarstellung
 \label{munkres:subsection:bonorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
 
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{papers/munkres/figures/Netzwerkdarstellung}
+\caption{Typische Netzwerkdarstellung eines Zuordnungsproblems.}
+\label{munkres:Vr2}
+\end{figure}
+
+\subsection{Matrix Formulierung
+\label{munkres:subsection:bonorum}}
+In der Matrixformulierung ist eine nicht-negative $n\times n$-Matrix
+gegeben, wobei das Element in der $i$-ten Zeile und $j$-ten Spalte
+die Kosten für die Zuweisung des $j$-ten Jobs an den $i$-ten Arbeiter
+darstellt.
+Wir müssen eine Zuordnung der Jobs zu den Arbeitern finden, so dass
+jeder Job einem Arbeiter zugewiesen wird und jeder Arbeiter einen
+Job zugewiesen bekommt, so dass die Gesamtkosten der Zuordnung
+minimal sind.
+Dies kann als Permutation der Zeilen und Spalten einer Kostenmatrix
+$C$ ausgedrückt werden, um die Spur einer Matrix zu minimieren:
+\begin{equation}
+\min(L,R)Tr (LCR)
+\end{equation}
+wobei $L$ und $R$ Permutationsmatrizen sind.
+Wenn das Ziel ist, die Zuordnung zu finden, die die maximalen Kosten
+ergibt, kann das Problem durch Negieren der Kostenmatrix $C$ gelöst
+werden.
+
+\subsection{Suche der optimalen Lösung
+\label{munkres:subsection:bonorum}}
+Ist eine maximale Zuordnung (maximales Matching) gefunden, so steht
+in jeder Zeile und jeder Spalte der Matrix genau ein Element, das
+zur optimalen Lösung gehört, eine solche Gruppe von Positionen wird
+auch als Transversale der Matrix bezeichnet.
+Deshalb kann die Problemstellung auch anders formuliert werden: Man
+ordne die Zeilen- oder die Spaltenvektoren so um, dass die Summe
+der Elemente in der Hauptdiagonale maximal wird.
+Hieraus wird sofort ersichtlich, dass es in einer 
+$n\times n$-Matrix genau so viele Möglichkeiten gibt, die Zeilen-
+bzw.~Spaltenvektoren zu ordnen, wie es Permutationen von $n$ Elementen
+gibt, also $n!$.
+Außer bei kleinen Matrizen ist es nahezu aussichtslos, die optimale
+Lösung durch Berechnung aller Möglichkeiten zu finden.
+Schon bei einer $10\times 10$-Matrix gibt es nahezu 3,63 Millionen (3.628.800)
+zu berücksichtigender Permutationen.
+
+\subsection{Formulierung Bipartiter Graph
+\label{munkres:subsection:bonorum}}
+Der Algorithmus ist einfacher zu beschreiben, wenn wir das Problem
+anhand eines bipartiten Graphen formulieren.
+Wir haben einen vollständigen zweistufigen Graphen $G=(S,T;E)$ mit
+$n$ Arbeiter-Eckpunkten ($S$) und $n$ Job-Scheitelpunkte ($T$), und
+jede Kante hat einen nichtnegativen Preis $c(i,j)$.
+Wir wollen ein perfektes Matching mit minimalen Gesamtkosten finden.
+
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{papers/munkres/figures/bipartiter_graph}
+\caption{$K_{3,3}$ vollständig bipartiter Graph mit 3 Knoten pro Teilmenge.}
+\label{munkres:Vr2}
+\end{figure}
 
