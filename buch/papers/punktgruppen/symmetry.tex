@@ -22,27 +22,29 @@ Wie wir jedoch später sehen werden, ist das Konzept der Symmetrie eigentlich vi
 In Abbildung \ref{fig:punktgruppen:geometry-example} haben wir einige Formen, die offensichtlich symmetrisch sind.
 Zum Beispiel hat das Quadrat eine Gerade, an deren es gespiegelt werden kann, ohne sein Aussehen zu verändern.
 Regelmässige Polygone mit \(n\) Seiten sind auch gute Beispiele, um eine diskrete Rotationssymmetrie zu veranschaulichen, was bedeutet, dass eine Drehung um einen Punkt um einen bestimmten Winkel \(360^\circ/n\) die Figur unverändert lässt.
-Das letzte Beispiel auf der rechten Seite ist eine unendliche Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für \(\alpha \in \mathbb{R}\) gibt, die die Form unverändert lassen.
+Das letzte Beispiel auf der rechten Seite ist eine unendliche Rotationssymmetrie. Sie wird so genannt, weil es unendlich viele Werte für den Drehwinkel \(\alpha \in \mathbb{R}\) gibt, der die Form unverändert lassen.
 Ein Objekt kann mehr als nur eine Symmetrie aufweisen.
-Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example} nicht nur um \(\sigma\) sondern auch Diagonal gespiegelt werden oder um \(90^\circ\) gedreht werden.
+Als Beispiel, kann das Quadrat in Abbildung \ref{fig:punktgruppen:geometry-example} nicht nur um \(\sigma\) sondern auch diagonal gespiegelt werden oder um \(90^\circ\) gedreht werden.
 Fasst man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
 
 \begin{definition}[Symmetriegruppe]
-  \(g\) und \(h\) sein umkehrbare Operationen, die ein mathematisches Objekt unverändert lassen.
+  %% TODO
+  Seien \(g\) und \(h\) umkehrbare Operationen, die ein mathematisches Objekt unverändert lassen.
   Die Komposition \(h\circ g\) definieren wir als die Anwendung der Operationen nacheinander.
-  Alle möglichen Operationen bilden unter Komposition eine Gruppe, die Symmetriegruppe genannt wird.
+  Alle möglichen Symmetrieoperationen bilden unter Komposition eine Gruppe, die Symmetriegruppe genannt wird.
 \end{definition}
 
 Eine Gruppe benötigt ausserdem auch zwingend ein neutrales Element, welches wir mit \(\mathds{1}\) bezeichnen.
 Die Anwendung der neutralen Operation ist gleichbedeutend damit, alles unverändert zu lassen.
 \(\mathds{1}\) ist auch äquivalent dazu, eine Operation anzuwenden und sie dann rückgängig zu machen (ihre Inverse anzuwenden).
- Die Definition der Symmetriegruppe ist mit der Kompositionsoperation gegeben, es wird aber auch oft als Multiplikation geschrieben.
+%% TODO
+ Die Definition der Symmetriegruppe ist mit der Kompositionsoperation gegeben, sie wird aber auch oft als Multiplikation geschrieben.
 Das liegt daran, dass in manchen Fällen die Zusammensetzung algebraisch durch eine Multiplikation berechnet wird.
 Die Verwendung einer multiplikativen Schreibweise ermöglicht es, einige Ausdrücke kompakter zu schreiben, z.B.
 durch Verwendung von Potenzen \(r^n = r\circ r \circ \cdots r\circ r\) für eine wiederholte Komposition.
 
 \begin{definition}[Zyklische Untergruppe, Erzeuger]
-  \(g\) sei ein Element einer Symmetriegruppe \(G\).
+  Sei \(g\) ein Element einer Symmetriegruppe \(G\).
   Alle möglichen Kompositionen von \(g\) und \(g^{-1}\) bilden eine sogenannte zyklische Untergruppe von \(G\), wobei \(g\) Erzeuger der Untergruppe genannt wird.
   Die von \(g\) erzeugte Untergruppe \(\langle g \rangle = \left\{ g^k : k \in \mathbb{Z} \right\}\) wird mit spitzen Klammern bezeichnet.
 \end{definition}
@@ -51,7 +53,7 @@ durch Verwendung von Potenzen \(r^n = r\circ r \circ \cdots r\circ r\) für eine
   Das bedeutet, dass \(G\) die Elemente \(a, aa, aaa, \ldots\) sowie \(a^{-1}, a^{-1}a^{-1}, \ldots\) und ein neutrales Element \(\mathds{1} = aa^{-1}\) enthält.
 \end{beispiel}
 \begin{beispiel}
-  Als anschaulicheres Beispiel, können wir eine Zyklische Untergruppe des \(n\)-Gon formalisieren.
+  Als anschaulicheres Beispiel, können wir eine zyklische Untergruppe des \(n\)-Gon formalisieren.
   Wir bezeichnen mit \(r\) eine Drehung im Gegenuhrzeigersinn von \(360^\circ/n\) um einen Punkt.
   Diese Definition reicht aus, um die gesamte Symmetriegruppe
   \[
@@ -98,7 +100,7 @@ Dies ist jedoch keine Voraussetzung für eine Symmetrie, da es Symmetrien gibt, 
 
 \subsection{Algebraische Symmetrien}
 Wir haben nun unseren Operationen Symbole gegeben, mit denen es tatsächlich möglich ist, Gleichungen zu schreiben.
-Die anschliesende Frage ist dann, ob wir bereits mathematische Objekte haben, mit denen wir Gleichungen schreiben, die sich auf die gleiche Weise verhalten.
+Die anschliessende Frage ist dann, ob wir bereits mathematische Objekte haben, mit denen wir Gleichungen schreiben, die sich auf die gleiche Weise verhalten.
 Die Antwort lautet natürlich ja.
 Um es formaler zu beschreiben, werden wir einige Begriffe einführen.
 \begin{definition}[Gruppenhomomorphismus]
