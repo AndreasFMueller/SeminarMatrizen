@@ -35,24 +35,22 @@ Wie oben erwähnt basiert der A*-Algorithmus auf dem Shortest-Path-Algorithmus v
 Der A*-Algorithmus unterscheidet sich vom Dijkstra-Algorithmus dahingehend, dass bei der Auswahl des Folgeknotens, nicht nur die Summe der Kantengewichte $\vec{d}(j)+A(k,j)$, sondern zusätzlich die für jeden Knoten definierte Abschätzfunktion $f(k)$ hinzuaddiert wird. Dies passiert jedoch nur bei der \emph{Auswahl} des Folgeknotens. Der Wert von $f(k)$ wird nicht im Eintrag $\vec{d}(k)$ gespeichert. Somit wird gewährleistet, dass der gefundene Pfad, der Summe der Kantengewichte entspricht.
 
 \subsection{Euklidische Heuristik}
-Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
-Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
+Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar. Unter Verwendung dieser Heuristik gilt der A*-Algorithmus als optimal.
+
+Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant. Hier können hingegen andere Eigenschaften des Netzwerks verwendet werden, auf welche in diesem Paper nicht weiter eingegangen wird.
 
 \subsection{Floyd-Warshall-Algorithmus}
 Der Floyd-Warshall-Algorithmus, auch Tripel-Algorithmus genannt, wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
 Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die günstigsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph aber keinen negativen Kreis (Zyklus) aufweist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
 Ein Kreis (Zyklus) in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.\\
-Der Floyd-Warshall-Algorithmus besteht grundsätzlich aus Floyd's Berechnung der kürzesten Distanzen zwischen zwei Knoten und Warshall's Konstruktion der kürzesten Wege. Werden diese beiden Teilgebiete zusammengefügt, ergibt sich der Floyd-Warshall-Algorithmus.
 
 \subsection{Anwendung Floyd-Warshall-Algorithmus}
 
-Wie oben erwähnt, besteht der Floyd-Warshall-Algorithmus aus dem Teil von Floyd zur Berechnung der kürzesten Pfade und dem Teil von Warshall zur Konstruktion der kürzesten Pfade.
-
 %THEORIE...
-Als erstes wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W[i, j]$ erstellt.
+In einem ersten Schritt wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W[i, j]$ erstellt.
 Der Algorithmus berechnet danach in einer Hauptschleife alle Knoten $k$ von 1 bis $n$.
 Dabei versucht er in jeder Iteration alle Wege von $i$ nach $j$ durch die Wege $(i, k)$ und $(k, j)$ zu verbessern.
-Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der Algorithmus aktualisiert.
+Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der entsprechende Eintrag aktualisiert.
 
 Die aktuelle Gewichtung der Pfade wird mit
 \begin{equation}d[i, j]=min[d[i,j], d[i,k] + d[k,i]]\end{equation}
