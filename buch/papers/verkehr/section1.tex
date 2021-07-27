@@ -6,25 +6,27 @@ Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim Aufba
 Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
 
 \section{Suchalgorithmen}
-Inbesondere bei Graphen in Form von Verkehrsnetzen ist das Finden eines kürzesten Weges von Interesse. Mathematisch betrachtet handelt es sich hierbei um ein Optimierungsproblem, bei dem die Summe der Kantengewichte zwischen zwei Knoten minimiert werden soll. Zu diesem Zweck existieren verschiedene Suchalgorithmen. In den folgenden Abschnitten wird auf eines Auswahl davon eingegangen. Zuvor ist es jedoch notwendig, einige Begriffe und Eigenschaften von Suchalgorithmen zu definieren.
+Inbesondere bei Graphen in Form von Verkehrsnetzen ist das Finden eines kürzesten Weges von Interesse. Mathematisch betrachtet handelt es sich hierbei um ein Optimierungsproblem, bei dem die Summe der Kantengewichte zwischen zwei Knoten minimiert werden soll. Zu diesem Zweck existieren verschiedene Suchalgorithmen. In den folgenden Abschnitten wird auf eine Auswahl davon eingegangen. Zuvor ist es jedoch notwendig, einige Begriffe und Eigenschaften von Suchalgorithmen zu definieren.
 
 Einerseits wird zwischen optimalen und nicht-optimalen Algorithmen unterschieden. Ein Suchalgorithmus gilt als optimal, falls er einen günstigsten Pfad zwischen zwei Knoten findet. Es gilt zu beachten, dass im Falle des Vorhandenseins von mehrerern Pfaden mit identischer, minimaler Summe der Kantengewichte zwischen zwei Knoten, mindestens einer dieser Pfade gefunden wird.
 
 Weiter wird zwischen informierten und uninformierten Algorithmen differenziert. Während uninformierte Suchalgorithmen den Suchraum schematisch auf Basis der Eigenschaften des Graphen absuchen, bis eine günstigste Lösung gefunden wurde, verwenden informierte Suchalgorithmen eine Heuristik zur Abschätzung der Suchrichtung. Oftmals wird bei informierten Algorithmen ein Verlust der Optimalität zugunsten einer verbesserten Rechenzeit in Kauf genommen. Es exisitieren jedoch auch Heurstiken, die eine optimale Lösung gewährleisten.
 
-Eine besondere Art von Suchalgorithmen stellen die sogenannten Greedy-Algorithmen, zu deutsch gierige Algorithmen, dar. Sie zeichnen sich dadurch aus, dass stets der günstigste Weg verfolgt wird und davon ausgehend der darauffolgende, günstigste Folgezustand ausgewählt wird. Am Beispiel eines Verkehrsnetzes ist somit gewährleistet, dass beim Antreffen des Zielknotens auch der günstigste Pfad gefunden wurde.
+Eine besondere Art von Suchalgorithmen stellen die sogenannten Greedy-Algorithmen, zu deutsch gierige Algorithmen, dar. Sie zeichnen sich dadurch aus, dass sie stets den zurzeit günstigsten Folgezustand auswählen. Dadurch sind sie in der Regel äusserst effizient, garantieren bei vielen Problemstellungen jedoch keine optimale Lösung.
 
 \subsection{Dijkstra-Algorithmus}
-Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Informatikprofessor Edsger Dijkstra. Er gehört zur Klasse der uninformierten Greedy-Algorithmen. Zudem ist die Optimalität bei strikter Positivität des Graphen gewährleistet.
-Vorteilhaft ist die einfache Implementierung. Abhängig von der Programmiersprache sind zwischen 30 und 40 Zeilen an Code ausreichend, damit er den kürzesten Pfad zwischen einem Startknoten $a$ und Zielknoten $b$ finden kann. Die für dieses Paper verwendete Funktion verwendet eine abgewandelte Form der gewichteten Adjazenz-Matrix $A$, für welche gilt:
-Der Matrix-Eintrag $A_{i,j}$ weist das Kantengewicht der Kante von Knoten $j$ nach $i$ auf. Falls keine Kante zwischen $j$ und $i$ vorhanden ist, beträgt der Eintrag $\infty$. Dies vereinfacht die Implementierung zur Bestimmung des nächst-günstigsten Pfades.
+Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Informatikprofessor Edsger Dijkstra. Er gehört zur Klasse der uninformierten Greedy-Algorithmen. Zudem ist die Optimalität bei strikt positiven Kantengewichten gewährleistet.
+Vorteilhaft ist die einfache Implementierung. Abhängig von der Programmiersprache sind zwischen 30 und 40 Zeilen an Code ausreichend, damit er den kürzesten Pfad zwischen einem Startknoten $a$ und Zielknoten $b$ finden kann. 
+
+Die für dieses Paper verwendete programmierte Funktion (MATLAB) verwendet eine abgewandelte Form der gewichteten Adjazenz-Matrix $A$, für welche gilt:
+Der Matrix-Eintrag $A_{i,j}$ enthält das Kantengewicht der Kante von Knoten $j$ nach $i$ auf. Falls keine Kante zwischen $j$ und $i$ vorhanden ist, beträgt der Eintrag $\infty$. Dies vereinfacht die Implementierung zur Bestimmung des nächst-günstigsten Pfades.
 Zudem werden zwei Hilfs-Vektoren $\vec{d}$ und $\vec{b}$ der Länge $n$ eingeführt, wobei $n$ die Anzahl Knoten des Graphen ist. Im Vektoreintrag $\vec{d}(i)$ wird das kummulierte Kantengewicht zur Erreichung von Knoten $i$ vom Startknoten $a$ gespeichert. Der Eintrag $\vec{d}(a)$ beträgt somit $0$. Im Vektor $\vec{b}$ wird zudem vermerkt, falls ein Knoten bereits als Ziel eines kürzesten Pfads gefunden wurde und somit für die weitere Suche nicht mehr berücksichtigt werden muss ($\vec{b}(i)=1$, sonst $\vec{b}(i)=0$).
 
 Ausgehend vom Startknoten $a$ wird nun anhand der Matrix $A$ in der Spalte $a$ nach dem kleinsten Eintrag gesucht. Somit wird der Folgeknoten $c$ gefunden. Dieser Vorgang wird nun wiederholt, wobei jedoch sämtliche von Knoten $a$ und $c$ erreichbaren Knoten berücksichtigt werden, die noch nicht besucht wurden. In anderen Worten alle nicht verschwindenden Einträge $i$ der Spalten $a$ und $c$ der Matrix $A$, für welche gilt $\vec{b}(i)=0$. Ausschlaggebend für die folgende Auswahl ist die Summe der kummulierten Kantengewichte und des Kantengewichts des nächsten Knotens. Als Beispiel zur Erreichung von Knoten $k$ über Knoten $j$:
 \begin{equation}
 \vec{d}(k)=\vec{d}(j)+A(k,j)
 \end{equation}
-Diese Iteration wird solang durchgeführt, bis der Folgeknoten dem Zielknoten entspricht.
+Diese Iteration wird solange durchgeführt, bis der Folgeknoten dem Zielknoten entspricht.
 
 \subsection{A*-Algorithmus}
 Der A*-Algorithmus basiert auf dem Dijkstra-Algorithmus, verwendet jedoch eine Heuristik zur Abschätzung der günstigsten Suchrichtung. Somit handelt es sich um einen informierten Greedy-Algorithmus, der abhängig von der verwendeten Heuristik auch optimal sein kann. Er wurde von Peter Hart, Nils Nilsson und Bertram Raphael entwickelt.
@@ -32,17 +34,22 @@ Der A*-Algorithmus basiert auf dem Dijkstra-Algorithmus, verwendet jedoch eine H
 \subsection{Anwendung A*-Algorithmus}
 Wie oben erwähnt basiert der A*-Algorithmus auf dem Shortest-Path-Algorithmus von Dijkstra. Gemäss dem Algorihtmus von Dijkstra werden von einem Startknoten aus die jeweiligen Nachbarknoten, die Nachbarknoten der Nachbarknoten usw. verarbeitet. Die Kantengewichte werden dabei aufsummiert und die Priorität wird auf die Kante gelegt, die das geringste Gewicht aufweist. Mit diesem Verfahren wird sichergestellt, dass die erste gefundene Lösung auch eine optimale Lösung darstellt.\\
 
-Der A*-Algorithmus unterscheidet sich vom Dijkstra-Algorithmus dahingehend, dass bei der Auswahl des Folgeknotens, nicht nur die Summe der Kantengewichte $\vec{d}(j)+A(k,j)$, sondern zusätzlich die für jeden Knoten definierte Abschätzfunktion $f(k)$ hinzuaddiert wird. Dies passiert jedoch nur bei der \emph{Auswahl} des Folgeknotens. Der Wert von $f(k)$ wird nicht im Eintrag $\vec{d}(k)$ gespeichert. Somit wird gewährleistet, dass der gefundene Pfad, der Summe der Kantengewichte entspricht.
+Der A*-Algorithmus unterscheidet sich vom Dijkstra-Algorithmus dahingehend, dass bei der Auswahl des Folgeknotens, nicht nur die Summe der Kantengewichte $\vec{d}(j)+A(k,j)$, sondern zusätzlich die für jeden Knoten definierte Abschätzfunktion $f(k)$ hinzuaddiert wird. Dies passiert jedoch nur bei der \emph{Auswahl} des Folgeknotens. Der Wert von $f(k)$ wird nicht im Eintrag $\vec{d}(k)$ gespeichert. Somit wird gewährleistet, dass der gefundene Pfad, der Summe der Kantengewichte entspricht. Ein Beispiel dafür, wie eine Abschätzfunktion gebildet werden kann findet sich in Abschnitt \ref{sec:verkehr/euklidische}
 
 \subsection{Euklidische Heuristik}
+\label{sec:verkehr/euklidische}
 Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar. Unter Verwendung dieser Heuristik gilt der A*-Algorithmus als optimal.
+
+Bei der euklidischen Heuristik wird die Abschätzfunktion $f(k)$ für jeden Knoten $k$ durch euklidische Distanz zum Zielknoten $b$ gebildet.
+\begin{equation}
+f(k)=\sqrt{(x_k-x_b)^2+(y_k-y_b)^2}
+\end{equation}
 
 Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant. Hier können hingegen andere Eigenschaften des Netzwerks verwendet werden, auf welche in diesem Paper nicht weiter eingegangen wird.
 
 \subsection{Floyd-Warshall-Algorithmus}
 Der Floyd-Warshall-Algorithmus, auch Tripel-Algorithmus genannt, wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
-Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die günstigsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph aber keinen negativen Kreis (Zyklus) aufweist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
-Ein Kreis (Zyklus) in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.\\
+Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die günstigsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph keinen negativen Kreis (Zyklus) aufweist. Ein Kreis, sprich ein Weg mit identischem Start- und Zielknoten, ist negativ, falls die Summe der Kantengewichte des Weges kleiner als null ist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
 
 \subsection{Anwendung Floyd-Warshall-Algorithmus}
 
@@ -53,7 +60,7 @@ Dabei versucht er in jeder Iteration alle Wege von $i$ nach $j$ durch die Wege $
 Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der entsprechende Eintrag aktualisiert.
 
 Die aktuelle Gewichtung der Pfade wird mit
-\begin{equation}d[i, j]=min[d[i,j], d[i,k] + d[k,i]]\end{equation}
+\begin{equation}d[i, j]=\min[d[i,j], d[i,k] + d[k,i]]\end{equation}
 ermittelt.
 
 
@@ -62,10 +69,7 @@ ermittelt.
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc.
 Beim PageRank-Algorithmus handelt es sich nicht um einen Suchalgorithmus, stattdessen werden Knoten aufgrund der Vernetzung des vorliegenden Graphen bewertet.
 Verwendet wird er beispielsweise um die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur zu bewerten und relevante Suchergebnisse zu ermittteln. Der PageRank wird umso höher, je mehr hochwertige Links auf eine Webseite verweisen und je höher die Gewichtung einer Webseite ist, desto grösser ist der Effekt.\\
-Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche gilt.
-
-%THEORIE...
-Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseinander, wie eine Suchmaschine wie Google Suchresultate bewertet und somit sortieren soll. Öfters aufgerufene Resultate sollen schliesslich höher gewichtet werden. Dabei wird angenommen, dass eine Website populärer ist, je mehr andere Websites darauf verweisen.
+Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche folgendes gilt:
 
 \begin{equation}
 A_{i,j}=\left\{ \begin{matrix}
@@ -75,13 +79,17 @@ A_{i,j}=\left\{ \begin{matrix}
 \label{verkehr:Adja}
 \end{equation}
 
+%THEORIE...
+Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseinander, wie eine Suchmaschine wie Google Suchresultate bewertet und somit sortieren soll. Öfters aufgerufene Resultate sollen schliesslich höher gewichtet werden. Dabei wird angenommen, dass eine Website populärer ist, je mehr andere Websites darauf verweisen.
 
-Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1...n\right\}\end{equation}
+
+
+Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1\dot n\right\}\end{equation}
 Beim PageRank-Algorithmus wird eine abgewandelte Form der Adjazenz-Matrix verwendet.
 Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt.
 \begin{equation} P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \end{equation}
 Anschliessend multipliziert man diese Matrix $P$ mit einem Spaltenvektor $\Vec{r_0}$ mit $n$ Einträgen, für welchen gilt:
-\begin{equation} \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1...n\right\} \end{equation}
+\begin{equation} \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dot n\right\} \end{equation}
 Dieser Vektor stellt ein neutrales Ranking dar. Alle Knoten werden gleich gewichtet.
 Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das "erste" Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt.
 \begin{equation} \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\end{equation}
