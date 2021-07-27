@@ -62,6 +62,8 @@ Die Elemente von
 \[
 Z_k
 =
+Z_k^C
+=
 \{z\in C_k\;|\; \partial_k z = 0\}
 =
 \ker \partial_k
@@ -84,6 +86,8 @@ Die Elemente von
 \[
 B_k
 =
+B_k^C
+=
 \{\partial_{k+1}z\;|\; C_{k+1}\}
 =
 \operatorname{im} \partial_{k+1}
@@ -101,8 +105,10 @@ Wir definieren daher
 \begin{definition}
 Die $k$-dimensionale Homologiegruppe des Kettenkomplexes $C_*$ ist
 \[
-H_k = Z_k/B_k = \ker \partial_k / \operatorname{im} \partial_{k+1}.
+H_k(C) = Z_k/B_k = \ker \partial_k / \operatorname{im} \partial_{k+1}.
 \]
+Wenn nur von einem Kettenkomplex die Rede ist, kann auch $H_k(C)=H_k$
+abgekürzt werden.
 \end{definition}
 
 Die folgenden zwei ausführlichen Beispiele sollen zeigen, wie die
@@ -309,5 +315,40 @@ Hohlraum an.
 
 \subsection{Induzierte Abbildung
 \label{buch:subsection:induzierte-abbildung}}
+Früher haben wurde eine Abbildung $f_*$ zwischen Kettenkomplexen $C_*$ und
+$D_*$ so definiert,
+dass sie mit den Randoperatoren verträglich sein muss.
+Diese Forderung bewirkt, dass sich auch eine lineare Abbildung
+\[
+H_k(f) \colon H_k(C) \to H_k(D)
+\]
+zwischen den Homologiegruppen ergibt, wie wir nun zeigen wollen.
+
+Um eine Abbildung von $H_k(C)$ nach $H_k(D)$ zu definieren, müssen wir
+zu einem Element von $H_k(C)$ ein Bildelement konstruieren.
+Ein Element in $H_k(C)$ ist eine Menge von Zyklen in $Z^C_k$, die sich
+nur um einen Rand in $B_k$ unterscheiden.
+Wir wählen also einen Zyklus $z\in Z_k$ und bilden ihn auf $f_k(z)$ ab.
+Wegen $\partial^D_kf(z)=f\partial^C_kz = f(0) =0 $ ist auch $f_k(z)$
+ein Zyklus.
+Wir müssen jetzt aber noch zeigen, dass eine andere Wahl des Zyklus
+das gleiche Element in $H_k(D)$ ergibt.
+Dazu genügt es zu sehen, dass sich $f(z)$ höchstens um einen Rand
+ändert, wenn man $z$ um einen Rand ändert.
+Sei also $b\in B^C_k$ ein Rand, es gibt also ein $w\in C_{k+1}$ mit
+$\partial^C_{k+1}w=b$.
+Dann gilt aber auch
+\[
+f_k(z+b)
+=
+f_k(z) + f_k(b)
+=
+f_k(z) + f_k(\partial^C_{k+1}w)
+=
+f_k(z) + \partial^D_{k+1}(f_k(w)).
+\]
+Der letzte Term ist ein Rand in $D_k$, somit ändert sich $f_k(z)$ nur
+um diesen Rand, wenn man $z$ um einen Rand ändert.
+$f_k(z)$ und $f_k(z+b)$ führen auf die selbe Homologieklasse.
 
 

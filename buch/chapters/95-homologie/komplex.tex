@@ -68,31 +68,31 @@ Die Beziehung~\eqref{buch:komplex:abbildung} kann übersichtlich als
 kommutatives Diagramm dargestellt werden.
 \begin{equation}
 \begin{tikzcd}
-0 \arrow[r]
-	& C_0 \arrow[r, "\partial_0^C"]
+0 
+	& C_0 \arrow[l, "\partial_0^C"]
 		\arrow[d, "f_0"]
-		& C_1 \arrow[r,"\partial_1^C"]
+		& C_1 \arrow[l,"\partial_1^C"]
 			\arrow[d, "f_1"]
-			& C_2 \arrow[r,"\partial_2^C"]
+			& C_2 \arrow[l,"\partial_2^C"]
 				\arrow[d, "f_2"]
-				& \dots \arrow[r]
-					\arrow[r, "\partial_{k-1}^C"]
+				& \dots \arrow[l]
+					\arrow[l, "\partial_{k-1}^C"]
 					& C_k
-						\arrow[r, "\partial_k^C"]
+						\arrow[l, "\partial_k^C"]
 						\arrow[d, "f_k"]
-						& C_{k+1}\arrow[r, "\partial_{k+1}^C"]
+						& C_{k+1}\arrow[l, "\partial_{k+1}^C"]
 							\arrow[d, "f_{k+1}"]
 							& \dots
 \\
-0 \arrow[r]
-	& D_0 \arrow[r, "\partial_0^D"]
-		& D_1 \arrow[r,"\partial_1^D"]
-			& D_2 \arrow[r,"\partial_2^D"]
-				& \dots \arrow[r]
-					\arrow[r, "\partial_{k-1}^D"]
+0 
+	& D_0 \arrow[l, "\partial_0^D"]
+		& D_1 \arrow[l,"\partial_1^D"]
+			& D_2 \arrow[l,"\partial_2^D"]
+				& \dots \arrow[l]
+					\arrow[l, "\partial_{k-1}^D"]
 					& D_k
-						\arrow[r, "\partial_k^D"]
-						& D_{k+1}\arrow[r, "\partial_{k+1}^D"]
+						\arrow[l, "\partial_k^D"]
+						& D_{k+1}\arrow[l, "\partial_{k+1}^D"]
 							& \dots
 \end{tikzcd}
 \label{buch:komplex:abbcd}
