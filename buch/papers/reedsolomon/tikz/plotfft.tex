@@ -15,30 +15,27 @@
 
 	%---------------------------------------------------------------
 	%Knote
-	\matrix[draw = none, column sep=25mm, row sep=2mm]{
+	\matrix(m) [draw = none, column sep=25mm, row sep=2mm]{
+
 		\node(signal)  []    {
 		\begin{tikzpicture}
 			\begin{axis}
 				[title = {\Large {Signal}}, 
-				xtick={0,20,40,64,80,98},]
-				\addplot[blue] table[col sep=comma] {tikz/signal.txt};
+				xtick={0,20,40,64,80,98}]
+				\addplot[black] table[col sep=comma] {tikz/signal.txt};
 			\end{axis}
 		\end{tikzpicture}}; &
 		
 		\node(codiert) []    {
-		\begin{tikzpicture}
-			\begin{axis}[title = {\Large {Codiert}}]
-				\addplot[] table[col sep=comma] {tikz/codiert.txt};
+		\begin{tikzpicture}[]
+			\begin{axis}[ title = {\Large {Codiert \space + \space Fehler}},
+				xtick={0,40,60,100}, axis y line*=left]
+				\addplot[green] table[col sep=comma] {tikz/codiert.txt};
+			\end{axis}
+			\begin{axis}[xtick={7,21,75}, axis y line*=right]
+					\addplot[red] table[col sep=comma] {tikz/fehler.txt};
 			\end{axis}
 		\end{tikzpicture}}; \\
-			
-		&\node(fehler) []    {
-		\begin{tikzpicture}
-			\begin{axis}[scale=0.6, title = {\Large {Fehler}},
-				xtick={7,21,75}]
-				\addplot[red] table[col sep=comma] {tikz/fehler.txt};
-			\end{axis}
-		\end{tikzpicture}};\\
 		
 		\node(decodiert) []    {
 		\begin{tikzpicture}
@@ -50,7 +47,7 @@
 		\node(empfangen) []    {
 		\begin{tikzpicture}
 			\begin{axis}[title = {\Large {Empfangen}}]
-				\addplot[] table[col sep=comma] {tikz/empfangen.txt};
+				\addplot[green] table[col sep=comma] {tikz/empfangen.txt};
 			\end{axis}
 		\end{tikzpicture}};\\
 	
@@ -71,26 +68,24 @@
 	%-------------------------------------------------------------
 		%FFT & IFFT deskription
 	
-	\draw[thin,gray,dashed] (0,12) to (0,-12);
-	\node(IFFT)  [scale=0.7]  at (0,12.3)   {IFFT};
-	\draw[<-](IFFT.south west)--(IFFT.south east);
-	\node(FFT)  [scale=0.7, above of=IFFT]    {FFT};
-	\draw[->](FFT.north west)--(FFT.north east);
+	\draw[thin,gray,dashed] (0,9) to (0,-9);
+	\node(IFFT)  [scale=0.8]  at (0,9.3)   {IFFT};
+	\draw[stealth-](IFFT.south west)--(IFFT.south east);
+	\node(FFT)  [scale=0.8, above of=IFFT]    {FFT};
+	\draw[-stealth](FFT.north west)--(FFT.north east);
 	
-	\draw[thick, ->,] (fehler.west)++(-1,0) +(0.05,0.5) -- +(-0.1,-0.1) -- +(0.1,0.1) -- +(0,-0.5);
+	\draw[thick, ->,] (codiert)++(-1,0) +(0.05,0.5) -- +(-0.1,-0.1) -- +(0.1,0.1) -- +(0,-0.5);
 	%Arrows
-	\draw[ultra thick, ->] (signal.east) to (codiert.west);
-	\draw[ultra thick, ->] (codiert.south) to (fehler.north);
-	\draw[ultra thick, ->] (fehler.south) to (empfangen.north);
-	\draw[ultra thick, ->] (empfangen.west) to (decodiert.east);
-	\draw[ultra thick, ->] (syndrom.east) to (locator.west);
-	\draw(decodiert.south east)++(-1.8,1)  ellipse (1.3cm and 0.8cm) ++(-1.3,0) coordinate(zoom) ;
-	\draw[ultra thick, ->] (zoom) to[out=180, in=90] (syndrom.north);
+	\draw[thick, ->] (signal.east) to (codiert.west);
+	\draw[thick, ->] (codiert.south) to (empfangen.north);
+	\draw[thick, ->] (empfangen.west) to (decodiert.east);
+	\draw[thick, ->] (syndrom.east) to (locator.west);
+	\draw[thick](decodiert.south east)++(-1.8,1)  ellipse (1.3cm and 0.8cm) ++(-1.3,0) coordinate(zoom) ;
+	\draw[thick, ->] (zoom) to[out=180, in=90] (syndrom.north);
 	
 	%item
 	\node[circle, draw, fill =lightgray] at (signal.north west) {1};
-	\node[circle, draw, fill =lightgray] at (codiert.north west) {2};
-	\node[circle, draw, fill =lightgray] at (fehler.north west) {3};
+	\node[circle, draw, fill =lightgray] at (codiert.north west) {2+3};
 	\node[circle, draw, fill =lightgray] at (empfangen.north west) {4};
 	\node[circle, draw, fill =lightgray] at (decodiert.north west) {5};
 	\node[circle, draw, fill =lightgray] at (syndrom.north west) {6};
