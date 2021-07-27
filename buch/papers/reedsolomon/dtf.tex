@@ -7,21 +7,21 @@
 \label{reedsolomon:section:dtf}}
 \rhead{Umwandlung mit DTF}
 Um die Polynominterpolation zu umgehen, gehen wir nun über in die Fourientransformation.
-Dies wird weder eine erklärung der Forientransorfmation noch ein genauer gebrauch
-für den Reed-Solomon-Code. Dieser Abschnitt zeigt nur wie die Fourientransformation auf Fehler reagiert.
+Dies wird weder eine erklärung der Forientransorfmation noch ein genauer gebrauchfür den Reed-Solomon-Code. 
+Dieser Abschnitt zeigt nur wie die Fourientransformation auf Fehler reagiert.
 wobei sie dann bei späteren Berchnungen ganz nützlich ist.
 
-\subsection{Diskrete Fourientransformation Zusamenhang
+\subsection{Diskrete Fourietransformation Zusamenhang
 \label{reedsolomon:subsection:dtfzusamenhang}}
-Die Diskrete Fourientransformation ist definiert als
+Die Diskrete Fourietransformation ist definiert als
 \begin{equation}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
 	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	\label{reedsolomon:DFT}
+	,\label{reedsolomon:DFT}
 \end{equation}
 
-, wenn man nun 
+wenn man nun 
 \begin{equation}
 	w =
 	e^{-\frac{2\pi j}{N} k}
@@ -38,8 +38,12 @@ ersetzte, und $N$ konstantbleibt, erhält man
 was überaust ähnlich zu unserem Polynomidee ist.
 \subsection{Übertragungsabfolge
 \label{reedsolomon:subsection:Übertragungsabfolge}}
-
-\begin{enumerate}[1)]
+Der Auftrag ist nun 64 Daten zu übertragen und nach 16 Fehler abzusicheren,
+16 Fehler erkennen und rekonstruieren. 
+Dieser Auftrag soll mittels Fouriertransformation bewerkstelligt werden. 
+In der Abbildung \ref{reedsolomon:subsection:Übertragungsabfolge} sieht man dies Schritt für schritt,
+und hier werden die einzelne Schritte erklärt.
+\begin{enumerate}[(1)]
 \item Das Signal hat 64 die Daten, Zahlen welche übertragen werden sollen. 
 Dabei zusätzlich nach 16 Fehler abgesichert, macht insgesamt 96 Übertragungszahlen.
 \item Nun wurde mittels der schnellen diskreten Fourientransformation diese 96 codiert.

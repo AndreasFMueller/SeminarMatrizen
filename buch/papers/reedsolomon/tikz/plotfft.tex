@@ -22,7 +22,7 @@
 			\begin{axis}
 				[title = {\Large {Signal}}, 
 				xtick={0,20,40,64,80,98}]
-				\addplot[black] table[col sep=comma] {tikz/signal.txt};
+				\addplot[blue] table[col sep=comma] {tikz/signal.txt};
 			\end{axis}
 		\end{tikzpicture}}; &
 		
@@ -54,14 +54,14 @@
 		\node(syndrom) []   {
 		\begin{tikzpicture}
 			\begin{axis}[title = {\Large {Syndrom}}]
-				\addplot[blue] table[col sep=comma] {tikz/syndrom.txt};
+				\addplot[black] table[col sep=comma] {tikz/syndrom.txt};
 			\end{axis}
 		\end{tikzpicture}}; &
 	
 		\node(locator) []    {
 		\begin{tikzpicture}
 			\begin{axis}[title = {\Large {Locator}}]
-				\addplot[] table[col sep=comma] {tikz/locator.txt};
+				\addplot[gray] table[col sep=comma] {tikz/locator.txt};
 			\end{axis}
 		\end{tikzpicture}};\\
 	};
