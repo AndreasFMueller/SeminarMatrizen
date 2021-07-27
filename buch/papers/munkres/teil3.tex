@@ -3,102 +3,44 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Der Algorithmus in Form von bipartiten Graphen
+\section{Der Munkres-Algorithmus (Ungarische Methode)
 \label{munkres:section:teil3}}
-\rhead{Der Algorithmus in Form von bipartiten Graphen}
-Mit der ungarischen Methode können also lineare Optimierungsprobleme
-gelöst werden, die bei gewichteten Zuordnungen in bipartiten Graphen
-entstehen.
+\rhead{Der Munkres-Algorithmus (Ungarische Methode)}
 
-Mit ihr kann die eindeutige Zuordnung von Objekten aus zwei Gruppen
-so optimiert werden, dass die Gesamtkosten minimiert werden bzw.~der
-Gesamtgewinn maximiert werden kann.
+Mit der ungarischen Methode können also lineare Optimierungsprobleme gelöst
+werden, die bei gewichteten Zuordnungen in bipartiten Graphen entstehen.
+Mit ihr kann die eindeutige Zuordnung von Objekten aus zwei Gruppen so
+optimiert werden, dass die Gesamtkosten minimiert werden bzw.~der
+Gesamtgewinn maximiert werden kann. 
 
-Ein bipartiter Graph ist ein mathematisches Modell für Beziehungen
-zwischen den Elementen zweier Mengen.
-Es eignet sich sehr gut zur Untersuchung von Zuordnungsproblemen» 
-
-\subsection{Beweis, dass der Algorithmus Fortschritte macht
+\subsection{Geschichte
 \label{munkres:subsection:malorum}}
-Wir müssen zeigen, dass der Algorithmus, solange das Matching nicht
-die maximal mögliche Größe hat, immer in der Lage ist, Fortschritte
-zu machen --- das heißt, entweder die Anzahl der übereinstimmenden
-Kanten zu erhöhen oder mindestens eine Kante zu straffen.
-Es genügt zu zeigen, dass bei jedem Schritt mindestens eine der
-folgenden Bedingungen erfüllt ist:
+Die Ungarische Methode wurde 1955 von Harold Kuhn entwickelt und veröffentlicht.
+Der Name ``Ungarische Methode'' ergab sich, weil der Algorithmus
+weitestgehend auf den früheren Arbeiten zweier ungarischer Mathematiker
+basierte: Dénes Kőnig und Jenő Egerváry.
+James Munkres überprüfte den Algorithmus im Jahr 1957 und stellte fest,
+dass der Algorithmus (stark) polynomiell ist.
+Seitdem ist der Algorithmus auch als Kuhn-Munkres oder
+Munkres-Zuordnungsalgorithmus bekannt.
+Die Zeitkomplexität des ursprünglichen Algorithmus war $O(n^4)$,
+später wurde zudem festgestellt, dass er modifiziert werden kann,
+um eine  $O(n^3)$-Laufzeit zu erreichen.
 
-\begin{itemize}
-\item
-$M$ die maximal mögliche Größe.
-\item
-$Gy$ enthält einen Erweiterungspfad.
-\item
-$G$ enthält einen losen Pfad: einen Pfad von einem Knoten in $Rs$
-zu einem Knoten in $T$ / $Z$ die aus einer beliebigen Anzahl von
-festen Kanten, gefolgt von einer einzelnen losen Kante, besteht.
-Die freie Kante einer freien Bahn ist also $Z$ (beinhaltet $T$),
-so garantiert es, dass Delta gut definiert ist.
-\end{itemize}
-Wenn $M$ die maximal mögliche Größe hat, sind wir natürlich fertig.
-Andernfalls muss es nach Berges Lemma im zugrundeliegenden Graphen
-$G$ einen Augmentierungspfad $P$ in Bezug auf $M$ geben.
-Dieser Pfad darf jedoch nicht in $G_y$ existieren: Obwohl jede
-geradzahlige Kante in $P$ durch die Definition von $M$ fest ist,
-können ungeradzahlige Kanten lose sein und in $G_y$ fehlen.
-Ein Endpunkt von $P$ liegt in $R_{S}$, der andere in $R_T$; w.l.o.g.,
-nehmen Sie an, es beginnt in $R_{S}$.
-Wenn jede Kante von $P$ dicht ist, dann bleibt sie ein augmentierender
-Pfad in $G_y$ und wir sind fertig.
-Andernfalls sei $uv$ die erste lose Kante auf $P$.
-Wenn $v$ kein Element von $Z$ ist, dann haben wir einen losen Pfad
-gefunden und sind fertig.
-Andernfalls ist $v$ von irgendeinem anderen Pfad $Q$ aus festen
-Kanten von einem Knoten in $R_{S}$ erreichbar.
-Sei $P_{v}$ der Teilpfad von $P$, der bei $v$ beginnt und bis zum
-Ende reicht, und sei $P'$ der Pfad, der gebildet wird, indem man
-entlang $Q$ gebildet wird, bis ein Scheitelpunkt auf $P_{v}$ erreicht
-wird, und dann weiter bis zum Ende von $P_{v}$.
-Beachten Sie, dass $P'$ ein erweiternder Pfad in $G$ mit mindestens
-einer losen Kante weniger als $P$ ist.
-$P$ kann durch $P'$ ersetzt und dieser Argumentationsprozess iteriert
-werden (formal, unter Verwendung von Induktion auf die Anzahl der
-losen Kanten), bis entweder ein erweiternder Pfad in $G_y$ oder ein
-losender Pfad in $G$ gefunden wird.
-
-\subsection{Beweis, dass die Anpassung des Potentials $y$ $M$ unverändert lässt
+\subsection{Besondere Leistung der Ungarischen Methode
 \label{munkres:subsection:malorum}}
-Um zu zeigen, dass jede Kante in $M$ nach der Anpassung von $y$
-erhalten bleibt, genügt es zu zeigen, dass für eine beliebige Kante
-in $M$ entweder beide Endpunkte oder keiner von ihnen in $Z$ liegen.
-Zu diesem Zweck sei $vu$ eine Kante in $M$ von $T$ nach $S$.
-Es ist leicht zu sehen, dass wenn $v$ in $Z$ ist, dann muss auch
-$u$ in $Z$ sein, da jede Kante in $M$ dicht ist.
-Nehmen wir nun an, dass $u$ kein Element von $Z$ und auch $v$ kein
-Element von $Z$ ist.
-$u$ selbst kann nicht in $R_{S}$ sein, da es der Endpunkt einer
-angepassten Kante ist, also muss es einen gerichteten Pfad von engen
-Kanten von einem Knoten in $R_{S}$ zu $u$ geben.
-Dieser Pfad muss $v$ vermeiden, da es per Annahme nicht in $Z$ ist,
-also ist der Knoten, der $u$ in diesem Pfad unmittelbar vorausgeht,
-ein anderer Knoten $v$ (ein Element von $T$) und $v$ ein Element
-von $u$ ist eine enge Kante von $T$ nach $S$ und ist somit in $M$.
-Aber dann enthält $M$ zwei Kanten, die den Knoten $u$ teilen, was
-der Tatsache widerspricht, dass $M$ ein Matching ist.
-Jede Kante in $M$ hat also entweder beide Endpunkte oder keinen
-Endpunkt in $Z$.
+Es ist ein kombinatorischer Optimierungsalgorithmus, der das Zuordnungsproblem
+in polynomieller Zeit löst.
+Der Begriff polynomielle Laufzeit bedeutet, dass die Laufzeit des Programms
+wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert.
 
-\subsection{Beweis, dass $y$ ein Potential bleibt
+
+\subsection{Beispiel eines händischen Verfahrens
 \label{munkres:subsection:malorum}}
-Um zu zeigen, dass y nach der Anpassung ein Potenzial bleibt, genügt
-es zu zeigen, dass keine Kante ihr Gesamtpotenzial über ihre Kosten
-hinaus erhöht.
-Dies ist für Kanten in $M$ bereits durch den vorangegangenen Absatz
-bewiesen.
-Man betrachtet also eine beliebige Kante $uv$ von $S$ nach $T$.
-Wenn $y(u)$ erhöht wird um $\Delta$, dann wird entweder $v\in
-\mathbb{Z}_n$ in diesem Fall wird $y(v)$ verringert um $\Delta$,
-wobei das Gesamtpotenzial der Kante unverändert bleibt, oder $v\in
-T\setminus Z$, wobei die Definition von $\Delta$ garantiert, dass
-$y(u)+y(v)+\Delta \le c(u,v)$
-Also $y$ bleibt ein Potential.
 
+\begin{figure}
+\centering
+\includegraphics[width=14cm]{papers/munkres/figures/beispiel_munkres}
+\caption{Händisches Beispiel des Munkres Algorithmus.}
+\label{munkres:Vr2}
+\end{figure}
