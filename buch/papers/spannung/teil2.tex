@@ -3,7 +3,7 @@
 Durch komplexe Spannungsausbreitungen im Boden entstehen im 3D Spannungszustand unterschiedliche Normal- und Schubspannungen.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
+	\includegraphics[width=0.30\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
 	\caption{Beispiel eines Spannungszustandes; Vergrösserung eines infinitesimalen Bodenteilchen}
 	\label{fig:infinitesimalerWuerfel}
 \end{figure}
@@ -49,7 +49,7 @@ Der Dehnungstensor ist ebenfalls ein Tensor 2. Stufe und kann somit auch als $3\
 dargestellt werden und beschreibt den gesamten Dehnungszustand.
 
 Der Spannungs- und Dehnungstensor 2. Stufe kann je in einen Tensor 1. Stufe überführt werden, welches ein Spaltenvektor ist.
-Gemäss der Hadamard-Algebra dürfen Zeile um Zeile in eine Spalte notiert werden, sodass es einen Spaltenvektor ergibt.
+Man darf Zeile um Zeile in eine Spalte notieren, sodass es einen Spaltenvektor ergibt.
 So ergibt sich der Spannungsvektor
 
 \[
@@ -79,7 +79,7 @@ So ergibt sich der Spannungsvektor
 	\sigma_{33}
 \end{pmatrix}
 \]
-und Dehnungsvektor
+und der Dehnungsvektor
 \[
 \overline{\varepsilon}
 =
@@ -140,14 +140,6 @@ C_{3311} & C_{3312} & C_{3313} & C_{3321} & C_{3322} & C_{3323} & C_{3331} & C_{
 \end{pmatrix}
 \]
 geschrieben werden kann.
-Dieser Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
-Folglich gilt:
-\[
-\overline{\overline{C}}
-=
-\overline{\overline{C}}~^{T}
-.
-\]
 Die allgemeine Spannungsgleichung lautet nun:
 \[
 \vec\sigma
@@ -155,8 +147,7 @@ Die allgemeine Spannungsgleichung lautet nun:
 \overline{\overline{C}}\cdot\vec{\varepsilon}
 .
 \]
-
-Als Indexnotation
+Sie kann ebenfalls als Indexnotation
 \[
 \sigma_{ij}
 =
@@ -164,7 +155,15 @@ Als Indexnotation
 \sum_{l=1}^3
 C_{ijkl}\cdot\varepsilon_{kl}
 \]
-kann dies ebenfalls geschrieben werden.
+geschrieben werden.
+Der Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
+Folglich gilt:
+\[
+\overline{\overline{C}}
+=
+\overline{\overline{C}}~^{T}
+.
+\]
 
 Die Konstanten $C$ werden nun nach dem Hook'schen Gesetz mit Hilfe des Elastizitätsmoduls $E$ definiert.
 Da dieser Modul durch die eindimensionale Betrachtung definiert ist,
@@ -221,7 +220,7 @@ definiert ist. Trägt man die Konstanten in die Matrix ein, ergibt sich
 \end{pmatrix}
 .
 \]
-Die Normalspannung $\sigma_{22}$ lässt sich exemplarisch als
+Die Normalspannung $\sigma_{22}$ lässt sich zum Beispiel als
 \[
 \sigma_{22}
 =
@@ -229,11 +228,13 @@ Die Normalspannung $\sigma_{22}$ lässt sich exemplarisch als
 \]
 berechnen.
 
+Reduzierte Spannungs- und Dehnungsgleichungen
+
 Man betrachte nun die Eigenschaften des Elastizitätstensors.
 Dieser ist quadratisch und symmetrisch, die verschiedenen Einträge wechseln sich aber miteinander ab.
 Es ergeben sich keine Blöcke mit einheitlichen Einträgen.
 
-Allerdings weiss man, dass im isotropen Boden der Spannungs-, Dehnungs- und daher auch Elastizitätstensor symmetrisch sind.
+Allerdings weiss man, dass im isotropen Boden der Spannungs-, Dehnungs- und daher auch der Elastizitätstensor symmetrisch sind.
 Wäre dem nicht so, würde sich das Material je nach Richtung unterschiedlich elastisch verhalten.
 Diese Symmetrie setzt daher voraus, dass
 \[
@@ -399,7 +400,7 @@ Somit lässt sich die reduzierte allgemeine Spannungsgleichung mit
 \]
 beschreiben.
 Die Konstanten $C$ werden wieder nach dem Hook'schen Gesetz definiert.
-Dies ergibt die Spannungsformel, welche weit möglichst vereinfacht ist:
+Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
 \begin{equation}
 \begin{pmatrix}
 	\sigma_{11}\\
@@ -433,7 +434,7 @@ Dies ergibt die Spannungsformel, welche weit möglichst vereinfacht ist:
 
 Im Elastizitätstensor fallen zwei $3\times3$ Blöcke auf, welche nur Einträge mit $0$ haben. Der Tensor besagt also,
 dass diese jeweiligen Dehnungen keinen Einfluss auf unsere Spannung haben.
-Man sieht nun auch ganz gut, dass sich im Vergleich zu der allgemeinen Spannungsgleichung, die Einträge verschoben haben.
+Man sieht nun auch ganz gut, dass sich im Vergleich zu der allgemeinen Spannungsgleichung die Einträge verschoben haben.
 Da nach Voigt zuerst die Normalspannungen und anschliessend die Schubspannungen notiert worden sind, ergeben sich die  $3\times3$ Blöcke.
 
 Man betrachte als Beispiel die Berechnung von $\sigma_{33}$.
@@ -441,8 +442,8 @@ Es ist ersichtlich, dass die Schubdehnungen keinen Einfluss auf $\sigma_{33}$ ha
 Der Einfluss der zu $\sigma_{33}$ äquivalenten Dehnung $\varepsilon_{33}$ hat den grössten Einfluss.
 Die anderen Normalspannungen $\sigma_{11}$ und $\sigma_{22}$ haben einen unter anderem mit $\nu$ korrigierten Einfluss.
 
-Von  $\overline{\overline{C}}$ bildet man noch die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$ um die Gleichung umstellen zu können.
-Dadurch erhält man die Dehnungsgleichung:
+Von  $\overline{\overline{C}}$ bildet man die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$, mithilfe des Gauss - Jordan Algorithmus, um die Gleichung umstellen zu können.
+Durch einige Berechnungsschritte erhält man die Dehnungsgleichung:
 
 \[
 \vec{\varepsilon}
