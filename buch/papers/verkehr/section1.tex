@@ -87,12 +87,12 @@ Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseina
 Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1\dot n\right\}\end{equation}
 Beim PageRank-Algorithmus wird eine abgewandelte Form der Adjazenz-Matrix verwendet.
 Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt.
-\begin{equation} P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \end{equation}
+\[ P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \]
 Anschliessend multipliziert man diese Matrix $P$ mit einem Spaltenvektor $\Vec{r_0}$ mit $n$ Einträgen, für welchen gilt:
-\begin{equation} \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dot n\right\} \end{equation}
+\[ \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dot n\right\} \]
 Dieser Vektor stellt ein neutrales Ranking dar. Alle Knoten werden gleich gewichtet.
-Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das "erste" Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt.
-\begin{equation} \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\end{equation}
+Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das ``erste" Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt.
+\[ \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\]
 somit
 \begin{equation} \Vec{r_i} = P^i\cdot\Vec{r_0}\end{equation}
-Der Vektor $\Vec{r_i}$ konvergiert zu einem Eigenvektor von $P$ und stellt das abschliessende Ranking dar.
+Der Vektor $\Vec{r_i}$ konvergiert zu einem Eigenvektor von $P$ der das abschliessende Ranking darstellt.
