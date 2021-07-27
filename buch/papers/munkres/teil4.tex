@@ -3,34 +3,7 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Matrix-Interpretation
+\section{-
 \label{munkres:section:teil4}}
-\rhead{Matrix-Interpretation}
-Gegeben ist die quadratische Matrix $C=(c_{ij})$ der Grösse $n\times n$.
-Ohne Beschränkung der Allgemeinheit werden eine Zuordnung $j
-\rightarrow  s_j$, $j = 1, \dots, n$ mit minimaler Gesamtsumme
-$\sum_{j=1}^{n}c_{s_j,j}$ gesucht, wobei die $s_j$ eine Permutation
-von $\{1,\ldots ,n\}$ sind.
-Soll die Summe maximiert werden, dann kann $C$ durch $-C$ ersetzt werden.
-Die Grundlage dieses Verfahrens ist, dass sich die optimale Zuordnung
-unter bestimmten Änderungen der Matrix nicht ändert, sondern nur
-der Optimalwert.
-Diese Änderungen sind durch Knotenpotentiale bzw.~duale Variablen 
-\begin{equation}
-u_1 u_2,{\dots}, u_n
-\end{equation}
+\rhead{-}
 
-für die Zeilen und 
-
-\begin{equation}v_1,v_2,\dots,v_n \end{equation} fuer die Spalten angegeben.
-Die modifizierte Matrix hat dann die Komponenten $\tilde{c}_{i,j}
-= c_{ij} - u_j - v_j$.
-
-In der Summe über jede kantenmaximale Zuordnung kommt jedes
-Knotenpotential genau einmal vor, so dass die Änderung der Zielfunktion
-eine Konstante ist.
-Sind die Einträge von $C$ nichtnegativ, und sind alle Knotenpotentiale
-ebenfalls nichtnegativ, so nennt man die modifizierte Matrix \~{C}
-auch eine Reduktion.
-Ziel ist, in der reduzierten Matrix möglichst viele Komponenten auf
-den Wert Null zu bringen und unter diesen die Zuordnung zu konstruieren.
