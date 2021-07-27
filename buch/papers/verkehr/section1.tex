@@ -34,6 +34,10 @@ Wie oben erwähnt basiert der A*-Algorithmus auf dem Shortest-Path-Algorithmus v
 
 Der A*-Algorithmus unterscheidet sich vom Dijkstra-Algorithmus dahingehend, dass bei der Auswahl des Folgeknotens, nicht nur die Summe der Kantengewichte $\vec{d}(j)+A(k,j)$, sondern zusätzlich die für jeden Knoten definierte Abschätzfunktion $f(k)$ hinzuaddiert wird. Dies passiert jedoch nur bei der \emph{Auswahl} des Folgeknotens. Der Wert von $f(k)$ wird nicht im Eintrag $\vec{d}(k)$ gespeichert. Somit wird gewährleistet, dass der gefundene Pfad, der Summe der Kantengewichte entspricht.
 
+\subsection{Euklidische Heuristik}
+Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
+Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
+
 \subsection{Floyd-Warshall-Algorithmus}
 Der Floyd-Warshall-Algorithmus, auch Tripel-Algorithmus genannt, wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
 Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die günstigsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph aber keinen negativen Kreis (Zyklus) aufweist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
@@ -54,9 +58,7 @@ Die aktuelle Gewichtung der Pfade wird mit
 \begin{equation}d[i, j]=min[d[i,j], d[i,k] + d[k,i]]\end{equation}
 ermittelt.
 
-\subsection{Euklidische Heuristik}
-Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
-Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
+
 
 \section{PageRank-Algorithmus}
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc..
