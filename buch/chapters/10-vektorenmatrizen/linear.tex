@@ -837,7 +837,178 @@ Seite~\pageref{buch:vektorenmatrizen:satz:gruppenregeln}
 die Eigenschaft $A^{-1}A=I$ ganz allgemein gezeigt.
 
 \subsubsection{Determinante}
-XXX TODO
+Ein Gleichungssystem mit $n$ Gleichungen und $n$ Unbekannten ist genau
+dann lösbar, wenn sich der Gauss-Algorithmus bis zum Ende durchführen lässt.
+Das ist gleichbedeutend damit, dass keines der Pivot-Elemente verschwindet.
+Das Produkt der Pivot-Elemente ist also eine aus der Koeffizientenmatrix
+$A$ berechnete Kennzahl, die zu entscheiden erlaubt, ob ein Gleichungssystem
+lösbar ist.
+
+\begin{definition}
+\label{buch:linear:determinate:def}
+Das Produkt der Pivot-Elemente bei der Durchführung des Gauss-Algorithmus
+für eine Gleichungssystem mit quadratischer Koeffizientenmatrix $A$
+heisst die Determinante $\det(A)$ der Matrix $A$.
+\end{definition}
+
+Aus den Regeln für die Durchführung des Gauss-Algorithmus kann man die 
+folgenden Regeln für die Determinante ableiten.
+Wir stellen die Eigenschaften hier nur zusammen, detaillierte Herleitungen
+kann man in jedem Kurs zur linearen Algebra finden, zum Beispiel im 
+Kapitel~2 des Skripts \cite{buch:linalg}.
+\begin{enumerate}
+\item
+\label{buch:linear:determinante:einheitsmatrix}
+Die Determinante der Einheitsmatrix ist $\det(I)=1$.
+\item
+Sind zwei Zeilen einer Matrix gleich, dann tritt beim Gauss-Algorithmus
+eine Nullzweile auf, die Matrix kann also nicht regulär sein und die
+Determinante ist $0$.
+\item
+\label{buch:linear:determinante:vorzeichen}
+Vertauscht man zwei Zeilen einer Matrix, dann kehrt das Vorzeichen der
+Determinante.
+\item
+Addiert man ein Vielfaches einer Zeile der Matrix zu einer anderen Zeile,
+dann ändert der Wert der Determinante nicht.
+\item
+Wird eine Zeile der Matrix mit einer Zahl $\lambda$ multipliziert, dann
+wird auch der Wert der Determinanten mit $\lambda$ multipliziert.
+\item
+\label{buch:linear:determinante:asymetrisch}
+Die Determinante ist eine lineare Funktion der Zeilen von $A$.
+Zusammen mit der Eigeschaft~\ref{buch:linear:determinante:vorzeichen} 
+folgt, dass die Determinante eine antisymmetrische lineare Funktion
+der Zeilen ist.
+\item
+Die Determinante ist durch die Eigenschaften 
+\ref{buch:linear:determinante:einheitsmatrix}
+und
+\ref{buch:linear:determinante:asymetrisch}
+eindeutig bestimmt.
+\item
+Der Entwicklungssatz von Laplace.
+\index{Entwicklungssatz Laplace}%
+Die Determinante der $n\times n$-Matrix $A$ kann mit der Formel
+\begin{equation}
+\det(A)
+=
+\sum_{i=1}^n (-1)^{i+j} a_{ij} \cdot \det(A_{ij})
+\end{equation}
+wobei die $(n-1)\times(n-1)$-Matrix $A_{ij}$ die Matrix $A$ ist, aus der 
+man Zeile $i$ und Spalte $j$ entfernt hat.
+$A_{ij}$ heisst ein {\em Minor} der Matrix $A$.
+\index{Minor einer Matrix}%
+\end{enumerate}
+
+Die bekannte Formel $\det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc$
+ist ein Spezialfall des Entwicklungssatzes von Laplace.
+Auch für $3\times 3$-Matrizen ist eine übersichtliche Form möglich,
+die als die Sarrus-Formel bekannt ist.
+\index{Sarrus-Formel}%
+
+\begin{satz}[Sarrus]
+\label{buch:linear:determinate:sarrus}
+Die Determinante einer $3\times 3$-Matrix ist
+\[
+\left|\begin{matrix}
+a&b&c\\
+d&e&f\\
+g&h&i
+\end{matrix}\right|
+=
+aei + bfg + cdh - ceg - bdi - afh.
+\]
+\end{satz}
+
+\subsubsection{Die Regel von Cramer}
+Die Determinanten ermöglicht auch, eine Formel für die Lösung eines
+Gleichungssystems zu geben.
+Dies ist bekannt als die {\em Regel von Cramer}.
+
+\begin{satz}
+\label{buch:linear:determinante:cramer}
+Die Lösung $x_k$ eines $n\times n$-Gleichungssystem $Ax=b$ mit
+Koeffizientenmatrix $A$ und rechter Seite $b$ hat die Lösungen
+\begin{equation}
+x_k
+=
+\frac{
+\left|\begin{matrix}
+a_{11}&a_{12}&\dots &b_1   &\dots &a_{1n}\\
+a_{21}&a_{22}&\dots &b_2   &\dots &a_{2n}\\
+\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+a_{n1}&a_{n2}&\dots &b_n   &\dots &a_{nn}
+\end{matrix}\right|
+}{
+\det(A),
+}
+\end{equation}
+wobei im Zähler die Spalte $k$ der Matrix $A$ durch den Vektor $b$
+der rechten Seiten ersetzt worden ist.
+\end{satz}
+
+Die Cramersche Formel ist besonders nützlich, wenn die Abhängigkeit
+einer Lösungsvariablen von den Einträgen der Koeffizientenmatrix 
+untersucht werden soll.
+Für die Details der Herleitung sei wieder auf \cite{buch:linalg}
+verwiesen.
+
+\subsubsection{Die inverse Matrix mit Hilfe der Determinanten}
+Die inverse Matrix löst ein quadratisches Gleichungssystem $Ax=b$ mit
+Hilfe der Formel $x=A^{-1}b$.
+Man kann daher auch erwarten, dass sich die inverse Matrix dank
+der Cramerschen Regel mit Hilfe von Determinanten ausdrücken lässt.
+Tatsächlich gilt der folgende Satz.
+
+\begin{satz}
+\label{buch:linalg:inverse:adjunkte}
+Die Inverse der $n\times n$-Matrix $A$ ist gegeben durch
+\index{Formel für die inverse Matrix}%
+\index{inverse Matrix, Formel für}%
+\begin{equation}
+(A^{-1})_{ij}
+=
+\frac{1}{\det(A)}
+\begin{pmatrix}
+\det(A_{11}) & -\det(A_{21}) & \dots & (-1)^{i+1}\det(A_{i1}) & \dots
+	& (-1)^{1+n} \det(A_{n1}) \\
+-\det(A_{12}) & \det(A_{22}) & \dots & (-1)^{i+2}\det(A_{i2}) & \dots
+	& (-1)^{2+n} \det(A_{n2}) \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+(-1)^{1+j}\det(A_{1j}) & (-1)^{2+j}\det(A_{2j}) & \dots
+	& (-1)^{i+j} \det(A_{ji})
+	& \dots & (-1)^{j+n} \det(A_{nj}) \\
+\vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+(-1)^{1+n}\det(A_{1n}) & (-1)^{2+n}\det(A_{2n}) & \dots
+	& (-1)^{i+n}\det(A_{in})
+	& \dots & \det(A_{nn})
+\end{pmatrix}
+\label{buch:linalg:inverse:formel}
+\end{equation}
+Die Transponierte der Matrix auf der rechten Seite (ohne den Vorfaktor
+$1/\det(A)$
+heisst die {\em Adjunkte} $\operatorname{adj}A$ von $A$.
+\index{Adjunkte}%
+\end{satz}
+
+Der Satz~\ref{buch:linalg:inverse:adjoint} liefert eine algebraische
+Formel für die Elemente der inversen Matrix. 
+Für kleine Matrizen wie im nachfolgenden Beispiel ist die
+Formel~\eqref{buch:linalg:inverse:formel} oft einfachter anzuwenden.
+Besonders einfach wird die Formel für eine $2\times 2$-Matrix,
+wo man
+\[
+\begin{pmatrix}
+a&b\\c&d
+\end{pmatrix}^{-1}
+=
+\frac{1}{ad-bc}\begin{pmatrix}
+d&-b\\
+-c&a
+\end{pmatrix}
+\]
+erhält.
 
 \begin{beispiel}
 Die Inverse der Matrix
@@ -852,21 +1023,22 @@ a&a&1
 ist mit Hilfe von Determinanten besonders einfach zu invertieren.
 Die Determinante von $A$ ist nach der Sarrus-Formel
 \[
-\det A
+\operatorname{adj}A
 =
 1 + 2a^3  - 3a^2.
 \]
-Die adjungiert Matrix ist
+Die Adjunkte ist
 \begin{align*}
-A^{-1}
+(\operatorname{adj}A)^t
 &=
-\frac{1}{\det{A}}
-\begin{pmatrix}
-\det A_{11} & \det A_{21} & \det A_{31} \\
-\det A_{12} & \det A_{22} & \det A_{32} \\
-\det A_{13} & \det A_{23} & \det A_{33} 
-\end{pmatrix}
-\\
+%\frac{1}{\det{A}}
+\begin{pmatrix*}[r]
+ \det A_{11} & -\det A_{21} &  \det A_{31} \\
+-\det A_{12} &  \det A_{22} & -\det A_{32} \\
+ \det A_{13} & -\det A_{23} &  \det A_{33} 
+\end{pmatrix*}
+\intertext{und damit ist die inverse Matrix}
+A^{-1}
 &=
 \frac{1}{2a^3-3a^2+1}
 \renewcommand\arraystretch{1.1}
@@ -896,7 +1068,7 @@ A^{-1}
 1-a^2 & a^2-a & a^2-a\\
 a^2-a & 1-a^2 & a^2-a\\
 a^2-a & a^2-a & 1-a^2
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 Mit $1-a^2=(1+a)(1-a)$ und $a^2-a=a(a-1)$ kann man dies noch etwas
 vereinfachen, indem man den gemeinsamen Faktor $1-a$ ausklammern.
@@ -915,6 +1087,15 @@ A^{-1}
 für die Inverse einer Matrix der Form 
 \eqref{buch:vektoren-und-matrizen:abeispiel:eqn1}.
 \end{beispiel}
+
+\subsubsection{Produktregel für die Determinante}
+Aus der Charakterisierung der Determinanten kann man auch ableiten,
+dass  die Produktregel 
+\[
+\det (AB) = \det(A) \cdot \det(B)
+\]
+gilt.
+Daraus folgt auch, dass $\det(A^{-1})=\det(A)^{-1}$.
 
 %
 % Lineare Abbildungen
