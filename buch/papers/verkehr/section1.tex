@@ -10,14 +10,13 @@ Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
 \subsection{Dijkstra-Algorithmus}
 Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Informatikprofessor Edsger Dijkstra. Den Algorithmus hat er im Jahr 1959 erfunden.
 Der Algorithmus von Dijkstra ist ein Greedy-Algorithmus (gieriger Algorithmus), der schrittweise einen Folgezustand auswählt, damit beim Zeitpunkt der Wahl der grösste Gewinn bzw. das beste Ergebnis erzielt werden kann.
-Trotz der Schnelligkeit der Greedy-Algorithmen, können viele Probleme nicht optimal gelöst werden.
 Vereinfacht wird beim Dijkstra-Algorithmus, ausgehend von einem Startknoten so lange dem kürzesten Pfad gefolgt, bis der Zielknoten erreicht wird. Dabei muss für jeden besuchten Knoten die Kostenfunktion als auch der Pfad dahin (vorheriger Knoten) gespeichert werden.
 Dadurch wird hingegen garantiert, dass, wenn der Zielknoten erreicht wird, auch der kürzeste Pfad gefunden wurde.
 Grundlegende Voraussetzung für den Dijkstra-Algorithmus ist die strikte Positivität der Kantengewichte. Andernfalls würde ein wiederholtes Ablaufen einer Kante mit negativem Gewicht zu einer stetigen Reduktion der Kostenfunktion führen, was zu einer unendlichen Schlaufe führen würde.
 
 Gegeben sei ein Netzwerk mit $n$ Knoten und dem Startknoten $a$.
 Alle Kanten sind mit $k(i, j)$ bewertet.
-Gesucht wird der kürzeste Pfad zwischen dem Startknoten und allen übrigen Knoten im Netz.
+Gesucht wird der kürzeste Pfad zwischen dem Startknoten und dem Knoten im Netz.
 $D(i)$ ist die kürzeste Distanz vom Startknoten $a$ zum Knoten $i, V(i)$ ist der unmittelbare Vorgängerknoten vom Knoten $i$ auf dem kürzesten Weg vom Startknoten $a$ zum Konten $i$ und die Menge $M$ ist die Menge einer bestimmten Auswahl an Knoten.
 
 Dabei gilt
