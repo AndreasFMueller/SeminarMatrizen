@@ -1,0 +1,131 @@
+\documentclass[border=10pt,varwidth]{standalone}
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{lipsum}
+\usepackage{amscd}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{slashed}
+\usepackage{pdfpages}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows,matrix,positioning}
+\usetikzlibrary{overlay-beamer-styles}
+\usetikzlibrary{matrix.skeleton}
+\usetikzlibrary{automata,positioning}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{color}
+
+\begin{document}
+
+$
+A=
+\begin{bmatrix}
+A_{11} & A_{12}\\
+A_{21} & A_{22}
+\end{bmatrix},
+B=
+\begin{bmatrix}
+B_{11} & B_{12}\\
+B_{21} & B_{22}
+\end{bmatrix},
+C=
+\begin{bmatrix}
+C_{11} & C_{12}\\
+C_{21} & C_{22}
+\end{bmatrix}
+$
+
+\medskip
+$
+A \cdot B = C
+$
+
+\medskip
+$
+C_{11} = A_{11} \cdot B_{11} + A_{12} \cdot B_{21}\\
+C_{12} = A_{11} \cdot B_{12} + A_{12} \cdot B_{22}\\
+C_{21} = A_{21} \cdot B_{11} + A_{22} \cdot B_{21}\\
+C_{22} = A_{21} \cdot B_{12} + A_{22} \cdot B_{22}
+$
+
+\medskip
+\begin{math}
+\begin{aligned}
+\text{I}   &= (A_{11} + A_{22}) \cdot (B_{11} + B_{22}) \\
+\text{II}  &= (A_{21} + A_{22}) \cdot B_{11} \\
+\text{III} &= A_{11} \cdot (B_{12}-B_{22}) \\
+\text{IV}  &= A_{22} \cdot (-B_{11}+B_{21}) \\
+\text{V}   &= (A_{11} + A_{12}) \cdot B_{22} \\
+\text{VI}  &= (-A_{11} + A_{21}) \cdot (B_{11} + B_{12})) \\
+\text{VII} &= (A_{12} - A_{22}) \cdot (B_{21} + B_{22}) \\
+\end{aligned}
+\end{math}
+
+
+\medskip
+\begin{math}
+\begin{aligned}
+C_{11} &= \text{I} + \text{IV} - \text{V} + \text{VII} \\
+C_{21} &= \text{II} + \text{IV} \\
+C_{12} &= \text{III} + \text{V}\\
+C_{22} &= \text{I} + \text{III} - \text{II} + \text{VI} \\
+\end{aligned}
+\end{math}
+
+
+\medskip
+\begin{math}
+\begin{aligned}
+C_{11} &= \text{II} + \text{IV} \\
+C_{11} &= (A_{11} + A_{22}) \cdot (B_{11} + B_{22}) + A_{22} \cdot (-B_{11}+B_{21}) - (A_{11} + A_{12}) \cdot B_{22} + (A_{12} - A_{22}) \cdot (B_{21} + B_{22})C_{21} \\
+C_{11} &= A_{11}B_{11} + A_{11}B_{22} + A_{22}B_{11} + A_{22}B_{22} -A_{22}B_{11}+A_{22}B_{21} - A_{11}B_{22} - A_{12}B_{22}+ A_{12}B_{21} + A_{12}B_{22} - A_{22}B_{21} - A_{22}B_{22} \\
+C_{11} &= A_{11}B_{11} + A_{12}B_{21}
+\end{aligned}
+\end{math}
+
+\section{Winograd}
+
+$
+x_1 y_1 + x_2 y_2 = (x_1 +y_2)(y_1 + x_2)-x_1 x_2 - y_1 y_2
+$
+
+$
+x = (x_1, \cdots, x_n), y=(y_1, \cdots, y_n)
+$
+
+\[
+\xi = \sum_{j=1}^{ \lfloor n/2 \rfloor} x_{2j-1} \cdot x_{2j}
+\]
+
+\[
+\eta = \sum_{j=1}^{ \lfloor n/2 \rfloor} y_{2j-1} \cdot y_{2j}
+\]
+
+\[
+\langle x,y \rangle =
+\begin{cases}
+ \displaystyle  \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta & \text{if  $n$ is even}\\
+\displaystyle  \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta + x_n y_n & \text{if  $n$ is odd}
+\end{cases}
+\]
+
+\end{document}
