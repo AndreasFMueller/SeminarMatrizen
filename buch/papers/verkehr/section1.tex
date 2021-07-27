@@ -5,9 +5,9 @@ Aus verkehrsgeografischer Sicht besteht das Verkehrsnetz aus Kanten, Knotenpunkt
 Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim Aufbau eines Verkehrsnetzes sein. Es kann aber auch versucht werden, die Bau- und Unterhaltskosten des Verkehrsnetzes in einem gewissen Rahmen zu halten. Aus diesen Vorgaben ergibt sich dann, je nach dem was gewünscht wird, eine grob- oder feinmaschige Struktur des Netzes.
 Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
 
-\subsection{Suchalgorithmen}
+\section{Suchalgorithmen}
 
-\subsubsection{Dijkstra-Algorithmus}
+\subsection{Dijkstra-Algorithmus}
 Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Infomratikprofessor Edsger Dijkstra. Den Algorithmus hat er im Jahr 1959 erfunden.
 Der Algorithmus von Dijkstra ist ein Greedy-Algorithmus (gieriger Algorithmus), der schrittweise einen Folgezustand auswählt, damit beim Zeitpunkt der Wahl der grösste Gewinn bzw. das beste Ergebnis erzielt werden kann.
 Trotz der Schnelligkeit der Greedy-Algorithmen, können viele Probleme nicht optimal gelöst werden.
@@ -39,7 +39,7 @@ Iteration
 Diese drei Schritte werden so lange wiederholt bis gilt
 \begin{equation}M=\{\}\end{equation}
 
-\subsubsection{A*-Algorithmus}
+\subsection{A*-Algorithmus}
 Suchalgorithmen werden nach einfachen (uninformierte) und heuristischen (informierten) Algorithmen unterschieden. Während einfache Algorithmen den Suchraum intuitiv durchsuchen, beziehen heuristische Algorithmen Wissen über den Suchraum mit ein.
 Der A*-Algorithmus geht auf seine Erfinder Peter Hart, Nils Nilsson und Bertram Raphael zurück, die den Algorithmus erstmals im Jahr 1968 beschrieben.
 Der A*-Algorithmus ist ein heuristischer Suchalgorithmus, der den kürzesten Pfad zwischen zwei Knoten in einem Graphen mit positiven Kantengewichten berechnet.
@@ -47,7 +47,7 @@ Im Gegensatz zu einfachen Suchalgorithmen, wird beim A*-Algorithmus eine Schätz
 Ausserdem findet der A*-Algorithmus immer eine optimale Lösung, sofern eine vorhanden ist.
 Der A*-Algorithmus wird als Verallgemeinerung gehandhabt und gilt als Erweiterung des Dijkstra-Algorithmus.
 
-\subsubsection{Anwendung A*-Algorithmus}
+\subsection{Anwendung A*-Algorithmus}
 Wie oben erwähnt basiert der A*-Algorithmus auf dem Shortest-Path-Algorithmus von Dijkstra. Gemäss dem Algorihtmus von Dijkstra werden von einem Startknoten aus die jeweiligen Nachbarknoten, die Nachbarknoten der Nachbarknoten usw. verarbeitet. Die Kantengewichte werden dabei aufsummiert und die Priorität wird auf die Kante gelegt, die das geringste Gewicht aufweist. Mit diesem Verfahren wird sichergestellt, dass die erste gefundene Lösung auch die optimalste Lösung darstellt.\\
 
 Die Kantengewichte werden für jeden Knoten in Form einer Funktion dargestellt
@@ -58,13 +58,13 @@ Somit gilt:
 \begin{equation}f(n)=g(n)+h(n)\end{equation}\\
 Wie auch der Algorithmus von Dijkstra findet der A*-Algorithmus die optimalste Lösung.
 
-\subsubsection{Floyd-Warshall-Algorithmus}
+\subsection{Floyd-Warshall-Algorithmus}
 Der Floyd-Warshall-Algorithmus, auch Tripel-Algorithmus genannt, wurde erstmals im Jahr 1962 von seinen Namensgebern Robert Floyd und Stephen Warshall vorgestellt.
 Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er ermittelt aber nicht nur die Distanz zwischen zwei Knoten, sondern berechnet die kürzesten Wege zwischen allen Knotenpaaren eines gewichteten Graphen. Somit werden die kürzesten , beziehungsweise die optimalsten Wege zwischen allen Paaren von Knoten berechnet. Der Floyd-Warhshall-Algrithmus kann ausserdem mit negativen Kantengewichten umgehen, sofern der Graph aber keinen negativen Kreis (Zyklus) aufweist. Ist dies der Fall, führt der Algorithmus zu einem falschen Ergebnis.
 Ein Kreis (Zyklus) in einem Graphen ist ein Weg, bei dem Start- und Endpunkt den gleichen Knoten aufweisen. Dieser wird negativ, wenn die Summe der gewichteten Kanten kleiner als Null wird.\\
 Der Floyd-Warshall-Algorithmus besteht grundsätzlich aus Floyd's Berechnung der kürzesten Distanzen zwischen zwei Knoten und Warshall's Konstruktion der kürzesten Wege. Werden diese beiden Teilgebiete zusammengefügt, ergibt sich der Floyd-Warshall-Algorithmus.
 
-\subsubsection{Anwendung Floyd-Warshall-Algorithmus}
+\subsection{Anwendung Floyd-Warshall-Algorithmus}
 
 Wie oben erwähnt, besteht der Floyd-Warshall-Algorithmus aus dem Teil von Floyd zur Berechnung der kürzesten Pfade und dem Teil von Warshall zur Konstruktion der kürzesten Pfade.
 
@@ -78,11 +78,11 @@ Die aktuelle Gewichtung der Pfade wird mit
 \begin{equation}d[i, j]=min[d[i,j], d[i,k] + d[k,i]]\end{equation}
 ermittelt.
 
-\subsubsection{Euklidische Heuristik}
+\subsection{Euklidische Heuristik}
 Bei Verkehrsnetzen ist die euklidische Distanz eine gängige und zuverlässige Heurstik. Dabei wird zu den effektiven Reisekosten zum aktuellen Knoten die euklidische Distanz bis zum Zielknoten hinzuaddiert. Dadurch wird die Kostenfunktion konsequent nie überschätzt. Dies stellt eine Voraussetzung an eine zulässige Heuristik dar.
 Was bei einem physischen Verkehrsnetz einfach zu bewältigen ist, da Koordinaten von Verkehrsnetzen zur Berechnung der Distanz verwendet werden können, ist bei virtuellen Netzwerken (z.B. Servernetzen) entweder nicht möglich, oder nicht relevant.
 
-\subsection{PageRank-Algorithmus}
+\section{PageRank-Algorithmus}
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc..
 Beim PageRank-Algorithmus handelt es sich um den Algorithmus von Google, aus dem die Google-Matrix abgeleitet wird.
 Die Google-Matrix ist eine immens grosse Matrix mit Millionen Zeilen und Spalten, die für die schnelle und vor allem exakte Bestimmung der PageRanks (Gewichtung) eine grosse Bedeutung hat.
