@@ -6,6 +6,13 @@ Grundsätzlich können kurze Wege zwischen den Knotenpunkten das Ziel beim Aufba
 Ziel ist aber ein möglichst wirtschaftliches und optimales Verkehrsnetz.
 
 \section{Suchalgorithmen}
+Inbesondere bei Graphen in Form von Verkehrsnetzen ist das Finden eines kürzesten Weges von Interesse. Mathematisch betrachtet handelt es sich hierbei um ein Optimierungsproblem, bei dem die Summe der Kantengewichte zwischen zwei Knoten minimiert werden soll. Zu diesem Zweck existieren verschiedene Suchalgorithmen. In den folgenden Abschnitten wird auf eines Auswahl davon eingegangen. Zuvor ist es jedoch notwendig, einige Begriffe und Eigenschaften von Suchalgorithmen zu definieren.
+
+Einerseits wird zwischen optimalen und nicht-optimalen Algorithmen unterschieden. Ein Suchalgorithmus gilt als optimal, falls er einen günstigsten Pfad zwischen zwei Knoten findet. Es gilt zu beachten, dass im Falle des Vorhandenseins von mehrerern Pfaden mit identischer, minimaler Summe der Kantengewichte zwischen zwei Knoten, mindestens einer dieser Pfade gefunden wird.
+
+Weiter wird zwischen informierten und uninformierten Algorithmen differenziert. Während uninformierte Suchalgorithmen den Suchraum schematisch auf Basis der Eigenschaften des Graphen absuchen, bis eine günstigste Lösung gefunden wurde, verwenden informierte Suchalgorithmen eine Heuristik zur Abschätzung der Suchrichtung. Oftmals wird bei informierten Algorithmen ein Verlust der Optimalität zugunsten einer verbesserten Rechenzeit in Kauf genommen. Es exisitieren jedoch auch Heurstiken, die eine optimale Lösung gewährleisten.
+
+Eine besondere Art von Suchalgorithmen stellen die sogenannten Greedy-Algorithmen, zu deutsch gierige Algorithmen, dar. Sie zeichnen sich dadurch aus, dass stets der günstigste Weg verfolgt wird und davon ausgehend der darauffolgende, günstigste Folgezustand ausgewählt wird. Am Beispiel eines Verkehrsnetzes ist somit gewährleistet, dass beim Antreffen des Zielknotens auch der günstigste Pfad gefunden wurde.
 
 \subsection{Dijkstra-Algorithmus}
 Der Algorithmus von Dijkstra ist benannt nach seinem Erfinder dem Mathematik- und Informatikprofessor Edsger Dijkstra. Den Algorithmus hat er im Jahr 1959 erfunden.
