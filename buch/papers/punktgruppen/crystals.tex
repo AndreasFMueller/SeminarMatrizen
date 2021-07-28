@@ -127,7 +127,7 @@ ein.
 Im vorausgegangenen Abschnitt wurde gezeigt, dass in einem zweidimensionalen Kristallgitter nicht alle Symmetrien möglich sind.
  Mit weiteren ähnlichen Überlegungen kann gezeigt werden, dass Kristalle im dreidimensionalen Raum nur auf genau 32 Arten rein punktsymmetrische Symmetriegruppen bilden können.
  Diese 32 möglichen Symmetriegruppen scheinen durchaus relevant zu sein, denn sie werden unter anderem als Kristallklassen bezeichnet.
- Die 32 möglichen Kristallklassen sind auf Abbildung \ref{fig:punktgruppen:Kristallkassen} zu sehen.
+ Die 32 möglichen Kristallklassen sind auf Abbildung \ref{fig:punktgruppen:kristallklassen} zu sehen.
  Die Darstellung von dreidimensionalen Punktsymmetrien wurde mit der stereographischen Projektion ermöglicht (siehe Abbildung \ref{fig:punktgruppen:stereographic-projections}), wobei die gestrichelten Klassen aus Gründen der Überschaubarkeit nicht im Detail gezeichnet wurden.
 
 
@@ -135,23 +135,31 @@ Im vorausgegangenen Abschnitt wurde gezeigt, dass in einem zweidimensionalen Kri
     \centering
     \includegraphics[]{papers/punktgruppen/figures/projections}
     \caption{Kristallklassen mit zugehörigem Schönflies-Symbol}
-    \label{fig:punktgruppen:Kristallkassen}
+    \label{fig:punktgruppen:kristallklassen}
 \end{figure}
 
 \subsubsection{Schönflies-Symbolik}
 
-Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:Kristallkassen} ist mit ihrem zugehörigen Schönflies-Symbol bezeichnet.
+Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:kristallklassen} ist mit ihrem zugehörigen Schönflies-Symbol bezeichnet.
  Die Schönflies-Symbolik stammt von dem Mathematiker Arthur Moritz Schönflies, welcher sich unter anderem mit der Klasifizierung der Punktgruppen auseinandergesetzt hat.
- Er hat Untergruppen gebildet, welche als Grossbuchstaben in Abbildung \ref{fig:punktgruppen:Kristallkassen} zu sehen sind.
+ Er hat Untergruppen gebildet, welche als Grossbuchstaben in Abbildung \ref{fig:punktgruppen:kristallklassen} zu sehen sind.
  \begin{itemize}
    \item In Kristallen ist nur die Drehgruppe \(C\), Diedergruppe \(D\), Drehspiegelgruppe \(S\), Tetraedergruppe \(T\) und die Oktaedergruppe \(O\) zu finden.
-     Es gäbe auch die Ikosaedergruppe \(I\) und die Kugelgruppe \(K\), diese sind aber nicht kompatibel mit der Translationssymmetrie eines Kristalles.  
-   \item Dank Abschintt \ref{txt:punktgruppen:Translationssymmetrie} wissen wir, wieso in Abbildung \ref{fig:punktgruppen:Kristallkassen} auf \(C\) nur ganz bestimmte Subskripte folgen. Ist im Subskript eine Zahl \(n\) zu finden, symbolisiert \(n\), dass  es sich um eine \(n\)-fache Symmetrie handelt.
-     Daher darf \(C_5\) auf der Abbildung \ref{fig:punktgruppen:Kristallkassen} nicht vorkommen darf, da \(360^\circ/5 =  72^\circ\) was nach Abschnitt \ref{txt:punktgruppen:Translationssymmetrie} keine mögliche Rotationssymmetrie eines Kristalles ist.
+     Es gäbe auch die Ikosaedergruppe \(I\) und die Kugelgruppe \(K\), diese sind aber nicht kompatibel mit der Translationssymmetrie eines Kristalles und daher für uns nicht relevant.  
+   \item Dank Abschintt \ref{txt:punktgruppen:Translationssymmetrie} wissen wir, wieso in Abbildung \ref{fig:punktgruppen:kristallklassen} auf \(C\) nur ganz bestimmte Subskripte folgen.
+     Ist im Subskript eine Zahl \(n\) zu finden, steht dies für eine \(n\)-fache Symmetrie.
+     Daher darf \(C_5\) auf der Abbildung \ref{fig:punktgruppen:kristallklassen} nicht vorkommen darf, da \(360^\circ/5 =  72^\circ\) was nach Abschnitt \ref{txt:punktgruppen:Translationssymmetrie} keine mögliche Rotationssymmetrie eines Kristalles ist.
    \item Sind im Subskript Buchstaben, definieren diese weitere Symmetrieeigenschaften der Klasse.
+     Für die folgenden Betrachtungen müssen wir uns Abbildung \ref{fig:punktgruppen:kristallklassen} genauer ansehen.
+     Dabei ist mit horizontal flach auf dem Papier gemeint.
      \begin{itemize}
-       \item Der Subskript \(h\) bezeichnet eine horizontale Spiegelebene, während \(v\) eine Symmetrieebene. Eine Symmetrieebene ist eine Spiegelebene, die sich mit der Symmetrie dreht. \(C_{3v}\) hat zum Beispiel eine vertikale Spiegelebene, die als 3 Spiegelebenen erscheint, weil es eine 3-fache Drehung gibt.
-       \item 
+       \item[\(h\)] bezeichnet eine horizontale Spiegelebene und 
+       \item[\(v\)] eine Symmetrieebene, was eine Spiegelebene ist, die sich mit der Symmetrie mitdreht.
+         Zum Beispiel hat \(C_{3v}\) eine vertikale Spiegelebene, die durch die 3-fache Drehsymmetrie als 3 Spiegelebenen erscheinen.
+       \item[\(s\)] ist ein spezielles Subskript um die beiden Symmetriegruppen \(C_{1v}\) und \(C_{1h}\) zu beschreiben, weil \(C_{1v} = C_{1h}\).
+       \item[\(d\)] symbolisiert eine diagonale Symmetrieebene.
+         Es wird ersichtlich wie diagonal gemeint ist, wenn man \(D_2\) zu \(D_{2d}\) vergleicht.
+       \item[\(i\)] steht für ein Inversionszentrum. Hat eine Symmetriegruppe ein Inversionszentrum, bedeutet dies dass sie im Ursprung punktsymmetrisch ist.
      \end{itemize}
  \end{itemize}
 Zu beachten ist jedoch, dass manche Symmetriegruppen mit mehreren Schönflies-Symbolen beschieben werden können.
