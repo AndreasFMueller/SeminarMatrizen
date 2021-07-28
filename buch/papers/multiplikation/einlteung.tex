@@ -17,14 +17,8 @@ Koeffizienten
 c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.
 \label{multiplikation:eq:MM}
 \end{equation}
-Grafisch kann die Matrizenmultiplikation $AB=C$ wie in \ref{multiplikation:fig:mm_viz} visualisiert werden.
-\begin{figure}
-	\center
-	\includegraphics[]{papers/multiplikation/images/mm_visualisation}
-	\caption{Matrizen Multiplikation}
-	\label{multiplikation:fig:mm_viz}
-\end{figure}
-Im Fall einer Matrizengr\"osse von $2\times 2$
+Grafisch kann die Matrizenmultiplikation $\mathbf{AB}=\mathbf{C}$ wie in \ref{multiplikation:fig:mm_viz} visualisiert werden.
+Im Fall einer Matrizengr\"osse von $2\times 2$ kann die Matrixgleichung
 \begin{equation}
   \begin{bmatrix}
 A_{11} & A_{12}\\
@@ -40,7 +34,7 @@ C_{11} & C_{12}\\
 C_{21} & C_{22}
 \end{bmatrix}
 \end{equation}
-kann die Gleichung der einzelnen Terme
+explizt als Gleichung 
 \begin{equation} \label{multiplikation:eq:MM_exp}
 \begin{split}
 C_{11} &= A_{11} \cdot B_{11} + A_{12} \cdot B_{21}\\
@@ -49,4 +43,10 @@ C_{21} &= A_{21} \cdot B_{11} + A_{22} \cdot B_{21}\\
 C_{22} &= A_{21} \cdot B_{12} + A_{22} \cdot B_{22}
 \end{split}
 \end{equation}
-explizit geschrieben werden.
+der einzelnen Terme geschrieben werden.
+\begin{figure}
+	\center
+	\includegraphics[]{papers/multiplikation/images/mm_visualisation}
+	\caption{Matrizen Multiplikation}
+	\label{multiplikation:fig:mm_viz}
+\end{figure}

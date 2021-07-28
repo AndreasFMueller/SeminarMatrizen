@@ -4,16 +4,16 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 
-\section{L\"osungsmethoden}
-\rhead{L\"osungsmethoden}
+\section{Algorithmen}
+\rhead{Algorithmen}
 
 In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Libraries zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
 
 \subsection{Standard Algorithmus}
 
-Der Standard Methode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen werden.
+Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen werden.
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
-Die \texttt{For i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{For j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{For k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
+Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
 
 \begin{algorithm}\caption{Matrix Multiplication}
 	\label{multiplikation:alg:smm}
@@ -39,16 +39,18 @@ Die \texttt{For i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}(n^3)$
+Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}\left(n^3\right)$
 
 \subsubsection{Divide and Conquer Methode}
 
-F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer} Ans\"atze zu markant besseren Laufzeiten.
-Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}(n^2)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
+F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer}  Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
+Die Grundidee ist, dass ein Problem in mehrere, meist simplere und kleinere Teilprobleme aufgeteilt wird.
+Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}\left(n^2\right)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
-Zur vereinfachten Veranschaulichung kann die Situation, mit $\mathbf{A}$ und $\mathbf{B}$ der gr\"osse $2^n \times 2^n$ verwendet werden.
-Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der gr\"osse $2^{n-1} \times 2^{n-1}$
+Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
+Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der Gr\"osse $2^{n-1} \times 2^{n-1}$ aufgeteilt.
+Das Matrizen produklt
 \begin{equation}
 \mathbf{A}\mathbf{B}=
 \begin{bmatrix}
@@ -64,11 +66,9 @@ Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen 
 \mathbf{C}_{11} & \mathbf{C}_{12}\\
 \mathbf{C}_{21} & \mathbf{C}_{22}
 \end{bmatrix}
-\end{equation}
-aufgeteilt.
-Die Berechnung
+\end{equation},
 \begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}^n \mathbf{A}_{ik} \mathbf{B}_{kj}
+\mathbf{C}_{ij} = \sum_{k=1}^n \mathbf{A}_{ik} \mathbf{B}_{kj}.
 \label{multiplikation:eq:MM_block}
 \end{equation}
 ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, wobei hier f\"ur die Multiplikation die Matrizenmultiplikation verwendet wird.
@@ -105,15 +105,11 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} berechnet werden.
-Ohne auf diesen vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe der Funktion die Laufzeit.
+Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algortihmen.
+Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
-	\mathcal{T}(n) =
-	\begin{cases}
-	1  & \text{if }  n \leq 2\\
-	8 \cdot \mathcal{T}(\frac{n}{2}) + n^2  & \text{if }  n > 2
-	\end{cases} = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}(n^{3})
+	\mathcal{T}(n) =	8 \cdot \mathcal{T}\left (\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}\left (n^{3} \right )
 \end{equation}
 zu einer kubischen Laufzeit.
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
@@ -122,20 +118,20 @@ In diesem Fall hat der \textit{Divide and Conquer} Ansatz zu keiner Verbesserung
 
 \subsection{Strassen's Algorithmus}
 
-Strassen's Algorithmus \cite{multiplikation:strassen_1969} beschreibt die Matrizenmultiplikation mit einer Vielzahl von Additionen, Subtraktionen und Multiplikationen.
-Die Grundlegenden Terme
+Strassen's Algorithmus \cite{multiplikation:strassen_1969} beschreibt die Matrizenmultiplikation mit einer Vielzahl von Additionen, Subtraktionen und Multiplikationen von Blockmatrizen.
+Die grundlegenden Terme
 \begin{equation} \label{multiplikation:eq:strassen}
 \begin{split}
-\text{\textbf{P}}   &= (\mathbf{A}_{11} + \mathbf{A}_{22}) \cdot (\mathbf{B}_{11} + \mathbf{B}_{22}) \\
-\text{\textbf{Q}}  &= (\mathbf{A}_{21} + \mathbf{A}_{22}) \cdot \mathbf{B}_{11} \\
-\text{\textbf{R}} &= \mathbf{A}_{11} \cdot (\mathbf{B}_{12}-\mathbf{B}_{22}) \\
-\text{\textbf{S}}  &= \mathbf{A}_{22} \cdot (-\mathbf{B}_{11}+\mathbf{B}_{21}) \\
-\text{\textbf{T}}   &= (\mathbf{A}_{11} + \mathbf{A}_{12}) \cdot \mathbf{B}_{22} \\
-\text{\textbf{U}}  &= (-\mathbf{A}_{11} + \mathbf{A}_{21}) \cdot (\mathbf{B}_{11} + \mathbf{B}_{12}) \\
-\text{\textbf{V}} &= (\mathbf{A}_{12} - \mathbf{A}_{22}) \cdot (\mathbf{B}_{21} + \mathbf{B}_{22})
+\text{\textbf{P}}   &= \left(\mathbf{A}_{11} + \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{11} + \mathbf{B}_{22}\right ) \\
+\text{\textbf{Q}}  &= \left(\mathbf{A}_{21} + \mathbf{A}_{22}\right ) \cdot \mathbf{B}_{11} \\
+\text{\textbf{R}} &= \mathbf{A}_{11} \cdot \left(\mathbf{B}_{12}-\mathbf{B}_{22}\right ) \\
+\text{\textbf{S}}  &= \mathbf{A}_{22} \cdot \left(-\mathbf{B}_{11}+\mathbf{B}_{21}\right ) \\
+\text{\textbf{T}}   &= \left(\mathbf{A}_{11} + \mathbf{A}_{12}\right ) \cdot \mathbf{B}_{22} \\
+\text{\textbf{U}}  &= \left(-\mathbf{A}_{11} + \mathbf{A}_{21}\right ) \cdot \left(\mathbf{B}_{11} + \mathbf{B}_{12}\right ) \\
+\text{\textbf{V}} &= \left(\mathbf{A}_{12} - \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{21} + \mathbf{B}_{22}\right )
 \end{split}
 \end{equation}
-aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Matrix $\mathbf{C}$
+aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke 
 \begin{equation} \label{multiplikation:eq:strassen2}
 \begin{split}
 \mathbf{C}_{11} &= \text{\textbf{P}} + \text{\textbf{S}} - \text{\textbf{T}} + \text{\textbf{V}} \\
@@ -144,7 +140,7 @@ aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Matrix $\math
 \mathbf{C}_{22} &= \text{\textbf{P}} + \text{\textbf{R}} - \text{\textbf{Q}} + \text{\textbf{U}}
 \end{split}
 \end{equation}
-gebraucht.
+der Matrix $\mathbf{C}$ gebraucht.
 \begin{algorithm}\caption{Strassen Matrix Multiplication}
 	\label{multiplikation:alg:strassen}
 	\setlength{\lineskip}{7pt}
@@ -190,7 +186,11 @@ gebraucht.
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-Strassens's Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
+Strassen's Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
+Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ . 
+Die gr\"unen Felder auf der linken Seite, zeigen die addition welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
+Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \dotsb, V}$.
+Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.  
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
@@ -202,17 +202,14 @@ Die Funktion wird sieben mal rekursiv aufgerufen.
 Dies f\"uhrt zu einer Laufzeit von
 \begin{equation} \label{multiplikation:eq:laufzeitstrassen}
 \mathcal{T}(n) =
-\begin{cases}
-1  & \text{if }  n \leq 2\\
-7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  & \text{if }  n > 2
-\end{cases} = \mathcal{O}(n^{\log_2 7}) = \mathcal{O}(n^{2.8074})
+7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  = \mathcal{O}\left(n^{\log_2 7}\right ) = \mathcal{O}\left(n^{2.8074} \right )
 \end{equation}
-und ist somit schneller als die Standard Methode.
+und ist somit schneller als die Standardmethode.
 
 \subsection{Winograd's Algorithmus}
 
-Ein weiterer Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
-Er zeigte einen neuen Algorithmus f\"ur das
+Einen weiteren Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
+Er beschrieb einen neuen Algorithmus f\"ur das
 \begin{equation}
 	\langle x,y \rangle = \sum_{i=1}^{n}x_i y_i
 \end{equation}
@@ -236,6 +233,7 @@ Das Skalarprodukt ist nun geben mit
 
 Angenommen man hat $N$ Vektoren mit welchen man $T$ Skalarprodukte berechnen m\"ochte.
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
+
 Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
@@ -243,8 +241,8 @@ Dies f\"uhrt zu
 \end{equation}
 Multiplikationen.
 Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt.
-Was im Vergleich zu den $mpn$ Multiplikation der Standard Methode nur die H\"alfte ist.
-Die Implementation kann im Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
+Was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
+Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
 
 \begin{algorithm}\caption{Winograd Matrix Multiplication}
 	\setlength{\lineskip}{7pt}
