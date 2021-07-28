@@ -11,15 +11,78 @@ selbst gehört die zugehörige lineare Abbildung $f_*\colon H_*(X)\to H_*(X)$
 der Homologiegruppen.
 Diese linearen Abbildungen sind im Allgemeinen viel einfacher zu
 analysieren.
-Zum Beispiel soll in Abschnitt~\ref{buch:subsection:lefshetz}
-die Lefshetz-Spurformel abgeleitet werden, die eine Aussagen darüber
-ermöglicht, ob eine Abbildung einen Fixpunkt haben kann.
-In Abschnitt~\ref{buch:subsection:brower} wird gezeigt wie man damit 
-den Browerschen Fixpunktsatz beweisen kann, der besagt, dass jede
-Abbildung eines Einheitsballs in sich selbst immer einen Fixpunkt hat.
+%Zum Beispiel soll in Abschnitt~\ref{buch:subsection:lefshetz}
+%die Lefshetz-Spurformel abgeleitet werden, die eine Aussagen darüber
+%ermöglicht, ob eine Abbildung einen Fixpunkt haben kann.
+%In Abschnitt~\ref{buch:subsection:brower} wird gezeigt wie man damit 
+%den Browerschen Fixpunktsatz beweisen kann, der besagt, dass jede
+%Abbildung eines Einheitsballs in sich selbst immer einen Fixpunkt hat.
 
-\subsection{Lefshetz-Spurformel
-\label{buch:subsection:lefshetz}}
+%\subsection{Brower-Fixpunktsatz
+%\label{buch:subsection:brower}}
+%
+%\begin{satz}[Brower]
+%\end{satz}
 
-\subsection{Brower-Fixpunktsatz
-\label{buch:subsection:brower}}
+%\subsection{Lefshetz-Fixpunktsatz
+%\label{buch:subsection:lefshetz}}
+Eine Selbstabbildung $f_*\colon C_*\to C_*$ von Kettenkomplexen führt auf
+eine Selbstabbiludng der Homologiegruppen $H(f)\colon H(C)\to H(C)$.
+Da sowohl $H_k$ wie auch $C_k$ endlichdimensionale Vektorräume sind, 
+ist die Spur von $H_k(f)$ wohldefiniert.
+
+\begin{definition}
+Die {\em Lefshetz-Zahl} einer Abbildung $f$ von Kettenkomplexen ist
+\[
+\lambda(f)
+=
+\sum_{k=0}^\infty
+(-1)^k \operatorname{Spur}f_k
+=
+\sum_{k=0}^\infty 
+(-1)^k \operatorname{Spur}(H_k(f)).
+\]
+\end{definition}
+
+Die zweite Darstellung  der Lefshetz-Zahl auf der rechten Seite ist
+meistens viel leichter zu berechnen als die erste.
+Die einzelnen Vektorräume eines Kettenkomplexes können haben typischerweise
+eine hohe Dimension, so hoch wie die Anzahl der Simplizes der Triangulation.
+Die Homologiegruppen dagegen haben typischerweise sehr viel kleinere 
+Dimension, die Matrizen $H_k(F)$ sind also relativ klein.
+Es ist aber nicht klar, dass beide Berechnungsmethoden für die 
+Lefshetz-Zahl auf das gleiche Resultat führen müssen.
+
+\begin{proof}[Beweis]
+\end{proof}
+
+Die Lefshetz-Zahl ist eine Invariante einer topologischen Abbildung,
+die Aussagen über Fixpunkte zu machen erlaubt.
+
+\begin{satz}
+Ist $f\colon X\to X$ eine Selbstabbildung eines kompakten Polyeders und
+ist $\lambda(f) \ne 0$, dann hat $f$ einen Fixpunkt.
+\end{satz}
+
+Im Folgenden soll nur ein heuristisches Argument gegeben werden, warum
+ein solcher Satz wahr sein könnte.
+
+Wenn eine Abbildung keinen Fixpunkt hat, dann ist $f(x) \ne x$ für alle
+Punkte von $X$.
+Da $X$ kompakt ist, gibt es einen minimalen Abstand $d$ zwischen $f(x)$ und $x$.
+Wenn man also für $X$ eine Triangulation wählt, die wesentlich feiner ist
+als dieser minimale Abstand, dann wird kein Simplex der Triangulation auf
+Punkte im selben Simplex oder in einem Nachbarsimplex abgebildet wird.
+Indem man nötigenfalls die Triangulation nochmals verfeinert, kann man auch
+genügend Platz schaffen, dass man die Abbildung $f$ etwas modifizieren kann,
+so dass auch die deformierte Abbildung immer noch diese Eigenschaft hat.
+
+Die zugehörige Abbildung des Kettenkomplexes der Triangulation hat damit
+die Eigenschaft, dass kein Basisvektor auf sich selbst abgebildet wird.
+Die Matrix der Abbildung hat daher keine Nullen auf der Diagonalen, und
+damit ist auch die Spur dieser Abbildung Null: $\operatorname{Spur}(H_k(f))=0$
+für alle $k$.
+Erst recht ist die Lefshetz-Zahl $\lambda(f)=0$.
+Wenn also die Lefshetz-Zahl verschieden ist von Null, dann muss $f$
+notwendigerweise einen Fixpunkt haben.
+
