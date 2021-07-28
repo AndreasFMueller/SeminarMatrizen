@@ -1,21 +1,32 @@
 %
-% teil1.tex -- Beispiel-File für das Paper
+% idee.tex -- Polynom Idee
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Idee
 \label{reedsolomon:section:idee}}
 \rhead{Problemstellung}
+Um beim Datenübertragen Fehler zu erkennen, könnte man die Daten jeweils doppelt senden,
+und so jeweilige Fehler zu erkennen.
+Doch nur schon um Fehler zu erkennen werden überproportional viele Daten doppelt und dreifach gesendet.
+Der Reed-Solomon-Code macht dies auf eine andere, clevere Weise.
 Das Problem liegt darin Informationen, Zahlen, 
 zu Übertragen und Fehler zu erkennen.
 Beim Reed-Solomon-Code kann man nicht nur Fehler erkennen, 
 man kann sogar einige Fehler korrigieren.
+Der unterschied des Fehler erkennen und korrigiren, ist das beim Erkennen nur die Frage beantwortet wird mit: Ist die Übertragung fehlerhaft oder nicht?
+Beim Korrigieren werden Fehler erkennt und dann zusätzlich noch den original Wert rekonstruieren.
+Auch eine Variante wäre es die Daten nach einem Fehler nachdem Fehlerhaften senden, nochmals versenden(auch hier wieder doppelt und dreifach Sendung), 
+was bei Reed-Solomon-Code-Anwendungen nicht immer sinnvoll ist. 
+\externaldocument{papers/reedsolomon/anwendungen}
+\ref{reedsolomon:section:anwendung}
 
+\subsection{Polynom-Ansatz
+\label{reedsolomon:section:polynomansatz}}
 \rhead{Polynom-Ansatz}
-Eine Idee ist aus den Daten 
-ein Polynom zu bilden.
+Eine Idee ist aus den Daten ein Polynom zu bilden.
 Diese Polynomfunktion bei bestimmten Werten, ausrechnet und diese Punkte dann überträgt.
-Nehmen wir als beisbiel die Zahlen \textcolor{blue}{2}, \textcolor{blue}{1}, \textcolor{blue}{5},
+\begin{beispiel} Nehmen wir die Zahlen \textcolor{blue}{2}, \textcolor{blue}{1}, \textcolor{blue}{5},
 welche uns dann das Polynom 
 \begin{equation}
 p(x)
@@ -24,49 +35,63 @@ p(x)
 \label{reedsolomon:equation1}
 \end{equation}
 ergeben.
-Übertragen werden nun die Werte an den stellen 1, 2, 3\dots 7 dieses Polynomes.
+Übertragen werden nun die \textcolor{darkgreen}{grünen Werte} 
+dieses \textcolor{blue}{blauen Polynomes} an den Stellen 1, 2, 3\dots 7 dieses Polynomes.
 Grafisch sieht man dies dann in Abbildung \ref{fig:polynom}, 
-mit den Punkten, $p(1),p(2),...,p(7) = (\textcolor{green}{8}, 
-\textcolor{green}{15}, \textcolor{green}{26},
-\textcolor{green}{41}, \textcolor{green}{60}, 
-\textcolor{green}{83}, \textcolor{green}{110})$
-Wenn ein Fehler sich in die Übertragung eingeschlichen hatt, muss der Leser/Empfänger diesen erkennen und das Polynom rekonstruieren.
+mit den Punkten, $p(1),p(2),...,p(7) = (\textcolor{darkgreen}{8}, 
+\textcolor{darkgreen}{15}, \textcolor{darkgreen}{26},
+\textcolor{darkgreen}{41}, \textcolor{darkgreen}{60}, 
+\textcolor{darkgreen}{83}, \textcolor{darkgreen}{110})$
+Wenn ein Fehler sich in die Übertragung eingeschlichen hat, muss der Leser/Empfänger diesen erkennen und das Polynom rekonstruieren.
 Der Leser/Empfänger weiss, den Grad des Polynoms und dessen Werte übermittelt wurden. 
+Die Farbe blau brauchen wir für die \textcolor{blue}{Daten} welche wir mit der Farbe grün \textcolor{darkgreen}{Übermitteln}.
+\end{beispiel}
 
-\subsection{Beispiel}
-Für das Beispeil aus der Gleichung \eqref{reedsolomon:equation1},
+\begin{beispiel}
+Aus der Gleichung \eqref{reedsolomon:equation1},
 ist ein Polynome zweiten Grades durch drei Punkte eindeutig bestimmbar.
 Hat es Fehler in der Übertragunge gegeben,(Bei Abbildung \ref{fig:polynom}\textcolor{red}{roten Punkte}) kann man diese erkennen,
 da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen. 
-(Bei Abbildung \ref{fig:polynom}\textcolor{green}{grünen Punkte})
+(Bei Abbildung \ref{fig:polynom}\textcolor{darkgreen}{grünen Punkte})
 Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
 Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
 gegenüber dem mit 5 Punkten falsch liegt.\ref{fig:polynom}
 Werden es mehr Fehler kann nur erkennt werden, dass das Polynom nicht stimmt.
 Das orginale Polynom kann aber nicht mehr gefunden werden.
-Dafür sind mehr übertragene Werte nötig.
+Da das Konkurenzpolynom, grau gestrichelt in Abbildung \ref{fig:polynom}, das orginal fehlleited.
+Um das Konkurenzpolynom auszuschliessen, währen mehr \textcolor{darkgreen}{Übertragungspunkte} nötig.
+\end{beispiel}
 
 \begin{figure}
 	\centering
-	%\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/polynom2}
-    \input{papers/reedsolomon/images/polynom2.tex}
-	\caption{Polynom $p(x)$ \eqref{reedsolomon:equation1}}
+	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/polynom2}
+    %\input{papers/reedsolomon/tikz/polynom2.tex}
+	\caption{Polynom $p(x)$ von der Gleichung\eqref{reedsolomon:equation1}}
 	\label{fig:polynom}
 \end{figure}
 
-\section{Fehlerbestimmung
-\label{reedsolomon:section:Fehlerbestimmmung}}
-So wird ein Muster indentifiziert, welches genau vorherbestimmen kann,
-wie gross das Polynom sein muss und wie viele Übertragungspunkte gegeben werden müssen.
-Um zu bestimmen wie viel Fehler erkennt und korriegiert werden können.
-Die Anzahl Zahlen (Daten, ab hier verwenden wir das Wort Nutzlast),
-die Entschlüsselt werden sollen, brauchen die gleiche Anzahl an  Polynomgraden, beginnend bei Grad 0. ( \( k-1 \) )
-Für die Anzahl an Übertragungspunkte, muss bestimmt werden wieviel Fehler erkennt und korrigiert werden sollen.
-Mit Hilfe der Tabelle, sieht man das es bei $t$ Fehlern und $k$ Nutzlast Zahlen,
-$k+2t$ Punkte übertragen werden müssen.
+\section{Fehlerkorekturstellen bestimmen
+\label{reedsolomon:section:Fehlerkorrekturstellen}}
+Um zu bestimmen wieviel zusätzliche \textcolor{darkgreen}{Übertragungspunkte} notwendig sind, die dann Fehler korrigieren,
+muss man zuerst Wissen wieviel \textcolor{blue}{Daten} gesendet und wieviel \textcolor{red}{Fehler} erkennt werden sollen. 
+Die Anzahl \textcolor{blue}{Daten} (ab hier verwenden wir das Wort Nutzlast), die als Polynomkoeffizente $k$ übergeben werden, 
+brauchen die gleiche Anzahl an Polynomgraden, beginnend bei Grad 0 somit ergibt sich der Polynomgrad mit $k-1$.
+Für die Anzahl der Fehler $t$, welche korrigiert werden können, gehen wir zum Beispiel.
+\begin{beispiel} von den Polynom \ref{reedsolomon:equation1} in, welchem wir 7 \textcolor{darkgreen}{Übertragungspunkte} senden.
+Durch 3 Punkte wird das Polyom eindeutig bestimmt, nun haben wir mehrere Konkurenzpolynome, doch mit maximal 2 Fehler liegen auf einem Konkurenzpolynom,
+maximal 4 Punkte und auf unserem orginal 5 Punkte. Ansonsten hatt es mehr Fehler oder unser Konkurenzpolynom ist das gleiche wie das Original. 
+Somit können wir nun bestimmen, dass von den \textcolor{darkgreen}{7 Übertragungspunkten$u$} bis zu 2 Fehler korrigiert werden können und 4 Übertragungspunkte zusätzlich gesendet werden müssen.
+\end{beispiel}
+Durch das erkennen des Schemas in der Tabelle\ref{tabel:fehlerkorrekturstellen}
+\begin{equation}
+    \frac{\textcolor{darkgreen}{u}-\textcolor{blue}{k}}{\textcolor{red}{t}}
+    =2
+    \label{reedsolomon:equation2}
+\end{equation}
+zeigt sich das es $k+2t$ Übertragungspunkte braucht.
 
 \begin{center}
-    \begin{tabular}{ c c c } 
+    \begin{tabular}{ c c | c} 
         \hline
         Nutzlas & Fehler & Übertragen \\
         \hline 
@@ -77,12 +102,11 @@ $k+2t$ Punkte übertragen werden müssen.
         $k$ & $t$ & $k+2t$ Werte eines Polynoms vom Grad $k-1$ \\ 
         \hline
     \end{tabular}
+    Fehlerkorrekturstellen Bestimmung TODO: Tabellenreferenz
+	\label{tabel:fehlerkorrekturstellen}
 \end{center}
 
-Ein toller Nebeneffekt ist das dadurch auch $2t$ Fehler erkannt werden. 
-Um zurück auf unser Beispiel zu kommen, 
-können von den 7 Übertragungspunkten bis zu $2t = 2\cdot2 = 4 $ Punkten falsch liegen 
-und es wird kein eindeutiges Polynom zweiten Grades erkannt, und somit die Nutzlast Daten als fehlerhaft deklariert.
+Ein Nebeneffekt ist das dadurch auch $2t$ Fehler erkannt werden können, nicht aber korrigiert.
 Um aus den Übertragenen Zahlen wieder die Nutzlastzahlen zu bekommen könnte man eine Polynominterpolation anwenden,
 doch die Punkte mit Polynominterpolation zu einem Polynom zu rekonstruieren ist schwierig und Fehleranfällig.
 
