@@ -1,0 +1,111 @@
+\begin{frame}
+  \frametitle{Algorithm}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+  \begin{algorithm}[H]\caption{Square Matrix Multiplication}
+    \setlength{\lineskip}{7pt}
+    \begin{algorithmic}[1]
+      \Function{MM}{$\textbf{A}, \textbf{B}, \textbf{C}$}
+      \State $sum \gets 0$
+      \State $n \gets columns(\textbf{A}) == rows(\textbf{B})$
+      \State $m \gets rows(\textbf{A})$
+      \State $p \gets columns(\textbf{B})$
+
+        \For{$i = 0,1,2 \dots,m-1$}
+        \For{$j = 0,1,2 \dots,p-1$}
+        \State $sum \gets 0$
+        \For{$k = 0,1,2 \dots,n-1$}
+          \State $sum \gets  sum + \textbf{A}[i][k] \cdot \textbf{B}[k][j]$
+        \EndFor
+        \State $\textbf{C}[i][j] \gets  sum $
+        \EndFor
+        \EndFor
+        \State \textbf{return} $\textbf{C}$
+     \EndFunction
+    \end{algorithmic}
+  \end{algorithm}
+\end{column}
+\begin{column}{0.4\textwidth}
+  \scalebox{0.6}{\parbox{\linewidth}{
+
+  \begin{tikzpicture}[ampersand replacement=\&,remember picture,overlay]
+
+    \matrix (A)[matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}] at (2,-2.8)
+     {
+     A_{1,1} \& \cdots \& A_{1,k} \& \cdots \& A_{1,n} \\
+     \vdots \&  \& \vdots \&  \& \vdots \\
+     A_{i,1} \& \cdots \& A_{i,k} \& \cdots \& A_{i,n} \\
+     \vdots \&  \& \vdots \& \& \vdots \\
+     A_{m,1} \& \cdots \& A_{m,k} \& \cdots \& A_{m,n} \\
+     };
+
+     \matrix (B)[matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}] at (7.5,1.2)
+      {
+      B_{1,1} \& \cdots \& B_{1,j} \& \cdots \& B_{1,p} \\
+      \vdots \&  \& \vdots \&  \& \vdots \\
+      B_{k,1} \& \cdots \& B_{k,j} \& \cdots \& B_{k,p} \\
+      \vdots \&  \& \vdots \& \& \vdots \\
+      B_{n,1} \& \cdots \& B_{n,j} \& \cdots \& B_{n,p} \\
+      };
+
+     \matrix (C)[matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}] at (7.5,-2.8)
+      {
+      C_{1,1} \& \cdots \& C_{1,j} \& \cdots \& C_{1,p} \\
+      \vdots \&  \& \vdots \&  \& \vdots \\
+      C_{i,1} \& \cdots \& C_{i,j} \& \cdots \& C_{i,p} \\
+      \vdots \&  \& \vdots \& \& \vdots \\
+      C_{m,1} \& \cdots \& C_{m,j} \& \cdots \& C_{m,p} \\
+      };
+
+
+               \begin{scope}[on background layer]
+               \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=green, fit=(A-3-1)(A-3-5)] {};
+               \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=blue, fit=(B-1-3)(B-5-3)] {};
+               \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=red, fit=(C-3-3)] {};
+
+               \end{scope}
+
+
+
+
+   \end{tikzpicture}
+   }}
+ \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Algorithm}
+
+\begin{columns}
+  \begin{column}{0.6\textwidth}
+\begin{algorithm}[H]\caption{Square Matrix Multiplication}
+  \setlength{\lineskip}{7pt}
+  \begin{algorithmic}[1]
+    \Function{MM}{$\textbf{A}, \textbf{B}, \textbf{C}$}
+    \State $sum \gets 0$
+    \State $n \gets columns(\textbf{A}) == rows(\textbf{B})$
+    \State $m \gets rows(\textbf{A})$
+    \State $p \gets columns(\textbf{B})$
+
+      \For{$i = 0,1,2 \dots,m-1$}
+      \For{$j = 0,1,2 \dots,p-1$}
+      \State $sum \gets 0$
+      \For{$k = 0,1,2 \dots,n-1$}
+        \State $sum \gets  sum + \textbf{A}[i][k] \cdot \textbf{B}[k][j]$
+      \EndFor
+      \State $\textbf{C}[i][j] \gets  sum $
+      \EndFor
+      \EndFor
+      \State \textbf{return} $\textbf{C}$
+   \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\end{column}
+\begin{column}{0.4\textwidth}
+\Huge$\mathcal{O}(n^3)$
+\end{column}
+\end{columns}
+
+\end{frame}
