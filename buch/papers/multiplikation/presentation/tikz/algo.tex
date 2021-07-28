@@ -1,0 +1,52 @@
+\documentclass[border=10pt]{article}
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{lipsum}
+\usepackage{amscd}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{slashed}
+\usepackage{pdfpages}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{color}
+
+\begin{document}
+
+\begin{algorithm}[H]\caption{Square Matrix Multiplication}
+  \setlength{\lineskip}{7pt}
+  \begin{algorithmic}[1]
+    \Function{MM}{$\textbf{A}, \textbf{B}, \textbf{C}, n$}
+    \State $sum \gets 0$
+      \For{$i = 0,1,2 \dots,n-1$}
+      \For{$j = 0,1,2 \dots,n-1$}
+      \State $sum \gets 0$
+      \For{$k = 0,1,2 \dots,n-1$}
+        \State $sum \gets  sum + \textbf{A}[i][k] \cdot \textbf{B}[k][j]$
+      \EndFor
+      \State $\textbf{C}[i][j] \gets  sum $
+      \EndFor
+      \EndFor
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\end{document}

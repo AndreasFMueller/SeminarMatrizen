@@ -7,8 +7,7 @@ dependencies-multiplikation =						\
 	papers/multiplikation/packages.tex					\
 	papers/multiplikation/main.tex					\
 	papers/multiplikation/references.bib				\
-	papers/multiplikation/teil0.tex					\
-	papers/multiplikation/teil1.tex					\
-	papers/multiplikation/teil2.tex					\
-	papers/multiplikation/teil3.tex
+	papers/multiplikation/einlteung.tex					\
+	papers/multiplikation/loesungsmethoden.tex					\
+	papers/multiplikation/problemstellung.tex					
 
