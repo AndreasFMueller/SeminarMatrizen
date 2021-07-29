@@ -9,35 +9,15 @@
 Um die Polynominterpolation zu umgehen, gehen wir nun über in die Fourientransformation.
 Dies wird weder eine Erklärung der Forientransorfmation, noch ein genauer gebrauch für den Reed-Solomon-Code. 
 Dieser Abschnitt zeigt nur wie die Fourientransformation auf Fehler reagiert.
-wobei sie dann bei späteren Berchnungen ganz nützlich ist.
+Das ganze zeigen wir mit einem Beispiel einer Übertragung von Zahlen mit Hilfe der Fourientransformation.
 
 \subsection{Diskrete Fourietransformation Zusamenhang
 \label{reedsolomon:subsection:dtfzusamenhang}}
 Mit hilfe der Fourietransformation werden die \textcolor{blue}{blauen Datenpunkte} transformiert,
 zu den \textcolor{darkgreen}{grünen Übertragungspunkten}. 
 Durch eine Rücktransformation könnnen die \textcolor{blue}{blauen Datenpunkte} wieder rekonstruiert werden.
-Nun zur definition der Diskrete Fourietransformation, diese ist definiert als
-\begin{equation}
-	\hat{c}_{k} 
-	= \frac{1}{N} \sum_{n=0}^{N-1}
-	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
-	,\label{reedsolomon:DFT}
-\end{equation}
-wenn man nun 
-\begin{equation}
-	w =
-	e^{-\frac{2\pi j}{N} k}
-	\label{reedsolomon:DFT_summand}
-\end{equation}
-ersetzte, und $N$ konstantbleibt, erhält man
-\begin{equation}
-	\hat{c}_{k}=
-	\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
-	\label{reedsolomon:DFT_polynom}
-\end{equation}
-was überaust ähnlich zu unserem Polynomidee ist.
 
-\subsection{Beispiel
+\subsubsection{Beispiel einer Übertragung mit Fourientransformation
 \label{reedsolomon:subsection:Übertragungsabfolge}}
 Der Auftrag ist nun 64 Daten zu übertragen und nach 32 Fehler abzusicheren,
 16 Fehler erkennen und rekonstruieren.
@@ -51,8 +31,8 @@ Dabei zusätzlich nach 16 Fehler abgesichert, macht insgesamt 96 Übertragungsza
 (siehe Abschnitt \externaldocument{papers/reedsolomon/idee}\ref{reedsolomon:section:Fehlerkorrekturstellen})
 Die 32 Fehlerkorrekturstellen werden als Null Übertragen
 \item Nun wurde mittels der diskreten Fourientransformation diese 96 codiert.
-Das heisst alle Informationen ist in alle Zahlenvorhanden. (Auch die Fehlerkorrekturstellen Null)
-\item Nun kommen drei Fehler dazu an den Übertragungsstellen 7, 21 und 75.(die Skala ist Rechts)
+Das heisst alle Informationen ist in alle Zahlenvorhanden. Auch die Fehlerkorrekturstellen Null.
+\item Nun kommen drei Fehler dazu an den Übertragungsstellen 7, 21 und 75.
 Die Fehler können auf den ganzen 96 Übertragungswerten liegen, wie die 75 zeigt.
 \item Dieses wird nun Empfangen und mittels inversen diskreten Fourientransormation, wieder rücktransformiert.(Iklusive der Fehler)
 \item Nun sieht man den Fehler im Decodieren in den Übertragungsstellen 64 bis 96, da es dort nicht mehr Null ist.
@@ -72,3 +52,30 @@ jetzt gilt es nur noch diese zu korrigieren und wir haben unser originales Signa
 	\caption{Übertragungsabfolge \ref{reedsolomon:subsection:Übertragungsabfolge}}
 	\label{fig:sendorder}
 \end{figure}
+
+Nun zur definition der Diskrete Fourietransformation, diese ist definiert als
+\begin{equation}
+	\hat{c}_{k} 
+	= \frac{1}{N} \sum_{n=0}^{N-1}
+	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}.
+	,\label{reedsolomon:DFT}
+\end{equation}
+Wenn man nun 
+\begin{equation}
+	w =
+	e^{-\frac{2\pi j}{N} k}
+	\label{reedsolomon:DFT_summand}
+\end{equation}
+ersetzte, und $N$ konstantbleibt, erhält man
+\begin{equation}
+	\hat{c}_{k}=
+	\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
+	\label{reedsolomon:DFT_polynom}
+\end{equation}
+was überaust ähnlich zu unserem Polynomidee ist.
+Die Polynominterpolation und die Fourientransformation rechnen beide mit reelen Zahlen.
+Wenn die Fehlerabweichung sehr sehr klein ist, erkennt man diese irgendwann nicht mehr.
+Zusätzlich muss mann immer Grenzen bestimmen auf wieviel Stellen gerechnet wird und wie die Fehler erkannt werden im Locator.
+Deshalb haben Mathematiker einen neuen Körper gesucht und ihn in der Endlichkeit gefunden,
+dies wird nun im nächsten Abschnitt genauer erklärt.
+
