@@ -1,0 +1,128 @@
+%
+% einleitung.tex -- Beispiel-File für die Einleitung
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Aufbau\label{mceliece:section:Aufbau}}
+\rhead{Aufbau}
+Das McEliece-Kryptosystem besteht aus folgenden Elementen:
+
+\subsection{Datenvektor $d_k$
+\label{mceliece:subsection:d_k}}
+In diesem Vektor der Länge $k$ sind die zu verschlüsselnden Daten enthalten.
+Beispielsweise
+\[d_4=
+\begin{pmatrix}
+    1\\
+    1\\
+    1\\
+    0 
+\end{pmatrix}
+\]
+
+\subsection{Binäre Zufallsmatrix $S_k$
+\label{mceliece:subsection:s_k}}
+$S_k$ ist eine Binäre Zufallsmatrix der Grösse $k \times k$.
+Auch muss diese Matrix in $\mathbb{F}_2$ invertierbar sein.
+Für kleine Matrizen kann durchaus jedes Matrizenelement zufällig generiert werden,
+wobei danach mithilfe des Gauss-Algorythmusses deren Inverse bestimmt werden kann.
+Da eine solche Matrix möglicherweise singulär ist, muss in diesem Fall eine neue Zufallsmatrix erzeugt werden.
+Für grössere Matrizen existieren bessere Methoden, auf welche hier nicht weiter eingegangen wird \cite{mceliece:GenerationRandMatrix}.
+Beispielsweise
+\[S_4=
+\begin{pmatrix}
+    0 & 1 & 1 & 1\\
+    0 & 1 & 1 & 0\\
+    0 & 0 & 1 & 1\\
+    1 & 0 & 0 & 1
+\end{pmatrix}
+\]
+
+\[
+    S_4^{-1}=
+    \begin{pmatrix}
+        1 & 0 & 1 & 0\\
+        1 & 1 & 0 & 1\\
+        1 & 1 & 1 & 0\\
+        1 & 1 & 0 & 0
+    \end{pmatrix}
+\]
+
+\subsection{Linear-Code-Generatormatrix $G_{n,k}$
+\label{mceliece:subsection:g_m}}
+Das wichtigste Element des McEliece-Systems ist ein fehlerkorrigierender Code,
+der in der Lage ist, $t$ Fehler zu korrigieren.
+Im Zusammenhang mit McEliece werden dabei meist Goppa-Codes verwendet,
+es können prinzipiell auch andere Codes wie beispielsweise Reed-Solomin verwendet werden,
+jedoch besitzen einige Codes Schwachstellen \cite{mceliece:lorenz}.
+Das Codieren mit diesem linearen Code kann mithilfe dessen Generatormatrix $G_{n,k}$ erfolgen.
+Da es sich um einen fehlerkorrigierenden Code handelt,
+wird das Codewort länger als das Datenwort,
+es wird also Redundanz hinzugefügt,
+um die Fehlerkorrektur möglich zu machen.
+
+Beispiel
+\[
+    G_{7,4}=
+    \begin{pmatrix}
+        1 & 0 & 0 & 0\\
+        1 & 1 & 0 & 0\\
+        0 & 1 & 1 & 0\\
+        1 & 0 & 1 & 1\\
+        0 & 1 & 0 & 1\\
+        0 & 0 & 1 & 0\\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\]
+
+\subsection{Permutations-Matrix $P_n$
+\label{mceliece:subsection:p_m}}
+Mit der zufällig generierten Permutationsmatrix $P_n$ wird die Reihenfolge der Bits geändert.
+Mit der Inversen $P_n^{-1}$ kann die Bitvertauschung rückgängig gemacht werden.
+Beispiel
+\[
+    P_7=
+    \begin{pmatrix}
+        0 & 1 & 0 & 0 & 0 & 0 & 0\\
+        0 & 0 & 0 & 0 & 0 & 0 & 1\\
+        0 & 0 & 0 & 0 & 0 & 1 & 0\\
+        0 & 0 & 1 & 0 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0 & 0\\
+        1 & 0 & 0 & 0 & 0 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1 & 0 & 0
+    \end{pmatrix}
+\]
+,
+\[
+    P_7^{-1}=P_7^t=
+    \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & 1 & 0\\
+        1 & 0 & 0 & 0 & 0 & 0 & 0\\
+        0 & 0 & 0 & 1 & 0 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 & 0 & 0 & 1\\
+        0 & 0 & 1 & 0 & 0 & 0 & 0\\
+        0 & 1 & 0 & 0 & 0 & 0 & 0
+    \end{pmatrix}
+\]
+
+\subsection{Fehler-Vektor $e_n$
+\label{mceliece:subsection:p_m}}
+Dieser Vektor der Länge $n$ besteht aus $t$ Einsen, welche zufällig innerhalb des Vektors angeordnet sind,
+alle anderen Einträge sind Null.
+Dieser Fehlervektor besitzt also gleich viele Einer,
+wie die Anzahl Fehler, die der Linearcode zu korrigieren vermag.
+
+Beispiel
+\[
+    E_7=
+    \begin{pmatrix}
+        0\\
+        0\\
+        1\\
+        0\\
+        0\\
+        0\\
+        0
+    \end{pmatrix}
+\]
