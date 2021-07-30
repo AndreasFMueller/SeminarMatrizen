@@ -6,7 +6,7 @@
 \section{Rotation}
 \rhead{Rotation}
 
-Eine Rotation kann man aus zwei aufeinanderfolgenden Spiegelungen bilden. Das wird für einige zuerst eine verwirrende Aussage sein, da man aus den vorherig gezeigten Formeln annehmen könnte, dass die Spiegelung schon für eine Drehung ausreicht. Obwohl sich die Längen, Winkel und Volumen sich bei einer Spiegelung, wie bei einer Rotation, nicht ändert, sind sie doch verschieden, da die Orientierung bei der Spiegelung invertiert wird. Stellt man sich beispielsweise ein Objekt im Dreidimensionalen vor und spiegelt dieses an einer Fläche, dann ist es unmöglich nur durch eine Rotation (egal an welchem Punkt) das ursprüngliche Objekt deckungsgleich auf das Gespiegelte zu drehen. Hingegen ist es wiederum möglich ein zweifach gespiegeltes Objekt durch eine Drehung zu erreichen. Das liegt daran, da die Orientierung zweimal invertiert wurde.
+Eine Rotation kann man aus zwei aufeinanderfolgenden Spiegelungen bilden. Das kann vielleicht zuerst eine verwirrende Aussage sein, da man aus den vorherig gezeigten Formeln annehmen könnte, dass die Spiegelung schon für eine Drehung ausreicht. Obwohl sich die Längen, Winkel und Volumen sich bei einer Spiegelung, wie bei einer Rotation, nicht ändert, sind sie doch verschieden, da die Orientierung bei der Spiegelung invertiert wird. Stellt man sich beispielsweise ein Objekt im Dreidimensionalen vor und spiegelt dieses an einer Fläche, dann ist es unmöglich nur durch eine Rotation (egal an welchem Punkt) das ursprüngliche Objekt deckungsgleich auf das Gespiegelte zu drehen. Hingegen ist es wiederum möglich ein zweifach gespiegeltes Objekt durch eine Drehung zu erreichen. Das liegt daran, da die Orientierung zweimal invertiert wurde.
 \\(Hier wird noch ein Bild für das Verständnis eingefügt)
 
 \begin{figure}
@@ -49,72 +49,80 @@ Diese Drehmatrizen gehören der speziellen orthogonalen Matrizengruppe $D\in \te
 \subsection{Geometrische Algebra}
 Da wir jetzt aus der Geometrie wissen, dass eine Rotation durch zwei Spiegelungen gebildet werden kann, können wir die Rotation mit der Formel \eqref{RefGA} einfach herleiten.
 \begin{satz}
-	Eine Rotation 
+	Durch zwei nacheinander auf einen Vektor $\mathbf{v}$ angewendete Spiegelungen lässt sich eine Rotation 
 	\begin{align} \label{rotGA}
 		\mathbf{v}'' = \mathbf{wv}'\mathbf{w}^{-1} = \mathbf{w}(\mathbf{uvu}^{-1})\mathbf{w}^{-1} = (\mathbf{wu})\mathbf{v}(\mathbf{u}^{-1}\mathbf{w}^{-1})
 	\end{align}
-	lässt sich durch zwei nacheinander auf einen Vektor $\mathbf{v}$ angewendete Spiegelungen beschreiben.
+	beschreiben.
 \end{satz}
 Die Vektoren $\mathbf{w}$ und $\mathbf{u}$ bilden hier wiederum die Spiegelachsen. Diese Formel versuchen wir jetzt noch durch Umstrukturierung zu verbessern. 
 \subsubsection{Exponentialform}
-Dazu leiten wir zuerst die Exponentialform eines Vektors her. Es wird dabei zur Vereinfachung davon ausgegangen, dass alle Vektoren $\mathbf{w}, \mathbf{u}, \mathbf{v}$ in der $\mathbf{e}_{12}$ Ebene liegen. Weitere Drehungen können in höheren Dimensionen durch Linearkombinationen von Drehungen in den $\mathbf{e}_{ij}, i\not=j$ Ebenen erreicht werden. Für die Herleitung erweitern wir nun als erstes die Polarform
+Dazu leiten wir zuerst die Exponentialform eines Vektors her. Es wird dabei zur Vereinfachung davon ausgegangen, dass alle Vektoren $\mathbf{w}, \mathbf{u}, \mathbf{v}$ in der $\mathbf{e}_{12}$ Ebene liegen. Weitere Drehungen können in höheren Dimensionen durch Linearkombinationen von Drehungen in den $\mathbf{e}_{ij}, i\not=j$ Ebenen erreicht werden. Für die Herleitung ersetzen wir als erstes in der Polarform
 \begin{align}
 	\mathbf{w} = |\mathbf{w}| \left(\cos(\theta_w) \mathbf{e}_1 + \sin(\theta_w) \mathbf{e}_2\right)
 \end{align}
-eines Vektors mit $\mathbf{e}_1^2 = 1$ beim Sinus
+eines Vektors einen Faktor 1 durch $1=\mathbf{e}_1^2$ und erhalten beim Sinus
 \begin{align}\label{e1ausklammern}
-	\mathbf{w} &= |\mathbf{w}| \left(\cos(\theta_w) \mathbf{e}_1 + \sin(\theta_w) \mathbf{e}_1\mathbf{e}_1\mathbf{e}_2\right), 
+	\mathbf{w} &= |\mathbf{w}| \left(\cos(\theta_w) \mathbf{e}_1 + \sin(\theta_w) \mathbf{e}_1\mathbf{e}_1\mathbf{e}_2\right). 
 \end{align}
-um dann $\mathbf{e}_1$
+In einem zweiten Schritt klammern wir $\mathbf{e}_1$ aus, dies ergibt
 \begin{align}
-	\mathbf{w} = |\mathbf{w}|\mathbf{e}_1\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12}\right) \label{ExponentialGA}
+	\mathbf{w} = |\mathbf{w}|\mathbf{e}_1\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12}\right). \label{ExponentialGA}
 \end{align}
-ausklammern zu können. Die Ähnlichkeit des Klammerausdrucks zu der Eulerschen Formel bei den Komplexen Zahlen ist nun schon gut erkennbar. Versuchen wir nun mithilfe der Reihenentwicklungen
+Die Ähnlichkeit des Klammerausdrucks in der Formel \eqref{ExponentialGA} zu der Eulerschen Formel bei den komplexen Zahlen ist nun schon gut erkennbar. Versuchen wir nun mithilfe der Reihenentwicklungen
 \begin{align}
 	\sin(\theta_w)\mathbf{e}_{12}&=\sum _{n=0}^{\infty }(-1)^{n}{\frac {\theta_w^{2n+1}}{(2n+1)!}}\mathbf{e}_{12} =\theta_w\mathbf{e}_{12}-{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}-\cdots \\
 	\cos(\theta_w)&=\sum _{n=0}^{\infty }(-1)^{n}{\frac {\theta_w^{2n}}{(2n)!}} =1-{\frac {\theta_w^{2}}{2!}}+{\frac {\theta_w^{4}}{4!}}-\cdots
 \end{align}
-den Zusammenhang auch hier herzustellen. Verwenden wir jetzt noch die Eigenschaft, dass $\mathbf{e}_{12}^2=-1, \enspace\mathbf{e}_{12}^3=-\mathbf{e}_{12}, \dots$, bei dem Klammerausdruck in Formel \eqref{ExponentialGA}
+diesen Zusammenhang auch hier herzustellen. Setzt man diese beiden Reihenentwicklungen in \eqref{ExponentialGA} ein, erhält man
 \begin{align}
-	\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12} &= 1+\theta_w\mathbf{e}_{12}-{\frac {\theta_w^{2}}{2!}}-{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}+{\frac {\theta_w^{4}}{4!}}+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}-\cdots\\
-	&= 1 \mathbf{e}_{12}^0+\theta_w\mathbf{e}_{12}^1+{\frac {\theta_w^{2}}{2!}}\mathbf{e}_{12}^2+{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}^3+{\frac {\theta_w^{4}}{4!}}\mathbf{e}_{12}^4+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}^5+\cdots
+	\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12} &= 1+\theta_w\mathbf{e}_{12}-{\frac {\theta_w^{2}}{2!}}-{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}+{\frac {\theta_w^{4}}{4!}}+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}-\cdots
+\end{align}
+Dies sieht noch nicht wie eine Exponentialreihe aus, da $\mathbf{e}_{12}$ nur in jedem zweiten Term auftritt. Da aber $\mathbf{e}_{12}=-1$ gibt, erhält man für
+\begin{align}
+	e^{\theta_w\mathbf{e}_{12}} = 1 \mathbf{e}_{12}^0+\theta_w\mathbf{e}_{12}^1+{\frac {\theta_w^{2}}{2!}}\mathbf{e}_{12}^2+{\frac {\theta_w^{3}}{3!}}\mathbf{e}_{12}^3+{\frac {\theta_w^{4}}{4!}}\mathbf{e}_{12}^4+{\frac {\theta_w^{5}}{5!}}\mathbf{e}_{12}^5+\cdots
 	\label{ExponentialGA2}
 \end{align}
-dann sieht man die Übereinstimmung mit der Reihenentwicklung der Exponentialfunktion
+Man sieht, dass die beiden Reihen übereinstimmen. Es folgt somit
+\begin{align}\label{EulerGA}
+	e^{\theta_w \mathbf{e}_{12}} = \cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12},
+\end{align} 
+es gibt eine Euler-Formel mit $mathbf{e}_{12}$ anstelle der imaginären Einheit $j$.
+
+Wenn man jetzt den Vektor \eqref{ExponentialGA} durch die eulersche Schreibweise
 \begin{align}
-	&e^{\theta_w\mathbf{e}_{12}}=\sum _{n=0}^{\infty }{\frac {(\theta_w\mathbf{e}_{12})^{n}}{n!}}={\frac {(\theta_w\mathbf{e}_{12})^{0}}{0!}}+{\frac {(\theta_w\mathbf{e}_{12})^{1}}{1!}}+{\frac {(\theta_w\mathbf{e}_{12})^{2}}{2!}}+{\frac {(\theta_w\mathbf{e}_{12})^{3}}{3!}}+\cdots\\
-	&\Rightarrow \mathbf{w} = |w|\mathbf{e}_1 e^{\theta_w \mathbf{e}_{12}} = |w|\mathbf{e}_1\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_{12}\right).
+	\mathbf{w} = |\mathbf{w}|\mathbf{e}_1e^{\theta_w\mathbf{e}_{12}}
 \end{align}
-Man kann die Exponentialform des Vektors ähnlich wie die der komplexen Zahlen interpretieren. Der Einheitsvektor $\mathbf{e}_1$ wird um die Länge $|\mathbf{w}|$ gestreckt und um $\theta_w$ gedreht.
-Bei den komplexen Zahlen würden man vom Punkt 1 anstatt $\mathbf{e}_1$ ausgehen.
+ersetzt, kann die Exponentialform des Vektors ähnlich wie die der komplexen Zahlen interpretieren. Der Einheitsvektor $\mathbf{e}_1$ wird um die Länge $|\mathbf{w}|$ gestreckt und um $\theta_w$ gedreht.
 \subsubsection{Vektormultiplikation}
-Nun werden wir das Produkt von zwei Vektoren $\mathbf{wu}$
-\begin{align}
+Nun werden wir das Vektorprodukt
+\begin{align} \label{VektorproduktformelGA}
 	\mathbf{wu} = |\mathbf{w}|\mathbf{e}_1 e^{\theta_w \mathbf{e}_{12}}|\mathbf{u}|\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}
 \end{align}
-so umformen, dass wir eine bessere Darstellung erhalten. Wir tauschen dafür zuerst beim Vektor $\mathbf{w}$ die Reihenfolge von 
-$\mathbf{e}_1$ mit dem Exponentialterm $e^{\theta_w \mathbf{e}_{12}}$, indem wir bei der Gleichung \eqref{e1ausklammern}, anstatt mit $\mathbf{e}_1\mathbf{e}_1\mathbf{e}_2$ mit $\mathbf{e}_2\mathbf{e}_1\mathbf{e}_1$ erweitern
+so umformen, dass wir die Drehung nur durch Exponentialterme beschreiben können. Wir tauschen dafür zuerst beim Vektor $\mathbf{w}$ die Reihenfolge von 
+$\mathbf{e}_1$ mit dem Exponentialterm $e^{\theta_w \mathbf{e}_{12}}$, indem wir bei der Gleichung \eqref{e1ausklammern} $1=\mathbf{e}_1^2$ an einer anderen Position
 \begin{align} 
-	\mathbf{w} &= |\mathbf{w}|\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_2\mathbf{e}_1\right)\mathbf{e}_1\\
-	&= |\mathbf{w}|e^{\theta_w \mathbf{e}_{21}}\mathbf{e}_1\\
-	&= |\mathbf{w}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1
+	\mathbf{w} &= |\mathbf{w}|\left(\cos(\theta_w)+ \sin(\theta_w) \mathbf{e}_2\mathbf{e}_1\right)\mathbf{e}_1
 \end{align}
-und umstrukturiert wieder in die Vektorproduktformel einsetzen
+einsetzten. Mithilfe der Formel \eqref{EulerGA} und dem Wissen, dass $\mathbf{e}_{21}= -\mathbf{e}_{12}$ können wir die Umformung
 \begin{align}
-	\mathbf{wu} = |\mathbf{w}||\mathbf{u}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}\\
-	\mathbf{wu} = |\mathbf{w}||\mathbf{u}|e^{(\theta_u-\theta_w) \mathbf{e}_{12}}.
+	|\mathbf{w}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1
 \end{align}
-Der Term $\mathbf{u}^{-1}\mathbf{w}^{-1}$
+ausführen. Diese wichtige Umstrukturierung können wir wieder in die Vektorproduktformel \eqref{VektorproduktformelGA} einsetzen un erhalten
+\begin{align}
+	\mathbf{wu} &= |\mathbf{w}||\mathbf{u}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}\\
+	&= |\mathbf{w}||\mathbf{u}|e^{(\theta_u-\theta_w) \mathbf{e}_{12}}.
+\end{align}
+Das inverse Vektorprodukt
 \begin{align}
 	\mathbf{u}^{-1}\mathbf{w}^{-1} = \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{(\theta_w-\theta_u) \mathbf{e}_{12}}
 \end{align}
-kann durch die selbe Methode zusammengefasst werden.
-Wenn wir den Winkel zwischen den Vektoren  $\mathbf{w}$ und $\mathbf{u}$ als $\theta = \theta_w - \theta_u$ definieren erhalten wir
+kann durch die selbe Methode vereinfacht werden.
+Wenn wir den Winkel zwischen den Vektoren  $\mathbf{w}$ und $\mathbf{u}$ als $\theta = \theta_w - \theta_u$ definieren erhalten wir als endgültige Form der Vektorprodukte
 \begin{align}\label{wuExpo}
-	\mathbf{wu} = |\mathbf{w}||\mathbf{u}|e^{-\theta \mathbf{e}_{12}}\\
-	\mathbf{u}^{-1}\mathbf{w}^{-1} = \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{\theta \mathbf{e}_{12}} \label{wuExpoInv}
+	\mathbf{wu} &= |\mathbf{w}||\mathbf{u}|e^{-\theta \mathbf{e}_{12}}\enspace\text{und}\\
+	\mathbf{u}^{-1}\mathbf{w}^{-1} &= \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{\theta \mathbf{e}_{12}} \label{wuExpoInv}.
 \end{align}
-die finale Form der Vektorprodukte.
 \subsubsection{Umstrukturierte Drehungsgleichung}
 Setzten wir nun unsere neuen Erkenntnisse in die Gleichung \eqref{rotGA} ein
 \begin{align}
