@@ -1,8 +1,6 @@
 %
 % idee.tex -- Polynom Idee
 %
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
-%
 \section{Idee
 \label{reedsolomon:section:idee}}
 \rhead{Problemstellung}
@@ -12,14 +10,14 @@ Doch nur schon um Fehler zu erkennen werden überproportional viele Daten doppel
 Der Reed-Solomon-Code macht dies auf eine andere, clevere Weise.
 Das Problem liegt darin Informationen, Zahlen, 
 zu Übertragen und Fehler zu erkennen.
-Beim Reed-Solomon-Code kann man nicht nur Fehler erkennen, 
+Speziell beim Reed-Solomon-Code kann man nicht nur Fehler erkennen, 
 man kann sogar einige Fehler korrigieren.
 Der Unterschied des Fehler erkennen und korrigiren, ist das beim Erkennen nur die Frage beantwortet wird: Ist die Übertragung fehlerhaft oder nicht?
 Beim Korrigieren werden Fehler erkannt und dann zusätzlich noch den original Wert rekonstruieren.
-Auch eine Variante wäre die Daten nach einer Fehlerhaften sendung, nochmals zum senden auffordern(auch hier wieder doppelt und dreifach Sendung), 
+Auch eine Variante wäre die Daten nach einer Fehlerhaften sendung, nochmals zum senden auffordern(auch hier wird doppelt und dreifach gesendung), 
 was bei Reed-Solomon-Code-Anwendungen nicht immer sinnvoll ist. 
-\externaldocument{papers/reedsolomon/anwendungen}
-\ref{reedsolomon:section:anwendung}
+Anwendungen finden sind im Abchnitt \externaldocument{papers/reedsolomon/anwendungen}
+\ref{reedsolomon:section:anwendung} beschrieben.
 
 \subsection{Polynom-Ansatz
 \label{reedsolomon:section:polynomansatz}}
@@ -43,28 +41,29 @@ mit den Punkten, $p(1),p(2),...,p(7) = (\textcolor{darkgreen}{8},
 \textcolor{darkgreen}{41}, \textcolor{darkgreen}{60}, 
 \textcolor{darkgreen}{83}, \textcolor{darkgreen}{110})$
 Wenn ein Fehler sich in die Übertragung eingeschlichen hat, muss der Leser/Empfänger diesen erkennen und das Polynom rekonstruieren.
-Der Leser/Empfänger weiss, den Grad des Polynoms und dessen Werte übermittelt wurden. 
+Der Leser/Empfänger weiss, den Grad des Polynoms und dessen \textcolor{darkgreen}{Werte} übermittelt wurden. 
 Die Farbe blau brauchen wir für die \textcolor{blue}{Daten} welche wir mit der Farbe grün \textcolor{darkgreen}{Übermitteln}.
 \end{beispiel}
 
 \begin{beispiel}
 Ein Polynome zweiten Grades ist durch drei Punkte eindeutig bestimmbar.
-Hat es Fehler in der Übertragunge gegeben,(Bei Abb. \ref{fig:polynom} \textcolor{red}{roten Punkte}),
-kann man diese erkennen, da alle Punkte, die korrekt sind, auf der Parabel liegen müssen. 
-(Bei Abb. \ref{fig:polynom} \textcolor{darkgreen}{grünen Punkte})
+Hat es Fehler in der Übertragunge gegeben,in der Abbilbung \ref{fig:polynom} die \textcolor{red}{roten Punkte}).
+Erkennt man diese Fehler, da alle korrekten Punkte auf der Parabel liegen müssen. 
+Die \textcolor{darkgreen}{grünen Punkte} bestimmen die Parabel, und die Fehler können zu den 
+\textcolor{gray}{Orginalpunkte} rekonstruiert werden.
 Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
 Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
 gegenüber dem mit 5 Punkten falsch liegt. \ref{fig:polynom}
 Werden es mehr Fehler kann nur erkannt werden, dass das Polynom nicht stimmt.
 Das orginale Polynom kann aber nicht mehr gefunden werden.
-Da das Konkurrenzpolynom, grau gestrichelt in Abbildung \ref{fig:polynom}, das orginal fehlleitet.
+Da andere Polynome oder das Konkurrenzpolynom, grau gestrichelt in Abbildung \ref{fig:polynom}, das orginal fehlleitet.
 Um das Konkurrenzpolynom auszuschliessen, währen mehr \textcolor{darkgreen}{Übertragungspunkte} nötig.
 \end{beispiel}
 
-\begin{figure}
+\begin{figure}%[!ht]
 	\centering
-	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/polynom2}
-    %\input{papers/reedsolomon/tikz/polynom2.tex}
+	%\includegraphics[width=\textwidth]{papers/reedsolomon/figures/polynom2}
+    \input{papers/reedsolomon/tikz/polynomraw.tex}
 	\caption{Polynom $p(x)$ von der Gleichung\eqref{reedsolomon:equation1}}
 	\label{fig:polynom}
 \end{figure}
@@ -90,6 +89,7 @@ Man könnte auch dies in der Tabelle \ref{tab:fehlerkorrekturstellen} erkennen, 
 zeigt sich, dass es $k+2t$ Übertragungspunkte braucht.
 
 \begin{table}
+    \centering
     \begin{tabular}{ c c | c} 
         \hline
         Nutzlas & Fehler & Übertragen \\
@@ -101,7 +101,8 @@ zeigt sich, dass es $k+2t$ Übertragungspunkte braucht.
         $k$ & $t$ & $k+2t$ Werte eines Polynoms vom Grad $k-1$ \\ 
         \hline
     \end{tabular}
-    \caption{\label{tab:fehlerkorrekturstellen} Fehlerkorrekturstellen Bestimmung.}
+    \caption{ Fehlerkorrekturstellen Bestimmung.}
+    \label{tab:fehlerkorrekturstellen}
 \end{table}
 
 Ein Nebeneffekt ist, dass dadurch auch $2t$ Fehler erkannt werden können, nicht aber korrigiert.
