@@ -8,5 +8,4 @@ CHAPTERFILES = $(CHAPTERFILES)						\
 	chapters/90-crypto/arith.tex					\
 	chapters/90-crypto/ff.tex					\
 	chapters/90-crypto/aes.tex					\
-	chapters/90-crypto/rs.tex					\
 	chapters/90-crypto/chapter.tex

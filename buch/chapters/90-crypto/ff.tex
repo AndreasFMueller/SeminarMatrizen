@@ -7,6 +7,15 @@
 \section{Kryptographie und endliche Körper
 \label{buch:section:kryptographie-und-endliche-koerper}}
 \rhead{Kryptographie und endliche Körper}
+In diesem Abschnitt soll illustriert werden, wie die Arithmetik in
+endlichen Körpern Algorithmen zu konstruieren erlaubt, mit denen sich
+zum Beispiel sehr effizient kryptographische Schlüssel aushandeln 
+lassen.
+Der klassische Diffie-Hellmann-Algorithmus in einem Galois-Körper
+$\mathbb{F}_p$ wird in Abschnitt~\ref{buch:subsection:elliptische-kurven}
+verallgemeinert auf eine sogenannte elliptische Kurve.
+Diese Version des Algorithmus ist sehr effizient was die Bitlänge der
+Schlüssel betrifft.
 
 \subsection{Potenzen in $\mathbb{F}_p$ und diskreter Logarithmus
 \label{buch:subsection:potenzen-diskreter-logarithmus}}
@@ -439,6 +448,7 @@ Das Polynom ist
 \[
 p(t)
 =
+XXX
 \]
 Nach Division durch $t(t-1)$ erhält man als den Quotienten
 \begin{align*}
@@ -652,13 +662,44 @@ Diese Operationen machen $E_{a,b}(\mathbb{F}_{p^l})$ zu einer endlichen
 abelschen Gruppe.
 \end{satz}
 
-\subsubsection{Beispiele}
-% XXX
-TODO: elliptische Kurven in IPsec: Oakley Gruppen
-
 \subsubsection{Diffie-Hellman in einer elliptischen Kurve}
-% XXX
-TODO: $g^x$ in einer elliptischen Kurve
+Der klassische Diffie-Hellmann-Schlüsselalgorithmus in einem Körper
+$\mathbb{F}_p$ basiert darauf, dass man beliebige Potenzen eines 
+Elementes berechnen kann, und dass es schwierig ist, diese Operation
+umzukehren.
+Die Addition in $\mathbb{F}_p$ wird für diesen Algorithmus überhaupt
+nicht benötigt.
+
+In einer elliptischen Kurve gibt es ebenfalls eine Multiplikation,
+aus der sich mit dem 
+Algorithmus~\ref{buch:crypto:teile-und-hersche} eine effizienter
+Potenzieralgorithmus konstruieren lässt.
+
+Die im Internet Key Exchange Protokol
+in RFC 2409
+\cite{buch:rfc2409}
+definierte Oakley-Gruppe 4
+zum Beispiel verwendet einen Galois-Körper $\mathbb{F}_{2^{185}}$ 
+mit dem Minimalpolynom $m(x)=x^{185}+x^{69}+1\in \mathbb{F}_2[x]$
+und den Koeffizienten
+\begin{align*}
+a&=0\\
+b&=x^{12}+x^{11} + x^{10} + x^9 + x^7 + x^6 + x^5 + x^3 +1,
+\end{align*} 
+die die elliptische Kurve definieren.
+
+Als Elemente $g$ für den Diffie-Hellmann-Algorithmus wird ein Punkt
+der elliptischen Kurve verwendet, dessen $X$-Koordinaten durch das
+Polynom $g_x = x^4+x^3$ gegeben ist.
+Der Standard spezifiziert die $Y$-Koordinate nicht, diese kann aus
+den gegebenen Daten abgeleitet werden.
+Die entstehende Gruppe hat etwa $4.9040\cdot10^{55}$ Elemente, die
+für einen brute-force-Angriff durchprobiert werden müssten.
+
+
+
+
+
 
 
 

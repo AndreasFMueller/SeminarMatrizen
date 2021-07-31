@@ -1,0 +1,80 @@
+\begin{tikzpicture}[]
+
+	%---------------------------------------------------------------
+	%Knote
+	\matrix(m) [draw = none, column sep=25mm, row sep=2mm]{
+
+		\node(signal)  []    {
+		\begin{tikzpicture}
+			\begin{axis}
+				[title = {\Large {Signal}}, 
+				xtick={0,20,40,64,80,98}]
+				\addplot[blue] table[col sep=comma] {tikz/signal.txt};
+			\end{axis}
+		\end{tikzpicture}}; &
+		
+		\node(codiert) []    {
+		\begin{tikzpicture}[]
+			\begin{axis}[ title = {\Large {Codiert \space + \space Fehler}},
+				xtick={0,40,60,100}, axis y line*=left]
+				\addplot[green] table[col sep=comma] {tikz/codiert.txt};
+			\end{axis}
+			\begin{axis}[xtick={7,21,75}, axis y line*=right]
+					\addplot[red] table[col sep=comma] {tikz/fehler.txt};
+			\end{axis}
+		\end{tikzpicture}}; \\
+		
+		\node(decodiert) []    {
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Decodiert}}]
+				\addplot[blue] table[col sep=comma] {tikz/decodiert.txt};
+			\end{axis}
+		\end{tikzpicture}}; &
+	
+		\node(empfangen) []    {
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Empfangen}}]
+				\addplot[green] table[col sep=comma] {tikz/empfangen.txt};
+			\end{axis}
+		\end{tikzpicture}};\\
+	
+		\node(syndrom) []   {
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Syndrom}}]
+				\addplot[black] table[col sep=comma] {tikz/syndrom.txt};
+			\end{axis}
+		\end{tikzpicture}}; &
+	
+		\node(locator) []    {
+		\begin{tikzpicture}
+			\begin{axis}[title = {\Large {Locator}}]
+				\addplot[gray] table[col sep=comma] {tikz/locator.txt};
+			\end{axis}
+		\end{tikzpicture}};\\
+	};
+	%-------------------------------------------------------------
+		%FFT & IFFT deskription
+	
+	\draw[thin,gray,dashed] (0,9) to (0,-9);
+	\node(IFFT)  [scale=0.9]  at (0,9.3)   {IFFT};
+	\draw[stealth-](IFFT.south west)--(IFFT.south east);
+	\node(FFT)  [scale=0.9, above of=IFFT]    {FFT};
+	\draw[-stealth](FFT.north west)--(FFT.north east);
+	
+	\draw[thick, ->,] (codiert)++(-1,0) +(0.05,0.5) -- +(-0.1,-0.1) -- +(0.1,0.1) -- +(0,-0.5);
+	%Arrows
+	\draw[thick, ->] (signal.east) to (codiert.west);
+	\draw[thick, ->] (codiert.south) to (empfangen.north);
+	\draw[thick, ->] (empfangen.west) to (decodiert.east);
+	\draw[thick, ->] (syndrom.east) to (locator.west);
+	\draw[thick](decodiert.south east)++(-1.8,1)  ellipse (1.3cm and 0.8cm) ++(-1.3,0) coordinate(zoom) ;
+	\draw[thick, ->] (zoom) to[out=180, in=90] (syndrom.north);
+	
+	%item
+	\node[circle, draw, fill =lightgray] at (signal.north west) {1};
+	\node[circle, draw, fill =lightgray] at (codiert.north west) {2+3};
+	\node[circle, draw, fill =lightgray] at (empfangen.north west) {4};
+	\node[circle, draw, fill =lightgray] at (decodiert.north west) {5};
+	\node[circle, draw, fill =lightgray] at (syndrom.north west) {6};
+	\node[circle, draw, fill =lightgray] at (locator.north west) {7};
+\end{tikzpicture}	

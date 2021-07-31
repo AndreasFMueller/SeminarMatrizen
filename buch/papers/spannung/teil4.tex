@@ -1,6 +1,6 @@
-\section{Oedometer-Versuch\label{spannung:section:Oedometer-Versuch}}
-\rhead{Oedometer-Versuch}
-Mit dem Oedometer-Versuch kann der oedometrische Elastizitätsmodul $E_{OED}$ bestimmt werden.
+\section{Oedometrischer Elastizitätsmodul\label{spannung:section:Oedometrischer Elastizitätsmodul}}
+\rhead{Oedometrischer Elastizitätsmodul}
+Mit dem Oedometer-Versuch kann der oedometrische Elastizitätsmodul $E_{\text{OED}}$ bestimmt werden.
 Dieser beschreibt ebenfalls das Verhältnis zwischen Spannung und Dehnung, allerdings unter anderen Bedingungen.
 Diese Bedingung ist das Verhindern der seitlichen Verformung, sprich der Dehnung in Richtung $1$ und $2$.
 Es wird ein Probeelement mit immer grösseren Gewichten belastet, welche gleichmässig auf das Material drücken.
@@ -43,8 +43,8 @@ Diese lautet nun:
 \end{pmatrix}
 =
 \begin{pmatrix}
-	\frac{E_{OED}}{(1+\nu)} &                             0 \\
-                          0 & \frac{E_{OED}}{3(1-2\nu)}
+	\displaystyle{\frac{E_{\text{OED}}}{(1+\nu)}} &                                               0 \\
+                                                0 & \displaystyle{\frac{E_{\text{OED}}}{3(1-2\nu)}}
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{11}\\
@@ -52,28 +52,28 @@ Diese lautet nun:
 \end{pmatrix}
 .
 \]
-Daraus lässt sich bei jedem Setzungsgrad der oedometrische Elastitzitätsmodul $E_{OED}$ und die seitlichen Spannungen $\sigma_{33}$ mit den 2 Gleichungen
+Daraus lässt sich bei jedem Setzungsgrad der oedometrische Elastitzitätsmodul $E_{\text{OED}}$ und die seitlichen Spannungen $\sigma_{33}$ mit den zwei Gleichungen
 \[
 \sigma_{11}-\sigma_{33}
 =
-\frac{E_{OED}}{(1+\nu)}\cdot\varepsilon_{11}
+\frac{E_{\text{OED}}}{(1+\nu)}\cdot\varepsilon_{11}
 \]
 und
 \[
 \sigma_{11}+2\sigma_{33}
 =
-\frac{E_{OED}}{3(1-2\nu)}\cdot\varepsilon_{11}
+\frac{E_{\text{OED}}}{3(1-2\nu)}\cdot\varepsilon_{11}
 \]
 berechnen.
-Mit diesen Gleichungen hat man das Gleichungssystem um $E_{OED}$ und $\sigma_{33}$ zu berechnen.
+Mit diesen Gleichungen hat man das Gleichungssystem um $E_{\text{OED}}$ und $\sigma_{33}$ zu berechnen.
 Die Poisson-Zahl muss als Kennwert gemäss der Bodenklasse gewählt werden.
-Den Versuch kann man auf einem $\sigma$-$\varepsilon$-Diagramm abtragen (siehe Abbildung~\ref{spannung:DiagrammOedometer-Versuch}).
+Den Versuch kann man auf einem $\sigma$-$\varepsilon$-Diagramm abtragen (siehe Abbildung~\ref{fig:DiagrammOedometer-Versuch}).
 Durch die Komprimierung nimmt der Boden mehr Spannung auf, und verformt sich zugleich weniger stark.
-Mit diesem ermittelten $E_{OED}$ kann man nun weitere Berechnungen für die Geotechnik durchführen.
+Mit diesem ermittelten $E_{\text{OED}}$ kann man nun weitere Berechnungen für die Geotechnik durchführen.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/DiagrammOedometer-Versuch.png}
+	\includegraphics[width=0.45\linewidth,keepaspectratio]{papers/spannung/Grafiken/DiagrammOedometer-Versuch.png}
 	\caption{Diagramm Charakteristik verschiedener Elastizitätsmodule bei gleichem Material}
 	\label{fig:DiagrammOedometer-Versuch}
 \end{figure}

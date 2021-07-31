@@ -1,0 +1,79 @@
+%
+% common.tex -- gemeinsame Definitionen
+%
+% (c) 2021 Michael Schmid, OST Campus Rapperswil
+%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{epic}
+\usepackage{color}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{ifthen}
+\usepackage{adjustbox}
+\usepackage[noend]{algpseudocode}
+\usepackage{neuralnetwork}
+\usepackage{amsmath}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{arrows,matrix,positioning}
+\usetikzlibrary{overlay-beamer-styles}
+\usetikzlibrary{matrix.skeleton}
+\usepackage{pgfplots}
+\usepackage{listings}
+\usepackage{svg}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{ost}{rgb}{164,0,136}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=2pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}
+
+\usetikzlibrary{fit}
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,fill opacity=0.5,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+
+\lstset{style=mystyle}
+\lstdefinestyle{mystyle}{
+	morekeywords={cwt,contourf,datetick}
+}
+
+
+\usetikzlibrary{shapes.geometric}
+\mode<beamer>{%
+\usetheme[]{Frankfurt}}
+\beamertemplatenavigationsymbolsempty
+\title[]{Fast Matrix Multiplication}
+\author[]{Michael Schmid}
+\usecolortheme[named=ost]{structure}
+
+\date[]{31.05.2021}
+\newboolean{presentation}

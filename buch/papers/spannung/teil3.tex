@@ -30,7 +30,7 @@ q
 \label{spannung:Invariante_q}
 .
 \end{equation}
-Diese Zusammenhänge werden im Skript [\cite{spannung:Stoffgesetze-und-numerische-Modellierung-in-der-Geotechnik}] aufgezeigt.
+Diese Zusammenhänge werden im Skript \cite{spannung:Stoffgesetze-und-numerische-Modellierung-in-der-Geotechnik} aufgezeigt.
 Die hydrostatische Spannung $p$ kann gemäss Gleichung \eqref{spannung:Invariante_p} als
 \[
 p
@@ -38,28 +38,28 @@ p
 \frac{\sigma_{11}+2\sigma_{33}}{3}
 \]
 vereinfacht werden.
-Die deviatorische Spannung $q$ wird gemäss Gleichung \eqref{spannung:Invariante_q}als
+Die deviatorische Spannung $q$ wird gemäss Gleichung \eqref{spannung:Invariante_q} als
 \[
 q
 =
 \sigma_{11}-\sigma_{33}
 \]
-vereinfacht. Man kann $p$ als Isotrop und $q$ als Schub betrachten.
+vereinfacht. Man kann $p$ als Druck und $q$ als Schub betrachten.
 
-Die Invarianten können mit der Spannungsformel \eqref{spannung:Spannungsgleichung} berechnet werden.
+Die Invarianten $p$ und $q$ können mit der Spannungsgleichung \eqref{spannung:Spannungsgleichung} berechnet werden.
 Durch geschickte Umformung dieser Gleichung, lassen sich die Module als Faktor separieren.
 Dabei entstehen spezielle Faktoren mit den Dehnungskomponenten.
 So ergibt sich
 \[
-\overbrace{\frac{\sigma_{11}+2\sigma_{33}}{3}}^{p}
+\overbrace{\frac{\sigma_{11}+2\sigma_{33}}{3}}^{\displaystyle{p}}
 =
-\frac{E}{3(1-2\nu)} \overbrace{(\varepsilon_{11} - 2\varepsilon_{33})}^{\varepsilon_{v}}
+\frac{E}{3(1-2\nu)} \overbrace{(\varepsilon_{11} - 2\varepsilon_{33})}^{\displaystyle{{\varepsilon_{v}}}}
 \]
 und
 \[
-\overbrace{\sigma_{11}-\sigma_{33}}^{q}
+\overbrace{\sigma_{11}-\sigma_{33}}^{\displaystyle{q}}
 =
-\frac{3E}{2(1+\nu)} \overbrace{\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})}^{\varepsilon_{s}}
+\frac{3E}{2(1+\nu)} \overbrace{\frac{2}{3}(\varepsilon_{11} - \varepsilon_{33})}^{\displaystyle{\varepsilon_{s}}}
 .
 \]
 Die Faktoren mit den Dehnungskomponenten können so mit
@@ -79,8 +79,8 @@ eingeführt werden, mit
 	\varepsilon_{v} &= \text{Hydrostatische Dehnung [-]} \\
 	\varepsilon_{s} &= \text{Deviatorische Dehnung [-].}
 \end{align*}
-Die hydrostatische Dehnung $\varepsilon_{v}$ kann mit einer Kompression verglichen werden.
-Die deviatorische Dehnung $\varepsilon_{s}$  kann mit einer Verzerrung verglichen werden.
+Die hydrostatische Dehnung $\varepsilon_{v}$ kann mit einer Kompression und
+die deviatorische Dehnung $\varepsilon_{s}$  mit einer Verzerrung verglichen werden.
 
 Diese zwei Gleichungen kann man durch die Matrixschreibweise
 \begin{equation}
@@ -90,8 +90,8 @@ Diese zwei Gleichungen kann man durch die Matrixschreibweise
 \end{pmatrix}
 =
 \begin{pmatrix}
-	\frac{3E}{2(1+\nu)} &                   0 \\
-	                  0 & \frac{E}{3(1-2\nu)}
+	\displaystyle{\frac{3E}{2(1+\nu)}} &                                  0 \\
+	                                 0 & \displaystyle{\frac{E}{3(1-2\nu)}}
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{s}\\
@@ -100,9 +100,11 @@ Diese zwei Gleichungen kann man durch die Matrixschreibweise
 \label{spannung:Matrixschreibweise}
 \end{equation}
 vereinfachen.
-Man hat so eine Matrix multipliziert mit einem Vektor und erhält einen Vektor.
-Änderungen des Spannungszustandes können mit dieser Gleichung vollumfänglich erfasst werden.
 
+Änderungen des Spannungszustandes können mit diesen Gleichungen vollumfänglich erfasst werden.
+Diese Spannungsgleichung mit den zwei Einträgen ($p$ und $q$) ist gleichwertig
+wie die ursprüngliche Spannungsgleichung mit den neun Einträgen
+($\sigma_{11}$, $\sigma_{12}$, $\sigma_{13}$, $\sigma_{21}$, $\sigma_{22}$, $\sigma_{23}$, $\sigma_{31}$, $\sigma_{32}$, $\sigma_{33}$).
 Mit dieser Formel \eqref{spannung:Matrixschreibweise} lassen sich verschieden Ergebnisse von Versuchen analysieren und berechnen.
-Ein solcher Versuch, den oft in der Geotechnik durchgeführt wird, ist der Oedometer-Versuch.
+Ein solcher Versuch, der oft in der Geotechnik durchgeführt wird, ist der Oedometer-Versuch.
 Im nächsten Kapitel wird die Anwendung der Matrix an diesem Versuch beschrieben.

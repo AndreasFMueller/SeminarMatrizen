@@ -3,38 +3,45 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Teil 3
+\section{Der Munkres-Algorithmus (Ungarische Methode)
 \label{munkres:section:teil3}}
-\rhead{Teil 3}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\rhead{Der Munkres-Algorithmus (Ungarische Methode)}
 
-\subsection{De finibus bonorum et malorum
+Mit der ungarischen Methode können also Optimierungsprobleme gelöst
+werden, die bei gewichteten Zuordnungen in bipartiten Graphen entstehen.
+Mit ihr kann die eindeutige Zuordnung von Objekten aus zwei Gruppen so
+optimiert werden, dass die Gesamtkosten minimiert werden bzw.~der
+Gesamtgewinn maximiert werden kann. 
+
+\subsection{Geschichte
 \label{munkres:subsection:malorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+Die Ungarische Methode wurde 1955 von Harold Kuhn entwickelt und veröffentlicht.
+Der Name ``Ungarische Methode'' ergab sich, weil der Algorithmus
+weitestgehend auf den früheren Arbeiten zweier ungarischer Mathematiker
+basierte: Dénes Kőnig und Jenő Egerváry.
+James Munkres überprüfte den Algorithmus im Jahr 1957 und stellte fest,
+dass der Algorithmus (stark) polynomiell ist.
+Seitdem ist der Algorithmus auch als Kuhn-Munkres oder
+Munkres-Zuordnungsalgorithmus bekannt.
+Die Zeitkomplexität des ursprünglichen Algorithmus war $O(n^4)$,
+später wurde zudem festgestellt, dass er modifiziert werden kann,
+um eine  $O(n^3)$-Laufzeit zu erreichen.
 
+\subsection{Besondere Leistung der Ungarischen Methode
+\label{munkres:subsection:malorum}}
+Die Ungarische Methode ist ein kombinatorischer Optimierungsalgorithmus, der das Zuordnungsproblem
+in polynomieller Zeit löst.
+Der Begriff polynomielle Laufzeit bedeutet, dass die Laufzeit des Programms
+wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei die "Grösse" des Problems.
 
+\subsection{Beispiel eines händischen Verfahrens
+\label{munkres:subsection:malorum}}
+
+Die ungarische Methode kann in einem einfachen händischen Beispielerläutert werden. Es gibt eine Ausgangsmatrix. Diese Matrix wird in mehreren Schritten immerweiter reduziert. Anschließend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dassjede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt.Die optimale Lösung ist erreicht, wenn genau $n$ Zuordnungen gefundensind.
+
+\begin{figure}
+\centering
+\includegraphics[width=14cm]{papers/munkres/figures/beispiel_munkres}
+\caption{Händisches Beispiel des Munkres Algorithmus.}
+\label{munkres:Vr2}
+\end{figure}
