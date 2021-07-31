@@ -41,17 +41,15 @@
 \begin{tikzpicture}
 
 \begin{axis}[
-    xmode=log,
-   ymode=log,
-   log ticks with fixed point,
+    xmode=log, ymode=log,
+    xmin=1e-0, xmax=5e1,
+    ymin=10e-1, ymax=1e7,
+    grid=both,
+    major grid style={black!50},
     xlabel = $n$ (Data Input),
     ylabel = {$t$ (time)},
     legend pos=north east,
     very thick,
-    grid=minor,
-    ymax = 100000,
-    ymin = 0.5,
-    xmin = 1,
     yticklabels=\empty,
     xticklabels=\empty,
     scale only axis=true,

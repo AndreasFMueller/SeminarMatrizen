@@ -65,13 +65,13 @@ Das Matrizen produklt
 \begin{bmatrix}
 \mathbf{C}_{11} & \mathbf{C}_{12}\\
 \mathbf{C}_{21} & \mathbf{C}_{22}
-\end{bmatrix}
-\end{equation},
+\end{bmatrix},
+\end{equation}
 \begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}^n \mathbf{A}_{ik} \mathbf{B}_{kj}.
+\mathbf{C}_{ij} = \sum_{k=1}^n \mathbf{A}_{ik} \mathbf{B}_{kj}
 \label{multiplikation:eq:MM_block}
 \end{equation}
-ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, wobei hier f\"ur die Multiplikation die Matrizenmultiplikation verwendet wird.
+ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation wird die Matrizenmultiplikation verwendet.
 
 Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
 Der Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
