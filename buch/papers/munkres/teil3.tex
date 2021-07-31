@@ -7,7 +7,7 @@
 \label{munkres:section:teil3}}
 \rhead{Der Munkres-Algorithmus (Ungarische Methode)}
 
-Mit der ungarischen Methode können also lineare Optimierungsprobleme gelöst
+Mit der ungarischen Methode können also Optimierungsprobleme gelöst
 werden, die bei gewichteten Zuordnungen in bipartiten Graphen entstehen.
 Mit ihr kann die eindeutige Zuordnung von Objekten aus zwei Gruppen so
 optimiert werden, dass die Gesamtkosten minimiert werden bzw.~der
@@ -29,14 +29,15 @@ um eine  $O(n^3)$-Laufzeit zu erreichen.
 
 \subsection{Besondere Leistung der Ungarischen Methode
 \label{munkres:subsection:malorum}}
-Es ist ein kombinatorischer Optimierungsalgorithmus, der das Zuordnungsproblem
+Die Ungarische Methode ist ein kombinatorischer Optimierungsalgorithmus, der das Zuordnungsproblem
 in polynomieller Zeit löst.
 Der Begriff polynomielle Laufzeit bedeutet, dass die Laufzeit des Programms
-wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert.
-
+wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei die "Grösse" des Problems.
 
 \subsection{Beispiel eines händischen Verfahrens
 \label{munkres:subsection:malorum}}
+
+Die ungarische Methode kann in einem einfachen händischen Beispielerläutert werden. Es gibt eine Ausgangsmatrix. Diese Matrix wird in mehreren Schritten immerweiter reduziert. Anschließend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dassjede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt.Die optimale Lösung ist erreicht, wenn genau $n$ Zuordnungen gefundensind.
 
 \begin{figure}
 \centering

@@ -1,12 +1,11 @@
-% polynome
-%-------------------
-% Teiler für das Skalieren der Grafik /40
+% polynomraw
+
 \newcommand{\teiler}{40}
 
 
 %//////////////////////////////////////
 
-\begin{tikzpicture}[>=latex,thick]
+\begin{tikzpicture}[>=latex,thick,]
 	\draw[color=blue, line width=1.4pt] 
 	plot[domain=0:8, samples=100]
 	({\x},{(2*\x^2+1*\x+5)/\teiler});
@@ -21,9 +20,14 @@
 
 	\def\hellpunkt#1{
 		\fill[color=lightgray] #1 circle[radius=0.08];
-		\draw #1 circle[radius=0.07];
+		\draw[gray] #1 circle[ radius=0.07];
 	}
 	
+	\draw[color=gray,line width=1pt,dashed] 
+	plot[domain=0.5:7, samples=100]
+	({\x},{(7.832*\x^2-51.5*\x+121.668)/\teiler});
+
+
 	\punkt{(1,8/\teiler)}
 	\hellpunkt{(2,15/\teiler)}
 	\hellpunkt{(3,26/\teiler)}
@@ -32,9 +36,7 @@
 	\punkt{(6,83/\teiler)}
 	\punkt{(7,110/\teiler)}
 	
-	\draw[color=gray,line width=1pt,dashed] 
-	plot[domain=0.5:7, samples=100]
-	({\x},{(7.832*\x^2-51.5*\x+121.668)/\teiler});
+
 	
 	\def\erpunkt#1{
 		\fill[color=red] #1 circle[radius=0.08];
@@ -46,4 +48,3 @@
 	\draw(0,100/\teiler) -- (-0.1,100/\teiler) coordinate[label={left:$100$}];
 	\draw(1,0) -- (1,-0.1) coordinate[label={below:$1$}];		
 \end{tikzpicture}
-%\end{document}
