@@ -174,10 +174,11 @@ def test_perfomance(n):
     plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
     plt.plot(n, t_wino, label='Winograd', lw=5)
     plt.plot(n, t_np, label='NumPy A@B', lw=5)
+    plt.xscale('log', base=2)
     plt.legend()
     plt.xlabel("n")
     plt.ylabel("time (s)")
-    plt.grid(True)
+    plt.grid(True, which="both", ls="-")
     plt.tight_layout()
     # plt.yscale('log')
     plt.legend(fontsize=19)
@@ -198,7 +199,7 @@ def plot(num):
     plt.plot(n, t_mm, label='3 For Loops', lw=5)
     plt.plot(n, t_mm_dc, label='Divide and Conquer', lw=5)
     plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
-    # plt.plot(n, t_wino, label='Winograd', lw=5)
+    plt.plot(n, t_wino, label='Winograd', lw=5)
     plt.plot(n, t_np, label='NumPy A@B', lw=5)
     plt.legend()
     plt.xlabel("n")
@@ -275,22 +276,22 @@ def plot_c_res(ave, num):
 
 # test%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if __name__ == '__main__':
-    plot_c_res(1, 4096)
+    # plot_c_res(1, 4096)
 
  
     # plot(8)    
-    # n = np.logspace(1,10,10,base=2,dtype=(np.int))
+    n = np.logspace(1,8,8,base=2,dtype=(np.int))
     # n = np.arange(1,50,2)  
-    A = np.random.randint(-10, 10, (5,3))
-    B = np.random.randint(-10, 10, (3,5))
+    # A = np.random.randint(-10, 6, (5,3))
+    # B = np.random.randint(-10, 6, (3,5))
 
-    C = winograd2(A, B)
-    C_test = A@B
-    print(C)
-    print(C_test)
+    # C = winograd2(A, B)
+    # C_test = A@B
+    # print(C)
+    # print(C_test)
     # print(np.equal(C, C_test))
 
-    # t_np = test_perfomance(n)
+    t_np = test_perfomance(n)
     # C = strassen(A, B)
     # C_test = A@B
     

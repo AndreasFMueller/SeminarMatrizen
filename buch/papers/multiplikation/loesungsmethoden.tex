@@ -295,9 +295,58 @@ Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen 
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Weitere Algorithmen}
+\subsection{Basic Linear Algebra Subprograms (BLAS)}
 
-\textcolor{red}{TODO: BLAS}
+die gebr\"uchlichen Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subrutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
+Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}. 
+
+\textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
+
+\begin{itemize}
+	\item Level 1
+	\begin{itemize}
+		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{x}+\mathbf{y}$
+		\item Dieses Level hat $\mathcal{O}(n)$ karakteristik 
+	\end{itemize}
+	\item Level 2
+	\begin{itemize}
+		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{A}\mathbf{x}+\beta  \mathbf{y}$
+		\item Dieses Level hat $\mathcal{O}\left(n^2\right)$ karakteristik 
+		\end{itemize}
+		\item Level 3
+		\begin{itemize}
+			\item Operationen der Art: $\mathbf{C} \leftarrow \alpha \mathbf{A}\mathbf{B}+\beta\mathbf{C}$
+			\item Dieses Level hat $\mathcal{O}\left(n^3\right)$ karakteristik 
+			\end{itemize}
+\end{itemize}
+
+Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgek\"ugelter Verwedung der Speicher Architektur zur erheblichen Leistungoprimierung f\"uhren.
+
+
+\subsubsection{General Matrix Multiplication (GEMM)}
+
+Die \textit{Double-GEMM} ist in \cite{multiplikation:DGEMM} definiert als:
+
+\textit{DGEMM  performs one of the matrix-matrix operations}
+$$
+ C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
+ $$
+ \textit{where  op( X ) is one of}
+$$
+op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
+$$
+ \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
+ an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
+ }
+
+Die Implementaion von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
+\begin{lstlisting}[style=multiplikationC]
+cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+      m, n, k, 1, A, m , B, k, 0, C, m);
+\end{lstlisting}
+definiert.
+
+
 
 \section{Implementation}
 \rhead{Implementation}
