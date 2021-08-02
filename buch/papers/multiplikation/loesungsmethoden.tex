@@ -131,7 +131,7 @@ Die grundlegenden Terme
 \text{\textbf{V}} &= \left(\mathbf{A}_{12} - \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{21} + \mathbf{B}_{22}\right )
 \end{split}
 \end{equation}
-aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke 
+aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke
 \begin{equation} \label{multiplikation:eq:strassen2}
 \begin{split}
 \mathbf{C}_{11} &= \text{\textbf{P}} + \text{\textbf{S}} - \text{\textbf{T}} + \text{\textbf{V}} \\
@@ -187,10 +187,10 @@ der Matrix $\mathbf{C}$ gebraucht.
 	\end{algorithmic}
 \end{algorithm}
 Strassen's Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
-Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ . 
+Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ .
 Die gr\"unen Felder auf der linken Seite, zeigen die addition welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
 Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \dotsb, V}$.
-Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.  
+Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
@@ -303,5 +303,23 @@ Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen 
 \rhead{Implementation}
 \textcolor{red}{TODO: messresultate}
 
+Folgende Algorithmen wurden jweiles in \texttt{C} und \texttt{Python} implementiert.
+\begin{itemize}
+	\item Standard Matrizenmultiplikation
+	\item \textit{Devide and Conquer} Matrizenmultiplikation
+	\item Strassen's Matrizenmultiplikation
+	\item Winograd's Matrizenmultiplikation
+	\item \texttt{CBLAS} Matrizenmultiplikation in \texttt{C}
+	\item \texttt{Numpy} Matrizenmultiplikation in \texttt{Python}
+\end{itemize}
+
 \section{Fazit}
 \rhead{Fazit}
+
+Wie man in \textcolor{red}{hyperlink Messresultate} gesehen haben, sind die geziegten Algorithmen, trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
+Einen optimierten Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
+
+Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
+Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
+Denke man an sehr keleine Mikrocontroller ohne Floatingpoint Recheneinhieten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
+Sobland sehr grosse Matrizen multipliziert werden müssen und eine Addition in weniger Taktzyklen als eine Multiplikation durcheführt werden kann, können die gezeigten Algorithmen von Vorteil sein.
