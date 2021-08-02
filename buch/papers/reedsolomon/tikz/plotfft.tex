@@ -8,6 +8,7 @@
 \usepackage{pgfplotstable}
 \usepackage{csvsimple}
 \usepackage{filecontents}
+\definecolor{darkgreen}{RGB}{0,0.6,0}
 
 
 \begin{document}
@@ -30,7 +31,7 @@
 		\begin{tikzpicture}[]
 			\begin{axis}[ title = {\Large {Codiert \space + \space Fehler}},
 				xtick={0,40,60,100}, axis y line*=left]
-				\addplot[green] table[col sep=comma] {tikz/codiert.txt};
+				\addplot[darkgreen] table[col sep=comma] {tikz/codiert.txt};
 			\end{axis}
 			\begin{axis}[xtick={7,21,75}, axis y line*=right]
 					\addplot[red] table[col sep=comma] {tikz/fehler.txt};
@@ -47,7 +48,7 @@
 		\node(empfangen) []    {
 		\begin{tikzpicture}
 			\begin{axis}[title = {\Large {Empfangen}}]
-				\addplot[green] table[col sep=comma] {tikz/empfangen.txt};
+				\addplot[darkgreen] table[col sep=comma] {tikz/empfangen.txt};
 			\end{axis}
 		\end{tikzpicture}};\\
 	
