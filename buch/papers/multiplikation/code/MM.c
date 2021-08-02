@@ -31,7 +31,7 @@ int main() {
 	run_algo(strassen, "strassen",0);
 
 	run_algo(MM, "MM", 0);
-  // run_algo(winograd, "winograd", 0);
+  run_algo(winograd, "winograd", 0);
   run_algo_cblas(0);
 
 	return 0;
