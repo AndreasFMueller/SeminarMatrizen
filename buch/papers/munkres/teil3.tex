@@ -36,30 +36,24 @@ wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei 
 
 \subsection{Unterschiedliche Anzahl von Quellen und Zielen
 \label{munkres:subsection:malorum}}
-Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z.B dann der Fall, wenn eine 3 Mitarbeiter 4 Eignungstests abdsolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position quadratisch ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise eine $4\times 3$ wird zu einer $4\times 4$ Matrix.
+Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z.B. dann der Fall, wenn 3 Mitarbeiter vier verschiedene Eignungstests absolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position quadratisch ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise wird eine $3\times 4$ zu einer $4\times 4$-Matrix.
 
 \subsection{Beispiel eines händischen Verfahrens
 \label{munkres:subsection:malorum}}
 
-Die ungarische Methode kann in einem einfachen händischen Beispiel
-erläutert werden. Es gibt eine Ausgangsmatrix. Diese Matrix wird in mehreren Schritten immer
-weiter reduziert. Anschließend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dass
-jede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt.
-Die optimale Lösung ist erreicht, wenn genau $n$ Zuordnungen gefunden
-sind.
+Die ungarische Methode kann in einem einfachen händischen Beispiel erläutert werden. Es gibt eine Ausgangsmatrix. Diese Matrix wird in mehreren Schritten immer weiter reduziert. Anschließend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dass jede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt. Die optimale Lösung ist erreicht, wenn genau $n$ Zuordnungen gefunden sind. Das Vorgehen wird in den nachfolgenden Schritten 1-16 beschrieben und auch in der Abbildung 21.5 dargestellt. 
 
 \begin{enumerate}
 \item Pro Zeile eruiert man die kleinste Zahl. Diese kleinste Zahl wird bei
-allen anderen Ziffern in der jeweiligen Zeile subtrahiert.
+allen anderen Ziffern in der jeweiligen Zeile subtrahiert. Mit dieser Subtraktion zieht man die unvermeidbaren Kosten ab. 
 
-\item Danach zieht man wiederum die kleinste Zahl in jeder Spalte von allen
-Zahlen in der Spalte ab.
+\item Auch in diesem Schritt werden die unvermeidbaren Kosten abgezogen. Man zieht die kleinste Zahl in jeder Spalte von allen Zahlen in der Spalte ab.
 
-\item Es sollen möglichst viele Nullen markiert werden, welche freistehend sind.
+\item Bei den nachfolgenden Schritten bleiben dann nur noch die Kosten übrig, die man hat, wenn man eine andere Zuordnung wählt. Hierbei sollen möglichst viele Nullen markiert werden, welche freistehend sind.
 (Freistehend bedeutet, sowohl in der jeweiligen Zeile und Spalte nur
 eine markierte Null zu haben)
 
-\item Jeweilige Zeilen eruieren, bei welchen keine markierte Null vorhanden sind und kennzeichnen.
+\item Weiter werden die jeweiligen Zeilen eruiert, bei welchen keine markierte Null vorhanden sind. Diese kennzeichnet man.
 
 \item In der vorherigen Zeile die 0 eruieren und die Spalte ebenfalls
 kennzeichnen (*2)
