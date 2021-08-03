@@ -6,23 +6,34 @@
 \section{Komplexe Zahlen}
 \rhead{Komplexe Zahlen}
 
-Die komplexen Zahlen finden eine Vielzahl von Anwendungsgebiete in den Ingenieurwissenschaften. Das liegt daran, weil die komplexen Zahlen Rotationen und Schwingungen gut beschreiben können. Nach dem vorherigen Kapitel überrascht es wahrscheinlich nicht viele, dass es möglich ist komplexe Zahlen in der geometrischen Algebra darzustellen. Sie können durch die geraden Grade der 2 Dimensionalen geometrischen Algebra vollständig beschrieben werden: $\mathbf{g}_n \in G_2^+(\mathbb{R}) \cong \mathbb{C}$. Das bedeutet eine komplexe Zahl kann durch ein Skalar (Grad 0) und einem Bivektor (Grad 2) dargestellt werden
+Die komplexen Zahlen finden eine Vielzahl von Anwendungsgebiete in den Ingenieurwissenschaften. Das liegt daran, weil die komplexen Zahlen Rotationen und Schwingungen gut beschreiben können. Nach dem vorherigen Kapitel überrascht es wahrscheinlich nicht viele, dass es möglich ist komplexe Zahlen in der geometrischen Algebra darzustellen. Sie können durch die geraden Grade der zweidimensionalen geometrischen Algebra vollständig beschrieben werden: $\mathbf{g}_n \in G_2^+(\mathbb{R}) \cong \mathbb{C}$. Das bedeutet eine komplexe Zahl 
 \begin{align}
 	a_0 + a_1 j \cong a_0 + a_1 \mathbf{e}_{12} = \mathbf{g}_n\quad a_0, a_1 \in \mathbb{R}\\
 	|r|e^{\theta j} \cong |r|e^{\theta \mathbf{e}_{12}} = \mathbf{g}_n; \quad r, \theta \in \mathbb{R}
 \end{align}
-weil $j$ und $\mathbf{e}_{12}$ beide die Eigenschaft besitzen quadriert $-1$ zu ergeben
+kann durch ein Skalar (Grad 0) und einem Bivektor (Grad 2) dargestellt werden, weil $j$ und $\mathbf{e}_{12}$ beide die Eigenschaft
 \begin{align}
 	j^2 = -1\quad \mathbf{e}_{12}^2 = -1
 \end{align}
-Man beachte, dass wenn wir, wie bei den komplexen Zahlen, Elemente von $G_2^+(\mathbb{R})$ miteinander Multiplizieren, ist es nicht, wie im Kapitel Rotation bei der Formel (\ref{rotGA})beschrieben, eine Multiplikation von zwei $g_n$ mit einem Vektor. Im zweidimensionalen bewirken beide Multiplikationen grundsätzlich das Gleiche (eine Drehstreckung), aber die Multiplikation von mehreren $g_n$ ist kommutativ, wie wir es von den komplexen Zahlen kennen.
+besitzen. Die Kommutativität
 \begin{align}
-	\mathbf{g}_1\mathbf{g}_2 = \mathbf{g}_2\mathbf{g}_1 \quad&\Leftrightarrow\quad (a + b \mathbf{e}_{12})(f + g \mathbf{e}_{12}) = (f + g \mathbf{e}_{12})(a + b \mathbf{e}_{12})\\
-	\mathbf{g}_1\mathbf{v}\not= \mathbf{v}\mathbf{g}_1 \quad&\Leftrightarrow\quad(a + b \mathbf{e}_{12})(x\mathbf{e}_1+y\mathbf{e}_2)\not= (x\mathbf{e}_1+y\mathbf{e}_2)(a + b \mathbf{e}_{12})
+	\begin{split}
+		\mathbf{g}_1\mathbf{g}_2 = \mathbf{g}_2\mathbf{g}_1 \enspace&\Leftrightarrow\enspace (a + b \mathbf{e}_{12})(f + g \mathbf{e}_{12}) = (f + g \mathbf{e}_{12})(a + b \mathbf{e}_{12})\\ &\Leftrightarrow\enspace |\mathbf{g}_1||\mathbf{g}_2|e^{(\theta_{g_1} + \theta_{g_2})\mathbf{e}_{12}} =  |\mathbf{g}_2||\mathbf{g}_1|e^{(\theta_{g_2} + \theta_{g_1})\mathbf{e}_{12}},
+	\end{split}
 \end{align}
-Um später die Auswirkung der Quaternionen besser zu verstehen, möchte ich kurz darauf eingehen, was ein $g_n$ für eine Auswirkung auf einen Vektor hat.
-Wir kennen diesen Effekt schon von den komplexen Zahlen. Wenn eine komplexe Zahl $c_1=a+bj$ mit einer zweiten $c_2=f+gj$ multipliziert wird, dann kann man diese so aufteilen.
+welche wir schon von den komplexen Zahlen her kennen, ist dabei eine in der geometrischen Algebra nur selten anzutreffende Eigenschaft. Beispielsweise ist das geometrische Produkt von
 \begin{align}
-	c = c_1\cdot c_2 = (a + bj)(d + ej) = f\cdot(a+bj) + gj\cdot(a+bj)
+	\mathbf{g}_1\mathbf{v}\not= \mathbf{v}\mathbf{g}_1 \quad\Leftrightarrow\quad(a + b \mathbf{e}_{12})(x\mathbf{e}_1+y\mathbf{e}_2)\not= (x\mathbf{e}_1+y\mathbf{e}_2)(a + b \mathbf{e}_{12})
 \end{align}
-Dabei ist $f\cdot(a+bj)$ die jetzige komplexe Zahl $c_1$ um den Faktor $f$ steckt und $gj\cdot(a+bj)$ die um 90° im Gegenuhrzeigersinn gedrehte Zahl $c_2$ um den Faktor $g$ streckt. Diese Anteile addiert ergeben, dann den um $c_2$ dreh-gestreckten Vektor $c_1$. Die wirklichen Vorteile der geometrischen Algebra werden sich aber erst bei den Quaternionen zeigen.
+und auch die im folgenden Kapitel behandelten Quaternionen nicht kommutativ.
+
+Um später die Auswirkung der Quaternionen auf Vektoren besser zu verstehen, möchte ich kurz darauf eingehen, was ein  $\mathbf{g}_n$ für eine Auswirkung auf einen Vektor hat.
+Wir kennen diesen Effekt schon von den komplexen Zahlen. Wenn eine komplexe Zahl $c_1=a+bj$ mit einer zweiten $c_2=f+gj$ multipliziert wird, dann kann man
+\begin{align}
+	c = c_1\cdot c_2 = (a + bj)(d + ej) = a\cdot(d+ej) + bj\cdot(d+ej)
+\end{align}
+so aufteilen. Dabei ist $a\cdot(d+ej)$ die jetzige komplexe Zahl $c_2$ um den Faktor $a$ steckt und $bj\cdot(d+ej)$ die um 90° im Gegenuhrzeigersinn gedrehte Zahl $c_2$ um den Faktor $b$ streckt. Diese Anteile addiert ergeben, dann den um $c_1$ dreh-gestreckten Vektor $c_2$. Der gleiche Effekt hat
+\begin{align}\label{GAdrehstreck}
+	\mathbf{v}' = \mathbf{g}\mathbf{v} = (a + b\mathbf{e}_{12})(d\mathbf{e}_{1} + e\mathbf{e}_{2}) = a(d\mathbf{e}_{1} + e\mathbf{e}_{2}) + b\mathbf{e}_{12}(d\mathbf{e}_{1} + e\mathbf{e}_{2})
+\end{align}
+in der zweidimensionalen geometrischen Algebra. Im Falle der komplexen Zahlen macht es jetzt noch nicht wirklich Sinn in die geometrische Algebra zu wechseln. Die potenziellen Vorteile der geometrischen Algebra werden sich aber erst bei den Quaternionen zeigen.
