@@ -8,12 +8,13 @@
 \rhead{Fraktale Bildkomprimierung}
 Mit dem Prinzip dieser IFS ist es auch möglich, Bilder zu komprimieren.
 Diese Idee hatte der Mathematiker Michael Barnsley, welcher mit seinem Buch {\em Fractals Everywhere} einen wichtigen Beitrag zum Verständnis von Fraktalen geliefert hat.
-Das Ziel ist es ein IFS zu finden, welches das Bild als Attraktor hat.
+Das Ziel ist, ein IFS zu finden, welches das Bild als Attraktor hat.
 In diesem Unterkapitel wollen wir eine Methode dafür anschauen, wie sie in \cite{ifs:Rousseau2012} beschrieben ist.
 
 Es ist wohl nicht falsch zu sagen, dass Ähnlichkeiten zur gesamten Menge, wie wir sie zum Beispiel beim Barnsley Farn gesehen haben, bei Bilder aus dem Alltag eher selten anzutreffen sind.
 Ein IFS, wie wir es in \ref{ifs:subsection:IteratedFunktionensysteme} definiert haben, wird uns also nicht weiter helfen.
-Anders sieht es mit Partitionierten IFS (PIFS) \cite{ifs:pifs} aus.
+Anders sieht es mit partitionierten IFS (PIFS) \cite{ifs:pifs} aus.
+
 In \ref{ifs:transformation} wurde definiert, dass die Kontraktionen $S_i$ bei IFS auf die gesamte Menge $E$ angewendet werden.
 Bei einem PIFS wird der Attraktor in disjunkte Teilmengen aufgeteilt. 
 Für jede dieser Teilmengen $R_i$ braucht es dann eine grössere Teilmenge, welche mit einer affinen Transformation eine zu $R_i$ ähnliche Menge bildet.
@@ -55,7 +56,7 @@ Zuerst brauchen wir die Transformation
 		g_i
 	\end{pmatrix}
 \end{align*}
-um ein Element aus $D$ auf ein Element von $R$ Abzubilden. 
+um ein Element aus $D$ auf ein Element von $R$ abzubilden. 
 Das bestimmen der besten Transformation kann man in drei Schritte aufteilen.
 
 \textbf{Schritt 1: }Wenn wir die Grauwerte ausser acht lassen, haben wir die affine Abbildung
@@ -83,7 +84,7 @@ Wir sind auf folgende acht Abbildungen beschränkt:
 	\item Drehung um 90, 180 oder 270 Grad.
 	\item Spiegelung an der vertikalen, horizontalen und den Diagonalachsen.
 \end{itemize}
-Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möchten, müssen wir zuerst $G_j$ um $1/2$ skalieren.
+Da wir ein $2b \times 2b$ Feld auf ein $b \times b$ Feld abbilden möchten, müssen wir zuerst $D_j$ um $1/2$ skalieren.
 Dies erreichen wir, indem wir alle disjunkten $2 \times 2$ Pixel Blöcke mit einem Pixel des Grautones deren Mittelwertes ersetzen.
 
 \textbf{Schritt 2: }Es muss nicht nur eine geometrische Abbildung, sondern auch eine Abbildung für die Grautöne gewählt werden. Letztere lässt sich mit den Parametern $s_i$ und $g_i$ beschrieben.
@@ -157,12 +158,12 @@ Wir verwenden dafür den oben beschriebenen Algorithmus, welcher uns für jeden 
 Mit diesen lässt sich das Bild im Anschluss wieder Rekonstruieren.
 Die Range-Blöcke wurden $4\times4$ gewählt und die Domain dementsprechend $8\times8$.
 Um etwas Zeit bei der Komprimierung zu ersparen, wurden nur disjunkte Domain-Blöcke gebraucht.
-Als erstes Beispiel wählen wir das 360$\times$360px Bild von Rapperswil in Abbildung \ref{ifs:original}.
-Das Startbild ist ein mittelgraues 360$\times$360px Bild, Abbildung \ref{ifs:bild0}.
+Als erstes Beispiel wählen wir das 360$\times$360 Pixel Bild von Rapperswil in Abbildung \ref{ifs:original}.
+Das Startbild ist ein mittelgraues 360$\times$360 Pixel Bild, Abbildung \ref{ifs:bild0}.
 Es kann jedoch ein beliebiges Startbild sein.
 Nun lassen wir das PIFS laufen.
 Wie wir in Abbildung \ref{ifs:rappirecoa} sehen, ist schon nach der ersten Iteration das Bild schon erkennbar.
-Nach der fünften Iteration , Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
+Nach der fünften Iteration, Abbildung \ref{ifs:rappirecoc} gibt es fast keinen Unterschied mehr zur letzten Iteration, wir können die Rekonstruktion beenden.
 \begin{figure}	
 	\centering
 	\includegraphics[width=0.4\textwidth]{papers/ifs/images/original}
