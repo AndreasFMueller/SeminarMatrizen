@@ -36,7 +36,7 @@ wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei 
 
 \subsection{Unterschiedliche Anzahl von Quellen und Zielen
 \label{munkres:subsection:malorum}}
-Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z.B. dann der Fall, wenn 3 Mitarbeiter vier verschiedene Eignungstests absolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position quadratisch ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise wird eine $3\times 4$ zu einer $4\times 4$-Matrix.
+Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z.B. dann der Fall, wenn drei Mitarbeiter vier verschiedene Eignungstests absolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position quadratisch ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise wird eine $3\times 4$ zu einer $4\times 4$-Matrix.
 
 \subsection{Beispiel eines händischen Verfahrens
 \label{munkres:subsection:malorum}}
@@ -83,7 +83,7 @@ welche freistehend sind. In diesem Schritt werden nur die markierten Nullen betr
 \item Die restlichen Ziffern, durch eine Null ersetzen.
 
 \item Zu guter letzt soll überall wo eine 1 steht, in der Ausgangsmatrix die
-dazugehörige Ziffer ausgewählt werden. Nach Einsetzen und Eruieren der Zahlen ergeben sich nach Summieren der Zahlen der minimalste Transportweg.
+dazugehörige Ziffer ausgewählt werden. Nach Einsetzen und Eruieren der Zahlen ergeben sich nach Summieren der Zahlen der minimalste Transportweg. Im erwähnten Beispiel sind es total 13 Kilometer.
 \end{enumerate}
 
 \begin{figure}
@@ -108,5 +108,4 @@ dazugehörige Ziffer ausgewählt werden. Nach Einsetzen und Eruieren der Zahlen 
 \includegraphics[width=3cm]{papers/munkres/figures/Ungarische_Methode_Beispiel_Zuw.png}
 \caption{Händisches Beispiel des Munkres Algorithmus, Zuweisung der Kräne }
 \label{munkres:Vr2}
-\end{figure}
-
+\end{figure} Somit konnte danke der Ungarischen Methode sowohl der minimalste Transportweg als auch die optimalste Zuweisung der Kräne auf die neuen Standorte ermittelt werden.
