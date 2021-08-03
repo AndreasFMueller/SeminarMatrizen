@@ -3,7 +3,7 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-dependencies-clifford =						\
+dependencies-clifford =							\
 	papers/clifford/packages.tex					\
 	papers/clifford/main.tex					\
 	papers/clifford/references.bib					\

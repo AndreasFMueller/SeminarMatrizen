@@ -1,48 +1,48 @@
-\section{Einachsiger Spannungszustand\label{spannung:section:Einachsiger Spannungsustand}}
-\rhead{Einachsiger Spannungszustand}
-Ein Spannungszustand beschreibt alle Spannungen, welche in einem beliebigen Punkt im Körper wirken (siehe Abbildung 1.4).
+\section{Der Spannungszustand\label{spannung:section:Der Spannungsustand}}
+\rhead{Der Spannungszustand}
+Ein Spannungszustand ist durch alle Spannungen, welche in einem beliebigen Punkt im Körper wirken, definiert (siehe Abbildung~\ref{fig:Bild2}).
 Änderungen der äusseren Kräfte verändern die inneren Spannungszustände im Material.
-Um alle Spannungen eines Punktes darstellen zu können, wird ein infinitesimales Bodenelement in Form eines Würfels modellhaft vorgestellt.
-Man spricht auch von einem Elementarwürfel, da dieser elementar klein ist.
+Um alle Spannungen eines Punktes darstellen zu können,
+stellt man sich modellhaft ein infinitesimales Bodenelement in Form eines Würfels vor.
+Man spricht auch von einem Elementarwürfel.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild2.png}
+	\includegraphics[width=0.4\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild2.png}
 	\caption{Infinitesimales Bodenelement mit den 9 Spannungen}
-	\label{fig:infintesimaler-wurfel}
+	\label{fig:Bild2}
 \end{figure}
 
-Es werden jeweils drei Seiten dieses Würfels betrachtet, wobei die drei gegenüberliegenden Seiten die selben Spannungen aufweisen.
-Das infinitesimale Bodenteilchen hat die Koordinaten $1$, $2$, $3$ muss sich zwingend im Gleichgewicht befinden.
-So sind insgesamt 9 verschiedene Spannungen möglich, wobei 3 Normal- und 6 Schubspannungen sind.
-Normalspannung wirken normal (mit rechtem Winkel) zur angreifenden Fläche und Schubspannungen parallel zur angreifenden Fläche.
-Alle Beträge dieser 9 Spannungen am Elementarwürfel bilden den Spannungszustand.
-Daraus können die äquivalenten Dehnungen $\varepsilon$ mit Hilfe des Hook'schen Gesetz berechnet werden.
+Es werden jeweils drei Seiten dieses Würfels betrachtet, wobei die drei gegenüberliegenden Seiten im Betrag die selben Spannungen aufweisen,
+sodass der Elementarwürfel im Gleichgewicht ist.
+Wäre dieses Gleichgewicht nicht vorhanden, käme es zu Verschiebungen und Drehungen.
+Das infinitesimale Bodenteilchen hat die Koordinatenachsen $1$, $2$, $3$.
+Veränderungen der Normalspannungen können durch Schubspannungen kompensiert werden und umgekehrt.
+So sind insgesamt neun verschiedene Spannungen möglich, konkret sind dies drei Normal- und sechs Schubspannungen.
+Normalspannungen wirken normal (mit rechtem Winkel) zur angreifenden Fläche und Schubspannungen parallel zur angreifenden Fläche.
+Alle Beträge dieser neun Spannungen am Elementarwürfel bilden den Spannungszustand.
+Daraus können die äquivalenten Dehnungen $\varepsilon$ mit Hilfe des Hook'schen Gesetzes berechnet werden.
+Daher gibt es auch den entsprechenden Dehnungszustand.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild1.png}
-	\caption{1D Spannungszustand aus einer quaderförmigen Bodenprobe}
-	\label{fig:infintesimaler-wurfel}
-\end{figure}
 
-Im einachsigen Spannungszustand herrscht nur die Normalspannung $\sigma_{11}$ (siehe Abbildung).
+\section{Spannungszustand\label{spannung:section:Spannungsustand}}
+\rhead{Spannungszustand}
+
+Im einachsigen Spannungszustand herrscht nur die Normalspannung $\sigma_{11}$ (siehe Abbildung~\ref{fig:Bild1}).
 Das Hook'sche Gesetz beschreibt genau diesen 1D Spannungszustand.
 Nach Hooke gilt:
 \[
 F
 \sim
 \Delta l
-\]
 .
-Teilt man beide Seiten mit den Konstanten $A$ und $l_0$ erhält man
+\]
+Teilt man beide Seiten durch die Konstanten $A$ und $l_0$, erhält man
 \[
 \frac{F}{A}
 =
 \sigma
 \sim
-\]
-\[
 \varepsilon
 =
 \frac{\Delta l}{l_0}
@@ -52,22 +52,21 @@ und somit
 \sigma
 \sim
 \varepsilon
+,
 \]
-.
-Mit:
-\[
-l_0
-=
-\text{Länge zu Beginn [\si{\meter}]}
-\]
-\[
-A
-=
-\text{Fläche [\si{\meter\squared}]}
-\]
-
-Diese Beziehung gilt bei linear elastischen Materialien, welche reversibel sind und nicht dauerhaft verformt werden.
-Es ist praktisch die relative Dehnung $\varepsilon$ anzugeben und nicht eine absolute Längenänderung $\Delta l$.
+mit
+\begin{align*}
+	l_0 &= \text{Länge zu Beginn [\si{\meter}]} \\
+	  A &= \text{Fläche [\si{\meter\squared}].}
+\end{align*}
+Diese Beziehung gilt bei linear-elastischen Materialien, welche reversible Verformungen zulassen.
+Es ist praktisch, die relative Dehnung $\varepsilon$ anzugeben und nicht eine absolute Längenänderung $\Delta l$.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.35\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild1.png}
+	\caption{1D Spannungszustand aus einer quaderförmigen Bodenprobe}
+	\label{fig:Bild1}
+\end{figure}
 Mithilfe vom Elastizitätsmodul $E$ als Proportionalitätskonstante lässt sich der eindimensionale Fall mit
 \[
 \sigma
@@ -75,10 +74,10 @@ Mithilfe vom Elastizitätsmodul $E$ als Proportionalitätskonstante lässt sich 
 E\cdot\varepsilon
 \]
 beschreiben.
-Im Falle, dass der E-Modul nicht konstant ist, kann dieser näherungsweise mit
+Im Falle, dass $E$ nicht konstant ist, wird dieser durch
 \[
 E
 =
-\frac{\Delta\sigma}{\Delta\varepsilon}
+\frac{\text{d}\sigma}{\text{d}\varepsilon}
 \]
-ausgedrückt werden.
+ausgedrückt.

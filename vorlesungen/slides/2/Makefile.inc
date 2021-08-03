@@ -17,5 +17,19 @@ chapter2 =								\
 	../slides/2/frobeniusanwendung.tex				\
 	../slides/2/quotient.tex					\
 	../slides/2/quotientv.tex					\
+	../slides/2/hilbertraum/definition.tex				\
+	../slides/2/hilbertraum/l2beispiel.tex				\
+	../slides/2/hilbertraum/basis.tex				\
+	../slides/2/hilbertraum/plancherel.tex				\
+	../slides/2/hilbertraum/l2.tex					\
+	../slides/2/hilbertraum/riesz.tex				\
+	../slides/2/hilbertraum/rieszbeispiel.tex			\
+	../slides/2/hilbertraum/adjungiert.tex				\
+	../slides/2/hilbertraum/spektral.tex				\
+	../slides/2/hilbertraum/sturm.tex				\
+	../slides/2/hilbertraum/laplace.tex				\
+	../slides/2/hilbertraum/qm.tex					\
+	../slides/2/hilbertraum/energie.tex				\
+	../slides/2/hilbertraum/sobolev.tex				\
 	../slides/2/chapter.tex
 

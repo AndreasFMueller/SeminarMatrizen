@@ -12,9 +12,9 @@ Ein Multivektor besteht aus den verschiedenen Bauteilen, wie zum Beispiel Vektor
     M = \sum \left ( \prod a_i\textbf{e}_j \right)
 \end{equation}
 \end{definition}
-Besteht eine Clifford Algebra aus n Basisvektoren so hat sie n Dimensionen, dies wird nicht wie in der linearen Algebra mit $\mathbb{R}^n$ sondern mit $\mathbb{G}^n$ beschrieben. 
+Besteht eine Clifford Algebra aus n Basisvektoren so hat sie n Dimensionen, dies wird nicht wie in der linearen Algebra mit $\mathbb{R}^n$ sondern mit $G_n(\mathbb{R})$ beschrieben. Dies wird so geschrieben da man eine neue Algebrastruktur um die Vektoren einführt.
 \begin{beispiel}
-Allgemeiner Multivektor in $\mathbb{G}^3$
+Allgemeiner Multivektor in $G_3(\mathbb{R})$
 \begin{equation}
     M = a 
     + 
@@ -26,34 +26,30 @@ Allgemeiner Multivektor in $\mathbb{G}^3$
 \end{equation}
 \end{beispiel}
 \begin{definition}
-Um das Produkt von Basisvektoren in Zukunft darzustellen wird folgende Notation definiert
+Für das Produkt von Basisvektoren wird folgende Notation definiert
     \begin{equation}
-        e_ie_j = e_{ij}
+        e_ie_j = e_{ij}.
     \end{equation}
 \end{definition}
-Nun da das geometrische Produkt vollständig definiert wurde können Multiplikationstabellen für verschiedene Dimensionen $\mathbb{G}^n$ erstellt werden. In \ref{tab:multip} ist dies für  $\mathbb{G}^3$ gemacht.
+Nun da das geometrische Produkt vollständig definiert wurde können Multiplikationstabellen für verschiedene Dimensionen $G_n(\mathbb{R})$ erstellt werden. In Tabelle \ref{tab:multip} ist dies für  $G_3(\mathbb{R})$ gemacht.
 \begin{table}
-    \caption{Multiplikationstabelle für $\mathbb{G^3}$}
     \label{tab:multip}
     \begin{center}
-    \begin{tabular}{ |c|c|c|c|c|c|c|c| } 
+    \begin{tabular}{ |c|ccc|ccc|c| } 
      \hline
      1 & $\textbf{e}_1$ & $\textbf{e}_2$ &$\textbf{e}_3$ & $\textbf{e}_{12}$ & $\textbf{e}_{13}$ & $\textbf{e}_{23}$ & $\textbf{e}_{123}$\\
      \hline
      $\textbf{e}_1$ & 1 & $\textbf{e}_{12}$ & $\textbf{e}_{12}$ & $\textbf{e}_2$ & $\textbf{e}_3$ & $\textbf{e}_{123}$ & $\textbf{e}_{23}$\\
-     \hline
      $\textbf{e}_2$ & $-\textbf{e}_{12}$ & 1 & $\textbf{e}_{23}$ & $-\textbf{e}_1$ & $-\textbf{e}_{123}$ & $\textbf{e}_3$ & $-\textbf{e}_{13}$\\
-     \hline
      $\textbf{e}_3$ & $-\textbf{e}_{13}$ & $-\textbf{e}_{23}$ & 1 & $\textbf{e}_{123}$ & $-\textbf{e}_1$ & $-\textbf{e}_2$ & $\textbf{e}_{12}$\\
      \hline
      $\textbf{e}_{12}$ & -$\textbf{e}_2$ & $\textbf{e}_1$& $\textbf{e}_{123}$ & -1 & $-\textbf{e}_{23}$ & $\textbf{e}_{13}$ &  $-\textbf{e}_{3}$\\
-     \hline
      $\textbf{e}_{13}$ & $-\textbf{e}_{3}$ & $-\textbf{e}_{123}$ & $\textbf{e}_{1}$ & $\textbf{e}_{23}$ & -1 & $-\textbf{e}_{12}$ &  $\textbf{e}_{2}$\\
-     \hline
      $\textbf{e}_{23}$ &  $\textbf{e}_{123}$ & $-\textbf{e}_{3}$ & $\textbf{e}_{2}$ & $-\textbf{e}_{13}$ & $\textbf{e}_{12}$ & -1 & $-\textbf{e}_{1}$ \\
      \hline
      $\textbf{e}_{123}$ & $\textbf{e}_{23}$ & $-\textbf{e}_{13}$ & $\textbf{e}_{12}$ & $-\textbf{e}_{3}$& $\textbf{e}_{2}$ & $-\textbf{e}_{1}$ & -1 \\
      \hline
     \end{tabular}
     \end{center}
+ 	\caption{Multiplikationstabelle für $G_3(\mathbb{R})$}
 \end{table}

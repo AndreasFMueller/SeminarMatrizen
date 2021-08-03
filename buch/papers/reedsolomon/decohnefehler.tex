@@ -1,0 +1,210 @@
+%
+% decohnefehler.tex -- Decodierung ohne Fehler
+%
+% (c) 2021 Michael Steiner, Hochschule Rapperswil
+%
+\section{Decodierung: Ansatz ohne Fehler
+\label{reedsolomon:section:decohnefehler}}
+\rhead{Decodierung ohne Fehler}
+
+In diesem Abschnitt betrachten wie die Überlegung, wie wir auf der Empfängerseite die Nachricht aus dem empfangenen Übertragungsvektor erhalten. Nach einer einfachen Überlegung müssen wir den Übertragungsvektor decodieren, was auf den ersten Blick nicht allzu kompliziert sein sollte, solange wir davon ausgehen können, dass es während der Übertragung keine Fehler gegeben hat. Wir betrachten deshalb den Übertragungskanal als fehlerfrei.
+
+Der Übertragungsvektor empfangen wir also als
+\[
+v = [5,3,6,5,2,10,2,7,10,4].
+\]
+% Old Text
+%Im ersten Teil zur Decodierung des Übertragungsvektor betrachten wir den Übertragungskanal als fehlerfrei.
+%Wir erhalten also unseren Übertragungsvektor
+%\[
+%v = [5,3,6,5,2,10,2,7,10,4].
+%\]
+Nach einem banalen Ansatz ist die Decodierung die Inverse der Codierung. Dank der Matrixschreibweise lässt sich dies relativ einfach umsetzen.
+% Old Text
+%Gesucht ist nun einen Weg, mit dem wir auf unseren Nachrichtenvektor zurückrechnen können.
+%Ein banaler Ansatz ist das Invertieren der Glechung
+\[
+v = A \cdot m \qquad \Rightarrow \qquad m = A^{-1} \cdot v
+\]
+Nur stellt sich jetzt die Frage, wie wir die Inverse von $A$ berechnen.
+Dazu können wir wiederum den Ansatz der Fouriertransformation uns zur Hilfe nehmen,
+jedoch betrachten wir jetzt deren Inverse.
+Definiert ist sie als
+\[
+F(\omega) = \int_{-\infty}^{\infty} f(t) \mathrm{e}^{-j\omega t} dt \qquad \Rightarrow \qquad \mathfrak{F}^{-1}(F(\omega)) = f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega.
+\]
+Im wesentlichen ändert sich bei der inversen diskreten Fouriertransformation $e^{j/2\pi}$ zu $e^{-j/2\pi}$. Zusätzlich benötigt die inverse noch einen Korrekturfaktor $1/n$. Wir erwarten daher, dass wir auch im endlichen Körper $A$ die Zahl $a$ durch $a^{-1}$ ersetzen können. Mit der primitiven Einheitswurzel ergibt das 
+%Damit beschäftigen wir uns im Abschnitt \ref{reedsolomon:subsection:sfaktor} weiter, konkret suchen wir momentan aber eine Inverse für unsere primitive Einheitswurzel $a$. 
+\[
+8^1 \qquad \rightarrow \qquad 8^{-1}.
+\]
+Mit einem solchen Problem haben wir uns bereits in Abschnitt \ref{buch:section:euklid} befasst und so den euklidischen Algorithmus kennengelernt, den wir auf diesen Fall anwenden können.
+
+% Old Text
+%Im Abschnitt \textcolor{red}{4.1} haben wir den euklidischen Algorithmus kennengelernt, den wir auf unseren Fall anwenden können.
+
+\subsection{Inverse der primitiven Einheitswurzel
+\label{reedsolomon:subsection:invEinh}}
+
+Die Funktionsweise des euklidischen Algorithmus ist im Abschnitt \ref{buch:section:euklid} ausführlich beschrieben.
+Für unsere Anwendung wählen wir die Parameter $a = 8$ und $b = 11$ ($\mathbb{F}_{11}$).
+Daraus erhalten wir 
+
+\begin{center}
+
+\begin{tabular}{| c | c c | c | r r |}
+	\hline
+	$k$ & $a_i$ & $b_i$ & $q_i$ & $c_i$ & $d_i$\\
+	\hline 
+	& & & & $1$& $0$\\
+	$0$& $8$& $11$& $0$& $0$& $1$\\
+	$1$& $11$& $8$& $1$& $1$& $0$\\
+	$2$& $8$& $3$& $2$& $-1$& $1$\\
+	$3$& $3$& $2$& $1$& $3$& $-2$\\
+	$4$& $2$& $1$& $2$& \textcolor{blue}{$-4$}& \textcolor{red}{$3$}\\
+	$5$& $1$& $0$& & $11$& $-8$\\
+	\hline
+\end{tabular}
+
+\end{center}
+\begin{center}
+
+\begin{tabular}{rcl}
+	$\textcolor{blue}{-4} \cdot 8 + \textcolor{red}{3} \cdot 11$ &$=$& $1$\\
+	$7 \cdot 8 + 3 \cdot 11$ &$=$& $1$\\
+	$8^{-1}$ &$=$& $7$
+	
+\end{tabular}
+
+\end{center}
+als Inverse der primitiven Einheitswurzel.
+Alternativ können wir das Resultat auch aus der Tabelle \ref{reedsolomon:subsection:mptab} ablesen.
+Die inverse Transformationsmatrix $A^{-1}$ bilden wir, indem wir jetzt die inverse primitive Einheitswurzel anstelle der primitiven Einheitswurzel in die Matrix einsetzen:
+\[
+\begin{pmatrix}
+	8^0 & 8^0 & 8^0 & 8^0 & \dots & 8^0 \\
+	8^0 & 8^{-1} & 8^{-2} & 8^{-3} & \dots & 8^{-9} \\
+	8^0 & 8^{-2} & 8^{-4} & 8^{-6} & \dots & 8^{-18} \\
+	8^0 & 8^{-3} & 8^{-6} & 8^{-9} & \dots & 8^{-27} \\
+ 	\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	8^0 & 8^{-9} & 8^{-18} & 8^{-27} & \dots & 8^{-81} \\
+\end{pmatrix}
+\qquad
+\Rightarrow
+\qquad
+\begin{pmatrix}
+	7^0 & 7^0 & 7^0 & 7^0 & \dots & 7^0 \\
+	7^0 & 7^{1} & 7^{2} & 7^{3} & \dots & 7^{9} \\
+	7^0 & 7^{2} & 7^{4} & 7^{6} & \dots & 7^{18} \\
+	7^0 & 7^{3} & 7^{6} & 7^{9} & \dots & 7^{27} \\
+	\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+	7^0 & 7^{9} & 7^{18} & 7^{27} & \dots & 7^{81} \\
+\end{pmatrix}
+\] 
+
+\subsection{Der Faktor $s$
+	\label{reedsolomon:subsection:sfaktor}}
+Die diskrete Fouriertransformation benötigt für die Inverse einen Vorfaktor von $\frac{1}{2\pi}$.
+Wir müssen also damit rechnen, dass wir für die Inverse Transformationsmatrix ebenfalls einen solchen Vorfaktor benötigen.
+Nur stellt sich jetzt die Frage, wie wir diesen Vorfaktor in unserem Fall ermitteln können.
+Dafür betrachten wir eine Regel aus der linearen Algebra, nämlich dass
+
+\[
+A \cdot A^{-1} = E
+\]
+entsprechen muss.
+Ist dies nicht der Fall, so benötigt $A^{-1}$ eben genau diesen Korrekturfaktor und ändert die Gleichung so zu
+\begin{equation}
+	A \cdot s \cdot A^{-1} = E.
+	\label{reedsolomon:equation:sfaktor}
+\end{equation}
+%\[
+%A \cdot s \cdot A^{-1} = E.
+%\]
+Somit sollte es für uns ein leichtes Spiel sein, $s$ für unser Beispiel zu ermitteln:
+\[
+\begin{pmatrix}
+	8^0 & 8^0 & 8^0 & \dots & 8^0 \\
+	8^0 & 8^1 & 8^2 & \dots & 8^9 \\
+	8^0 & 8^2 & 8^4 & \dots & 8^{18} \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	8^0 & 8^9 & 8^{18} & \dots & 8^{81} \\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	7^0 & 7^0 & 7^0 & \dots & 7^0 \\
+	7^0 & 7^{1} & 7^{2} & \dots & 7^{9} \\
+	7^0 & 7^{2} & 7^{4} & \dots & 7^{18} \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	7^0 & 7^{9} & 7^{18} & \dots & 7^{81} \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+	10 & 0 & 0 & \dots & 0 \\
+	0 & 10 & 0 & \dots & 0 \\
+	0 & 0 & 10 & \dots & 0 \\
+	\vdots & \vdots & \vdots  & \ddots & \vdots \\
+	0 & 0 & 0 & \dots & 10 \\
+\end{pmatrix}
+\]
+Aus der letzten Matrix folgt, dass wir
+\[
+s = \dfrac{1}{10}
+\]
+als unseren Vorfaktor setzen müssen um, die Gleichung \ref{reedsolomon:equation:sfaktor} zu erfüllen. Da wir in $\mathbb{F}_{11}$ nur mit ganzen Zahlen arbeiten, schreiben wir $\frac{1}{10}$ in $10^{-1}$ um und bestimmen diese Inverse erneut mit dem euklidischen Algorithmus. So erhalten wir $10^{-1} = 10$ als Vorfaktor in $\mathbb{F}_{11}$.
+%
+%erfüllt wird. Wir schreiben den Bruch um in $\frac{1}{10} = 10^{-1}$ und wenden darauf erneut den euklidischen Algorithmus an und erhalten somit den Vorfaktor $10^{-1} = 10 = s$ in $\mathbb{F}_{11}$.
+%
+%Um $s$ eindeutig zu bestimmen müssen wir $\frac{1}{10}$ nur noch in den Bereich von $\mathbb{F}_{11}$ verschieben. Wie sich herausstellt können wir das recht einfach bewerkstelligen, da $\frac{1}{10} = 10^{-1}$ entspricht. Daraus können wir $s$ mit dem euklidischen Algorithmus bestimmen und stellen fest, dass $10^{-1} = 10$ in $\mathbb{F}_{11}$ ergibt.
+%
+%Da $s$ jetzt ein Bruch ist brauchen wir ihn nur noch in $\mathbb{F}_{11}$ zu schieben. Praktischerweise können wir $\frac{1}{10} = 10^{-1}$ darstellen 
+%
+%Da $\frac{1}{10} = 10^{-1}$ entspricht können wir $s$ ebenfalls mit dem euklidischen Algorithmus bestimmen und stellen fest, dass $10^{-1} = 10$ in $\mathbb{F}_{11}$ ergibt.
+%
+%Daher nehmen wir an, dass wir für die Inverse Transformationsmatrix ebenfalls ein solcher Vorfaktor benötigen. Dieser Faktor hat seinen Ursprung in der Gleichung
+%\[
+%A \cdot A^{-1} = E.
+%\]
+%Sollte diese Gleichung nicht aufgehen, so muss die Inverse mit 
+\subsection{Allgemeine Decodierung
+	\label{reedsolomon:subsection:algdec}}
+
+Wir haben jetzt alles für eine erfolgreiche Rücktransformation vom empfangenen Nachrichtenvektor beisammen. Die allgemeine Gleichung für die Rücktransformation lautet
+\[
+m = s \cdot A^{-1} \cdot v.
+\]
+Setzen wir nun die Werte ein in
+%
+%Wir haben aber noch nicht alle Aspekte der inversen diskreten Fouriertransformation befolgt, so fehlt uns noch einen Vorfaktor
+%\[
+%m = \textcolor{red}{s} \cdot A^{-1} \cdot v
+%\]
+%den wir noch bestimmen müssen. 
+%Glücklicherweise lässt der sich analog wie bei der inversen diskreten Fouriertransformation bestimmen und beträgt
+%\[
+%s = \frac{1}{10}.
+%\]
+%Da $\frac{1}{10} = 10^{-1}$ entspricht können wir $s$ ebenfalls mit dem euklidischen Algorithmus bestimmen und stellen fest, dass $10^{-1} = 10$ in $\mathbb{F}_{11}$ ergibt. Somit lässt sich der Nachrichtenvektor einfach bestimmen mit
+\[
+m = 10 \cdot A^{-1} \cdot v \qquad \Rightarrow \qquad m = 10 \cdot \begin{pmatrix}
+	7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0&    7^0\\
+	7^0&	7^1&	7^2&	7^3&	7^4&	7^5&	7^6&	7^7&    7^8&	7^9\\
+	7^0&	7^2&	7^4&	7^6&	7^8& 7^{10}& 7^{12}& 7^{14}& 7^{16}& 7^{18}\\
+	7^0&	7^3&	7^6&	7^9& 7^{12}& 7^{15}& 7^{18}& 7^{21}& 7^{24}& 7^{27}\\
+	7^0&	7^4&	7^8& 7^{12}& 7^{16}& 7^{20}& 7^{24}& 7^{28}& 7^{32}& 7^{36}\\
+	7^0&	7^5& 7^{10}& 7^{15}& 7^{20}& 7^{25}& 7^{30}& 7^{35}& 7^{40}& 7^{45}\\
+	7^0&	7^6& 7^{12}& 7^{18}& 7^{24}& 7^{30}& 7^{36}& 7^{42}& 7^{48}& 7^{54}\\
+	7^0&	7^7& 7^{14}& 7^{21}& 7^{28}& 7^{35}& 7^{42}& 7^{49}& 7^{56}& 7^{63}\\
+	7^0&	7^8& 7^{16}& 7^{24}& 7^{32}& 7^{40}& 7^{48}& 7^{56}& 7^{64}& 7^{72}\\
+	7^0&	7^9& 7^{18}& 7^{27}& 7^{36}& 7^{45}& 7^{54}& 7^{63}& 7^{72}& 7^{81}\\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+	5 \\ 3 \\ 6 \\ 5 \\ 2 \\ 10 \\ 2 \\ 7 \\ 10 \\ 4 \\
+\end{pmatrix}
+\]
+und wir erhalten
+\[
+m = [0,0,0,0,4,7,2,5,8,1]
+\]
+als unsere Nachricht zurück.

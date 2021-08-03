@@ -1,16 +1,22 @@
 \section{Dreiachsiger Spannungszustand\label{spannung:section:Dreiachsiger_Spannungszustand}}
 \rhead{Dreiachsiger Spannungszustand}
 Durch komplexe Spannungsausbreitungen im Boden entstehen im 3D Spannungszustand unterschiedliche Normal- und Schubspannungen.
-Ein Tensor 0.Stufe, sprich ein Skalar, kann lediglich den 1D Spannungszustand beschreiben.
-Um den 3D Spannungszustandes als ein mathematisches Objekt darstellen zu können, wird ein Tensor 2.Stufe, sprich eine Matrix, eingesetzt.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.30\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
+	\caption{Beispiel eines Spannungszustandes; Vergrösserung eines infinitesimalen Bodenteilchen}
+	\label{fig:infinitesimalerWuerfel}
+\end{figure}
+Ein Tensor 0. Stufe, sprich ein Skalar, kann lediglich den 1D Spannungszustand beschreiben.
+Um den 3D Spannungszustandes als ein mathematisches Objekt darstellen zu können, wird ein Tensor 2. Stufe, sprich eine Matrix, eingesetzt.
 Die Spannungen sind durch die zwei Indizes
 \[
 i, j\in\left\{1, 2, 3\right\}
 \]
-
 definiert.
-Daher ergeben sich die 9 Spannungen.
-Dieser Spannungstensor kann schliesslich mit $3^2$ Einträgen als 3x3 Matrix mit
+Daher ergeben sich die neun Spannungen.
+Die nachfolgenden Zusammenhänge sind in \cite{spannung:Voigtsche-Notation} beschrieben.
+Dieser Spannungstensor kann schliesslich mit $3^2$ Einträgen als $3\times3$ Matrix mit
 \[
 \overline{\sigma}
 =
@@ -23,13 +29,12 @@ Dieser Spannungstensor kann schliesslich mit $3^2$ Einträgen als 3x3 Matrix mit
 \end{pmatrix}
 \]
 dargestellt werden und beschreibt somit den gesamten Spannungszustand.
-Die Dehnungen wirken adäquat zu den Spannungen und sind durch die zwei Indizes
+Die Dehnungen wirken in die gleichen Richtungen wie die korrespondierenden Spannungen und sind durch die zwei Indizes
 \[
 k, l\in\left\{1, 2, 3\right\}
 \]
-
 definiert.
-Der Dehnungstensor ist ebenfalls ein Tensor 2.Stufe und kann somit auch als $3\times3$ Matrix mit
+Der Dehnungstensor ist ebenfalls ein Tensor 2. Stufe und kann somit auch als $3\times3$ Matrix mit
 \[
 \overline{\varepsilon}
 =
@@ -43,15 +48,8 @@ Der Dehnungstensor ist ebenfalls ein Tensor 2.Stufe und kann somit auch als $3\t
 \]
 dargestellt werden und beschreibt den gesamten Dehnungszustand.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
-	\caption{Infinitesimales Bodenteilchen}
-	\label{fig:infintesimaler-wurfel}
-\end{figure}
-
-Der Spannungs- und Dehnungstensor 2.Stufe kann je in einen Tensor 1. Stufe überführt werden, welches ein Spaltenvektor ist.
-Gemäss der Hadamard-Algebra dürfen Zeile um Zeile in eine Spalte notiert werden, sodass es einen Spaltenvektor ergibt.
+Der Spannungs- und Dehnungstensor 2. Stufe kann je in einen Tensor 1. Stufe überführt werden, welches ein Spaltenvektor ist.
+Man darf Zeile um Zeile in eine Spalte notieren, sodass es einen Spaltenvektor ergibt.
 So ergibt sich der Spannungsvektor
 
 \[
@@ -81,7 +79,7 @@ So ergibt sich der Spannungsvektor
 	\sigma_{33}
 \end{pmatrix}
 \]
-und Dehnungsvektor
+und der Dehnungsvektor
 \[
 \overline{\varepsilon}
 =
@@ -108,22 +106,22 @@ und Dehnungsvektor
 	\varepsilon_{32} \\
 	\varepsilon_{33}
 \end{pmatrix}
-\].
+.
+\]
+Um die Beziehung von Spannung und Dehnung, welche mit Tensoren 2. Stufe ausgedrückt werden, zu beschreiben, wird ein Elastizitätstensor 4. Stufe benötigt.
+Dieser ist im 1D Spannungszustand ein Tensor 0. Stufe und somit ein Skalar, der Elastizitätsmodul $E$.
 
-Um die Beziehung von Spannung und Dehnung, welche mit Tensoren 2.Stufen ausgedrückt werden, zu beschreiben, wird ein Elastizitätstensor 4.Stufe benötigt.
-Dieser ist im 1D Spannungszustand ein Tensor 0.Stufe und somit ein Skalar.
-Dieses Skalar ist das Elastizitätsmodul $E$.
-
-Dieser Elastizitätstensor 4.Stufe kann als Tensor 2.Stufe, sprich als Matrix, dargestellt werden.
-So wird die Spannungsgleichung stark vereinfacht, da nun ein Vektor mit einer Matrix operiert.
+Dieser Elastizitätstensor 4. Stufe kann als Tensor 2. Stufe, sprich als Matrix, dargestellt werden.
+So wird die Spannungsgleichung stark vereinfacht, da nun eine Matrix auf einen Vektor operiert.
 Dieser Tensor muss für eine Spannung jeden Einfluss aus allen 9 Dehnungen mit Konstanten erfassen.
 Dies bedeutet um eine von 9 Spannungen berechnen zu können müssen alle 9 Dehnung mit unterschiedlichen Faktoren summiert werden.
 Es ergeben sich $9^2$ Einträge, welches mit den 4 Indizes
 \[
 i, j, k, l\in\left\{1, 2, 3\right\}
+,
 \]
-, die zueinander verknüpft werden müssen, zu begründen ist.
-Es ergeben sich $3^4$ Einträge, sprich eine $9\times9$ Matrix, welche allgemein mit
+die zueinander verknüpft werden müssen, zu begründen ist.
+Es ergeben sich $3^4$ Einträge, sprich eine $9\times9$ Matrix, welche allgemein
 \[
 \overline{\overline{C}}
 =
@@ -141,25 +139,36 @@ C_{3211} & C_{3212} & C_{3213} & C_{3221} & C_{3222} & C_{3223} & C_{3231} & C_{
 C_{3311} & C_{3312} & C_{3313} & C_{3321} & C_{3322} & C_{3323} & C_{3331} & C_{3332} & C_{3333}
 \end{pmatrix}
 \]
-ausgedrückt wird.
-Dieser Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
-Folglich gilt:
-\[
-\overline{\overline{C}}
-=
-\overline{\overline{C}}~^{T}
-\].
-
+geschrieben werden kann.
 Die allgemeine Spannungsgleichung lautet nun:
 \[
 \vec\sigma
 =
 \overline{\overline{C}}\cdot\vec{\varepsilon}
-\].
+.
+\]
+Sie kann ebenfalls als Indexnotation
+\[
+\sigma_{ij}
+=
+\sum_{k=1}^3
+\sum_{l=1}^3
+C_{ijkl}\cdot\varepsilon_{kl}
+\]
+geschrieben werden.
+Der Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
+Folglich gilt:
+\[
+\overline{\overline{C}}
+=
+\overline{\overline{C}}~^{T}
+.
+\]
 
 Die Konstanten $C$ werden nun nach dem Hook'schen Gesetz mit Hilfe des Elastizitätsmoduls $E$ definiert.
-Da dieser Modul durch die eindimensionale Betrachtung definiert ist muss eine weitere Kennzahl eingeführt werden.
-Dies ist die Querdehnungszahl $\nu$ (auch Poisson-Zahl), welche mit
+Da dieser Modul durch die eindimensionale Betrachtung definiert ist,
+muss für die dreidimensionale Betrachtung eine weitere Kennzahl eingeführt werden.
+Dies ist die Querdehnungszahl $\nu$ (auch Poisson-Zahl), welche durch
 \[
 \nu
 =
@@ -168,17 +177,11 @@ Dies ist die Querdehnungszahl $\nu$ (auch Poisson-Zahl), welche mit
 \frac{\Delta b}{b_0}
 \]
 und
-\[
-\varepsilon
-=
-\text{Längsdehnung [$-$]}
-\]
-\[
-\varepsilon_q
-=
-\text{Querdehnung [$-$]}
-\]
-definiert ist. Trägt man die Konstanten in die Matrix ein ergibt sich
+\begin{align*}
+	\varepsilon     &= \text{Längsdehnung [$-$]} \\
+	\varepsilon_q   &= \text{Querdehnung [$-$]}
+\end{align*}
+definiert ist. Trägt man die Konstanten in die Matrix ein, ergibt sich
 \[
 \begin{pmatrix}
 	\sigma_{11}\\
@@ -215,19 +218,9 @@ definiert ist. Trägt man die Konstanten in die Matrix ein ergibt sich
 	\varepsilon_{32} \\
 	\varepsilon_{33}
 \end{pmatrix}
+.
 \]
-
-, welche ebenfalls als Indexnotation mit
-\[
-\sigma_{ij}
-=
-\sum_{k=1}^3
-\sum_{l=1}^3
-C_{ijkl}\cdot\varepsilon_{kl}
-\]
-ausgedrückt werden können.
-Die Normalspannung $\sigma_{11}$ lässt sich exemplarisch mit
-
+Die Normalspannung $\sigma_{22}$ lässt sich zum Beispiel als
 \[
 \sigma_{22}
 =
@@ -235,11 +228,13 @@ Die Normalspannung $\sigma_{11}$ lässt sich exemplarisch mit
 \]
 berechnen.
 
+Reduzierte Spannungs- und Dehnungsgleichungen
+
 Man betrachte nun die Eigenschaften des Elastizitätstensors.
 Dieser ist quadratisch und symmetrisch, die verschiedenen Einträge wechseln sich aber miteinander ab.
 Es ergeben sich keine Blöcke mit einheitlichen Einträgen.
 
-Allerdings weiss man, dass im isotropen Boden der Spannungs-, Dehnungs- und daher auch Elastizitätstensor symmetrisch sind.
+Allerdings weiss man, dass im isotropen Boden der Spannungs-, Dehnungs- und daher auch der Elastizitätstensor symmetrisch sind.
 Wäre dem nicht so, würde sich das Material je nach Richtung unterschiedlich elastisch verhalten.
 Diese Symmetrie setzt daher voraus, dass
 \[
@@ -247,10 +242,12 @@ Diese Symmetrie setzt daher voraus, dass
 =
 \sigma_{21}
 ,
+\qquad
 \sigma_{13}
 =
 \sigma_{31}
 ,
+\qquad
 \sigma_{23}
 =
 \sigma_{32}
@@ -261,16 +258,18 @@ und folglich auch
 =
 \varepsilon_{21}
 ,
+\qquad
 \varepsilon_{13}
 =
 \varepsilon_{31}
 ,
+\qquad
 \varepsilon_{23}
 =
 \varepsilon_{32}
 \]
 gilt.
-Diese Eigenschaft wird durch die Voigt'sche Notation ausgenutzt um die Gleichung vereinfachen zu können.
+Diese Eigenschaft wird durch die Voigt'sche Notation \cite{spannung:Voigtsche-Notation} ausgenutzt, um die Gleichung vereinfachen zu können.
 Durch diese Symmetrie gilt
 \[
 \overline{\sigma}
@@ -284,7 +283,7 @@ Durch diese Symmetrie gilt
 \begin{pmatrix}
 	\sigma_{11} & \sigma_{12} & \sigma_{13} \\ 
   	            & \sigma_{22} & \sigma_{23} \\
-	        sym &             & \sigma_{33} 
+	 \text{sym} &             & \sigma_{33} 
 \end{pmatrix}
 \qquad
 \Rightarrow
@@ -312,7 +311,7 @@ und entsprechend
 =
 \begin{pmatrix}
 	\varepsilon_{11} & \varepsilon_{12} & \varepsilon_{13} \\ 
-	& \varepsilon_{22} & \varepsilon_{23} \\
+	                 & \varepsilon_{22} & \varepsilon_{23} \\
 	\text{sym}       &                  & \varepsilon_{33}
 \end{pmatrix}
 \qquad
@@ -328,9 +327,10 @@ und entsprechend
 	\varepsilon_{13} \\
 	\varepsilon_{12}
 \end{pmatrix}
-\].
+.
+\]
 
-Aus den Vereinfachungen der Voigt'schen Notation lassen sich die Spannungs- und Dehnungstensoren als Spaltenvektoren mit je 6 Einträgen darstellen.
+Aus den Vereinfachungen der Voigt'schen Notation lassen sich die Spannungs- und Dehnungstensoren als Spaltenvektoren mit je sechs Einträgen darstellen.
 Der Elastizitätstensor kann entsprechend auf eine $6\times6$ Matrix reduziert werden.
 Es lässt sich nun eine reduzierte allgemeine Spannungsgleichung mit
 \[
@@ -350,12 +350,12 @@ beziehungsweise
 \end{pmatrix}
 =
 \begin{pmatrix}
-	C_{11} & C_{12} & C_{13} & C_{14} & C_{15} & C_{16} \\
-	C_{21} & C_{22} & C_{23} & C_{24} & C_{25} & C_{26} \\
-	C_{31} & C_{32} & C_{33} & C_{34} & C_{35} & C_{36} \\
-	C_{41} & C_{42} & C_{43} & C_{44} & C_{45} & C_{46} \\
-	C_{51} & C_{52} & C_{53} & C_{54} & C_{55} & C_{56} \\
-	C_{61} & C_{62} & C_{63} & C_{64} & C_{65} & C_{66}
+	C_{1111} & C_{1122} & C_{1133} & C_{1123} & C_{1113} & C_{1112} \\
+	C_{2211} & C_{2222} & C_{2233} & C_{2223} & C_{2213} & C_{2212} \\
+	C_{3311} & C_{3322} & C_{3333} & C_{3323} & C_{3313} & C_{3312} \\
+	C_{2311} & C_{2322} & C_{2333} & C_{2323} & C_{2313} & C_{2312} \\
+	C_{1311} & C_{1322} & C_{1333} & C_{1323} & C_{1313} & C_{1312} \\
+	C_{1211} & C_{1222} & C_{1233} & C_{1223} & C_{1213} & C_{1212}
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{11} \\
@@ -367,9 +367,9 @@ beziehungsweise
 \end{pmatrix}
 \]
 beschreiben.
-Die Spannung $\sigma_{11}$ beispielsweise besteht so aus der Summe aller 6 Produkte der Konstanten $C$ und Dehnungen $\varepsilon$.
+Die Spannung $\sigma_{11}$ beispielsweise erhält man, wenn man die sechs Produkte aus den Konstanten $C$ und Dehnungen $\varepsilon$ summiert.
 Die Symmetrieeigenschaft des Elastizitätstensors bleibt auch hier erhalten.
-Nun lässt sich die reduzierte allgemeine Spannungsgleichung mit
+Somit lässt sich die reduzierte allgemeine Spannungsgleichung mit
 
 \[
 \begin{pmatrix}
@@ -382,12 +382,12 @@ Nun lässt sich die reduzierte allgemeine Spannungsgleichung mit
 \end{pmatrix}
 =
 \begin{pmatrix}
-	  C_{11} & C_{12} & C_{13} & C_{14} & C_{15} & C_{16} \\
-	         & C_{22} & C_{23} & C_{24} & C_{25} & C_{26} \\
-	         &        & C_{33} & C_{34} & C_{35} & C_{36} \\ 
-	         &        &        & C_{44} & C_{45} & C_{46} \\ 
-             &        &        &        & C_{55} & C_{56} \\
-  \text{sym} &        &        &        &        & C_{66} 
+	  C_{1111} & C_{1122} & C_{1133} & C_{1123} & C_{1113} & C_{1112} \\
+	           & C_{2222} & C_{2233} & C_{2223} & C_{2213} & C_{2212} \\
+	           &          & C_{3333} & C_{3323} & C_{3313} & C_{3312} \\ 
+	           &          &          & C_{2323} & C_{2313} & C_{2312} \\ 
+               &          &          &          & C_{1313} & C_{1312} \\
+    \text{sym} &          &          &          &          & C_{1212} 
 \end{pmatrix}
 \begin{pmatrix}
 	\varepsilon_{11} \\
@@ -399,10 +399,9 @@ Nun lässt sich die reduzierte allgemeine Spannungsgleichung mit
 \end{pmatrix}
 \]
 beschreiben.
-Die Konstanten $C$ und $\nu$ werden wieder nach dem Hook'schen Gesetz definiert.
+Die Konstanten $C$ werden wieder nach dem Hook'schen Gesetz definiert.
 Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
-
-\[
+\begin{equation}
 \begin{pmatrix}
 	\sigma_{11}\\
 	\sigma_{22}\\
@@ -429,11 +428,13 @@ Dies ergibt die Spannungsgleichung, welche weit möglichst vereinfacht ist:
 	\varepsilon_{13}\\
 	\varepsilon_{12}
 \end{pmatrix}
-\].
+.
+\label{spannung:Spannungsgleichung}
+\end{equation}
 
 Im Elastizitätstensor fallen zwei $3\times3$ Blöcke auf, welche nur Einträge mit $0$ haben. Der Tensor besagt also,
-dass diese jeweiligen Konstanten keinen Einfluss auf unsere Spannung haben.
-Man sieht nun auch ganz gut, dass sich im Vergleich zu der allgemeinen Spannungsgleichung, die Einträge verschoben haben.
+dass diese jeweiligen Dehnungen keinen Einfluss auf unsere Spannung haben.
+Man sieht nun auch ganz gut, dass sich im Vergleich zu der allgemeinen Spannungsgleichung die Einträge verschoben haben.
 Da nach Voigt zuerst die Normalspannungen und anschliessend die Schubspannungen notiert worden sind, ergeben sich die  $3\times3$ Blöcke.
 
 Man betrachte als Beispiel die Berechnung von $\sigma_{33}$.
@@ -441,8 +442,8 @@ Es ist ersichtlich, dass die Schubdehnungen keinen Einfluss auf $\sigma_{33}$ ha
 Der Einfluss der zu $\sigma_{33}$ äquivalenten Dehnung $\varepsilon_{33}$ hat den grössten Einfluss.
 Die anderen Normalspannungen $\sigma_{11}$ und $\sigma_{22}$ haben einen unter anderem mit $\nu$ korrigierten Einfluss.
 
-Von  $\overline{\overline{C}}$ bildet man noch die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$ um die Gleichung umstellen zu können.
-Dadurch erhält man die Dehnungsgleichung:
+Von  $\overline{\overline{C}}$ bildet man die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$, mithilfe des Gauss - Jordan Algorithmus, um die Gleichung umstellen zu können.
+Durch einige Berechnungsschritte erhält man die Dehnungsgleichung:
 
 \[
 \vec{\varepsilon}
@@ -477,27 +478,18 @@ Dadurch erhält man die Dehnungsgleichung:
 	\sigma_{13}\\
 	\sigma_{12}
 \end{pmatrix}
-\].
-
+.
+\]
 Die zwei $3\times3$ Blöcke links unten und rechts oben sind folglich noch vorhanden.
-Um wieder die Einflüsse der Parameter veranschaulichen zu können berechnet man mit
+Um wieder die Einflüsse der Parameter veranschaulichen zu können berechnet man die Dehnung
 \[
 \varepsilon_{22}
 =
 \frac{1}{E}\sigma_{22} - \frac{\nu}{E}\sigma_{11} - \frac{\nu}{E}\sigma_{33}
 =
 \frac{1}{E}\cdot(\sigma_{22}-\nu\cdot\sigma_{11}-\nu\cdot\sigma_{33})
+.
 \]
-
-die Dehnung $\varepsilon_{22}$.
 Diese hängt wieder am meisten von $\sigma_{22}$ ab.
 Ist die Querdehnung $\nu$ grösser, so wird die Dehnung $\varepsilon_{22}$ reduziert.
-Bei inkompressiblen Medien, bei welchen keine Dehnungen und nur identische Normalspannungen auftreten können, ist folglich
-\[
-\nu
-=
-0.5
-\].
-
-
-
+Bei inkompressiblen Medien, bei welchen keine Dehnungen und nur identische Normalspannungen auftreten können, ist folglich $\nu=0.5$.

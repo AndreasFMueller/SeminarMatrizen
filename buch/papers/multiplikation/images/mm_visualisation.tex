@@ -1,0 +1,45 @@
+
+  \begin{tikzpicture}[ampersand replacement=\&]
+
+    \matrix (A)[matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}] at (0,0)
+     {
+     A_{1,1} \& \cdots \& A_{1,k} \& \cdots \& A_{1,n} \\
+     \vdots \&  \& \vdots \&  \& \vdots \\
+     A_{i,1} \& \cdots \& A_{i,k} \& \cdots \& A_{i,n} \\
+     \vdots \&  \& \vdots \& \& \vdots \\
+     A_{m,1} \& \cdots \& A_{m,k} \& \cdots \& A_{m,n} \\
+     };
+ 
+  	 \node [right=0.1 of A] (mul) {$\cdot$};
+
+	 
+     \matrix (B)[right=0.1 of mul, matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}]
+      {
+      B_{1,1} \& \cdots \& B_{1,j} \& \cdots \& B_{1,p} \\
+      \vdots \&  \& \vdots \&  \& \vdots \\
+      B_{k,1} \& \cdots \& B_{k,j} \& \cdots \& B_{k,p} \\
+      \vdots \&  \& \vdots \& \& \vdots \\
+      B_{n,1} \& \cdots \& B_{n,j} \& \cdots \& B_{n,p} \\
+      };
+  
+  	 \node [right=0.1 of B] (eq) {$=$};
+
+     \matrix (C)[right=0.1 of eq, matrix of math nodes, label skeleton, left delimiter=[,right delimiter={]}]
+      {
+      C_{1,1} \& \cdots \& C_{1,j} \& \cdots \& C_{1,p} \\
+      \vdots \&  \& \vdots \&  \& \vdots \\
+      C_{i,1} \& \cdots \& C_{i,j} \& \cdots \& C_{i,p} \\
+      \vdots \&  \& \vdots \& \& \vdots \\
+      C_{m,1} \& \cdots \& C_{m,j} \& \cdots \& C_{m,p} \\
+      };
+
+
+       \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=green, fit=(A-3-1)(A-3-5)] {};
+       \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=blue, fit=(B-1-3)(B-5-3)] {};
+       \node[opacity=0.5, rounded corners=2pt, inner sep=-1pt, fill=red, fit=(C-3-3)] {};
+
+
+   \end{tikzpicture}
+
+\end{document}
+

@@ -1,0 +1,321 @@
+%
+% decmitfehler.tex -- Decodierung mit Fehler
+%
+% (c) 2021 Michael Steiner, Hochschule Rapperswil
+%
+\section{Decodierung: Ansatz mit Fehlerkorrektur
+\label{reedsolomon:section:decmitfehler}}
+\rhead{Decodierung mit Fehler}
+Bisher haben wir die Decodierung unter der Bedingung durchgeführt, dass der Übertragungsvektor fehlerlos versendet und empfangen wurde.
+In der realen Welt müssen wir uns jedoch damit abfinden, dass kein Übertragungskanal garantiert fehlerfrei ist und das wir früher oder später mit Fehlern rechnen müssen.
+Genau für dieses Problem wurden Fehler korrigierende Codes, wie der Reed-Solomon-Code, entwickelt.
+In diesem Abschnitt betrachten wir somit die Idee der Fehlerkorrektur und wie wir diese auf unser Beispiel anwenden können.
+
+Der Übertragungskanal im Beispiel weisst jetzt den Fehlervektor 
+\[
+u = [0, 0, 0, 3, 0, 0, 0, 0, 2, 0]
+\]
+auf.
+Senden wir jetzt unser Übertragungsvektor $v$ durch diesen Kanal, addiert sich der Fehlervektor $u$ auf unsere Übertragung und wir erhalten 
+\begin{center}
+	
+	\begin{tabular}{c | c r }
+		$v$ & & $[5,3,6,5,2,10,2,7,10,4]$\\
+		$u$ & $+$ & $[0,0,0,3,0,0,0,0,2,0]$\\
+		\hline
+		$w$ & & $[5,3,6,8,2,10,2,7,1,4]$\\
+	\end{tabular}
+	
+	% alternative design
+	%\begin{tabular}{c | c cccccccccccc }
+	%	$v$ & & $[$&$5,$&$3,$&$6,$&$5,$&$2,$&$10,$&$2,$&$7,$&$10,$&$4$&$]$\\
+	%	$u$ & $+$ & $[$&$0,$&$0,$&$0,$&$3,$&$0,$&$0,$&$0,$&$0,$&$2,$&$0$&$]$\\
+	%	\hline
+	%	$w$ & & $[$&$5,$&$3,$&$6,$&$8,$&$2,$&$10,$&$2,$&$7,$&$1,$&$4$&$]$\\
+	%\end{tabular}
+	
+\end{center}
+als neuen, fehlerbehafteten Übertragungsvektor $w$ auf der Empfängerseite.
+% Old Text
+%In diesem Abschnitt gehen wir genauer darauf ein, wie der Reed-Solomon-Code eine solche Feherkorrektur vornimt. 
+%
+%In diesem Abschnitt betrachten wir das Problem, dass während der Übertragung des Übertragungsvektors von unserem Beispiel 
+%
+%
+%Zu diesem Zweck wurden Fehler korrigierende Codes entwickelt.
+%
+%Dieser Optimalfall kann jedoch mit keinem Übertragungskanal garantiert werden
+%
+%
+%Im zweiten Teil zur Decodierung betrachten wir den Fall, dass unser Übertragungskanal nicht fehlerfrei ist.
+%Wir legen daher den Fehlervektor
+%\[
+%u = [0, 0, 0, 3, 0, 0, 0, 0, 2, 0]
+%\]
+%fest, den wir zu unserem Übertragungsvektor als Fehler dazu addieren und somit
+%
+%\begin{center}
+%
+%\begin{tabular}{c | c r }
+%	$v$ & & $[5,3,6,5,2,10,2,7,10,4]$\\
+%	$u$ & $+$ & $[0,0,0,3,0,0,0,0,2,0]$\\
+%	\hline
+%	$w$ & & $[5,3,6,8,2,10,2,7,1,4]$\\
+%\end{tabular}
+%
+%% alternative design
+%%\begin{tabular}{c | c cccccccccccc }
+%%	$v$ & & $[$&$5,$&$3,$&$6,$&$5,$&$2,$&$10,$&$2,$&$7,$&$10,$&$4$&$]$\\
+%%	$u$ & $+$ & $[$&$0,$&$0,$&$0,$&$3,$&$0,$&$0,$&$0,$&$0,$&$2,$&$0$&$]$\\
+%%	\hline
+%%	$w$ & & $[$&$5,$&$3,$&$6,$&$8,$&$2,$&$10,$&$2,$&$7,$&$1,$&$4$&$]$\\
+%%\end{tabular}
+%
+%\end{center}
+%als Übertragungsvektor auf der Empfängerseite erhalten. 
+Als Empfänger wissen wir jedoch nicht, dass der erhaltene Übertragungsvektor jetzt fehlerbehaftet ist und werden dementsprechend den Ansatz aus Abschnitt \ref{reedsolomon:section:decohnefehler} anwenden.
+Wir stellen jedoch recht schnell fest, dass am decodierten Nachrichtenblock
+\[
+r = [\underbrace{5,7,4,10,}_{\text{Syndrom}}5,4,5,7,6,7]
+\]
+etwas nicht in Ordnung ist, denn die vorderen vier Fehlerkorrekturstellen haben nicht mehr den Wert null.
+Der Nachrichtenblock weisst jetzt ein \em Syndrom \em auf, welches anzeigt, dass der Übertragungsvektor fehlerhaft empfangen wurde.
+% Old Text
+%Wenn wir den Übertragungsvektor jetzt Rücktransformieren wie im vorherigen Kapitel erhalten wir
+%\[
+%r = [\underbrace{5,7,4,10,}_{Fehlerinfo}5,4,5,7,6,7].
+%\]
+Jetzt stellt sich natürlich die Frage, wie wir daraus den ursprünglich gesendeten Nachrichtenvektor zurückerhalten sollen. Laut der Definition über die Funktionsweise eines Reed-Solomon-Codes können wir aus den Fehlerkorrekturstellen ein ``Lokatorpolynom'' berechnen, welches die Information enthält, welche Stellen innerhalb des empfangenen Übertragungsvektors fehlerhaft sind.
+
+\subsection{Das Fehlerstellenpolynom $d(X)$
+	\label{reedsolomon:subsection:fehlerpolynom}}
+Bevor wir unser Lokatorpolynom berechnen können, müssen wir zuerst eine Möglichkeit finden, die fehlerhaften von den korrekten Stellen im Übertragungsvektor unterscheiden zu können. 
+In einem ersten Versuch berechnen wir die Differenz $d$ des empfangenen und dem gesendeten Übertragungsvektor mit
+%Alle Stellen in $d$, die nicht null sind sind demnach fehler. 
+%
+%In einem ersten Versuch könnten wir $d$ berechnen mit
+\begin{center}
+\begin{tabular}{r c l}
+	$m(X)$ & $=$ & $4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1$ \\
+	$r(X)$ & $=$ & $5X^9 + 7X^8 + 4X^7 + 10X^6 + 5X^5 + 4X^4 + 5X^3 + 7X^2 + 6X + 7$ \\
+	$d(X)$ & $=$ & $r(X) - m(X)$
+\end{tabular}
+\end{center}
+und nennen $d(X)$ als unseres Fehlerstellenpolynom. Dieses Polynom soll uns sagen, welche Stellen korrekt und welche fehlerhaft sind. 
+
+Durch das verwenden von $m(X)$ stossen wir auf weitere Probleme, da wir den Nachrichtenvektor auf der Empfängerseite nicht kennen (unser Ziel ist es ja genau diesen zu finden). Dieses Problem betrachten wir im Abschnitt \ref{reedsolomon:subsection:nachrichtenvektor} genauer. Um die Überlegungen in den folgenden Abschnitten besser zu verstehen sei $m(X)$ bekannt auf der Empfängerseite.
+
+%Dies wird uns zwar andere sorgen wegen $m(X)$ bereiten, wir werden werden deshalb erst in Abschnitt \ref{reedsolomon:subsection:nachrichtenvektor} darauf zurückkommen.
+
+Setzen wir jetzt unsere Einheitswurzel aus dem Beispiel ein so erhalten wir
+% Old Text
+%\begin{align}
+%	m(X) & = 4X^5 + 7X^4 + 2X^3 + 5X^2 + 8X + 1 \\
+%	r(X) & = 5X^9 + 7X^8 + 4X^7 + 10X^6 + 5X^5 + 4X^4 + 5X^3 + 7X^2 + 6X + 7 \\
+%	e(X) & = r(X) - m(X).
+%\end{align}
+%Setzen wir jetzt unsere Einheitswurzel für $X$ ein, so erhalten wir
+\begin{center}
+\begin{tabular}{c c c c c c c c c c c}
+	\hline
+	$i$& $0$& $1$& $2$& $3$& $4$& $5$& $6$& $7$& $8$& $9$\\
+	\hline
+	$r(a^{i})$& $5$& $3$& $6$& $8$& $2$& $10$& $2$& $7$& $1$& $4$\\
+	$m(a^{i})$& $5$& $3$& $6$& $5$& $2$& $10$& $2$& $7$& $10$& $4$\\
+	$d(a^{i})$& $0$& $0$& $0$& $3$& $0$& $0$& $0$& $0$& $2$& $0$\\
+	\hline
+\end{tabular}
+\end{center}
+und damit die Information, dass allen Stellen, die nicht Null sind, Fehler enthalten. 
+Aus der Tabelle lesen wir ab, das in unserem Beispiel die Fehler an der Stelle drei und acht zu finden sind.
+
+Für das einfache Bestimmen von Hand mag dies ja noch ausreichen, jedoch können wir mit diesen Stellen nicht das Lokatorpolynom bestimmen, denn dafür bräuchten wir alle Nullstellen, an denen es Fehler gegeben hat (also sozusagen genau das umgekehrte). Um dies zu erreichen wenden wir eine andere Herangehensweise und nehmen uns den Satz von Fermat sowie den kleinsten gemeinsamen Teiler zur Hilfe.
+
+\subsection{Mit dem grössten gemeinsamen Teiler auf Nullstellenjagd
+\label{reedsolomon:subsection:ggT}}
+
+Zuerst betrachten wir den Satz von Fermat, dessen Funktionsweise wir in Abschnitt \ref{buch:section:galoiskoerper} kennengelernt haben. Der besagt, dass
+\[
+f(X) = X^{q-1} -1 = 0
+\] 
+gilt für jedes $X$. Setzen wir das $q$ von unserem Beispiel ein
+\[
+f(X) = X^{10}-1 = 0 \qquad \text{für } X \in \{1,2,3,4,5,6,7,8,9,10\}
+\]
+und stellen dies als Faktorisierung dar. So ergibt sich die Darstellung 
+\[
+f(X) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6)(X-a^7)(X-a^8)(X-a^9).
+\]
+Zur Überprüfung können wir unsere Einheitswurzel in $a$ einsetzen und werden sehen, dass wir für $f(X) = 0$ erhalten werden.
+
+Wir können jetzt auch $d(X)$ nach der gleichen Überlegung darstellen als 
+\[
+d(X) = (X-a^0)(X-a^1)(X-a^2)\textcolor{gray!40}{(X-a^3)}(X-a^4)(X-a^5)(X-a^6)(X-a^7)\textcolor{gray!40}{(X-a^8)}(X-a^9) \cdot p(x),
+\]
+wobei diese Darstellung nicht mehr alle Nullstellen umfasst wie es noch in $f(X)$ der Fall war. 
+Dies liegt daran, dass wir ja zwei Fehlerstellen (grau markiert) haben, die nicht Null sind. Diese fassen wir zum Restpolynom $p(X)$ zusammen.
+Wenn wir jetzt den grössten gemeinsamen Teiler von $f(X)$ und $d(X)$ berechnen, so erhalten wir mit 
+\[
+\operatorname{ggT}(f(X),d(X)) = (X-a^0)(X-a^1)(X-a^2)\textcolor{gray!40}{(X-a^3)}(X-a^4)(X-a^5)(X-a^6)(X-a^7)\textcolor{gray!40}{(X-a^8)}(X-a^9)
+\]
+eine Liste von Nullstellen, an denen es keine Fehler gegeben hat.
+Dies scheint zuerst nicht sehr hilfreich zu sein, da wir für das Lokatorpolynom ja eine Liste der Nullstellen suchen, an denen es Fehler gegeben hat. Aus diesem Grund berechnen wir im nächsten Schritt das kleinste gemeinsame Vielfache von $f(X)$ und $d(X)$. 
+
+%Wir werden auch feststellen, das unsere Bemühungen bisher nicht umsonst waren.  
+
+\subsection{Mit dem kgV fehlerhafte Nullstellen finden
+	\label{reedsolomon:subsection:kgV}}
+
+Das kgV hat nämlich die Eigenschaft sämtliche Nullstellen zu finden, also nicht nur die fehlerhaften sondern auch die korrekten, was in 
+\[
+\operatorname{kgV}(f(X),d(X)) = (X-a^0)(X-a^1)(X-a^2)(X-a^3)(X-a^4)(X-a^5)(X-a^6)(X-a^7)(X-a^8)(X-a^9) \cdot q(X).
+\]
+ersichtlich ist.
+Aus dem vorherigen Abschnitt wissen wir auch, dass $d(X)$ alle korrekten Nullstellen beinhaltet. Teilen wir das kgV jetzt auf in 
+\[
+\operatorname{kgV}(f(X),d(X)) = d(X) \cdot l(X),
+\]
+sollten wir für $l(X)$ eine Liste mit allen fehlerhaften Nullstellen erhalten.
+Somit ist 
+\[
+l(X) = (X-a^3)(X-a^8)
+\]
+unser gesuchtes Lokatorpolynom. 
+Es scheint so als müssten wir nur noch an den besagten Stellen den Übertragungsvektor korrigieren und wir währen fertig mit der Fehlerkorrektur.
+Jedoch haben wir noch ein grundlegendes Problem, dass zu Beginn aufgetaucht ist, wir aber beiseite geschoben haben. Die Rede ist natürlich vom Nachrichtenvektor $m(X)$, mit dem wir in erster Linie das wichtige Fehlerstellenpolynom $d(X)$ berechnet haben, auf der Empfängerseite aber nicht kennen.
+
+\subsection{Der problematische Nachrichtenvektor $m(X)$
+	\label{reedsolomon:subsection:nachrichtenvektor}}
+
+In Abschnitt \ref{reedsolomon:section:decmitfehler} haben wir
+\[
+d(X) = r(X) - m(X)
+\]
+in Abhängigkeit von $m(X)$ berechnet. 
+Jedoch haben wir ausser acht gelassen, dass $m(X)$ auf der Empfängerseite nicht verfügbar und somit gänzlich unbekannt ist.
+Es scheint so als würde dieser Lösungsansatz, den wir bisher verfolgt haben, nicht funktioniert.
+Wir könnten uns höchstens noch fragen, ob wir tatsächlich nichts über den Nachrichtenvektor im Beispiel wissen. 
+
+Wenn wir noch einmal den Vektor betrachten als
+\[
+m = [0,0,0,0,4,7,2,5,8,1]
+\]
+fällt uns aber auf, dass wir doch etwas über diesen Vektor wissen, nämlich den Wert der ersten $2t$ (im Beispiel vier) Stellen.
+Im Normalfall sollen diese nämlich den Wert $0$ haben und somit sind nur die letzten $k$ Stellen (im Beispiel sechs) für uns unbekannt, dargestellt als
+\[
+m = [0,0,0,0,?,?,?,?,?,?].
+\]
+Nach der Definition des Reed-Solomon-Codes soll an genau diesen vier Stellen auch die Information befinden, wo die Fehlerstellen liegen. Daher reicht es auch aus
+% darum werden die stellen auch als fehlerkorrekturstellen bezeichnet
+\[
+d(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)
+\]
+so zu berechnen, dass wir die wichtigen vier Stellen kennen, der Rest des Polynoms jedoch im unbekannten Restpolynom $p(X)$ enthalten ist. 
+
+\subsection{Die Berechnung der Fehlerstellen
+	\label{reedsolomon:subsection:nachrichtenvektor}}
+
+Um die Fehlerstellen zu berechnen wenden wir die gleiche Vorgehensweise wie zuvor an, also zuerst den ggT, danach berechnen wir das kgV um am Ende das Lokatorpolynom zu erhalten.
+
+\subsubsection{Schritt 1: ggT}
+
+Wir berechnen den ggT von $f(X)$ und $d(X)$ mit
+\begin{center}
+\begin{tabular}{r c l}
+	$f(X)$ & $=$ & $X^{10} - 1 = X^{10} + 10$ \\
+	$d(X)$ & $=$ & $5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)$
+\end{tabular}
+\end{center} 
+%
+%
+%
+%Das einzige Problem was jetzt noch bleibt ist, dass wir $e(X)$ berechnet haben aus
+%\[
+%e(X) = r(X) - m(X),
+%\]
+%wobei $m(X)$ auf der Empfängerseite unbekannt ist.
+%Es sieht danach aus, das wir diesen Lösungsansatz nicht verwenden können, da uns ein entscheidender Teil fehlt.
+%Bei einer näheren Betrachtung von $m(X)$ fällt uns aber auf, dass wir doch etwas über $m(X)$ wissen.
+%Wir kennen nämlich die ersten vier Stellen, da diese für die Fehlerkorrektur zuständig sind und daher Null sein müssen.
+%\[
+%m = [0,0,0,0,?,?,?,?,?,?]
+%\]
+%An genau diesen Stellen liegt auch die Information, wo unsere Fehlerstellen liegen, was uns ermöglicht, den Teil von $e(X)$ zu berechnen, der uns auch interessiert.
+%
+%Wir können $e(X)$ also bestimmen als
+%\[
+%e(X) = 5X^9 + 7X^8 + 4X^7 + 10X^6 + p(X)
+%\]
+%wobei $p(X)$ wiederum ein unbekanntes Restpolynom ist und
+%\[
+%f(X) = X^{10} - 1 = X^{10} + 10
+%\]
+%ist können wir so in einer ersten Instanz den grössten gemeinsamen Teiler von $f(X)$ und $e(X)$ berechnen.
+%Dafür nehmen wir uns wiederum den Euklidischen Algorithmus zur Hilfe und berechnen so
+%
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
+	X^{10}& & & & & & &+& 10& & & & &:&5X^9&+&7X^8&+& 4X^7&+&10X^6&+&p(X)&=&9X&+&5\\
+	X^{10}&+& 8X^9&+& 3X^8&+&2X^7&+& p(X)& &  & & & &   & & & & & &   & &  & & \\ \cline{1-9}
+	&& 3X^9&+& 8X^8&+& 9X^7&+& p(X)& &   & & & & & &   & &  & & \\
+	&& 3X^9&+& 2X^8&+& 9X^7&+& p(X)& &   & & & & & &   & &  & & \\ \cline{3-9}
+	& &    & &6X^8&+&0X^7&+&p(X)& &   & & & & & &   & &  & & \\
+\end{array}
+\]
+
+\[
+\arraycolsep=1.4pt
+\begin{array}{rcrcrcrcccrcrcrcrcrcrcrcrcr}
+	5X^9&+& 7X^8&+& 4X^7&+& 10X^6&+& p(X)& & & & &:&6X^8&+&0X^7& & & & & & &=&10X&+&3\\
+	5X^9&+& 0X^8&+& p(X)& & & & & &  & & & &   & & & & & &   & &  & & \\ \cline{1-5}
+	&& 7X^8&+& p(X)& & & & & &   & & & & & &   & &  & & \\
+\end{array}
+\]
+und erhalten
+\[
+\operatorname{ggT}(f(X),e(X)) = 6X^8.
+\]
+
+\subsubsection{Schritt 2: kgV}
+
+Mit dem Resultat das wir vom ggT erhalten haben können wir jetzt das kgV berechnen. Dazu können wir jetzt den erweiterten Euklidischen Algorithmus verwenden, den wir in Abschnitt \ref{buch:subsection:daskgv} kennengelernt haben.
+%
+%Mit den Resultaten, die wir vom Rechenweg des grössten gemeinsamen Teiler erhalten haben können wir jetzt auch das kleinste Gemeinsame Vielfache berechnen. Eine detailliertere Vorgehensweise findet man in Kapitel ???. 
+%
+%Aus diesem erweiterten Euklidischen Algorithmus erhalten wir 
+\begin{center}
+	
+	\begin{tabular}{| c | c | c c |}
+		\hline
+		$k$ &  $q_i$ & $e_i$ & $f_i$\\
+		\hline 
+		& & $0$& $1$\\
+		$0$& $9X + 5$& $1$& $0$\\
+		$1$& $10X + 3$& $9X+5$& $1$\\
+		$2$& & \textcolor{blue}{$2X^2 + 0X + 5$}& $10X + 3$\\
+		\hline
+	\end{tabular}	
+	
+\end{center}
+Daraus erhalten wir die Faktoren
+\[
+l(X) = 2X^2 + 5 \qquad \rightarrow \qquad l(X) = 2(X-5)(X-6).
+\]
+\subsubsection{Schritt 3: Fehlerstellen bestimmen}
+Unser gesuchtes Lokatorpolynom hat also die Form
+\[
+l(X) = (X-a^i)(X-a^j).
+\]
+Also brauchen wir nur noch $i$ und $j$ zu berechnen und wir haben unsere gesuchten Fehlerstellen.
+Diese bekommen wir recht einfach mit
+\begin{center}
+	$a^i = 5 \qquad \Rightarrow \qquad i = 3$
+	
+	$a^j = 6 \qquad \Rightarrow \qquad j = 8$.
+\end{center}
+Schlussendlich erhalten wir
+\[
+d(X) = (X-a^3)(X-a^8)
+\]
+als unser Lokatorpolynom mit den fehlerhaften Stellen.
