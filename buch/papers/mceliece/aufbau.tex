@@ -30,21 +30,21 @@ Da eine solche Matrix möglicherweise singulär ist, muss in diesem Fall eine ne
 Für grössere Matrizen existieren bessere Methoden, auf welche hier nicht weiter eingegangen wird \cite{mceliece:GenerationRandMatrix}.
 Beispielsweise
 \[S_4=
-\begin{pmatrix}
-    0 & 1 & 1 & 1\\
-    0 & 1 & 1 & 0\\
-    0 & 0 & 1 & 1\\
-    1 & 0 & 0 & 1
-\end{pmatrix}
+    \begin{pmatrix}
+        0 & 0 & 1 & 1\\
+        0 & 0 & 0 & 1\\
+        0 & 1 & 0 & 1\\
+        1 & 0 & 0 & 1
+    \end{pmatrix}
 \]
 
 \[
     S_4^{-1}=
     \begin{pmatrix}
-        1 & 0 & 1 & 0\\
-        1 & 1 & 0 & 1\\
-        1 & 1 & 1 & 0\\
-        1 & 1 & 0 & 0
+        0 & 1 & 0 & 1\\
+        0 & 1 & 1 & 0\\
+        1 & 1 & 0 & 0\\
+        0 & 1 & 0 & 0\\
     \end{pmatrix}
 \]
 
@@ -124,5 +124,26 @@ Beispiel
         0\\
         0\\
         0
+    \end{pmatrix}
+\]
+
+\subsection{Public-Key $K_{n,k}$
+\label{mceliece:subsection:k_m}}
+Der öffentliche Schlüssel, welcher zum Verschlüsseln verwendet wird,
+berechnet sich mit
+\[
+    K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}\,.
+\]
+Beispiel
+\[
+    K_{7,4}=
+    \begin{pmatrix}
+        0 & 0 & 1 & 0\\
+        1 & 0 & 0 & 1\\
+        0 & 0 & 1 & 1\\
+        1 & 1 & 1 & 1\\
+        0 & 1 & 0 & 1\\
+        0 & 1 & 0 & 0\\
+        1 & 0 & 0 & 0
     \end{pmatrix}
 \]
