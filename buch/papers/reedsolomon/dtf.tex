@@ -112,11 +112,14 @@ Die Analogie geht aber noch weiter.
  \begin{equation}
 	\textcolor{darkgreen}{q(w)}=
 	\frac{\textcolor{blue}{{f}_0}}{N} + \frac{\textcolor{blue}{{f}_1}}{N} w^1 + \frac{\textcolor{blue}{{f}_2}}{N} w^2 + \dots + 
-	\frac{\textcolor{blue}{{f}_63}}{N} w^{63} + \frac{\textcolor{gray}{{f}_64}}{N} w^{64} + \textcolor{gray}{\dots} + \frac{\textcolor{gray}{{f}_{N-1}}}{N} w^{N-1}
+	\frac{\textcolor{blue}{{f}_{63}}}{N} w^{63} + \frac{\textcolor{gray}{{f}_{64}}}{N} w^{64} + \textcolor{gray}{\dots} + \frac{\textcolor{gray}{{f}_{N-1}}}{N} w^{N-1}
 	\label{reedsolomon:DFT_polynom2}
  \end{equation}
+Das syndrom entstand durch die Wahl ${f_{64}}=0$ bis ${f}_{N-1}=0$.(graue koeffizenten)
+\par
 Die Polynominterpolation und die Fourier-Transformation rechnen beide mit reelen Zahlen.
-Wenn die Approximation nicht mehr genügend gut ist im die Fehler zu erkennen und rekonstruieren.
+Wenn die Approximation nicht mehr genügend gut ist um die Fehler zu erkennen und rekonstruieren,
+dann müssen wir von den Reelen-Zahlen weg und zum endlichen Körpern, oder auch Galios-Körper genannt.
 Deshalb haben die Mathematiker einen neuen Körper gesucht und ihn in der Endlichkeit gefunden,
 dies wird nun im nächsten Abschnitt genauer erklärt.
 
