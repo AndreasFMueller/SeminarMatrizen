@@ -7,7 +7,7 @@
 \section{Algorithmen}
 \rhead{Algorithmen}
 
-In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Libraries zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
+In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Bibliotheken zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
 
 \subsection{Standard Algorithmus}
 
@@ -15,7 +15,7 @@ Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen w
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
 Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
 
-\begin{algorithm}\caption{Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Matrix Multiplication}
 	\label{multiplikation:alg:smm}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}[1]
@@ -76,7 +76,7 @@ ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplik
 Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
 Der Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
 Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ durchgef\"uhrt.
-\begin{algorithm}\caption{Divide and Conquer Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Divide and Conquer Matrix Multiplication}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:devide_mm}
 	\begin{algorithmic}
@@ -106,7 +106,7 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 \end{algorithm}
 
 Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algortihmen.
-Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe der Funktion die Laufzeit.
+Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
 	\mathcal{T}(n) =	8 \cdot \mathcal{T}\left (\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}\left (n^{3} \right )
@@ -141,7 +141,7 @@ aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke
 \end{split}
 \end{equation}
 der Matrix $\mathbf{C}$ gebraucht.
-\begin{algorithm}\caption{Strassen Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Strassen Matrix Multiplication}
 	\label{multiplikation:alg:strassen}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
@@ -205,6 +205,7 @@ Dies f\"uhrt zu einer Laufzeit von
 7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  = \mathcal{O}\left(n^{\log_2 7}\right ) = \mathcal{O}\left(n^{2.8074} \right )
 \end{equation}
 und ist somit schneller als die Standardmethode.
+Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
 
 \subsection{Winograd's Algorithmus}
 
@@ -244,7 +245,7 @@ Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\fr
 Was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
 
-\begin{algorithm}\caption{Winograd Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Winograd Matrix Multiplication}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
 	\begin{algorithmic}
@@ -297,7 +298,7 @@ Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen 
 
 \subsection{Basic Linear Algebra Subprograms (BLAS)}
 
-die gebr\"uchlichen Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subrutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
+die gebräuchliche Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subroutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
 Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}. 
 
 \textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
@@ -320,12 +321,12 @@ Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{M
 			\end{itemize}
 \end{itemize}
 
-Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgek\"ugelter Verwedung der Speicher Architektur zur erheblichen Leistungoprimierung f\"uhren.
+Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
 
 
 \subsubsection{General Matrix Multiplication (GEMM)}
 
-Die \textit{Double-GEMM} ist in \cite{multiplikation:DGEMM} definiert als:
+Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
 
 \textit{DGEMM  performs one of the matrix-matrix operations}
 $$
@@ -339,20 +340,19 @@ $$
  an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
  }
 
-Die Implementaion von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
-\begin{lstlisting}[style=multiplikationC]
-cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
-      m, n, k, 1, A, m , B, k, 0, C, m);
-\end{lstlisting}
-definiert.
+%Die Implementation von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
+%\begin{lstlisting}[style=multiplikationC]
+%cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+%      m, n, k, 1, A, m , B, k, 0, C, m);
+%\end{lstlisting}
+%definiert.
 
 
 
-\section{Implementation}
+\section{Implementation}\label{multiplikation:section:Implementation}
 \rhead{Implementation}
-\textcolor{red}{TODO: messresultate}
 
-Folgende Algorithmen wurden jweiles in \texttt{C} und \texttt{Python} implementiert.
+Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementiert.
 \begin{itemize}
 	\item Standard Matrizenmultiplikation
 	\item \textit{Devide and Conquer} Matrizenmultiplikation
@@ -362,7 +362,11 @@ Folgende Algorithmen wurden jweiles in \texttt{C} und \texttt{Python} implementi
 	\item \texttt{Numpy} Matrizenmultiplikation in \texttt{Python}
 \end{itemize}
 
-Der Code kann im dazugeh\"orgien \textit{GitHub} Repository gefunden werden.
+Der Code kann im dazugehörigen \textit{GitHub} Repository gefunden werden.
+Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige Implementation Multiprocessing und Multithreading verwendet, dies f\"uhrt zu den tiefen Messzeiten.
+In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
+Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{multiplikation:tab:pc_config} aufgelistet.
+
 
 \begin{table}
 			 \begin{center}
@@ -446,16 +450,16 @@ Der Code kann im dazugeh\"orgien \textit{GitHub} Repository gefunden werden.
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_1024}
 	\caption{Messresultate mit der Programmiersprache \texttt{Python}}
-	\label{multiplikation:fig:c_meas_4096}
+	\label{multiplikation:fig:python}
 \end{figure}
 
 \section{Fazit}
 \rhead{Fazit}
 
-Wie man in \textcolor{red}{hyperlink Messresultate} gesehen haben, sind die geziegten Algorithmen, trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
+Wie man im Abschnitt\ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen, trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
 Einen optimierten Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
 
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
 Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
-Denke man an sehr keleine Mikrocontroller ohne Floatingpoint Recheneinhieten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
-Sobland sehr grosse Matrizen multipliziert werden müssen und eine Addition in weniger Taktzyklen als eine Multiplikation durcheführt werden kann, können die gezeigten Algorithmen von Vorteil sein.
+Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
+Sobald sehr grosse Matrizen multipliziert werden müssen und eine Addition in weniger Taktzyklen als eine Multiplikation durchführt werden kann, können die gezeigten Algorithmen von Vorteil sein.
