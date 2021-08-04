@@ -86,8 +86,8 @@ Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseina
 
 Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1\dots n\right\}\end{equation}
 Beim PageRank-Algorithmus wird eine abgewandelte Form der Adjazenz-Matrix verwendet.
-Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt:
-\( P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \)
+Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt, so entsteht die Link-Matrix
+\[ P_{i,j}=\frac{A_{i,j}}{\sum_{k=1}^{n}A_{k,j}} \]
 Anschliessend multipliziert man diese Matrix $P$ mit einem Spaltenvektor $\Vec{r_0}$ mit $n$ Einträgen, für welchen gilt:
 \( \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dots n\right\} \)
 Dieser Vektor stellt ein neutrales Ranking dar. Alle Knoten werden gleich gewichtet.
