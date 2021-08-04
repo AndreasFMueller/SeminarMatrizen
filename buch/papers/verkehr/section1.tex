@@ -72,10 +72,10 @@ Verwendet wird er beispielsweise um die Verlinkungsstruktur verschiedener Websit
 Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche folgendes gilt:
 
 \begin{equation}
-A_{i,j}=\left\{ \begin{matrix}
-1 & \text{Kante von $j$ nach $i$} \\ 0 & \text{keine Kante von $j$ nach $i$}
-\end{matrix}
- \right.
+A_{i,j} = \begin{cases}
+1&\quad\text{Kante von $j$ nach $i$}\\
+0&\quad\text{keine Kante von $j$ nach $i$}
+\end{cases}
 \label{verkehr:Adja}
 \end{equation}
 
