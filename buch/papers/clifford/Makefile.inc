@@ -14,7 +14,9 @@ dependencies-clifford =							\
 	papers/clifford/4_GeometrischesProdukt.tex			\
 	papers/clifford/5_PolareDarstellung.tex				\
 	papers/clifford/6_PauliMatrizen.tex				\
-	papers/clifford/7_Reflektion.tex				\
+	papers/clifford/7_Spiegelung.tex				\
 	papers/clifford/8_Rotation.tex					\
 	papers/clifford/9_KomplexeZahlen.tex				\
-	papers/clifford/10_Quaternionen.tex
+	papers/clifford/10_Quaternionen.tex				\
+	papers/clifford/11_Fazit.tex	
+
