@@ -54,13 +54,13 @@ Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er 
 \subsection{Anwendung Floyd-Warshall-Algorithmus}
 
 %THEORIE...
-In einem ersten Schritt wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W[i, j]$ erstellt.
+In einem ersten Schritt wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W(i, j)$ erstellt.
 Der Algorithmus berechnet danach in einer Hauptschleife alle Knoten $k$ von 1 bis $n$.
 Dabei versucht er in jeder Iteration alle Wege von $i$ nach $j$ durch die Wege $(i, k)$ und $(k, j)$ zu verbessern.
 Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der entsprechende Eintrag aktualisiert.
 
 Die aktuelle Gewichtung der Pfade wird mit
-\begin{equation}d[i, j]=\min[d[i,j], d[i,k] + d[k,i]]\end{equation}
+\begin{equation}d(i, j)=\min\{d(i,j), d(i,k) + d(k,i)\}\end{equation}
 ermittelt.
 
 
