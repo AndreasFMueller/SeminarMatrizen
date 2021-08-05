@@ -3,9 +3,8 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	dq.jpg q23.jpg q31.jpg drehung.jpg dq.pdf
+all:	dq.jpg q23.jpg q31.jpg drehung.jpg dq.pdf qq.pdf
 
-size="+W1920 +H1080"
 size="+W3840 +H2160"
 
 dq.png:	dq.pov common.inc 
@@ -15,15 +14,20 @@ dq.jpg:	dq.png Makefile
 dq.pdf:	dq.jpg dq.tex
 	pdflatex dq.tex
 
+extract="1200x1200+1450+350"
+
 q23.png:	q23.pov common.inc 
 	povray +A0.1 $(size) -Oq23.png q23.pov
-q23.jpg:	q23.png
-	convert q23.png -density 300 -units PixelsPerInch q23.jpg
+q23.jpg:	q23.png Makefile
+	convert -extract $(extract) q23.png -density 300 -units PixelsPerInch q23.jpg
 
 q31.png:	q31.pov common.inc 
 	povray +A0.1 $(size) -Oq31.png q31.pov
-q31.jpg:	q31.png
-	convert q31.png -density 300 -units PixelsPerInch q31.jpg
+q31.jpg:	q31.png Makefile
+	convert -extract $(extract) q31.png -density 300 -units PixelsPerInch q31.jpg
+
+qq.pdf:	qq.tex q31.jpg q23.jpg
+	pdflatex qq.tex
 
 drehung.png:	drehung.pov common.inc 
 	povray +A0.1 $(size) -Odrehung.png drehung.pov
