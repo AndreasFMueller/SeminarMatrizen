@@ -3,7 +3,7 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	dq.jpg q23.jpg q31.jpg drehung.jpg dq.pdf qq.pdf
+all:	dq.jpg q23.jpg q31.jpg drehung.jpg dq.pdf qq.pdf drehung.pdf
 
 size="+W3840 +H2160"
 
@@ -31,6 +31,8 @@ qq.pdf:	qq.tex q31.jpg q23.jpg
 
 drehung.png:	drehung.pov common.inc 
 	povray +A0.1 $(size) -Odrehung.png drehung.pov
-drehung.jpg:	drehung.png
-	convert drehung.png -density 300 -units PixelsPerInch drehung.jpg
+drehung.jpg:	drehung.png Makefile
+	convert -extract 1600x1450+1400+50 drehung.png -density 300 -units PixelsPerInch drehung.jpg
+drehung.pdf:	drehung.tex drehung.jpg
+	pdflatex drehung.tex
 
