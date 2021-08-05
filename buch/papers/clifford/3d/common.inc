@@ -11,10 +11,11 @@ global_settings {
 }
 
 #declare imagescale = 0.14;
-#declare r = 0.04;
+#declare r = 0.02;
+#declare thick = 0.040;
 
 camera {
-	location <40, 10, 15>
+	location <40, 12, 15>
 	look_at <0, 0, 0>
 	right 16/9 * x * imagescale
 	up y * imagescale
@@ -70,12 +71,12 @@ arrow(< -3,  0,  0 >, < 3, 0, 0 >, r, White)
 arrow(<  0, -3,  0 >, < 0, 3, 0 >, r, White)
 arrow(<  0,  0, -3 >, < 0, 0, 3 >, r, White)
 
-#macro circlearrow0(e1, e2, e3, r1, r2)  
+#macro circlearrow0(e1, e2, e3, r1, r2, h, winkel)  
 
 mesh {
 	#declare N = 100;
 	#declare phi = 0;
-	#declare phimax = 1.8 * pi;
+	#declare phimax = winkel - pi / 12;
 	#declare phistep = (phimax - phi) / N;
 	#while (phi < phimax - phistep/2)
 	triangle {
@@ -170,7 +171,7 @@ mesh {
 #end
 
 
-#macro circlearrow(fromdirection, axis, center, r, h)
+#macro circlearrow(fromdirection, axis, center, r, h, winkel, anzahl)
 
 #declare e1 = vnormalize(fromdirection);
 #declare e2 = -vnormalize(vcross(axis, fromdirection));
@@ -179,27 +180,67 @@ mesh {
 #declare r1 = 0.4 * r;
 #declare r2 = r;
 
-circlearrow0(e1, e2, e3, r1, r2)
+#declare w = 0;
+#while (w < anzahl)
+	#declare a = 2 * w * pi / anzahl;
+	circlearrow0(e1 * cos(a) - e2 * sin(a), e1 * sin(a) + e2 * cos(a), e3, r1, r2, 1.2 * h, winkel)
+	#declare w = w + 1;
+#end
 
-box {
-	center - r * (e1 + e2) - 0.021 * e3, center + r * (e1 + e2) + 0.021 * e3
+mesh {
+	#declare vlu = center - r * e1 - r * e2 - h * e3;
+	#declare vlo = center - r * e1 - r * e2 + h * e3;
+	#declare vru = center - r * e1 + r * e2 - h * e3;
+	#declare vro = center - r * e1 + r * e2 + h * e3;
+	#declare hlu = center + r * e1 - r * e2 - h * e3;
+	#declare hlo = center + r * e1 - r * e2 + h * e3;
+	#declare hru = center + r * e1 + r * e2 - h * e3;
+	#declare hro = center + r * e1 + r * e2 + h * e3;
+	triangle { vlu, vru, vro }
+	triangle { vlu, vro, vlo }
+
+	triangle { vru, hru, hro }
+	triangle { vru, hro, vro }
+
+	triangle { hru, hlu, hlo }
+	triangle { hru, hlo, hro }
+
+	triangle { hlu, vlu, vlo }
+	triangle { hlu, vlo, hlo }
+
+	triangle { vlu, vru, hru }
+	triangle { vlu, hru, hlu }
+
+	triangle { vlo, vro, hro }
+	triangle { vlo, hro, hlo }
+
 	pigment {
 		color rgb<0.6,0.6,1>
 	}
+	finish {
+		specular 0.96
+		metallic
+	}
 }
 
+#if (vlength(axis) > 0.1)
 cone {
-	center + 0.02101 * e3, r, center + 2 * r * e3, 0
+	center + 1.19 * h * e3, r, center + 2 * r * e3, 0
 	pigment {
 		color rgbt<0.6,0.6,1,0.8>
 	}
 }
+#end
 
 cylinder {
 	center, center + 2 * r * e3, 0.04*0.2
         pigment {
                 color rgb<1.0,0.6,0.6>
         }
+	finish {
+		specular 0.96
+		metallic
+	}
 }
 
 #end

@@ -9,9 +9,9 @@ arrow(<0,0,0>, <1, sqrt(2), 2>, r, Red)
 
 #declare r = 0.2 * r;
 
-circlearrow(<1,0,0>, <0,0,1>, <1, sqrt(2), 0>, 1,         0.022)
-circlearrow(<1,0,0>, <0,1,0>, <1,       0, 2>, sqrt(2)/2, 0.022)
-circlearrow(<0,0,1>, <1,0,0>, <0, sqrt(2), 2>, 0.5,       0.022)
+circlearrow(<1,0,0>, <0,0,1>, <1, sqrt(2), 0>, 1,         thick, 1.8*pi/3, 3)
+circlearrow(<1,0,0>, <0,1,0>, <1,       0, 2>, sqrt(2)/2, thick, 1.8*pi/3, 3)
+circlearrow(<0,0,1>, <1,0,0>, <0, sqrt(2), 2>, 0.5,       thick, 1.8*pi/3, 3)
 
 #declare l = 2.8;
 #declare h = 0.0001;
