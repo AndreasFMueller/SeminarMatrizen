@@ -35,7 +35,7 @@ Fasst man die möglichen Symmetrien zusammen, entsteht eine Symmetriegruppe.
 
 Eine Gruppe benötigt ausserdem auch zwingend ein neutrales Element, welches wir mit \(\mathds{1}\) bezeichnen.
 Die Anwendung der neutralen Operation ist gleichbedeutend damit, alles unverändert zu lassen.
-Weiterhin muss in einer Gruppe für jede Operation \(g\) auch eine inverse Operation \(g^{-1}\) vorkommen, die intuitiv rückgängig macht, was \(g\) getan hat. % intuitiv weglassen oder anstelle sinnbildlich 
+Weiterhin muss in einer Gruppe für jede Operation \(g\) auch eine inverse Operation \(g^{-1}\) vorkommen, die rückgängig macht, was \(g\) getan hat.
 Somit ist \(\mathds{1}\) auch äquivalent dazu, eine Operation und dann ihre Inverse anzuwenden.
  Die Definition der Symmetriegruppe ist mit der Kompositionsoperation gegeben, sie wird aber auch oft als Multiplikation geschrieben.
 Das liegt daran, dass in manchen Fällen die Zusammensetzung algebraisch durch eine Multiplikation berechnet wird.
@@ -52,7 +52,7 @@ durch Verwendung von Potenzen \(r^n = r\circ r \circ \cdots r\circ r\) für eine
   Das bedeutet, dass \(G\) die Elemente \(a, aa, aaa, \ldots\) sowie \(a^{-1}, a^{-1}a^{-1}, \ldots\) und ein neutrales Element \(\mathds{1} = aa^{-1}\) enthält.
 \end{beispiel}
 \begin{beispiel}
-  Als anschaulicheres Beispiel, können wir eine zyklische Untergruppe des \(n\)-Gon formalisieren.
+  Als anschaulicheres Beispiel können wir eine zyklische Untergruppe des \(n\)-Gon formalisieren.
   Wir bezeichnen mit \(r\) eine Drehung im Gegenuhrzeigersinn von \(360^\circ/n\) um einen Punkt.
   Diese Definition reicht aus, um die gesamte Symmetriegruppe
   \[
@@ -69,7 +69,7 @@ komplexere Strukturen aufbauen.
 
 %@Naoki Are you ok with my grammar fixes I'm not 101% shore how to use the word Erzeugendensystem? 
 \begin{definition}[Erzeugendensystem]
-  Jede disktrete Gruppe kann durch eines oder mehrere ihrer Elemente generiert werden.
+  Jede diskrete Gruppe kann durch eines oder mehrere ihrer Elemente generiert werden.
   Wir lassen \(g_1, g_2, \ldots, g_n\) erzeugenden Elemente einer Symmetriegruppe sein.
   Da es mehrere Erzeuger gibt, müssen auch die sogenannten Definitionsgleichungen gegeben werden, die die Multiplikationstabelle vollständig definieren.
   Die Gleichungen sind ebenfalls in den Klammern angegeben.
@@ -87,7 +87,7 @@ komplexere Strukturen aufbauen.
       &= \left\{
           \mathds{1}, r, \ldots, r^{n-1}, \sigma, \sigma r, \ldots, \sigma r^{n-1}
       \right\}.
-  \end{align*}
+  \end{align*} \qedhere
 \end{beispiel}
 
 Die Symmetrieoperationen, die wir bis jetzt besprochen haben, haben immer mindestens einen Punkt gehabt, der wieder auf sich selbst abgebildet wird.
@@ -110,7 +110,7 @@ Um es formaler zu beschreiben, werden wir einige Begriffe einführen.
   Man sagt, dass der Homomorphismus \(f\) \(G\) in \(H\) transformiert.
 \end{definition}
 \begin{beispiel}
-  Die Rotationssymmetrie des Kreises \(C_\infty\), mit einem unendlichen Kontinuum von Werten \(\alpha \in \mathbb{R}\), entspricht perfekt dem komplexen Einheitskreis.
+  Die Rotationssymmetrie des Kreises \(C_\infty\), mit einem unendlichen Kontinuum von Werten \(\alpha \in \mathbb{R}\), entspricht genau dem komplexen Einheitskreis.
   Der Homomorphismus \(\phi: C_\infty \to \mathbb{C}\) ist durch die Eulersche Formel \(\phi(r) = e^{i\alpha}\) gegeben.
 \end{beispiel}
 

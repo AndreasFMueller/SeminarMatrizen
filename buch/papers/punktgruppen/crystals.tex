@@ -18,7 +18,7 @@ Glücklicherweise ist das Innere eines Kristalles relativ einfach definiert.
 Ein zweidimensionales Beispiel eines solchen Muster ist Abbildung \ref{fig:punktgruppen:lattice}.
 Für die Überschaubarkeit haben wir ein simples Motiv eines einzelnen grauen Punktes dargestellt und betrachten dies nur in zwei Dimensionen.
 Die eingezeichneten Vektoren \(\vec{a}_1\) und \(\vec{a}_2\) sind die kleinstmöglichen Schritte im Raum bis sich das Kristallgitter wiederholt.
-Wird ein beliebiger grauer Gitterpunkt in \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von \(\vec{a}_1\) und \(\vec{a}_2\) verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
+Wird ein beliebiger grauer Gitterpunkt in Abbildung \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von \(\vec{a}_1\) und \(\vec{a}_2\) verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
 Im dreidimensionalen Raum können alle Gitterpunkte mit derselben Idee und einem zusätzlichen Vektor \(\vec{c}\) also
 \[
   \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3 = \sum_i n_i \vec{a}_i
@@ -39,7 +39,7 @@ können wir auch sagen, dass alle Verschiebungen um eine Linearkombination
 der Vektoren $\vec{a}_1$ , $\vec{a}_2$ und $\vec{a}_3$ erlaubt sind.
 Dabei sollte erwähnt werden, dass eine Translationssymmetrie nur in unendlich grossen Kristallgittern besteht.
 
-\subsection{Limitierte Kristallsymmetrien} \label{txt:punktgruppen:Translationssymmetrie}
+\subsection{Einschränkungen durch Kristallsymmetrien} \label{sec:punktgruppen:Translationssymmetrie}
  Die Translationssymmetrie ist wohl keine grosse Überraschung, wenn man die Abbildung \ref{fig:punktgruppen:lattice} betrachtet.
  Was nicht direkt ersichtlich ist, ist dass bei beliebigen Grundvektoren nicht beliebige Symmetrien erstellt werden können.
  Dies weil die Translationssymmetrie eines Kristalles weitere Symmetrien deutlich einschränkt.
@@ -53,7 +53,7 @@ Dabei sollte erwähnt werden, dass eine Translationssymmetrie nur in unendlich g
     \label{fig:punktgruppen:rot-geometry}
 \end{figure}
 
-\begin{satz}
+\begin{satz} \label{thm:punktgruppen:crystal-restriction}
    Die Rotationssymmetrien eines Kristalls sind auf 2-fach, 3-fach, 4-fach und 6-fach beschränkt.
    Mit anderen Worten: Es sind nur Drehwinkel von
     0\(^{\circ}\),
@@ -87,7 +87,7 @@ Dabei sollte erwähnt werden, dass eine Translationssymmetrie nur in unendlich g
  Wir beginnen, indem wir die Länge der Verschiebung \(|\vec{Q}| = Q\) setzen und \(|\vec{Q}'| = Q'\).
  Aus Abbildung \ref{fig:punktgruppen:rot-geometry} ist ersichtlich, dass \(Q' = Q + 2x\).
  Da \(\vec{Q}\) eine Translation um ein Grundvektor ist , muss \(\vec{Q}'\) ein ganzes Vielfaches von \(\vec{Q}\) sein.
- Demnach auch die Länge
+ Demnach ist auch die Länge
  \[
     Q' = nQ = Q + 2x .
  \]
@@ -95,12 +95,12 @@ Dabei sollte erwähnt werden, dass eine Translationssymmetrie nur in unendlich g
  \[
     nQ = Q + 2Q\sin(\alpha - \pi/2) .
  \]
- Wir können durch \(Q\) dividieren um unabhängig von der Läge des Grundvektors zu werden, was auch Sinn macht, 
+ Wir können durch \(Q\), dividieren um unabhängig von der Läge des Grundvektors zu werden, was auch Sinn macht, 
  da eine Skalierung eines Kristalles seine Symmetrieeigenschaften nicht tangiert.
- Zusätzlich können wir den Sinusterm vereinfachen.
+ Zusätzlich können wir den Sinusterm vereinfachen. Somit wird
  \[
-     n = 1 - 2\cos\alpha \quad\iff\quad
-     \alpha = \cos^{-1}\left(\frac{1-n}{2}\right)
+	 n = 1 - 2\cos\alpha \quad\text{oder}\quad
+     \alpha = \cos^{-1}\left(\frac{1-n}{2}\right).
  \]
  Dies schränkt die möglichen Rotationssymmetrien auf 
  \(
@@ -144,10 +144,10 @@ Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:kristallklas
  Er hat Untergruppen gebildet, welche als Grossbuchstaben in Abbildung \ref{fig:punktgruppen:kristallklassen} zu sehen sind.
  \begin{itemize}
    \item In Kristallen ist nur die Drehgruppe \(C\), Diedergruppe \(D\), Drehspiegelgruppe \(S\), Tetraedergruppe \(T\) und die Oktaedergruppe \(O\) zu finden.
-     Es gäbe auch die Ikosaedergruppe \(I\) und die Kugelgruppe \(K\), diese sind aber nicht kompatibel mit der Translationssymmetrie eines Kristalles und daher in der Kristallographie nicht relevant.  
-   \item Dank Abschintt \ref{txt:punktgruppen:Translationssymmetrie} wissen wir, wieso in Abbildung \ref{fig:punktgruppen:kristallklassen} auf \(C\) nur ganz bestimmte Subskripte folgen.
+	   Es gäbe auch die Ikosaedergruppe \(I\) und die Kugelgruppe \(K\), diese sind aber nach Satz \ref{thm:punktgruppen:crystal-restriction} nicht kompatibel mit der Translationssymmetrie eines Kristalles und daher in der Kristallographie nicht relevant.  
+   \item Dank Abschintt \ref{sec:punktgruppen:Translationssymmetrie} wissen wir, wieso in Abbildung \ref{fig:punktgruppen:kristallklassen} auf \(C\) nur ganz bestimmte Subskripte folgen.
      Ist im Subskript eine Zahl \(n\) zu finden, steht dies für eine \(n\)-fache Symmetrie.
-     Daher darf \(C_5\) auf der Abbildung \ref{fig:punktgruppen:kristallklassen} nicht vorkommen, da \(360^\circ/5 =  72^\circ\) was nach Abschnitt \ref{txt:punktgruppen:Translationssymmetrie} keine mögliche Rotationssymmetrie eines Kristalles ist.
+     Daher darf \(C_5\) auf der Abbildung \ref{fig:punktgruppen:kristallklassen} nicht vorkommen, da \(360^\circ/5 =  72^\circ\) was nach Satz \ref{thm:punktgruppen:crystal-restriction} keine mögliche Rotationssymmetrie eines Kristalles ist.
    \item Sind im Subskript Buchstaben, definieren diese weitere Symmetrieeigenschaften der Klasse.
      Für die folgenden Betrachtungen müssen wir uns Abbildung \ref{fig:punktgruppen:kristallklassen} genauer ansehen.
      Dabei ist mit horizontal flach auf dem Papier gemeint.
