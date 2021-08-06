@@ -5,13 +5,16 @@
 %
 \section{Problemstellung}
 \rhead{Problemstellung}
-Dank der breiten Anwendung der Matrizenmultiplikation ist eine effiziente L\"osung dieser Operation von grosser Bedeutung.
+Wegen der breiten Anwendung der Matrizenmultiplikation ist eine effiziente L\"osung dieser Operation von grosser Bedeutung.
 Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
-Gezielt werden auf Algorithmen, welche das Problem schneller als der Standard Algorithmus L\"osen eingegangen.
+Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standard Algorithmus l\"osen.
 
 \subsection{Big $\mathcal{O}$ Notation}
-Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus \cite{multiplikation:bigo}.
+\label{muliplikation:sec:bigo}
+Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Abhängigkeit zur Inputgrösse \cite{multiplikation:bigo}.
 $f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
+% Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$
+Als Beispiel: benötigt eine Funktion $g$ $\mathcal{O}\left(n^2 \right)$ Multiplikationen, so wächst $f$ mit $\mathcal{O}\left(n+ n^2 \right)$ nicht wesentlich schneller falls $x\to\infty$.
 Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
@@ -23,7 +26,93 @@ Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
 	\item usw.
 \end{itemize}
 
-In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden. 
+In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
+Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.
+Sch\"on zu erkennen ist, dass Logarithmische Kurven beschr\"ankt sind.
+
+
+\subsubsection{Beispiel Algorithmen}
+
+Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
+
+\begin{minipage}{0.4\textwidth}
+	\begin{algorithm}[H]\footnotesize\caption{}
+		\label{multiplikation:alg:b1}
+		\setlength{\lineskip}{7pt}
+		\begin{algorithmic}
+			\Function{B1}{$a, b$}
+			\State \textbf{return} $a+b$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+
+	\begin{algorithm}[H]\footnotesize\caption{}
+		\setlength{\lineskip}{7pt}
+		\begin{algorithmic}
+			\label{multiplikation:alg:linear}
+			\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
+			\State $ sum \gets 0$
+			\For{$i = 0,1,2 \dots,n$}
+			\State $ sum \gets sum + A[i] \cdot B[i] $
+			\EndFor
+
+			\State \textbf{return} $sum$
+
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+\end{minipage}
+\hspace{2cm}
+\begin{minipage}{0.4\textwidth}
+
+	\begin{algorithm}[H]\footnotesize\caption{}
+		\label{multiplikation:alg:b2}
+		\setlength{\lineskip}{7pt}
+		\begin{algorithmic}
+			\Function{B2}{$a, b$}
+			\State $ x \gets a+b $
+			\State $ y \gets a \cdot b $
+			\State \textbf{return} $x+y$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+
+
+	\begin{algorithm}[H]\footnotesize\caption{}
+		\label{multiplikation:alg:q1}
+		\setlength{\lineskip}{7pt}
+		\begin{algorithmic}
+			\Function{Q}{$\mathbf{A}, \mathbf{B}$,n}
+			\State $ sum \gets 0$
+			\For{$i = 0,1,2 \dots,n$}
+			\For{$j = 0,1,2 \dots,n$}
+			\State $ sum \gets sum + A[i] \cdot B[j] $
+			\EndFor
+			\EndFor
+			\State \textbf{return} $sum$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
+
+\end{minipage}
+
+\paragraph{Beschr\"ankter Algorithmus}
+
+Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmus \ref{multiplikation:alg:b1} entnommen werden. Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen Einfluss auf die Laufzeit.
+
+Konstanten werden nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
+
+
+\paragraph{Linearer Algorithmus}
+
+Der Algorithmus \ref{multiplikation:alg:linear} hat ein lineares Verhalten.
+Die \texttt{for}-Schleife wird $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}(n)$.
+
+\paragraph{Quadratischer Algorithmus}
+
+Der Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
+Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}\left(n^2\right)$.
+
 
 \begin{figure}
 	\center
@@ -31,80 +120,3 @@ In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufze
 	\caption{Verschiedene Laufzeiten}
 	\label{multiplikation:fig:bigo}
 \end{figure}
-
-\subsubsection{Beispiel Algorithmen}
-
-Folgend einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
-\paragraph{Beschr\"ankter Algorithmus}
-
-Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmus \ref{multiplikation:alg:b1} entnommen werden. Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen einfluss auf die Laufzeit.
-
-\begin{algorithm}\footnotesize\caption{}
-	\label{multiplikation:alg:b1}
-	\setlength{\lineskip}{7pt}
-	\begin{algorithmic}
-		\Function{B1}{$a, b$}
-		\State \textbf{return} $a+b$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-Konstanten werden nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
-
-
-\begin{algorithm}\footnotesize\caption{}
-	\label{multiplikation:alg:b2}
-	\setlength{\lineskip}{7pt}
-	\begin{algorithmic}
-		\Function{B2}{$a, b$}
-		\State $ x \gets a+b $
-		\State $ y \gets a \cdot b $
-		\State \textbf{return} $x+y$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\paragraph{Linearer Algorithmus}
-
-Folgender Algorithmus \ref{multiplikation:alg:l1} hat ein lineares Verhalten.
-Die \texttt{for}-Schleife wird $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}(n)$.
-
-\begin{algorithm}\footnotesize\caption{}
-	\setlength{\lineskip}{7pt}
-	\begin{algorithmic}
-		\label{multiplikation:alg:l1}
-		\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
-		\State $ sum \gets 0$
-		\For{$i = 0,1,2 \dots,n$}
-		\State $ sum \gets sum + A[i] \cdot B[i] $
-		\EndFor
-		
-		\State \textbf{return} $sum$
-		
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\paragraph{Quadratischer Algorithmus}
-
-Folgender Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
-Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchglaufen und f\"uhrt deshalb zu $\mathcal{O}\left(n^2\right)$.
-
-
-\begin{algorithm}[H]\footnotesize\caption{}
-	\label{multiplikation:alg:q1}
-	\setlength{\lineskip}{7pt}
-	\begin{algorithmic}
-		\Function{Q}{$\mathbf{A}, \mathbf{B}$,n}
-		\State $ sum \gets 0$
-		\For{$i = 0,1,2 \dots,n$}
-		\For{$j = 0,1,2 \dots,n$}
-		\State $ sum \gets sum + A[i] \cdot B[j] $
-		\EndFor
-		\EndFor
-		\State \textbf{return} $sum$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-
