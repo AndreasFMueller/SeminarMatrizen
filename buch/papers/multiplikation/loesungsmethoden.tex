@@ -15,7 +15,7 @@ Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen w
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
 Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
 
-\begin{algorithm}\footnotesize\caption{Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Matrizenmultiplikation}
 	\label{multiplikation:alg:smm}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}[1]
@@ -50,7 +50,7 @@ Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
 Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
 Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der Gr\"osse $2^{n-1} \times 2^{n-1}$ aufgeteilt.
-Das Matrizen produklt
+Das Matrizen Produkt
 \begin{equation}
 \mathbf{A}\mathbf{B}=
 \begin{bmatrix}
@@ -76,7 +76,7 @@ ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplik
 Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
 Der Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
 Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ durchgef\"uhrt.
-\begin{algorithm}\footnotesize\caption{Divide and Conquer Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Divide and Conquer Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:devide_mm}
 	\begin{algorithmic}
@@ -105,7 +105,7 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algortihmen.
+Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algorithmen.
 Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
@@ -141,7 +141,7 @@ aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke
 \end{split}
 \end{equation}
 der Matrix $\mathbf{C}$ gebraucht.
-\begin{algorithm}\footnotesize\caption{Strassen Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Strassen Matrizenmultiplikation}
 	\label{multiplikation:alg:strassen}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
@@ -186,7 +186,7 @@ der Matrix $\mathbf{C}$ gebraucht.
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-Strassen's Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
+Strassens Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
 Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ .
 Die gr\"unen Felder auf der linken Seite, zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
 Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \dotsb, V}$.
@@ -194,7 +194,7 @@ Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
-	\caption{Strassen's Algorithmus}
+	\caption{Strassens Algorithmus}
 	\label{multiplikation:fig:strassen}
 \end{figure}
 
@@ -207,7 +207,7 @@ Dies f\"uhrt nach dem \textit{Master Theorem} zu einer Laufzeit von
 und ist somit schneller als die Standardmethode.
 Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
 
-\subsection{Winograd's Algorithmus}
+\subsection{Winograds Algorithmus}
 
 Einen weiteren Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
 Er beschrieb einen neuen Algorithmus f\"ur das Skalarprodukt
@@ -232,9 +232,10 @@ Das Skalarprodukt ist nun geben mit
 	\displaystyle  \quad \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta + x_n y_n & \text{wenn  $n$ ungerade}.
 	\end{cases}
 \end{equation}
-Das Skalarprodukt kann also mit $ \lfloor \frac{n+1}{2} \rfloor$ weiteren Multiplikationen brechnet werden.
+Das Skalarprodukt kann also mit $ \lfloor \frac{n+1}{2} \rfloor$ weiteren Multiplikationen berechnet werden.
 Angenommen man hat $N$ Vektoren mit welchen man $T$ Skalarprodukte berechnen m\"ochte.
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
+Die Summen f\"ur $\xi$ und $\eta$ m\"ussen nur einmal berechnet werden.
 Für die Gleichung \eqref{multiplikation:eq:skalar} benötigt man $Tn$ Multiplikationen.
 Im Vergleich mit der neuen Methode
 \begin{equation}
@@ -254,15 +255,20 @@ Dies f\"uhrt zu
 Multiplikationen.
 Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt.
 Was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
-Mit dem glichen Ansatz wie in der Gleichung \ref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
+Mit dem gleichen Ansatz wie in der Gleichung \ref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
 \begin{equation}
-	N=2n \ll T=n^2
+	\begin{split}
+N=2n, \quad T = n^2 \\
+	2n \leq n^2 \\
+	2 \leq n
+\end{split}
 \end{equation}
-damit man etwas einspart.
+sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
-Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt. Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
+Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt.
+Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
  somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}\left(n^3 \right)$.
-\begin{algorithm}\footnotesize\caption{Winograd Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
 	\begin{algorithmic}
@@ -374,8 +380,8 @@ Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementi
 \begin{itemize}
 	\item Standard Matrizenmultiplikation
 	\item \textit{Devide and Conquer} Matrizenmultiplikation
-	\item Strassen's Matrizenmultiplikation
-	\item Winograd's Matrizenmultiplikation
+	\item Strassens Matrizenmultiplikation
+	\item Winograds Matrizenmultiplikation
 	\item \texttt{BLAS} Matrizenmultiplikation in \texttt{C}
 	\item \texttt{Numpy} Matrizenmultiplikation in \texttt{Python}
 \end{itemize}
@@ -458,7 +464,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 
 \begin{figure}
 	\center
-	\includegraphics[width=\linewidth]{papers/multiplikation/images/c_meas_4096}
+	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
 	\caption{Messresultate mit der Programmiersprache \texttt{C}}
 	\label{multiplikation:fig:c_meas_4096}
 \end{figure}
@@ -466,7 +472,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 
 \begin{figure}
 	\center
-	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_1024}
+	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
 	\caption{Messresultate mit der Programmiersprache \texttt{Python}}
 	\label{multiplikation:fig:python}
 \end{figure}
@@ -474,7 +480,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \section{Fazit}
 \rhead{Fazit}
 
-Wie man im Abschnit \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
+Wie man im Abschnitt \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
 Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
 
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
