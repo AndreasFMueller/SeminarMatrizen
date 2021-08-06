@@ -8,7 +8,7 @@
 \rhead{Teil 2}
 Wollen wir nun eine bestimmte Art anschauen, wie man Fraktale erzeugen kann.
 Im Beispiel auf Seite \pageref{ifs:trinagle} haben wir ein Dreieck aus 4 skalierten Kopien zusammengefügt.
-Lässt man die Kopie im Zentrum des Dreiecks weg, entsteht die Grundlage des sogenannten Sierpinski-Dreieck, Abbildung \ref{ifs:sierpinski10}.
+Lässt man die Kopie im Zentrum des Dreiecks weg, entsteht die Grundlage des sogenannten Sierpinski-Dreieck in Abbildung \ref{ifs:sierpinski10}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{papers/ifs/images/sierpinski}
@@ -93,22 +93,22 @@ Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktion
 	\label{ifs:sierpconst}
 \end{figure}
 Im Beispiel der Abbildung \ref{ifs:sierpconst} sehen wir, wie das Bild nach jeder Iteration dem Sierpinski-Dreieck ähnlicher wird.
-Der `Abstand´ zum Original wird immer kleiner, und konvergiert gegen null.
+Der `Abstand' zum Original wird immer kleiner, und konvergiert gegen null.
 
 \subsection{Iterierte Funktionensysteme
 \label{ifs:subsection:IteratedFunktionensysteme}}
 In diesem Abschnitt wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
 
 
-$S_1,\dots,S_n$ sind Kontraktionen auf der Menge $D \subset \mathbb{R}^n$. Es gilt
+$S_1,\dots,S_n$ sind Kontraktionen auf einer Menge $D \subset \mathbb{R}^n$. Es gilt
 \begin{align}
 	|S_i(x) - S_i(y)| \leq c_i|x - y|
 \end{align}
 für jedes i mit einem $c_i < 1$.
-Der Banachsche Fixpunktsatz besagt, dass für solche Kontraktionen ein Eindeutiges $A$ existiert, für das $S_i(A) = A$ gilt.
+Man kann zeigen, dass für solche Kontraktionen ein eindeutiges $A$ existiert, für das $S_i(A) = A$ gilt.
 Den Beweis kann man in \cite{ifs:Rousseau2012} nachlesen.
 
-Hat man nicht nur eine sondern mehrere Kontraktionen, dann existiert eine eindeutige kompakte Menge $F$ für die gilt
+Hat man nicht nur eine sondern mehrere Kontraktionen, dann existiert eine eindeutige kompakte Menge $F$, für die gilt
 \begin{equation}
 	F = \bigcup\limits_{i = 1}^{m} S_i(F).
 \end{equation}
@@ -117,12 +117,12 @@ Weiter definieren wir die Transformation S auf kompakte Mengen $E$ ohne die leer
 	S(E) = \bigcup\limits_{i = 1}^m S_i(E).
 	\label{ifs:transformation}
 \end{equation}
-Wird diese Transformation Iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) = S(S^{k-1}(E))$, gilt
+Wird diese Transformation iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) = S(S^{k-1}(E))$, gilt
 \begin{equation}
 	F = \bigcap\limits_{k = 1}^{\infty} S^k(E).
 	\label{ifs:ifsForm}
 \end{equation}
-In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt, gegen eine eindeutige Menge konvergiert.
+In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt gegen eine eindeutige Menge konvergiert.
 Diese Menge ist auch als Attraktor eines IFS bekannt.
 Der Beweis für die Existenz eines eindeutigen Attraktors ist in \cite{ifs:fractal-geometry} beschrieben. 
 
@@ -155,7 +155,7 @@ Die vier affinen Transformationen
 	\begin{pmatrix}
 		0 \\
 		1.6
-	\end{pmatrix}\\
+	\end{pmatrix},\\
 	& {S_3(x,y)}
 	= 
 	\begin{pmatrix}
@@ -188,7 +188,7 @@ Die vier affinen Transformationen
 	\end{pmatrix},\\
 	\label{ifs:farnFormel}
 \end{align}
-, welche für die Konstruktion des Farns benötigt werden sind in der Abbildung \ref{ifs:farncolor} farblich dargestellt.
+welche für die Konstruktion des Farns benötigt werden, sind in der Abbildung \ref{ifs:farncolor} farblich dargestellt.
 Das gesamte Farnblatt ist in der schwarzen Box.
 Auf diese werden die Transformationen angewendet.
 $S_1$ erstellt den Stiel des Farnblattes (rot).
@@ -198,12 +198,12 @@ Sie verkleinert und dreht das gesamte Bild und stellt es auf das Ende des Stiels
 $S_3$ bildet das gesamte Blatt auf das blaue Teilblatt unten links ab.
 $S_4$ spiegelt das Blatt und bildet es auf das magentafarbene Teilblatt ab.  
 \subsection{Erzeugung eines Bildes zu einem IFS}
-Es gibt zwei verschiedene Methoden um das Bild zu einem IFS zu erzeugen.
+Es gibt zwei verschiedene Methoden, um das Bild zu einem IFS zu erzeugen.
 Die erste Methode ist wahrscheinlich die intuitivste. 
-Wir beginnen mit einem Startbild, zum Beispiel ein Schwarzes Quadrat, und bilden dieses mit den affinen Transformationen des IFS ab.
-Das neue Bild, dass entsteht, ist die nächste Iterierte.
+Wir beginnen mit einem Startbild, zum Beispiel ein schwarzes Quadrat, und bilden dieses mit den affinen Transformationen des IFS ab.
+Das neue Bild, das entsteht, ist die nächste Iterierte.
 Dieses wird wieder mit den Transformationen abgebildet.
-Wir wiederholen den letzten schritt, bis wir zufrieden mit der neusten Iterierten sind.
+Wir wiederholen den letzten Schritt, bis wir zufrieden mit der neusten Iterierten sind.
 
 Diesen Vorgang haben wir beim Sierpinski-Dreieck in Abbildung \ref{ifs:sierpconst} gebraucht.
 In Abbildung \ref{ifs:sierpinski10} ist die zehnte Iterierte zu sehen.
@@ -219,8 +219,8 @@ Es wird bei jedem Iterationsschritt nur eine Transformation $S_i$, welche zufäl
 
 Da, wie wir beim Barnsley-Farn gut sehen, nicht jede Transformation gleich viel des Bildes ausmacht, werden diese beim Chaosspiel gewichtet.
 Je mehr eine Transformation kontrahiert, desto weniger Punkte braucht es, um die resultierende Teilabbildung darzustellen.
-Im Fall des Barnsley-Fern wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3$ und $S_4$ in $7\%$ der Iterationen ausgeführt.
-Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, $S_1$, einiges weniger Punkte braucht als der grüne Hauptteil des Blattes, $S_2$.
+Im Fall des Barnsley-Farns wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3$ und $S_4$ in $7\%$ der Iterationen ausgeführt.
+Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, $S_1$, viel weniger Punkte braucht als der grüne Hauptteil des Blattes, $S_2$.
 
 In Abbildung \ref{ifs:farnNoWeight} wurden die vier gleich stark gewichtet.
 Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn nicht so gut abgebildet wird.
@@ -248,12 +248,13 @@ In jeder Kopie des ganzen Farns fehlen die Punkte für dieses rechte untere Teil
 
 \begin{figure}	
 	\centering
-	\subfigure[]{
-		\label{ifs:farnNoWeight}
-		\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnnotweight}}
-	\subfigure[]{
-		\label{ifs:farnrightWeight}
-		\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnrightwight}}
+	\includegraphics{papers/ifs/images/chaosspiel.pdf}
+	%\subfigure[]{
+	%	\label{ifs:farnNoWeight}
+	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnnotweight}}
+	%\subfigure[]{
+	%	\label{ifs:farnrightWeight}
+	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnrightwight}}
 	\caption{(a) Chaosspiel ohne Gewichtung (b) $S_4$ zu wenig gewichtet}
 	\label{ifs:farnweight}
 \end{figure}

@@ -45,45 +45,44 @@ Die ungarische Methode kann in einem einfachen händischen Beispiel erläutert w
 
 \begin{enumerate}
 \item Pro Zeile eruiert man die kleinste Zahl. Diese kleinste Zahl wird bei
-allen anderen Ziffern in der jeweiligen Zeile subtrahiert. Mit dieser Subtraktion zieht man die unvermeidbaren Kosten ab. 
+allen anderen Ziffern in der jeweiligen Zeile subtrahiert. Mit dieser Subtraktion zieht man die unvermeidbaren Kosten ab, die man hat, um eine Baustelle zu erreichen. 
 
-\item Auch in diesem Schritt werden die unvermeidbaren Kosten abgezogen. Man zieht die kleinste Zahl in jeder Spalte von allen Zahlen in der Spalte ab.
+\item Auch in diesem Schritt werden die unvermeidbaren Weg-Kosten abgezogen. Man zieht die kleinste Zahl in jeder Spalte von allen Zahlen in der Spalte ab.
 
 \item Bei den nachfolgenden Schritten bleiben dann nur noch die Kosten übrig, die man hat, wenn man eine andere Zuordnung wählt. Hierbei sollen möglichst viele Nullen markiert werden, welche freistehend sind.
 (Freistehend bedeutet, sowohl in der jeweiligen Zeile und Spalte nur
 eine markierte Null zu haben)
 
-\item Weiter werden die jeweiligen Zeilen eruiert, bei welchen keine markierte Null vorhanden sind. Diese kennzeichnet man.
+\item Weiter werden die jeweiligen Zeilen eruiert, bei welchen keine markierte Null vorhanden sind. Diese kennzeichnet man mit einer blauen Fläche.
 
-\item In der vorherigen Zeile die 0 eruieren und die Spalte ebenfalls
-kennzeichnen (*2)
+\item In der vorherigen, mit blauer Fläche markierten Zeile die 0 eruieren und dann die dazugehörige Spalte ebenfalls
+blau markieren.
 
-\item Im der selben Spalte die Markierte Null eruieren und die dazugehörige
-Zeile kennzeichnen (*3)
+\item Im der selben Spalte die markierte Null eruieren und die dazugehörige
+Zeile ebenfalls blau kennzeichnen.
 
-\item Alle Zeilen durchstreichen, welche KEINE Kennzeichnungen (*) haben
+\item Alle Zeilen mit einem gelben Balken durchstreichen, welche KEINE blauen Markierungen haben.
 
-\item Alle Spalten durchstreichen, welche EINE Kennzeichnung besitzt! (hier, *2)
+\item Alle Spalten durchstreichen, welche eine Blaue Markierung besitzt!
 
-\item Kleinste Ziffer auswählen, welche nicht schon durchgestrichen sind.
-(Im Beispiel ist es die Zahl 1. (Egal welche 1)
+\item In den übrigen Zahlen soll nun die kleinste Ziffer ausgewählt werden, welche nicht schon durchgestrichen sind.
+(Im Beispiel ist es die Zahl 1 in rot markiert. (Bei diesem Schritt ist es egal, welche 1 man wählt)
 
 \item Die eruierte kleinste Ziffer, wird von den nicht durchgestrichenen Ziffern
-subtrahiert. Danach muss die Matrix wieder komplettiert werden. (inkl. Unterstreichen)
+subtrahiert. Danach muss die Matrix wieder komplettiert werden. (inkl. Unterstreichen der Nullen)
 
-\item Jeweilige Zahlen eruieren, welche vorgängig doppelt durchgestrichen wurden.
+\item Jeweilige Zahlen eruieren, welche vorgängig doppelt mit einer gelben Fläche durchgestrichen wurden.
 
-\item Kleinste eruierte Ziffer von vorhin auf die zwei markierten Ziffern addieren.
+\item Kleinste eruierte Ziffer aus Schritt 9, soll nun auf die zwei in rot markierten Ziffern aus Schritt 11 dazu addiert werden. 
 
-\item Es sollen wiederum von neuem möglichst viele Nullen markiert werden,
-welche freistehend sind. In diesem Schritt werden nur die markierten Nullen betrachtet.
+\item In diesem Schritt sollen wiederum von neuem möglichst viele Nullen markiert werden,
+welche freistehend sind. Es werden nur die markierten Nullen betrachtet.
 
-\item Aus allen markierten Nullen in eine eins umwandeln.
+\item Alle markierten Nullen werden jetzt in eine 1 umgewandelt.
 
-\item Die restlichen Ziffern, durch eine Null ersetzen.
+\item Die restlichen Ziffern in der Matrix, exklusiv die einsen, sollen jetzt ignoriert und durch eine Null ersetzt werden.
 
-\item Zu guter letzt soll überall wo eine 1 steht, in der Ausgangsmatrix die
-dazugehörige Ziffer ausgewählt werden. Nach Einsetzen und Eruieren der Zahlen ergeben sich nach Summieren der Zahlen der minimalste Transportweg. Im erwähnten Beispiel sind es total 13 Kilometer.
+\item Zu guter Letzt werden überall wo eine 1 steht, die Zahlen aus der Ausgangsmatrix eingefügt. Nach Einsetzen der Zahlen können die in rot markierten Zahlen aufsummiert werden. Es ergibt der minimalste Transportweg. Im erwähnten Beispiel sind es total 13 Kilometer.
 \end{enumerate}
 
 \begin{figure}
@@ -108,4 +107,4 @@ dazugehörige Ziffer ausgewählt werden. Nach Einsetzen und Eruieren der Zahlen 
 \includegraphics[width=3cm]{papers/munkres/figures/Ungarische_Methode_Beispiel_Zuw.png}
 \caption{Händisches Beispiel des Munkres Algorithmus, Zuweisung der Kräne }
 \label{munkres:Vr2}
-\end{figure} Somit konnte danke der Ungarischen Methode sowohl der minimalste Transportweg als auch die optimalste Zuweisung der Kräne auf die neuen Standorte ermittelt werden.
+\end{figure} Wie in Abbildung 21.6 ersichtlich, kann somit dank der Ungarischen Methode sowohl der minimalste Transportweg als auch die optimalste Zuweisung der Kräne auf die neuen Standorte ermittelt werden.

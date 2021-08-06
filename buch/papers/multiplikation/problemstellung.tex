@@ -6,24 +6,24 @@
 \section{Problemstellung}
 \rhead{Problemstellung}
 Dank der breiten Anwendung der Matrizenmultiplikation ist eine effiziente L\"osung dieser Operation von grosser Bedeutung.
-Das Ziel dieses Papers ist verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
-Wobei gezielt auf Algorithmen, welche das Problem schneller als der Standard Algorithmus L\"osen eingegangen wird.
+Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
+Gezielt werden auf Algorithmen, welche das Problem schneller als der Standard Algorithmus L\"osen eingegangen.
 
 \subsection{Big $\mathcal{O}$ Notation}
 Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus \cite{multiplikation:bigo}.
-$f(x) \in \mathcal{O}(g(x))$ besagt das die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
+$f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
 Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
 	\item $f \in \mathcal{O}(n) \rightarrow f$ w\"achst linear
-	\item $f \in \mathcal{O}(n^2) \rightarrow f$ w\"achst quadratisch
+	\item $f \in \mathcal{O}\left (n^2 \right ) \rightarrow f$ w\"achst quadratisch
 	\item $f \in \mathcal{O}(\log n) \rightarrow f$ w\"achst logarithmisch
 	\item $f \in \mathcal{O}(n \log n) \rightarrow f$ hat super-lineares Wachstum
-	\item $f \in \mathcal{O}(e^n) \rightarrow f$ w\"achst exponentiell
+	\item $f \in \mathcal{O}\left (e^n \right ) \rightarrow f$ w\"achst exponentiell
 	\item usw.
 \end{itemize}
 
-In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die Verschiedenen Laufzeiten miteinander verglichen werden. 
+In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden. 
 
 \begin{figure}
 	\center
@@ -33,11 +33,13 @@ In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die Verschiedenen Laufze
 \end{figure}
 
 \subsubsection{Beispiel Algorithmen}
+
+Folgend einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
 \paragraph{Beschr\"ankter Algorithmus}
 
-Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmus \ref{multiplikation:alg:b1} entnommen werden.
+Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmus \ref{multiplikation:alg:b1} entnommen werden. Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen einfluss auf die Laufzeit.
 
-\begin{algorithm}\caption{}
+\begin{algorithm}\footnotesize\caption{}
 	\label{multiplikation:alg:b1}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
@@ -47,9 +49,10 @@ Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmu
 	\end{algorithmic}
 \end{algorithm}
 
-Wobei Konstanten nicht beachtet werden, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
+Konstanten werden nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
 
-\begin{algorithm}\caption{}
+
+\begin{algorithm}\footnotesize\caption{}
 	\label{multiplikation:alg:b2}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
@@ -63,13 +66,14 @@ Wobei Konstanten nicht beachtet werden, der Algorithmus \ref{multiplikation:alg:
 
 \paragraph{Linearer Algorithmus}
 
-Folgender Algorithmus \ref{multiplikation:alg:l1} hat ein lineares $\mathcal{O}(n)$ Verhalten.
+Folgender Algorithmus \ref{multiplikation:alg:l1} hat ein lineares Verhalten.
+Die \texttt{for}-Schleife wird $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}(n)$.
 
-\begin{algorithm}\caption{}
+\begin{algorithm}\footnotesize\caption{}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
 		\label{multiplikation:alg:l1}
-		\Function{L}{$\mathbf{A}, \mathbf{B}$,n}
+		\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
 		\State $ sum \gets 0$
 		\For{$i = 0,1,2 \dots,n$}
 		\State $ sum \gets sum + A[i] \cdot B[i] $
@@ -83,9 +87,11 @@ Folgender Algorithmus \ref{multiplikation:alg:l1} hat ein lineares $\mathcal{O}(
 
 \paragraph{Quadratischer Algorithmus}
 
-Folgender Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches $\mathcal{O}(n^2)$ Verhalten.
+Folgender Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
+Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchglaufen und f\"uhrt deshalb zu $\mathcal{O}\left(n^2\right)$.
 
-\begin{algorithm}[H]\caption{}
+
+\begin{algorithm}[H]\footnotesize\caption{}
 	\label{multiplikation:alg:q1}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
