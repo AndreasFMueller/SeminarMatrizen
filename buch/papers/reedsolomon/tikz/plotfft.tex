@@ -10,6 +10,7 @@
 \usepackage{filecontents}
 
 
+
 \begin{document}
 \begin{tikzpicture}[]
 
@@ -28,12 +29,13 @@
 		
 		\node(codiert) []    {
 		\begin{tikzpicture}[]
-			\begin{axis}[ title = {\Large {Codiert \space + \space Fehler}},
-				xtick={0,40,60,100}, axis y line*=left]
-				\addplot[green] table[col sep=comma] {tikz/codiert.txt};
+			% Beschriftung Rechts
+			\begin{axis}[axis x line= none, axis y line*=right,ytick={0}]
+				\addplot[color=white] {0};
 			\end{axis}
-			\begin{axis}[xtick={7,21,75}, axis y line*=right]
-					\addplot[red] table[col sep=comma] {tikz/fehler.txt};
+
+			\begin{axis}[ title = {\Large {Codiert}}, axis y line*=left]
+				\addplot[color=black!60!green] table[col sep=comma] {tikz/codiert.txt};
 			\end{axis}
 		\end{tikzpicture}}; \\
 		
@@ -46,8 +48,12 @@
 	
 		\node(empfangen) []    {
 		\begin{tikzpicture}
-			\begin{axis}[title = {\Large {Empfangen}}]
-				\addplot[green] table[col sep=comma] {tikz/empfangen.txt};
+			\begin{axis}[title = {\Large {Empfangen \space + \space Fehler}},
+				xtick={0,40,60,100}, axis y line*=left]
+				\addplot[color=black!60!green] table[col sep=comma] {tikz/empfangen.txt};
+			\end{axis}
+			\begin{axis}[xtick={7,21,75}, axis y line*=right]
+				\addplot[red] table[col sep=comma] {tikz/fehler.txt};
 			\end{axis}
 		\end{tikzpicture}};\\
 	
@@ -60,7 +66,12 @@
 	
 		\node(locator) []    {
 		\begin{tikzpicture}
-			\begin{axis}[title = {\Large {Locator}}]
+			% Beschriftung Rechts
+			\begin{axis}[axis x line= none, axis y line*=right, ytick={0.3}];
+				\addplot[color=black!60] {0.3};
+			\end{axis}
+
+			\begin{axis}[title = {\Large {Locator}},axis y line*=left]
 				\addplot[gray] table[col sep=comma] {tikz/locator.txt};
 			\end{axis}
 		\end{tikzpicture}};\\
@@ -74,7 +85,6 @@
 	\node(FFT)  [scale=0.9, above of=IFFT]    {FFT};
 	\draw[-stealth](FFT.north west)--(FFT.north east);
 	
-	\draw[thick, ->,] (codiert)++(-1,0) +(0.05,0.5) -- +(-0.1,-0.1) -- +(0.1,0.1) -- +(0,-0.5);
 	%Arrows
 	\draw[thick, ->] (signal.east) to (codiert.west);
 	\draw[thick, ->] (codiert.south) to (empfangen.north);
@@ -85,10 +95,10 @@
 	
 	%item
 	\node[circle, draw, fill =lightgray] at (signal.north west) {1};
-	\node[circle, draw, fill =lightgray] at (codiert.north west) {2+3};
-	\node[circle, draw, fill =lightgray] at (empfangen.north west) {4};
-	\node[circle, draw, fill =lightgray] at (decodiert.north west) {5};
-	\node[circle, draw, fill =lightgray] at (syndrom.north west) {6};
-	\node[circle, draw, fill =lightgray] at (locator.north west) {7};
+	\node[circle, draw, fill =lightgray] at (codiert.north west) {2};
+	\node[circle, draw, fill =lightgray] at (empfangen.north west) {3};
+	\node[circle, draw, fill =lightgray] at (decodiert.north west) {4};
+	\node[circle, draw, fill =lightgray] at (syndrom.north west) {5};
+	\node[circle, draw, fill =lightgray] at (locator.north west) {6};
 \end{tikzpicture}	
 \end{document}

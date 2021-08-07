@@ -4,18 +4,18 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 
-\section{L\"osungsmethoden}
-\rhead{L\"osungsmethoden}
+\section{Algorithmen}
+\rhead{Algorithmen}
 
-In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Libraries zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
+In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Bibliotheken zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
 
 \subsection{Standard Algorithmus}
 
-Der Standard Methode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen werden.
+Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen werden.
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
-Die \texttt{For i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{For j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{For k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
+Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
 
-\begin{algorithm}\caption{Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Matrizenmultiplikation}
 	\label{multiplikation:alg:smm}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}[1]
@@ -39,16 +39,18 @@ Die \texttt{For i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}(n^3)$
+Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}\left(n^3\right)$
 
 \subsubsection{Divide and Conquer Methode}
 
-F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer} Ans\"atze zu markant besseren Laufzeiten.
-Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}(n^2)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
+F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer}  Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
+Die Grundidee ist, dass ein Problem in mehrere, meist simplere und kleinere Teilprobleme aufgeteilt wird.
+Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}\left(n^2\right)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
-Zur vereinfachten Veranschaulichung kann die Situation, mit $\mathbf{A}$ und $\mathbf{B}$ der gr\"osse $2^n \times 2^n$ verwendet werden.
-Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der gr\"osse $2^{n-1} \times 2^{n-1}$
+Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
+Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der Gr\"osse $2^{n-1} \times 2^{n-1}$ aufgeteilt.
+Das Matrizen Produkt
 \begin{equation}
 \mathbf{A}\mathbf{B}=
 \begin{bmatrix}
@@ -63,20 +65,18 @@ Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen 
 \begin{bmatrix}
 \mathbf{C}_{11} & \mathbf{C}_{12}\\
 \mathbf{C}_{21} & \mathbf{C}_{22}
-\end{bmatrix}
+\end{bmatrix},
 \end{equation}
-aufgeteilt.
-Die Berechnung
 \begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}^n \mathbf{A}_{ik} \mathbf{B}_{kj}
+\mathbf{C}_{ij} = \sum_{k=1}2n \mathbf{A}_{ik} \mathbf{B}_{kj}
 \label{multiplikation:eq:MM_block}
 \end{equation}
-ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, wobei hier f\"ur die Multiplikation die Matrizenmultiplikation verwendet wird.
+ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrize $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
 
 Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
 Der Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
 Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ durchgef\"uhrt.
-\begin{algorithm}\caption{Divide and Conquer Matrix Multiplication}
+\begin{algorithm}\footnotesize\caption{Divide and Conquer Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:devide_mm}
 	\begin{algorithmic}
@@ -105,37 +105,33 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} berechnet werden.
-Ohne auf diesen vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe der Funktion die Laufzeit.
+Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algorithmen.
+Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
-	\mathcal{T}(n) =
-	\begin{cases}
-	1  & \text{if }  n \leq 2\\
-	8 \cdot \mathcal{T}(\frac{n}{2}) + n^2  & \text{if }  n > 2
-	\end{cases} = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}(n^{3})
+	\mathcal{T}(n) =	8 \cdot \mathcal{T}\left (\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}\left (n^{3} \right )
 \end{equation}
 zu einer kubischen Laufzeit.
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
 In diesem Fall hat der \textit{Divide and Conquer} Ansatz zu keiner Verbesserung gef\"uhrt.
 
 
-\subsection{Strassen's Algorithmus}
+\subsection{Strassens Algorithmus}
 
-Strassen's Algorithmus \cite{multiplikation:strassen_1969} beschreibt die Matrizenmultiplikation mit einer Vielzahl von Additionen, Subtraktionen und Multiplikationen.
-Die Grundlegenden Terme
+Strassens Algorithmus \cite{multiplikation:strassen_1969} beschreibt die Matrizenmultiplikation mit einer Vielzahl von Additionen, Subtraktionen und Multiplikationen von Blockmatrizen.
+Die sieben grundlegenden Terme
 \begin{equation} \label{multiplikation:eq:strassen}
 \begin{split}
-\text{\textbf{P}}   &= (\mathbf{A}_{11} + \mathbf{A}_{22}) \cdot (\mathbf{B}_{11} + \mathbf{B}_{22}) \\
-\text{\textbf{Q}}  &= (\mathbf{A}_{21} + \mathbf{A}_{22}) \cdot \mathbf{B}_{11} \\
-\text{\textbf{R}} &= \mathbf{A}_{11} \cdot (\mathbf{B}_{12}-\mathbf{B}_{22}) \\
-\text{\textbf{S}}  &= \mathbf{A}_{22} \cdot (-\mathbf{B}_{11}+\mathbf{B}_{21}) \\
-\text{\textbf{T}}   &= (\mathbf{A}_{11} + \mathbf{A}_{12}) \cdot \mathbf{B}_{22} \\
-\text{\textbf{U}}  &= (-\mathbf{A}_{11} + \mathbf{A}_{21}) \cdot (\mathbf{B}_{11} + \mathbf{B}_{12}) \\
-\text{\textbf{V}} &= (\mathbf{A}_{12} - \mathbf{A}_{22}) \cdot (\mathbf{B}_{21} + \mathbf{B}_{22})
+\text{\textbf{P}}   &= \left(\mathbf{A}_{11} + \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{11} + \mathbf{B}_{22}\right ) \\
+\text{\textbf{Q}}  &= \left(\mathbf{A}_{21} + \mathbf{A}_{22}\right ) \cdot \mathbf{B}_{11} \\
+\text{\textbf{R}} &= \mathbf{A}_{11} \cdot \left(\mathbf{B}_{12}-\mathbf{B}_{22}\right ) \\
+\text{\textbf{S}}  &= \mathbf{A}_{22} \cdot \left(-\mathbf{B}_{11}+\mathbf{B}_{21}\right ) \\
+\text{\textbf{T}}   &= \left(\mathbf{A}_{11} + \mathbf{A}_{12}\right ) \cdot \mathbf{B}_{22} \\
+\text{\textbf{U}}  &= \left(-\mathbf{A}_{11} + \mathbf{A}_{21}\right ) \cdot \left(\mathbf{B}_{11} + \mathbf{B}_{12}\right ) \\
+\text{\textbf{V}} &= \left(\mathbf{A}_{12} - \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{21} + \mathbf{B}_{22}\right )
 \end{split}
 \end{equation}
-aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Matrix $\mathbf{C}$
+aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke
 \begin{equation} \label{multiplikation:eq:strassen2}
 \begin{split}
 \mathbf{C}_{11} &= \text{\textbf{P}} + \text{\textbf{S}} - \text{\textbf{T}} + \text{\textbf{V}} \\
@@ -144,8 +140,8 @@ aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Matrix $\math
 \mathbf{C}_{22} &= \text{\textbf{P}} + \text{\textbf{R}} - \text{\textbf{Q}} + \text{\textbf{U}}
 \end{split}
 \end{equation}
-gebraucht.
-\begin{algorithm}\caption{Strassen Matrix Multiplication}
+der Matrix $\mathbf{C}$ gebraucht.
+\begin{algorithm}\footnotesize\caption{Strassen Matrizenmultiplikation}
 	\label{multiplikation:alg:strassen}
 	\setlength{\lineskip}{7pt}
 	\begin{algorithmic}
@@ -190,52 +186,67 @@ gebraucht.
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-Strassens's Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
+Strassens Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
+Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ .
+Die gr\"unen Felder auf der linken Seite, zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
+Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \dotsb, V}$.
+Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
-	\caption{Strassen's Algorithmus}
+	\caption{Strassens Algorithmus}
 	\label{multiplikation:fig:strassen}
 \end{figure}
 
 Die Funktion wird sieben mal rekursiv aufgerufen.
-Dies f\"uhrt zu einer Laufzeit von
+Dies f\"uhrt nach dem \textit{Master Theorem} zu einer Laufzeit von
 \begin{equation} \label{multiplikation:eq:laufzeitstrassen}
 \mathcal{T}(n) =
-\begin{cases}
-1  & \text{if }  n \leq 2\\
-7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  & \text{if }  n > 2
-\end{cases} = \mathcal{O}(n^{\log_2 7}) = \mathcal{O}(n^{2.8074})
+7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  = \mathcal{O}\left(n^{\log_2 7}\right ) = \mathcal{O}\left(n^{2.8074} \right )
 \end{equation}
-und ist somit schneller als die Standard Methode.
+und ist somit schneller als die Standardmethode.
+Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
 
-\subsection{Winograd's Algorithmus}
+\subsection{Winograds Algorithmus}
 
-Ein weiterer Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
-Er zeigte einen neuen Algorithmus f\"ur das
-\begin{equation}
-	\langle x,y \rangle = \sum_{i=1}^{n}x_i y_i
+Einen weiteren Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
+Er beschrieb einen neuen Algorithmus f\"ur das Skalarprodukt
+\begin{equation} \label{multiplikation:eq:skalar}
+	\langle x,y \rangle = \sum_{i=1}^{n}x_i y_i.
 \end{equation}
-Skalarprodukt.
 F\"ur jeden Vektor berechne
 \begin{equation}
 	\xi = \sum_{j=1}^{ \lfloor n/2 \rfloor} x_{2j-1} \cdot x_{2j}
 \end{equation}
 und
 \begin{equation}
-	\eta = \sum_{j=1}^{ \lfloor n/2 \rfloor} y_{2j-1} \cdot y_{2j}.
+	\eta = \sum_{j=1}^{ \lfloor n/2 \rfloor} y_{2j-1} \cdot y_{2j},
 \end{equation}
+die jeweils nur von $x$ und $y$ abhängen.
+Dazu werden $2 \cdot  \lfloor n/2 \rfloor \leq n$ Multiplikationen benötigt.
 Das Skalarprodukt ist nun geben mit
 \begin{equation}
 	\langle x,y \rangle =
 	\begin{cases}
-	 \displaystyle \quad \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta & \text{if  $n$ is even}\\
-	\displaystyle  \quad \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta + x_n y_n & \text{if  $n$ is odd}.
+	 \displaystyle \quad \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta & \text{wenn  $n$ gerade}\\
+	\displaystyle  \quad \sum_{j=1}^{ \lfloor n/2 \rfloor} (x_{2j-1} + y_{2j})(x_{2j}+y_{2j-1})-\xi - \eta + x_n y_n & \text{wenn  $n$ ungerade}.
 	\end{cases}
 \end{equation}
-
+Das Skalarprodukt kann also mit $ \lfloor \frac{n+1}{2} \rfloor$ weiteren Multiplikationen berechnet werden.
 Angenommen man hat $N$ Vektoren mit welchen man $T$ Skalarprodukte berechnen m\"ochte.
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
+Die Summen f\"ur $\xi$ und $\eta$ m\"ussen nur einmal berechnet werden.
+Für die Gleichung \eqref{multiplikation:eq:skalar} benötigt man $Tn$ Multiplikationen.
+Im Vergleich mit der neuen Methode
+\begin{equation}
+	\begin{split}\label{multiplikation:eq:eff}
+		N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor \leq Tn \\
+		\approx \frac{Nn}{2} + \frac{Tn}{2} \leq Tn \\
+		\frac{Nn}{2} \leq \frac{Tn}{2} \\
+		N \leq T
+\end{split}
+\end{equation}
+spart man etwas, falls $N\leq T$.
 Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
@@ -243,10 +254,21 @@ Dies f\"uhrt zu
 \end{equation}
 Multiplikationen.
 Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt.
-Was im Vergleich zu den $mpn$ Multiplikation der Standard Methode nur die H\"alfte ist.
-Die Implementation kann im Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
-
-\begin{algorithm}\caption{Winograd Matrix Multiplication}
+Was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
+Mit dem gleichen Ansatz wie in der Gleichung \ref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
+\begin{equation}
+	\begin{split}
+N=2n, \quad T = n^2 \\
+	2n \leq n^2 \\
+	2 \leq n
+\end{split}
+\end{equation}
+sein, damit man etwas einspart.
+Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
+Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt.
+Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
+ somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}\left(n^3 \right)$.
+\begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
 	\begin{algorithmic}
@@ -297,13 +319,171 @@ Die Implementation kann im Algorithmus \ref{multiplikation:alg:winograd} entnomm
 	\end{algorithmic}
 \end{algorithm}
 
-\subsection{Weitere Algorithmen}
 
-\textcolor{red}{TODO: BLAS}
+\subsection{Basic Linear Algebra Subprograms (BLAS)}
 
-\section{Implementation}
+Die gebräuchliche Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subroutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
+Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
+
+\textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
+
+\begin{itemize}
+	\item Level 1
+	\begin{itemize}
+		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{x}+\mathbf{y}$
+		\item Dieses Level hat $\mathcal{O}(n)$ Charakteristik
+	\end{itemize}
+	\item Level 2
+	\begin{itemize}
+		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{A}\mathbf{x}+\beta  \mathbf{y}$
+		\item Dieses Level hat $\mathcal{O}\left(n^2\right)$ Charakteristik
+		\end{itemize}
+		\item Level 3
+		\begin{itemize}
+			\item Operationen der Art: $\mathbf{C} \leftarrow \alpha \mathbf{A}\mathbf{B}+\beta\mathbf{C}$
+			\item Dieses Level hat $\mathcal{O}\left(n^3\right)$ Charakteristik
+			\end{itemize}
+\end{itemize}
+
+Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
+
+
+\subsubsection{General Matrix Multiplication (GEMM)}
+
+Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
+
+\textit{DGEMM  performs one of the matrix-matrix operations}
+$$
+ C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
+ $$
+ \textit{where  op( X ) is one of}
+$$
+op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
+$$
+ \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
+ an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
+ }
+
+%Die Implementation von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
+%\begin{lstlisting}[style=multiplikationC]
+%cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
+%      m, n, k, 1, A, m , B, k, 0, C, m);
+%\end{lstlisting}
+%definiert.
+
+
+
+\section{Implementation}\label{multiplikation:section:Implementation}
 \rhead{Implementation}
-\textcolor{red}{TODO: messresultate}
+
+Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementiert.
+\begin{itemize}
+	\item Standard Matrizenmultiplikation
+	\item \textit{Devide and Conquer} Matrizenmultiplikation
+	\item Strassens Matrizenmultiplikation
+	\item Winograds Matrizenmultiplikation
+	\item \texttt{BLAS} Matrizenmultiplikation in \texttt{C}
+	\item \texttt{Numpy} Matrizenmultiplikation in \texttt{Python}
+\end{itemize}
+
+Der Code kann im zum Buch gehörigem \textit{GitHub} \footnote{\url{https://github.com/AndreasFMueller/SeminarMatrizen.git}} Repository gefunden werden.
+Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige Implementation Multiprocessing und Multithreading verwendet, dies f\"uhrt zu den tiefen Messzeiten.
+In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
+Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{multiplikation:tab:pc_config} aufgelistet.
+
+
+\begin{table}
+			 \begin{center}
+					 \begin{tabular}{l l l l l l}
+							 \hline
+							 \hline
+							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{BLAS (\textit{s})} \\
+							 \hline
+							 \multicolumn{6}{c}{} \\
+							 \textbf{32}   & 0.000081 &0.000594 &  0.00047& 0.00010 & 0.000022  \\
+							 \textbf{64}   & 0.00065  & 0.0042&  0.0033& 0.00065& 0.00017 \\
+							 \textbf{128}  & 0.0055   & 0.036&  0.024&  0.0052 & 0.0012 \\
+							 \textbf{256}  & 0.054    & 0.32 & 0.17 &  0.057& 0.010 \\
+							 \textbf{512}  & 0.48     & 2.61 & 1.20 & 0.51 &  0.074\\
+							 \textbf{1024} & 4.16     & 19.92& 8.45  & 4.53 & 0.704 \\
+							 \textbf{2048} & 125.90   & 159.33& 59.26 & 130.62 &  6.84 \\
+							 \textbf{4096} & 1111.31  & 1147.10& 414.64 & 1179.26  &  55.84\\
+							 \multicolumn{6}{c}{} \\
+							 \hline
+							 \hline
+					 \end{tabular}
+			 \end{center}
+			 \caption{Messresultate \texttt{C}}
+			 \label{multiplikation:tab:messung_C}
+	 \end{table}
+
+
+
+	 \begin{table}
+	 			 \begin{center}
+	 					 \begin{tabular}{l l l l l l}
+	 							 \hline
+	 							 \hline
+	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{\texttt{NumPy}(\textit{s})} \\
+	 							 \hline
+	 							 \multicolumn{6}{c}{} \\
+	 							 \textbf{32}   & 0.0240 &0.0271 &  0.04852& 0.01871 & 4.26e-05  \\
+	 							 \textbf{64}   & 0.186  & 0.265&  0.2204& 0.1530& 0.000118 \\
+	 							 \textbf{128}  & 1.563   & 1.777&  1.447&  1.1947 & 0.000244 \\
+	 							 \textbf{256}  & 11.006    & 13.27 & 9.938 &  8.298& 0.000695 \\
+	 							 \textbf{512}  & 85.476    & 105.397 & 63.961 & 68.36 &  0.00221\\
+	 							 \textbf{1024} & 750.757     & 847.321& 461.494  & 537.374 & 0.0188 \\
+								 \textbf{4096} & -     & - & -  & - & 1.633 \\
+	 							 \multicolumn{6}{c}{} \\
+	 							 \hline
+	 							 \hline
+	 					 \end{tabular}
+	 			 \end{center}
+	 			 \caption{Messresultate \texttt{Python}}
+	 			 \label{multiplikation:tab:messung_Python}
+	 	 \end{table}
+
+		 \begin{table}
+		 			 \begin{center}
+		 					 \begin{tabular}{c c c c}
+		 							 \hline
+		 							 \hline
+		 							 \textbf{CPU} & \textbf{OS} &  \textbf{GPU } & \textbf{Memory }  \\
+		 							 \hline
+		 							 \multicolumn{4}{c}{} \\
+		 							   Intel® Core™ i7-4770K CPU  & Ubuntu 20.04.2 LTS & Radeon RX 570 &  32 GB 1600 MHz   \\
+										 @ 3.50GHz × 8  & 64-bit & &    \\
+		 							 \multicolumn{4}{c}{} \\
+		 							 \hline
+		 							 \hline
+		 					 \end{tabular}
+		 			 \end{center}
+		 			 \caption{Messsystem}
+		 			 \label{multiplikation:tab:pc_config}
+		 	 \end{table}
+
+\begin{figure}
+	\center
+	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
+	\caption{Messresultate mit der Programmiersprache \texttt{C}}
+	\label{multiplikation:fig:c_meas_4096}
+\end{figure}
+
+
+\begin{figure}
+	\center
+	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
+	\caption{Messresultate mit der Programmiersprache \texttt{Python}}
+	\label{multiplikation:fig:python}
+\end{figure}
 
 \section{Fazit}
 \rhead{Fazit}
+
+Wie man im Abschnitt \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
+Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
+
+Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
+Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
+Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
+Sobald sehr grosse Matrizen multipliziert werden müssen und eine Addition in weniger Taktzyklen als eine Multiplikation durchführt werden kann, können die gezeigten Algorithmen von Vorteil sein.
