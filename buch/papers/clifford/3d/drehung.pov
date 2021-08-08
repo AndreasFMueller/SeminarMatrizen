@@ -60,24 +60,6 @@ mesh {
 	}
 }
 
-union {
-	#declare phi = 0;
-	#declare phimax = 2*pi/3;
-	#declare phistep = (phimax - phi) / N;
-	#while (phi < phimax - phistep/2)
-		cylinder {
-			r * (cos(phi        ) * e1 + sin(phi        ) * e2),
-			r * (cos(phi+phistep) * e1 + sin(phi+phistep) * e2),
-			0.01
-		}
-		sphere { r * (cos(phi        ) * e1 + sin(phi        ) * e2), 0.01 }
-		#declare phi = phi + phistep;
-	#end
-	pigment {
-		color Blue
-	}
-}
-
 mesh {
 	#declare phi = 0;
 	#declare phimax = 2*pi/3;
@@ -100,21 +82,6 @@ mesh {
 	}
 }
 
-union {
-	#declare phi = 0;
-	#declare phimax = 2*pi/3;
-	#declare phistep = (phimax - phi) / N;
-	#while (phi < phimax - phistep/2)
-		cylinder {
-			r * (cos(phi        ) * e1 + sin(phi        ) * e2) + Vparallel,
-			r * (cos(phi+phistep) * e1 + sin(phi+phistep) * e2) + Vparallel,
-			0.01
-		}
-		sphere { r * (cos(phi        ) * e1 + sin(phi        ) * e2) + Vparallel, 0.01 }
-		#declare phi = phi + phistep;
-	#end
-	pigment {
-		color Green
-	}
-}
+bogen(r * e1, r * e2, <0,0,0>, 2*pi/3, Blue)
+bogen(r * e1, r * e2, Vparallel, 2*pi/3, Green)
 
