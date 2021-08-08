@@ -1,0 +1,132 @@
+%
+% Plot der Übertrangungsabfolge ins FFT und zurück mit IFFT
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{csvsimple}
+\usepackage{filecontents}
+
+\def\plotwidth{7.5cm}
+\def\plotheight{5.5cm}
+\def\xverschiebung{4.5cm}
+\def\yverschiebung{-7cm}
+\def\yyverschiebung{-14cm}
+
+\def\marke#1{
+	\coordinate (M) at (-0.8,4.6);
+	\fill[color=lightgray] (M) circle[radius=0.3];
+	\draw (M) circle[radius=0.3];
+	\node at (M) {#1};
+}
+
+\begin{document}
+\begin{tikzpicture}[>=latex,thick]
+
+\draw[dashed,line width=2pt,color=lightgray] (2.6,4.4) -- (2.6,-14.3);
+\coordinate (B) at (2.6,-1.3);
+\node[color=gray] at (B) [rotate=90,above] {Zeitbereich};
+\node[color=gray] at (B) [rotate=90,below] {Frequenzbereich};
+
+\begin{scope}[xshift=-\xverschiebung,yshift=0cm]
+	\begin{axis}
+		[title = {\large Signal\strut}, 
+		xtick={0,32,64,96}, width=\plotwidth,height=\plotheight]
+		\addplot[blue,line width=1pt] table[col sep=comma]
+			{tikz/signal.txt};
+	\end{axis}
+	\marke{1}
+\end{scope}
+
+\begin{scope}[xshift=\xverschiebung,yshift=0cm]
+	\begin{axis}[axis x line= none, axis y line*=right,ytick={0},
+		width=\plotwidth,height=\plotheight]
+		\addplot[color=white] {0};
+	\end{axis}
+
+	\begin{axis}[title = {\large Codiert\strut}, axis y line*=left,
+		xtick={0,32,64,96},
+		width=\plotwidth,height=\plotheight]
+		\addplot[color=black!60!green,line width=1pt]
+			table[col sep=comma]
+			{tikz/codiert.txt};
+	\end{axis}
+	\marke{2}
+	\draw[->,line width=1pt] (3,-0.4) -- node[right] {Übertragung} (3,-2.2);
+\end{scope}
+
+\definecolor{pink}{rgb}{0.6,0.2,1}
+
+\begin{scope}[xshift=-\xverschiebung,yshift=\yverschiebung]
+	\fill[color=pink!20] (4.65,0.35) ellipse (1.1cm and 0.5cm);
+	\begin{axis}[title = {\large Decodiert\strut},
+		xtick={0,32,64,96},
+		width=\plotwidth,height=\plotheight]
+		\addplot[blue,line width=1pt]
+			table[col sep=comma] {tikz/decodiert.txt};
+	\end{axis}
+	\marke{4}
+	\draw[color=pink] (4.65,0.35) ellipse (1.1cm and 0.5cm);
+	\draw[->,color=pink,line width=1pt]
+		(4.65,-0.15) to[out=-90,in=90] (3,-2.2);
+\end{scope}
+	
+\begin{scope}[xshift=\xverschiebung,yshift=\yverschiebung]
+	\begin{axis}[title = {\large Empfangen {\color{red} mit Fehler}\strut},
+		xtick={0,96},
+		axis y line*=left,
+		width=\plotwidth,height=\plotheight]
+		\addplot[color=black!60!green,line width=1pt]
+			table[col sep=comma]
+			{tikz/empfangen.txt};
+	\end{axis}
+	\begin{axis}[xtick={6,20,74}, axis y line*=right,
+		width=\plotwidth,height=\plotheight]
+		\addplot[red,line width=1pt]
+			table[col sep=comma] {tikz/fehler.txt};
+	\end{axis}
+	\marke{3}
+\end{scope}
+
+\begin{scope}[xshift=-\xverschiebung,yshift=\yyverschiebung]
+	\begin{axis}[title = {\large \color{pink}Syndrom\strut},
+		xtick={0,32,64,96},
+		width=\plotwidth,height=\plotheight]
+		\addplot[pink,line width=1pt]
+			table[col sep=comma] {tikz/syndrom.txt};
+	\end{axis}
+	\marke{5}
+\end{scope}
+
+\begin{scope}[xshift=\xverschiebung,yshift=\yyverschiebung]
+	% Beschriftung Rechts
+	\begin{axis}[axis x line= none, axis y line*=right, ytick={0.3},
+		xtick={0,32,64,96},
+		width=\plotwidth,height=\plotheight]
+		\addplot[color=black!60,line width=1pt] {0.3};
+	\end{axis}
+	\begin{axis}[title = {\large Locator\strut},axis y line*=left,
+		xtick={0,6,20,74,96},
+		width=\plotwidth,height=\plotheight]
+		\addplot[gray,line width=1pt]
+			table[col sep=comma] {tikz/locator.txt};
+	\end{axis}
+	\marke{6}
+\end{scope}
+	
+% Fourier-Transformations-Pfeile
+
+\draw[->,line width=1pt] (1.8,2) -- node[above] {DFT\strut}  (3.8,2);
+
+\begin{scope}[yshift=\yverschiebung]
+\draw[<-,line width=1pt] (1.8,2) -- node[above] {DFT$\mathstrut^{-1}$}  (3.8,2);
+\end{scope}
+
+\begin{scope}[yshift=\yyverschiebung]
+\draw[->,line width=1pt] (1.8,2) -- node[above] {DFT\strut}  (3.8,2);
+\end{scope}
+	
+\end{tikzpicture}	
+\end{document}
