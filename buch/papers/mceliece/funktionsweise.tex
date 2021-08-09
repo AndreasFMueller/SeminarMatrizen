@@ -19,7 +19,7 @@ Diese drei einzelnen Matrizen bilden den privaten Schlüssel von Alice
 und sollen geheim bleiben.
 Der öffentliche Schlüssel $K_{n,k}$ hingegen berechnet sich
 aus der Multiplikation der privaten Matrizen\ref{mceliece:subsection:k_nk}
-und wird anschliessend Bob, zugestellt.
+und wird anschliessend Bob zugestellt.
 
 \subsection{Verschlüsselung
 \label{mceliece:section:verschl}}
@@ -36,46 +36,48 @@ Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
 \subsection{Entschlüsselung
 \label{mceliece:section:entschl}}
 Alice entschlüsselt die erhaltene Nachricht in mehreren einzelnen Schritten.
-Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel mit seinen Ursprungsmatrizen dargestellt.
-\[
-    \begin{align*}​
-        c_n\,&=\,K_{n,k}\cdot d_k + e_n \\​
-             &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n \\​
-    \end{align*}​
-\]
+Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel $K_{n,k}$ mit seinen Ursprungsmatrizen dargestellt.
+\begin{align*}
+    c_n\,&=\,K_{n,k}\cdot d_k + e_n \\
+    &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n
+\end{align*}
 Zuerst wird der Effekt der Permutationsmatrix rückgängig gemacht,
-indem das Codewort mit dessen Inversen $P_n^{-1}​$ multipliziert wird.
-
-\[      
-    \begin{align*}​
-      c_{n}''\,=\,P_n^{-1}\cdot \hat{c}_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
-                                           &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
-    \end{align*}​
-\]
-
+indem das Codewort mit dessen Inversen $P_n^{-1}$ multipliziert wird.
+\begin{align*}
+    c_{n}''\,=\,P_n^{-1}\cdot c_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+                                         &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+\end{align*}
 Eine weitere Vereinfachung ist nun möglich,
-weil $P_n^{-1}​$ einerseits auch eine gewöhnliche Permutationsmatrix ist
-und andererseits ein zufälliger Fehlerwektor $e_n$ multipliziert mit einer Permutationsmatrix
-wiederum einen gleichwertigen, zufälligen Fehlerwektor $e_n'$ ergibt.
-\[
-    \begin{align*}​
-        c_{n}''\,&=\,G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
-        &=\,G_{n,k}\cdot S_{k}\cdot d_k + e'_n\quad \quad \quad \quad | \,​
-        e'_n\,=\,P_n^{-1}\cdot e_n​
-    \end{align*}
-\]
-
-Dank des Linearcodes können nun die Bitfehler, verursacht durch den Fehlervektor $e'_n$,
+weil $P_n^{-1}$ einerseits auch eine gewöhnliche Permutationsmatrix ist
+und andererseits ein zufälliger Fehlervektor $e_n$ multipliziert mit einer Permutationsmatrix
+wiederum einen gleichwertigen, zufälligen Fehlervektor $e_n'$ ergibt.
+\begin{align*}
+    c_{n}''\,&=\,G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+             &=\,G_{n,k}\cdot S_{k}\cdot d_k + e'_n\quad \quad \quad | \,
+    e'_n\,=\,P_n^{-1}\cdot e_n
+\end{align*}
+Dank des fehlerkorrigierenden Codes, der durch die implizite Multiplikation mittels $G_{n,k}$ auf die Daten angewendet wurde,
+können nun die Bitfehler, verursacht durch den Fehlervektor $e'_n$,
 entfernt werden.
 Da es sich bei diesem Schritt nicht um eine einfache Matrixmultiplikation handelt,
 wird die Operation durch eine Funktion dargestellt.
 Wie dieser Decoder genau aufgebaut ist ist,
 hängt vom verwendeten Linearcode ab.
+\begin{align*}
+    c_{k}'\,&=\text{Linear-Code-Decoder($c''_n$)}\\
+            &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\
+            &=S_{k}\cdot d_k
+\end{align*}
+Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
+womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde.
+\begin{align*}
+                            c_{k}'\,&=S_{k}\cdot d_k \quad | \cdot S_k^{-1}\\
+    d'_{k}\,=\,S_{k}^{-1} \cdot c'_k&=S_{k}^{-1} \cdot S_{k}\cdot d_k\\
+                                    &=d_k
+\end{align*}
 
-\[
-    \begin{align*}​
-        c_{k}'\,&=\text{Linear-Code-Decoder($c''_n$)}\\​
-                &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\​
-                &=S_{k}\cdot d_k
-    \end{align*}
-\]
+\subsection{Beispiel}
+
+TODO:
+-alle Beispielmatrizen- und Vektoren hierhin zügeln, numerisches Beispiel kreieren\\
+-erläutern des 7/4-codes (ja/nein)?

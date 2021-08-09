@@ -28,7 +28,8 @@ Für kleine Matrizen kann durchaus jedes Matrizenelement zufällig generiert wer
 wobei danach mithilfe des Gauss-Algorythmusses deren Inverse bestimmt werden kann.
 Da eine solche Matrix möglicherweise singulär ist, muss in diesem Fall eine neue Zufallsmatrix erzeugt werden.
 Für grössere Matrizen existieren bessere Methoden, auf welche hier nicht weiter eingegangen wird \cite{mceliece:GenerationRandMatrix}.
-Beispielsweise
+
+Beispiel:
 \[S_4=
     \begin{pmatrix}
         0 & 0 & 1 & 1\\
@@ -79,6 +80,7 @@ Beispiel
 \label{mceliece:subsection:p_n}}
 Mit der zufällig generierten Permutationsmatrix $P_n$ wird die Reihenfolge der Bits geändert.
 Mit der Inversen $P_n^{-1}$ kann die Bitvertauschung rückgängig gemacht werden.
+
 Beispiel
 \[
     P_7=
@@ -113,6 +115,7 @@ berechnet sich aus den bereits bekannten Matrizen wiefolgt:
 \[
     K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}\,.
 \]
+
 Beispiel
 \[
     K_{7,4}=
