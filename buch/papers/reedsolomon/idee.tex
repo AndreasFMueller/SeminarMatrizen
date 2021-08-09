@@ -51,20 +51,20 @@ Somit können die grauen Punkte auf der Parabel ersetzt werden und sind damit ko
 Bis zu wievielen Fehler können wir nun im Beispiel korrigieren?
 Wir erhöhen nun die Fehleranzahl Schritt für Schritt:
 \begin{itemize}
-    \item Bei \textit{1 Fehler} können konkurrenzierende Polynome, zusammen mit zwei originalen Punkten entstehen.
+    \item[\textit{1 Fehler}:] Bei einem Fehler können konkurrenzierende, aber falsche Polynome zusammen mit zwei originalen Punkten entstehen.
         Dabei können aber maximal 3 Punkte auf diesem Konkurrenzpolynom sein.
         Da 6 > 3 ist haben wir unser original Polynom gefunden.
-    \item Bei \textit{2 Fehlern} kann ein Fehler mit zwei originalen Punkten ein Konkurrenzpolynom bilden.
-        Da der zweite Fehler frei wählbar ist, kann dieser auch auf dem Konkurrenzpolynom liegen, wie in der Abbilbung \ref{fig:polynom}.
-        Nun haben wir, ein originales Polynom mit 5 übereinstimmenden und eine konkurrenzierendes mit 4 Punkten.
+    \item[\textit{2 Fehler}:] Bei Zwei Fehlern kann ein Fehler mit zwei originalen Punkten ein konkurrenzierendes, aber falsches Polynom bilden.
+        Da der zweite \textcolor{red}{Fehler} frei wählbar ist, kann dieser auch auf dem \textcolor{gray}{Konkurrenzpolynom} liegen, wie in der Abbilbung \ref{fig:polynom}.
+        Nun haben wir, ein \textcolor{blue}{originales Polynom} mit \textcolor{darkgreen}{5} übereinstimmenden und eine konkurrenzierendes mit 4 Punkten.
         Da 5 noch grösser als 4 ist, können wir sagen, welches das Originalpolynom ist.
-    \item Bei \textit{3 Fehlern} kann genau wie bei 2 oder 1 Fehler, ein konkurenzierendes Polynom mit einem Fehler und zwei originalen Punkten bestimmen werden.
+    \item[\textit{3 Fehler}:] Bei Drei kann genau wie bei 2 oder 1 Fehler, ein konkurenzierendes Polynom mit einem Fehler und zwei originalen Punkten bestimmen werden.
         Auch hier sind die anderen Fehler frei wählbar und liegen auf dem Konkurrenzpolynom.
         Nun ist es so das 5 Punkte auf diesem konkurenzierenden Polynom und 4 Punkte auf dem originalen.
         Das Originalpolynom kann nicht mehr gefunden werden.
-    \item Bei \textit{4 Fehlern} Es kann noch erkannt werden, dass Fehler statt gefunden haben, da 3 orginale Punkte das ursprüngliche Polynom ergeben.
+    \item[\textit{4 Fehler}:] Bei Vier, kann es noch erkannt werden, dass Fehler statt gefunden haben, da 3 orginale Punkte das ursprüngliche Polynom ergeben.
         Somit haben wir mindestens 2 verschieden Polynome, dass bedeutet Fehler sind entstanden.
-    \item Bei \textit{5 Fehler} Mit den 2 originalen Punkte kann das Originale Polynom nicht mehr erkannt werden und 
+    \item[\textit{5 Fehler}] Bei Fünf, kann mit den 2 originalen Punkte das Originale Polynom nicht mehr erkannt werden und 
         somit auch keine Aussgae gemacht werden ob Fehler statt gefunden haben oder nicht.
 \end{itemize}
 
@@ -82,8 +82,8 @@ Wir erhöhen nun die Fehleranzahl Schritt für Schritt:
 \label{reedsolomon:section:Fehlerkorrekturstellen}}
 Um zu bestimmen, wieviel zusätzliche \textcolor{darkgreen}{Übertragungspunkte} notwendig sind, um die Fehler zu korrigieren,
     muss man zuerst wissen, wieviel \textcolor{blue}{Datenwerte} gesendet und wieviel \textcolor{red}{Fehler} erkennt werden sollen. 
-Die Anzahl \textcolor{blue}{Datenwerte}, ergeben die Anzahl Polynomkoeffizente $k$ und somit den Grad $k-1$.
-Die Bestimmung der Anzahl der Fehler $t$, welche korrigiert werden können, braucht Redundanz.
+Die Anzahl Datenwerte, ergeben die Anzahl Polynomkoeffizente \textcolor{blue}{$k$} und somit den Grad $k-1$.
+Die Bestimmung der Anzahl der Fehler \textcolor{red}{$t$}, welche korrigiert werden können, braucht Redundanz.
 Gehen wir die Fehleranzahl mit verschiedenen Übertragungsanzahlen durch, 
     erkennt man almählich ein Muster.
 \begin{table}%[!ht]
@@ -102,9 +102,10 @@ Gehen wir die Fehleranzahl mit verschiedenen Übertragungsanzahlen durch,
     \caption{ Fehlerkorrekturstellen Bestimmung.}
     \label{tab:fehlerkorrekturstellen}
 \end{table}
+\par 
 Es müssen mehr Punkte auf dem \textcolor{blue}{originalen Polynom} liegen, als auf dem konkurenzierenden.
-Somit braucht man für die Übertragung pro Fehler zwei Übertragungspunkte mehr.
-Wie in der Tabelle ergibt sich diese Übertragungsanzahl
+Somit braucht man für die Übertragung pro \textcolor{red}{Fehler} zwei Übertragungspunkte mehr.
+Wie in der Tabelle ergibt sich diese \textcolor{darkgreen}{Übertragungsanzahl}
 \begin{equation}
     \textcolor{darkgreen}{u}=
     \textcolor{blue}{k}+2\textcolor{red}{t}.
