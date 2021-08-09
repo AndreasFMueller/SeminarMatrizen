@@ -54,13 +54,13 @@ Der Floyd-Warshall-Algorithmus sucht kürzeste Wege innerhalb eines Graphen. Er 
 \subsection{Anwendung Floyd-Warshall-Algorithmus}
 
 %THEORIE...
-In einem ersten Schritt wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W[i, j]$ erstellt.
+In einem ersten Schritt wird eine Gewichtsmatrix $W$ mit den Matrixeinträgen $W(i, j)$ erstellt.
 Der Algorithmus berechnet danach in einer Hauptschleife alle Knoten $k$ von 1 bis $n$.
 Dabei versucht er in jeder Iteration alle Wege von $i$ nach $j$ durch die Wege $(i, k)$ und $(k, j)$ zu verbessern.
 Falls dieser mögliche Umweg zu einer Verbesserung führt, wird der entsprechende Eintrag aktualisiert.
 
 Die aktuelle Gewichtung der Pfade wird mit
-\begin{equation}d[i, j]=\min[d[i,j], d[i,k] + d[k,i]]\end{equation}
+\begin{equation}d(i, j)=\min\{d(i,j), d(i,k) + d(k,i)\}\end{equation}
 ermittelt.
 
 
@@ -68,14 +68,14 @@ ermittelt.
 \section{PageRank-Algorithmus}
 Der PageRank-Algorithmus wurde von den Gründern von Google, Larry Page und Sergey Brin im Jahr 1996 entwickelt und zum Patent angemeldet. Zwei Jahre später gründeten sie ihr Unternehmen Google Inc.
 Beim PageRank-Algorithmus handelt es sich nicht um einen Suchalgorithmus, stattdessen werden Knoten aufgrund der Vernetzung des vorliegenden Graphen bewertet.
-Verwendet wird er beispielsweise um die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur zu bewerten und relevante Suchergebnisse zu ermittteln. Der PageRank wird umso höher, je mehr hochwertige Links auf eine Webseite verweisen und je höher die Gewichtung einer Webseite ist, desto grösser ist der Effekt.\\
+Verwendet wird er beispielsweise um die Verlinkungsstruktur verschiedener Websites des World Wide Web anhand ihrer Struktur zu bewerten und relevante Suchergebnisse zu ermittteln. Der PageRank wird umso höher, je mehr hochwertige Links auf eine Webseite verweisen und je höher die Gewichtung einer Webseite ist, desto grösser ist der Effekt.
 Dabei handelt es sich um einen iterativen Prozess. Ausgegangen wird von der Adjazenz-Matrix $A$, für welche folgendes gilt:
 
 \begin{equation}
-A_{i,j}=\left\{ \begin{matrix}
-1 & \text{Kante von $j$ nach $i$} \\ 0 & \text{keine Kante von $j$ nach $i$}
-\end{matrix}
- \right.
+A_{i,j} = \begin{cases}
+1&\quad\text{Kante von $j$ nach $i$}\\
+0&\quad\text{keine Kante von $j$ nach $i$}
+\end{cases}
 \label{verkehr:Adja}
 \end{equation}
 
@@ -84,15 +84,15 @@ Grundsätzlich setzt sich der PageRank Algorithmus mit der Fragestellung auseina
 
 
 
-Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1\dot n\right\}\end{equation}
+Für ungerichtete Graphen mit $n$ Knoten gilt \begin{equation}A_{i,j}=A_{j,i}\end{equation} und weiter \begin{equation}A_{i,i}=0\quad\forall i\in \left\{1\dots n\right\}\end{equation}
 Beim PageRank-Algorithmus wird eine abgewandelte Form der Adjazenz-Matrix verwendet.
-Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt.
-\[ P_{i,j}=\frac{A_{i,j}}{\sum_{i=1}^{n}A_{i,j}} \]
+Dabei werden die Matrix-Einträge spaltenweise durch die jeweilige Spaltensumme geteilt, so entsteht die Link-Matrix
+\[ P_{i,j}=\frac{A_{i,j}}{\sum_{k=1}^{n}A_{k,j}} \]
 Anschliessend multipliziert man diese Matrix $P$ mit einem Spaltenvektor $\Vec{r_0}$ mit $n$ Einträgen, für welchen gilt:
-\[ \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dot n\right\} \]
+\( \Vec{r_0}(i) = \frac{1}{n} \quad\forall i\in \left\{1\dots n\right\} \)
 Dieser Vektor stellt ein neutrales Ranking dar. Alle Knoten werden gleich gewichtet.
-Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das ``erste" Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt.
-\[ \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\]
-somit
-\begin{equation} \Vec{r_i} = P^i\cdot\Vec{r_0}\end{equation}
+Dadurch erhält man wiederum einen $n$-zeiligen Spaltenvektor $\Vec{r_1}$, der das ``erste'' Ranking darstellt. Durch Multiplikation der ursprünglichen Matrix $P$ mit dem 1. Ranking-Vektor $\Vec{r_1}$ wird auf Basis des ersten Rankings ein zweites erstellt:
+\( \Vec{r_2} = P\cdot\Vec{r_1} = P\cdot(P\cdot\Vec{r_0}) = P^2\cdot\Vec{r_0}\)
+und somit allgemein:
+\( \Vec{r_i} = P^i\cdot\Vec{r_0}\)
 Der Vektor $\Vec{r_i}$ konvergiert zu einem Eigenvektor von $P$ der das abschliessende Ranking darstellt.

@@ -132,6 +132,10 @@ def winograd2(A, B):
     return C
         
 def test_perfomance(n):
+    
+    import mkl
+    mkl.set_num_threads(1)
+    
     t_mm = []
     t_mm_dc = []
     t_mm_strassen = []
@@ -144,21 +148,21 @@ def test_perfomance(n):
         # A = np.random.randint(-100, 100,(i, i))
         # B = np.random.randint(-100, 100,(i, i))
 
-        start = time.time()
-        C3 = strassen(A, B)
-        t_mm_strassen.append(time.time() - start)
+        # start = time.time()
+        # C3 = strassen(A, B)
+        # t_mm_strassen.append(time.time() - start)
 
-        start = time.time()
-        C1 = MM(A, B)
-        t_mm.append(time.time() - start)
+        # start = time.time()
+        # C1 = MM(A, B)
+        # t_mm.append(time.time() - start)
 
-        start = time.time()
-        C2 = MM_dc(A, B)
-        t_mm_dc.append(time.time() - start)
+        # start = time.time()
+        # C2 = MM_dc(A, B)
+        # t_mm_dc.append(time.time() - start)
 
-        start = time.time()
-        C4 = winograd2(A, B)
-        t_wino.append(time.time() - start)
+        # start = time.time()
+        # C4 = winograd2(A, B)
+        # t_wino.append(time.time() - start)
 
         start = time.time()
         C = A@B
@@ -169,22 +173,23 @@ def test_perfomance(n):
     plt.rc('axes', labelsize=23)
     plt.rc('xtick', labelsize=23)
     plt.rc('ytick', labelsize=23)
-    plt.plot(n, t_mm, label='Standard', lw=5)
-    plt.plot(n, t_mm_dc, label='Divide and conquer', lw=5)
-    plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
-    plt.plot(n, t_wino, label='Winograd', lw=5)
+    # plt.plot(n, t_mm, label='Standard', lw=5)
+    # plt.plot(n, t_mm_dc, label='Divide and conquer', lw=5)
+    # plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
+    # plt.plot(n, t_wino, label='Winograd', lw=5)
     plt.plot(n, t_np, label='NumPy A@B', lw=5)
+    # plt.xscale('log', base=2)
     plt.legend()
     plt.xlabel("n")
     plt.ylabel("time (s)")
-    plt.grid(True)
+    plt.grid(True, which="both", ls="-")
     plt.tight_layout()
     # plt.yscale('log')
     plt.legend(fontsize=19)
-    plt.savefig('meas_' + str(max(n))+ '.pdf')
-    arr = np.array([n, t_mm, t_mm_dc, t_mm_strassen, t_wino, t_np])
-    np.savetxt('meas_' + str(max(n))+ '.txt',arr)    
-    return arr
+    # plt.savefig('meas_' + str(max(n))+ '.pdf')
+    # arr = np.array([n, t_mm, t_mm_dc, t_mm_strassen, t_wino, t_np])
+    # np.savetxt('meas_' + str(max(n))+ '.txt',arr)    
+    return t_np
 
 
 def plot(num):
@@ -198,10 +203,11 @@ def plot(num):
     plt.plot(n, t_mm, label='3 For Loops', lw=5)
     plt.plot(n, t_mm_dc, label='Divide and Conquer', lw=5)
     plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
-    # plt.plot(n, t_wino, label='Winograd', lw=5)
+    plt.plot(n, t_wino, label='Winograd', lw=5)
     plt.plot(n, t_np, label='NumPy A@B', lw=5)
     plt.legend()
     plt.xlabel("n")
+    # plt.yscale('log', base=10)
     plt.ylabel("time (s)")
     plt.grid(True)
     plt.tight_layout()
@@ -211,36 +217,37 @@ def plot(num):
     return arr
 
 def plot_c_res(ave, num):
+    
     MM = np.loadtxt("meas/MM.txt", delimiter=',')
-    # winograd = np.loadtxt("meas/winograd.txt", delimiter=',')
+    winograd = np.loadtxt("meas/winograd.txt", delimiter=',')
     blas = np.loadtxt("meas/blas.txt", delimiter=',')
     MM_dc = np.loadtxt("meas/MM_dc.txt", delimiter=',')
     strassen = np.loadtxt("meas/strassen.txt", delimiter=',')
 
     MM_t = MM[:,0] 
     MM_n = MM[:,1] 
-    MM_t = np.mean(MM_t.reshape(-1,ave),axis=1)
-    MM_n = np.mean(MM_n.reshape(-1,ave),axis=1)
+    # MM_t = np.mean(MM_t.reshape(-1,ave),axis=1)
+    # MM_n = np.mean(MM_n.reshape(-1,ave),axis=1)
 
     MM_dc_t = MM_dc[:,0] 
     MM_dc_n = MM_dc[:,1] 
-    MM_dc_t = np.mean(MM_dc_t.reshape(-1,ave),axis=1)
-    MM_dc_n = np.mean(MM_dc_n.reshape(-1,ave),axis=1)
+    # MM_dc_t = np.mean(MM_dc_t.reshape(-1,ave),axis=1)
+    # MM_dc_n = np.mean(MM_dc_n.reshape(-1,ave),axis=1)
 
     strassen_t = strassen[:,0] 
     strassen_n = strassen[:,1] 
-    strassen_t = np.mean(strassen_t.reshape(-1,ave),axis=1)
-    strassen_n = np.mean(strassen_n.reshape(-1,ave),axis=1)
+    # strassen_t = np.mean(strassen_t.reshape(-1,ave),axis=1)
+    # strassen_n = np.mean(strassen_n.reshape(-1,ave),axis=1)
     
-    # winograd_t = winograd[:,0] 
-    # winograd_n = winograd[:,1] 
+    winograd_t = winograd[:,0] 
+    winograd_n = winograd[:,1] 
     # winograd_t = np.mean(winograd_t.reshape(-1,ave),axis=1)
     # winograd_n = np.mean(winograd_n.reshape(-1,ave),axis=1)
     
     blas_t = blas[:,0] 
     blas_n = blas[:,1] 
-    blas_t = np.mean(blas_t.reshape(-1,ave),axis=1)
-    blas_n = np.mean(blas_n.reshape(-1,ave),axis=1)
+    # blas_t = np.mean(blas_t.reshape(-1,ave),axis=1)
+    # blas_n = np.mean(blas_n.reshape(-1,ave),axis=1)
 
     def func(x, a,b):
         return b*x**a
@@ -254,14 +261,16 @@ def plot_c_res(ave, num):
     plt.rc('axes', labelsize=23)
     plt.rc('xtick', labelsize=23)
     plt.rc('ytick', labelsize=23)
-    plt.plot(MM_n, MM_t, label='3 For Loops', lw=5)
-    # plt.plot(winograd_n, winograd_t, label='Winograd MM', lw=5)
-    plt.plot(blas_n, blas_t, label='Blas', lw=5)
-    plt.plot(strassen_n, strassen_t, label='Strassen', lw=5)
-    plt.plot(MM_dc_n, MM_dc_t, label='Divide and Conquer', lw=5)
+    plt.loglog(MM_n, MM_t, label='3 For Loops', lw=5)
+    plt.loglog(winograd_n, winograd_t, label='Winograd MM', lw=5)
+    plt.loglog(blas_n, blas_t, label='Blas', lw=5)
+    plt.loglog(strassen_n, strassen_t, label='Strassen', lw=5)
+    plt.loglog(MM_dc_n, MM_dc_t, label='Divide and Conquer', lw=5)
     plt.xlabel("n")
+    # plt.yscale('log', base=10)
+    # plt.xscale('log', base=2)
     plt.ylabel("time (s)")
-    plt.grid(True)
+    plt.grid(True, which="both", ls="-")
     plt.tight_layout()
     plt.legend(fontsize=19)
     plt.savefig('c_meas_' + str(num)+ '.pdf')    
@@ -271,23 +280,25 @@ def plot_c_res(ave, num):
     # plt.plot(blas_n, func(blas_n, *popt2), 'r-', label='fit MM: a=%5.5f, b=%5.10f' % tuple(popt2))
   
     plt.legend()
-    
+    # return [MM_n,winograd_n,blas_n,strassen_n,MM_dc_n]
+    return [MM_t,winograd_t,blas_t,strassen_t,MM_dc_t]
+
 
 # test%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if __name__ == '__main__':
-    plot_c_res(1, 4096)
+    # A = plot_c_res(1, 4096)
 
  
-    # plot(8)    
-    # n = np.logspace(1,10,10,base=2,dtype=(np.int))
+    arr = plot(1024)    
+    # n = np.logspace(1,12,12,base=2,dtype=(np.int))
     # n = np.arange(1,50,2)  
-    A = np.random.randint(-10, 10, (5,3))
-    B = np.random.randint(-10, 10, (3,5))
+    # A = np.random.randint(-10, 6, (5,3))
+    # B = np.random.randint(-10, 6, (3,5))
 
-    C = winograd2(A, B)
-    C_test = A@B
-    print(C)
-    print(C_test)
+    # C = winograd2(A, B)
+    # C_test = A@B
+    # print(C)
+    # print(C_test)
     # print(np.equal(C, C_test))
 
     # t_np = test_perfomance(n)

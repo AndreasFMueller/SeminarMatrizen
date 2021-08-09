@@ -39,67 +39,71 @@
 \begin{document}
 
 \begin{tikzpicture}
+
 \begin{axis}[
-    axis lines = left,
-    xlabel = $n$ (Data Input),
-    ylabel = {$t$ (time)},
-    legend pos=north east,
+    xmode=log, ymode=log,
+    xmin=1e-0, xmax=5000,
+    ymin=10e-1, ymax=1e7,
+    grid=both,
+    major grid style={black!50},
+    xlabel = data input size,
+    ylabel = {time},
+    legend pos=north west,
     very thick,
-    ymax = 500,
     yticklabels=\empty,
     xticklabels=\empty,
     scale only axis=true,
-  width=12cm, height=6cm,
+  width=12cm, height=8cm,
     ]
 \addplot [
-    domain= 1:20,
+    domain= 1:5000,
     samples=100,
     color=red,
 ]
 {1};
 \addlegendentry{$\mathcal{O}(1)$}
 \addplot [
-    domain= 1:20,
+    domain= 1:5000,
     samples=100,
     color=green,
 ]
 {x};
 \addlegendentry{$\mathcal{O}(n)$}
 \addplot [
-    domain= 1:20,
+    domain= 1:50000,
     samples=100,
     color=blue,
 ]
 {x^2};
-\addlegendentry{$\mathcal{O}(n^2)$}
+\addlegendentry{$\mathcal{O}\left(n^2\right)$}
 \addplot [
-    domain= 1:10,
+    domain= 1:500,
     samples=100,
     color=purple,
 ]
 {x^3};
-\addlegendentry{$\mathcal{O}(n^3)$}
+\addlegendentry{$\mathcal{O}\left(n^3\right)$}
 \addplot [
-    domain= 1:10,
+    domain= 1:500,
     samples=100,
     color=black,
 ]
-{exp(x)};
-\addlegendentry{$\mathcal{O}(e^n)$}
+{exp(x) - 1.7};
+\addlegendentry{$\mathcal{O}\left(e^n\right)$}
 \addplot [
-    domain= 1:20,
+    domain= 1:5000,
     samples=100,
     color=orange,
 ]
-{log2(x)};
+{log2(x)+1};
 \addlegendentry{$\mathcal{O}(\log n)$}
 
 \addplot [
-    domain= 1:20,
+    domain= 1:5000,
     samples=100,
     color=gray,
 ]
-{x*log2(x)};
+{x*log2(x)+1};
 \addlegendentry{$\mathcal{O}(n \log n)$}
 \end{axis}
 \end{tikzpicture}
