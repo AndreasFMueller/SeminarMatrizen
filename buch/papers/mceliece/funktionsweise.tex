@@ -6,22 +6,76 @@
 \section{Funktionsweise 
 \label{mceliece:section:funktionsweise}}
 \rhead{Funktionsweise}
-Um den Ablauf des Datenaustausches mittels M
+Um den Ablauf des Datenaustausches mittels McEliece-Verschlüsselung zu erläutern,
+wird ein Szenario verwendet,
+bei dem Bob an Alice eine verschlüsselte Nachticht über ein öffentliches Netzwerk zukommen lässt.
 
-\subsection{De finibus bonorum et malorum
-\label{mceliece:subsection:bonorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
+\subsection{Vorbereitung
+\label{mceliece:section:vorbereitung}}
+Damit der Nachrichtenaustausch stattfinden kann, muss Alice (Empfängerin)
+zuerst ein Schlüsselpaar definieren.
+Dazu erstellt sie die einzelnen Matrizen $S_k$, $G_{n,k}$ und $P_n$.
+Diese drei einzelnen Matrizen bilden den privaten Schlüssel von Alice
+und sollen geheim bleiben.
+Der öffentliche Schlüssel $K_{n,k}$ hingegen berechnet sich
+aus der Multiplikation der privaten Matrizen\ref{mceliece:subsection:k_nk}
+und wird anschliessend Bob, zugestellt.
 
+\subsection{Verschlüsselung
+\label{mceliece:section:verschl}}
+Bob berechnet nun die verschlüsselte Nachricht $c_n$, indem er seine Daten $d_k$
+mit dem öffentlichen Schlüssel $K_{n,k}$ von Alice multipliziert
+und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfehler hinzufügt.
+\[
+    c_n\,=\,K_{n,k}\cdot d_k + e_n\,.
+\]
+Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment)
+einen neuen, zufälligen Fehlervektor generiert.
+Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
 
+\subsection{Entschlüsselung
+\label{mceliece:section:entschl}}
+Alice entschlüsselt die erhaltene Nachricht in mehreren einzelnen Schritten.
+Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel mit seinen Ursprungsmatrizen dargestellt.
+\[
+    \begin{align*}​
+        c_n\,&=\,K_{n,k}\cdot d_k + e_n \\​
+             &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n \\​
+    \end{align*}​
+\]
+Zuerst wird der Effekt der Permutationsmatrix rückgängig gemacht,
+indem das Codewort mit dessen Inversen $P_n^{-1}​$ multipliziert wird.
+
+\[      
+    \begin{align*}​
+      c_{n}''\,=\,P_n^{-1}\cdot \hat{c}_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
+                                           &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
+    \end{align*}​
+\]
+
+Eine weitere Vereinfachung ist nun möglich,
+weil $P_n^{-1}​$ einerseits auch eine gewöhnliche Permutationsmatrix ist
+und andererseits ein zufälliger Fehlerwektor $e_n$ multipliziert mit einer Permutationsmatrix
+wiederum einen gleichwertigen, zufälligen Fehlerwektor $e_n'$ ergibt.
+\[
+    \begin{align*}​
+        c_{n}''\,&=\,G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\​
+        &=\,G_{n,k}\cdot S_{k}\cdot d_k + e'_n\quad \quad \quad \quad | \,​
+        e'_n\,=\,P_n^{-1}\cdot e_n​
+    \end{align*}
+\]
+
+Dank des Linearcodes können nun die Bitfehler, verursacht durch den Fehlervektor $e'_n$,
+entfernt werden.
+Da es sich bei diesem Schritt nicht um eine einfache Matrixmultiplikation handelt,
+wird die Operation durch eine Funktion dargestellt.
+Wie dieser Decoder genau aufgebaut ist ist,
+hängt vom verwendeten Linearcode ab.
+
+\[
+    \begin{align*}​
+        c_{k}'\,&=\text{Linear-Code-Decoder($c''_n$)}\\​
+                &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\​
+                &=S_{k}\cdot d_k
+    \end{align*}
+\]

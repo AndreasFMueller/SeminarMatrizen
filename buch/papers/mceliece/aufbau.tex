@@ -49,7 +49,7 @@ Beispielsweise
 \]
 
 \subsection{Linear-Code-Generatormatrix $G_{n,k}$
-\label{mceliece:subsection:g_m}}
+\label{mceliece:subsection:g_nk}}
 Das wichtigste Element des McEliece-Systems ist ein fehlerkorrigierender Code,
 der in der Lage ist, $t$ Fehler zu korrigieren.
 Im Zusammenhang mit McEliece werden dabei meist Goppa-Codes verwendet,
@@ -76,7 +76,7 @@ Beispiel
 \]
 
 \subsection{Permutations-Matrix $P_n$
-\label{mceliece:subsection:p_m}}
+\label{mceliece:subsection:p_n}}
 Mit der zufällig generierten Permutationsmatrix $P_n$ wird die Reihenfolge der Bits geändert.
 Mit der Inversen $P_n^{-1}$ kann die Bitvertauschung rückgängig gemacht werden.
 Beispiel
@@ -106,31 +106,10 @@ Beispiel
     \end{pmatrix}
 \]
 
-\subsection{Fehler-Vektor $e_n$
-\label{mceliece:subsection:p_m}}
-Dieser Vektor der Länge $n$ besteht aus $t$ Einsen, welche zufällig innerhalb des Vektors angeordnet sind,
-alle anderen Einträge sind Null.
-Dieser Fehlervektor besitzt also gleich viele Einer,
-wie die Anzahl Fehler, die der Linearcode zu korrigieren vermag.
-
-Beispiel
-\[
-    E_7=
-    \begin{pmatrix}
-        0\\
-        0\\
-        1\\
-        0\\
-        0\\
-        0\\
-        0
-    \end{pmatrix}
-\]
-
 \subsection{Public-Key $K_{n,k}$
-\label{mceliece:subsection:k_m}}
+\label{mceliece:subsection:k_nk}}
 Der öffentliche Schlüssel, welcher zum Verschlüsseln verwendet wird,
-berechnet sich mit
+berechnet sich aus den bereits bekannten Matrizen wiefolgt:
 \[
     K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}\,.
 \]
@@ -147,3 +126,32 @@ Beispiel
         1 & 0 & 0 & 0
     \end{pmatrix}
 \]
+
+\subsection{Fehler-Vektor $e_n$
+\label{mceliece:subsection:e_n}}
+Dieser Vektor der Länge $n$ besteht aus $t$ Einsen, welche zufällig innerhalb des Vektors angeordnet sind,
+alle anderen Einträge sind Null.
+Dieser Fehlervektor besitzt also gleich viele Einer,
+wie die Anzahl Fehler, die der Linearcode der Generatormatrix $G_{n,k}$ zu korrigieren vermag.
+
+Beispiel
+\[
+    E_7=
+    \begin{pmatrix}
+        0\\
+        0\\
+        1\\
+        0\\
+        0\\
+        0\\
+        0
+    \end{pmatrix}
+\]
+
+\subsection{Daten-Vektor $d_k$
+\label{mceliece:subsection:d_k}}
+In diesem Vektor der länge $k$ ist die Nachricht (oder einen Teil davon) enthalten.
+
+\subsection{Code-Vektor $c_n$
+\label{mceliece:subsection:c_n}}
+In diesem Vektor der länge $n$ ist die verschlüsselte Nachricht (oder einen Teil davon) enthalten.
