@@ -24,7 +24,7 @@ SOURCES := \
 
 TIKZFIGURES := \
 	tikz/polynom2.tex \
-	tikz/plotfft.tex
+	tikz/fourier.tex
 
 FIGURES := $(patsubst tikz/%.tex, figures/%.pdf, $(TIKZFIGURES))
 
