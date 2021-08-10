@@ -291,19 +291,21 @@ def mean_confidence_interval(data, confidence=0.95):
     n = len(a)
     m, se = np.mean(a), scipy.stats.sem(a)
     h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
-    return m, m-h, m+h
+    return m, h
 
 # test%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if __name__ == '__main__':
-    A = plot_c_res(10, 4096)
-    name = ['MM', 'Wino', 'blas', 'strassen', 'dc']
-    for i in range(5):
-        ci_inner = []
-        for j in range(11):
-            ci_inner.append(mean_confidence_interval(A[i][j*10:(j+1)*10]))
-        np.savetxt('meas/ci/' + name[i]+'.txt',ci_inner)
+    # A = plot_c_res(10, 4096)
+    # name = ['MM', 'Wino', 'blas', 'strassen', 'dc']
+    # for i in range(5):
+    #     ci_inner = []
+    #     print(name[i])
+    #     for j in range(11):
+    #         m,h=mean_confidence_interval(A[i][j*10:(j+1)*10])
+    #         print("({},{})".format(2**(j+1),m))
+    #     np.savetxt('meas/ci/' + name[i]+'.txt',ci_inner)
 
-    # arr = plot(1024)    
+    arr = plot(4096)
     # n = np.logspace(1,12,12,base=2,dtype=(np.int))
     # n=[2048,4096]
     # n = np.arange(1,50,2)  
