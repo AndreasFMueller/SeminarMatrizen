@@ -1,0 +1,57 @@
+%
+% teil3.tex -- Beispiel-File für Teil 3
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Fazit
+\label{mceliece:section:fazit}}
+\rhead{Fazit}
+Ein kurzer Vergleich des McEliece-Systems
+mit dem oft verwendeten RSA-System soll zeigen, wo dessen Vor- und Nachteile liegen.
+
+\subsection{Resourcen}
+Eine Eigenheit des McEliece-Systems ist das hinzufügen von Rauschen (mit Fehlervektor $e_n$).
+Damit diese mit dem Lienarcode-Decoder wieder entfernt werden können,
+wird Redundanz benötigt,
+weshalb dessen Kanalefizienz (Nutzbits/Übertragungsbits) sinkt.
+Die Schlüsselgrösse des McEliece-Systems ist deshalb so riesig, weil es sich um eine zweidimensionale Matrix handelt, währenddem RSA mit nur zwei Skalaren auskommt.
+Das McEliece-System benötigt dafür weniger Rechenaufwand beim Verschlüsseln/Entschlüsseln, da die meisten Operationen mit Matrixmultiplikationen ausgeführt werden können (Aufwand ist in binären Operationen pro Informationsbit)\cite{mceliece:CodeBasedCrypto}.
+Beim Rechenaufwand sei noch erwähnt,
+dass asymetrische Verschlüsselungen meist nur dazu verwendet werden,
+um einen Schlüssel für eine symetrische Verschlüsselung auszutauschen.
+\begin{center}
+\begin{tabular}{c|c|c}
+                                &McEliece (n=2048, k=1718, t = 30)  &RSA (2048, e = 216 + 1)\\
+    \hline
+    Schlüssegrösse: (Public)    &429.5 KByte                        &0.5 KByte              \\
+    Kanaleffizienz:             &83.9 \%                            &100 \%                 \\
+    Verschlüsselungsaufwand:    &1025                               &40555                  \\
+    Entschlüsselungsaufwand:    &2311                               &6557176, 5
+\end{tabular}
+\end{center}
+
+\subsection{Sicherheit}
+Grosse unterschiede zwischen den beiden Kryptosystemen gibt es jedoch bei der Sicherheit.
+Der Kern der RSA-Verschlüsselung beruht auf dem Problem, eine grosse Zahl in ihre beiden Primfaktoren zu zerlegen.
+Bei genügend grossen Zahlen ist diese Zerlegung auch mit den heute besten verfügbaren Computern kaum innerhalb vernünftiger Zeit zu lösen.
+Weiter ist aber bekannt,
+dass mithilfe des sogenannten Shor-Algorithmuses \cite{mceliece:shor} und einem Quantencomputer auch diese Zerlegung zügig realisiert werden könnte,
+was zur Folge hätte, dass die Verschlüsselung von RSA unwirksam würde.
+Zurzeit sind die Quantencomputer jedoch noch bei weitem nicht in der Lage, grosse Zahlen mithilfe dieses Algorithmuses zu zerlegen.
+Das McEliece-System hingegen beruht auf dem Problem des ``Syndrome decoding'' (Korrektur von Bitfehlern eines Codewortes, das mit dem entsprechenden Linearcode codiert wurde).
+Für das ``Syndrome decoding'' sind bis heute keine Methoden bekannt,
+welche nennenswerte Vorteile gegenüber dem durchprobieren (brute-force) bringen,
+auch nicht mithilfe eines Quantencomputers.
+\begin{center}
+\begin{tabular}{c|c|c}
+                              &McEliece          &RSA              \\
+\hline
+    Grundlage Verschlüsselung &Syndrome decoding &Integer factoring\\
+    Aufwand (gewöhnliche CPU) &exponential       &< exponential    \\
+    Aufwand (Quantencomputer) &> polynomial      &$\mathcal{O}(\log(N)^3)$
+\end{tabular}
+\end{center}
+Die Verbreitung des McEliece-Kryptosystems ist zurzeit äusserst gering.
+Das liegt einerseits an der immensen Grösse des öffentlichen Schlüssels,
+andererseits wird aber auch in naher Zukunft nicht mit einem genügend starken Quantencomputer gerechnet,
+welcher andere asymetrische Verschlüsselungen gefährden würde.
