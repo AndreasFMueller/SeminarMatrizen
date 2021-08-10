@@ -43,8 +43,8 @@
 \begin{tikzpicture}
 \begin{axis}[
 xmode=log, ymode=log,
-xmin=60, xmax=5000,
-ymin=1e-4, ymax=2e3,
+xmin=60, xmax=10000,
+ymin=1e-4, ymax=2e4,
 grid=both,
 major grid style={black!50},
 xlabel = data Input ($n$),
@@ -70,6 +70,7 @@ width=12cm, height=8cm,
 (1024,4.539413)
 (2048,130.627663)
 (4096,1179.261048)
+(8192,10071.512655)
 };
 \addlegendentry{Strassen}
 \addplot [    color=black,
@@ -86,6 +87,7 @@ width=12cm, height=8cm,
 (1024,8.457472 )
 (2048,59.267256)
 (4096,414.648901)
+(8192,3014.235467)
 };
 
 \addlegendentry{MM div and conq}
@@ -103,6 +105,7 @@ width=12cm, height=8cm,
 (1024,19.928951  )
 (2048,159.333884 )
 (4096,1147.106865)
+(8192,9606.402522)
 };
 
 \addlegendentry{MM}
@@ -120,6 +123,7 @@ width=12cm, height=8cm,
 (1024,4.162845   )
 (2048,125.909034 )
 (4096,1111.312696)
+(8192,9376.173434)
 };
 \addlegendentry{BLAS}
 \addplot[    color=blue,
@@ -136,6 +140,7 @@ width=12cm, height=8cm,
 (1024,0.704748  )
 (2048,6.845095  )
 (4096,55.845038)
+(8192,478.429957)
 };
 \end{axis}
 \end{tikzpicture}

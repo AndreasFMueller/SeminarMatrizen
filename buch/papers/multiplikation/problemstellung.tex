@@ -14,87 +14,102 @@ Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der S
 Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Abhängigkeit zur Inputgrösse \cite{multiplikation:bigo}.
 $f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
 % Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$
-Als Beispiel: benötigt eine Funktion $g$ $\mathcal{O}\left(n^2 \right)$ Multiplikationen, so wächst $f$ mit $\mathcal{O}\left(n+ n^2 \right)$ nicht wesentlich schneller falls $x\to\infty$.
+Als Beispiel: benötigt eine Funktion $g$ $\mathcal{O} (n^2  )$ Multiplikationen, so wächst $f$ mit $\mathcal{O} (n+ n^2  )$ nicht wesentlich schneller falls $x\to\infty$.
 Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
 	\item $f \in \mathcal{O}(n) \rightarrow f$ w\"achst linear
-	\item $f \in \mathcal{O}\left (n^2 \right ) \rightarrow f$ w\"achst quadratisch
+	\item $f \in \mathcal{O}  (n^2   ) \rightarrow f$ w\"achst quadratisch
 	\item $f \in \mathcal{O}(\log n) \rightarrow f$ w\"achst logarithmisch
 	\item $f \in \mathcal{O}(n \log n) \rightarrow f$ hat super-lineares Wachstum
-	\item $f \in \mathcal{O}\left (e^n \right ) \rightarrow f$ w\"achst exponentiell
+	\item $f \in \mathcal{O}  (e^n   ) \rightarrow f$ w\"achst exponentiell
 	\item usw.
 \end{itemize}
 
 In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
 Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.
-Sch\"on zu erkennen ist, dass Logarithmische Kurven beschr\"ankt sind.
+
 
 
 \subsubsection{Beispiel Algorithmen}
 
 Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
 
-\begin{minipage}{0.4\textwidth}
-	\begin{algorithm}[H]\footnotesize\caption{}
-		\label{multiplikation:alg:b1}
-		\setlength{\lineskip}{7pt}
-		\begin{algorithmic}
-			\Function{B1}{$a, b$}
-			\State \textbf{return} $a+b$
-			\EndFunction
-		\end{algorithmic}
-	\end{algorithm}
 
-	\begin{algorithm}[H]\footnotesize\caption{}
-		\setlength{\lineskip}{7pt}
-		\begin{algorithmic}
-			\label{multiplikation:alg:linear}
-			\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
-			\State $ sum \gets 0$
-			\For{$i = 0,1,2 \dots,n$}
-			\State $ sum \gets sum + A[i] \cdot B[i] $
-			\EndFor
+\begin{table}[t]
+	\begin{tabular}{ll}
+		\begin{minipage}{0.48\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\label{multiplikation:alg:b1}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\Function{B1}{$a, b$}
+					\State \textbf{return} $a+b$
+					\EndFunction
+					\State
+					\State
+				\end{algorithmic}
+			\end{algorithm}
+		\end{minipage}	
+		&
+		\begin{minipage}{0.48\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\label{multiplikation:alg:b2}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\Function{B2}{$a, b$}
+					\State $ x \gets a+b $
+					\State $ y \gets a \cdot b $
+					\State \textbf{return} $x+y$
+					\EndFunction
+				\end{algorithmic}
+			\end{algorithm}
+			
+		\end{minipage}
+	\end{tabular}
+\end{table}
 
-			\State \textbf{return} $sum$
-
-			\EndFunction
-		\end{algorithmic}
-	\end{algorithm}
-\end{minipage}
-\hspace{2cm}
-\begin{minipage}{0.4\textwidth}
-
-	\begin{algorithm}[H]\footnotesize\caption{}
-		\label{multiplikation:alg:b2}
-		\setlength{\lineskip}{7pt}
-		\begin{algorithmic}
-			\Function{B2}{$a, b$}
-			\State $ x \gets a+b $
-			\State $ y \gets a \cdot b $
-			\State \textbf{return} $x+y$
-			\EndFunction
-		\end{algorithmic}
-	\end{algorithm}
-
-
-	\begin{algorithm}[H]\footnotesize\caption{}
-		\label{multiplikation:alg:q1}
-		\setlength{\lineskip}{7pt}
-		\begin{algorithmic}
-			\Function{Q}{$\mathbf{A}, \mathbf{B}$,n}
-			\State $ sum \gets 0$
-			\For{$i = 0,1,2 \dots,n$}
-			\For{$j = 0,1,2 \dots,n$}
-			\State $ sum \gets sum + A[i] \cdot B[j] $
-			\EndFor
-			\EndFor
-			\State \textbf{return} $sum$
-			\EndFunction
-		\end{algorithmic}
-	\end{algorithm}
-
-\end{minipage}
+\begin{table}
+	\begin{tabular}[t]{ll} 
+		\begin{minipage}{0.48\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\label{multiplikation:alg:linear}
+					\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
+					\State $ sum \gets 0$
+					\For{$i = 0,1,2 \dots,n$}
+					\State $ sum \gets sum + A[i] \cdot B[i] $
+					\EndFor
+					
+					\State \textbf{return} $sum$
+					
+					\EndFunction
+					\State
+					\State
+				\end{algorithmic}
+			\end{algorithm}
+		\end{minipage}	
+		&
+		\begin{minipage}{0.48\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\label{multiplikation:alg:q1}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\Function{Q}{$\mathbf{A}, \mathbf{B}$,n}
+					\State $ sum \gets 0$
+					\For{$i = 0,1,2 \dots,n$}
+					\For{$j = 0,1,2 \dots,n$}
+					\State $ sum \gets sum + A[i] \cdot B[j] $
+					\EndFor
+					\EndFor
+					\State \textbf{return} $sum$
+					\EndFunction
+				\end{algorithmic}
+			\end{algorithm}
+		\end{minipage}
+	\end{tabular}
+\end{table}
 
 \paragraph{Beschr\"ankter Algorithmus}
 
@@ -111,7 +126,7 @@ Die \texttt{for}-Schleife wird $n$-mal durchlaufen und f\"uhrt deshalb zu $\math
 \paragraph{Quadratischer Algorithmus}
 
 Der Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
-Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}\left(n^2\right)$.
+Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O} (n^2 )$.
 
 
 \begin{figure}

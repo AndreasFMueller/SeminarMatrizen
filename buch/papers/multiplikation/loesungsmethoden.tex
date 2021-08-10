@@ -39,13 +39,13 @@ Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}\left(n^3\right)$
+Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O} (n^3)$
 
 \subsubsection{Divide and Conquer Methode}
 
 F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer}  Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
 Die Grundidee ist, dass ein Problem in mehrere, meist simplere und kleinere Teilprobleme aufgeteilt wird.
-Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}\left(n^2\right)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
+Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O} (n^2)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
 Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
@@ -68,7 +68,7 @@ Das Matrizen Produkt
 \end{bmatrix},
 \end{equation}
 \begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}2n \mathbf{A}_{ik} \mathbf{B}_{kj}
+\mathbf{C}_{ij} = \sum_{k=1}^{2n} \mathbf{A}_{ik} \mathbf{B}_{kj}
 \label{multiplikation:eq:MM_block}
 \end{equation}
 ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrize $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
@@ -109,7 +109,7 @@ Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \ci
 Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
-	\mathcal{T}(n) =	8 \cdot \mathcal{T}\left (\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}\left (n^{3} \right )
+	\mathcal{T}(n) =	8 \cdot \mathcal{T} \left(\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}  (n^{3} )
 \end{equation}
 zu einer kubischen Laufzeit.
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
@@ -202,7 +202,7 @@ Die Funktion wird sieben mal rekursiv aufgerufen.
 Dies f\"uhrt nach dem \textit{Master Theorem} zu einer Laufzeit von
 \begin{equation} \label{multiplikation:eq:laufzeitstrassen}
 \mathcal{T}(n) =
-7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  = \mathcal{O}\left(n^{\log_2 7}\right ) = \mathcal{O}\left(n^{2.8074} \right )
+7 \cdot \mathcal{T}\left(\frac{n}{2}\right) + n^2  = \mathcal{O}(n^{\log_2 7} ) = \mathcal{O}(n^{2.8074}  )
 \end{equation}
 und ist somit schneller als die Standardmethode.
 Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
@@ -267,7 +267,7 @@ sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
 Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt.
 Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
- somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}\left(n^3 \right)$.
+ somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
 \begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
@@ -336,33 +336,33 @@ Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{M
 	\item Level 2
 	\begin{itemize}
 		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{A}\mathbf{x}+\beta  \mathbf{y}$
-		\item Dieses Level hat $\mathcal{O}\left(n^2\right)$ Charakteristik
+		\item Dieses Level hat $\mathcal{O}(n^2)$ Charakteristik
 		\end{itemize}
 		\item Level 3
 		\begin{itemize}
 			\item Operationen der Art: $\mathbf{C} \leftarrow \alpha \mathbf{A}\mathbf{B}+\beta\mathbf{C}$
-			\item Dieses Level hat $\mathcal{O}\left(n^3\right)$ Charakteristik
+			\item Dieses Level hat $\mathcal{O}(n^3)$ Charakteristik
 			\end{itemize}
 \end{itemize}
 
 Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
 
 
-\subsubsection{General Matrix Multiplication (GEMM)}
-
-Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
-
-\textit{DGEMM  performs one of the matrix-matrix operations}
-$$
- C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
- $$
- \textit{where  op( X ) is one of}
-$$
-op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
-$$
- \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
- an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
- }
+%\subsubsection{General Matrix Multiplication (GEMM)}
+%
+%Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
+%
+%\textit{DGEMM  performs one of the matrix-matrix operations}
+%$$
+% C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
+% $$
+% \textit{where  op( X ) is one of}
+%$$
+%op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
+%$$
+% \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
+% an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
+% }
 
 %Die Implementation von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
 %\begin{lstlisting}[style=multiplikationC]
@@ -379,7 +379,7 @@ $$
 Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementiert.
 \begin{itemize}
 	\item Standard Matrizenmultiplikation
-	\item \textit{Devide and Conquer} Matrizenmultiplikation
+	\item \textit{Divide and Conquer} Matrizenmultiplikation
 	\item Strassens Matrizenmultiplikation
 	\item Winograds Matrizenmultiplikation
 	\item \texttt{BLAS} Matrizenmultiplikation in \texttt{C}
