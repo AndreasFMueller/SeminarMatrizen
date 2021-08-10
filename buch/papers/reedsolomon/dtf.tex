@@ -1,85 +1,122 @@
 %
 % dtf.tex -- Idee mit DFT
 %
-\section{Übertragung mit Hilfe der Diskrten Fourientransformation
+\section{Übertragung mit Hilfe der diskrten Fourier-Transformation
 \label{reedsolomon:section:dtf}}
 \rhead{Umwandlung mit DTF}
-Um die Polynominterpolation zu umgehen, gehen wir nun über in die Fourietransformation.
-Dies wird weder eine Erklärung der Forientransorfmation, noch ein genauer gebrauch für den Reed-Solomon-Code. 
-Dieser Abschnitt zeigt nur wie die Fourietransformation auf Fehler reagiert.
-Das ganze zeigen wir mit einem Beispiel einer Übertragung von Zahlen mit Hilfe der Fourietransformation.
+Die Grundidee eines fehlerkorrigierenden Code ist, dass Informationen eines Datenpunkt
+durch die Codierung auf viele übertragene Werte verteilt werden.
+Die Decodierung ist in der Lage, den ursprünglichen Datenwert zu rekonstruieren,
+sogar wenn einzelne wenige übertragene Werte beschädigt worden sind.
+\par
+Die Fourier-Transformation transformiert einen einzelnen Wert, 
+eine Dirac-Funktion, auf ein Spektrum, welches sich über die ganze Frequenzachse erstreckt.
+Aus der Filtertheorie ist bekannt, dass der ursprüngliche Impuls mehr oder weniger rekonstruierbar ist,
+	vorausgestzt, es gehen nicht zu viele Frequenzen bei der Übertragung verloren.
+\par
+Es liegt daher nahe zu versuchen, die Fourier-Transformation 
+für Codierung und Decodierung zu verwenden.
 
-\subsection{Diskrete Fourietransformation Zusamenhang
-\label{reedsolomon:subsection:dtfzusamenhang}}
-Mit hilfe der Fourietransformation werden die \textcolor{blue}{blauen Datenpunkte} transformiert,
+\subsection{Beispiel mit Fehlerkorrektur mit Fourier-Transformation
+\label{reedsolomon:subsection:sendbsp}}
+
+Das folgende Beispiel soll zeigen, wie Fehlerkorrektur möglich ist.
+Dieses auf eine Art, die der Funktionsweise des Reed-Solomon-Codes,
+der später erklärt wird, analog ist.
+\par
+Der Auftrag ist nun 64 Datenwerte zu übertragen, 32 Fehler zu erkennen und 16 Fehler zu rekonstruieren.
+Mit Hilfe der Fourier-Transformation werden die \textcolor{blue}{blauen Datenpunkte} transformiert,
 zu den \textcolor{darkgreen}{grünen Übertragungspunkten}. 
 Durch eine Rücktransformation könnnen die \textcolor{blue}{blauen Datenpunkte} wieder rekonstruiert werden.
 
-\subsubsection{Beispiel einer Übertragung
-\label{reedsolomon:subsection:Übertragungsabfolge}}
-Der Auftrag ist nun 64 Daten zu übertragen und nach 32 Fehler abzusicheren,
-16 Fehler erkennen und rekonstruieren.
-
-Dieser Auftrag soll mittels Fouriertransformation bewerkstelligt werden.
-In der Abbildung \ref{reedsolomon:subsection:Übertragungsabfolge} sieht man dies Schritt für Schritt,
-und hier werden die einzelne Schritte erklärt:
-\begin{enumerate}[(1)]
- \item Das Signal hat 64 die Daten $k$, hier zufällige Zahlen, welche übertragen werden sollen. 
- Zusätzlich soll nach 16 Fehler $t$, die rekonstruierbar sind abgesichert werden.
- Das macht dann insgesamt $k + 2t = 
- 64 +2 \cdot 16= 96$ Übertragungszahlen.
- (siehe Abschnitt \externaldocument{papers/reedsolomon/idee}\ref{reedsolomon:section:Fehlerkorrekturstellen})
- Die 32 Fehlerkorrekturstellen werden als Nullzahlen Übertragen.
- \item Nun werden mittels der diskreten Fourietransformation diese 96 codiert, transformiert.
- Das heisst alle Informationen ist in alle Zahlenvorhanden, auch die Fehlerkorrekturstellen Nullzahlen.
- \item Nun kommen drei Fehler dazu an den Übertragungsstellen 7, 21 und 75.
- Die Fehler können auf den ganzen 96 Übertragungswerten liegen, wie die 75 zeigt.
-Zu Beachten ist auch noch, dass der Fehler um das 20- bis 150-Fache kleiner ist.Die Fehlerskala ist rechts.
- \item Dieses wird nun Empfangen, man kann keine Fehler erkennen, da diese soviel kleiner sind.
- Für das Decodieren wird die Inverse Fourietransformation angewendet, und alle Fehler werden mittransformiert.
- \item Nun sieht man die Fehler im decodierten Signal in den Übertragungszahlen. 
- Von den Übertragungsstellen 64 bis 96 erkennt man, das diese nicht mehr Null sind.
- \item Diese Fehlerkorrekturstellen 64 bis 96, dies definieren wir als Syndrom.
- In diesem Syndrom ist die Fehlerinformation gespeichert und muss nur noch transformiert werden.
- \item Hier sieht man genau wo die Fehler stattgefunden haben. 
- Leider nicht mehr mit der Qualtiätt der Ursprünglichen Fehler, sie sind nur noch 0.6 oder 0.4 gross.
- Obwohl der Fehler um das 20Fache kleiner ist erkennt man im Locator die Fehlerstellen wieder.
- \end{enumerate}
- Nun haben wir mit Hilfe der Fourietransformation die 3 Fehlerstellen durch das Syndrom lokalisiert, 
- jetzt gilt es nur noch diese zu korrigieren und wir haben unser originales Signal wieder.
-\begin{figure}
+\begin{figure}%[!ht]
 	\centering
-	\resizebox{1.1\textwidth}{!}{
-	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/plotfft}
+	\resizebox{\textwidth}{!}{
+	\includegraphics[width=\textwidth]{papers/reedsolomon/figures/fourier}
     %\input{papers/reedsolomon/tikz/plotfftraw.tex}
 	}
-	\caption{Übertragungsabfolge \ref{reedsolomon:subsection:Übertragungsabfolge}}
+	\caption{Übertragungsabfolge \ref{reedsolomon:subsection:sendbsp}}
 	\label{fig:sendorder}
 \end{figure}
+In der Abbildung \ref{fig:sendorder} wird eine Übertragung Schritt für Schritt illustriert.
+In der folgenden Aufzählung werden diese einzelne Schritte erklärt und erläutert:
+\begin{enumerate}[(1)]
+ \item Das Signal besteht aus 64 zufälligen, ganzzahligen Datenwerten zwischen 0 und 10.
+ Für die Rekonstruktion werden zusäzlich Datenwert benötigt, wir fügen deshalb 32 Werte hinzu.
+ Diese setzen wir willkürlich auf Null und nennen sie Fehlerkorrekturstellen.
+ Wir erhalten so einen erweiterten Signalvektor der Länge $N =96$.
+ \item Mit der Fourier-Transformation wird der ganze Signalvektor codiert.
+ Dadurch wird jede Informationseinheit auf alle Punkte des Spektrums verteilt.
+ \item Wir dürfen annehmen, dass bei der Übertragung, nur einzelne übertragene 
+ 	Werte durch Fehler verändert werden.
+ \par 
+ Im Beispiel sind dies die Werte an den Stellen 6, 20 und 74 (\textcolor{red}{rote Kurve}),
+ 	die um einen Betrag verändert werden.
+ Dieser ist bis zu 150-mal kleiner, als die ursprünglichen codierte Werte. 
+ Der Empfänger kennt daher im allgemeinen nicht, ob und wo Übertragungsfehler aufgetreten sind.
+ \item Ohne Übertragungsfehler kann der Signalvektor durch inverse Fourier-Transformation vollständig
+ 	wiederhergestellt werden.
+ Dazu gehören auch die Nullen an den Fehlerkorrekturstellen 64 - 96.
+ \par 
+ Sind Übertragungsfehler aufgetreten, werden an diesen Stellen Werte abweichend von Null auftreten.
+ Somit haben wir bereits Fehler erkannt.
+ \item Die Werte an den Fehlerkorrekturstellen 64 - 96, die nicht mehr Null sind, nennen wir das Syndrom.
+ Im Syndrom steckt nur Information über die Fehler, sie werden durch die inverse Fourier-Transformation erzeugt.
+ \item Um die Fehler zu rekonstruieren, kann man versuchen, die Information im Syndrom mit Fourier-Transformation zu transformieren.
+ Da das Syndrom nur ein Teil der Fehlerinformation ist, liefert die Fourier-Transformation eine Approximation der Fehler.
+ Diese Approximation der Fehler ist genau genug, um die Fehlerstellen zu lokalisieren.
+\end{enumerate}
+Im Beispiel haben wir mit dem Syndrom nur etwa ein Drittel der Fehlerinformation, es ist daher zu erwarten, 
+dass die Fehlerwerte auch nur ein Drittel so gross sind.
+\par 
+Damit können die Fehler korrigiert und die Orginaldaten wiederhergestellt werden.
+Der Rekonstruktionsauftrag ist damit erfolgreich ausgeführt.
 
-Nun zur Definition der Diskrete Fourietransformation, diese ist definiert als
+\subsection{Fourier-Transformation und Polynome\label{reedsolomon:subsection:ftandpolynom}}
+Im Abschnitt \externaldocument{papers/reedsolomon/idee}\ref{reedsolomon:section:polynomansatz}
+wurden Werte eines Polynoms zur Codierung verwendet.
+Die 7 Übertragungspunkte könnten ein Polynom
+\begin{equation}
+	\textcolor{darkgreen}{p(x)}
+	=
+	\textcolor{blue}{a_0} + \textcolor{blue}{a_1}x + \textcolor{blue}{a_2}x^2 +
+	\textcolor{gray}{a_3}x^3 + \textcolor{gray}{a_4}x^4 + \textcolor{gray}{a_5}x^5 +
+	\textcolor{gray}{a_6}x^6
+\label{reedsolomon:equationpoly}
+\end{equation}
+sechsten Grades bestimmen.
+Durch die Wahl von $\textcolor{gray}{a_3=0}$, $\textcolor{gray}{a_4=0}$, $\textcolor{gray}{a_5=0}$, $\textcolor{gray}{a_6=0}$ 
+erzeugen wir die für die Fehlerkorrektur nötige Redundanz, ganz analog zum Schritt (1) im Beispiel.
+\par 
+Die Analogie geht aber noch weiter.
+ Schreibt man 
+ \( w =
+ e^{-\frac{2\pi j}{N} k}\)
+ \label{reedsolomon:DFT_summand}, damit wird aus der Formel
  \begin{equation}
 	\hat{c}_{k} 
 	= \frac{1}{N} \sum_{n=0}^{N-1}
-	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}.
+	{f}_n \cdot e^{-\frac{2\pi j}{N} \cdot kn}
 	,\label{reedsolomon:DFT}
  \end{equation}
- Wenn man nun 
+ für die diskrete-Fourier-Transformation das Polynom
  \begin{equation}
-	w =
-	e^{-\frac{2\pi j}{N} k}
-	\label{reedsolomon:DFT_summand}
- \end{equation}
- ersetzte, und $N$ konstantbleibt, erhält man
- \begin{equation}
-	\hat{c}_{k}=
-	\frac{1}{N}( {f}_0 w^0 + {f}_1 w^1 + {f}_2 w^2 + \dots + {f}_{N-1} w^N)
+	q(w)=
+	\frac{{f}_0}{N} + \frac{{f}_1}{N} w^1 + \frac{{f}_2}{N} w^2 + \dots + \frac{{f}_{N-1}}{N} w^{N-1}.
 	\label{reedsolomon:DFT_polynom}
  \end{equation}
- was überaust ähnlich zu unserem Polynomidee ist.
-Die Polynominterpolation und die Fourietransformation rechnen beide mit reelen Zahlen.
-Wenn die Fehlerabweichung sehr sehr klein ist, erkennt man diese irgendwann nicht mehr.
-Zusätzlich muss mann immer Grenzen bestimmen auf wieviel Stellen gerechnet wird und wie die Fehler erkannt werden im Locator.
-Deshalb haben Mathematiker einen neuen Körper gesucht und ihn in der Endlichkeit gefunden,
-dies wird nun im nächsten Abschnitt genauer erklärt.
+ Im Beispiel werden aber Werte des Polynoms
+ \begin{equation}
+	\textcolor{darkgreen}{q(w)}=
+	\frac{\textcolor{blue}{{f}_0}}{N} + \frac{\textcolor{blue}{{f}_1}}{N} w^1 + \frac{\textcolor{blue}{{f}_2}}{N} w^2 + \dots + 
+	\frac{\textcolor{blue}{{f}_{63}}}{N} w^{63} + \frac{\textcolor{gray}{{f}_{64}}}{N} w^{64} + \textcolor{gray}{\dots} + \frac{\textcolor{gray}{{f}_{N-1}}}{N} w^{N-1}
+	\label{reedsolomon:DFT_polynom2}
+ \end{equation}
+	für verschiedene \( w = e^{-\frac{2\pi j}{N} k}, k=1, \dots ,N-1\) übermittelt.
+Das Syndrom entstand durch die Wahl ${f_{64}}=0$ bis ${f}_{N-1}=0$.(graue koeffizenten)
+\par
+Die Polynominterpolation und die Fourier-Transformation rechnen beide mit reeleen Zahlen.
+Wenn die Approximation nicht mehr genügend gut ist um die Fehler zu erkennen und rekonstruieren,
+dann müssen wir von den reeleen Zahlen weg und zum endlichen Körpern, oder auch Galios-Körper genannt.
+Dies wird nun im nächsten Abschnitt genauer erklärt.
 

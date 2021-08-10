@@ -245,3 +245,27 @@ cylinder {
 
 #end
 
+#macro bogen(v1, v2, center, winkelbogen, farbe)
+
+union {
+	#declare phi = 0;
+	#declare phimax = winkelbogen;
+	#declare phistep = (phimax - phi) / N;
+	#while (phi < phimax - phistep/2)
+		cylinder {
+			cos(phi        ) * v1 + sin(phi        ) * v2 + center,
+			cos(phi+phistep) * v1 + sin(phi+phistep) * v2 + center,
+			0.01
+		}
+		sphere {
+			cos(phi        ) * v1 + sin(phi        ) * v2 + center,
+			0.01
+		}
+		#declare phi = phi + phistep;
+	#end
+	pigment {
+		color farbe
+	}
+}
+
+#end
