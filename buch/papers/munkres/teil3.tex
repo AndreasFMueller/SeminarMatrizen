@@ -11,7 +11,7 @@ Mit der ungarischen Methode können also Optimierungsprobleme gelöst
 werden, die bei gewichteten Zuordnungen in bipartiten Graphen entstehen.
 Mit ihr kann die eindeutige Zuordnung von Objekten aus zwei Gruppen so
 optimiert werden, dass die Gesamtkosten minimiert werden bzw.~der
-Gesamtgewinn maximiert werden kann. 
+Gesamtgewinn maximiert werden kann.
 
 \subsection{Geschichte
 \label{munkres:subsection:malorum}}
@@ -32,62 +32,38 @@ um eine  $O(n^3)$-Laufzeit zu erreichen.
 Die Ungarische Methode ist ein kombinatorischer Optimierungsalgorithmus, der das Zuordnungsproblem
 in polynomieller Zeit löst.
 Der Begriff polynomielle Laufzeit bedeutet, dass die Laufzeit des Programms
-wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei die "Grösse" des Problems.
+wie $n^2$, $n^3$, $n^4$, etc.~wächst und vernünftig skaliert. $n$ ist hierbei die ''Grösse'' des Problems.
 
 \subsection{Unterschiedliche Anzahl von Quellen und Zielen
 \label{munkres:subsection:malorum}}
-Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z.B. dann der Fall, wenn drei Mitarbeiter vier verschiedene Eignungstests absolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position quadratisch ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise wird eine $3\times 4$ zu einer $4\times 4$-Matrix.
+Es gibt Fälle, in welchen das Ausgangsproblem keine quadratische Form besitzt. Das ist z. B. dann der Fall, wenn drei Mitarbeiter vier verschiedene Eignungstests absolvieren müssen. In diesem Fall wird in der Ungarischen Methode die Matrix künstlich mittels einer Dummy Position zu einem Quadrat ergänzt. Dummy-Positionen werden dann mit der größten vorhandenen Zahl aus der Matrix besetzt. Beispielsweise wird eine $3\times 4$ zu einer $4\times 4$-Matrix.
 
 \subsection{Beispiel eines händischen Verfahrens
 \label{munkres:subsection:malorum}}
 
-Die ungarische Methode kann in einem einfachen händischen Beispiel erläutert werden. Es gibt eine Ausgangsmatrix. Diese Matrix wird in mehreren Schritten immer weiter reduziert. Anschließend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dass jede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt. Die optimale Lösung ist erreicht, wenn genau $n$ Zuordnungen gefunden sind. Das Vorgehen wird in den nachfolgenden Schritten 1-16 beschrieben und auch in der Abbildung 21.5 dargestellt. 
+Die ungarische Methode kann in einem einfachen händischen Beispiel erläutert werden. Wir gehen von der Kostenmatrix $A$ aus. Diese Matrix wird in mehreren Schritten immer weiter reduziert. Anschliessend erfolgen mehrere Zuordnungen. Hierbei ist zu beachten, dass jede Zeile und jede Spalte immer genau eine eindeutige Zuordnung ergibt. Es gibt Situationen, in denen man nichts mehr tun muss, um eine optimale Zuordnung zu finden. Eine optimale Zuordnung ohne zusätzliche Kosten ist eine Auswahl genau eines Feldes in jeder Zeile und Spalte, welches 0 enthält. Das Ziel des Algorithmus ist also, die Matrix so zu ändern, dass genügend Nullen in der Matrix vorkommen. Es ist zudem wichtig, dass man nach jeder Modifikation der Matrix testet, ob man bereits eine Zuordnung machen kann, also genügend Nullen hat.
+Das Vorgehen wird in den nachfolgenden Schritten 1-6 beschrieben und auch in der Abbildung 21.5 dargestellt.
 
 \begin{enumerate}
-\item Pro Zeile eruiert man die kleinste Zahl. Diese kleinste Zahl wird bei
-allen anderen Ziffern in der jeweiligen Zeile subtrahiert. Mit dieser Subtraktion zieht man die unvermeidbaren Kosten ab, die man hat, um eine Baustelle zu erreichen. 
+\item Man beginnt mit der Zeilen-Reduktion. Pro Zeile eruiert man die kleinste Zahl. Diese kleinste Zahl, jeweils in rot markiert, wird bei allen anderen Ziffern in der jeweiligen Zeile subtrahiert. Mit dieser Subtraktion zieht man die unvermeidbaren Kosten ab, die man hat, um eine Baustelle zu erreichen. Man erkennt, dass die Nullen mit zwei Linien abdeckbar sind. Das heisst es gibt zwei Spalten bei denen noch keine Zuordnungen möglich sind. 
 
-\item Auch in diesem Schritt werden die unvermeidbaren Weg-Kosten abgezogen. Man zieht die kleinste Zahl in jeder Spalte von allen Zahlen in der Spalte ab.
+\item Auch im zweiten Schritt werden mittels der Spalten-Reduktion die unvermeidbaren Weg-Kosten abgezogen. Man zieht die kleinste Zahl, wiederum in rot markiert, in jeder Spalte von allen Zahlen in der Spalte ab.
+Die Nullen können somit mit drei Linien abgedeckt werden. Im Idealfall hat die Matrix in jeder Zeile und Spalte bereits genügend viele Nullen, so dass man bereits eine Zuordnung ohne Mehrkosten machen kann. Dies ist jedoch noch nicht der Fall. Es sollen weitere Nullen in die Matrix hineingebracht werden.
 
-\item Bei den nachfolgenden Schritten bleiben dann nur noch die Kosten übrig, die man hat, wenn man eine andere Zuordnung wählt. Hierbei sollen möglichst viele Nullen markiert werden, welche freistehend sind.
-(Freistehend bedeutet, sowohl in der jeweiligen Zeile und Spalte nur
-eine markierte Null zu haben)
+\item Es bleiben jetzt einige Felder übrig, für die noch keine Zuordnung möglich ist. Die kleinste Ziffer wird dabei aus den noch nicht mit blau markierten Zahlen ausgewählt werden. Im Beispiel ist es die Zahl 1. Das Feld mit dem kleinsten Eintrag beinhaltet die Kosten, die unvermeidlich sind, wenn man für diese Felder auch noch eine Zuordnung machen will. Um neue Nullen zu bekommen, lagert man jetzt die Kosten auf die anderen Zeilen und Spalten um. Dies tut man, indem man in allen nicht abgedeckten Feldern die minimalen Kosten subtrahiert und in den blau markierten Kreuzungspunkten dazu addiert.
+Dieser Schritt 3 muss so oft wiederholt werden, bis genügend viele Nullen in der Matrix vorhanden sind.
 
-\item Weiter werden die jeweiligen Zeilen eruiert, bei welchen keine markierte Null vorhanden sind. Diese kennzeichnet man mit einer blauen Fläche.
+\item In Schritt 4 sollen jetzt möglichst viele Nullen markiert werden, welche freistehend sind.
+Freistehend bedeutet, dass sowohl in der jeweiligen Zeile und Spalte keine andere markierte Null vorhanden ist.
 
-\item In der vorherigen, mit blauer Fläche markierten Zeile die 0 eruieren und dann die dazugehörige Spalte ebenfalls
-blau markieren.
+\item Alle markierten Nullen werden jetzt in eine 1 umgewandelt. Die restlichen Ziffern in der Matrix, exklusiv die einsen, sollen jetzt ignoriert und durch eine Null ersetzt werden.
 
-\item Im der selben Spalte die markierte Null eruieren und die dazugehörige
-Zeile ebenfalls blau kennzeichnen.
-
-\item Alle Zeilen mit einem gelben Balken durchstreichen, welche KEINE blauen Markierungen haben.
-
-\item Alle Spalten durchstreichen, welche eine Blaue Markierung besitzt!
-
-\item In den übrigen Zahlen soll nun die kleinste Ziffer ausgewählt werden, welche nicht schon durchgestrichen sind.
-(Im Beispiel ist es die Zahl 1 in rot markiert. (Bei diesem Schritt ist es egal, welche 1 man wählt)
-
-\item Die eruierte kleinste Ziffer, wird von den nicht durchgestrichenen Ziffern
-subtrahiert. Danach muss die Matrix wieder komplettiert werden. (inkl. Unterstreichen der Nullen)
-
-\item Jeweilige Zahlen eruieren, welche vorgängig doppelt mit einer gelben Fläche durchgestrichen wurden.
-
-\item Kleinste eruierte Ziffer aus Schritt 9, soll nun auf die zwei in rot markierten Ziffern aus Schritt 11 dazu addiert werden. 
-
-\item In diesem Schritt sollen wiederum von neuem möglichst viele Nullen markiert werden,
-welche freistehend sind. Es werden nur die markierten Nullen betrachtet.
-
-\item Alle markierten Nullen werden jetzt in eine 1 umgewandelt.
-
-\item Die restlichen Ziffern in der Matrix, exklusiv die einsen, sollen jetzt ignoriert und durch eine Null ersetzt werden.
-
-\item Zu guter Letzt werden überall wo eine 1 steht, die Zahlen aus der Ausgangsmatrix eingefügt. Nach Einsetzen der Zahlen können die in rot markierten Zahlen aufsummiert werden. Es ergibt der minimalste Transportweg. Im erwähnten Beispiel sind es total 13 Kilometer.
+\item Zu guter Letzt werden überall wo eine 1 steht, die Zahlen aus der Ausgangsmatrix eingefügt. Nach Einsetzen der Zahlen können die in rot markierten Zahlen aufsummiert werden. Man erhält den minimalsten Transportweg von total 13 Kilometer.
 \end{enumerate}
 
 \begin{figure}
 \centering
-\includegraphics[width=14cm]{papers/munkres/figures/Ungarische_Methode_Beispiel.png}
+\includegraphics[width=8cm]{papers/munkres/figures/Ungarische_Methode_Beispiel.png}
 \caption{Händisches Beispiel des Munkres Algorithmus, minimalster Transportweg.}
 \label{munkres:Vr2}
 \end{figure}
@@ -95,6 +71,8 @@ welche freistehend sind. Es werden nur die markierten Nullen betrachtet.
 \subsection{Zuordnung der Kräne
 \label{munkres:subsection:malorum}}
 
+Als Resultat des Munkres-Algorithmus werden in Abbildung 21.6 nebst dem minimalsten Transportweg auch die optimalste Zuweisung der Kräne auf die neuen Standorte ersichtlich.
+Es können die folgenden Zuordnungen aus der Matrix abgelesen werden:
 \begin{itemize}
 \item Der Kran von Baustelle A1 soll zur Baustelle B2.
 \item Der Kran von Baustelle A2 soll zur Baustelle B3.
@@ -107,4 +85,4 @@ welche freistehend sind. Es werden nur die markierten Nullen betrachtet.
 \includegraphics[width=3cm]{papers/munkres/figures/Ungarische_Methode_Beispiel_Zuw.png}
 \caption{Händisches Beispiel des Munkres Algorithmus, Zuweisung der Kräne }
 \label{munkres:Vr2}
-\end{figure} Wie in Abbildung 21.6 ersichtlich, kann somit dank der Ungarischen Methode sowohl der minimalste Transportweg als auch die optimalste Zuweisung der Kräne auf die neuen Standorte ermittelt werden.
+\end{figure} 

@@ -3,21 +3,63 @@
 %
 % (c) 2021 Michael Steiner, Hochschule Rapperswil
 %
-\section{Reed-Solomon in Endlichen Körpern
+\section{Reed-Solomon in endlichen Körpern
 \label{reedsolomon:section:endlichekoerper}}
 \rhead{Reed-Solomon in endlichen Körpern}
-\[
-\textcolor{red}{\text{TODO: (warten auf den 1. Teil)}}
-\]
-Das Rechnen in endlichen Körpern bietet einige Vorteile:
+Im vorherigen Abschnitt haben wir gesehen, dass wir die Fehler mittels Approximation suchen und somit nur ungefähre Angaben haben, wo sich Fehler aufhalten. 
+Um dies zu ändern wechseln wir vom komplexen Zahlenraum in endliche Körper.
+In endlichen Körpern gibt es keine Approximationen wie bei den rationalen und reellen Zahlen. 
+Alle Zahlen sind richtig oder falsch, ``fast richtig'' gibt es nicht.
+Zudem beschränken sich die arithmetischen Rechenoperationen auf das Addieren und Multiplizieren. 
+Wir können also nur ganze Zahlen als Resultat erhalten.
+Dies erleichtert auch die Umsetzung auf ein digitales System, da Computer in der Regel lieber mit ganzen als mit gebrochenen oder komplexen Zahlen arbeiten. 
 
-\begin{itemize}
-	\item Konkrete Zahlen: In endlichen Körpern gibt es weder rationale noch komplexe Zahlen. Zudem beschränken sich die möglichen Rechenoperationen auf das Addieren und Multiplizieren. Somit können wir nur ganze Zahlen als Resultat erhalten.
-	
-	\item Digitale Fehlerkorrektur: lässt sich nur in endlichen Körpern umsetzen. 
-	
-\end{itemize}
+Um jetzt eine Nachricht in einem endlichen Körpern zu konstruieren gehen, wir im Grunde gleich vor wie im Beispiel aus dem Abschnitt \ref{reedsolomon:subsection:sendbsp}.
+Eine Nachricht besteht aus einem Nutzdatenteil und einem Fehlerkorrekturteil. 
+Diese Nachricht wird codiert, übertragen und beim Empfänger wieder decodiert. 
+In endlichen Körpern können wir jedoch nicht mehr die Fouriertransformation zur Hilfe nehmen.
+Wir müssen also eine Alternative finden, welche die gleichen Eigenschaften wie die Fouriertransformation aufweist, aber im endlichen Körper verwendet werden kann.
+Auch beim Decodieren müssen wir uns etwas einfallen lassen, wenn die Vorgehensweise mit dem Lokator auch in endlichen Körpern funktionieren soll. Die folgenden Abschnitte widmen sich deshalb der genaueren Betrachtung eines Reed-Solomon-Codes und wie er in endlichen Körpern funktioniert. 
 
-Um jetzt eine Nachricht in den endlichen Körpern zu konstruieren legen wir fest, dass diese Nachricht aus einem Nutzdatenteil und einem Fehlerkorrekturteil bestehen muss. Somit ist die zu übertragende Nachricht immer grösser als die Daten, die wir übertragen wollen. Zudem müssen wir einen Weg finden, den Fehlerkorrekturteil so aus den Nutzdaten zu berechnen, dass wir die Nutzdaten auf der Empfängerseite wieder rekonstruieren können, sollte es zu einer fehlerhaften Übertragung kommen.
-
-Nun stellt sich die Frage, wie wir eine fehlerhafte Nachricht korrigieren können, ohne ihren ursprünglichen Inhalt zu kennen. Der Reed-Solomon-Code erzielt dies, indem aus dem Fehlerkorrekturteil ein sogenanntes ``Lokatorpolynom'' generiert werden kann. Dieses Polynom gibt dem Emfänger an, welche Stellen in der Nachricht feherhaft sind. 
+%
+%Damit all diese Probleme möglichst verständlich 
+%
+%
+%Um all diese Probleme und möglichst 
+%
+%
+%um Fehler zu erkennen und mittels Lokatorpolynom 
+%
+%
+% ein Lokatorpolynom zu finden.  
+%
+%
+%
+% Eine Nachricht besteht aus einem Nutzdatenanteil und einem Fehlerkorrekturteil, 
+%
+%
+%
+%In diesem Zahlenraum gibt es nur Natürliche Zahlen und es darf nur Addiert oder Multipliziert werden. 
+%Der grosse Vorteil an endlichen Körper ist, dass dich der einfacher Digital umsetzen lässt. 
+%
+%
+%Dieser Zahlenraum bringt eine Menge von neuen Regeln mit sich.
+%So gibt es dort nur Natürliche Zahlen und die Arithmetischen Rechenoperationen sind beschränkt auf die Addition und Multiplikation. 
+%
+%
+%
+%\[
+%\textcolor{red}{\text{TODO: (warten auf den 1. Teil)}}
+%\]
+%Das Rechnen in endlichen Körpern bietet einige Vorteile:
+%
+%\begin{itemize}
+%	\item Konkrete Zahlen: In endlichen Körpern gibt es weder rationale noch komplexe Zahlen. Zudem beschränken sich die möglichen Rechenoperationen auf das Addieren und Multiplizieren. Somit können wir nur ganze Zahlen als Resultat erhalten.
+%	
+%	\item Digitale Fehlerkorrektur: lässt sich nur in endlichen Körpern umsetzen. 
+%	
+%\end{itemize}
+%
+%Um jetzt eine Nachricht in den endlichen Körpern zu konstruieren legen wir fest, dass diese Nachricht aus einem Nutzdatenteil und einem Fehlerkorrekturteil bestehen muss. Somit ist die zu übertragende Nachricht immer grösser als die Daten, die wir übertragen wollen. Zudem müssen wir einen Weg finden, den Fehlerkorrekturteil so aus den Nutzdaten zu berechnen, dass wir die Nutzdaten auf der Empfängerseite wieder rekonstruieren können, sollte es zu einer fehlerhaften Übertragung kommen.
+%
+%Nun stellt sich die Frage, wie wir eine fehlerhafte Nachricht korrigieren können, ohne ihren ursprünglichen Inhalt zu kennen. Der Reed-Solomon-Code erzielt dies, indem aus dem Fehlerkorrekturteil ein sogenanntes ``Lokatorpolynom'' generiert werden kann. Dieses Polynom gibt dem Emfänger an, welche Stellen in der Nachricht feherhaft sind. 
