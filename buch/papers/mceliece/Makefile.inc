@@ -7,8 +7,8 @@ dependencies-mceliece =						\
 	papers/mceliece/packages.tex					\
 	papers/mceliece/main.tex					\
 	papers/mceliece/references.bib				\
-	papers/mceliece/teil0.tex					\
-	papers/mceliece/teil1.tex					\
-	papers/mceliece/teil2.tex					\
-	papers/mceliece/teil3.tex
+	papers/mceliece/einleitung.tex					\
+	papers/mceliece/aufbau.tex					\
+	papers/mceliece/funktionsweise.tex					\
+	papers/mceliece/fazit.tex
 
