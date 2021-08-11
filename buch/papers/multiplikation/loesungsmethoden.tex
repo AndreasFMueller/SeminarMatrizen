@@ -265,7 +265,7 @@ N=2n, \quad T = n^2 \\
 \end{equation}
 sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
-Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt.
+Falls $m=n=p$ werden $\frac{n^3}{2}$ Multiplikationen benötigt.
 Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
  somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
 \begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
@@ -391,11 +391,11 @@ Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige I
 In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
 
 In der Messung mit der Programmiersprache \texttt{C}, kann ein typischer Cache-Effekt beobachtet wer-
-den. Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Gr\"osse von
-n = 2048 wohl eine Zeile der Matrix nicht an einer Cache Speicherstelle platzt. Diese beiden Al-
-Algorithmen sind die Einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
-Dies führt dazu, dass ganze Zeilen zwischengespeichert werden müssen. Bei den anderen Algorith-
-men ist dies nicht der Fall.
+den.
+Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Matrizengrösse von $n = 2048$ wohl eine Zeile der Matrize nicht an einer Cache Speicherstelle platzt.
+Diese beiden Algorithmen sind die Einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
+Dies führt dazu, dass ganze Zeilen zwischengespeichert werden müssen.
+Bei den anderen Algorithmen ist dies nicht der Fall.
 
 Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{multiplikation:tab:pc_config} aufgelistet.
 
