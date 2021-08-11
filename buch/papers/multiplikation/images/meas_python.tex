@@ -43,8 +43,8 @@
 \begin{tikzpicture}
 \begin{axis}[
 xmode=log, ymode=log,
-xmin=30, xmax=4100,
-ymin=0.00001, ymax=60000,
+xmin=30, xmax=4200,
+ymin=0.01, ymax=70000,
 grid=both,
 major grid style={black!50},
 xlabel = data input ($n$),
@@ -121,29 +121,23 @@ width=12cm, height=8cm,
 (2046,6154.18)
 (4096,46813.3)
 };
- \addlegendentry{NumPy}
- \addplot[    color=blue,
- ] coordinates {
-%    (2,1.83582e-05 )
-%    (4,7.86781e-06)
-%    (8,1.00136e-05)
-%   (16,5.4121e-05 )
-   (32,4.26769e-05)
- (64,0.000118494)
-  (128,0.000244141 )
-  (256,0.000695705  )
-  (512,0.00221705   )
- (1024,0.0188088    )
-(2046,0.215739)
-(4096,1.49159)
- };
- \addplot [
-     domain= 1:5000,
-     samples=100,
-     color=yellow,
- ]
- {(x-1000)^3};
- \addlegendentry{$\mathcal{O}\left(n^3\right)$}
+%  \addlegendentry{NumPy}
+%  \addplot[    color=blue,
+%  ] coordinates {
+% %    (2,1.83582e-05 )
+% %    (4,7.86781e-06)
+% %    (8,1.00136e-05)
+% %   (16,5.4121e-05 )
+%    (32,4.26769e-05)
+%  (64,0.000118494)
+%   (128,0.000244141 )
+%   (256,0.000695705  )
+%   (512,0.00221705   )
+%  (1024,0.0188088    )
+% (2046,0.215739)
+% (4096,1.49159)
+%  };
+
 \end{axis}
 \end{tikzpicture}
 
