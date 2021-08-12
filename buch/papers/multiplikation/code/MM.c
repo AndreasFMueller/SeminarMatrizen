@@ -28,11 +28,12 @@ int main() {
 	// omp_set_num_threads(4);
 //	run_algo(openMP_MM, "openMP_MM",0);
 	run_algo(MM_dc, "MM_dc",0);
+	
 	run_algo(strassen, "strassen",0);
 
 	run_algo(MM, "MM", 0);
-  run_algo(winograd, "winograd", 0);
-  run_algo_cblas(0);
+ 	run_algo(winograd, "winograd", 0);
+ 	run_algo_cblas(0);
 
 	return 0;
 }
@@ -414,12 +415,12 @@ void run_algo(void (*algo)(), char alog_name[], int print)
 
 	for(int i=0; i<n_arrays; ++i)
 	{
-		for(int j = 0; j<1; ++j)
+		for(int j = 0; j<10; ++j)
 		{
-	    int *C = (int*) malloc(n[i] * n[i] * sizeof(int));
-    	double dtime = omp_get_wtime();
-      algo(Ap[i], Bp[i], (int*) C, n[i]);
-	    dtime = omp_get_wtime() - dtime;
+	    		int *C = (int*) malloc(n[i] * n[i] * sizeof(int));
+    			double dtime = omp_get_wtime();
+     			algo(Ap[i], Bp[i], (int*) C, n[i]);
+			dtime = omp_get_wtime() - dtime;
 			// printf("The %s program took %f seconds to execute \n", alog_name, dtime);
 			fprintf(fptr, "%f,%d\n", dtime, n[i]);
 
@@ -428,7 +429,7 @@ void run_algo(void (*algo)(), char alog_name[], int print)
 				printMatrix((int*)C, n[i]);
 			}
 			free(C);
-  }
+ 		 }
 	}
 	fclose(fptr);
 
@@ -442,7 +443,7 @@ void run_algo_cblas(int print)
 	fptr = fopen("meas/blas.txt", "w");
 	for(int i=0; i<n_arrays; ++i)
 	{
-		for(int j = 0; j<1; ++j)
+		for(int j = 0; j<10; ++j)
 		{
 			double *dC = (double*) malloc(n[i] * n[i] * sizeof(double));
 			double dtime = omp_get_wtime();
