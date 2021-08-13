@@ -101,5 +101,6 @@ if __name__ == '__main__':
 
     helper = Helper()
     # n = np.arange(2,10)
-    n = np.logspace(1,3,3,base=2,dtype=(np.int))
-    C = helper.write_c_matrix(n)
+    n = np.logspace(1,11,11,base=2,dtype=(np.int))
+    # n=[8192]
+    # C = helper.write_c_matrix(n)

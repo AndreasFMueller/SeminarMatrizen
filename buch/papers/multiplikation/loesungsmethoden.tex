@@ -39,13 +39,13 @@ Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 	\end{algorithmic}
 \end{algorithm}
 
-Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O}\left(n^3\right)$
+Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O} (n^3)$
 
 \subsubsection{Divide and Conquer Methode}
 
 F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer}  Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
 Die Grundidee ist, dass ein Problem in mehrere, meist simplere und kleinere Teilprobleme aufgeteilt wird.
-Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O}\left(n^2\right)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
+Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O} (n^2)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
 Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
@@ -68,7 +68,7 @@ Das Matrizen Produkt
 \end{bmatrix},
 \end{equation}
 \begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}2n \mathbf{A}_{ik} \mathbf{B}_{kj}
+\mathbf{C}_{ij} = \sum_{k=1}^{2n} \mathbf{A}_{ik} \mathbf{B}_{kj}
 \label{multiplikation:eq:MM_block}
 \end{equation}
 ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrize $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
@@ -109,7 +109,7 @@ Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \ci
 Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
-	\mathcal{T}(n) =	8 \cdot \mathcal{T}\left (\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}\left (n^{3} \right )
+	\mathcal{T}(n) =	8 \cdot \mathcal{T} \left(\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}  (n^{3} )
 \end{equation}
 zu einer kubischen Laufzeit.
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
@@ -202,7 +202,7 @@ Die Funktion wird sieben mal rekursiv aufgerufen.
 Dies f\"uhrt nach dem \textit{Master Theorem} zu einer Laufzeit von
 \begin{equation} \label{multiplikation:eq:laufzeitstrassen}
 \mathcal{T}(n) =
-7 \cdot \mathcal{T}(\frac{n}{2}) + n^2  = \mathcal{O}\left(n^{\log_2 7}\right ) = \mathcal{O}\left(n^{2.8074} \right )
+7 \cdot \mathcal{T}\left(\frac{n}{2}\right) + n^2  = \mathcal{O}(n^{\log_2 7} ) = \mathcal{O}(n^{2.8074}  )
 \end{equation}
 und ist somit schneller als die Standardmethode.
 Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
@@ -265,9 +265,9 @@ N=2n, \quad T = n^2 \\
 \end{equation}
 sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
-Falls $m=n=p$ werden $\frac{n^3}/{2}$ Multiplikationen benötigt.
+Falls $m=n=p$ werden $\frac{n^3}{2}$ Multiplikationen benötigt.
 Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
- somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}\left(n^3 \right)$.
+ somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
 \begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
@@ -336,33 +336,33 @@ Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{M
 	\item Level 2
 	\begin{itemize}
 		\item Operationen der Art: $\mathbf{y} \leftarrow \alpha \mathbf{A}\mathbf{x}+\beta  \mathbf{y}$
-		\item Dieses Level hat $\mathcal{O}\left(n^2\right)$ Charakteristik
+		\item Dieses Level hat $\mathcal{O}(n^2)$ Charakteristik
 		\end{itemize}
 		\item Level 3
 		\begin{itemize}
 			\item Operationen der Art: $\mathbf{C} \leftarrow \alpha \mathbf{A}\mathbf{B}+\beta\mathbf{C}$
-			\item Dieses Level hat $\mathcal{O}\left(n^3\right)$ Charakteristik
+			\item Dieses Level hat $\mathcal{O}(n^3)$ Charakteristik
 			\end{itemize}
 \end{itemize}
 
 Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
 
 
-\subsubsection{General Matrix Multiplication (GEMM)}
-
-Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
-
-\textit{DGEMM  performs one of the matrix-matrix operations}
-$$
- C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
- $$
- \textit{where  op( X ) is one of}
-$$
-op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
-$$
- \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
- an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
- }
+%\subsubsection{General Matrix Multiplication (GEMM)}
+%
+%Die \textit{Double-GEMM} \cite{multiplikation:DGEMM} ist definiert als:
+%
+%\textit{DGEMM  performs one of the matrix-matrix operations}
+%$$
+% C := \alpha \cdot op( A )\cdot op( B ) + \beta \cdot C,
+% $$
+% \textit{where  op( X ) is one of}
+%$$
+%op( X ) = X  \quad \text{ or } \quad  op( X ) = X^T,
+%$$
+% \textit{alpha and beta are scalars, and A, B and C are matrices, with op( A )
+% an m by k matrix,  op( B )  a  k by n matrix and  C an m by n matrix.
+% }
 
 %Die Implementation von $\alpha\mathbf{A}\mathbf{B} + \beta \mathbf{C} = \mathbf{C}$, wobei  $\alpha = 1.0$ und $\beta = 0.0$ in der \texttt{C}-Version von \textit{BLAS}, ist als
 %\begin{lstlisting}[style=multiplikationC]
@@ -379,7 +379,7 @@ $$
 Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementiert.
 \begin{itemize}
 	\item Standard Matrizenmultiplikation
-	\item \textit{Devide and Conquer} Matrizenmultiplikation
+	\item \textit{Divide and Conquer} Matrizenmultiplikation
 	\item Strassens Matrizenmultiplikation
 	\item Winograds Matrizenmultiplikation
 	\item \texttt{BLAS} Matrizenmultiplikation in \texttt{C}
@@ -389,6 +389,14 @@ Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementi
 Der Code kann im zum Buch gehörigem \textit{GitHub} \footnote{\url{https://github.com/AndreasFMueller/SeminarMatrizen.git}} Repository gefunden werden.
 Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige Implementation Multiprocessing und Multithreading verwendet, dies f\"uhrt zu den tiefen Messzeiten.
 In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
+
+In der Messung mit der Programmiersprache \texttt{C}, kann ein typischer Cache-Effekt beobachtet wer-
+den.
+Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Matrizengrösse von $n = 2048$ wohl eine Zeile der Matrize nicht an einer Cache Speicherstelle platzt.
+Diese beiden Algorithmen sind die Einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
+Dies führt dazu, dass ganze Zeilen zwischengespeichert werden müssen.
+Bei den anderen Algorithmen ist dies nicht der Fall.
+
 Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{multiplikation:tab:pc_config} aufgelistet.
 
 
@@ -400,14 +408,15 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{BLAS (\textit{s})} \\
 							 \hline
 							 \multicolumn{6}{c}{} \\
-							 \textbf{32}   & 0.000081 &0.000594 &  0.00047& 0.00010 & 0.000022  \\
-							 \textbf{64}   & 0.00065  & 0.0042&  0.0033& 0.00065& 0.00017 \\
-							 \textbf{128}  & 0.0055   & 0.036&  0.024&  0.0052 & 0.0012 \\
-							 \textbf{256}  & 0.054    & 0.32 & 0.17 &  0.057& 0.010 \\
-							 \textbf{512}  & 0.48     & 2.61 & 1.20 & 0.51 &  0.074\\
-							 \textbf{1024} & 4.16     & 19.92& 8.45  & 4.53 & 0.704 \\
-							 \textbf{2048} & 125.90   & 159.33& 59.26 & 130.62 &  6.84 \\
-							 \textbf{4096} & 1111.31  & 1147.10& 414.64 & 1179.26  &  55.84\\
+							 \textbf{32}   & 0.000089 & 0.000594 & 0.0005 & 0.00008 & 0.000021  \\
+							 \textbf{64}   & 0.00069  & 0.0044   & 0.0036  & 0.00064 & 0.00018   \\
+							 \textbf{128}  & 0.0057   & 0.035    & 0.025   & 0.0052  & 0.0012    \\
+							 \textbf{256}  & 0.052    & 0.29     & 0.178    & 0.053   & 0.0096     \\
+							 \textbf{512}  & 0.51     & 2.22     & 1.25    & 0.55    & 0.077     \\
+							 \textbf{1024} & 4.50     & 17.65    & 8.83    & 4.67    & 0.764     \\
+							 \textbf{2048} & 129.28   & 141.61   & 61.901   & 136.67  & 7.63      \\
+							 \textbf{4096} & 1111.31  & 1147.10  & 414.64  & 1179.26 & 55.84     \\
+							 \textbf{8192} & 9376.17  & 9606.40  & 3014.23  & 10071.51& 478.42     \\
 							 \multicolumn{6}{c}{} \\
 							 \hline
 							 \hline
@@ -427,13 +436,14 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{\texttt{NumPy}(\textit{s})} \\
 	 							 \hline
 	 							 \multicolumn{6}{c}{} \\
-	 							 \textbf{32}   & 0.0240 &0.0271 &  0.04852& 0.01871 & 4.26e-05  \\
+	 							 \textbf{32}   & 0.0240 &0.0271 &  0.04852& 0.01871 & 0.0000426  \\
 	 							 \textbf{64}   & 0.186  & 0.265&  0.2204& 0.1530& 0.000118 \\
 	 							 \textbf{128}  & 1.563   & 1.777&  1.447&  1.1947 & 0.000244 \\
 	 							 \textbf{256}  & 11.006    & 13.27 & 9.938 &  8.298& 0.000695 \\
 	 							 \textbf{512}  & 85.476    & 105.397 & 63.961 & 68.36 &  0.00221\\
 	 							 \textbf{1024} & 750.757     & 847.321& 461.494  & 537.374 & 0.0188 \\
-								 \textbf{4096} & -     & - & -  & - & 1.633 \\
+								 \textbf{2048} & 6154.18     & 7375.93& 3860.57  & 4884.61 & 0.215 \\
+								 \textbf{4096} & 46813.3     & 58466 & 22904.3  & 43597.1 & 1.49 \\
 	 							 \multicolumn{6}{c}{} \\
 	 							 \hline
 	 							 \hline

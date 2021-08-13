@@ -5,6 +5,7 @@ Created on Fri Mar 19 07:31:29 2021
 
 @author: nunigan
 """
+import scipy.stats
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -133,9 +134,6 @@ def winograd2(A, B):
         
 def test_perfomance(n):
     
-    import mkl
-    mkl.set_num_threads(1)
-    
     t_mm = []
     t_mm_dc = []
     t_mm_strassen = []
@@ -148,21 +146,21 @@ def test_perfomance(n):
         # A = np.random.randint(-100, 100,(i, i))
         # B = np.random.randint(-100, 100,(i, i))
 
-        # start = time.time()
-        # C3 = strassen(A, B)
-        # t_mm_strassen.append(time.time() - start)
+        start = time.time()
+        C3 = strassen(A, B)
+        t_mm_strassen.append(time.time() - start)
 
-        # start = time.time()
-        # C1 = MM(A, B)
-        # t_mm.append(time.time() - start)
+        start = time.time()
+        C1 = MM(A, B)
+        t_mm.append(time.time() - start)
 
-        # start = time.time()
-        # C2 = MM_dc(A, B)
-        # t_mm_dc.append(time.time() - start)
+        start = time.time()
+        C2 = MM_dc(A, B)
+        t_mm_dc.append(time.time() - start)
 
-        # start = time.time()
-        # C4 = winograd2(A, B)
-        # t_wino.append(time.time() - start)
+        start = time.time()
+        C4 = winograd2(A, B)
+        t_wino.append(time.time() - start)
 
         start = time.time()
         C = A@B
@@ -173,10 +171,10 @@ def test_perfomance(n):
     plt.rc('axes', labelsize=23)
     plt.rc('xtick', labelsize=23)
     plt.rc('ytick', labelsize=23)
-    # plt.plot(n, t_mm, label='Standard', lw=5)
-    # plt.plot(n, t_mm_dc, label='Divide and conquer', lw=5)
-    # plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
-    # plt.plot(n, t_wino, label='Winograd', lw=5)
+    plt.plot(n, t_mm, label='Standard', lw=5)
+    plt.plot(n, t_mm_dc, label='Divide and conquer', lw=5)
+    plt.plot(n, t_mm_strassen, label='Strassen', lw=5)
+    plt.plot(n, t_wino, label='Winograd', lw=5)
     plt.plot(n, t_np, label='NumPy A@B', lw=5)
     # plt.xscale('log', base=2)
     plt.legend()
@@ -186,9 +184,9 @@ def test_perfomance(n):
     plt.tight_layout()
     # plt.yscale('log')
     plt.legend(fontsize=19)
-    # plt.savefig('meas_' + str(max(n))+ '.pdf')
-    # arr = np.array([n, t_mm, t_mm_dc, t_mm_strassen, t_wino, t_np])
-    # np.savetxt('meas_' + str(max(n))+ '.txt',arr)    
+    plt.savefig('meas_' + str(max(n))+ '.pdf')
+    arr = np.array([n, t_mm, t_mm_dc, t_mm_strassen, t_wino, t_np])
+    np.savetxt('meas_' + str(max(n))+ '.txt',arr)    
     return t_np
 
 
@@ -249,6 +247,8 @@ def plot_c_res(ave, num):
     # blas_t = np.mean(blas_t.reshape(-1,ave),axis=1)
     # blas_n = np.mean(blas_n.reshape(-1,ave),axis=1)
 
+
+
     def func(x, a,b):
         return b*x**a
 
@@ -261,11 +261,11 @@ def plot_c_res(ave, num):
     plt.rc('axes', labelsize=23)
     plt.rc('xtick', labelsize=23)
     plt.rc('ytick', labelsize=23)
-    plt.loglog(MM_n, MM_t, label='3 For Loops', lw=5)
-    plt.loglog(winograd_n, winograd_t, label='Winograd MM', lw=5)
-    plt.loglog(blas_n, blas_t, label='Blas', lw=5)
-    plt.loglog(strassen_n, strassen_t, label='Strassen', lw=5)
-    plt.loglog(MM_dc_n, MM_dc_t, label='Divide and Conquer', lw=5)
+    plt.loglog(MM_n, MM_t, '.', label='3 For Loops', lw=5)
+    plt.loglog(winograd_n, winograd_t, '.', label='Winograd MM', lw=5)
+    plt.loglog(blas_n, blas_t, '.', label='Blas', lw=5)
+    plt.loglog(strassen_n, strassen_t, '.', label='Strassen', lw=5)
+    plt.loglog(MM_dc_n, MM_dc_t, '.', label='Divide and Conquer', lw=5)
     plt.xlabel("n")
     # plt.yscale('log', base=10)
     # plt.xscale('log', base=2)
@@ -281,16 +281,33 @@ def plot_c_res(ave, num):
   
     plt.legend()
     # return [MM_n,winograd_n,blas_n,strassen_n,MM_dc_n]
+    
+    
     return [MM_t,winograd_t,blas_t,strassen_t,MM_dc_t]
 
 
+def mean_confidence_interval(data, confidence=0.95):
+    a = 1.0 * np.array(data)
+    n = len(a)
+    m, se = np.mean(a), scipy.stats.sem(a)
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return m, h
+
 # test%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if __name__ == '__main__':
-    # A = plot_c_res(1, 4096)
+    # A = plot_c_res(10, 4096)
+    # name = ['MM', 'Wino', 'blas', 'strassen', 'dc']
+    # for i in range(5):
+    #     ci_inner = []
+    #     print(name[i])
+    #     for j in range(11):
+    #         m,h=mean_confidence_interval(A[i][j*10:(j+1)*10])
+    #         print("({},{})".format(2**(j+1),m))
+    #     np.savetxt('meas/ci/' + name[i]+'.txt',ci_inner)
 
- 
-    arr = plot(1024)    
+    arr = plot(4096)
     # n = np.logspace(1,12,12,base=2,dtype=(np.int))
+    # n=[2048,4096]
     # n = np.arange(1,50,2)  
     # A = np.random.randint(-10, 6, (5,3))
     # B = np.random.randint(-10, 6, (3,5))
