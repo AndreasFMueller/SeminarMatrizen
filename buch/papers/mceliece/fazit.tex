@@ -35,12 +35,12 @@ Grosse unterschiede zwischen den beiden Kryptosystemen gibt es jedoch bei der Si
 Der Kern der RSA-Verschlüsselung beruht auf dem Problem, eine grosse Zahl in ihre beiden Primfaktoren zu zerlegen.
 Bei genügend grossen Zahlen ist diese Zerlegung auch mit den heute besten verfügbaren Computern kaum innerhalb vernünftiger Zeit zu lösen.
 Weiter ist aber bekannt,
-dass mithilfe des sogenannten Shor-Algorithmuses \cite{mceliece:shor} und einem Quantencomputer auch diese Zerlegung zügig realisiert werden könnte,
+dass mithilfe des sogenannten Shor-Algorithmus \cite{mceliece:shor} und einem Quantencomputer auch diese Zerlegung zügig realisiert werden könnte,
 was zur Folge hätte, dass die Verschlüsselung von RSA unwirksam würde.
 Zurzeit sind die Quantencomputer jedoch noch bei weitem nicht in der Lage, grosse Zahlen mithilfe dieses Algorithmuses zu zerlegen.
-Das McEliece-System hingegen beruht auf dem Problem des ``Syndrome decoding'' (Korrektur von Bitfehlern eines Codewortes, das mit dem entsprechenden Linearcode codiert wurde).
+Das McEliece-System hingegen beruht auf dem Problem des ``Syndrome decoding'' (Korrektur von Bitfehlern eines Codewortes, das mit einem entsprechenden Linearcode codiert wurde).
 Für das ``Syndrome decoding'' sind bis heute keine Methoden bekannt,
-welche nennenswerte Vorteile gegenüber dem durchprobieren (brute-force) bringen,
+welche nennenswerte Vorteile gegenüber dem Durchprobieren (brute-force) bringen,
 auch nicht mithilfe eines Quantencomputers.
 \begin{center}
 \begin{tabular}{c|c|c}
