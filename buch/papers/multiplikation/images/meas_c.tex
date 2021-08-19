@@ -47,7 +47,7 @@ xmin=30, xmax=10000,
 ymin=1e-5, ymax=2e4,
 grid=both,
 major grid style={black!50},
-xlabel = data Input ($n$),
+xlabel = data input ($n$),
 ylabel = {time ($s$)},
 legend pos=north west,
 very thick,
@@ -56,7 +56,7 @@ width=12cm, height=8cm,
        log basis x={10}
 ]
 \addlegendentry{Winograd}
-\addplot[    color=purple,
+\addplot[    color=blue,
         error bars/.cd, y dir=both, y explicit,
 ] coordinates {
 %(2,1e-07)
@@ -127,7 +127,7 @@ width=12cm, height=8cm,
 (8192,9376.173434)
 };
 \addlegendentry{BLAS}
-\addplot[    color=blue,
+\addplot[    color=purple,
 ] coordinates {
 %(2,1e-07)
 %(4,0.0)
