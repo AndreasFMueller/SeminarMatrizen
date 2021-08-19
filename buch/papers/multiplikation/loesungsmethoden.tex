@@ -11,10 +11,9 @@ In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultip
 
 \subsection{Standard Algorithmus}
 
-Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} entnommen werden.
+Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} gsehen werden.
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
 Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
-
 \begin{algorithm}\footnotesize\caption{Matrizenmultiplikation}
 	\label{multiplikation:alg:smm}
 	\setlength{\lineskip}{7pt}
@@ -38,7 +37,6 @@ Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-
 Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O} (n^3)$
 
 \subsubsection{Divide and Conquer Methode}
@@ -131,7 +129,7 @@ Die sieben grundlegenden Terme
 \text{\textbf{V}} &= \left(\mathbf{A}_{12} - \mathbf{A}_{22}\right ) \cdot \left(\mathbf{B}_{21} + \mathbf{B}_{22}\right )
 \end{split}
 \end{equation}
-aus $\mathbf{A}$ und $\mathbf{B}$, werden f\"ur die Berechnung der Bl\"ocke
+aus $\mathbf{A}$ und $\mathbf{B}$ werden f\"ur die Berechnung der Bl\"ocke
 \begin{equation} \label{multiplikation:eq:strassen2}
 \begin{split}
 \mathbf{C}_{11} &= \text{\textbf{P}} + \text{\textbf{S}} - \text{\textbf{T}} + \text{\textbf{V}} \\
@@ -233,29 +231,30 @@ Das Skalarprodukt ist nun geben mit
 	\end{cases}
 \end{equation}
 Das Skalarprodukt kann also mit $ \lfloor \frac{n+1}{2} \rfloor$ weiteren Multiplikationen berechnet werden.
-Angenommen man hat $N$ Vektoren mit welchen man $T$ Skalarprodukte berechnen m\"ochte.
+Angenommen man hat $N$ Vektoren, mit welchen man $T$ Skalarprodukte berechnen m\"ochte.
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
 Die Summen f\"ur $\xi$ und $\eta$ m\"ussen nur einmal berechnet werden.
-Für die Gleichung \eqref{multiplikation:eq:skalar} benötigt man $Tn$ Multiplikationen.
-Im Vergleich mit der neuen Methode
-\begin{equation}
-	\begin{split}\label{multiplikation:eq:eff}
-		N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor \leq Tn \\
-		\approx \frac{Nn}{2} + \frac{Tn}{2} \leq Tn \\
-		\frac{Nn}{2} \leq \frac{Tn}{2} \\
-		N \leq T
+Für die ursprüngliche Gleichung \eqref{multiplikation:eq:skalar} für das Skalarprodukt benötigt man $Tn$ Multiplikationen.
+Im Vergleich mit der Methode von Winograd,
+%\begin{equation}\label{multiplikation:eq:eff}
+	\begin{align}\label{multiplikation:eq:eff}
+	\begin{split}
+		N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor &\leq Tn \\
+		\approx \frac{Nn}{2} + \frac{Tn}{2} &\leq Tn \\
+		\frac{Nn}{2} &\leq \frac{Tn}{2} \\
+		N &\leq T,
 \end{split}
-\end{equation}
-spart man etwas, falls $N\leq T$.
+\end{align}
+%\end{equation}
+werden für die berechnung des Skalarproduktes weniger Multiplikationen benötigt, falls $N\leq T$.
 Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
 		(m+p) \left \lfloor \frac{n}{2} \right \rfloor + mp \left \lfloor \frac{n+1}{2} \right \rfloor = \frac{mn}{2} + \frac{pn}{2} + \frac{mpn}{2} + \frac{mp}{2}
 \end{equation}
 Multiplikationen.
-Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt.
-Was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
-Mit dem gleichen Ansatz wie in der Gleichung \ref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
+Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt, was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
+Mit dem gleichen Ansatz wie in der Gleichung \eqref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
 \begin{equation}
 	\begin{split}
 N=2n, \quad T = n^2 \\
@@ -265,7 +264,7 @@ N=2n, \quad T = n^2 \\
 \end{equation}
 sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
-Falls $m=n=p$ werden $\frac{n^3}{2}$ Multiplikationen benötigt.
+Falls $m=n=p$, werden $\frac{n^3}{2}$ Multiplikationen benötigt.
 Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
  somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
 \begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
@@ -390,9 +389,14 @@ Der Code kann im zum Buch gehörigem \textit{GitHub} \footnote{\url{https://gith
 Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige Implementation Multiprocessing und Multithreading verwendet, dies f\"uhrt zu den tiefen Messzeiten.
 In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
 
-In der Messung mit der Programmiersprache \texttt{C}, kann ein typischer Cache-Effekt beobachtet wer-
+Die gezeigten Algorithmen haben alle eine Laufzeit der Form $\mathcal{O}(n^k) $.
+Bei einer logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
+Bei den grafisch gezeigten Messresultate, können diese Steigungen gut erkannt werden, wobei die tiefere Laufzeit des Strassen Algorithmus eindrücklich zu sehen ist.
+Der beötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
+
+In der Messung mit der Programmiersprache \texttt{C} kann ein typischer Cache-Effekt beobachtet wer-
 den.
-Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Matrizengrösse von $n = 2048$ wohl eine Zeile der Matrize nicht an einer Cache Speicherstelle platzt.
+Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Matrizengrösse von $n = 2048$ wohl eine Zeile der Matrix nicht an einer Cache Speicherstelle Platz.
 Diese beiden Algorithmen sind die Einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
 Dies führt dazu, dass ganze Zeilen zwischengespeichert werden müssen.
 Bei den anderen Algorithmen ist dies nicht der Fall.
@@ -433,7 +437,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 	 					 \begin{tabular}{l l l l l l}
 	 							 \hline
 	 							 \hline
-	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{\texttt{NumPy}(\textit{s})} \\
+	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{NumPy(\textit{s})} \\
 	 							 \hline
 	 							 \multicolumn{6}{c}{} \\
 	 							 \textbf{32}   & 0.0240 &0.0271 &  0.04852& 0.01871 & 0.0000426  \\
@@ -490,10 +494,12 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \section{Fazit}
 \rhead{Fazit}
 
-Wie man im Abschnitt \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz den theoretisch geringeren Zeitkomplexitäten, den Implementationen der numerischen Bibliotheken klar unterlegen.
+Wie man im Abschnitt \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz der theoretisch geringeren Zeitkomplexitäten den Implementationen der numerischen Bibliotheken klar unterlegen.
 Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
 
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
 Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
 Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
-Sobald sehr grosse Matrizen multipliziert werden müssen und eine Addition in weniger Taktzyklen als eine Multiplikation durchführt werden kann, können die gezeigten Algorithmen von Vorteil sein.
+Der Overhead der gezeigten Alogorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
+Um diesem entegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
+Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algortihmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.

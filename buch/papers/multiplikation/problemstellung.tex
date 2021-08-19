@@ -7,15 +7,15 @@
 \rhead{Problemstellung}
 Wegen der breiten Anwendung der Matrizenmultiplikation ist eine effiziente L\"osung dieser Operation von grosser Bedeutung.
 Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
-Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standard Algorithmus l\"osen.
+Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standardalgorithmus l\"osen.
 
 \subsection{Big $\mathcal{O}$ Notation}
 \label{muliplikation:sec:bigo}
 Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Abhängigkeit zur Inputgrösse \cite{multiplikation:bigo}.
 $f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
-% Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$
-Als Beispiel: benötigt eine Funktion $g$ $\mathcal{O} (n^2  )$ Multiplikationen, so wächst $f$ mit $\mathcal{O} (n+ n^2  )$ nicht wesentlich schneller falls $x\to\infty$.
-Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
+Dies ist gegeben, wenn es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
+% Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$.
+Vereinfacht werden f\"ur Algorithmen die folgende Sprechweise verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
 	\item $f \in \mathcal{O}(n) \rightarrow f$ w\"achst linear
@@ -26,6 +26,7 @@ Vereinfacht werden f\"ur Algorithmen die folgende Notation verwendet:
 	\item usw.
 \end{itemize}
 
+Konstanten werden nicht beachtet, eine Laufzeit von  $\mathcal{O}(4n^2)$ führt, falls $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
 In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
 Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.
 
@@ -50,7 +51,7 @@ Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomple
 					\State
 				\end{algorithmic}
 			\end{algorithm}
-		\end{minipage}	
+		\end{minipage}
 		&
 		\begin{minipage}{0.48\textwidth}
 			\begin{algorithm}[H]\footnotesize\caption{}
@@ -64,13 +65,13 @@ Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomple
 					\EndFunction
 				\end{algorithmic}
 			\end{algorithm}
-			
+
 		\end{minipage}
 	\end{tabular}
 \end{table}
 
 \begin{table}
-	\begin{tabular}[t]{ll} 
+	\begin{tabular}[t]{ll}
 		\begin{minipage}{0.48\textwidth}
 			\begin{algorithm}[H]\footnotesize\caption{}
 				\setlength{\lineskip}{7pt}
@@ -81,15 +82,15 @@ Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomple
 					\For{$i = 0,1,2 \dots,n$}
 					\State $ sum \gets sum + A[i] \cdot B[i] $
 					\EndFor
-					
+
 					\State \textbf{return} $sum$
-					
+
 					\EndFunction
 					\State
 					\State
 				\end{algorithmic}
 			\end{algorithm}
-		\end{minipage}	
+		\end{minipage}
 		&
 		\begin{minipage}{0.48\textwidth}
 			\begin{algorithm}[H]\footnotesize\caption{}
@@ -112,10 +113,10 @@ Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomple
 \end{table}
 
 \paragraph{Beschr\"ankter Algorithmus}
+Algorithmus \ref{multiplikation:alg:b1} ist ein Beispiel mit beschränkter Laufzeit $\mathcal{O}(1)$
+Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen Einfluss auf die Laufzeit.
 
-Ein Beispiel eines Beschr\"ankter Verhalten $\mathcal{O}(1)$, kann im Algorithmus \ref{multiplikation:alg:b1} entnommen werden. Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen Einfluss auf die Laufzeit.
-
-Konstanten werden nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
+Wie erwähnt, werden konstanten nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
 
 
 \paragraph{Linearer Algorithmus}
@@ -132,6 +133,6 @@ Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt
 \begin{figure}
 	\center
 	\includegraphics[]{papers/multiplikation/images/bigo}
-	\caption{Verschiedene Laufzeiten}
+	\caption{Laufzeiten von verschiedensten Zeitkomplexitäten. Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.}
 	\label{multiplikation:fig:bigo}
 \end{figure}
