@@ -192,7 +192,7 @@ Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
-	\caption{Strassens Algorithmus}
+	\caption{Der Algorithmus von Strassen verwendet Multiplikationen zur Berechnung der sieben Block-Matrizen $\mathbf{P}$ bis $\mathbf{V}$ aus $\mathbf{A}$ und $\mathbf{B}$, aus denen sich die Blöcke es Produktes $\mathbf{C}=\mathbf{AB}$ ausschliesslich durch Addition und Subtraktion bilden lassen. Die einzelnen Felder in den Quadraten stellen alle möglichen Produkte von Matrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{jl}$ dar. In den grossen Quadraten am linken Rand sind diejenigen Produkte grün markiert, welche zusammen die entsprechenden Blöcke $\mathbf{C}_{il}$ von $\mathbf{C}$ ergeben. In den Spalten $\mathbf{P}$ bis $\mathbf{V}$ sind die Produkte farblich hervorgehoben, die in der Definition der entsprechenden Matrix vorkommen. Grün und rot symbolisieren die Vorzeichen, mit denen die Produkte kombiniert werden müssen}
 	\label{multiplikation:fig:strassen}
 \end{figure}
 
@@ -235,18 +235,14 @@ Angenommen man hat $N$ Vektoren, mit welchen man $T$ Skalarprodukte berechnen m\
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
 Die Summen f\"ur $\xi$ und $\eta$ m\"ussen nur einmal berechnet werden.
 Für die ursprüngliche Gleichung \eqref{multiplikation:eq:skalar} für das Skalarprodukt benötigt man $Tn$ Multiplikationen.
-Im Vergleich mit der Methode von Winograd,
-%\begin{equation}\label{multiplikation:eq:eff}
-	\begin{align}\label{multiplikation:eq:eff}
-	\begin{split}
-		N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor &\leq Tn \\
-		\approx \frac{Nn}{2} + \frac{Tn}{2} &\leq Tn \\
-		\frac{Nn}{2} &\leq \frac{Tn}{2} \\
-		N &\leq T,
-\end{split}
-\end{align}
-%\end{equation}
-werden für die Berechnung des Skalarproduktes weniger Multiplikationen benötigt, falls $N\leq T$.
+Damit können wir die Laufzeit der Methode von Winograd mit der Laufzeit der Standardmethode vergleichen. Sie ist kleiner als die Laufzeit für die Standardmethode, wenn gilt
+\begin{equation}\label{multiplikation:eq:eff}
+\begin{array}{crcl}
+                & N\lfloor n/2\rfloor + T\lfloor(n+1)/2\rfloor \approx Nn/2 + Tn/2 & \le & Tn   \\
+\Leftrightarrow &                                                             Nn/2 & \le & Tn/2 \\
+\Leftrightarrow &                                                                N & \le & T.
+\end{array}
+\end{equation}
 Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
@@ -255,13 +251,13 @@ Dies f\"uhrt zu
 Multiplikationen.
 Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt, was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
 Mit dem gleichen Ansatz wie in der Gleichung \eqref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
-\begin{equation}
+\begin{align}
 	\begin{split}
-N=2n, \quad T = n^2 \\
-	2n \leq n^2 \\
-	2 \leq n
+N=2n, &\quad T = n^2 \\
+	2n &\leq n^2 \\
+	2 &\leq n
 \end{split}
-\end{equation}
+\end{align}
 sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
 Falls $m=n=p$, werden $\frac{n^3}{2}$ Multiplikationen benötigt.
@@ -322,7 +318,7 @@ Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \ri
 \subsection{Basic Linear Algebra Subprograms (BLAS)}
 
 Die gebräuchliche Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subroutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
-Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
+Die meisten numerischen Bibliotheken von high-level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
 
 \textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
 
@@ -390,9 +386,9 @@ Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige I
 In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
 
 Die gezeigten Algorithmen haben alle eine Laufzeit der Form $\mathcal{O}(n^k) $.
-Bei einer logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
+Bei einer doppelt logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
 Bei den grafisch gezeigten Messresultate, können diese Steigungen gut erkannt werden, wobei die tiefere Laufzeit des Strassen Algorithmus eindrücklich zu sehen ist.
-Der beötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
+Der benötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
 
 In der Messung mit der Programmiersprache \texttt{C} kann ein typischer Cache-Effekt beobachtet wer-
 den.
@@ -426,7 +422,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 							 \hline
 					 \end{tabular}
 			 \end{center}
-			 \caption{Messresultate \texttt{C}}
+			 \caption{Laufzeiten der verschieden Algorithmen in der Programmiersprache \texttt{C}}
 			 \label{multiplikation:tab:messung_C}
 	 \end{table}
 
@@ -453,7 +449,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 	 							 \hline
 	 					 \end{tabular}
 	 			 \end{center}
-	 			 \caption{Messresultate \texttt{Python}}
+	 			 \caption{Laufzeiten der verschieden Algorithmen in der Skriptsprache \texttt{Python}}
 	 			 \label{multiplikation:tab:messung_Python}
 	 	 \end{table}
 
@@ -479,7 +475,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
-	\caption{Messresultate mit der Programmiersprache \texttt{C}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Programmiersprache \texttt{C}}
 	\label{multiplikation:fig:c_meas_4096}
 \end{figure}
 
@@ -487,7 +483,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
-	\caption{Messresultate mit der Programmiersprache \texttt{Python}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Skriptsprache \texttt{Python}}
 	\label{multiplikation:fig:python}
 \end{figure}
 
@@ -500,6 +496,6 @@ Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die La
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
 Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
 Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
-Der Overhead der gezeigten Alogorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
-Um diesem entegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
-Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algortihmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.
+Der Overhead der gezeigten Algorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
+Um diesem entgegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
+Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algorithmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.
