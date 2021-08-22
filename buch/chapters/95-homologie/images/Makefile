@@ -3,7 +3,8 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	homocycles.pdf homoboundaries.pdf homoclasses.pdf gausshomoex.pdf gausshomobasis.pdf dreieck.pdf polyeder.pdf
+all:	complexbasis.pdf homocycles.pdf homoboundaries.pdf homoclasses.pdf \
+	gausshomoex.pdf gausshomobasis.pdf dreieck.pdf polyeder.pdf
 
 dreieck.pdf:	dreieck.tex
 	pdflatex dreieck.tex
@@ -25,4 +26,7 @@ homoboundaries.pdf:	homoboundaries.tex
 
 homoclasses.pdf:	homoclasses.tex
 	pdflatex homoclasses.tex
+
+complexbasis.pdf:	complexbasis.tex
+	pdflatex complexbasis.tex
 

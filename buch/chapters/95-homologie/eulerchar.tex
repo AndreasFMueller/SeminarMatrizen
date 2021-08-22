@@ -1,0 +1,130 @@
+\subsection{Euler-Charakteristik}
+Die Homologiegruppen fassen die Idee, die ``Löcher'' in 
+Dimension $k$ eines Polyeders zu zählen, algebraisch exakt.
+Dazu ist aber die algebraische Struktur von $H_k(C)$  gar 
+nicht nötig, nur schon die Dimension des Vektorraumes $H_k(C)$
+liefert bereits die verlange Information.
+
+Dies ist auch der Ansatz, den der eulersche Polyedersatz verfolgt.
+Euler hat für dreidimensionale Polyeder eine Invariante gefunden, 
+die unabhängig ist von der Triangulation.
+
+\begin{definition}
+\label{buch:homologie:def:eulerchar}
+Ist $E$ die Anzahl der Ecken, $K$ die Anzahl der Kanten und $F$
+die Anzahl der Flächen eines dreidimensionalen Polyeders $P$, dann
+heisst
+\[
+\chi(P) = E-K+F
+\]
+die {\em Euler-Charakteristik} des Polyeders $P$.
+\end{definition}
+
+Der Eulersche Polyedersatz, den wir nicht gesondert beweisen
+wollen, besagt, dass $\chi(P)$ unabhängig ist von der 
+Triangulation.
+Alle regelmässigen Polyeder sind verschiedene Triangulationen
+einer Kugel, sie haben alle den gleichen Wert $2$
+der Euler-Charakteristik.
+
+Ändert man die Triangulation, dann wird die Dimension der
+Vektorräume $B_k(C)$ und $Z_k(C)$ grösser werden.
+Kann man eine Grösse analog zu $\chi(P)$ finden, die sich nicht ändert?
+
+\begin{definition}
+Sei $C$ ein Kettenkomplex, dann heisst
+\[
+\chi(C) = \sum_{k=0}^n (-1)^k\dim H_k(C)
+\]
+die Euler-Charakteristik von $C$.
+\end{definition}
+
+Die Definition verlangt, dass man erst die Homologiegruppen
+berechnen muss, bevor man die Euler-Charakteristik bestimmen
+kann.
+Dies ist aber in vielen Fällen gar nicht nötig, da dies nur
+eine Frage der Dimensionen ist, die man direkt aus den
+$C_k$ ablesen kann, wie wir nun zeigen wollen.
+
+Die Dimension der Homologiegruppen ist
+\begin{equation}
+\dim H_k(C)
+=
+\dim \bigl(Z_k(C) / B_k(C)\bigr)
+=
+\dim Z_k(C) - \dim B_k(C).
+\label{buch:homologie:eqn:dimHk}
+\end{equation}
+Die Bestimmung der Dimensionen der Zyklen und Ränder erfordert
+aber immer noch, dass wir dafür Basen bestimmen müssen, es ist
+also noch nichts eingespart.
+Die Zyklen bilden den Kern von $\partial$, also 
+\[
+\dim Z_k(C) = \dim\ker \partial_k.
+\]
+Die Ränder $B_k(C)$ sind die Bilder von $\partial_{k+1}$, also
+\[
+\dim B_k(C)
+=
+\dim C_{k+1} - \ker\partial_{k+1}
+=
+\dim C_{k+1} - \dim Z_{k+1}(C).
+\]
+Daraus kann man jetzt eine Formel für die Euler-Charakteristik
+gewinnen.
+Sie ist
+\begin{align*}
+\chi(C)
+&=
+\sum_{k=0}^\infty (-1)^k \dim H_k(C)
+\\
+&=
+\sum_{k=0}^\infty (-1)^k \bigl(\dim Z_k(C) - \dim B_k(C)\bigr)
+\\
+&=
+\sum_{k=0}^\infty (-1)^k \dim Z_k(C) 
+-
+\sum_{k=0}^\infty (-1)^k \bigl(\dim C_{k+1} - \dim_{k+1}(C)\bigr)
+\\
+&=
+-\sum_{k=0}^\infty (-1)^k \dim C_{k+1} 
++
+\sum_{k=0}^\infty (-1)^k \dim Z_k(C) 
++
+\sum_{k=0}^\infty (-1)^k \dim Z_{k+1}(C).
+\intertext{Indem wir in der letzten Summe den Summationsindex $k$ durch
+$k-1$ ersetzen, können wir bis auf den ersten Term die Summen
+der $\dim Z_k(C)$ zum Verschwinden bringen:}
+&=
+-\sum_{k=0}^\infty (-1)^k \dim C_{k+1} 
++
+\sum_{k=0}^\infty (-1)^k \dim Z_k(C) 
+-
+\sum_{k=1}^\infty (-1)^k \dim Z_k(C)
+\\
+&=
+\sum_{k=1}^\infty (-1)^k \dim C_{k}
++
+\dim \underbrace{Z_0(C)}_{\displaystyle =C_0}.
+\intertext{In der letzten Umformung haben wir auch in der ersten
+Summe den Summationsindex $k$ durch $k-1$ ersetzt.
+Damit beginnt die Summation bei $k=1$.
+Der fehlende Term ist genau der Term, der von den Summen der
+$\dim Z_k(C)$ übrig bleibt.
+Damit erhalten wir}
+&=
+\sum_{k=0}^\infty (-1)^k \dim C_{k}.
+\end{align*}
+
+\begin{satz}
+Für die Euler-Charakteristik eines endlichdimensionalen Kettenkomplexes $C$ gilt
+\[
+\chi(C)
+=
+\sum_{k=0}^\infty (-1)^k \dim H_k(C)
+=
+\sum_{k=0}^\infty (-1)^k \dim C_k.
+\]
+\end{satz}
+Im nächsten Abschnitt wird gezeigt, dass die Euler-Charakteristik
+als Spezialfall der Lefshetz-Zahl verstanden werden kann.
