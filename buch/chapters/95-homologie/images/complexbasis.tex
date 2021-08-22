@@ -44,36 +44,52 @@
 	\fill[color=gray!20]
 		({\s},{(2*(#1)+1)*\s})
 		--
-		({3-\s},{-\s})
+		({3.5-\s},{-\s})
 		--
-		({3-\s},{(2*(#3)+1)*\s})
+		({3.5-\s},{(2*(#3)+1)*\s})
 		--
-		({\s},{(2*(#1)+1)*\s});
+		({\s},{(2*(#1)+1)*\s})
+		--
+		cycle;
 	\fill[color=gray!40]
 		({\s},{(2*(#1+1)-1)*\s})
 		--
-		({3-\s},{(2*(#3+1)-1)*\s})
+		({3.5-\s},{(2*(#3+1)-1)*\s})
 		--
-		({3-\s},{(2*(#4)+1)*\s})
+		({3.5-\s},{(2*(#4)+1)*\s})
+		--
+		({\s},{(2*(#2)+1)*\s})
+		--
+		cycle;
+	\draw[<-,color=gray]
+		({\s},{(2*(#1+1)-1)*\s})
+		--
+		({3.5-\s},{(2*(#3+1)-1)*\s});
+	\draw[->,color=gray]
+		({3.5-\s},{(2*(#4)+1)*\s})
 		--
 		({\s},{(2*(#2)+1)*\s});
+	\draw[<-,color=gray!40]
+		({\s},{(2*(#1)+1)*\s})
+		--
+		({3.5-\s},{-\s});
 }
 
-\clip (-4.5,-1.2) rectangle (7.5,11.7);
+\clip (-5.5,-1.2) rectangle (8.5,11.7);
 
-\begin{scope}[xshift=-6cm]
+\begin{scope}[xshift=-7cm]
 	\abbildung{6}{7}{10}{11}
 \end{scope}
 
-\begin{scope}[xshift=-3cm]
+\begin{scope}[xshift=-3.5cm]
 	\abbildung{6}{10}{7}{11}
 	\rechteck{0}{6}{red}
 	\rechteck{7}{10}{darkgreen}
 	\rechteck{11}{11}{blue}
 	\Rechteck{0}{11}
 	\node[color=darkgreen] at ({0},{(9*2-1)*\s}) {$B_{k-2\mathstrut}$};
-	\node at (1.5,{9*2*\s}) {$\Delta_{k-1}$};
-	\node at (1.5,{-\s}) [above] {$\partial_{k-1\mathstrut}$};
+	\node at (1.75,{9*2*\s}) {$\Delta_{k-1}$};
+	\node at (1.75,{-\s}) [above] {$\partial_{k-1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*10+1)*\s});
 	\node at ({-\s-0.17},{10*\s}) [left] {$Z_{k-2\mathstrut}$};
@@ -88,14 +104,14 @@
 	\Rechteck{0}{11}
 	\node at (0,{-\s}) [below] {$C_{k-1\mathstrut}$};
 	\node[color=darkgreen] at ({0},{(5*2-1)*\s}) {$B_{k-1\mathstrut}$};
-	\node at (1.5,{6.5*2*\s}) {$\Delta_k$};
-	\node at (1.5,{-\s}) [above] {$\partial_{k\mathstrut}$};
+	\node at (1.75,{6.5*2*\s}) {$\Delta_k$};
+	\node at (1.75,{-\s}) [above] {$\partial_{k\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*7+1)*\s});
 	\node at ({-\s-0.17},{7*\s}) [left] {$Z_{k-1\mathstrut}$};
 \end{scope}
 
-\begin{scope}[xshift=3cm]
+\begin{scope}[xshift=3.5cm]
 	\abbildung{3}{5}{5}{7}
 	\rechteck{6}{10}{blue}
 	\rechteck{4}{5}{darkgreen}
@@ -116,21 +132,21 @@
 	\node[color=blue] at (0.24,{2*8*\s}) {$c_3$};
 	\node[color=blue] at (0.24,{2*9*\s}) {$\vdots$};
 	\node[color=blue] at (0.24,{2*10*\s}) {$c_s$};
-	\node at (1.5,{5.5*2*\s}) {$\Delta_{k+1}$};
-	\node at (1.5,{-\s}) [above] {$\partial_{k+1\mathstrut}$};
+	\node at (1.75,{5.5*2*\s}) {$\Delta_{k+1}$};
+	\node at (1.75,{-\s}) [above] {$\partial_{k+1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*5+1)*\s});
 	\node at ({-\s-0.17},{5*\s}) [left] {$Z_{k\mathstrut}$};
 \end{scope}
 
-\begin{scope}[xshift=6cm]
+\begin{scope}[xshift=7cm]
 	\abbildung{0}{5}{4}{8}
 	\rechteck{5}{7}{blue}
 	\rechteck{1}{5}{darkgreen}
 	\rechteck{0}{0}{red}
 	\Rechteck{0}{7}
 	\node at (0,{-\s}) [below] {$C_{k+1\mathstrut}$};
-	\node[color=darkgreen] at ({0},{(2.5*2+1)*\s})
+	\node[color=darkgreen] at ({0},{(2.0*2+1)*\s})
 		{$B_{k+1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*5+1)*\s});
