@@ -7,12 +7,12 @@
 \section{Algorithmen}
 \rhead{Algorithmen}
 
-In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Bibliotheken zur automatisierten Verwendung von vordefinierten Algorithmen gezeigt.
+In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Bibliotheken zur unkomplizierten Verwendung von vordefinierten Algorithmen gezeigt.
 
 \subsection{Standard Algorithmus}
 
-Die Standardmethode kann im Algorithmus \ref{multiplikation:alg:smm} gsehen werden.
-Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt implementiert.
+Die Standardmethode ist im Algorithmus \ref{multiplikation:alg:smm} implementiert.
+Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt umgesetzt.
 Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix, die \texttt{for j} Schleife iteriert \"uber alle Spalten der $\mathbf{B}$ Matrix und die \texttt{for k} Schleife iteriert \"uber alle Eintr\"age dieser Zeilen bzw. Spalten.
 \begin{algorithm}\footnotesize\caption{Matrizenmultiplikation}
 	\label{multiplikation:alg:smm}
@@ -37,7 +37,7 @@ Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
-Die Laufzeit dieser Struktur mit drei \texttt{For} Schleifen ist $\mathcal{O} (n^3)$
+Die Laufzeit dieser Struktur mit drei \texttt{for} Schleifen ist $\mathcal{O} (n^3)$.
 
 \subsubsection{Divide and Conquer Methode}
 
@@ -65,8 +65,8 @@ Das Matrizen Produkt
 \mathbf{C}_{21} & \mathbf{C}_{22}
 \end{bmatrix},
 \end{equation}
-\begin{equation}
-\mathbf{C}_{ij} = \sum_{k=1}^{2n} \mathbf{A}_{ik} \mathbf{B}_{kj}
+mit \begin{equation}
+\mathbf{C}_{ij} = \sum_{k=1}^{2n} \mathbf{A}_{ik} \mathbf{B}_{kj},
 \label{multiplikation:eq:MM_block}
 \end{equation}
 ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrize $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
@@ -105,11 +105,11 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 
 Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algorithmen.
 Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
-In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt
+In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt zu
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
-	\mathcal{T}(n) =	8 \cdot \mathcal{T} \left(\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}  (n^{3} )
+	\mathcal{T}(n) =	8 \cdot \mathcal{T} \left(\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}  (n^{3} ),
 \end{equation}
-zu einer kubischen Laufzeit.
+also einer kubischen Laufzeit.
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
 In diesem Fall hat der \textit{Divide and Conquer} Ansatz zu keiner Verbesserung gef\"uhrt.
 
@@ -187,12 +187,12 @@ der Matrix $\mathbf{C}$ gebraucht.
 Strassens Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
 Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ .
 Die gr\"unen Felder auf der linken Seite, zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
-Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \dotsb, V}$.
+Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \ldots, V}$.
 Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
-	\caption{Strassens Algorithmus}
+	\caption{Der Algorithmus von Strassen verwendet Multiplikationen zur Berechnung der sieben Block-Matrizen $\mathbf{P}$ bis $\mathbf{V}$ aus $\mathbf{A}$ und $\mathbf{B}$, aus denen sich die Blöcke es Produktes $\mathbf{C}=\mathbf{AB}$ ausschliesslich durch Addition und Subtraktion bilden lassen. Die einzelnen Felder in den Quadraten stellen alle möglichen Produkte von Matrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{jl}$ dar. In den grossen Quadraten am linken Rand sind diejenigen Produkte grün markiert, welche zusammen die entsprechenden Blöcke $\mathbf{C}_{il}$ von $\mathbf{C}$ ergeben. In den Spalten $\mathbf{P}$ bis $\mathbf{V}$ sind die Produkte farblich hervorgehoben, die in der Definition der entsprechenden Matrix vorkommen. Grün und rot symbolisieren die Vorzeichen, mit denen die Produkte kombiniert werden müssen}
 	\label{multiplikation:fig:strassen}
 \end{figure}
 
@@ -235,18 +235,14 @@ Angenommen man hat $N$ Vektoren, mit welchen man $T$ Skalarprodukte berechnen m\
 Daf\"ur werden $N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor $ Multiplikationen ben\"otigt.
 Die Summen f\"ur $\xi$ und $\eta$ m\"ussen nur einmal berechnet werden.
 Für die ursprüngliche Gleichung \eqref{multiplikation:eq:skalar} für das Skalarprodukt benötigt man $Tn$ Multiplikationen.
-Im Vergleich mit der Methode von Winograd,
-%\begin{equation}\label{multiplikation:eq:eff}
-	\begin{align}\label{multiplikation:eq:eff}
-	\begin{split}
-		N\lfloor n/2 \rfloor + T\lfloor (n+1)/2 \rfloor &\leq Tn \\
-		\approx \frac{Nn}{2} + \frac{Tn}{2} &\leq Tn \\
-		\frac{Nn}{2} &\leq \frac{Tn}{2} \\
-		N &\leq T,
-\end{split}
-\end{align}
-%\end{equation}
-werden für die berechnung des Skalarproduktes weniger Multiplikationen benötigt, falls $N\leq T$.
+Damit können wir die Laufzeit der Methode von Winograd mit der Laufzeit der Standardmethode vergleichen. Sie ist kleiner als die Laufzeit für die Standardmethode, wenn gilt
+\begin{equation}\label{multiplikation:eq:eff}
+\begin{array}{crcl}
+                & N\lfloor n/2\rfloor + T\lfloor(n+1)/2\rfloor \approx Nn/2 + Tn/2 & \le & Tn   \\
+\Leftrightarrow &                                                             Nn/2 & \le & Tn/2 \\
+\Leftrightarrow &                                                                N & \le & T.
+\end{array}
+\end{equation}
 Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
@@ -255,18 +251,18 @@ Dies f\"uhrt zu
 Multiplikationen.
 Wenn $m,p,n$ gross werden, dominiert der Term $\frac{mpn}{2}$ und es werden $\frac{mpn}{2}$ Multiplikationen ben\"otigt, was im Vergleich zu den $mpn$ Multiplikation der Standardmethode nur die H\"alfte ist.
 Mit dem gleichen Ansatz wie in der Gleichung \eqref{multiplikation:eq:eff} aber mit quadratischen Matrizen, muss
-\begin{equation}
+\begin{align}
 	\begin{split}
-N=2n, \quad T = n^2 \\
-	2n \leq n^2 \\
-	2 \leq n
+N=2n, &\quad T = n^2 \\
+	2n &\leq n^2 \\
+	2 &\leq n
 \end{split}
-\end{equation}
+\end{align}
 sein, damit man etwas einspart.
 Die Implementation kann Algorithmus \ref{multiplikation:alg:winograd} entnommen werden.
 Falls $m=n=p$, werden $\frac{n^3}{2}$ Multiplikationen benötigt.
 Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \rightarrow \infty$ können Konstanten vernachlässigt werden und
- somit entsteht für diesen Algorithmus wieder die Ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
+ somit entsteht für diesen Algorithmus wieder die ursprüngliche Laufzeit von $\mathcal{O}(n^3 )$.
 \begin{algorithm}\footnotesize\caption{Winograds Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:winograd}
@@ -322,7 +318,7 @@ Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \ri
 \subsection{Basic Linear Algebra Subprograms (BLAS)}
 
 Die gebräuchliche Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subroutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
-Die meisten Numerischen Bibliotheken von High-Level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
+Die meisten numerischen Bibliotheken von high-level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
 
 \textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
 
@@ -390,9 +386,9 @@ Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige I
 In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
 
 Die gezeigten Algorithmen haben alle eine Laufzeit der Form $\mathcal{O}(n^k) $.
-Bei einer logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
+Bei einer doppelt logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
 Bei den grafisch gezeigten Messresultate, können diese Steigungen gut erkannt werden, wobei die tiefere Laufzeit des Strassen Algorithmus eindrücklich zu sehen ist.
-Der beötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
+Der benötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
 
 In der Messung mit der Programmiersprache \texttt{C} kann ein typischer Cache-Effekt beobachtet wer-
 den.
@@ -406,27 +402,27 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 
 \begin{table}
 			 \begin{center}
-					 \begin{tabular}{l l l l l l}
+					 \begin{tabular}{r l l l l l}
 							 \hline
 							 \hline
 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{BLAS (\textit{s})} \\
 							 \hline
 							 \multicolumn{6}{c}{} \\
-							 \textbf{32}   & 0.000089 & 0.000594 & 0.0005 & 0.00008 & 0.000021  \\
-							 \textbf{64}   & 0.00069  & 0.0044   & 0.0036  & 0.00064 & 0.00018   \\
-							 \textbf{128}  & 0.0057   & 0.035    & 0.025   & 0.0052  & 0.0012    \\
-							 \textbf{256}  & 0.052    & 0.29     & 0.178    & 0.053   & 0.0096     \\
-							 \textbf{512}  & 0.51     & 2.22     & 1.25    & 0.55    & 0.077     \\
-							 \textbf{1024} & 4.50     & 17.65    & 8.83    & 4.67    & 0.764     \\
-							 \textbf{2048} & 129.28   & 141.61   & 61.901   & 136.67  & 7.63      \\
-							 \textbf{4096} & 1111.31  & 1147.10  & 414.64  & 1179.26 & 55.84     \\
-							 \textbf{8192} & 9376.17  & 9606.40  & 3014.23  & 10071.51& 478.42     \\
+							 \textbf{32}   & \phantom{000}0.000089 & \phantom{000}0.000594 & \phantom{000}0.0005  & \phantom{0000}0.00008 & \phantom{00}0.000021  \\
+							 \textbf{64}   & \phantom{000}0.00069  & \phantom{000}0.0044   & \phantom{000}0.0036  & \phantom{0000}0.00064 & \phantom{00}0.00018   \\
+							 \textbf{128}  & \phantom{000}0.0057   & \phantom{000}0.035    & \phantom{000}0.025   & \phantom{0000}0.0052  & \phantom{00}0.0012    \\
+							 \textbf{256}  & \phantom{000}0.052    & \phantom{000}0.29     & \phantom{000}0.178   & \phantom{0000}0.053   & \phantom{00}0.0096     \\
+							 \textbf{512}  & \phantom{000}0.51     & \phantom{000}2.22     & \phantom{000}1.25    & \phantom{0000}0.55    & \phantom{00}0.077     \\
+							 \textbf{1024} & \phantom{000}4.50     & \phantom{00}17.65     & \phantom{000}8.83    & \phantom{0000}4.67    & \phantom{00}0.764     \\
+							 \textbf{2048} & \phantom{0}129.28     & \phantom{0}141.61     & \phantom{00}61.901   & \phantom{00}136.67    & \phantom{00}7.63      \\
+							 \textbf{4096} & 1111.31               & 1147.10               & \phantom{0}414.64    & \phantom{0}1179.26    & \phantom{0}55.84     \\
+							 \textbf{8192} & 9376.17               & 9606.40               & 3014.23              & 10071.51              & 478.42     \\
 							 \multicolumn{6}{c}{} \\
 							 \hline
 							 \hline
 					 \end{tabular}
 			 \end{center}
-			 \caption{Messresultate \texttt{C}}
+			 \caption{Laufzeiten der verschieden Algorithmen in der Programmiersprache \texttt{C}}
 			 \label{multiplikation:tab:messung_C}
 	 \end{table}
 
@@ -434,26 +430,26 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 
 	 \begin{table}
 	 			 \begin{center}
-	 					 \begin{tabular}{l l l l l l}
+	 					 \begin{tabular}{r l l l l l}
 	 							 \hline
 	 							 \hline
 	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{NumPy(\textit{s})} \\
 	 							 \hline
 	 							 \multicolumn{6}{c}{} \\
-	 							 \textbf{32}   & 0.0240 &0.0271 &  0.04852& 0.01871 & 0.0000426  \\
-	 							 \textbf{64}   & 0.186  & 0.265&  0.2204& 0.1530& 0.000118 \\
-	 							 \textbf{128}  & 1.563   & 1.777&  1.447&  1.1947 & 0.000244 \\
-	 							 \textbf{256}  & 11.006    & 13.27 & 9.938 &  8.298& 0.000695 \\
-	 							 \textbf{512}  & 85.476    & 105.397 & 63.961 & 68.36 &  0.00221\\
-	 							 \textbf{1024} & 750.757     & 847.321& 461.494  & 537.374 & 0.0188 \\
-								 \textbf{2048} & 6154.18     & 7375.93& 3860.57  & 4884.61 & 0.215 \\
-								 \textbf{4096} & 46813.3     & 58466 & 22904.3  & 43597.1 & 1.49 \\
+	 							 \textbf{32}   & \phantom{000}0.0240     & \phantom{0000}0.0271& \phantom{0000}0.04852 & \phantom{0000}0.01871 & 0.0000426  \\
+	 							 \textbf{64}   &\phantom{000} 0.186      & \phantom{0000}0.265 & \phantom{0000}0.2204  & \phantom{0000}0.1530& 0.000118 \\
+	 							 \textbf{128}  &\phantom{000} 1.563      & \phantom{0000}1.777 & \phantom{0000}1.447   & \phantom{0000}1.1947 & 0.000244 \\
+	 							 \textbf{256}  &\phantom{00} 11.006      & \phantom{000}13.27  & \phantom{0000}9.938   & \phantom{0000}8.298& 0.000695 \\
+	 							 \textbf{512}  &\phantom{00} 85.476      & \phantom{00}105.397 & \phantom{000}63.961   & \phantom{000}68.360 &  0.00221\\
+	 							 \textbf{1024} &\phantom{0} 750.757      & \phantom{00}847.321 & \phantom{00}461.494   & \phantom{00}537.374 & 0.0188 \\
+								 \textbf{2048} & 6154.18                 & \phantom{0}7375.93  & \phantom{0}3860.57    & \phantom{0}4884.61 & 0.215 \\
+								 \textbf{4096} & 46813.30                 & 58466.00               & 22904.30               & 43597.10 & 1.49 \\
 	 							 \multicolumn{6}{c}{} \\
 	 							 \hline
 	 							 \hline
 	 					 \end{tabular}
 	 			 \end{center}
-	 			 \caption{Messresultate \texttt{Python}}
+	 			 \caption{Laufzeiten der verschieden Algorithmen in der Skriptsprache \texttt{Python}}
 	 			 \label{multiplikation:tab:messung_Python}
 	 	 \end{table}
 
@@ -479,7 +475,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
-	\caption{Messresultate mit der Programmiersprache \texttt{C}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Programmiersprache \texttt{C}}
 	\label{multiplikation:fig:c_meas_4096}
 \end{figure}
 
@@ -487,7 +483,7 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
-	\caption{Messresultate mit der Programmiersprache \texttt{Python}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Skriptsprache \texttt{Python}}
 	\label{multiplikation:fig:python}
 \end{figure}
 
@@ -500,6 +496,6 @@ Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die La
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
 Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
 Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
-Der Overhead der gezeigten Alogorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
-Um diesem entegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
-Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algortihmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.
+Der Overhead der gezeigten Algorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
+Um diesem entgegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
+Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algorithmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.

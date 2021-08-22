@@ -3,13 +3,12 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Problemstellung}
+\section{Laufzeiten von Algorithmen}
 \rhead{Problemstellung}
-Wegen der breiten Anwendung der Matrizenmultiplikation ist eine effiziente L\"osung dieser Operation von grosser Bedeutung.
+Wegen der breiten Anwendung der Matrizenmultiplikation ist eine effiziente Ausführung dieser Operation von grosser Bedeutung.
 Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
 Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standardalgorithmus l\"osen.
 
-\subsection{Big $\mathcal{O}$ Notation}
 \label{muliplikation:sec:bigo}
 Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Abhängigkeit zur Inputgrösse \cite{multiplikation:bigo}.
 $f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
@@ -26,15 +25,15 @@ Vereinfacht werden f\"ur Algorithmen die folgende Sprechweise verwendet:
 	\item usw.
 \end{itemize}
 
-Konstanten werden nicht beachtet, eine Laufzeit von  $\mathcal{O}(4n^2)$ führt, falls $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
+Konstanten werden nicht beachtet, eine Laufzeit von  $4n^2$ führt, falls $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
 In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
-Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.
+Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven abgebildet.
 
 
 
 \subsubsection{Beispiel Algorithmen}
 
-Es folgen einige Beispiele von Algorithmen welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
+Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
 
 
 \begin{table}[t]
