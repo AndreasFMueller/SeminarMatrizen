@@ -10,8 +10,8 @@ Eine Drehung kann man aus zwei aufeinanderfolgenden Spiegelungen bilden. Das kan
 
 \begin{figure}
 	\centering
-	\includegraphics[width=10cm]{papers/clifford/Bilder/RotSpieg.png}
-	\caption{Der wesentliche Unterschied zwischen Spiegelung und Drehung ist die Inversion der Orientierung}
+	\includegraphics[width=10cm]{papers/clifford/images/spiegelung.pdf}
+	\caption{Der wesentliche Unterschied zwischen Spiegelung und Drehung ist die Umkehrung der Orientierung}
 	\label{BildSpiegRot}
 \end{figure}
 
@@ -131,23 +131,23 @@ Mithilfe der Formel \eqref{EulerGA} und dem Wissen, dass $\mathbf{e}_{21}= -\mat
 \end{align}
 ausführen. Diese wichtige Umstrukturierung können wir wieder in die Vektorproduktformel \eqref{VektorproduktformelGA} einsetzen un erhalten
 \begin{align}
-\mathbf{wu} &= |\mathbf{w}||\mathbf{u}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}\\
-&= |\mathbf{w}||\mathbf{u}|e^{(\theta_u-\theta_w) \mathbf{e}_{12}}.
+\mathbf{wu} &= |\mathbf{w}|\,|\mathbf{u}|e^{-\theta_w \mathbf{e}_{12}}\mathbf{e}_1\mathbf{e}_1 e^{\theta_u \mathbf{e}_{12}}\\
+&= |\mathbf{w}|\,|\mathbf{u}|e^{(\theta_u-\theta_w) \mathbf{e}_{12}}.
 \end{align}
 Das inverse Vektorprodukt
 \begin{align}
-\mathbf{u}^{-1}\mathbf{w}^{-1} = \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{(\theta_w-\theta_u) \mathbf{e}_{12}}
+\mathbf{u}^{-1}\mathbf{w}^{-1} = \dfrac{1}{|\mathbf{w}|\,|\mathbf{u}|}e^{(\theta_w-\theta_u) \mathbf{e}_{12}}
 \end{align}
 kann durch die selbe Methode vereinfacht werden.
 Wenn wir den Winkel zwischen den Vektoren  $\mathbf{w}$ und $\mathbf{u}$ als $\theta = \theta_w - \theta_u$ definieren erhalten wir als endgültige Form der Vektorprodukte
 \begin{align}\label{wuExpo}
-\mathbf{wu} &= |\mathbf{w}||\mathbf{u}|e^{-\theta \mathbf{e}_{12}}\enspace\text{und}\\
-\mathbf{u}^{-1}\mathbf{w}^{-1} &= \dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{\theta \mathbf{e}_{12}} \label{wuExpoInv}.
+\mathbf{wu} &= |\mathbf{w}|\,|\mathbf{u}|e^{-\theta \mathbf{e}_{12}}\enspace\text{und}\\
+\mathbf{u}^{-1}\mathbf{w}^{-1} &= \dfrac{1}{|\mathbf{w}|\,|\mathbf{u}|}e^{\theta \mathbf{e}_{12}} \label{wuExpoInv}.
 \end{align}
 \subsubsection{Umstrukturierte Drehungsgleichung}
 Setzten wir nun unsere neuen Erkenntnisse in die Gleichung \eqref{rotGA} ein, erhalten wir
 \begin{align}
-\mathbf{v''} = (|\mathbf{w}||\mathbf{u}|e^{-\theta \mathbf{e}_{12}})\mathbf{v}\biggl(\dfrac{1}{|\mathbf{w}||\mathbf{u}|}e^{\theta \mathbf{e}_{12}}\biggr)
+\mathbf{v''} = (|\mathbf{w}|\,|\mathbf{u}|e^{-\theta \mathbf{e}_{12}})\mathbf{v}\biggl(\dfrac{1}{|\mathbf{w}|\,|\mathbf{u}|}e^{\theta \mathbf{e}_{12}}\biggr)
 \end{align}
 und können durch die Kürzungen der Längen die vereinfachte Drehungsgleichung
 \begin{align} \label{GAvereinfRot}
@@ -193,6 +193,6 @@ kann man sehen, dass nur der parallele Anteil $\mathbf{v_\parallel}$ des Vektors
 		\begin{align}
 		\theta = -\biggl(\dfrac{-\pi}{2}\biggr) = \dfrac{\pi}{2}
 		\end{align}
-		ausgelesen werden.
+		ausgelesen werden. \qedhere
 	\end{itemize}
 \end{beispiel} 
