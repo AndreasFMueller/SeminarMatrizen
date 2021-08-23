@@ -1,0 +1,114 @@
+%
+% tikztemplate.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\s{0.4}
+
+\def\punkt#1#2{({((#1)+0.5*(#2))*\s},{(#2)*\s*sqrt(3)/2})}
+\def\A{\punkt{0}{0}}
+\def\B{\punkt{1}{0}}
+\def\C{\punkt{2}{0}}
+\def\D{\punkt{3}{0}}
+\def\E{\punkt{4}{0}}
+\def\F{\punkt{0}{1}}
+\def\G{\punkt{1}{1}}
+\def\H{\punkt{2}{1}}
+\def\I{\punkt{3}{1}}
+\def\J{\punkt{0}{2}}
+\def\K{\punkt{1}{2}}
+\def\L{\punkt{2}{2}}
+\def\M{\punkt{0}{3}}
+\def\N{\punkt{1}{3}}
+\def\O{\punkt{0}{4}}
+
+\def\dreieck#1#2#3{
+	\fill[color=gray] \punkt{#1}{#2} -- \punkt{#1+1}{#2}
+		-- \punkt{#1}{(#2)+1} -- cycle;
+}
+
+\def\blau#1#2{
+	\draw[color=blue] \punkt{#1}{#2} -- \punkt{#1+1}{#2}
+		-- \punkt{#1}{(#2)+1} -- cycle;
+}
+
+\def\gebiet{
+	\dreieck{0}{0}{1}
+	\dreieck{1}{0}{2}
+	\dreieck{2}{0}{3}
+	\dreieck{3}{0}{4}
+	\dreieck{0}{1}{5}
+	\dreieck{2}{1}{6}
+	\dreieck{0}{2}{7}
+	\dreieck{1}{2}{8}
+	\dreieck{0}{3}{9}
+}
+
+\begin{scope}
+\gebiet
+\blau{0}{0}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_1^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=3cm]
+\gebiet
+\blau{1}{0}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_2^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=6cm]
+\gebiet
+\blau{2}{0}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_3^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=9cm]
+\gebiet
+\blau{3}{0}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_4^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=1.5cm,yshift=2.59cm]
+\gebiet
+\blau{0}{1}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_5^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=7.5cm,yshift=2.59cm]
+\gebiet
+\blau{2}{1}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_6^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=3cm,yshift=5.19cm]
+\gebiet
+\blau{0}{2}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_7^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=6cm,yshift=5.19cm]
+\gebiet
+\blau{1}{2}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_8^{(2)}$};
+\end{scope}
+
+\begin{scope}[xshift=4.5cm,yshift=7.79cm]
+\gebiet
+\blau{0}{3}
+\node[color=blue] at ({2*\s},-0.5) {$\partial_2e_9^{(2)}$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

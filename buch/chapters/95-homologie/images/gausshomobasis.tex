@@ -1,0 +1,109 @@
+%
+% gaushomobasis.tex -- Bestimmung einer Basis der Homologiegruppen
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\s{0.5}
+\def\inset{0.05}
+\def\w{8}
+
+\def\zeile#1#2{
+	\fill[color=#2] ({0+\inset},{(12-#1)*\s+\inset})
+		rectangle ({\w*\s-\inset},{(13-#1)*\s-\inset});
+}
+\def\marke#1#2{
+\node at ({0.5*\w*\s},{12.5-#1)*\s}) {$#2\mathstrut$};
+}
+
+\def\gauss{
+\draw (0,0) rectangle ({\w*\s},{12*\s});
+\draw (0,{7*\s}) -- ({\w*\s},{7*\s});
+}
+
+\draw[->,color=red,line width=1pt] ({0.1*\s},{(12.5-1)*\s})
+	to[out=180,in=90] (-3.6,-2);
+\draw[->,color=red,line width=1pt] ({0.1*\s},{(12.5-2)*\s})
+	to[out=180,in=90] (-2.2,-2);
+\draw[->,color=red,line width=1pt] ({0.1*\s},{(12.5-4)*\s})
+	to[out=180,in=90] (-0.7,-2);
+
+\draw[->,color=darkgreen,line width=1pt] ({0.1*\s},{(12.5-7)*\s})
+	to[out=180,in=90] (0.9,-2);
+\draw[->,color=darkgreen,line width=1pt] ({0.1*\s},{(12.5-8)*\s})
+	to[out=180,in=90] (1.6,-2);
+\draw[->,color=darkgreen,line width=1pt] ({(\w-0.1)*\s},{(12.5-12)*\s})
+	to[out=0,in=90] (2.6,-2);
+
+\draw[->,line width=2pt] ({\w*\s+0.1},{6*\s}) -- (5.4,{6*\s});
+\node at ({0.5*(\w*\s+5.5)},{6*\s}) [above] {Gauss};
+
+\begin{scope}
+\zeile{1}{red!30}
+\zeile{2}{red!30}
+\zeile{4}{red!30}
+\zeile{7}{darkgreen!30}
+\zeile{8}{darkgreen!30}
+%\zeile{10}{darkgreen!30}
+\zeile{12}{darkgreen!30}
+\marke{1}{\scriptstyle\partial_{k+1}e_1^{(k+1)}}
+\marke{2}{\scriptstyle\partial_{k+1}e_2^{(k+1)}}
+\marke{3}{\scriptstyle\partial_{k+1}e_3^{(k+1)}}
+\marke{4}{\vdots}
+\marke{5}{\scriptstyle\partial_{k+1}e_{n_{k+1}}^{(k+1)}}
+\marke{6}{\scriptstyle z_1^{(k)}}
+\marke{7}{\scriptstyle z_2^{(k)}}
+\marke{8}{\scriptstyle z_3^{(k)}}
+\marke{9}{\scriptstyle z_4^{(k)}}
+\marke{10}{\vdots}
+\marke{11}{\scriptstyle z_{l-1}^{(k)}}
+\marke{12}{\scriptstyle z_{l}^{(k)}}
+\gauss
+\end{scope}
+
+\begin{scope}[xshift=5.5cm]
+\zeile{1}{black!20}
+\zeile{2}{black!20}
+\zeile{3}{black}
+\marke{3}{\color{white}0}
+\zeile{4}{black!20}
+\zeile{5}{black}
+\marke{5}{\color{white}0}
+\zeile{6}{black}
+\marke{6}{\color{white}0}
+\zeile{7}{black!20}
+\zeile{8}{black!20}
+\zeile{9}{black}
+\marke{9}{\color{white}0}
+\zeile{10}{black}
+\marke{10}{\color{white}0}
+\zeile{11}{black}
+\marke{11}{\color{white}0}
+\zeile{12}{black!20}
+\gauss
+\end{scope}
+
+\node at (-4.4,-2) [below right] {$\{
+{\color{red}\partial_{k+1}e_1^{(k+1)}},
+{\color{red}\partial_{k+1}e_2^{(k+1)}},
+{\color{red}\partial_{k+1}e_{i_3}^{(k+1)}},\dots,
+{\color{darkgreen}z_2^{(k)}},
+{\color{darkgreen}z_3^{(k)}},
+\dots
+{\color{darkgreen}z_l^{(k)}}
+\} = {\color{red}\mathcal{B}_k} \cup {\color{darkgreen}\mathcal{Z}_k'}$};
+
+\end{tikzpicture}
+\end{document}
+
