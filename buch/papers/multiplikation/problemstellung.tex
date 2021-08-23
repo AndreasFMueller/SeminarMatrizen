@@ -4,17 +4,17 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
 \section{Laufzeiten von Algorithmen}
-\rhead{Problemstellung}
+\rhead{Laufzeiten von Algorithmen}
 Wegen der breiten Anwendung der Matrizenmultiplikation ist eine effiziente Ausführung dieser Operation von grosser Bedeutung.
 Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation vorzustellen.
 Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standardalgorithmus l\"osen.
 
 \label{muliplikation:sec:bigo}
-Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Abhängigkeit zur Inputgrösse \cite{multiplikation:bigo}.
+Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Relation zur Inputgrösse \cite{multiplikation:bigo}.
 $f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
 Dies ist gegeben, wenn es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
 % Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$.
-Vereinfacht werden f\"ur Algorithmen die folgende Sprechweise verwendet:
+Vereinfacht werden f\"ur Algorithmen die folgende Sprechweisen verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
 	\item $f \in \mathcal{O}(n) \rightarrow f$ w\"achst linear
@@ -25,13 +25,13 @@ Vereinfacht werden f\"ur Algorithmen die folgende Sprechweise verwendet:
 	\item usw.
 \end{itemize}
 
-Konstanten werden nicht beachtet, eine Laufzeit von  $4n^2$ führt, falls $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
+Konstanten werden nicht beachtet, eine Laufzeit von  $4n^2$ führt, für $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
 In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
 Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven abgebildet.
 
 
 
-\subsubsection{Beispiel Algorithmen}
+\subsubsection{Beispielalgorithmen}
 
 Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
 
@@ -115,7 +115,7 @@ Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkompl
 Algorithmus \ref{multiplikation:alg:b1} ist ein Beispiel mit beschränkter Laufzeit $\mathcal{O}(1)$
 Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen Einfluss auf die Laufzeit.
 
-Wie erwähnt, werden konstanten nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
+Wie erwähnt werden Konstanten nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
 
 
 \paragraph{Linearer Algorithmus}
@@ -132,6 +132,6 @@ Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt
 \begin{figure}
 	\center
 	\includegraphics[]{papers/multiplikation/images/bigo}
-	\caption{Laufzeiten von verschiedensten Zeitkomplexitäten. Bei einer logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.}
+	\caption{Laufzeiten von verschiedensten Zeitkomplexitäten. Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.}
 	\label{multiplikation:fig:bigo}
 \end{figure}
