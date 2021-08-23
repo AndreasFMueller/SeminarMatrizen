@@ -9,7 +9,7 @@
 
 In diesem Abschnitt werden mehrere Algorithmen zur Berechnung der Matrizenmultiplikation vorgestellt, auch werden Bibliotheken zur unkomplizierten Verwendung von vordefinierten Algorithmen gezeigt.
 
-\subsection{Standard Algorithmus}
+\subsection{Standardalgorithmus}
 
 Die Standardmethode ist im Algorithmus \ref{multiplikation:alg:smm} implementiert.
 Hierf\"ur wurde die Gleichung \eqref{multiplikation:eq:MM} direkt umgesetzt.
@@ -48,7 +48,7 @@ Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
 Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
 Die Matrizen $\mathbf{A}$ und $\mathbf{B}$ werden in jeweils vier Blockmatrizen der Gr\"osse $2^{n-1} \times 2^{n-1}$ aufgeteilt.
-Das Matrizen Produkt
+Das Matrizenprodukt
 \begin{equation}
 \mathbf{A}\mathbf{B}=
 \begin{bmatrix}
@@ -63,16 +63,16 @@ Das Matrizen Produkt
 \begin{bmatrix}
 \mathbf{C}_{11} & \mathbf{C}_{12}\\
 \mathbf{C}_{21} & \mathbf{C}_{22}
-\end{bmatrix},
+\end{bmatrix}
 \end{equation}
 mit \begin{equation}
 \mathbf{C}_{ij} = \sum_{k=1}^{2n} \mathbf{A}_{ik} \mathbf{B}_{kj},
 \label{multiplikation:eq:MM_block}
 \end{equation}
-ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrize $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
+ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
 
 Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
-Der Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
+Die Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
 Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ durchgef\"uhrt.
 \begin{algorithm}\footnotesize\caption{Divide and Conquer Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
@@ -189,10 +189,11 @@ Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf
 Die gr\"unen Felder auf der linken Seite, zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
 Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \ldots, V}$.
 Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
+Graue Felder bedeuten, dass die dazugehörige Spalte nicht für die Berechnung benötigt wird.
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/strassen.pdf}
-	\caption{Der Algorithmus von Strassen verwendet Multiplikationen zur Berechnung der sieben Block-Matrizen $\mathbf{P}$ bis $\mathbf{V}$ aus $\mathbf{A}$ und $\mathbf{B}$, aus denen sich die Blöcke es Produktes $\mathbf{C}=\mathbf{AB}$ ausschliesslich durch Addition und Subtraktion bilden lassen. Die einzelnen Felder in den Quadraten stellen alle möglichen Produkte von Matrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{jl}$ dar. In den grossen Quadraten am linken Rand sind diejenigen Produkte grün markiert, welche zusammen die entsprechenden Blöcke $\mathbf{C}_{il}$ von $\mathbf{C}$ ergeben. In den Spalten $\mathbf{P}$ bis $\mathbf{V}$ sind die Produkte farblich hervorgehoben, die in der Definition der entsprechenden Matrix vorkommen. Grün und rot symbolisieren die Vorzeichen, mit denen die Produkte kombiniert werden müssen}
+	\caption{Der Algorithmus von Strassen verwendet Multiplikationen zur Berechnung der sieben Blockmatrizen $\mathbf{P}$ bis $\mathbf{V}$ aus $\mathbf{A}$ und $\mathbf{B}$, aus denen sich die Blöcke es Produktes $\mathbf{C}=\mathbf{AB}$ ausschliesslich durch Addition und Subtraktion bilden lassen. Die einzelnen Felder in den Quadraten stellen alle möglichen Produkte von Matrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{jl}$ dar. In den grossen Quadraten am linken Rand sind diejenigen Produkte grün markiert, welche zusammen die entsprechenden Blöcke $\mathbf{C}_{il}$ von $\mathbf{C}$ ergeben. In den Spalten $\mathbf{P}$ bis $\mathbf{V}$ sind die Produkte farblich hervorgehoben, die in der Definition der entsprechenden Matrix vorkommen. Grün und rot symbolisieren die Vorzeichen, mit denen die Produkte kombiniert werden müssen. Graue Felder werden für die Berechnung von $\mathbf{C}_{il}$ nicht benötigt.}
 	\label{multiplikation:fig:strassen}
 \end{figure}
 
@@ -340,7 +341,7 @@ Die meisten numerischen Bibliotheken von high-level Skriptsprachen wie \texttt{M
 			\end{itemize}
 \end{itemize}
 
-Die \textit{BLAS} sind auf die modernen Computer Prozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
+Die \textit{BLAS} sind auf die modernen Computerprozessoren optimiert und k\"onnen dank einer ausgeklügelter Verwendung der Speicherarchitektur zu erheblichen Leistungsoptimierungen f\"uhren.
 
 
 %\subsubsection{General Matrix Multiplication (GEMM)}
@@ -436,13 +437,13 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 	 							 \textbf{n} & \textbf{MM (\textit{s})} &  \textbf{MM DC (\textit{s})} & \textbf{Strassen (\textit{s})}  & \textbf{Winograd (\textit{s})} & \textbf{NumPy(\textit{s})} \\
 	 							 \hline
 	 							 \multicolumn{6}{c}{} \\
-	 							 \textbf{32}   & \phantom{000}0.0240     & \phantom{0000}0.0271& \phantom{0000}0.04852 & \phantom{0000}0.01871 & 0.0000426  \\
-	 							 \textbf{64}   &\phantom{000} 0.186      & \phantom{0000}0.265 & \phantom{0000}0.2204  & \phantom{0000}0.1530& 0.000118 \\
-	 							 \textbf{128}  &\phantom{000} 1.563      & \phantom{0000}1.777 & \phantom{0000}1.447   & \phantom{0000}1.1947 & 0.000244 \\
-	 							 \textbf{256}  &\phantom{00} 11.006      & \phantom{000}13.27  & \phantom{0000}9.938   & \phantom{0000}8.298& 0.000695 \\
-	 							 \textbf{512}  &\phantom{00} 85.476      & \phantom{00}105.397 & \phantom{000}63.961   & \phantom{000}68.360 &  0.00221\\
-	 							 \textbf{1024} &\phantom{0} 750.757      & \phantom{00}847.321 & \phantom{00}461.494   & \phantom{00}537.374 & 0.0188 \\
-								 \textbf{2048} & 6154.18                 & \phantom{0}7375.93  & \phantom{0}3860.57    & \phantom{0}4884.61 & 0.215 \\
+	 							 \textbf{32}   &\phantom{0000}0.0240     & \phantom{0000}0.0271& \phantom{0000}0.04852 & \phantom{0000}0.01871 & 0.0000426  \\
+	 							 \textbf{64}   &\phantom{0000}0.186      & \phantom{0000}0.265 & \phantom{0000}0.2204  & \phantom{0000}0.1530& 0.000118 \\
+	 							 \textbf{128}  &\phantom{0000}1.563      & \phantom{0000}1.777 & \phantom{0000}1.447   & \phantom{0000}1.1947 & 0.000244 \\
+	 							 \textbf{256}  &\phantom{000}11.006      & \phantom{000}13.27  & \phantom{0000}9.938   & \phantom{0000}8.298& 0.000695 \\
+	 							 \textbf{512}  &\phantom{000}85.476      & \phantom{00}105.397 & \phantom{000}63.961   & \phantom{000}68.360 &  0.00221\\
+	 							 \textbf{1024} &\phantom{00}750.757      & \phantom{00}847.321 & \phantom{00}461.494   & \phantom{00}537.374 & 0.0188 \\
+								 \textbf{2048} &\phantom{0}6154.18                 & \phantom{0}7375.93  & \phantom{0}3860.57    & \phantom{0}4884.61 & 0.215 \\
 								 \textbf{4096} & 46813.30                 & 58466.00               & 22904.30               & 43597.10 & 1.49 \\
 	 							 \multicolumn{6}{c}{} \\
 	 							 \hline
@@ -475,7 +476,9 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
-	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Programmiersprache \texttt{C}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Programmiersprache \texttt{C}.
+	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als deren der anderen Algorithmen.
+	Die Messung von Winograd ist beinahe gleich wie die Messung mit der Standardmethode, deshalb ist sie nicht gut sichtbar.}
 	\label{multiplikation:fig:c_meas_4096}
 \end{figure}
 
@@ -483,7 +486,9 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
-	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Skriptsprache \texttt{Python}}
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Skriptsprache \texttt{Python}.
+	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als deren der anderen Algorithmen.
+}
 	\label{multiplikation:fig:python}
 \end{figure}
 
