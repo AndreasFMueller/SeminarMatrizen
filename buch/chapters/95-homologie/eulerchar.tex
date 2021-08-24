@@ -10,7 +10,7 @@ Euler hat für dreidimensionale Polyeder eine Invariante gefunden,
 die unabhängig ist von der Triangulation.
 
 \begin{definition}
-\label{buch:homologie:def:eulerchar}
+\label{buch:homologie:def:eulerchar0}
 Ist $E$ die Anzahl der Ecken, $K$ die Anzahl der Kanten und $F$
 die Anzahl der Flächen eines dreidimensionalen Polyeders $P$, dann
 heisst
@@ -32,12 +32,21 @@ Vektorräume $B_k(C)$ und $Z_k(C)$ grösser werden.
 Kann man eine Grösse analog zu $\chi(P)$ finden, die sich nicht ändert?
 
 \begin{definition}
+\label{buch:homologie:def:eulerchar}
 Sei $C$ ein Kettenkomplex, dann heisst
 \[
 \chi(C) = \sum_{k=0}^n (-1)^k\dim H_k(C)
 \]
 die Euler-Charakteristik von $C$.
 \end{definition}
+
+Die Summe in Definition~\ref{buch:homologie:def:eulerchar} erstreckt
+sich bis zum Index $n$, der Dimension des Simplexes höchster Dimension
+in einem Polyeder.
+Für $k>n$ ist $H_k(C)=0$, es ändert sich also nichts, wenn wir
+die Summe bis $\infty$ erstrecken, da die zusätzlichen Terme alle
+$0$ sind.
+Wir werden dies im folgenden zur Vereinfachung der Notation tun.
 
 Die Definition verlangt, dass man erst die Homologiegruppen
 berechnen muss, bevor man die Euler-Charakteristik bestimmen

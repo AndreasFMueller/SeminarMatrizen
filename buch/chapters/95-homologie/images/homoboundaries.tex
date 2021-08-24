@@ -14,7 +14,7 @@
 \def\skala{1}
 \begin{tikzpicture}[>=latex,thick,scale=\skala]
 
-\def\s{0.4}
+\def\s{0.55}
 
 \def\punkt#1#2{({((#1)+0.5*(#2))*\s},{(#2)*\s*sqrt(3)/2})}
 \def\A{\punkt{0}{0}}
@@ -41,6 +41,7 @@
 \def\blau#1#2{
 	\draw[color=blue] \punkt{#1}{#2} -- \punkt{#1+1}{#2}
 		-- \punkt{#1}{(#2)+1} -- cycle;
+	\draw[->,color=blue] \punkt{#1}{#2} -- \punkt{#1+1}{#2};
 }
 
 \def\gebiet{

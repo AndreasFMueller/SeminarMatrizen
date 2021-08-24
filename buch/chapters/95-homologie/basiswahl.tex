@@ -4,9 +4,9 @@ Die Definition der Homologiegruppen $H_k(C)$ als Quotient von
 Vektorräumen ist ziemlich abstrakt.
 Sie besteht aus Klassen von Zyklen, die sich höchstens um einen
 Rand unterscheiden.
-% XXX Verweise auf Visualisierung
 Indem wir eine geeignete Basis wählen, können wir konkrete Zyklen
 identifizieren, die eine Basis für den Vektorraum $H_k(C)$ bilden.
+Dies soll im Folgenden schrittweise durchgeführt werden.
 
 \begin{figure}
 \centering
@@ -47,7 +47,7 @@ Sie ist
 \setcounter{MaxMatrixCols}{27}
 \partial_1
 =
-\tiny
+\footnotesize
 \setlength\arraycolsep{2pt}
 \begin{pmatrix*}[r]
 %1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
@@ -69,32 +69,37 @@ Sie ist
 \end{pmatrix*}
 \]
 Die reduzierte Zeilenstufenform von $\partial_1$ ist
+(Pivotpositionen in {\color{red}rot}, frei wählbare Variablen
+in {\color{darkgreen}grün})
 \begin{center}
-\tiny
+%\tiny
+\scriptsize
+%\footnotesize
 \setlength\tabcolsep{3pt}
 \begin{tabular}{|>{$}r<{$}|>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}>{$}r<{$}|}
 \hline
-&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18&19&20&21&22&23&24&25&26&27\\
+  & 1& 2& 3& 4& 5&{\color{darkgreen}6}& 7&{\color{darkgreen}8}& 9&{\color{darkgreen}10}&11&{\color{darkgreen}12}&{\color{darkgreen}13}&{\color{darkgreen}14}&15&{\color{darkgreen}16}&17&{\color{darkgreen}18}&19&{\color{darkgreen}20}&21&{\color{darkgreen}22}&23&{\color{darkgreen}24}&{\color{darkgreen}25}&26&{\color{darkgreen}27}\\
 \hline
- 1&1& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 1& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
- 2&0& 1& 0& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
- 3&0& 0& 1& 0& 0& 0& 0& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
- 4&0& 0& 0& 1& 0& 0& 0& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
- 5&0& 0& 0& 0& 1&-1& 0& 0& 0& 0& 0& 0& 1& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
- 6&0& 0& 0& 0& 0& 0& 1&-1& 0& 0& 0& 0&-1& 0& 0& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
- 7&0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0\\
- 8&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
- 9&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
-10&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0\\
-11&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0&-1& 0& 1& 1& 0&-1\\
-12&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1& 0& 0& 1& 0&-1\\
-13&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1&-1& 0& 1\\
-14&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1&-1\\
-15&0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+ 1&\phantom{-}{\color{red}1}& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 1& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
+ 2& 0&\phantom{-}{\color{red}1}& 0& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
+ 3& 0& 0&\phantom{-}{\color{red}1}& 0& 0& 0& 0& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+ 4& 0& 0& 0&\phantom{-}{\color{red}1}& 0& 0& 0& 0& 0& 0& 0&-1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+ 5& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0& 0& 0& 0& 0& 0& 1& 0& 0&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
+ 6& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0& 0& 0& 0&-1& 0& 0& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+ 7& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0\\
+ 8& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
+ 9& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0& 0& 0& 1& 0& 0& 0&-1& 0& 0& 0\\
+10& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0&-1& 0& 0& 0& 1& 0& 0& 0\\
+11& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0&-1& 0& 1& 1& 0&-1\\
+12& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1& 0& 0& 1& 0&-1\\
+13& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1&-1& 0& 1\\
+14& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0&\phantom{-}{\color{red}1}&-1\\
+15& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0& 0\\
 \hline
 \end{tabular}.
 \end{center}
-Daraus kann man die Zyklen wie folgt ablesen:
+Daraus kann man die Zyklen wie folgt ablesen, indem man jeweils
+genau eine frei wählbare Variable auf $1$ setzt:
 {
 \begin{align*}
 z_1
@@ -365,7 +370,7 @@ z_8 % variable 18 = 1
 -1\\
  0\\
  0\\
- 1\\
+-1\\
  0\\
  0\\
  0\\
@@ -569,7 +574,7 @@ Aus den Abbildungen~\ref{buch:homologie:fig:homocycles} und
 \ref{buch:homologie:fig:homoboundaries} kann man auch ablesen,
 wie die Ränder $\partial_2e_i^{(2)}$ aus den Zyklen von $\mathcal{Z}_1$
 linear kombiniert werden können.
-Man erhält so die Beziehungen.
+Man erhält so die Beziehungen
 \begin{equation}
 \setcounter{MaxMatrixCols}{29}
 \setlength\arraycolsep{1pt}
@@ -578,11 +583,11 @@ Man erhält so die Beziehungen.
 \partial_2e_2^{(2)} &=&   & &z_2& &   & &   & &   & &   & &   & &   & &   & &      & &      & &      & &      \\
 \partial_2e_3^{(2)} &=&   & &   & &z_3& &   & &   & &   & &   & &   & &   & &      & &      & &      & &      \\
 \partial_2e_4^{(2)} &=&   & &   & &   & &z_4& &   & &   & &   & &   & &   & &      & &      & &      & &      \\
-\partial_2e_5^{(2)} &=&   & &   & &   & &   &-&z_5& &   &+&z_7& &   & &   & &      & &      & &      & &      \\
-\partial_2e_6^{(2)} &=&   & &   & &   & &   & &   &-&z_6& &   &+&z_8& &   & &      & &      & &      & &      \\
+\partial_2e_5^{(2)} &=&   & &   & &   & &   & &z_5& &   &+&z_7& &   & &   & &      & &      & &      & &      \\
+\partial_2e_6^{(2)} &=&   & &   & &   & &   & &   & &z_6& &   &+&z_8& &   & &      & &      & &      & &      \\
 \partial_2e_7^{(2)} &=&   & &   & &   & &   & &   & &   & &   & &   & &   & &z_{10}& &      & &      & &      \\
 \partial_2e_8^{(2)} &=&   & &   & &   & &   & &   & &   & &   & &   & &   & &      & &z_{11}& &      & &      \\
-\partial_2e_9^{(2)} &=&   & &   & &   & &   & &   & &   & &   & &   & &   & &      & &      &-&z_{12}&+&z_{13}
+\partial_2e_9^{(2)} &=&   &\phantom{+}&   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &      &\phantom{+} &      & &z_{12}&+&z_{13}
 \end{array}
 \end{equation}
 Dies reicht jedoch nicht, um herauszufinden, welche der blauen Dreiecke
@@ -766,31 +771,33 @@ mit Hilfe von Rändern der Zeilen 1--9 kombiniert werden können.
 \scriptstyle\partial_2e_8^{(2)}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &\phantom{-}1&  &  & 1&\phantom{-}1&  &  &  \\
 \scriptstyle\partial_2e_9^{(2)}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &\phantom{-}1&\phantom{-}1&\phantom{-}1\\
 \hline
-%                    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
-\scriptstyle z_{ 1}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 2}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 3}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 4}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 5}&  &  &  &  &  & 1& 1&  &  &  &  &  &  &  &-1&-1&  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 6}&  &  &  &  &  &  &  &  &  & 1& 1&  &  &  &  &  &-1&-1&  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 7}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 8}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{ 9}&  &  &  &  &  &  &  & 1& 1&  &  &  &  &  &  & 1& 1&  &  &  &-1&-1&-1&-1&  &  &  \\
-\scriptstyle z_{10}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{11}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
-\scriptstyle z_{12}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1& 1&  &  &-1&-1\\
-\scriptstyle z_{13}&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+%                     1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+\scriptstyle z_{ 1}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 2}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 3}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 4}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 5}'&  &  &  &  &  & 1& 1&  &  &  &  &  &  &  &-1&-1&  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 6}'&  &  &  &  &  &  &  &  &  & 1& 1&  &  &  &  &  &-1&-1&  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 7}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 8}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{ 9}'&  &  &  &  &  &  &  & 1& 1&  &  &  &  &  &  & 1& 1&  &  &  &-1&-1&-1&-1&  &  &  \\
+\scriptstyle z_{10}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{11}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
+\scriptstyle z_{12}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 1& 1&  &  &-1&-1\\
+\scriptstyle z_{13}'&  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  \\
 \hline
 \end{tabular}
 \caption{Nach Durchführung der Vorwärtsreduktion kann man die Zyklen
 ablesen, die nicht für eine Basis von $H_1$ gebraucht werden.
+Die resultierenden Zyklen sind in Abbildung~\ref{buch:homologie:beispiel:homoclasses}
+dargestellt.
 \label{buch:homologie:beispiel:gausstableaureduziert}}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{chapters/95-homologie/images/homoclasses.pdf}
-\caption{Repräsentanten für die Reduzierten Klassen aus dem
+\caption{Repräsentanten für die reduzierten Klassen aus dem
 Tableau von
 Abbildung~\ref{buch:homologie:beispiel:gausstableaureduziert},
 sie bilden eine Basis der Homologie-Gruppe $H_1$.

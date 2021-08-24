@@ -1,5 +1,5 @@
 %
-% tikztemplate.tex -- template for standalon tikz images
+% homoclasses.tex -- template for standalon tikz images
 %
 % (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 %
@@ -11,11 +11,12 @@
 \usepackage{csvsimple}
 \usetikzlibrary{arrows,intersections,math}
 \begin{document}
-\def\skala{1}
+\def\skala{1.4}
 \begin{tikzpicture}[>=latex,thick,scale=\skala]
 
 \definecolor{darkgreen}{rgb}{0,0.6,0}
 \def\s{0.4}
+\def\h{-0.3}
 
 \def\punkt#1#2{({((#1)+0.5*(#2))*\s},{(#2)*\s*sqrt(3)/2})}
 \def\A{\punkt{0}{0}}
@@ -77,25 +78,29 @@
 \begin{scope}
 \gebiet
 \draw[color=darkgreen] \B -- \G -- \J -- \F -- cycle;
-\node[color=darkgreen] at ({2*\s},-0.5) {$z_5'$};
+\draw[->,color=darkgreen] \B -- \G;
+\node[color=darkgreen] at ({2*\s},{\h}) {$z_5'$};
 \end{scope}
 
 \begin{scope}[xshift=2cm]
 \gebiet
 \draw[color=darkgreen] \D -- \I -- \L -- \H -- cycle;
-\node[color=darkgreen] at ({2*\s},-0.5) {$z_6'$};
+\draw[->,color=darkgreen] \D -- \I;
+\node[color=darkgreen] at ({2*\s},{\h}) {$z_6'$};
 \end{scope}
 
 \begin{scope}[xshift=4cm]
 \gebiet
 \draw[color=darkgreen] \C -- \L -- \N -- \K -- \M -- \J -- cycle;
-\node[color=darkgreen] at ({2*\s},-0.5) {$z_9'$};
+\draw[->,color=darkgreen] \C -- \L;
+\node[color=darkgreen] at ({2*\s},{\h}) {$z_9'$};
 \end{scope}
 
 \begin{scope}[xshift=6cm]
 \gebiet
 \draw[color=darkgreen] \K -- \N -- \O -- \M -- cycle;
-\node[color=darkgreen] at ({2*\s},-0.5) {$z_{12}'$};
+\draw[->,color=darkgreen] \K -- \N;
+\node[color=darkgreen] at ({2*\s},{\h}) {$z_{12}'$};
 \end{scope}
 
 

@@ -75,79 +75,92 @@
 
 \begin{scope}
 \gebiet
-\draw[color=red] \A -- \B -- \F -- cycle;
+\draw[->,color=red] \A -- \B -- \F -- cycle;
+\draw[->,color=red] \A -- \B;
 \node[color=red] at ({2*\s},-0.5) {$z_1$};
 \end{scope}
 
 \begin{scope}[xshift=2cm]
 \gebiet
 \draw[color=red] \B -- \C -- \G -- cycle;
+\draw[->,color=red] \B -- \C;
 \node[color=red] at ({2*\s},-0.5) {$z_2$};
 \end{scope}
 
 \begin{scope}[xshift=4cm]
 \gebiet
 \draw[color=red] \C -- \D -- \H -- cycle;
+\draw[->,color=red] \C -- \D;
 \node[color=red] at ({2*\s},-0.5) {$z_3$};
 \end{scope}
 
 \begin{scope}[xshift=6cm]
 \gebiet
 \draw[color=red] \D -- \E -- \I -- cycle;
+\draw[->,color=red] \D -- \E;
 \node[color=red] at ({2*\s},-0.5) {$z_4$};
 \end{scope}
 
 \begin{scope}[xshift=8cm]
 \gebiet
 \draw[color=red] \A -- \B -- \G -- \F -- cycle;
+\draw[<-,color=red] \A -- \B;
 \node[color=red] at ({2*\s},-0.5) {$z_5$};
 \end{scope}
 
 \begin{scope}[xshift=10cm]
 \gebiet
 \draw[color=red] \C -- \D -- \I -- \H -- cycle;
+\draw[<-,color=red] \C -- \D;
 \node[color=red] at ({2*\s},-0.5) {$z_6$};
 \end{scope}
 
 \begin{scope}[xshift=12cm]
 \gebiet
 \draw[color=red] \A -- \B -- \G -- \J -- \F -- cycle;
+\draw[->,color=red] \A -- \B;
 \node[color=red] at ({2*\s},-0.5) {$z_7$};
 \end{scope}
 
 \begin{scope}[xshift=0cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \C -- \D -- \I -- \L -- \H -- cycle;
+\draw[->,color=red] \C -- \D;
 \node[color=red] at ({2*\s},-0.5) {$z_8$};
 \end{scope}
 
 \begin{scope}[xshift=2cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \A -- \B -- \C -- \H -- \L -- \K -- \J -- \F -- cycle;
+\draw[<-,color=red] \A -- \B;
 \node[color=red] at ({2*\s},-0.5) {$z_9$};
 \end{scope}
 
 \begin{scope}[xshift=4cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \J -- \K -- \M -- cycle;
+\draw[->,color=red] \J -- \K;
 \node[color=red] at ({2*\s},-0.5) {$z_{10}$};
 \end{scope}
 
 \begin{scope}[xshift=6cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \A -- \B -- \C -- \H -- \L -- \N -- \K -- \J -- \F -- cycle;
+\draw[->,color=red] \A -- \B;
 \node[color=red] at ({2*\s},-0.5) {$z_{11}$};
 \end{scope}
 
 \begin{scope}[xshift=8cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \J -- \K -- \N -- \M -- cycle;
+\draw[<-,color=red] \J -- \K;
 \node[color=red] at ({2*\s},-0.5) {$z_{12}$};
 \end{scope}
 
 \begin{scope}[xshift=10cm,yshift=-3cm]
 \gebiet
 \draw[color=red] \J -- \K -- \N -- \O -- \M -- cycle;
+\draw[->,color=red] \J -- \K;
 \node[color=red] at ({2*\s},-0.5) {$z_{13}$};
 \end{scope}
 
