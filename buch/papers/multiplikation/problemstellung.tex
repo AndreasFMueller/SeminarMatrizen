@@ -11,10 +11,10 @@ Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der S
 
 \label{muliplikation:sec:bigo}
 Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Relation zur Inputgrösse \cite{multiplikation:bigo}.
-$f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$ wenn $x \rightarrow \infty$.
-Dies ist gegeben, wenn es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
+$f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$, wenn $x \rightarrow \infty$.
+Dies ist gegeben, falls es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
 % Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$.
-Vereinfacht werden f\"ur Algorithmen die folgende Sprechweisen verwendet:
+Vereinfacht werden f\"ur Algorithmen die folgenden Sprechweisen verwendet:
 \begin{itemize}
 	\item $f \in \mathcal{O}(1) \rightarrow f$ ist beschr\"ankt
 	\item $f \in \mathcal{O}(n) \rightarrow f$ w\"achst linear
@@ -64,13 +64,7 @@ Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkompl
 					\EndFunction
 				\end{algorithmic}
 			\end{algorithm}
-
-		\end{minipage}
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\begin{tabular}[t]{ll}
+		\end{minipage} \\
 		\begin{minipage}{0.48\textwidth}
 			\begin{algorithm}[H]\footnotesize\caption{}
 				\setlength{\lineskip}{7pt}
@@ -110,6 +104,12 @@ Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkompl
 		\end{minipage}
 	\end{tabular}
 \end{table}
+
+%\begin{table}
+%	\begin{tabular}[t]{ll}
+
+%	\end{tabular}
+%\end{table}
 
 \paragraph{Beschr\"ankter Algorithmus}
 Algorithmus \ref{multiplikation:alg:b1} ist ein Beispiel mit beschränkter Laufzeit $\mathcal{O}(1)$
