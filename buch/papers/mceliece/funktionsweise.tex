@@ -1,0 +1,83 @@
+%
+% teil2.tex -- Beispiel-File für teil2 
+%
+% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+%
+\section{Funktionsweise 
+\label{mceliece:section:funktionsweise}}
+\rhead{Funktionsweise}
+Um den Ablauf des Datenaustausches mittels McEliece-Verschlüsselung zu erläutern,
+wird ein Szenario verwendet,
+bei dem Bob an Alice eine verschlüsselte Nachticht über ein öffentliches Netzwerk zukommen lässt.
+
+\subsection{Vorbereitung
+\label{mceliece:section:vorbereitung}}
+Damit der Nachrichtenaustausch stattfinden kann, muss Alice (Empfängerin)
+zuerst ein Schlüsselpaar definieren.
+Dazu erstellt sie die einzelnen Matrizen $S_k$, $G_{n,k}$ und $P_n$.
+Diese drei einzelnen Matrizen bilden den privaten Schlüssel von Alice
+und sollen geheim bleiben.
+Der öffentliche Schlüssel $K_{n,k}$ hingegen berechnet sich
+aus der Multiplikation der privaten Matrizen (Abschnitt \ref{mceliece:subsection:k_nk})
+und wird anschliessend Bob zugestellt.
+
+\subsection{Verschlüsselung
+\label{mceliece:section:verschl}}
+Bob berechnet nun die verschlüsselte Nachricht $c_n$, indem er seine Daten $d_k$
+mit dem öffentlichen Schlüssel $K_{n,k}$ von Alice multipliziert
+und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfehler hinzufügt.
+\[
+    c_n\,=\,K_{n,k}\cdot d_k + e_n\,.
+\]
+Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment)
+einen neuen, zufälligen Fehlervektor generiert.
+Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
+
+\subsection{Entschlüsselung
+\label{mceliece:section:entschl}}
+Alice entschlüsselt die erhaltene Nachricht in mehreren einzelnen Schritten.
+Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel $K_{n,k}$ mit seinen Ursprungsmatrizen dargestellt.
+\begin{align*}
+    c_n\,&=\,K_{n,k}\cdot d_k + e_n \\
+    &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n
+\end{align*}
+Zuerst wird der Effekt der Permutationsmatrix rückgängig gemacht,
+indem das Codewort mit dessen Inversen $P_n^{-1}$ multipliziert wird.
+\begin{align*}
+    c_{n}''\,=\,P_n^{-1}\cdot c_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+                                         &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+\end{align*}
+Eine weitere Vereinfachung ist nun möglich,
+weil $P_n^{-1}$ einerseits auch eine gewöhnliche Permutationsmatrix ist
+und andererseits ein zufälliger Fehlervektor $e_n$ multipliziert mit einer Permutationsmatrix
+wiederum einen gleichwertigen, zufälligen Fehlervektor $e_n'$ ergibt.
+\begin{align*}
+    c_{n}''\,&=\,G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+             &=\,G_{n,k}\cdot S_{k}\cdot d_k + e'_n\quad \quad \quad | \,
+    e'_n\,=\,P_n^{-1}\cdot e_n
+\end{align*}
+Dank des fehlerkorrigierenden Codes, der durch die implizite Multiplikation mittels $G_{n,k}$ auf die Daten angewendet wurde,
+können nun die Bitfehler, verursacht durch den Fehlervektor $e'_n$,
+entfernt werden.
+Da es sich bei diesem Schritt nicht um eine einfache Matrixmultiplikation handelt,
+wird die Operation durch eine Funktion dargestellt.
+Wie dieser Decoder genau aufgebaut ist,
+hängt vom verwendeten Linearcode ab.
+\begin{align*}
+    c_{k}'\,&=\text{Linear-Code-Decoder($c''_n$)}\\
+            &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\
+            &=S_{k}\cdot d_k
+\end{align*}
+Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
+womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde.
+\begin{align*}
+                            c_{k}'\,&=S_{k}\cdot d_k \quad | \cdot S_k^{-1}\\
+    d'_{k}\,=\,S_{k}^{-1} \cdot c'_k&=S_{k}^{-1} \cdot S_{k}\cdot d_k\\
+                                    &=d_k
+\end{align*}
+
+\subsection{Beispiel}
+
+TODO:
+-alle Beispielmatrizen- und Vektoren hierhin zügeln, numerisches Beispiel kreieren\\
+-erläutern des 7/4-codes (ja/nein)?

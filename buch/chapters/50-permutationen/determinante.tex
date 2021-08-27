@@ -7,3 +7,105 @@
 \section{Determinante
 \label{buch:section:determinante}}
 \rhead{Determinante}
+Das Signum einer Permutationsmatrizen lässt sich
+gemäss~\eqref{buch:permutationen:determinante}
+mit der Determinanten berechnen.
+Umgekehrt sollte es auch möglich sein, eine Formel
+für die Determinante zu finden.
+Die Basis dafür ist der
+Entwicklungssatz 
+\begin{equation}
+\det(A)
+=
+\sum_{i=1}^n (-1)^{i+j} a_{ij} \cdot \det(A_{ij})
+\label{buch:permutationen:entwicklungssatz}
+\end{equation}
+von Laplace für die Determinante.
+In den Produkten $a_{ij}\cdot\det(A_{ij})$ enthält 
+die Untermatrix $A_{ij}$ weder Elemente der Zeile $i$ noch der 
+Zeile $j$.
+Die Summanden auf der rechten Seite von
+\eqref{buch:permutationen:entwicklungssatz}
+sind daher Produkte der Form
+\[
+a_{1i_1}
+a_{2i_2}
+a_{3i_3}
+\dots
+a_{ni_n},
+\]
+in denen nur Faktoren aus verschiedenen Spalten der Matrix $A$
+vorkommen.
+Das ist gleichbedeutend damit, dass unter den Spaltenindizes
+$i_1,i_2,i_3,\dots,i_n$ keine zwei gleich sind, dass also
+\[
+\sigma
+=
+\begin{pmatrix}
+1&2&3&\dots&n\\
+i_1&i_2&i_3&\dots&i_n
+\end{pmatrix}
+\]
+eine Permutation ist.
+
+Die Determinante muss sich daher als Summe über alle Permutationen
+in der Form
+\begin{equation}
+\det(A)
+=
+\sum_{\sigma\in S_n} 
+c(\sigma)
+a_{1\sigma(1)}
+a_{2\sigma(2)}
+\dots
+a_{n\sigma(n)}
+\label{buch:permutationen:cformel}
+\end{equation}
+schreiben lassen, wobei die Koeffizienten $c(\sigma)$ noch zu bestimmen
+sind.
+Setzt man in
+\eqref{buch:permutationen:cformel}
+eine Permutationsmatrix $P_\tau$ ein, dann verschwinden alle
+Terme auf der rechten Seite ausser dem zur Permutation $\tau$,
+also
+\[
+\det(P_\tau)
+=
+\sum_{\sigma \in S_n}
+c(\sigma)
+(P_\tau)_{1\sigma(1)}
+(P_\tau)_{2\sigma(2)}
+\dots
+(P_\tau)_{n\sigma(n)}
+=
+c(\tau)
+1\cdot 1\cdot\dots\cdot 1
+=
+c(\tau).
+\]
+Der Koeffizientn $c(\tau)$ ist also genau das Vorzeichen
+der Permutation $\tau$.
+Damit erhalten wir den folgenden Satz:
+
+\begin{satz}
+Die Determinante einer $n\times n$-Matrix $A$ kann berechnet werden als
+\[
+\det(A)
+=
+\sum_{\sigma\in S_n}
+\operatorname{sgn}(\sigma)
+a_{1\sigma(1)}
+a_{2\sigma(2)}
+\dots
+a_{n\sigma(n)}
+=
+\sum_{\tau\in S_n}
+\operatorname{sgn}(\tau)
+a_{\tau(1)1}
+a_{\tau(2)2}
+\dots
+a_{\tau(n)n}.
+\]
+Insbesondere folgt auch $\det(A)=\det(A^t)$.
+\end{satz}
+

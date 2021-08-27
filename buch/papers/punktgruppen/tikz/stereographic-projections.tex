@@ -1,0 +1,108 @@
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{tikz-3dplot}
+
+\usetikzlibrary{arrows}
+\usetikzlibrary{intersections}
+\usetikzlibrary{math}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\tdplotsetmaincoords{60}{130}
+\pgfmathsetmacro{\l}{2}
+
+\begin{tikzpicture}[
+    >=latex,
+    tdplot_main_coords,
+    dot/.style = {
+      black, fill = black, circle,
+      outer sep = 0, inner sep = 0,
+      minimum size = 1mm 
+    },
+    round/.style = {
+      draw = orange, thick, circle,
+      minimum size = 1mm,
+      inner sep = 0pt, outer sep = 0pt,
+    },
+    cross/.style = {
+      cross out, draw = magenta, thick,
+      minimum size = 1mm, 
+      inner sep = 0pt, outer sep = 0pt
+    },
+  ]
+
+  % origin
+  \coordinate (O) at (0,0,0);
+
+  % poles
+  \coordinate (NP) at (0,0,\l);
+  \coordinate (SP) at (0,0,-\l);
+
+  % axis
+  % \draw[->] (O) -- ++(1.5*\l,0,0);
+  % \draw[->] (O) -- ++(0,1.5*\l,0);
+  % \draw[->] (O) -- ++(0,0,1.5*\l);
+
+  % gray unit circle
+  \tdplotdrawarc[gray, thick]{(O)}{\l}{0}{360}{}{};
+  \draw[gray, dotted] (-\l, 0, 0) to (\l, 0, 0);
+  \draw[gray, dotted] (0, -\l, 0) to (0, \l, 0);
+
+  % meridians
+  \foreach \phi in {0, 30, 60, ..., 150}{
+    \tdplotsetrotatedcoords{\phi}{90}{0};
+    \tdplotdrawarc[lightgray, dashed, tdplot_rotated_coords]{(O)}{\l}{0}{360}{}{};
+  }
+
+  % dot above and its projection
+  \pgfmathsetmacro{\phi}{120}
+  \pgfmathsetmacro{\theta}{60}
+
+  \pgfmathsetmacro{\px}{cos(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\py}{sin(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\pz}{cos(\theta)*\l})
+
+  \coordinate (A) at (\px,\py,\pz);
+  \coordinate (Aproj) at ({\px * \l / (\l + \pz)}, {\py * \l / (\l + \pz)}, 0);
+
+  % dot below and its projection
+  \pgfmathsetmacro{\phi}{-60}
+  \pgfmathsetmacro{\theta}{120}
+
+  \pgfmathsetmacro{\px}{cos(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\py}{sin(\phi)*sin(\theta)*\l}
+  \pgfmathsetmacro{\pz}{cos(\theta)*\l})
+
+  \coordinate (B) at (\px,\py,\pz);
+  \coordinate (Bproj) at ({\px * \l / (\l - \pz)}, {\py * \l / (\l - \pz)}, 0);
+
+  % projection lines
+  \draw[gray] (A) to (SP);
+  \draw[gray] (SP) to (O) to (Aproj);
+
+  \draw[gray] (B) to (NP);
+  \draw[gray] (NP) to (O) to (Bproj);
+
+  % dots
+  \draw (O) node[dot] {};
+  \draw (SP) node[dot] {};
+  \draw (NP) node[dot] {};
+  \draw (A) node[dot, fill = magenta, minimum size = 1.5mm] {};
+  \draw (B) node[dot, fill = orange, minimum size = 1.5mm] {};
+
+  % projection markers
+  \draw[very thick, magenta] 
+    (Aproj) ++(.15,0) to ($(Aproj)+(-.15, 0)$)
+    (Aproj) ++(0,.15) to ($(Aproj) +(0, -.15)$);
+
+  \tdplotdrawarc[orange, very thick]{(Bproj)}{.1}{0}{360}{}{};
+
+\end{tikzpicture}
+\end{document}
+% vim:ts=2 sw=2 et:

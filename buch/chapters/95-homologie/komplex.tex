@@ -6,9 +6,107 @@
 \section{Kettenkomplexe
 \label{buch:section:komplex}}
 \rhead{Kettenkomplexe}
+Die algebraische Struktur, die in Abschnitt~\ref{buch:subsection:triangulation}
+konstruiert wurde, kann noch etwas abstrakter konstruiert werden.
+Es ergibt sich das Konzept eines Kettenkomplexes.
+Die Triangulation gibt also Anlass zu einem Kettenkomplex.
+So lässt sich zu einem geometrischen Objekt ein algebraisches 
+Vergleichsobjekt konstruieren.
+Im Idealfall lassens ich anschliessend geometrische Eigenschaften mit
+algebraischen Rechnungen zum Beispiel in Vektorräumen mit Matrizen
+beantworten.
 
-\subsection{Randoperator von Simplexen
-\label{buch:subsection:randoperator-von-simplexen}}
+\subsection{Definition
+\label{buch:subsection:kettenkomplex-definition}}
+Die Operation $\partial$, die für Simplizes konstruiert worden ist,
+war linear und hat die Eigenschaft $\partial^2$ gehabt.
+Diese Eigenschaften reichen bereits für Definition eines Kettenkomplexes.
 
-\subsection{Kettenkomplexe und Morphismen
-\label{buch:subsection:kettenkomplex}}
+\begin{definition}
+Eine Folge $C_0,C_1,C_2,\dots$ von Vektorräumen über dem Körper $\Bbbk$
+mit einer Folge von linearen Abbildungen
+$\partial_k\colon C_k \to C_{k-1}$, dem {\em Randoperator},
+heisst ein Kettenkomplex, wenn $\partial_{k-1}\partial_k=0$ gilt
+für alle $k>0$.
+\end{definition}
+
+Die aus den Triangulationen konstruieren Vektorräme von
+Abschnitt~\ref{buch:subsection:triangulation} bilden einen
+Kettenkomplex.
+
+XXX nachrechnen: $\partial^2 = 0$ ?
+
+\subsection{Abbildungen
+\label{buch:subsection:abbildungen}}
+Wenn man verschiedene geometrische Objekte mit Hilfe von Triangulationen
+vergleichen will, dann muss man auch das Konzept der Abbildungen zwischen
+den geometrischen Objekten in die Kettenkomplexe transportieren.
+
+Eine Abbildung zwischen Kettenkomplexen muss einerseits eine lineare
+Abbildung der Vektorräume $C_k$ sein, andererseits muss sich eine
+solche Abbildung mit dem Randoperator vertragen.
+Wir definieren daher
+
+\begin{definition}
+Eine Abbildung $f_*$ zwischen zwei Kettenkomplexe $(C_*,\partial^C_*)$ und 
+$(D_*,\partial^D_*)$ heisst eine Abbildung von Kettenkomplexen, wenn
+für jedes $k$ 
+\begin{equation}
+\partial^D_k
+\circ
+f_{k}
+=
+f_{k-1}
+\circ
+\partial^C_k
+\label{buch:komplex:abbildung}
+\end{equation}
+gilt.
+\end{definition}
+
+Die Beziehung~\eqref{buch:komplex:abbildung} kann übersichtlich als
+kommutatives Diagramm dargestellt werden.
+\begin{equation}
+\begin{tikzcd}
+0 
+	& C_0 \arrow[l, "\partial_0^C" above]
+		\arrow[d, "f_0"]
+		& C_1 \arrow[l,"\partial_1^C" above]
+			\arrow[d, "f_1"]
+			& C_2 \arrow[l,"\partial_2^C" above]
+				\arrow[d, "f_2"]
+				& \dots \arrow[l]
+					\arrow[l, "\partial_{3}^C" above]
+					& C_{k-1}
+						\arrow[l, "\partial_{k-1}^C" above]
+						\arrow[d, "f_{k-1}"]
+						& C_{k}\arrow[l, "\partial_{k}^C" above]
+							\arrow[d, "f_{k}"]
+							& \dots
+								\arrow[l,"\partial_{k+1}^C" above]
+\\
+0 
+	& D_0 \arrow[l, "\partial_0^D" above]
+		& D_1 \arrow[l,"\partial_1^D" above]
+			& D_2 \arrow[l,"\partial_2^D" above]
+				& \dots \arrow[l]
+					\arrow[l, "\partial_{3}^D" above]
+					& D_{k-1}
+						\arrow[l, "\partial_{k-1}^D" above]
+						& D_{k}\arrow[l, "\partial_{k}^D" above]
+							& \dots
+								\arrow[l,"\partial_{k+1}^D" above]
+\end{tikzcd}
+\label{buch:komplex:abbcd}
+\end{equation}
+Die Relation~\eqref{buch:komplex:abbildung} drückt aus, dass man jeden
+den Pfeilen im Diagram~\eqref{buch:komplex:abbcd} folgen kann und
+dabei zwischen zwei Vektorräumen unabhängig vom Weg die gleiche Abbildung
+resultiert.
+
+Die Verfeinerung einer Triangulation erzeugt eine solche Abbildung von
+Komplexen.
+
+
+% XXX simpliziale Approximation
+

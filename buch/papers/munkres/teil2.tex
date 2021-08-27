@@ -3,38 +3,10 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %
-\section{Teil 2 
+\section{Schwierigkeit der Lösung (Permutationen)
 \label{munkres:section:teil2}}
-\rhead{Teil 2}
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-quae ab illo inventore veritatis et quasi architecto beatae vitae
-dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-velit, sed quia non numquam eius modi tempora incidunt ut labore
-et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima
-veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-pariatur?
+\rhead{Schwierigkeit der Lösung (Permutationen)}
 
-\subsection{De finibus bonorum et malorum
-\label{munkres:subsection:bonorum}}
-At vero eos et accusamus et iusto odio dignissimos ducimus qui
-blanditiis praesentium voluptatum deleniti atque corrupti quos
-dolores et quas molestias excepturi sint occaecati cupiditate non
-provident, similique sunt in culpa qui officia deserunt mollitia
-animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-est et expedita distinctio. Nam libero tempore, cum soluta nobis
-est eligendi optio cumque nihil impedit quo minus id quod maxime
-placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-rerum necessitatibus saepe eveniet ut et voluptates repudiandae
-sint et molestiae non recusandae. Itaque earum rerum hic tenetur a
-sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-consequatur aut perferendis doloribus asperiores repellat.
-
+Eine Permutation ist eine Anordnung von Objekten in einer bestimmten Reihenfolge oder eine Umordnung von Objekten aus einer vorgegebenen Reihung. Ist eine optimale Zuordnung gefunden, so steht in jeder Zeile und jeder Spalte der Matrix genau ein Element, das zur optimalen Lösung gehört, eine solche Gruppe von Positionen wird auch als Transversale der Matrix bezeichnet. 
+Die Problemstellung kann auch so formuliert werden, dass man die Zeilen- oder die Spaltenvektoren so umordnet soll, dass die Summe der Elemente in der Hauptdiagonale maximal wird. Hieraus wird sofort ersichtlich, dass es in einer $n$×$n$-Matrix genau so viele Möglichkeiten gibt, die Zeilen- bzw. Spaltenvektoren zu ordnen, wie es Permutationen von $n$ Elementen gibt, also $n!$. Außer bei kleinen Matrizen ist es nahezu aussichtslos, die optimale Lösung durch Berechnung aller Möglichkeiten zu finden. Schon bei einer 10×10-Matrix gibt es nahezu 3,63 Millionen (3.628.800) zu berücksichtigende Permutationen.
 

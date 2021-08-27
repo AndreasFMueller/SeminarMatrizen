@@ -6,13 +6,36 @@
 \section{Homologie
 \label{buch:section:homologie}}
 \rhead{Homologie}
+Die Idee der Trangulation ermöglicht, komplizierte geometrische 
+Objekte mit einem einfachen ``Gerüst'' auszustatten und so zu
+analysieren. 
+Projiziert man ein mit einer Kugel konzentrisches Tetraeder auf die
+Kugel, entsteht eine Triangulation der Kugeloberfläche.
+Statt eine Kugel zu studieren, kann man also auch ein Tetraeder untersuchen.
 
-\subsection{Homologie eines Kettenkomplexes
-\label{buch:subsection:homologie-eines-kettenkomplexes}}
+Das Gerüst kann natürlich nicht mehr alle Eigenschaften des ursprünglichen
+Objektes wiedergeben.
+Im Beispiel der Kugel geht die Information darüber, dass es sich um eine
+glatte Mannigfaltigkeit handelt, verloren.
+Was aber bleibt, sind Eigenschaften des Zusammenhangs.
+Wenn sich zwei Punkte mit Wegen verbinden lassen, dann gibt es auch eine
+Triangulation mit eindimensionalen Simplices, die diese Punkte als Ecken
+enthalten, die sich in der Triangulation mit einer Folge von Kanten
+verbinden lassen.
+Algebraisch bedeutet dies, dass die beiden Punkte der Rand eines 
+Weges sind.
+Fragen der Verbindbarkeit von Punkten mit Wegen lassen sich also
+dadurch studieren, dass man das geometrische Objekt auf einen Graphen
+reduziert.
 
-\subsection{Induzierte Abbildung
-\label{buch:subsection:induzierte-abbildung}}
+In diesem Abschnitt soll gezeigt werden, wie diese Idee auf höhere
+Dimensionen ausgedehnt werden.
+Es soll möglich werden, kompliziertere Fragen des Zusammenhangs, zum
+Beispiel das Vorhandensein von Löchern mit algebraischen Mitteln
+zu analysieren.
 
-\subsection{Homologie eines simplizialen Komplexes
-\label{buch:subsection:simplizialekomplexe}}
+\input{chapters/95-homologie/homologieketten.tex}
+\input{chapters/95-homologie/basiswahl.tex}
+\input{chapters/95-homologie/eulerchar.tex}
+\input{chapters/95-homologie/induzierteabb.tex}
 

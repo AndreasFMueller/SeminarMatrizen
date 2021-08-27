@@ -1,58 +1,157 @@
 %
-% teil1.tex -- Beispiel-File für das Paper
-%
-% (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+% idee.tex -- Polynom Idee
 %
 \section{Idee
 \label{reedsolomon:section:idee}}
 \rhead{Problemstellung}
-Das Problem liegt darin Informationen, Zahlen, 
-zu Übertragen und Fehler zu erkennen.
-Beim Reed-Solomon-Code kann man nicht nur Fehler erkenen, 
-man kann sogar einige Fehler korrigieren.
+Um Fehler in einer Datenübertragung zu erkennen, könnte man die Daten jeweils doppelt senden,
+also den gleiche Wert immer zweimal versenden. 
+Tritt ein Fehler ein wird sich dies in der Differenz der beiden Werten bemerkbar machen.
+Aber wie erkennen wir, welcher nun der richtige ist? Die Lösung ist simpel: Wir übertragen den Wert einfach dreimal.
+Wenn jetzt ein Fehler auftritt, kann durch die beiden unveränderten Werten den richtigen bestimmt werden.
+Doch was machen wir, wenn bei dieser Übertragung zwei Fehler auftreten? 
+Oder noch schlimmer: Was wenn zweimal derselbe Fehler auftritt? Die beiden Fehlerhaften Werte überstimmen bei der Evaluierung den gesendeten Datenwert, der dann unwiderruflich verloren geht. 
+Wir könnten dies noch steigern mit vier, fünf oder mehr gleichen Übertragenen Werte. Dies erhöht zwar die Robustheit der gesendeten Daten, führt aber auch dazu, dass wir durch die Mehrfachübertragung nur sehr wenige Nutzdaten versenden können.
+Gerade in unserer heutigen Zeit wäre dies ein enorm grosses Problem und aus diesem Grund wurden alternative Ansätze ausgearbeitet um dieses grundlegende Problem zu lösen. 
+%
+%
+%Gerade in der heutigen modernen Zeit bei dem hohen bedarf an Daten würden unsere Kommunikationssysteme bei weitem nicht ausreichen um den einen einzigen Datenwert mehrfach zu übertragen
+%
+% Gerade in der Heutigen modernen Zeit bei diesem enormen mass an daten die wir alle tagtäglich anfordern Währe dies wohl unmöglich, wenn wir die daten auf diese Weise 
+%
+%
+%
+%
+%
+%Wenn es uns gelingt, Fehler nach Ihrer Übertragung zu erkennen, dann könnten wir in einem neuen Ansatz den fehlerhaft empfangenen Wert noch einmal anfordern. 
+%Wir stellen fest, dass für viele alltägliche Anwendungen völlig ausreichend ist.
+%
+%Was ist, wenn wir aber eine Datenquelle haben, von der wir nur einmalig lesen können?
+%
+% 
+%
+%Beim Übertragen von drei Werten können wir maximal 2 Fehler erkennen aber nicht mehr korrigieren.
+%Wenn wir noch mehr Werte 
+%
+%Wir Übertragen Ziemlich viele Werte für so wenige Nutzdaten. Hinzu kommt, dass wir bei dieser Vorgehensweise gerade mal bestimmen können, dass überhaupt Fehler aufgetreten sind 
+%
+%
+%Wir haben also drei Werte die bestimmt einen Fehler korrigieren können, was ziemlich viele Werte um einen Fehler zu korrigieren. 
+%
+% um so jeweils einzelne Fehler zu erkennen.
+%Wenn jedoch mehr als nur ein Fehler erkannt werden und sogar noch das Original rekonstruiert werden soll, dann sollen die Daten drei oder vierfach versendet werden.
+%Doch nur schon um einen Fehler zu erkennen werden überproportional viele Daten doppelt und dreifach versendet.
+%Das Hauptproblem ist, dass Informationen Fehlerfrei Übertragen werden sollen. Um dies zu erreichen muss gleich nach dem Empfangen Fehler erkannt und korrigiert werden.  
+%
+%Das Problem liegt darin, Informationen oder Zahlen beim Übertragen gleichzeitig noch 
+%
+%Das Problem liegt darin, das Informationen oder Zahlen zu Übertragen und gleichzeitig Fehler zu erkennen 
+%
+%
+%Das Problem liegt darin Informationen, Zahlen, zu Übertragen und Fehler zu erkennen und zu korrigieren.
+%Der Unterschied des Fehler Erkennens und Korrigirens, ist das beim Erkennen nur die Frage beantwortet wird: Ist die Übertragung fehlerhaft oder nicht?
+%Beim Korrigieren werden Fehler erkannt und dann zusätzlich noch die Originalwerte rekonstruiert.
+%Eine weitere Möglichkeit wäre, dass der Empfänger nach einer fehlerhaften Übertragung die selben Daten nochmals anfordert.
+%Dies führt wieder zu unerwünschten mehrfachen Übertragung.
+%In Anwendungen des Reed-Solomon-Codes Abschnitt \externaldocument{papers/reedsolomon/anwendungen} \ref{reedsolomon:section:anwendung}
+%    ist diese vom Empfänger gesteuerte erneute Übertragen meistens nicht sinnvoll oder sogar unmöglich.
+%Der Reed-Solomon-Code macht dies Übertragung auf eine andere, clevere Weise.
 
+\subsection{Polynom-Ansatz
+\label{reedsolomon:section:polynomansatz}}
 \rhead{Polynom-Ansatz}
-Eine Idee ist die Daten, 
-ein Polynom zu bilden und dieses dann mit bestimmten Punkten überträgt.
-Nehmen wir als beisbiel die Zahlen \textcolor{blue}{2}, \textcolor{blue}{1}, \textcolor{blue}{5},
-welche uns dann das Polynom 
+Eine zentrale Idee des Reed-Solomon-Code ist, aus den Daten ein Polynom zu bilden. 
+Mit dieser Polynomfunktion wird dann eine Anzahl von Werten übertragen.
+\begin{beispiel} Nehmen wir die Zahlen \textcolor{blue}{2}, \textcolor{blue}{1} und \textcolor{blue}{5}, welche übertragen werden sollen. Daraus bilden wir das Polynom
 \begin{equation}
 p(x)
 =
-2x^2 + 1x + 5 
+\textcolor{blue}{2}x^2 + \textcolor{blue}{1}x + \textcolor{blue}{5}.
 \label{reedsolomon:equation1}
 \end{equation}
-ergeben.
-Übertragen werden nun die stellen 1, 2, 3\dots 7 dieses Polynomes.
-Grafisch sieht man dies dann im Abbild //TODO
-Wenn ein Fehler sich in die Übertragung eingeschlichen hatt, muss der Leser/Empfänger erkennen, welches das Richtige Polynom ist.
-Der Leser/Empfänger weiss, mit welchem Grad das Polynom entwickelt wurde. 
-\subsection{Beispiel}
-Für das Beispeil aus der Gleichung \ref{reedsolomon:equation1},
-ist ein Polynome zweiten Grades durch drei Punkte eindeutig bestimmbar.
-Hat es Fehler in der Übertragunge gegeben, kann man diese erkennen,
-da alle Punkte, die korrekt sind, auf dem Polynom liegen müssen.
-Ab wie vielen Fehler ist das Polynom nicht mehr erkennbar beim Übertragen von 7 Punkten?
-Bei 2 Fehlern kann man noch eindeutig bestimmen, dass das Polynom mit 4 Punkten,
-gegenüber dem mit 5 Punkten falsch liegt.
-Werden es mehr Fehler kann nur erkennt werden das das Polynom nicht stimmt.
-Das Orginale Polynom kann aber nicht mehr gefunden werden.
-Dabei sollten mehr Übertragungspunkte gegeben werden.
+\par 
+Ein Polynom zweiten Grades ist durch drei Punkte eindeutig bestimmbar. 
+Bei einer fehlerlosen Übertragung können wir mit 3 übertragenen Werten
+    das Polynom durch Polynominterpolation volständig rekonstruieren.
+Wir brauchen Polynominterpolation als Methode, um aus den Punkten wieder ein Polynom zu bilden.
+Die Koeffizente des rekonstruierten Polynoms sind dann unsere gesendeten Zahlen \textcolor{blue}{2}, \textcolor{blue}{1} und \textcolor{blue}{5}.
+\par 
+Wie können wir nun Fehler erkennen oder sogar korrigieren?
+Versuchen wir doch, mehr Werte zu übertragen, wie zum Beispiel 7 Werte. 
+Übertragen werden nun die \textcolor{darkgreen}{grünen Werte} 
+    des \textcolor{blue}{blauen Polynomes} an den Stellen 1, 2, 3, \dots , 7.
+In Abbildung \ref{fig:polynom} ist das zu den \textcolor{blue}{Datenpunkten} gehörige Polynom blau dargestellt,
+die \textcolor{darkgreen}{übertragenen Werte} des Polynoms sind grün, wobei diese Punkte aufgrund von Übertragungsfehler jetzt eine Parabel darstellen. 
+Die Fehlerhaften Punkte lassen sich sehr einfach bestimmen, weil diese nicht auf der ursprünglichen Funktion liegen. 
+Somit können die roten Punkte auf der Parabel durch die grauen ersetzt werden und sind damit korrigiert. 
 
-\section{Fehlerbestimmung
-\label{reedsolomon:section:Fehlerbestimmmung}}
-So wird ein Muster indentifiziert, welches genau vorherbestimmen kann,
-wie gross das Polynom sein muss und wie viele Übertragungspunkte gegeben werden müssen.
-Durch ein klein wenig Überlegung ist klar das die anzahl Zahlen (Daten, ab hier verwenden wir das Wort Nutzlast),
-die dan Entschlüsselt werden sollen den Grad des Polynoms minus 1 ergeben.
-Für die Anzahl an Übertragungspunkte, muss bestimmt werden wieviel Fehler erkennt und korrigiert werden sollen.
-Mit Hilfe der Tabelle.... sieht man das es bei $$t$$ Fehlern und $$k$$ Nutzlast,
-für das Übertragen $$k+2t$$ Punkte gegben werden müssen.
+Bisher konnten wir von 7 Zahlen zwei Fehler erkennen und korrigieren. Können wir in diesem Beispiel noch mehr Fehler korrigieren? 
+Wir erhöhen dazu die Fehleranzahl Schritt für Schritt:
+\begin{itemize}
+    \item[\textit{1 Fehler}:] Bei einem Fehler können konkurrenzierende, aber falsche Polynome zusammen mit zwei originalen Punkten entstehen.
+        Dabei können aber maximal 3 Punkte auf diesem Konkurrenzpolynom sein.
+        Da 6 > 3 ist haben wir unser originales Polynom gefunden.
+    \item[\textit{2 Fehler}:] Bei Zwei Fehlern kann ein Fehler mit zwei originalen Punkten ein konkurrenzierendes, aber falsches Polynom bilden.
+        Da der zweite \textcolor{red}{Fehler} frei wählbar ist, kann dieser auch auf dem \textcolor{gray}{Konkurrenzpolynom} liegen, wie in der Abbilbung \ref{fig:polynom} zu sehen ist.
+        Nun haben wir, ein \textcolor{blue}{originales Polynom} mit \textcolor{darkgreen}{5} übereinstimmenden und ein konkurrenzierendes mit 4 Punkten.
+        Da 5 noch grösser als 4 ist, können wir sagen, welches das Originalpolynom ist.
+    \item[\textit{3 Fehler}:] Bei Drei kann genau wie bei 1 oder 2 Fehler, ein konkurenzierendes Polynom mit einem Fehler und zwei originalen Punkten bestimmt werden.
+        Auch hier sind die anderen Fehler frei wählbar und liegen auf dem Konkurrenzpolynom.
+        Nun ist es so das 5 Punkte auf diesem konkurenzierenden Polynom und 4 Punkte auf dem originalen.
+        Das Originalpolynom kann nicht mehr gefunden werden.
+    \item[\textit{4 Fehler}:] Bei Vier kann noch erkannt werden, dass Fehler aufgetreten sind, da 3 originale Punkte das ursprüngliche Polynom ergeben.
+        Somit haben wir mindestens 2 verschieden Polynome, was bedeutet, dass Fehler entstanden sind.
+    \item[\textit{5 Fehler:}] Bei Fünf kann mit den 2 originalen Punkte das Originale Polynom nicht mehr erkannt werden und 
+        somit kann auch keine Aussage mehr gemacht werden, ob Fehler aufgetreten sind oder nicht.
+\end{itemize}
 
-Ein toller Nebeneffekt ist das dadurch auch $$2t$$ Fehler erkannt werden. 
-um zurück auf unser Beispiel zu kommen, 
-können von den 7 Übertragungspunkten bis zu $$2t = 2*2 = 4 $$ Punkten falsch liegen 
-und es wird kein eindeutiges Polynom 2ten Grades erkannt, und somit die Nutzlast Daten als fehlerhaft deklariert.
+\begin{figure}%[!ht]
+	\centering
+	%\includegraphics[width=\textwidth]{papers/reedsolomon/figures/polynom2}
+    \input{papers/reedsolomon/tikz/polynomraw.tex}
+	\caption{Polynom $p(x)$ von der Gleichung\eqref{reedsolomon:equation1}}
+	\label{fig:polynom}
+\end{figure}
+\qedhere
+\end{beispiel}
 
-Ein Polynom durch Punkt mit Polynom Interpolation zu rekonstruieren ist schwierig und Fehleranfällig.
+\section{Anzahl Übertragungswerte bestimmen
+\label{reedsolomon:section:Fehlerkorrekturstellen}}
+Um zu bestimmen, wie viele zusätzliche \textcolor{darkgreen}{Übertragungspunkte} notwendig sind um die Fehler zu korrigieren,
+    muss man zuerst wissen, wie viele \textcolor{blue}{Datenwerte} gesendet und wie viele \textcolor{red}{Fehler} erkannt werden sollen. 
+Die Anzahl Datenwerte ergeben die Anzahl Polynomkoeffizenten \textcolor{blue}{$k$} und somit den Grad $k-1$ des Polynoms.
+Die Bestimmung der Anzahl der Fehler \textcolor{red}{$t$}, welche korrigiert werden können, braucht Redundanz.
+Bilden wir verschieden grosse Polynome und untersuchen diese mit unterschiedlich vielen Fehlern erkennt man allmählich ein Muster.
+
+\begin{table}%[!ht]
+    \centering
+    \begin{tabular}{ c c | c} 
+        \hline
+        Nutzlas & Fehler & Übertragen \\
+        \hline 
+        3 & 2 & 7 Werte eines Polynoms vom Grad 2 \\ 
+        4 & 2 & 8 Werte eines Polynoms vom Grad 3 \\
+        3 & 3 & 9 Werte eines Polynoms vom Grad 2 \\ 
+        \hline
+        $k$ & $t$ & $k+2t$ Werte eines Polynoms vom Grad $k-1$ \\ 
+        \hline
+    \end{tabular}
+    \caption{ Fehlerkorrekturstellen Bestimmung.}
+    \label{tab:fehlerkorrekturstellen}
+\end{table}
+\par 
+Es müssen mehr Punkte auf dem \textcolor{blue}{originalen Polynom} liegen, als auf dem konkurenzierenden.
+Somit braucht man für die Übertragung pro \textcolor{red}{Fehler} zwei Übertragungspunkte mehr.
+Wie in der Tabelle \ref{tab:fehlerkorrekturstellen} ersichtlich ist ergeben sich diese Anzahl an \textcolor{darkgreen}{Punkte} für die Übertragung.
+\begin{equation}
+    \textcolor{darkgreen}{u}=
+    \textcolor{blue}{k}+2\textcolor{red}{t}.
+    \label{reedsolomon:equation2}
+\end{equation}
+
+Ein Nebeneffekt ist, dass auch $2t$ Fehler erkannt werden können, die aber nicht korrigiert werden können.
+Um die Polynomkoeffizenten nach der Übertragung zu rekonstruieren, haben wir jedes mal die Polynominterpolationsmethode angewendet.
+Diese Polynominterpolation ist leider schwierig zu berechnen und sehr fehleranfällig.
+Es wäre daher einfacher, wenn wir eine alternative Vorgehensweise finden könnten. 
+
 
