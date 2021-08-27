@@ -20,9 +20,9 @@ Um ein Erdbeben kenntlich zu machen, werden in der Regel Seismographen mit viele
 Ein Seismograph besteht im Grunde aus einer federgelagerten Masse. Wirkt eine Bodenerregung auf das Gerät ein, schwing das Gehäuse und dadurch auch die gekoppelte Masse. 
 Stoppt das Erdbeben, schwingt das Gehäuse nicht mehr. 
 Die Masse schwing jedoch in seiner Eigendynamik weiter. 
-Relativbewegung des Bodens kann damit als Auslenkung im Zeitverlauf gemessen werden.
+Eine Relativbewegung des Bodens kann damit als Auslenkung im Zeitverlauf gemessen werden.
 In modernen Seismographen wird die Bodenbewegung in alle Richtungen gemessen, sowohl Horizontal als auch Vertikal. 
-Wir konstruieren uns eine einfachere Version eines Seismographen mit eine Gehäuse, an dem zwei Federn und eine Masse befestigt sind. 
+Wir konstruieren uns eine einfachere Version eines Seismographen mit einem Gehäuse, an dem zwei Federn und eine Masse befestigt sind. 
 Der Seismograph ist in Abbildung ~\ref{erdbeben:Seismograph} ersichtlich.
 Ein Sensor unter der Masse misst die Position, bzw. die Auslenkung der Feder und der Masse.
 Dies bedeutet, unser Seismograph kann nur in eine Dimension Messwerte aufnehmen. 
@@ -53,28 +53,40 @@ Die Gleichung lautet:
 m\ddot s + 2k \dot s + Ds = f.
 \end{equation}
 wobei $m$ die Masse, $k$ die Dämpfungskonstante und $D$ die Federkonstante bezeichnet.
-Da die Differentialgleichung linear ist, kann sie in die kompaktere und einfachere Matrix-Form umgewandelt werden.
-Dazu verwenden wir die Subsitution:
-\[ s_1 = s \qquad \text{und} \qquads_2 = \dot s.\]
-Somit entstehen die Gleichungen für die Position $ \dot s_1(t)$ der Masse :
+
+
+Da die Differentialgleichung linear ist möchten wir diese Gleichung in die Darstellung $\dot x = Ax$ überführen, wobei $x$ der Zustandsvektor und $A$ die Systemmatrix bezeichnet. Dazu verwenden wir die Subsitution:
+\[ 
+s_1 = s 
+\qquad \text{und} \qquad
+s_2 = \dot s.
+\]
+Somit entstehen die Gleichungen für die Geschwindigkeit $ \dot s_1(t)$ der Masse :
 \[ \dot {s_1} = {s_2}\] 
 und
 \[ \dot s_2 = -\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \] 
 für die Beschleunigung $\dot s_2(t)$ der Masse.
 Diese können wir nun in der Form
-\[ f =-\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \]
-auch als Matrix-Vektor-Gleichung darstellen.
-Dafür wird die Gleichung in die Zustände aufgeteilt. 
-Die für uns relevanten Zustände sind die Position der Masse, die Geschwindigkeit der Masse und die äussere Beschleunigung des ganzen Systems. 
+\[ \ddot f =-\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \]
+als skalare Gleichung darstellen.
 
-Dabei muss unterschieden werden, um welche Beschleunigung es sich handelt.
-Das System beinhaltet sowohl eine Beschleunigung der Masse (innere Beschleunigung) als auch eine Beschleunigung der ganzen Apparatur (äussere Beschleunigung). 
+Die für uns relevanten Zustände sind die Position der Masse, die Geschwindigkeit der Masse und die äussere Beschleunigung des ganzen Systems.
+Unüblich ist nun, dass der Stör-Term $f$ in Gleichung (20.1) gerade das ist, was wir eigentlich bestimmen möchten.  
 In unserem Fall wird die äusseren Beschleunigung gesucht, da diese der Erdbebenanregung gleich kommt.
-Dazu wird ein Zustandsvektor definiert:
+Deshalb nehmen wir $f$ als dritte Grösse in den Zustandsvektor auf und definieren:
+
 \[ 
- \left(\begin{array}{c} {s_1} \\ {s_2} \\ {f} \end{array}\right).
- \] 
-Durch Rücksubstituion ergibt sich uns folgende Systemgleichung in Matrix schreibweise, , wobei $\sot {s_1}= v$ ist:
+ x = (s_1, s_2, f)^T.
+  \] 
+  
+Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$. Für $\dot s_1$ und $\dot s_2$ folgen diese direkt aus Gleichung (20.1), aber über $\dot f$ wissen wir nichts. 
+Wir müssen also eine Annahme treffen: $\dot f = 0$. Diese Annahme ist im Allgemeinen falsch, aber etwas Besseres haben wir zurzeit nicht zur Verfügung. 
+Zudem treffen wir die Annahme, das sich die Kraft über die Beobachtungszeit nicht verändert.
+Wir werden dies in einem späteren Schritt kompensieren müssen.
+Da die Kraft unbekannt ist, wird die letzte Zeile mit Nullen gefüllt, denn genau diese Werte wollen wir. 
+
+
+Durch Rücksubstituion ergibt sich uns folgende Systemgleichung in Matrix schreibweise, wobei $\dot {s_1}= v$ ist. Damit haben wir nun alles, was wir für die Matrix-Darstellung von Gleichung (20.1) benötigen. Diese lautet:
 \begin{equation}
 \frac{d}{dt} \left(\begin{array}{c} s(t) \\ v(t) \\ f(t) \end{array}\right) = \left(
  \begin{array}{ccc} 	
@@ -83,11 +95,7 @@ Durch Rücksubstituion ergibt sich uns folgende Systemgleichung in Matrix schrei
 0 & 0 & 0\\
 \end{array}\right)  \left(\begin{array}{c} s(t)\\ v(t)\\ f(t) \end{array}\right).
 \end{equation}
-Wir wissen nicht wie sich die Kraft verhält. 
-Deshalb treffen wir die Annahme, das sich die Kraft über die Beobachtungszeit nicht verändert.
-Diese Annahme ist nicht zulässig, jedoch ist dies das beste, was wir Annehmen können. 
-Diese unzutreffende Annahme wird späteren Berechnungen berücksichtigen werden
-Da die Kraft unbekannt ist, wird die letzte Zeile mit Nullen gefüllt, denn genau diese Werte wollen wir. 
+
 
 
 
