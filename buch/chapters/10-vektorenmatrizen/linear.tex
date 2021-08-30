@@ -8,7 +8,7 @@
 \rhead{Lineare Algebra}
 In diesem Abschnitt tragen wir die bekannten Resultate der linearen
 Algebra zusammen.
-Meistens lernt man diese zuerst für Vektoren und Gleichungssyteme mit
+Meistens lernt man diese zuerst für Vektoren und Gleichungssysteme mit
 reellen Variablen.
 In der linearen Algebra werden aber nur die arithmetischen
 Grundoperationen verwendet, es gibt also keinen Grund, warum sich
@@ -16,7 +16,8 @@ die Theorie nicht über einem beliebigen Zahlenkörper entwickeln
 lassen sollte.
 Die in Kapitel~\ref{buch:chapter:endliche-koerper} untersuchten
 endlichen Körper sind zum Beispiel besser geeignet für Anwendungen in
-der Kryptographie oder für die diskrete schnelle Fourier-Transformation.
+der Kryptographie, der Codierungstheorie oder für die diskrete schnelle
+Fourier-Transformation.
 Daher geht es in diesem Abschnitt weniger darum alles herzuleiten,
 sondern vor allem darum, die Konzepte in Erinnerung zu rufen und
 so zu formulieren, dass offensichtlich wird, dass alles mit einem
@@ -28,27 +29,31 @@ beliebigen Zahlkörper $\Bbbk$ funktioniert.
 \subsection{Vektoren
 \label{buch:grundlagen:subsection:vektoren}}
 Koordinatensysteme haben ermöglicht, Punkte als Zahlenpaare zu beschreiben.
-Dies ermöglicht, geometrische Eigenschaften als Gleichungen auszudrücken,
-aber mit Punkten kann man trotzdem noch nicht rechnen.
+Dies ermöglicht, geometrische Eigenschaften als Gleichungen auszudrücken.
+Das bedeutet aber nur, dass man mit den Koordinaten rechnen kann,
+mit den Punkten selbst kann man trotzdem noch nicht rechnen.
 Ein Vektor fasst die Koordinaten eines Punktes in einem Objekt zusammen,
 mit dem man auch rechnen und zum Beispiel Parallelverschiebungen
 algebraisieren kann.
-Um auch Streckungen ausdrücken zu können, wird auch eine Menge von
+Um auch Streckungen ausdrücken zu können, wird zudem eine Menge von
 Streckungsfaktoren benötigt, mit denen alle Komponenten eines Vektors
 multipliziert werden können.
 Sie heissen auch {\em Skalare} und liegen in $\Bbbk$.
 
 \subsubsection{Zeilen- und Spaltenvektoren}
 Vektoren sind Tupel von Elementen aus $\Bbbk$.
+\index{Vektor}%
 
 \begin{definition}
 Ein $n$-dimensionaler {\em Spaltenvektor} ist ein $n$-Tupel von Zahlen aus
+\index{Spaltenvektor}%
 $\Bbbk$ geschrieben als
 \[
 v = \begin{pmatrix} v_1\\v_2\\\vdots\\v_n\end{pmatrix}
 \in \Bbbk^n.
 \]
 Ein $m$-dimensionaler {\em Zeilenvektor} wird geschrieben als
+\index{Zeilenvektor}%
 \[
 u = \begin{pmatrix}u_1&u_2&\dots&u_m\end{pmatrix} \in \Bbbk^m.
 \]
@@ -56,6 +61,7 @@ u = \begin{pmatrix}u_1&u_2&\dots&u_m\end{pmatrix} \in \Bbbk^m.
 
 Für Vektoren gleicher Dimension sind zwei Rechenoperationen definiert.
 Die {\em Addition von Vektoren} $a,a\in\Bbbk^n$  und die Multiplikation
+\index{Addition von Vektoren}%
 eines Vektors mit einem Skalar $\lambda\in\Bbbk$ erfolgt elementweise:
 \[
 a+b
@@ -75,6 +81,9 @@ a+b
 \]
 Die üblichen Rechenregeln sind erfüllt, nämlich
 \begin{equation}
+\index{Kommutativgesetz}%
+\index{Assoziativgesetz}%
+\index{Distributivgesetz}%
 \begin{aligned}
 &\text{Kommutativität:}
 &
@@ -105,12 +114,13 @@ man Skalare immer links von Vektoren schreiben muss.
 Die Distributivgesetze zum Beispiel sagen, dass man Ausmultipilizieren
 oder Ausklammern kann genauso wie in Ausdrücken, die nur Zahlen enthalten.
 
-Man beachte, dass es im allgemeinen kein Produkt von Vektoren gibt.
+Man beachte, dass es im Allgemeinen kein Produkt von Vektoren gibt.
 Das aus der Vektorgeometrie bekannte Vektorprodukt ist eine Spezialität
 des dreidimensionalen Raumes, es gibt keine Entsprechung dafür in anderen
 Dimensionen.
 
 \subsubsection{Standardbasisvektoren}
+\index|{Standardbasisvektor}%
 In $\Bbbk^n$ findet man eine Menge von speziellen Vektoren, durch die
 man alle anderen Vektoren ausdrücken kann.
 Mit den sogenannten {\em Standardbasisvektoren}
@@ -137,6 +147,10 @@ a_n \begin{pmatrix}0\\0\\\vdots\\1\end{pmatrix}
 a_1e_1+a_2e_2+\dots+a_ne_n
 \]
 ausgedrückt werden.
+Dies ist ein Speziallfall des Begriffs der Linearkombination, der
+weiter unten in
+Definition~\ref{buch:vektoren-und-matrizen:def:linearkombination}
+eingeführt wird.
 
 \subsubsection{Vektorraum}
 Die Rechnungen, die man gemäss der Rechengesetze
@@ -147,7 +161,7 @@ Jede Art von mathematischem Objekt, mit dem man so rechen kann,
 kann als (abstrakter) Vektor betrachtet werden.
 
 \begin{definition}
-Eine Menge $V$ von Objekten, auf der zwei Operationen definiert,
+Eine Menge $V$ von Objekten, auf der zwei Operationen definiert sind,
 nämlich die Addition, geschrieben $a+b$ für $a,b\in V$ und die
 Multiplikation mit Skalaren, geschrieben $\lambda a$ für $a\in V$ und
 $\lambda\in \Bbbk$, heisst ein {\em $\Bbbk$-Vektorraum} oder {\em Vektorraum
@@ -155,6 +169,8 @@ $\lambda\in \Bbbk$, heisst ein {\em $\Bbbk$-Vektorraum} oder {\em Vektorraum
 einfach nur {\em Vektorraum}, wenn $\Bbbk$ aus dem Kontext klar sind),
 wenn die Rechenregeln~\eqref{buch:vektoren-und-matrizen:eqn:vrgesetze}
 gelten
+\index{Vektorraum}%
+\index{k-Vektorraum@$\Bbbk$-Vektorraum}%
 \end{definition}
 
 Die Mengen von Spaltenvektoren $\Bbbk^n$ sind ganz offensichtlich
@@ -164,6 +180,7 @@ Polynomen mit Koeffizienten in $\Bbbk$ sind ebenfalls Vektorräume.
 
 \begin{beispiel}
 Die Zahlenmenge $\mathbb{C}$ ist ein $\mathbb{R}$-Vektorraum.
+\index{C als R-Vektorraum@$\mathbb{C}$ als $\mathbb{R}$-Vektorraum}%
 Elemente von $\mathbb{C}$ können addiert und mit reellen Zahlen
 multipliziert werden.
 Die Rechenregeln für die komplexen Zahlen umfassen auch alle Regeln
@@ -174,6 +191,7 @@ $\mathbb{C}$ ein Vektorraum über $\mathbb{R}$.
 \begin{beispiel}
 Die Menge $C([a,b])$ der stetigen Funktionen $[a,b]\to\mathbb{Re}$
 bildet ein Vektorraum.
+\index{stetige Funktionen}%
 Funktionen können addiert und mit reellen Zahlen multipliziert werden:
 \[
 (f+g)(x) = f(x) + g(x)
@@ -190,13 +208,16 @@ Die Vektorraum-Rechenregeln
 Die Beispiele zeigen, dass der Begriff des Vektorraums die algebraischen
 Eigenschaften eine grosse Zahl sehr verschiedenartiger mathematischer
 Objekte beschreiben kann.
-Alle Erkenntnisse, die man ausschliesslich aus Vekotorraumeigenschaften
+Alle Erkenntnisse, die man ausschliesslich aus Vektorraumeigenschaften
 gewonnen hat, sind auf alle diese Objekte übertragbar.
 Im folgenden werden wir alle Aussagen für einen Vektorraum $V$ formulieren,
 wenn wir die Darstellung als Tupel $\Bbbk^n$ nicht brauchen.
 
 \subsubsection{Gleichungssysteme in Vektorform}
 Die Vektorraum-Operationen erlauben nun auch, lineare Gleichungssysteme
+\index{lineares Gleichungssytem}%
+\index{Gleichungssytem, lineares}%
+\index{Vektorform}%
 in {\em Vektorform} zu schreiben:
 \index{Vektorform eines Gleichungssystems}%
 \begin{equation}
@@ -222,11 +243,13 @@ x_n
 \begin{pmatrix}b_1\\\vdots\\b_m\end{pmatrix}
 \label{buch:vektoren-und-matrizen:eqn:vektorform}
 \end{equation}
-Die rechte Seite von~\eqref{buch:vektoren-und-matrizen:eqn:vektorform}
-ist eine Linearkombination der Spaltenvektoren.
+Die linke Seite der Gleichung rechts in~\eqref{buch:vektoren-und-matrizen:eqn:vektorform}
+\index{Linearkombination}%
+ist, wie man sagt, eine Linearkombination der Spaltenvektoren.
 
 \begin{definition}
-Eine Linearkombination der Vektoren $v_1,\dots,v_n\in V$ ist ein Ausdruck
+\label{buch:vektoren-und-matrizen:def:linearkombination}
+Eine {\em Linearkombination} der Vektoren $v_1,\dots,v_n\in V$ ist ein Ausdruck
 der Form
 \[
 v
@@ -249,7 +272,7 @@ Sind $a_1,\dots,a_n\in V$ Vektoren, dann heisst die Menge
 \]
 aller Vektoren, die sich durch Linearkombination aus den Vektoren
 $a_1,\dots,a_n$ gewinnen lassen, der von $a_1,\dots,a_n$
-aufgespannte Raum.
+{\em aufgespannte Raum}.
 \end{definition}
 
 \subsubsection{Lineare Abhängigkeit}
@@ -336,6 +359,7 @@ Skalaren immer noch möglich ist.
 
 \begin{definition}
 Eine Teilmenge $U\subset V$ heisst ein {\em Unterraum} von $V$, wenn
+\index{Unterraum}%
 $U$ selbst ein $\Bbbk$-Vektorraum ist, also
 \[
 \begin{aligned}
@@ -359,7 +383,7 @@ Spaltenvektoren Spezialfälle sind.
 
 \subsubsection{Definition einer Matrix}
 \begin{definition}
-Eine $m\times n$-Matrix $A$ (über $\Bbbk$) ist rechteckiges Schema
+Eine {\em $m\times n$-Matrix} $A$ (über $\Bbbk$) ist ein rechteckiges Schema
 \index{Matrix}%
 \[
 A
@@ -374,7 +398,11 @@ a_{m1}&a_{m2}&\dots &a_{mn}\\
 mit $a_{ij}\in\Bbbk$.
 Die Menge aller $m\times n$-Matrizen wird mit
 \[
-M_{m\times n}(\Bbbk) = \{ A\;|\; \text{$A$ ist eine $m\times n$-Matrix}\}.
+M_{m\times n}(\Bbbk)
+=
+M_{m,n}(\Bbbk)
+=
+\{ A\;|\; \text{$A$ ist eine $m\times n$-Matrix}\}.
 \]
 Falls $m=n$ gilt, heisst die Matrix $A$ auch {\em quadratisch}
 \index{quadratische Matrix}%
@@ -426,20 +454,23 @@ a_{m1}+b_{m1}&a_{m2}+b_{m2}&\dots &a_{mn}+b_{mn}
 \end{definition}
 
 \subsubsection{Multiplikation}
-Will man ein lineares Gleichungssystem mit Hilfe der Matrix $A$ der
+Will man ein lineares Gleichungssystem
+wie~\eqref{buch:vektoren-und-matrizen:eqn:vektorform}
+mit Hilfe der Matrix $A$ der
 Koeffizienten schreiben, bekommt es die Form $Ax=b$, wobei der Vektor
 der rechten Seiten ist, und $x$ ein Vektor von unbekannten Zahlen.
 Dies ist jedoch nur sinnvoll, wenn das Produkt $Ax$ sinnvoll definiert
 werden kann.
 
 \begin{definition}
+\label{buch:vektoren-und-matrizen:def:matrixmultiplikation}
 Eine $m\times n$-Matrix $A\in M_{m\times n}(\Bbbk)$ und eine
 $n\times l$-Matrix $B\in M_{n\times l}(\Bbbk)$ haben als Produkt
 eine $m\times l$-Matrix $C=AB\in M_{m\times l}(\Bbbk)$ mit den
 Koeffizienten
 \begin{equation}
 c_{ij} = \sum_{k=1}^n a_{ik} b_{kj}.
-\label{buch:vektoren-unbd-matrizen:eqn:matrixmultiplikation}
+\label{buch:vektoren-und-matrizen:eqn:matrixmultiplikation}
 \end{equation}
 \end{definition}
 
@@ -487,6 +518,22 @@ I
 \end{pmatrix}.
 \]
 
+\subsubsection{Transponierte Matrix}
+\index{transponierte Matrix}%
+\index{Matrix, transponiert}%
+Die zu einer $m\times n$-Matrix $A$ {\em transponierte} Matrix ist die
+$n\times m$-Matrix
+\[
+A^t=\begin{pmatrix}
+a_{11}&a_{21}&\dots&a_{m1}\\
+a_{12}&a_{22}&\dots&a_{m2}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{1n}&a_{2n}&\dots&a_{mn}
+\end{pmatrix}.
+\]
+Sie entsteht aus der Matrix $A$ durch Vertauschung von Zeilen und Spalten.
+Aus der Definition~\ref{buch:vektoren-und-matrizen:def:matrixmultiplikation}
+folgt unmittelbar die Rechenregel $(AB)^t = B^tA^t$.
 
 %
 % Gleichungssysteme
@@ -523,17 +570,21 @@ Ein Gleichungssystem mit rechter Seite $0$ heisst {\em homogen}.
 \index{homogenes Gleichungssystem}%
 Zu jedem {\em inhomogenen} Gleichungssystem $Ax=b$ mit $b\ne 0$
 ist $Ax=0$ das zugehörige homogene Gleichungssystem.
+\index{inhomogenes Gleichungssystem}%
 
 Ein homogenes Gleichungssytem $Ax=0$ hat immer mindestens die
 Lösung $x=0$, man nennt sie auch die {\em triviale} Lösung.
+\index{triviale Lösung}%
 Eine Lösung $x\ne 0$ heisst auch eine nichttriviale Lösung.
 Die Lösungen eines inhomgenen Gleichungssystem $Ax=b$ ist also nur dann
 eindeutig, wenn das zugehörige homogene Gleichungssystem eine nichttriviale
 Lösung hat.
 
 \subsubsection{Gauss-Algorithmus}
-Der Gauss-Algorithmus oder genauer Gausssche Eliminations-Algorithmus
-löst ein lineare Gleichungssystem der
+Der Gauss-Algorithmus oder genauer Gausssche Eliminationsalgorithmus
+löst ein lineares Gleichungssystem der
+\index{Gauss-Algorithmus}%
+\index{Gausscher Eliminationsalgorithmus}%
 Form~\eqref{buch:vektoren-und-matrizen:eqn:vektorform}.
 Die Koeffizienten werden dazu in das Tableau
 \[
@@ -547,15 +598,16 @@ a_{m1}&\dots &a_{mn}&b_m   \\
 \]
 geschrieben.
 Die vertikale Linie erinnert an die Position des Gleichheitszeichens.
-Es beinhaltet alle Informationen zur Durchführung des Algorithmus.
+Das Tableau beinhaltet alle Informationen zur Durchführung des Algorithmus.
 Der Algorithmus is so gestaltet, dass er nicht mehr Speicher als
 das Tableau benötigt, alle Schritte operieren direkt auf den Daten
 des Tableaus.
 
 In jedem Schritt des Algorithmus wird zunächst eine Zeile $i$ und
-Spalte $j$ ausgewählt, das Elemente $a_{ij}$ heisst das Pivotelement.
+Spalte $j$ ausgewählt, das Elemente $a_{ij}$ heisst das {\em Pivotelement}.
 \index{Pivotelement}%
 Die {\em Pivotdivision}
+\index{Pivotdivision}
 \[
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
@@ -581,7 +633,8 @@ stellt sicher, dass das Pivot-Element zu $1$ wird.
 \index{Pivotdivision}
 Dies ist gleichbedeutend mit der Auflösung der Gleichung $i$ noch der
 Variablen $x_j$.
-Mit der {\em Zeilensubtraktion} auf Zeile $k\ne i$ können die Einträge in der
+Mit der {\em Zeilensubtraktion} auf Zeile $k>i$ können die Einträge in der
+\index{Zeilenoperation}%
 Spalte $j$ zu Null gemacht werden.
 Dazu wird das $a_{kj}$-fache der Zeile $i$ von Zeile $k$ subtrahiert:
 \[
@@ -611,8 +664,10 @@ Pivotelement zu $0$ zu machen.
 Beide Operationen können in einem Durchgang durchgeführt werden.
 
 Die beiden Operationen Pivotdivision und Zeilensubtraktion werden jetzt
-kombiniert um im linken Teil des Tableaus möglichst viele Nullen und
+kombiniert, um im linken Teil des Tableaus möglichst viele Nullen und
 Einsen zu erzeugen.
+Dabei kann es nötig werden, Zeilen zu vertauschen, um ein von $0$
+verschiedenes Pivotelement zu finden.
 Im Idealfall wird ein Tableau der Form
 \[
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
@@ -626,8 +681,9 @@ Im Idealfall wird ein Tableau der Form
 \]
 erreicht, was natürlich nur $m=n$ möglich ist.
 Interpretiert man die Zeilen dieses Tableaus wieder als Gleichungen,
-dann liefert die Zeile $i$ den Wert $x_i=u_i$ für die Variable $i$.
-Die Lösung kann also in der Spalte rechts abgelesen werden.
+dann liefert die Zeile $i$ den Wert $x_i=u_i$ für die Variable
+mit Nummer $i$.
+Der Lösungsvektor kann also in der Spalte rechts abgelesen werden.
 
 \begin{figure}
 \centering
@@ -652,7 +708,7 @@ Spalten über den Pivotelemnten frei zu räumen.
 \index{Rückwärtseinsetzen}%
 Wenn in einer Spalte kein von $0$ verschiedenes Element als Pivotelement
 zur Verfügung steht, wird diese Spalte übersprungen.
-Die so erzeuge Tableau-Form heisst auch die {\em reduzierte Zeilenstufenform}
+Die so erzeugte Tableau-Form heisst auch die {\em reduzierte Zeilenstufenform}
 ({\em reduced row echelon form}, RREF).
 \index{reduzierte Zeilenstufenform}%
 \index{reduced row echelon form}%
@@ -698,6 +754,19 @@ $x_{j_1}, x_{j_2},\dots, x_{j_k}$ kann die Lösungsmenge als
 =
 \left\{
 \left.
+\begin{pmatrix}
+x_1\\
+x_2\\
+\vdots\\
+{\color{darkgreen}x_{i_1}}\\
+x_{i_1+1}\\
+\vdots\\
+{\color{darkgreen}x_{i_2}}\\
+x_{i_2+1}\\
+\vdots\\
+x_m
+\end{pmatrix}
+=
 \begin{pmatrix}
 d_1\\
 d_2\\
@@ -812,7 +881,8 @@ b_1e_1 + b_2e_2 + \dots + b_ne_n
 b.
 \end{align*}
 Die Linearkombination $x=b_1c_1+\dots+b_nc_n$ kann in Vektorform als $x=Cb$
-geschrieben werden.
+geschrieben werden, wenn die Vektoren $c_i$ als Spalten einer Matrix $C$ 
+interpretiert werden.
 
 Die Konstruktion von $C$ bedeutet auch, dass $AC=E$, daher heisst $C$ auch
 die zu $A$ {\em inverse Matrix}.
@@ -824,7 +894,7 @@ daraus folgt aber noch nicht, dass auch $A^{-1}A=I$ ist.
 Diese Eigenschaft kann man jedoch wie folgt erhalten.
 Sei $C$ die inverse Matrix von $A$, also $AC=I$.
 Sei weiter $D$ die inverse Matrix von $C$, also $CD=I$.
-Dann ist zunächst $A=AE=A(CD)=(AC)D=ID=D$ und weiter
+Dann ist zunächst $A=AI=A(CD)=(AC)D=ID=D$ und weiter
 $CA=CD=I$.
 Mit der Bezeichnung $C=A^{-1}$ erhalten wir also auch $A^{-1}A=I$.
 
@@ -848,7 +918,8 @@ lösbar ist.
 \label{buch:linear:determinate:def}
 Das Produkt der Pivot-Elemente bei der Durchführung des Gauss-Algorithmus
 für eine Gleichungssystem mit quadratischer Koeffizientenmatrix $A$
-heisst die Determinante $\det(A)$ der Matrix $A$.
+heisst die {\em Determinante} $\det(A)$ der Matrix $A$.
+\index{Determinante}%
 \end{definition}
 
 Aus den Regeln für die Durchführung des Gauss-Algorithmus kann man die
@@ -887,17 +958,18 @@ und
 \ref{buch:linear:determinante:asymetrisch}
 eindeutig bestimmt.
 \item
-Der Entwicklungssatz von Laplace.
+Der Entwicklungssatz von Laplace:
 \index{Entwicklungssatz Laplace}%
 Die Determinante der $n\times n$-Matrix $A$ kann mit der Formel
 \begin{equation}
 \det(A)
 =
-\sum_{i=1}^n (-1)^{i+j} a_{ij} \cdot \det(A_{ij})
+\sum_{i=1}^n (-1)^{i+j} a_{i\!j} \cdot \det(A_{i\!j})
 \end{equation}
-wobei die $(n-1)\times(n-1)$-Matrix $A_{ij}$ die Matrix $A$ ist, aus der
+berechnet werden,
+wobei die $(n-1)\times(n-1)$-Matrix $A_{i\!j}$ die Matrix $A$ ist, aus der
 man Zeile $i$ und Spalte $j$ entfernt hat.
-$A_{ij}$ heisst ein {\em Minor} der Matrix $A$.
+$A_{i\!j}$ heisst ein {\em Minor} der Matrix $A$.
 \index{Minor einer Matrix}%
 \end{enumerate}
 
@@ -925,6 +997,9 @@ aei + bfg + cdh - ceg - bdi - afh.
 Die Determinanten ermöglicht auch, eine Formel für die Lösung eines
 Gleichungssystems zu geben.
 Dies ist bekannt als die {\em Regel von Cramer}.
+\index{Cramer, Regel von}%
+\index{Cramersche Regel}%
+\index{Regel von Cramer}%
 
 \begin{satz}
 \label{buch:linear:determinante:cramer}
@@ -971,9 +1046,9 @@ Die Inverse der $n\times n$-Matrix $A$ ist gegeben durch
 =
 \frac{1}{\det(A)}
 \begin{pmatrix}
-\det(A_{11}) & -\det(A_{21}) & \dots & (-1)^{i+1}\det(A_{i1}) & \dots
+\phantom{(-1)^{1+1}}\det(A_{11}) & \phantom{()^{1+1}}-\det(A_{21}) & \dots & (-1)^{i+1}\det(A_{i1}) & \dots
 	& (-1)^{1+n} \det(A_{n1}) \\
--\det(A_{12}) & \det(A_{22}) & \dots & (-1)^{i+2}\det(A_{i2}) & \dots
+\phantom{()^{1+1}}-\det(A_{12}) & \phantom{(-1)^{1+1}}\det(A_{22}) & \dots & (-1)^{i+2}\det(A_{i2}) & \dots
 	& (-1)^{2+n} \det(A_{n2}) \\
 \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
 (-1)^{1+j}\det(A_{1j}) & (-1)^{2+j}\det(A_{2j}) & \dots
@@ -982,7 +1057,7 @@ Die Inverse der $n\times n$-Matrix $A$ ist gegeben durch
 \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
 (-1)^{1+n}\det(A_{1n}) & (-1)^{2+n}\det(A_{2n}) & \dots
 	& (-1)^{i+n}\det(A_{in})
-	& \dots & \det(A_{nn})
+	& \dots & \phantom{(-1)^{n+n}}\det(A_{nn})
 \end{pmatrix}
 \label{buch:linalg:inverse:formel}
 \end{equation}
@@ -992,7 +1067,7 @@ heisst die {\em Adjunkte} $\operatorname{adj}A$ von $A$.
 \index{Adjunkte}%
 \end{satz}
 
-Der Satz~\ref{buch:linalg:inverse:adjoint} liefert eine algebraische
+Der Satz~\ref{buch:linalg:inverse:adjunkte} liefert eine algebraische
 Formel für die Elemente der inversen Matrix.
 Für kleine Matrizen wie im nachfolgenden Beispiel ist die
 Formel~\eqref{buch:linalg:inverse:formel} oft einfachter anzuwenden.
@@ -1011,7 +1086,7 @@ d&-b\\
 erhält.
 
 \begin{beispiel}
-Die Inverse der Matrix
+Die Matrix
 \begin{equation}
 A=\begin{pmatrix}
 1&a&a\\
@@ -1022,8 +1097,9 @@ a&a&1
 \end{equation}
 ist mit Hilfe von Determinanten besonders einfach zu invertieren.
 Die Determinante von $A$ ist nach der Sarrus-Formel
+Satz~\ref{buch:linear:determinate:sarrus}
 \[
-\operatorname{adj}A
+\operatorname{det}A
 =
 1 + 2a^3  - 3a^2.
 \]
@@ -1048,13 +1124,13 @@ A^{-1}
 -\left|\begin{matrix}a&a\\a&1\end{matrix}\right|
 &
 \left|\begin{matrix}a&a\\1&a\end{matrix}\right|
-\\
+\\[10pt]
 -\left|\begin{matrix}a&a\\a&1\end{matrix}\right|
 &
 \left|\begin{matrix}1&a\\a&1\end{matrix}\right|
 &
 -\left|\begin{matrix}1&a\\a&a\end{matrix}\right|
-\\
+\\[10pt]
 \left|\begin{matrix}a&1\\a&a\end{matrix}\right|
 &
 -\left|\begin{matrix}1&a\\a&a\end{matrix}\right|
@@ -1071,7 +1147,7 @@ a^2-a & a^2-a & 1-a^2
 \end{pmatrix}.
 \end{align*}
 Mit $1-a^2=(1+a)(1-a)$ und $a^2-a=a(a-1)$ kann man dies noch etwas
-vereinfachen, indem man den gemeinsamen Faktor $1-a$ ausklammern.
+vereinfachen, indem man den gemeinsamen Faktor $1-a$ ausklammert.
 Man erhält so die Form
 \begin{equation}
 A^{-1}
@@ -1091,6 +1167,7 @@ für die Inverse einer Matrix der Form
 \subsubsection{Produktregel für die Determinante}
 Aus der Charakterisierung der Determinanten kann man auch ableiten,
 dass  die Produktregel 
+\index{Produktregel}%
 \[
 \det (AB) = \det(A) \cdot \det(B)
 \]
@@ -1114,8 +1191,9 @@ dass die Operationen des Vektorraums erhalten bleiben.
 Dies wird von der folgenden Definition erreicht.
 
 \begin{definition}
+\index{lineare Abbildung}%
 Eine Abbildung $f\colon V\to U$ zwischen Vektorräumen $V$ und $U$
-heisst linear, wenn
+heisst {\em linear}, wenn
 \[
 \begin{aligned}
 f(v+w) &= f(v) + f(w)&&\forall v,w\in V
@@ -1126,12 +1204,13 @@ f(\lambda v) &= \lambda f(v) &&\forall v\in V,\lambda \in \Bbbk
 gilt.
 \end{definition}
 
-Lineare Abbildungen sind in der Mathematik sehr verbreitet.
+Lineare Abbildungen sind in der Mathematik weit verbreitet, wie die
+folgenden Beispiele zeigen.
 
 \begin{beispiel}
 Sie $V=C^1([a,b])$ die Menge der stetig differenzierbaren Funktionen
 auf dem Intervall $[a,b]$ und $U=C([a,b])$ die Menge der
-stetigen Funktion aif $[a,b]$.
+stetigen Funktion auf $[a,b]$.
 Die Ableitung $\frac{d}{dx}$ macht aus einer Funktion $f(x)$ die
 Ableitung $f'(x)$.
 Die Rechenregeln für die Ableitung stellen sicher, dass
@@ -1196,9 +1275,12 @@ x_n(a_{1n} c_1 + \dots + a_{mn} c_m)
 Die Koordinaten von $f(x)$ in der Basis $\mathcal{C}$ in $U$ sind
 also gegeben durch das Matrizenprodukt $Ax$, wenn $x$ der Spaltenvektor
 aus den Koordinaten in der Basis $\mathcal{B}$ in $V$ ist.
+Die Matrix $A$ heisst die Matrix der linearen Abbildung $f$ in
+den Basen $\mathcal{B}$ bzw.~$\mathcal{C}$.
+\index{Matrix einer linearen Abbildung}%
 
 Die Matrix einer linearen Abbildung macht Aussagen über eine lineare
-Abbilung der Rechnung zugänglich.
+Abbilung der rechnerischen Untersuchung zugänglich.
 Allerdings hängt die Matrix einer linearen Abbildung von der Wahl der
 Basis ab.
 Gleichzeitig ist dies eine Chance, durch Wahl einer geeigneten Basis
@@ -1208,10 +1290,10 @@ Problems optimal geeignet ist.
 \subsubsection{Basiswechsel}
 In einem Vektorraum $V$ seien zwei Basen $\mathcal{B}=\{b_1,\dots,b_n\}$
 und $\mathcal{B}'=\{b_1',\dots,b_n'\}$ gegeben.
-Ein Vektor $v\in V$ kann in beiden beiden Basen dargestellt werden.
+Ein Vektor $v\in V$ kann in beiden Basen dargestellt werden.
 Wir bezeichnen mit dem Spaltenvektor $x$ die Koordinaten von $v$ in der
 Basis $\mathcal{B}$ und mit dem Spaltenvektor $x'$ die Koordinaten
-in der Basisi $\mathcal{B}'$.
+in der Basis $\mathcal{B}'$.
 Um die Koordinaten umzurechnen, muss man die Gleichung
 \begin{equation}
 x_1b_1 + \dots + x_nb_n = x_1'b_1' + \dots + x_n'b_n'
@@ -1220,7 +1302,7 @@ x_1b_1 + \dots + x_nb_n = x_1'b_1' + \dots + x_n'b_n'
 lösen.
 
 Stellt man sich die Vektoren $b_i$ und $b_j'$ als $m$-dimensionale
-Spaltenvektoren vor mit $m\ge n$, dann bekommt
+Spaltenvektoren mit $m\ge n$ vor, dann bekommt
 \eqref{buch:vektoren-und-matrizen:eqn:basiswechselgleichung}
 die Form eines Gleichungssystems
 \[
@@ -1231,7 +1313,8 @@ b_{m1}x_1&+& \dots &+&b_{mn}x_n&=&b_{m1}'x_1'&+& \dots &+&b_{mn}'x_n'
 \end{linsys}
 \]
 Dieses Gleichungssystem kann man mit Hilfe eines Gauss-Tableaus lösen.
-Wir schreiben die zugehörigen Variablen
+Wir schreiben die zugehörigen Variablen in die Kopfzeile der Tableaus.
+Die Durchführung des Gauss-Algorithmus liefert
 \[
 \renewcommand{\arraystretch}{1.1}
 \begin{tabular}{|>{$}c<{$} >{$}c<{$} >{$}c<{$}|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
@@ -1267,12 +1350,27 @@ Vektor in $V$ sich in beiden Mengen $\mathcal{B}$ und $\mathcal{B}'$
 ausdrücken lässt.
 Dies folgt aber aus der Tatsache, dass $\mathcal{B}$ und $\mathcal{B}'$
 beide Basen sind, also insbesondere den gleichen Raum aufspannen.
-Die $n\times n$-Matrix $T$ mit Komponenten $t_{ij}$ rechnet Koordinaten
+Die $n\times n$-Matrix $T$ mit Komponenten $t_{i\!j}$ rechnet Koordinaten
 in der Basis $\mathcal{B}'$ um in Koordinaten in der Basis $\mathcal{B}$.
+
+\subsubsection{Basiswechselformel für die Matrix einer linearen Abbildung}
+Die Matrix einer linearen Abbildung $f\colon U\to V$ ist abhängig von den
+in $U$ bzw.~$V$ gewählten Basen $\mathcal{B}$ bzw.~$\mathcal{C}$.
+Wechselt man die Basis und verwendet in $U$ die Basis $\mathcal{B}'$ und
+in $V$ die Basis $\mathcal{C}'$, dann gibt es Matrizen
+$T_U$ und $T_V$, die die Koordinaten in $U$ bzw.~$V$ von der gestrichenen
+Basis in die gestrichen umzurechnen gestattet.
+Ist $A$ die Matrix von $A$ in den Basen $\mathcal{B}$ und $\mathcal{C}$,
+dann ist Matrix der gleichen Abbildung in den Basen $\mathcal{B}'$
+und $\mathcal{C}'$ gegeben durch die Matrix
+\[
+A' = T_VAT_U^{-1}.
+\]
 
 \subsubsection{Umkehrabbbildung}
 Sei $f$ eine umkehrbare lineare Abbildung $U\to V$ und $g\colon V\to U$.
 die zugehörige Umkehrabbildung.
+\index{Umkehrabbildung}%
 Für zwei Vektoren $u$ und $w$ in $U$ gibt es daher Vektoren $a=g(u)$
 und $b=g(w)$ in $V$ derart, dass $f(a)=u$ und $f(b)=w$.
 Weil $f$ linear ist, folgt daraus $f(a+b)=u+w$ und $f(\lambda a)=\lambda a$
@@ -1305,6 +1403,8 @@ Ist $f$ eine lineare Abbildung $U\to V$, dann heisst die Menge
 \{x\in U\;|\; f(x)=0\}
 \]
 der {\em Kern} oder {\em Nullraum} der linearen Abbildung $f$.
+\index{Kern}%
+\index{Nullraum}%
 Ist $A \in M_{m\times n}(\Bbbk)$ Matrix, dann gehört dazu eine lineare
 Abbildung $f\colon\Bbbk^n\to\Bbbk^m$.
 Der Kern oder Nullraum der Matrix $A$ ist die Menge
@@ -1326,8 +1426,9 @@ gilt.
 
 Ob ein Gleichungssystem $Ax=b$ überhaupt eine Lösung hat, hängt davon,
 ob der Vektor $b$ als Bild der durch $A$ beschriebenen linearen Abbildung
-$\Bbbk^n \to \Bbbk^m$ enthalten ist.
-Wir definieren daher das Bild einer linearen Abbildung oder Matrix.
+$\Bbbk^n \to \Bbbk^m$ dargestellt werden kann.
+Wir definieren daher das Bild einer linearen Abbildung oder Matrix
+wie folgt.
 
 \begin{definition}
 Ist $f\colon V\to U$ eine lineare Abbildung dann ist das Bild von $f$
@@ -1336,25 +1437,26 @@ der Unterraum
 \operatorname{im}f = \{ f(v)\;|\;v\in V\} \subset U
 \]
 von $U$.
-Das Bild einer $m\times n$-Matrix $A$ ist die Menge
+Das {\em Bild} einer $m\times n$-Matrix $A$ ist die Menge
 \[
 \operatorname{im}A = \{ Av \;|\; v\in\Bbbk^n\} \subset \Bbbk^m.
 \]
 \end{definition}
+\index{Bild}%
 
 Zwei Vektoren $a,b\in\operatorname{im} f$ haben Urbilder $u,w\in V$ mit
 $f(u)=a$ und $f(w)=b$.
 Für Summe und Multiplikation mit Skalaren folgt
 \[
 \begin{aligned}
-a+b&= f(u)+f(v)=f(u+v) &&\Rightarrow a+b\in\operatorname{im}f\\
-\lambda a&=\lambda f(u) = f(\lambda u) &&\Rightarrow \lambda a&\in\operatorname{im}f,
+a+b       &= f(u)+f(v)=f(u+v)           & \Rightarrow &       a+b &\in\operatorname{im}f\\
+\lambda a &=\lambda f(u) = f(\lambda u) & \Rightarrow & \lambda a &\in\operatorname{im}f,
 \end{aligned}
 \]
 also ist auch das Bild $\operatorname{im}f$ ein Unterraum von $U$.
 Das Bild der Matrix $A$ ist der Unterraum
 \[
-\{ x_1f(b_1) + \dots x_n f(b_n) | x_i\in\Bbbk\}
+\{ x_1f(b_1) + \dots x_n f(b_n) \,|\, x_i\in\Bbbk\}
 =
 \langle f(b_1),\dots,f(b_n)\rangle
 =
@@ -1369,6 +1471,7 @@ Sei $A$ eine Matrix $A\in M_{m\times n}(\Bbbk)$.
 Der {\em Rang} der Matrix $A$ ist die Dimension des Bildraumes von $A$:
 $\operatorname{rank}A=\dim\operatorname{im} A$.
 \index{Rang einer Matrix}%
+\index{rank@$\operatorname{rank}A$}%
 Der {\em Defekt} der Matrix $A$ ist die Dimension des Kernes von $A$:
 $\operatorname{def}A=\dim\ker A$.
 \index{Defekt einer Matrix}%
@@ -1389,5 +1492,94 @@ n-\operatorname{def}A.
 \]
 \end{satz}
 
+\begin{proof}[Beweis]
+Der Defekt der Matrix $A$ ist die Dimension des Kernes, also die
+Dimension des Lösungsraumes des homogenen Gleichungssystems mit
+Koeffizientenmatrix $A$.
+Dies ist auch die Anzahl der frei wählbaren Variablen nach
+der Durchführung des Gaussalgorithmus
+Die behauptete Bezieung kann man jetzt unmittelbar aus dem
+Schlusstableau
+\begin{center}
+\begin{tikzpicture}[>=latex,thick,scale=0.5]
+\draw (0,0) rectangle (8,7);
+\draw (0,3) -- (8,3);
+\draw (4,0) -- (4,7);
+\node at (0.5,6.5) {$1$};
+\node at (2,5.25) {$\ddots$};
+\node at (3.5,3.5) {$1$};
+
+\node at (4.5,6.5) {$*$};
+\node at (4.5,3.5) {$*$};
+\node at (7.5,6.5) {$*$};
+\node at (7.5,3.5) {$*$};
+\node at (4.5,5.25) {$\vdots$};
+\node at (7.5,5.25) {$\vdots$};
+\node at (6,3.5) {$\cdots$};
+\node at (6,6.5) {$\cdots$};
+\node at (6,5.25) {$\ddots$};
+
+\node at (2,1.5) {$0$};
+\node at (6,1.5) {$0$};
+
+\draw[<->] (-0.3,7) -- (-0.3,3);
+\node at (-0.3,5) [left] {$\operatorname{rank}A$};
+\draw[<->] (4,7.3) -- (8,7.3);
+\node at (6,7.3) [above] {$\operatorname{def}A\mathstrut$};
+\node at (2,7.3) [above] {$n-\operatorname{def}A\mathstrut$};
+\draw[<->] (0,7.3) -- (4,7.3);
+\draw[<->] (0,-0.3) -- (8,-0.3);
+\node at (4,-0.3) [below] {$n$};
+\end{tikzpicture}
+\end{center}
+ablesen.
+\end{proof}
+
+\subsubsection{Gauss-Algorithmus und Basiswechsel}
+Die Zeilenoperationen des Gauss-Algorithmus können durch Multiplikation
+mit Matrizen der Form
+\[
+\begin{pmatrix}
+1&      & &                        & & &      & \\
+ &\ddots& &                        & & &      & \\
+ &      &1&                        & & &      & \\
+ &      & &{\color{red}1}          & & &      & \\
+ &      & &{\color{blue}-a_{i+1,i}}&1& &      & \\
+ &      & &{\color{blue}-a_{i+2,i}}& &1&      & \\
+ &      & &\vdots                  & & &\ddots& \\
+ &      & &{\color{blue}-a_{n,i}}  & & &      &1
+\end{pmatrix}
+\]
+ausgedrückt werden.
+Diese Matrizen sind alle invertiertbar.
+Man kann die Zeilenoperationen also als ein Basiswechsel im Bildraum
+verstehen.
+
 \subsubsection{Quotient}
-TODO: $\operatorname{im} A \simeq \Bbbk^m/\ker A$
+Ist $U\subset V$ ein Unterraum, dann kann man einen neuen Vektorraum
+$V/U$ bilden, dessen Vektoren Äquivalenzklassen von Vektoren aus $V$
+sind, die sich nur um einen Vektor aus $U$ unterscheiden.
+Wir können solche Vektoren als $v+U$ schreiben. 
+Diese abstrakte Definition des Quotienten kann im Falle 
+des Quotienten $\Bbbk^n / \ker A$ mit Hilfe des
+Gauss-Algorithmus wesentlich anschaulicher realisiert werden,
+wie im folgenden Abschnitt gezeigt wird.
+
+\subsubsection{Realisierung des Quotienten}
+Der Quotient besteht aus den Vektoren, die ``übrig'' bleiben, wenn man die
+Vektoren im Kern mit $0$ identifiziert.
+Man kann ihn sich als das Bild vorstellen.
+
+Etwas konkreter erlaubt der Gauss-Algorithmus,
+für das Bild $\operatorname{im}A$ eine Basis zu finden.
+Aus dem Schlusstableau lässt sich zunächst eine Basis des Kernes
+ablesen, dies sind die ``grünen'' Spalten.
+Die Pivotspalten bilden dagegen eine Basis für den Bildraum
+nach dem im vorangegangenen Abschnitt angesprochenen Basiswechsel.
+
+Die Pivotspalten beschreiben Vektoren, die durch die Abbildung {\em nicht}
+zu $0$ gemacht werden.
+Wendet man $A$ auf die Standardbasisvektoren ab, die zu den 
+Pivospalten gehören, erhält man also eine Basis für da Bild
+von $A$.
+
