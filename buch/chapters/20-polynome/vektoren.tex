@@ -25,14 +25,14 @@ a_{n-1}\\
 a_{n}
 \end{pmatrix}
 \in
-R^n.
+R^{n+1}.
 \]
 Diese Darstellung eines Polynoms gibt auch die Addition von Polynomen
 und die Multiplikation von Polynomen mit Skalaren aus $R$ korrekt wieder.
 Die Abbildung von Vektoren auf Polynome
 \[
 \varphi
-\colon  R^n \to R[X]
+\colon  R^{n+1} \to R[X]
 :
 \begin{pmatrix}a_0\\\vdots\\a_n\end{pmatrix}
 \mapsto
@@ -52,7 +52,7 @@ Die Abbildung $\varphi$ ist also ein Isomorphismus
 \varphi
 \colon
 \{p\in R[X]\;|\; \deg(p) \le n\}
-\overset{\equiv}{\to}
+\overset{\cong}{\to}
 R^{n+1}
 \]
 zwischen der Menge
@@ -93,7 +93,7 @@ mit der Eigenschaft, dass die Komponenten mit Indizes
 $m+1,\dots n$ verschwinden.
 Polynome vom Grad $m<n$ bilden einen Unterraum der Polynome vom Grad $n$.
 Wir können auch die $m+1$-dimensionalen Vektoren in den $n+1$-dimensionalen
-Vektoren einbetten, indem wir die Vektoren durch ``auffüllen'' mit Nullen
+Vektoren einbetten, indem wir die Vektoren durch ``Auffüllen'' mit Nullen
 auf die richtige Länge bringen.
 Es gibt also eine lineare Abbildung
 \[
@@ -108,25 +108,25 @@ b_0\\b_1\\\vdots\\b_m\\0\\\vdots
 \end{pmatrix}
 .
 \]
-Die Moduln $R^{k}$ sind also alle ineinandergeschachtelt, können aber
+Die Moduln $R^{k+1}$ sind also alle ineinandergeschachtelt, können aber
 alle auf konsistente Weise mit der Abbildung $\varphi$ in den Polynomring
 $R[X]$ abgebildet werden.
 \begin{center}
-\begin{tikzcd}
-\{0\}\ar[r] %\arrow[d,"\varphi"]
-	&R \ar[r] %\arrow[d, "\varphi"]
-		&R^2 \ar[r] %\arrow[d, "\varphi"]
+\begin{tikzcd}[>=latex]
+R \ar[r] \arrow[d, "\varphi"]
+	&R^2 \ar[r] \arrow[d, "\varphi"]
+		&R^3 \ar[r] \arrow[d, "\varphi"]
 			&\dots \ar[r]
-				&R^k \ar[r] %\arrow[d, "\varphi"]
-					&R^{k+1} \ar[r] %\arrow[d, "\varphi"]
+				&R^k \ar[r] \arrow[d, "\varphi"]
+					&R^{k+1} \ar[r] \arrow[d, "\varphi"]
 						&\dots
 \\
 R^{(0)}[X]\arrow[r,hook] \arrow[drrr,hook]
 	&R^{(1)}[X]\arrow[r,hook] \arrow[drr,hook]
 		&R^{(2)}[X]\arrow[r,hook] \arrow[dr,hook]
 			&\dots\arrow[r,hook]
-				&R^{(k)}[X]\arrow[r,hook] \arrow[dl,hook]
-					&R^{(k+1)}[X]\arrow[r,hook] \arrow[dll,hook]
+				&R^{(k-1)}[X]\arrow[r,hook] \arrow[dl,hook]
+					&R^{(k)}[X]\arrow[r,hook] \arrow[dll,hook]
 						&\dots
 \\
 	&
@@ -137,10 +137,115 @@ R^{(0)}[X]\arrow[r,hook] \arrow[drrr,hook]
 						&
 \end{tikzcd}
 \end{center}
+In diesem Sinne können wir $R^m$ für $m<n$ als Teilmenge von $R^n$ betrachten
+und $R^\infty$ als deren Vereinigung definieren.
+Polynome in $R[X]$ sind also Vektoren beliebiger Länge mit Kompoenten
+in $R$.
+
 \subsection{Multiplikative Struktur
 \label{buch:subsection:polynome:multiplikativestruktur}}
+Den Polynomring $R[X]$ aus den Vektoren $R^{k}$ aufzubauen, bedeutet,
+dass wir die multiplikative Struktur ignorieren.
+Augrund der Rechenregeln für das Symbol $X$ können wir $X$ als einen
+Multiplikationsoperator 
+\[
+{X\cdot} 
+\colon R^{m} \to R^{n}
+:
+\begin{pmatrix}a_0\\a_1\\a_2\\\vdots\end{pmatrix}
+\mapsto
+\begin{pmatrix}0\\a_0\\a_1\\\vdots\end{pmatrix}
+\]
+betrachten.
+Diese Operatoren setzen sich zusammen zu einem Operator
+\[
+{X\cdot} \colon R^\infty \to \infty,
+\]
+der die Multiplikation mit $X$ beschreibt.
 
+Ist $p(X)$ ein Polynom, dann lässt sich die Multiplikation
+in von Polynome mit $R[X]$ ebenfalls als Operator schreiben.
+Die Potenz $X^k$ wird durch $k$-fache Iteration des Operators
+$X\cdot$.
+Das Polynom $p(X)$ wird durch Linearkombination, entspricht
+also dem Operator, den man durch Einsetzen von $X\cdot$
+in das Polynom erhalten kann:
+\[
+p(X\cdot)
+=
+a_n(X\cdot)^n + a_{n-1}(X\cdot)^{n+1} + \dots + a_1(X\cdot) + a_0
+\colon
+R^\infty \to R^\infty
+:
+q(X) 
+\mapsto
+p(X)q(X).
+\]
+Man kann den Operator $X\cdot$ oder den iterierten Operator
+$(X\cdot)^k$ auch in Matrixform darstellen:
+\begin{align*}
+{X\cdot}
+&=
+\begin{pmatrix}
+0&0&0&0&\dots\\
+1&0&0&0&\dots\\
+0&1&0&0&\dots\\
+0&0&1&0&\dots\\
+\vdots&\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}
+&
+(X\cdot)^k
+&=
+\begin{pmatrix}
+  0   &  0   &  0   &  0   &\dots\\
+\vdots&\vdots&\vdots&\vdots&     \\
+  0   &  0   &  0   &  0   &\dots\\
+  1   &  0   &  0   &  0   &\dots\\
+  0   &  1   &  0   &  0   &\dots\\
+  0   &  0   &  1   &  0   &\dots\\
+\vdots&\vdots&\vdots&\ddots&\ddots
+\end{pmatrix}.
+\end{align*}
+In der Matrix für $(X\cdot)^k$ steht die erste $1$ auf der
+$k+1$-ten Zeile.
+Der zum Polynom $p(X)$ gehörige Operator $p(X\cdot)$ bekommt
+damit die Matrix
+\[
+p(X\cdot)
+=
+\begin{pmatrix}
+a_0    & 0     &  0   &  0   &  0   & \dots  \\
+a_1    &a_0    &  0   &  0   &  0   & \dots  \\
+a_2    &a_1    & a_0  &  0   &  0   & \dots  \\
+a_3    &a_2    & a_1  & a_0  &  0   & \dots  \\
+a_4    &a_3    & a_2  & a_1  & a_0  & \dots  \\
+\vdots &\vdots &\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}.
+\]
+Da die Matrix-Operation als Produkt
+$\text{Zeile}\times\text{Spalte}$ ausgeführt wird,
+kann man erkennen, dass das Polynomprodukt auch auf
+eine Faltung hinausläuft.
 
+Die wichtigste Lehre aus obigen Ausführungen aber ist
+die Beobachtung, dass sich eine ganz allgemeine Algebra
+wie die der Polynome auf sehr direkte Art und Weise auf
+abbilden lässt in eine Algebra von Matrizen auf einem
+geeigneten Vektorraum.
+Im vorliegenden Fall sind das zwar ``undendliche''
+Matrizen, in zukünftigen Beispielen werden wir das
+selbe Prinzip jedoch in Aktion sehen in Situationen,
+wo eine Operation auf einem endlichen Vektorraum
+und ``gewöhnliche'' Matrizen entstehen.
+Die Möglichkeit, beliebige Polynome solcher Operatoren
+zu berechnen, erlaubt uns, mehr über den Operator 
+herauszufinden
 
-
+Dies eröffnet vielfältige Möglichkeiten, auf einfachere
+Art mit den Operatoren zu rechnen.
+In Kapitel~\ref{buch:chapter:eigenwerte-und-eigenvektoren}
+wird sich daraus eine Reihe von Normalformen einer Matrix
+ergeben sowie die Möglichkeit, für viele Matrizen $A$
+die Matrix $f(A)$ für eine grosse Zahl von praktisch
+interessanten Funktionen $f(z)$ zu berechnen.
 

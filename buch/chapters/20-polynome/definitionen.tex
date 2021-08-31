@@ -12,8 +12,8 @@ Rechnen mit Polynomen zusammen.
 %
 % Skalare
 %
-\subsection{Skalare
-\label{buch:subsection:polynome:skalare}}
+\subsection{Polynome
+\label{buch:subsection:polynome:polynome}}
 Wie schon in der Einleitung angedeutet sind Polynome nur dann sinnvoll,
 wenn man mit den Koeffizienten gewisse Rechenoperationen durchführen kann.
 Wir brauchen mindestens die Möglichkeit, Koeffizienten zu addieren.
@@ -31,7 +31,7 @@ in das Polynom einsetzen kann, dann muss es möglich sein, in $R$ zu
 Multiplizieren und zu Addieren, und es müssen die üblichen Rechenregeln
 der Algebra gelten, $R$ muss also ein Ring sein.
 \index{Ring}%
-Wir werden im folgenden meistens voraussetzen, dass $R$ sogar kommutativ
+Wir werden im folgenden zusätzlich voraussetzen, dass $R$ sogar kommutativ
 ist und eine $1$ hat.
 
 \begin{definition}
@@ -85,6 +85,7 @@ X^n + \frac{a_{n-1}}{a_n}X^{n-1} + \dots + \frac{a_0}{a_n}
 \]
 machen.
 Man sagt auch, das Polynom $p(X)$ wurde normiert.
+Wenn $R$ ein Körper ist, ist die Normierung immer möglich.
 
 Die Tatsache, dass zwei  Polynome nicht gleich viele von $0$ verschiedene Koeffizienten haben müssen,
 verkompliziert die Beschreibung der Rechenoperationen ein wenig.
@@ -109,42 +110,10 @@ dass nur über diejenigen Indizes $k$ summiert wird, für die $a_k$
 definiert ist.
 \label{summenzeichenkonvention}
 
-%
-% Abschnitt über Polynomring Definition
-%
-\subsection{Der Polynomring
-\label{buch:subsection:polynome:ring}}
-Die Menge $R[X]$ aller Polynome über $R$ wird zu einem Ring, wenn man die
-Rechenoperationen Addition und Multiplikation so definiert, wie man das
-in der Schule gelernt hat.
-Die Summe von zwei Polynomen
-\begin{align*}
-p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0\\
-q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0
-\end{align*}
-ist
-\[
-p(X)+q(X)
-=
-\sum_{k} (a_k+b_k)X^k,
-\]
-wobei die Summe wieder so zu interpretieren ist, über alle Terme
-summiert wird, für die mindestens einer der Summanden von $0$
-verschieden ist.
-
-Für das Produkt verwenden wir die Definition
-\[
-p(X)q(X)
-=
-\sum_{k}\sum_{l} a_kb_l X^{k+l},
-\]
-die natürlich mit Formel~\eqref{buch:eqn:polynome:faltung}
-gleichbedeutend ist.
-Die Polynom-Multiplikation und Addition sind nur eine natürliche
-Erweiterung der Rechenregeln, die man schon in der Schule lernt,
-es ist daher nicht überraschend, dass die bekannten Rechenregeln
-auch für Polynome gelten.
+Die Menge $R[X]$ aller Polynome über $R$ mit den beschriebenen
+Operationen ist ein Ring. 
 Das Distributivgesetz
+\index{Distributivgesetz}%
 \[
 p(X)(u(X)+v(X)) = p(X)u(X) + p(X)v(X)
 \qquad
@@ -152,6 +121,7 @@ p(X)(u(X)+v(X)) = p(X)u(X) + p(X)v(X)
 \]
 zum Beispiel sagt ja nichts anderes, als dass man ausmultiplizieren
 kann.
+\index{ausmultiplizieren}%
 Oder die Assoziativgesetze
 \begin{align*}
 p(X)+q(X)+r(X)
@@ -178,6 +148,7 @@ Reihenfolge man die Additionen oder Multiplikationen ausführt.
 \begin{definition}
 Der {\em Grad} eines Polynoms $p(X)$ ist die höchste Potenz von $X$, die im
 Polynom vorkommt.
+\index{Grad eines Polynoms}%
 Das Polynom
 \[
 p(X) = a_nX^n + a_{n-1}X^{n-1}+\dots a_1X + a_0
@@ -219,10 +190,12 @@ $\deg(\lambda p) \le \deg\lambda + \deg p$.
 
 \begin{proof}[Beweis]
 Wir schreiben die Polynome wieder in der Form
-\begin{align*}
+\[
+\begin{aligned}
 p(X) &= a_nX^n + a_{n-1}X^{n-1} + \dots + a_1X + a_0&&\Rightarrow&\deg p&=n\\
 q(X) &= b_mX^m + b_{m-1}X^{m-1} + \dots + b_1X + b_0&&\Rightarrow&\deg q&=m.
-\end{align*}
+\end{aligned}
+\]
 Dann kann der höchste Koeffizient in der Summe $p+q$ nicht weiter oben
 sein als die grössere von den beiden Zahlen $n$ und $m$ angibt, dies
 beweist \eqref{buch:eqn:polynome:gradsumme}.
@@ -230,47 +203,14 @@ Ebenso kann der höchste Koeffizient im Produkt nach der
 Formel~\eqref{buch:eqn:polynome:faltung} nicht weiter oben als bei
 $n+m$ liegen, dies beweist
 beweist \eqref{buch:eqn:polynome:gradprodukt}.
-Es könnte aber passieren, dass $a_nb_m=0$ ist, d.~h.~es ist durchaus möglich,
+In einem Ring mit Nullteilern
+(Siehe Definition~\ref{buch:grundlagen:def:nullteiler})
+könnte es passieren, dass $a_nb_m=0$ ist, d.~h.~es ist durchaus möglich,
 dass der Grad kleiner ist.
 Schliesslich kann der höchsten Koeffizient von $\lambda p(X)$ nicht grösser
 als der höchste Koeffizient von $p(X)$ sein, was
 \eqref{buch:eqn:polynome:gradskalar} beweist.
 \end{proof}
-
-Etwas enttäuschend an diesen Rechenregeln ist, dass der Grad eines
-Produktes nicht exakt die Summe der Grade hat.
-Der Grund ist natürlich, dass es in gewissen Ringen $R$ passieren kann,
-dass das Produkt $a_n\cdot b_m=0$ ist.
-Zum Beispiel ist im Ring der $2\times 2$ Matrizen das Produkt der Elemente
-\begin{equation}
-a_n = \begin{pmatrix}1&0\\0&0\end{pmatrix}
-\quad\text{und}\quad
-b_m = \begin{pmatrix}0&0\\0&1\end{pmatrix}
-\qquad\Rightarrow\qquad
-a_nb_m = \begin{pmatrix}0&0\\0&0\end{pmatrix}.
-\label{buch:eqn:definitionen:nullteilerbeispiel}
-\end{equation}
-Diese unangehme Situation tritt immer ein, wenn es von Null verschiedene
-Elemente gibt, deren Produkt $0$ ist.
-In Matrizenringen ist das der Normalfall, man kann diesen Fall also nicht
-einfach ausschliessen.
-In den Zahlenmengen wie $\mathbb{Z}$, $\mathbb{Q}$ und $\mathbb{R}$ passiert
-das natürlich nie.
-
-\begin{definition}
-Ein Ring $R$ heisst {\em nullteilerfrei}, wenn für zwei Elemente
-$a,b\in R$ aus $ab=0$ immer geschlossen werden kann, dass
-$a=0$ oder $b=0$.
-Ein von $0$ verschiedenes Element $a\in R$ heisst Nullteiler,
-wenn es eine $b\in R$ mit $b\ne 0$ gibt derart dass $ab=0$.
-\index{Nullteiler}
-\index{nullteilerfrei}
-\end{definition}
-
-Die beiden Matrizen in
-\eqref{buch:eqn:definitionen:nullteilerbeispiel}
-sind Nullteiler im Ring $M_2(\mathbb{Z})$ der $2\times 2$-Matrizen.
-Der Matrizenring $M_2(\mathbb{Z})$ ist also nicht nullteilerfrei.
 
 In einem nullteilerfreien Ring gelten die Rechenregeln für den Grad
 jetzt exakt:
@@ -381,6 +321,7 @@ R^{(k+l)}[X].
 Im Ring der ganzen Zahlen sind nicht alle Divisionen ohne Rest
 ausführbar, so entsteht das Konzept der Teilbarkeit.
 Der Divisionsalgorithmus, den man in der Schule lernt, liefert
+\index{Divisionsalgorithmus}%
 zu beliebigen ganzen Zahlen $a,b\in\mathbb{Z}$ den Quotienten
 $q$ und den Rest $r$ derart, dass $a=qb+r$.
 Der Algorithmus basiert auf der Zehnersystemdarstellung 
@@ -399,11 +340,12 @@ b &= b_mX^{n} + b_{m-1}X^{n-1} + \dots + b_1X^{1} + b_0,
 \end{align*}
 mit dem einzigen Unterschied, dass statt $X$ mit der festen Zahl $X=10$
 gearbeitet wird.
-Der Teilungsalgorithmus für Polynome lässt sich aber leicht
+Der Divisionsalgorithmus für Polynome lässt sich aber leicht
 rekonstruieren.
 
 \subsubsection{Polynomdivision}
 Wir zeigen den Polynomdivisionsalgorithmus an einem konkreten Beispiel.
+\index{Polynomdivision}%
 Gesucht sind Quotient $q\in \mathbb{Z}[X]$ und Rest $r\in\mathbb{Z}[X]$
 der beiden Polynome
 \begin{equation}
@@ -427,7 +369,7 @@ X^4&-& X^3&-&7X^2&+& X&+&6&:&X^2&+&X&+&1&=&X^2&-&2X&-&6=q\\
    & &    & &    & &9X&+&12\rlap{$\mathstrut=r$}& &   & & & & & &   & &  & & \\ \cline{7-9}
 \end{array}
 \]
-Durch nachrechnen kann man überprüfen, dass tatsächlich
+Durch Nachrechnen kann man überprüfen, dass tatsächlich
 \begin{align*}
 bq
 &=
@@ -445,7 +387,7 @@ Jedes für $q$ in Frage kommende Polynom vom Grad $2$ muss von der
 Form $q=q_2X^2+q_1X+q_0$ sein.
 Multipliziert man mit $b$, erhält man $bq=2q_2X^4 + (2q_1+q_2)X^3+\dots$.
 Insbesondere ist es nicht möglich mit ganzzahligen Quotienten
-$q_k\in\mathbb{Z}$ auch nur der ersten Koeffizienten von $a$ zu
+$q_k\in\mathbb{Z}$ auch nur den ersten Koeffizienten von $a$ zu
 erhalten.
 Dazu müsste nämlich $a_n = 1 = 2q_2$ oder $q_2 = \frac12\not\in\mathbb{Z}$
 sein.
@@ -454,7 +396,7 @@ Division durch den führenden Koeffizienten des Divisorpolynomes $b$
 immer ausführbar ist.
 Im Beispiel~\eqref{buch:polynome:eqn:divisionsaufgabe} war das der
 Fall, weil der führende Koeffizient $1$ war.
-Für beliebige Polynome $b\in R[X]$ ist das aber nur der Fall,
+Für beliebige Polynome $b\in R[X]$ ist dies aber nur dann immer der Fall,
 wenn die Koeffizienten in Tat und Wahrheit einem Körper entstammen.
 
 Im Folgenden betrachten wir daher nur noch Polynomringe mit Koeffizienten
@@ -494,6 +436,7 @@ $f=qg+r$, wobei ausserdem $\deg r<\deg g$ ist.
 
 \begin{definition}
 Ein {\em euklidischer Ring} $R$ ist ein nullteilerfreier Ring mit einer
+\index{euklischer Ring}%
 Gradfunktion $\deg\colon R\setminus\{0\}\to\mathbb{N}$ mit folgenden
 Eigenschaften
 \begin{enumerate}
@@ -520,10 +463,12 @@ zerlegt werden.
 
 \subsubsection{Irreduzible Polynome}
 Das Konzept der Primzahl lässt sich wie folgt in den Polynomring übertragen.
+\index{Primzahl}%
 
 \begin{definition}
-Ein Polynom $f\in R[X]$ heisst irreduzibel, es keine Faktorisierung $f=gh$
-in Faktoren $g,h\in R[X]$ mit $\deg(g)>0$ und $\deg(h) >0$.
+Ein Polynom $f\in R[X]$ heisst irreduzibel, wenn es keine Faktorisierung $f=gh$
+in Faktoren $g,h\in R[X]$ mit $\deg(g)>0$ und $\deg(h) >0$ gibt.
+\index{irreduzibles Polynom}%
 \end{definition}
 
 \begin{beispiel}
@@ -540,7 +485,7 @@ x_i = -\frac{b}2\pm\sqrt{\frac{b^2}{4}-c}
 \]
 gefunden werden.
 Die Faktorisierung ist also genau dann möglich, wenn $b^2/4-c$ ein 
-Quadrat in $\mathbb{Q}$.
+Quadrat in $\mathbb{Q}$ ist.
 In $\mathbb{R}$ ist das Polynom faktorisierbar, wenn $b^2-4c\ge 0$ ist.
 In $\mathbb{C}$ gibt es keine Einschränkung, die Wurzel zu ziehen,
 in $\mathbb{C}$ gibt es also keine irreduziblen Polynome im Grad $2$.
@@ -570,14 +515,5 @@ Ein Polynom $f\in \Bbbk[X]$ kann in ein Produkt $a_n g_1\cdot\ldots\cdot g_k$
 zerlegt werden, wobei die normierten Faktoren $g_i$ bis auf die Reihenfolge
 eindeutig sind.
 \end{satz}
-
-
-%
-% Abschnitt über formale Potenzreihen
-%
-\subsection{Formale Potenzreihen
-\label{buch:subsection:polynome:potenzreihen}}
-XXX TODO
-
 
 
