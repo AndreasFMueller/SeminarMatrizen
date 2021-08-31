@@ -293,7 +293,7 @@ Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden
                 1\\
                 1
             \end{pmatrix}
-            &=\text{Linear-Code-Decoder}
+            &=\text{Linear-Code-Decoder(}
             \begin{pmatrix}
                 0\\
                 1\\
@@ -303,6 +303,7 @@ Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden
                 1\\
                 1
             \end{pmatrix}
+            \text{)}
         \end{align*}
     \end{itemize}
     \item Entschlüsselung (Umkehrung des $S_4$-Matrix-Effekts):
@@ -344,7 +345,7 @@ Somit lässt sich das Code-Polynom $P_c$ berechnen, indem das Daten-Polynom $P_d
 \[
     P_c=P_g \cdot P_d\,.
 \]
-Damit diese Multiplikation mit Matrizen ausgeführt werden kann, werden die Polynome in mit Vektoren dargestellt:
+Damit diese Multiplikation mit Matrizen ausgeführt werden kann, werden die Polynome in mit Vektoren dargestellt (Kapitel \ref{buch:section:polynome:vektoren}):
 \[
     P_g = \textcolor{red}{1}\cdot x^0 + \textcolor{blue}{1}\cdot x^1 + \textcolor{green}{0}\cdot x^2 + \textcolor{orange}{1}\cdot x^3 \implies
     [\textcolor{red}{1}, \textcolor{blue}{1} ,\textcolor{green}{0}, \textcolor{orange}{1}] = g_4\,.
@@ -392,7 +393,7 @@ womit das dazugehörige Bit identifiziert und korrigiert werden kann,
 indem beispielsweise die Bitfehler mit dem dazugehörigen Rest in der sogenannten Syndrom-Tabelle (Tabelle \ref{mceliece:tab:syndrome}) hinterlegt werden.
 \begin{table}
     \begin{center}
-        \begin{tabular}{l|c}
+        \begin{tabular}{|l|l|}
             \hline
             Syndrom (Divisionsrest)     &korrespondierender Bitfehler\\
             \hline
