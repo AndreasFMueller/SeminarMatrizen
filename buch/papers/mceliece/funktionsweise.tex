@@ -75,7 +75,7 @@ womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde:
                                     &=d_k\,.
 \end{align*}
 Möchte ein Angreifer die verschlüsselte Nachricht knacken, muss dieser die drei privaten Matrizen $S_k$, $G_{n,k}$ und $P_n$ kennen.
-Aus dem Öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
+Aus dem öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
 und eine systematische Analyse der Codeworte wird durch das Hinzufügen von zufälligen Bitfehlern zusätzlich erschwert.
 
 \subsection{Beispiel}
@@ -336,21 +336,21 @@ Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden
 
 
 \subsubsection{7/4-Code}
-Bem 7/4-Code handelt es sich um einen linearen Code,
+Beim 7/4-Code handelt es sich um einen linearen Code,
 der ein Bitfehler korrigieren kann.
 Es gibt unterschiedliche Varianten zum Erzeugen eines 7/4-Codes,
 wobei der hier verwendete Code mithilfe des irreduziblen Generator-Polynoms $P_g = x^3 +x + 1$ generiert wird.
-Somit lässt sich das Code-Polynom $P_c$ berechnen, indem das Daten-Polynom $P_d$ mit dem Generatorpolynom $P_g$ multipliziert wird:
+Somit lässt sich das Code-Polynom $P_c$ berechnen, indem das Daten-Polynom $P_d$ mit dem Generatorpolynom $P_g$ multipliziert wird (Codiervorgang):
 \[
     P_c=P_g \cdot P_d\,.
 \]
-Damit diese Multiplikation mit Matrizen ausgeführt weredn kann, werden die Polynome in Vektoren abgefüllt:
+Damit diese Multiplikation mit Matrizen ausgeführt werden kann, werden die Polynome in mit Vektoren dargestellt:
 \[
     P_g = \textcolor{red}{1}\cdot x^0 + \textcolor{blue}{1}\cdot x^1 + \textcolor{green}{0}\cdot x^2 + \textcolor{orange}{1}\cdot x^3 \implies
     [\textcolor{red}{1}, \textcolor{blue}{1} ,\textcolor{green}{0}, \textcolor{orange}{1}] = g_4\,.
 \]
-Auch das Datenpolynom wird mit einem Vektor dargestellt: $P_d = d_0 \cdot x^0 + d_1 \cdot x^1 + d_2 \cdot x^2 + d_3 \cdot x^3 \implies [d_0, d_1, d_2, d_3] = d_4$\,.
-Der Vektor $g_4$ wird nun in die sogenannte Generatormatrix $G_{7,4}$ gepakt,
+Auch das Daten-Polynom wird mit einem Vektor dargestellt: $P_d = d_0 \cdot x^0 + d_1 \cdot x^1 + d_2 \cdot x^2 + d_3 \cdot x^3 \implies [d_0, d_1, d_2, d_3] = d_4$\,.
+Der Vektor $g_4$ wird nun in die sogenannte Generatormatrix $G_{7,4}$ gepackt,
 sodass die Polynommultiplikation mit $d_4$ mittels Matrixmultiplikation realisiert werden kann:
 
 \[
@@ -381,12 +381,31 @@ sodass die Polynommultiplikation mit $d_4$ mittels Matrixmultiplikation realisie
         c_6\\
     \end{pmatrix}\,.
 \]
-Beim nun entstandenen Code-Vektor $c_7=[c_0, ..., c_6]$ entsprechen die Koeffizienten dem dazugehörigen Code-Polynom $P_c=c_0\cdot x^0+...+c_6\cdot x^6$
+Beim nun entstandenen Code-Vektor $c_7=[c_0, ..., c_6]$ entsprechen die Koeffizienten dem dazugehörigen Code-Polynom $P_c=c_0\cdot x^0+...+c_6\cdot x^6$.
 Aufgrund der Multiplikation mit dem Generatorpolynom $P_g$ lässt sich das Codewort auch wieder restlos durch $P_g$ dividieren.
 Wird dem Codewort nun einen Bitfehler hinzugefügt, entsteht bei der Division durch $P_g$ einen Rest.
 Beim gewählten Polynom beträgt die sogenannte Hamming-Distanz drei, das bedeutet,
-dass vom einen gültigen Codewort zu einem anderen gültigen Codewort drei Bitfehler vorkommen müssen.
+dass vom einen gültigen Codewort zu einem anderen gültigen Codewort drei Bitfehler auftreten müssen.
 Somit ist es möglich, auf das ursprüngliche Bitmuster zu schliessen, solange maximal ein Bitfehler vorhanden ist.
-Jeder der möglichen acht Bitfehler führt bei der Divison zu einem anderen Rest,
-womit das Dazugehörige Bit identifiziert und korrigiert werden kann,
-indem beispielsweise die Bitfehler mit dem Dazugehörigen Rest in der sogenannten Syndrom-Tabelle hinterlegt werden.
+Jeder der möglichen acht Bitfehler führt bei der Division zu einem anderen Rest,
+womit das dazugehörige Bit identifiziert und korrigiert werden kann,
+indem beispielsweise die Bitfehler mit dem dazugehörigen Rest in der sogenannten Syndrom-Tabelle (Tabelle \ref{mceliece:tab:syndrome}) hinterlegt werden.
+\begin{table}
+    \begin{center}
+        \begin{tabular}{l|c}
+            \hline
+            Syndrom (Divisionsrest)     &korrespondierender Bitfehler\\
+            \hline
+            1 ($[1,0,0]$)               &$[1,0,0,0,0,0,0]$\\    
+            2 ($[0,1,0]$)               &$[0,1,0,0,0,0,0]$\\    
+            3 ($[1,1,0]$)               &$[0,0,0,1,0,0,0]$\\    
+            4 ($[0,0,1]$)               &$[0,0,1,0,0,0,0]$\\    
+            5 ($[1,0,1]$)               &$[0,0,0,0,0,0,1]$\\    
+            6 ($[0,1,1]$)               &$[0,0,0,0,1,0,0]$\\    
+            7 ($[1,1,1]$)               &$[0,0,0,0,0,1,0]$\\
+            \hline
+
+        \end{tabular}
+    \end{center}
+    \caption{\label{mceliece:tab:syndrome}Syndrom-Tabelle 7/4-Code}
+\end{table}
