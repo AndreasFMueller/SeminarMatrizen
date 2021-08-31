@@ -17,8 +17,9 @@ der genau der geometrischen Intuition entspricht.
 
 \subsection{Bilinearformen und Skalarprodukte
 \label{buch:subsection:bilinearformen}}
-Damit man mit einem Skalarprodukt rechnen kann wie mit jedem anderen
-Produkt, müssen man auf beiden Seiten des Zeichesn ausmultiplizieren können:
+Damit man mit einem Skalarprodukt wie mit jedem anderen Produkt
+rechnen kann, müssen man auf beiden Seiten des Zeichesn ausmultiplizieren
+können:
 \begin{align*}
 (\lambda x_1 + \mu x_2)\cdot y &= \lambda x_1\cdot y + \mu x_2\cdot y\\
 x\cdot (\lambda y_1 + \mu y_2) &= \lambda x\cdot y_1 + \mu x\cdot y_2.
@@ -48,7 +49,7 @@ Eine bilineare Funktion mit Werten in $\Bbbk$ heisst auch {\em Bilinearform}.
 Das Skalarprodukt hängt nicht von der Reihenfolge der Faktoren ab.
 In Frage dafür kommen daher nur Bilnearformen $f\colon V\times V\to\Bbbk$,
 die zusätzlich $f(x,y)=f(y,x)$ erfüllen.
-Solche Bilinearformen heissen symmetrisch.
+Solche Bilinearformen heissen {\em symmetrisch}.
 Für eine symmetrische Bilinearform gilt die binomische Formel
 \begin{align*}
 f(x+y,x+y)
@@ -62,8 +63,19 @@ f(x,x)+2f(x,y)+f(y,y)
 \end{align*}
 wegen $f(x,y)=f(y,x)$.
 
+Aus einer beliebigen bilinearen Funktion $g(x,y)$ kann immer eine
+symmetrische bilineare Funktion $f(x,y)$ gewonnen werden, indem
+man 
+\[
+f(x,y) = \frac12 \bigl(g(x,y)+g(x,y)\bigr)
+\]
+setzt.
+Dieser Prozess heisst auch {\em Symmetrisieren}.
+\index{symmetrisieren}%
+Ist $g$ bereits symmetrische, dann ist $g(x,y)=f(x,y)$.
+
 \subsubsection{Positiv definite Bilinearformen und Skalarprodukt}
-Bilinearität alleine genügt nicht, um einen Vektorraum mit einem
+Bilinearität allein genügt nicht, um einen Vektorraum mit einem
 nützlichen Abstandsbegriff auszustatten.
 Dazu müssen die berechneten Abstände vergleichbar sein, es muss also
 eine Ordnungsrelation definiert sein, wie wir sie nur in $\mathbb{R}$
@@ -75,15 +87,14 @@ Man lernt in der Vektorgeometrie, dass sich mit einer Bilinearform
 $f\colon V\times V\to\mathbb{R}$ 
 die Länge eines Vektors $x$ definieren lässt, indem man $\|x\|^2 = f(x,x)$
 setzt.
-Ausserdem muss $f(x,x)\ge 0$ sein für alle $x$, was die Bilinearität
+Dazu muss $f(x,x)\ge 0$ sein für alle $x$, was die Bilinearität
 allein nicht garantieren kann.
 Verschiedene Punkte in einem Vektorraum sollen in dem aus der Bilinearform
 abgeleiteten Abstandsbegriff immer unterscheidbar sein.
 Dazu muss jeder von $0$ verschiedene Vektor positive Länge haben.
 
-% XXX Positiv definite Form
 \begin{definition}
-Eine Bilinearform $f\colon V\times V\to\mathbb{R}$
+Eine symmetrische Bilinearform $f\colon V\times V\to\mathbb{R}$
 heisst {\em positiv definit}, wenn
 \index{positiv definit}%
 \[
@@ -94,12 +105,14 @@ geschrieben.
 \index{Skalarprodukt}%
 Die {\em $l^2$-Norm} $\|x\|_2$ eines Vektors ist definiert durch
 $\|x\|_2^2 = \langle x,x\rangle$.
+\index{l2-norm@$l^2$-Norm}%
 \end{definition}
 
 \subsubsection{Dreiecksungleichung}
 % XXX Dreiecksungleichung
 Damit man sinnvoll über Abstände sprechen kann, muss die Norm
-$\|\;\cdot\;\|_2$ der geometrischen Intuition folgen, die durch
+$\|\mathstrut\cdot\mathstrut\|_2$
+der geometrischen Intuition folgen, die durch
 die Dreiecksungleichung ausgedrückt wird.
 In diesem Abschnitt soll gezeigt werden, dass die $l^2$-Norm
 diese immer erfüllt.
@@ -107,14 +120,17 @@ Dazu sei $V$ ein $\mathbb{R}$-Vektorraum mit Skalarprodukt
 $\langle\;,\;\rangle$.
 
 \begin{satz}[Cauchy-Schwarz-Ungleichung]
+\label{buch:skalarprodukt:satz:cauchy-schwarz-ungleichung}
 Für $x,y\in V$ gilt
-\[
+\begin{equation}
 |\langle x,y\rangle |
 \le
 \| x\|_2\cdot \|y\|_2
-\]
+\label{buch:skalarprodukt:eqn:cauchy-schwarz-ungleichung}
+\end{equation}
 mit Gleichheit genau dann, wenn $x$ und $y$ linear abhängig sind.
 \end{satz}
+\index{Cauchy-Schwarz-Ungleichung}%
 
 \begin{proof}[Beweis]
 Wir die Norm von $z=x-ty$:
@@ -152,7 +168,7 @@ x  - \frac{\langle x,y\rangle}{\|y\|_2^2}y
 }{
 \|y\|_2^2
 }
-\ge 0
+\ge 0.
 \intertext{Es folgt}
 &&&\Rightarrow&
 \|x\|_2^2\cdot\|y\|_2^2 - (\langle x,y\rangle)^2 &\ge 0
@@ -164,14 +180,18 @@ mit Gleichheit genau dann, wenn es ein $t$ gibt mit $x=ty$.
 \end{proof}
 
 \begin{satz}[Dreiecksungleichung]
+\label{buch:skalarprodukt:satz:dreiecksungleichung}
 Für $x,y\in V$ ist
 \[
 \| x + y \|_2 \le \|x\|_2 + \|y\|_2
 \]
 mit Gleichheit genau dann, wenn $x=ty$ ist für ein $t\ge 0$.
 \end{satz}
+\index{Dreiecksungleichung}%
 
 \begin{proof}[Beweis]
+Wir berechnen die Norm von $x+y$ und wenden die
+Cauchy-Schwarz-Ungleichung darauf an:
 \begin{align*}
 \|x+y\|_2^2
 &=
@@ -189,20 +209,21 @@ mit Gleichheit genau dann, wenn $x=ty$ ist für ein $t\ge 0$.
 2\langle x,y\rangle
 +
 \|y\|_2^2
-=
-\|x\|_2^2 + 2\langle x,y\rangle + \|y\|_2^2
-\le
+\\
+&\le
 \|x\|_2^2 + 2\|x\|_2\cdot\|y\|_2 + \|y\|_2^2
 \\
 &=
 (\|x\|_2 + \|y\|_2)^2
 \\
+\Rightarrow\qquad
 \|x + y\|_2
-&\le \|x\|_2 + \|y\|_2,
+&\le \|x\|_2 + \|y\|_2.
 \end{align*}
 Gleichheit tritt genau dann ein, wenn 
 $\langle x,y\rangle=\|x\|_2\cdot \|y\|_2$.
-Dies tritt genau dann ein, wenn die beiden Vektoren linear abhängig sind.
+Dies tritt nach Satz~\ref{buch:skalarprodukt:satz:cauchy-schwarz-ungleichung}
+genau dann ein, wenn die beiden Vektoren linear abhängig sind.
 \end{proof}
 
 \subsubsection{Polarformel}
@@ -215,6 +236,7 @@ Norm zurückgewinnen.
 Dies ist der Inhalt der sogenannte Polarformel.
 
 \begin{satz}[Polarformel]
+\label{buch:skalarprodukt:satz:polarformel}
 Ist $\|\cdot\|_2$ eine Norm, die aus einer symmetrischen Bilinearform
 $\langle\;,\;\rangle$ hervorgegangen ist, dann kann die Bilinearform
 mit Hilfe der Formel
@@ -232,6 +254,7 @@ mit Hilfe der Formel
 \end{equation}
 für $x,y\in V$ wiedergewonnen werden.
 \end{satz}
+\index{Polarformel}%
 
 \begin{proof}[Beweis]
 Die binomischen Formel
@@ -269,13 +292,14 @@ Seien $U,V,W$ komplexe Vektorräume.
 Eine Abbildung $f\colon U\times V\to W$ heisst
 {\em sesquilinear}\footnote{Das lateinische Wort {\em sesqui} bedeutet
 eineinhalb, eine Sesquilinearform ist also eine Form, die in einem 
-Faktor (dem zweiten) linear ist, und im anderen nur halb linear.}
-\index{sesquilinear}
+Faktor (dem zweiten) linear ist, und im anderen nur ``halb'' linear.
+}
+\index{sesquilinear}%
 wenn gilt
 \begin{align*}
-f(\lambda x_1+\mu x_2,y) &= \overline{\lambda}f(x_1,y) + \overline{\mu}f(x_2,y)
+f(\lambda x_1+\mu x_2,y) &= \overline{\lambda}f(x_1,y) + \overline{\mu}f(x_2,y),
 \\
-f(x,\lambda y_1+\mu y_2) &= \lambda f(x,y_1) + \mu f(x,y_2)
+f(x,\lambda y_1+\mu y_2) &= \lambda f(x,y_1) + \mu f(x,y_2).
 \end{align*}
 \end{definition}
 
@@ -295,6 +319,23 @@ Für die Norm $\|x\|_2^2=\langle x,x\rangle$ bedeutet dies jetzt
 \subsection{Orthognormalbasis
 \label{buch:subsection:orthonormalbasis}}
 \index{orthonormierte Basis}%
+Sowohl die Berechnung von Skalarprodukten wie auch der Basis-Wechsel
+werden besonders einfach, wenn die verwendeten Basisvektoren orthogonal
+sind und Länge $1$ haben.
+
+\subsubsection{Orthogonale Vektoren}
+In der Vektorgeometrie definiert man den Zwischenwinkel $\alpha$
+zwischen zwei von $0$ verschiedene Vektoren $u$ und $v$ mit Hilfe
+des Skalarproduktes und er Formel
+\[
+\cos\alpha = \frac{\langle u,v\rangle}{\|u\|_2\cdot\|v\|_2}.
+\]
+Der Winkel ist $\alpha=90^\circ$ genau dann, wenn das Skalarprodukt
+verschwindet.
+Zwei Vektoren $u$ und $v$ heissen daher {\em orthogonal} genau dann,
+wenn $\langle u,v\rangle=0$.
+Wir schreiben dafür auch $u\perp v$.
+\index{orthogonal}%
 
 \subsubsection{Gram-Matrix}
 Sei $V$ ein Vektorraum mit einem Skalarprodukt und $\{b_1,\dots,b_n\}$ eine
@@ -308,7 +349,7 @@ y = \sum_{i=1}^n \eta_i b_i
 \]
 berechnen?
 Setzt man $x$ und $y$ in das Skalarprodukt ein, erhält man
-\begin{align*}
+\begin{align}
 \langle x,y\rangle
 &=
 \biggl\langle
@@ -317,31 +358,70 @@ Setzt man $x$ und $y$ in das Skalarprodukt ein, erhält man
 \biggr\rangle
 =
 \sum_{i,j=1}^n \xi_i\eta_j \langle b_i,b_j\rangle.
-\end{align*}
-Die Komponente $g_{ij}=\langle b_i,b_j\rangle$ bilden die sogenannte
-Gram-Matrix $G$.
+\label{buch:skalarprodukt:eqn:skalarproduktgram}
+\end{align}
+Die Komponente $g_{i\!j}=\langle b_i,b_j\rangle$ bilden die sogenannte
+{\em Gram-Matrix} $G$.
+\index{Gram-Matrix}%
+Da das Skalarprodukt eine symmetrische Bilinearform ist, ist die
+Gram-Matrix symmetrisch.
 Mit ihr kann das Skalarprodukt auch in Vektorform geschrieben werden
 als $\langle x,y\rangle = \xi^t G\eta$.
 
 \subsubsection{Orthonormalbasis}
-Eine Basis $\{a_1,\dots,a_n\}$ aus orthogonalen Einheitsvektoren,
+Eine Basis $\{b_1,\dots,b_n\}$ aus orthonormierten Einheitsvektoren,
 also mit
 $
-\langle a_i,a_j\rangle=\delta_{ij}
+\langle b_i,b_j\rangle=\delta_{i\!j},
 $
 heisst {\em Orthonormalbasis}.
-In einer Orthonormalbasis ist die Bestimmung der Koordinaten eines
-beliebigen Vektors besonders einfach, ist nämlich
+\index{Orthonormalbasis}%
+Die Gram-Matrix einer Orthonormalbasis ist die Einheitsmatrix.
+
+Eine Orthonormalbasis zeichnet sich dadurch aus, dass die Berechnung
+des Skalarproduktes in einer solchen Basis besonders einfach ist.
+Aus \eqref{buch:skalarprodukt:eqn:skalarproduktgram} kann man ablesen,
+dass $\langle x,y\rangle = \xi^t G \eta = \xi^t I \eta = \xi^t\eta$.
+
+In einer Orthonormalbasis ist auch die Bestimmung der Koordinaten
+eines beliebigen Vektors besonders einfach.
+Sei also $\{b_1,\dots,b_n\}$ eine Orthonormalbasis und $v$ ein
+Vektor, der in dieser Basis dargestellt werden soll.
+Der Vektor
 \begin{equation}
-v=\sum_{i=1}^n \langle v,a_i\rangle a_i.
+v'=\sum_{i=1}^n \langle v,b_i\rangle b_i,
 \label{buch:grundlagen:eqn:koordinaten-in-orthonormalbasis}
 \end{equation}
-Die Gram-Matrix einer Orthonormalbasis ist die Einheitsmatrix.
+hat die Skalarprodukte
+\[
+\langle v',b_j\rangle=
+\biggl\langle \sum_{i=1}^n \langle v,b_i\rangle b_i,b_j\biggr\rangle
+=
+\sum_{i=1}^n \bigl\langle \langle v,b_i\rangle b_i, b_j\bigr\rangle
+=
+\sum_{i=1}^n \langle v,b_i\rangle \rangle b_i, b_j\rangle
+=
+\sum_{i=1}^n \langle v,b_i\rangle \delta_{i\!j}
+=
+\langle v,b_j\rangle.
+\]
+Insbesondere gilt 
+\[
+\langle v,b_j\rangle = \langle v',b_j\rangle
+\qquad\Rightarrow\qquad
+\langle v-v',b_j\rangle = 0
+\qquad\Rightarrow\qquad
+v-v'=0
+\qquad\Rightarrow\qquad
+v=v'.
+\]
+Die Koordinaten von $v$ in der Basis $\{b_i\,|\,1\le i\le n\}$
+sind also genau die Skalarprodukte $\langle v,b_i\rangle$.
 
 \subsubsection{Gram-Schmidt-Orthonormalisierung}
 Mit Hilfe des Gram-Schmidtschen Orthonormalisierungsprozesses kann aus
 einer beliebige Basis $\{a_1,a_2,\dots,a_n\}\subset V$ eines Vektorraums
-mit einem SKalarprodukt eine orthonormierte Basis 
+mit einem Skalarprodukt eine orthonormierte Basis 
 $\{b_1,b_2,\dots,b_n\}$ gefunden werden derart, dass für alle $k$
 $\langle b_1,\dots,b_k\rangle = \langle a_1,\dots ,a_k\rangle$.
 \index{Gram-Schmidt-Orthonormalisierung}%
@@ -392,7 +472,7 @@ a_n-b_1\langle b_1,a_n\rangle-b_2\langle b_2,a_n\rangle
 \end{align*}
 Die Basisvektoren $b_i$ sind orthogonal, aber $\|b_i\|_2$ kann auch
 von $1$ abweichen.
-Damit ist es zwar nicht mehr so einfach 
+Damit ist es leider nicht mehr so einfach 
 wie in \eqref{buch:grundlagen:eqn:koordinaten-in-orthonormalbasis},
 einen Vektor in der Basis zu zerlegen.
 Ein Vektor $v$ hat nämlich in der Basis $\{b_1,\dots,b_n\}$ die Zerlegung
@@ -403,10 +483,10 @@ v
 \frac{\langle b_i,v\rangle}{\|b_i\|_2^2} b_i,
 \label{buch:grundlagen:eqn:orthogonal-basiszerlegung}
 \end{equation}
-Die Koordinaten bezüglich dieser Basis sind also
+die Koordinaten bezüglich dieser Basis sind also
 $\langle b_i,v\rangle/\|b_i\|_2^2$.
 
-Die Gram-Matrix einer Orthogonalen Basis ist immer noch diagonal,
+Die Gram-Matrix einer orthogonalen Basis ist immer noch diagonal,
 auf der Diagonalen stehen die Normen der Basisvektoren.
 Die Nenner in der Zerlegung
 \eqref{buch:grundlagen:eqn:orthogonal-basiszerlegung}
@@ -416,7 +496,7 @@ sind die Einträge der inverse Matrix der Gram-Matrix.
 Die Gram-Matrix einer Basis $\{b_1,\dots,b_n\}$ in einem komplexen
 Vektorraum hat die Eigenschaft
 \[
-g_{ij}
+g_{i\!j}
 =
 \langle b_i,b_j\rangle
 =
@@ -430,11 +510,13 @@ der folgenden Definition.
 
 \begin{definition}
 \label{buch:grundlagen:definition:selstadjungiert}
-Sei $A$ eine komplexe Matrix mit Einträgen $a_{ij}$, dann ist
+Sei $A$ eine komplexe Matrix mit Einträgen $a_{i\!j}$, dann ist
 $\overline{A}$ die Matrix mit komplex konjugierten Elementen
-$\overline{a}_{ij}$.
+$\overline{a}_{i\!j}$.
 Die {\em adjungierte} Matrix ist $A^*=\overline{A}^t$.
-Eine Matrix heisst selbstadjungiert, wenn $A^*=A$.
+\index{adjungiert}%
+Eine Matrix heisst {\em selbstadjungiert}, wenn $A^*=A$.
+\index{selbstadjungiert}%
 \end{definition}
 
 \subsection{Symmetrische und selbstadjungierte Abbilungen
@@ -456,12 +538,12 @@ Sei $f\colon V\to V$ eine lineare Abbildung.
 In einer Basis $\{b_1,\dots,b_n\}\subset V$ wird $f$ durch eine
 Matrix $A$ beschrieben.
 Ist die Basis orthonormiert, dann kann man die Matrixelemente 
-mit $a_{ij}=\langle b_i,Ab_j\rangle$ berechnen.
+mit $a_{i\!j}=\langle b_i,Ab_j\rangle$ berechnen.
 Die Matrix ist symmetrisch, wenn 
 \[
 \langle b_i,Ab_j\rangle
 =
-a_{ij}
+a_{i\!j}
 = 
 a_{ji}
 =
@@ -477,6 +559,7 @@ symmetrischen Abbildung ab.
 Eine lineare Abbildung $f\colon V\to V$ heisst {\em symmetrisch}, wenn
 $\langle x,Ay\rangle=\langle Ax,y\rangle$ gilt für beliebige 
 Vektoren $x,y\in V$.
+\index{symmetrische Abbildung}%
 \end{definition}
 
 Für $V=\mathbb{R}^n$ und das Skalarprodukt $\langle x,y\rangle=x^ty$ 
@@ -507,6 +590,7 @@ und symmetrisch, sondern sesquilinear und konjugiert symmetrisch.
 \begin{definition}
 Eine lineare Abbildung $f\colon V\to V$ heisst {\em selbstadjungiert},
 wenn $\langle x,fy\rangle=\langle fx,y\rangle$ für alle $x,y\in\mathbb{C}$.
+\index{selbstadjungiert}%
 \end{definition}
 
 Im komplexen Vektorraum $\mathbb{C}^n$ ist das Standardskalarprodukt
@@ -528,12 +612,13 @@ Die lineare Abbildung $f^*\colon V\to V$ definiert durch
 \langle f^*x,y\rangle = \langle x,fy\rangle,\qquad x,y\in V
 \]
 heisst die {\em Adjungierte} von $f$.
+\index{Adjungierte}%
 \end{definition}
 
 Eine selbstadjungierte Abbildung ist also eine lineare Abbildung,
 die mit ihrer Adjungierte übereinstimmt, als $f^* = f$.
 In einer orthonormierten Basis $\{b_1,\dots,b_n\}$ hat die Abbildung
-$f$ die Matrixelemente $a_{ij}=\langle b_i,fb_j\rangle$.
+$f$ die Matrixelemente $a_{i\!j}=\langle b_i,fb_j\rangle$.
 Die adjungierte Abbildung hat dann die Matrixelemente
 \[
 \langle b_i,f^*b_j \rangle
@@ -560,6 +645,8 @@ Eine lineare Abbildung $f\colon V\to V$ in einem reellen
 Vektorraum mit heisst {\em orthogonal}, wenn
 $\langle fx,fy\rangle = \langle x,y\rangle$ für alle
 $x,y\in V$ gilt.
+\index{orthogonale Abbildung}%
+\index{orthogonale Matrix}%
 \end{definition}
 
 Die adjungierte einer orthogonalen Abbildung erfüllt
@@ -579,18 +666,101 @@ Eine lineare Abbildung $f\colon V\to V$ eines komplexen Vektorraumes
 $V$ mit Skalarprodukt heisst unitär,
 wenn $\langle x,y\rangle = \langle fx,fy\rangle$ für alle Vektoren $x,y\in V$.
 Eine Matrix heisst unitär, wenn $U^*U=I$.
+\index{unitäre Abbildung}%
+\index{unitäre Matrix}%
 \end{definition}
 
 Die Matrix einer unitären Abbildung in einer orthonormierten Basis ist unitär.
 
-% XXX Skalarprodukt und Lineare Abbildungen
-% XXX Symmetrische Matrizen
-% XXX Selbstadjungierte Matrizen
-
 \subsection{Orthogonale Unterräume
 \label{buch:subsection:orthogonale-unterraeume}}
-% XXX Invariante Unterräume 
-% XXX Kern und Bild orthogonaler Abbildungen
+Die Orthogonalitätsrelation lässt sich auch auf Unterräume ausdehnen.
+Zwei Unterräume $U\subset V$ und $W\subset V$ eines Vektorraums mit
+Skalarprodukt heissen orthogonal, wenn gilt
+\(
+u\perp w\forall u\in U,w\in W
+\).
+
+\subsubsection{Orthogonalkomplement}
+Zu einem Unterraum $U$ kann man den Vektorraum
+\[
+U^\perp = \{ v\in V\,|\, v\perp u\forall u\in U\}
+\]
+bilden.
+$U^\perp$ ist ein Unterraum, denn für zwei Vektoren
+$v_1,v_2\in U^\perp$ gilt
+\[
+\langle \lambda v_1+\mu v_2,u\rangle
+=
+\lambda \langle v_1,u\rangle + \mu \langle v_2,u\rangle
+=
+0
+\]
+für alle $u\in U$, also ist $\lambda v_1+\mu v_2\in U^\perp$.
+Der Unterraum $U^\perp$ heisst das {\em Orthogonalkomplement}
+von $U$.
+\index{Orthogonalkomplement}%
+
+\subsubsection{Kern und Bild}
+Die adjungierte Abbildung ermöglicht, eine Abbildung in einem
+Skalarprodukt auf den anderen Faktor zu schieben und damit
+einen Zusammenhang zwischen Bildern und Kernen mit Hilfe des
+Orthogonalkomplements herzustellen.
+
+\begin{satz}
+Sei $f\colon U\to V$ eine lineare Abbildung zwischen Vektorräumen
+mit Skalarprodukt, und $f^*\colon V \to U$ die adjungierte Abbildung,
+Dann gilt
+\[
+\begin{aligned}
+\ker f^*
+&=
+(\operatorname{im}f)^\perp
+&&
+&
+\operatorname{im}f\phantom{\mathstrut^*}
+&=
+(\ker f^*)^\perp
+\\
+\ker f\phantom{\mathstrut^*}
+&=
+(\operatorname{im}f^*)^\perp
+&
+&&
+\operatorname{im}f^*
+&=
+(\ker f)^\perp.
+\end{aligned}
+\]
+\end{satz}
+
+\begin{proof}[Beweis]
+Es gilt $\langle fu,v\rangle = \langle u,f^*v\rangle$ für
+alle $u\in U, v\in V$.
+Das Orthogonalkomplement des Bildes von $f$ ist
+\begin{align*}
+(\operatorname{im} f)^\perp
+&=
+\{
+v\in V
+\,|\,
+\langle v, fu\rangle=0\forall u\in U
+\}
+\end{align*}
+Ein Vektor $v$ ist genau dann in $(\operatorname{im}f)^\perp$ enthalten,
+wenn für alle $u$ 
+\[
+0
+=
+\langle v,fu\rangle
+=
+\langle f^*v,u\rangle
+\]
+gilt.
+Das ist aber gleichbdeutend damit, dass $f^*v=0$ ist, dass also 
+$v\in\ker f^*$.
+Dies beweist die erste Beziehung, alle anderen folgen auf analoge Weise.
+\end{proof}
 
 \subsection{Andere Normen auf Vektorräumen
 \label{buch:subsection:andere-normen}}
@@ -602,6 +772,7 @@ zusammen.
 \subsubsection{$l^1$-Norm}
 \begin{definition}
 Die $l^1$-Norm in $V=\mathbb{R}^n$ oder $V=\mathbb{C}^n$ ist definiert durch
+\index{l1-Norm@$l^1$-Norm}%
 \[
 \| v\|_1
 =
@@ -652,7 +823,6 @@ ein Widerspruch.
 
 \subsubsection{$l^\infty$-Norm}
 
-
 \begin{definition}
 Die $l^\infty$-Norm in $V=\mathbb{R}^n$ und $V=\mathbb{C}^n$ ist definiert
 \[
@@ -662,6 +832,7 @@ Die $l^\infty$-Norm in $V=\mathbb{R}^n$ und $V=\mathbb{C}^n$ ist definiert
 \]
 Sie heisst auch die {\em Supremumnorm}.
 \index{Supremumnorm}%
+\index{lunendlich-norm@$l^\infty$-Norm}%
 \end{definition}
 
 Auch diese Norm  erfüllt die Dreiecksungleichung
@@ -715,6 +886,7 @@ Norm ausgestattet werden, wenn $U$ und $V$ jeweils eine Norm haben.
 Seien $U$ und $V$ Vektorräume über $\mathbb{R}$ oder $\mathbb{C}$ und
 $f\colon U\to V$ eine lineare Abbildung.
 Die {\em Operatorname} der linearen Abbildung ist 
+\index{Operatornorm}%
 \[
 \|f\|
 =
@@ -736,7 +908,8 @@ l_y
 \colon
 V\to \mathbb{C}: x\mapsto \langle y,x\rangle.
 \]
-Zur Berechnung der Operatorname von $l_y$ 
+Zur Berechnung der Operatorname von $l_y$ verwenden wir die
+Cauchy-Schwarz-Ungleichung~\eqref{buch:skalarprodukt:eqn:cauchy-schwarz-ungleichung}
 \[
 |l_y(x)|^2
 =
@@ -788,6 +961,7 @@ sich auf den Raum der stetigen Funktionen $[a,b]\to\mathbb{R}$ oder
 $[a,b]\to\mathbb{C}$ verallgemeinern.
 
 Die Supremumnorm auf dem Vektorraum der stetigen Funktionen ist
+\index{Supremumnorm}%
 \[
 \|f\|_\infty = \sup_{x\in[a,b]} |f(x)|
 \]
@@ -796,6 +970,8 @@ für $f\in C([a,b],\mathbb{R})$ oder $f\in C([a,b],\mathbb{C})$.
 Für die anderen beiden Normen wird zusätzlich das bestimmte Integral
 von Funktionen auf $[a,b]$ benötigt.
 Die $L^2$-Norm wird erzeugt von dem Skalarprodukt
+\index{L2-norm@$L^2$-Norm}%
+\index{Skalarprodukt}%
 \[
 \langle f,g\rangle
 =
@@ -804,10 +980,34 @@ Die $L^2$-Norm wird erzeugt von dem Skalarprodukt
 \qquad\Rightarrow\qquad
 \|f\|_2^2 = \frac{1}{b-a}\int_a^b |f(x)|^2\,dx.
 \]
-Die $L^2$-Norm ist dagegen
+Die $L^1$-Norm ist dagegen definiert als.
 \[
 \|f\|_1
 =
 \int_a^b |f(x)|\,dx.
 \]
+Die drei Normen stimmen nicht überein.
+Beschränkte Funktionen sind zwar immer integrierbar und quadratintegrierbar.
+Es gibt integrierbare Funktionen, die nicht quadratintegrierbar sind, zum
+Beispiel ist die Funktion $f(x)=1/\sqrt{x}$ auf dem Interval $[0,1]$
+\begin{align*}
+\|f\|_1
+&=
+\int_0^1 \frac 1\sqrt{x}\,dx
+=
+[2\sqrt{x}]_0^1 = 2 < \infty
+&&\Rightarrow& \|f\|_2&<\infty
+\\
+\|f\|_2^2
+&=
+\int_0^1 \biggl(\frac1{\sqrt{x}}\biggr)^2\,dx
+=
+\int_0^1 \frac1x\,dx
+=
+\lim_{t\to 0} [\log x]_t^1 = \infty
+&&\Rightarrow&
+\|f\|_1 &= \infty.
+\end{align*}
+Die Vektorräume der integrierbaren und der quadratintegrierbaren Funktionen
+sind also verschieden.
 
