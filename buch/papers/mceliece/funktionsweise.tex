@@ -71,10 +71,12 @@ hängt vom verwendeten Linearcode ab:
 Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
 womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde:
 \begin{align*}
-                            c_{k}'\,&=S_{k}\cdot d_k \quad | \cdot S_k^{-1}\\
     d'_{k}\,=\,S_{k}^{-1} \cdot c'_k&=S_{k}^{-1} \cdot S_{k}\cdot d_k\\
                                     &=d_k\,.
 \end{align*}
+Möchte ein Angreifer die verschlüsselte Nachricht knacken, muss dieser die drei privaten Matrizen $S_k$, $G_{n,k}$ und $P_n$ kennen.
+Aus dem Öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
+und eine systematische Analyse der Codeworte wird durch das Hinzufügen von zufälligen Bitfehlern zusätzlich erschwert.
 
 \subsection{Beispiel}
 Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden.
@@ -303,7 +305,7 @@ Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden
             \end{pmatrix}
         \end{align*}
     \end{itemize}
-    \item Entschlüsselung (Umkehrung des $S_k$-Matrix-Effekts):
+    \item Entschlüsselung (Umkehrung des $S_4$-Matrix-Effekts):
     \begin{itemize}
         \item[]
         \begin{align*}

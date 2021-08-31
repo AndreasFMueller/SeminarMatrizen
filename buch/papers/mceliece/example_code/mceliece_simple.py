@@ -187,14 +187,10 @@ def decode_linear_code(c, g, syndrome_table):
     q, r=divmod(Poly(c), g)
     q=np.r_[q.coef%2, np.zeros(len(c)-len(q)-len(g)+1)]
     r=np.r_[r.coef%2, np.zeros(len(g)-len(r))]
-    syndrome_index=np.sum([int(a*2**i) for i, a in enumerate(r)])
-    while syndrome_index > 0:
-        c=c ^ syndrome_table[syndrome_index]
-        q, r=divmod(Poly(c), g)
-        q=np.r_[q.coef%2, np.zeros(len(c)-len(q)-len(g)+1)]
-        r=np.r_[r.coef%2, np.zeros(len(g)-len(r))]
-        syndrome_index=np.sum([int(a*2**i) for i, a in enumerate(r)])
-    return np.array(q, dtype=int)
+    syndrome_index=np.sum([int(a*2**i) for i, a in enumerate(r)]) #binary to decimal
+    q_corr, r_corr=divmod(Poly(syndrome_table[syndrome_index]), g)
+    q_corr=np.r_[q_corr.coef%2, np.zeros(len(c)-len(q_corr)-len(g)+1)]
+    return q.astype(int) ^ q_corr.astype(int)
     
 def encode_linear_code(d, G):
     '''
