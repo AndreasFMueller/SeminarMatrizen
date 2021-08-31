@@ -1,0 +1,120 @@
+%
+% gausshomoex.tex -- Beispiel für die Bestimmung einer Basis von H_1
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\s{2.0}
+
+\def\punkt#1#2{({((#1)+0.5*(#2))*\s},{(#2)*\s*sqrt(3)/2})}
+
+\def\knoten#1#2#3{
+	\fill[color=white] \punkt{#1}{#2} circle[radius=0.3];
+	\node at \punkt{#1}{#2} {$#3$\strut};
+	\draw \punkt{#1}{#2} circle[radius=0.3];
+}
+\def\dreieck#1#2#3{
+	\fill[color=gray] \punkt{#1}{#2} -- \punkt{#1+1}{#2}
+		-- \punkt{#1}{(#2)+1} -- cycle;
+	\node at \punkt{#1+0.3333}{#2+0.3333} {$#3$\strut};
+	\draw[->,line width=1pt,shorten >= 0.3cm,shorten <= 0.3cm]
+		\punkt{#1}{#2} -- \punkt{#1+1}{#2};
+	\draw[->,line width=1pt,shorten >= 0.3cm,shorten <= 0.3cm]
+		\punkt{#1+1}{#2} -- \punkt{#1}{#2+1};
+	\draw[->,line width=1pt,shorten >= 0.3cm,shorten <= 0.3cm]
+		\punkt{#1}{#2+1} -- \punkt{#1}{#2};
+}
+
+\def\Dreieck#1#2#3{
+	\fill[color=gray!50] \punkt{#1}{#2} -- \punkt{#1+1}{#2}
+		-- \punkt{#1+1}{(#2)-1} -- cycle;
+	\node at \punkt{#1+0.3333}{#2+0.3333} {$#3$\strut};
+}
+
+\def\kante#1#2#3{
+	\fill[color=white,opacity=0.8] \punkt{#1}{#2} circle[radius=0.15];
+	\node at \punkt{#1}{#2} {$\scriptstyle #3$};
+}
+
+\dreieck{0}{0}{1}
+\dreieck{1}{0}{2}
+\dreieck{2}{0}{3}
+\dreieck{3}{0}{4}
+
+\dreieck{0}{1}{5}
+\dreieck{2}{1}{6}
+
+\dreieck{0}{2}{7}
+\dreieck{1}{2}{8}
+
+\dreieck{0}{3}{9}
+
+
+\knoten{0}{0}{1}
+\knoten{1}{0}{2}
+\knoten{2}{0}{3}
+\knoten{3}{0}{4}
+\knoten{4}{0}{5}
+
+\knoten{0}{1}{6}
+\knoten{1}{1}{7}
+\knoten{2}{1}{8}
+\knoten{3}{1}{9}
+
+\knoten{0}{2}{10}
+\knoten{1}{2}{11}
+\knoten{2}{2}{12}
+
+\knoten{0}{3}{13}
+\knoten{1}{3}{14}
+
+\knoten{0}{4}{15}
+
+\kante{0.5}{0}{1}
+\kante{1.5}{0}{2}
+\kante{2.5}{0}{3}
+\kante{3.5}{0}{4}
+
+\kante{0}{0.5}{5}
+\kante{0.5}{0.5}{6}
+\kante{1}{0.5}{7}
+\kante{1.5}{0.5}{8}
+\kante{2}{0.5}{9}
+\kante{2.5}{0.5}{10}
+\kante{3}{0.5}{11}
+\kante{3.5}{0.5}{12}
+
+\kante{0.5}{1}{13}
+\kante{2.5}{1}{14}
+
+\kante{0}{1.5}{15}
+\kante{0.5}{1.5}{16}
+\kante{2}{1.5}{17}
+\kante{2.5}{1.5}{18}
+
+\kante{0.5}{2}{19}
+\kante{1.5}{2}{20}
+
+\kante{0}{2.5}{21}
+\kante{0.5}{2.5}{22}
+\kante{1}{2.5}{23}
+\kante{1.5}{2.5}{24}
+
+\kante{0.5}{3}{25}
+
+\kante{0}{3.5}{26}
+\kante{0.5}{3.5}{27}
+
+\end{tikzpicture}
+\end{document}
+

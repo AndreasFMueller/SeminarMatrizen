@@ -33,7 +33,7 @@ ist die Spur von $H_k(f)$ wohldefiniert.
 
 \begin{definition}
 Die {\em Lefshetz-Zahl} einer Abbildung $f$ von Kettenkomplexen ist
-\[
+\begin{equation}
 \lambda(f)
 =
 \sum_{k=0}^\infty
@@ -41,7 +41,8 @@ Die {\em Lefshetz-Zahl} einer Abbildung $f$ von Kettenkomplexen ist
 =
 \sum_{k=0}^\infty 
 (-1)^k \operatorname{Spur}(H_k(f)).
-\]
+\label{buch:homologie:lefschetz-zahl}
+\end{equation}
 \end{definition}
 
 Die zweite Darstellung  der Lefshetz-Zahl auf der rechten Seite ist
@@ -49,11 +50,55 @@ meistens viel leichter zu berechnen als die erste.
 Die einzelnen Vektorräume eines Kettenkomplexes können haben typischerweise
 eine hohe Dimension, so hoch wie die Anzahl der Simplizes der Triangulation.
 Die Homologiegruppen dagegen haben typischerweise sehr viel kleinere 
-Dimension, die Matrizen $H_k(F)$ sind also relativ klein.
+Dimension, die Matrizen $H_k(f)$ sind also relativ klein.
 Es ist aber nicht klar, dass beide Berechnungsmethoden für die 
 Lefshetz-Zahl auf das gleiche Resultat führen müssen.
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/95-homologie/images/approximation.pdf}
+\caption{Stückweise lineare Approximation einer Abbildung derart,
+dass die Bildpunkt von Knoten auf Gitterpunkte fallen.
+Die Abbildung wird damit zu einer Abbildung von Polyedern und
+die induzierte Abbildung der Kettenkomplexe lässt sich direkt berechnen.
+Wenn die Auflösung des Gitters klein genug ist, hat die Approximation
+einer Abbildung ohne Fixpunkte immer noch keine Fixpunkte.
+\label{buch:homologie:fig:simplapprox}}
+\end{figure}%
+
 \begin{proof}[Beweis]
+Im Abschnitt~\ref{buch:subsection:induzierte-abbildung} wurde gezeigt,
+dass die Basis des Komplexes immer so gewählt werden kann, dass für
+die Spuren der Teilmatrizen von $f_k$ die
+Formel~\eqref{buch:homologie:eqn:spur} gilt.
+Damit kann jetzt die alternierenierden Summe der Spuren von $f_k$ ermittelt
+werden:
+\begin{align*}
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_k)
+&=
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,B})
++
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,Z})
++
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k-1,B})
+\\
+&=
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,B})
++
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,Z})
+-
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,B})
+\\
+&=
+\sum_{k=0}^\infty (-1)^k\operatorname{Spur}(f_{k,Z}).
+\intertext{Die Abbildung $H_k(f)$ hat $f_{k,Z}$ als Matrix, also ist
+die letzte Form gleichbedeutend mit}
+&=
+\sum_{k=0} (-1)^k\operatorname{Spur} H_k(f).
+\end{align*}
+Damit ist die Formel
+\eqref{buch:homologie:lefschetz-zahl}
+bewiesen.
 \end{proof}
 
 Die Lefshetz-Zahl ist eine Invariante einer topologischen Abbildung,
@@ -67,6 +112,7 @@ ist $\lambda(f) \ne 0$, dann hat $f$ einen Fixpunkt.
 Im Folgenden soll nur ein heuristisches Argument gegeben werden, warum
 ein solcher Satz wahr sein könnte.
 
+
 Wenn eine Abbildung keinen Fixpunkt hat, dann ist $f(x) \ne x$ für alle
 Punkte von $X$.
 Da $X$ kompakt ist, gibt es einen minimalen Abstand $d$ zwischen $f(x)$ und $x$.
@@ -76,6 +122,9 @@ Punkte im selben Simplex oder in einem Nachbarsimplex abgebildet wird.
 Indem man nötigenfalls die Triangulation nochmals verfeinert, kann man auch
 genügend Platz schaffen, dass man die Abbildung $f$ etwas modifizieren kann,
 so dass auch die deformierte Abbildung immer noch diese Eigenschaft hat.
+Die Abbildung~\ref{buch:homologie:fig:simplapprox} illustriert, wie eine
+Abbildung durch eine andere approximiert werden kann, die die Triangulation
+im Bildraum respektiert.
 
 Die zugehörige Abbildung des Kettenkomplexes der Triangulation hat damit
 die Eigenschaft, dass kein Basisvektor auf sich selbst abgebildet wird.

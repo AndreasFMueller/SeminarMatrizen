@@ -8,18 +8,33 @@
 \rhead{Der euklidische Algorithmus}
 Der euklidische Algorithmus bestimmt zu zwei gegebenen ganzen
 Zahlen $a$ und $b$ den grössten gemeinsamen Teiler $g$.
-Zusätzlich findet er ganze Zahlen $s$ und $t$ derart, dass
+
+\begin{definition}
+\label{buch:endliche-koerper:def:ggt}
+Der grösste gemeinsame Teiler von $a$ und $b$ ist die grösste
+ganze Zahl $g$, die sowohl $a$ als auch $b$ teilt: $g|a$ und
+$g|b$.
+\index{grösster gemeinsamer Teiler}%
+\index{ggT}%
+\end{definition}
+
+Zusätzlich findet der euklidische Algorithmus  ganze Zahlen $s$
+\index{euklidischer Algorithmus}%
+und $t$ derart, dass
 \[
 sa + tb = g.
 \]
 In diesem Abschnitt soll der Algorithmus zunächst für ganze Zahlen
 vorgestellt werden, bevor er auf Polynome verallgemeinert und dann
 in Matrixform niedergeschrieben wird.
+Die Matrixform ermöglicht, einfach zu implementierende iterative
+Algorithmen für die Zahlen $s$ und $t$ un später auch für die
+Berechnung des kleinsten gemeinsamen Vielfachen zu finden.
 
 %
 % Der euklidische Algorithmus für ganze Zahlen
 %
-\subsection{Ganze Zahlen}
+\subsection{Grösster gemeinsamer Teiler ganzer Zahlen}
 Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
 dass $a\ge b$.
 Gesucht ist der grösste gemeinsame Teiler $g$ von $a$ und $b$.
@@ -55,11 +70,11 @@ neuen Quotienten $q_1$ und einen neuen Rest $r_1$ liefert mit $a_1-q_1b_1=r_1$.
 So entstehen vier Folgen von Zahlen $a_k$, $b_k$, $q_k$ und $r_k$ derart,
 dass in jedem Schritt gilt
 \begin{align*}
-a_k - q_kb_k &= r_k & g&|a_k & g&|b_k & a_k &= b_{k-1} & b_k = r_{k-1}
+a_k - q_kb_k &= r_k & g&|a_k & g&|b_k & a_k &= b_{k-1} & b_k = r_{k-1}.
 \end{align*}
 Der Algorithmus bricht im Schritt $n$ ab, wenn $r_{n+1}=0$.
 Der letzte nicht verschwindende Rest $r_n$ muss daher der grösste gemeinsame
-Teiler sein: $g=r_n$.
+Teiler $g$ von $a$ und $b$ sein: $g=r_n$.
 
 \begin{beispiel}
 \label{buch:endlichekoerper:beispiel1}
@@ -131,7 +146,7 @@ In jedem Schritt arbeitet man mit zwei ganzen Zahlen $a_k$ und $b_k$, die wir
 als zweidimensionalen Spaltenvektor betrachten können.
 Der Algorithmus macht aus $a_k$ und $b_k$ die neuen Zahlen
 $a_{k+1} = b_k$ und $b_{k+1} = r_k = a_k - q_kb_k$, dies
-kann man als
+kann man als die Matrixoperation
 \[
 \begin{pmatrix} a_{k+1} \\ b_{k+1} \end{pmatrix}
 =
@@ -143,7 +158,7 @@ kann man als
 schreiben.
 Der Algorithmus bricht ab, wenn die zweite Komponente des Vektors $=0$ ist,
 in der ersten steht dann der grösste gemeinsame Teiler.
-Hier ist die Durchführung des Algorithmus in Matrix-Schreibweise:
+Hier die Durchführung des Algorithmus in Matrix-Schreibweise:
 \begin{align*}
 \begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
 &=
@@ -196,16 +211,16 @@ beschreiben.
 
 \begin{algorithmus}[Euklid]
 \label{lifting:euklid}
-Der Algorithmus operiert auf zweidimensionalen Zustandsvektoren
+Der Algorithmus operiert auf zweidimensionalen Vektoren
 $x\in\mathbb Z^2$ 
 wie folgt:
 \begin{enumerate}
-\item Initialisiere  den Zustandsvektor mit den ganzen Zahlen $a$ und $b$:
-$\displaystyle x = \begin{pmatrix}a\\b\end{pmatrix}$
+\item Initialisiere  den Vektor mit den ganzen Zahlen $a$ und $b$:
+$\displaystyle x = \begin{pmatrix}x_1\\x_2\end{pmatrix}=\begin{pmatrix}a\\b\end{pmatrix}$
 \item Bestimme den Quotienten $q$ als die grösste ganze Zahl,
 für die $qx_2\le x_1$ gilt.
-\item Berechne den neuen Zustandsvektor als $Q(q)x$.
-\item Wiederhole Schritte 2 und 3 bis die zweite Komponente des Zustandsvektors
+\item Berechne den neuen Vektor als $Q(q)x$.
+\item Wiederhole Schritte 2 und 3 bis die zweite Komponente des Vektors
 verschwindet.
 Die erste Komponente ist dann der gesuchte grösste gemeinsame Teiler.
 \end{enumerate}
@@ -319,13 +334,11 @@ Q(q) = \begin{pmatrix} 0 & 1 \\ 1 & -q \end{pmatrix}
 \]
 lässt sich mit genau einer Multiplikation und einer Addition
 berechnen.
-Dies ist die Art von Matrix, die wir für die Implementation der
-Wavelet-Transformation anstreben.
 
 %
 % Vereinfachte Durchführung des euklidischen Algorithmus
 %
-\subsection{Vereinfachte Durchführung
+\subsection{Iterative Durchführung des erweiterten euklidischen Algorithmus
 \label{buch:endlichekoerper:subsection:matrixschreibweise}}
 Die Durchführung des euklidischen Algorithmus mit Hilfe der Matrizen
 $Q(q_k)$ ist etwas unhandlich.
@@ -334,7 +347,7 @@ dargestellt werden, die leichter als Programm zu implementieren ist.
 
 In Abschnitt~\ref{buch:endlichekoerper:subsection:matrixschreibweise}
 wurde gezeigt, dass das Produkt der aus den Quotienten $q_k$ gebildeten
-Matrizen $Q(q_k)$ berechnet werden müssen.
+Matrizen $Q(q_k)$ berechnet werden muss.
 Dazu beachten wir zunächst, dass die Multiplikation mit der Matrix
 $Q(q_k)$ die zweite Zeile in die erste Zeile verschiebt:
 \[
@@ -357,7 +370,7 @@ u-q_kc&v-q_kd
 \]
 Die Matrizen
 \[
-Q_k = Q(q_k)Q(q_{k-1})\dots Q(q_0)
+Q_k = Q(q_k)Q(q_{k-1})\cdots Q(q_0)
 \]
 haben daher jeweils für aufeinanderfolgende Werte vo $k$ eine Zeile
 gemeinsam.
@@ -419,7 +432,7 @@ gesetzt werden muss.
 
 Mit diesen Notationen kann man den Algorithmus jetzt in der früher
 verwendeten Tabelle durchführen, die man um die zwei
-Spalten $c_k$ und $d_k$ hinzufügt und die Werte in dieser
+Spalten $c_k$ und $d_k$ erweitert und die Werte in dieser
 Spalte mit Hilfe der
 Rekursionsformeln~\eqref{buch:endlichekoerper:eqn:cdrekursion}
 aus den initialen Werten~\eqref{buch:endlichekoerper:eqn:cdinitial}
@@ -428,7 +441,7 @@ berechnet.
 \begin{beispiel}
 Wir erweitern das Beispiel von Seite~\pageref{buch:endlichekoerper:beispiel1}
 zur Bestimmung des grössten gemeinsamen Teilers von $76415$ und $23205$
-zur Berechnung der Koeffizienten $c_k$ und $d_k$
+um die Spalten zur Berechnung der Koeffizienten $c_k$ und $d_k$
 Wir schreiben die gefundenen Zahlen in eine Tabelle:
 \begin{center}
 \label{buch:endlichekoerper:beispiel1erweitert}
@@ -503,7 +516,7 @@ Tabelle vertauscht wurden.
 %
 % Der euklidische Algorithmus für Polynome
 %
-\subsection{Polynome}
+\subsection{Grösster gemeinsare Teiler von Polynomen}
 Der Ring $\mathbb{Q}[X]$ der Polynome in der Variablen $X$ mit rationalen
 Koeffizienten\footnote{Es kann auch ein beliebiger anderer Körper für
 die Koeffizienten verwendet werden.
@@ -579,7 +592,7 @@ ta+sb
 (X^4+X^3-7X^2-X+6)
 \\
 &=
--4X^2+4X+8
+-4X^2+4X+8,
 \end{align*}
 und dies ist tatsächlich der gefundene grösste gemeinsame Teiler.
 Die zweite Zeile von $Q$ gibt uns die Polynomfaktoren, mit denen
@@ -621,6 +634,8 @@ $ua-vb = ab/g - ab/g = 0$, wie erwartet.
 %
 \subsection{Das kleinste gemeinsame Vielfache
 \label{buch:subsection:daskgv}}
+\index{kleinstes gemeinsames Vielfaches}%
+\index{kgV}%
 Das kleinste gemeinsame Vielfache zweier Zahlen $a$ und $b$ ist
 \[
 \operatorname{kgV}(a,b)
@@ -631,8 +646,8 @@ Wir suchen nach einen Algorithmus, mit dem man das kleinste gemeinsame
 Vielfache effizient berechnen kann.
 
 Die Zahlen $a$ und $b$ sind beide Vielfache des grössten gemeinsamen
-Teilers $g=\operatorname{ggT}(a,b)$, es gibt also Zahlen $u$ und $v$ derart,
-dass $a=ug$ und $b=vg$.
+Teilers $g=\operatorname{ggT}(a,b)$.
+Es gibt daher Zahlen $u$ und $v$ derart, dass $a=ug$ und $b=vg$.
 Wenn $t$ ein gemeinsamer Teiler von $u$ und $v$ ist, dann ist $tg$ ein
 grösserer gemeinsamer Teiler von $a$ und $b$.
 Dies kann nicht sein, also müssen $u$ und $v$ teilerfremd sein.
@@ -641,6 +656,7 @@ Die Bestimmung des kleinsten gemeinsamen Vielfachen ist also gleichbedeutend
 mit der Bestimmung der Zahlen $u$ und $v$.
 
 Die definierende Eigenschaften von $u$ und $v$ kann man in Matrixform als
+\index{Matrixform des kgV-Algorithmus}%
 \begin{equation}
 \begin{pmatrix}
 a\\b
@@ -669,7 +685,7 @@ Algorithmus beschreiben, ergeben ihn als
 \operatorname{ggT}(a,b)\\0
 \end{pmatrix}
 =
-Q(q_n)Q(q_{n-1}) \dots Q(q_1)Q(q_0)
+Q(q_n)Q(q_{n-1}) \cdots Q(q_1)Q(q_0)
 \begin{pmatrix}a\\b\end{pmatrix}.
 \]
 Indem wir die Matrizen $Q(q_n)$ bis $Q(q_0)$ auf die linke Seite der
@@ -679,7 +695,7 @@ Gleichung schaffen, erhalten wir
 =
 Q(q_0)^{-1}
 Q(q_1)^{-1}
-\dots
+\cdots
 Q(q_{n-1})^{-1}
 Q(q_n)^{-1}
 \begin{pmatrix}\operatorname{ggT}(a,b)\\0\end{pmatrix}.
@@ -692,15 +708,14 @@ K
 =
 Q(q_0)^{-1}
 Q(q_1)^{-1}
-\dots
+\cdots
 Q(q_{n-1})^{-1}
 Q(q_n).
 \]
 Insbesondere ist die Matrix $K$ die Inverse der früher gefundenen
 Matrix $Q$.
 
-Die Berechnung der Matrix $K$ als Inverse von $Q$ ist nicht sehr
-effizient.
+Die Berechnung der Matrix $K$ als Inverse von $Q$ ist nicht schwierig.
 Genauso wie es möglich war, das Produkt $Q$ der Matrizen
 $Q(q_k)$ iterativ zu bestimmen, muss es auch eine Rekursionsformel
 für das Produkt der inversen Matrizen $Q(q_k)^{-1}$ geben.
@@ -709,7 +724,7 @@ Schreiben wir die gesuchte Matrix
 \[
 K_k
 =
-Q(q_0)^{-1}\dots Q(q_{k-1})^{-1}
+Q(q_0)^{-1}\cdots Q(q_{k-1})^{-1}
 =
 \begin{pmatrix}
 e_k & e_{k-1}\\
@@ -825,13 +840,12 @@ va
 \]
 \end{beispiel}
 
+\subsection{Kleinstes gemeinsames Vielfaches von Polynomen}
 Der erweiterte Algorithmus kann auch dazu verwendet werden,
 das kleinste gemeinsame Vielfache zweier Polynome zu berechnen.
 Dies wird zum Beispiel bei der Decodierung des Reed-Solomon-Codes in
 Kapitel~\ref{chapter:reedsolomon} verwendet.
 
-\subsubsection{Polynome
-\label{buch:endlichekoerper:eqn:polynomkgv}}
 Im Beispiel auf Seite~\pageref{buch:endlichekoerper:eqn:polynomggt}
 wird der grösste gemeinsame Teiler der Polynome
 \[
@@ -844,6 +858,8 @@ b = X^4 + X^3 -7X^2 -X + 6
 berechnet.
 Dies kann jetzt erweitert werden für die Berechnung des kleinsten
 gemeinsamen Vielfachen.
+\index{kleinstes gemeinsames Vielfaches von Polynomen}%
+\index{kgV von Polynomen}%
 
 \begin{beispiel}
 Die Berechnungstabelle nur für die Spalten $e_k$ und $f_k$ ergibt
@@ -890,8 +906,9 @@ Daraus ergibt sich das kleinste gemeinsame Vielfache auf zwei verschiedene Weise
 Die beiden Berechnungsmöglichkeiten stimmen wie erwartet überein.
 \end{beispiel}
 
-\subsubsection{Anwendung: Decodierung des Reed-Solomon-Codes}
+\subsection{Anwendung: Decodierung des Reed-Solomon-Codes}
 Der Reed-Solomon-Code verwendet Polynome zur Codierung der Daten,
+\index{Reed-Solomon-Code}%
 dies wird in Kapitel~\ref{chapter:reedsolomon} im Detail beschrieben.
 Bei der Decodierung muss der Faktor $u$ für zwei gegebene Polynome
 $n(X)$ und $r(X)$ bestimmt werden.
@@ -902,6 +919,7 @@ Algorithmus braucht.
 Daraus lässt sich genügend Information gewinnen, um die Faktoren $u$
 und $v$ zu bestimmen.
 Das Video \url{https://youtu.be/uOLW43OIZJ0} von Edmund Weitz
+\index{Weitz, Edmund}
 erklärt die Theorie hinter dieser Teilaufgabe anhand von Beispielen.
 
 \begin{beispiel}

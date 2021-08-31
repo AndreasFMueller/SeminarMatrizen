@@ -1,0 +1,122 @@
+\documentclass{article}
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{lipsum}
+\usepackage{amscd}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{textcomp}
+\usepackage{pgfplots}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+\usepackage{paralist}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{slashed}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows,matrix,positioning}
+\usetikzlibrary{overlay-beamer-styles}
+\usetikzlibrary{matrix.skeleton}
+\usetikzlibrary{automata,positioning}
+\usetikzlibrary{decorations.text}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{color}
+
+\begin{document}
+
+
+
+\begin{table}[t]
+	\begin{tabular}{ll}
+		\begin{minipage}{0.4\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\label{multiplikation:alg:b1}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\Function{B1}{$a, b$}
+					\State \textbf{return} $a+b$
+					\EndFunction
+					\State
+					\State
+				\end{algorithmic}
+			\end{algorithm}
+		\end{minipage}	
+		&
+		\begin{minipage}{0.4\textwidth}
+	\begin{algorithm}[H]\footnotesize\caption{}
+	\label{multiplikation:alg:b2}
+	\setlength{\lineskip}{7pt}
+	\begin{algorithmic}
+		\Function{B2}{$a, b$}
+		\State $ x \gets a+b $
+		\State $ y \gets a \cdot b $
+		\State \textbf{return} $x+y$
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+		\end{minipage}
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\begin{tabular}[t]{ll} 
+		\begin{minipage}{0.4\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+				\setlength{\lineskip}{7pt}
+				\begin{algorithmic}
+					\label{multiplikation:alg:linear}
+					\Function{L}{$\mathbf{a}, \mathbf{b}$,n}
+					\State $ sum \gets 0$
+					\For{$i = 0,1,2 \dots,n$}
+					\State $ sum \gets sum + A[i] \cdot B[i] $
+					\EndFor
+					
+					\State \textbf{return} $sum$
+					
+					\EndFunction
+					\State
+					\State
+				\end{algorithmic}
+			\end{algorithm}
+		\end{minipage}	
+		&
+		\begin{minipage}{0.4\textwidth}
+			\begin{algorithm}[H]\footnotesize\caption{}
+			\label{multiplikation:alg:q1}
+			\setlength{\lineskip}{7pt}
+			\begin{algorithmic}
+				\Function{Q}{$\mathbf{A}, \mathbf{B}$,n}
+				\State $ sum \gets 0$
+				\For{$i = 0,1,2 \dots,n$}
+				\For{$j = 0,1,2 \dots,n$}
+				\State $ sum \gets sum + A[i] \cdot B[j] $
+				\EndFor
+				\EndFor
+				\State \textbf{return} $sum$
+				\EndFunction
+			\end{algorithmic}
+		\end{algorithm}
+		\end{minipage}
+	\end{tabular}
+\end{table}
+
+dhdfh
+\end{document}

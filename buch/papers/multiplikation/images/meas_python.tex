@@ -43,8 +43,8 @@
 \begin{tikzpicture}
 \begin{axis}[
 xmode=log, ymode=log,
-xmin=30, xmax=1050,
-ymin=0.01, ymax=900,
+xmin=30, xmax=4200,
+ymin=0.01, ymax=70000,
 grid=both,
 major grid style={black!50},
 xlabel = data input ($n$),
@@ -53,10 +53,11 @@ legend pos=north west,
 very thick,
 scale only axis=true,
 width=12cm, height=8cm,
-       log basis x={10}
+       log basis x={10},
+       legend cell align={left}
 ]
 \addlegendentry{Winograd}
-\addplot[    color=purple,
+\addplot[    color=blue,
 ] coordinates {
 % (2,   2.7895e-05 )
 % (4,   0.000104904)
@@ -68,7 +69,8 @@ width=12cm, height=8cm,
 (256, 8.29899    )
 (512, 68.3699    )
 (1024,537.374    )
-
+(2046,4884.61)
+(4096,43597.1)
 };
 \addlegendentry{Strassen}
 \addplot [    color=black,
@@ -79,10 +81,12 @@ width=12cm, height=8cm,
   % (16,0.00475407  )
   (32,0.0485256   )
   (64,0.220414    )
- (128,1.44718    2 )
- (256,9.93866    0 )
- (512,63.961     2 )
-(1024,461.494    2 )
+ (128,1.44718    )
+ (256,9.93866    )
+ (512,63.961     )
+(1024,461.494    )
+(2046,3860.57)
+(4096,22904.3)
 };
 
 \addlegendentry{MM div and conq}
@@ -98,6 +102,8 @@ width=12cm, height=8cm,
  (256,13.27        )
  (512,105.397      )
 (1024,847.321      )
+(2046,7375.93)
+(4096,58466)
 };
 
 \addlegendentry{MM}
@@ -113,25 +119,27 @@ width=12cm, height=8cm,
  (256,  11.0062 )
  (512,   85.4768)
 (1024,750.757 )
+(2046,6154.18)
+(4096,46813.3)
 };
-% \addlegendentry{NumPy}
-% \addplot[    color=blue,
-% ] coordinates {
-%    (2,1.83582e-05 )
-%    (4,7.86781e-06)
-%    (8,1.00136e-05)
-%   (16,5.4121e-05 )
-%   (32,4.26769e-05)
-%   (64,0.000118494)
-%  (128,0.000244141 )
-%  (256,0.000695705  )
-%  (512,0.00221705   )
-% (1024,0.0188088    )
-% };
+%  \addlegendentry{NumPy}
+%  \addplot[    color=blue,
+%  ] coordinates {
+% %    (2,1.83582e-05 )
+% %    (4,7.86781e-06)
+% %    (8,1.00136e-05)
+% %   (16,5.4121e-05 )
+%    (32,4.26769e-05)
+%  (64,0.000118494)
+%   (128,0.000244141 )
+%   (256,0.000695705  )
+%   (512,0.00221705   )
+%  (1024,0.0188088    )
+% (2046,0.215739)
+% (4096,1.49159)
+%  };
+
 \end{axis}
 \end{tikzpicture}
 
 \end{document}
-
-
-

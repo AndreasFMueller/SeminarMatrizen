@@ -14,15 +14,20 @@
 \rhead{Kalman-Filter}
 
 \section{Kalman-Filter}
-Interessante Grösse ist also Integral von Überlagerung zweier Kräfte. 
-Wir brauchen also dir zweite Ableitung von der Messung , ohne deren Eigendynamik.
+Die interessante Grösse ist also das Integral der Überlagerung zweier Kräfte. 
+Wir brauchen also die zweite Ableitung der Messung, ohne deren Eigendynamik.
 Da wir die äussere Kraft nicht direkt messen können, benötigen wir ein Werkzeug, welches aus der gemessenen Position, die Krafteinwirkung auf unsere System schätzt. 
 Dies ist eine typische Anwendung für das Kalman-Filter.
+
+Das Filter schätzt den Zustand eines Systems anhand von Messungen und kann den nächsten Zustand errechnen und aus dieser Schätzung auch eine erwartete Messung herleiten.
+Die für das Filter relevante Grösse ist dann nicht mehr die eigentliche Messung, sondern die Differenz aus Messung und Erwartung, da diese Differenz, die Innovation, eine Aussage über die nicht-deterministischen, externen Einflüsse auf das System ermöglicht.
+Das Filter berücksichtigt dazu nicht nur die Messung und den Zustand, sondern auch die Unsicherheiten dieser beiden Grössen, welche als Parameter in das Modell des Systems einfliessen.
+
 Unser Ziel ist es, anhand der Messung die eigentlich interessante Grösse $f$ zu bestimmen. 
-Dabei wird durch eine deterministische Vorhersage, in dem der Zustand * Eigendynamik des Systems gerechnet. 
+Dabei wird durch eine deterministische Vorhersage, in dem der Zustand mit der Eigendynamik des Systems multipliziert wird. 
 Die Idee dahinter ist, dass das Kalman-Filter die nicht-deterministische Grösse $f$ anhand der Messung und der Vorhersage zu bestimmen.
 
-Für mehrere Dimensionen (x,y,z) würde der Pythagoras für das System benötigt werden.
+Für mehrere Dimensionen (x,y,z) würde der Satz von Pythagoras für das System benötigt.
 Da sich der Pythagoras bekanntlich nicht linear verhält, kann kein lineares Kalman-Filter implementiert werden. 
 Da das Kalman-Filter besonders effektiv und einfach für lineare Abläufe geeignet ist, würde eine zweidimensionale Betrachtung den Rahmen dieser Arbeit sprengen. 
 Einfachheitshalber beschränken wir uns auf den linearen Fall, da dadurch die wesentlichen Punkte bereits aufgezeigt werden. 
@@ -30,8 +35,7 @@ Für ein nicht-lineares System werden Extended Kalman-Filter benötigt, bei dene
 
 \subsection{Geschichte}
 Das Kalman-Filter wurde 1960 von Rudolf Emil Kalman entdeckt und direkt von der NASA für die Appollo Mission benutzt.
-Das Filter kommt mit wenig Rechenleistung aus und war somit dafür geeignet die Rakete bei der Navigation zu unterstützen. 
-Das Filter schätzt den Zustand eines Systems anhand von Messungen und kann den nächsten Zustand errechnen. Eine typische Anwendungen des Kalman-Filters ist Glättung von verrauschten Daten und die Schätzung von Parametern. Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphones und Videospielen vor.
+Das Filter kommt mit wenig Rechenleistung aus und war somit dafür geeignet die Rakete bei der Navigation zu unterstützen. Eine typische Anwendungen des Kalman-Filters ist Glättung von verrauschten Daten und die Schätzung von Parametern. Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphones und Videospielen vor.
 
 \subsection{Wahrscheinlichkeit}
 Das Kalman-Filter schätzt den wahrscheinlichsten Wert zwischen Normalverteilungen.
@@ -62,11 +66,14 @@ und der Messung:
 {y_2}(x;{\mu_2},{\sigma_2})=\frac{1}{\sqrt{2\pi\sigma_2^2}}\quad e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}.
 \]
 Diesen werden nun multipliziert und durch deren Fläche geteilt um sie wieder zu normieren, $\odot$ beschreibt dabei die Multiplikation und die Normierung auf den Flächeninhalt eins :
-\begin{align*}	{y_f}(x; {\mu_f}, {\sigma_f}) = {y_1}(x;{ \mu_1},{ \sigma_1}) \odot {y_2}(x; {\mu_2}, {\sigma_2})
+\begin{align*}
+	{y_f}(x; {\mu_f}, {\sigma_f}) = {y_1}(x;{ \mu_1},{ \sigma_1}) \odot {y_2}(x; {\mu_2}, {\sigma_2})
 	&=
 	\frac{1}{\sqrt{2\pi\sigma_1^2}}\quad e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \odot \frac{1}{\sqrt{2\pi\sigma_2^2}}\quad e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}
 	\\
-	&=	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} dx}.\end{align*}
+	&=
+	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} dx}.
+\end{align*}
 Diese Kombination der beiden Verteilungen resultiert wiederum in einer Normalverteilung
 mit Erwartungswert
 \[ \mu_f = \frac{\mu_1\sigma_2^2 + \mu_2 \sigma_1^2}{\sigma_1^2 + \sigma_2^2} \]
@@ -93,91 +100,6 @@ Dieses Prinzip mach sich das Kalman Filter zu nutze, und wird von uns für die E
 Da wir nun ein Werkzeug besitzen, dass die Beschleunigung, welche auf das Gehäuse wirkt, ermitteln kann, wird dieses nun Schritt für Schritt erklärt. 
 Um den Kalman Filter zu starten, müssen gewisse Bedingungen definiert werden. 
 In diesem Abschnitt werden die einzelnen Parameter und Matrizen erklärt und erläutert, wofür sie nützlich sind. 
-
-\subsection{Anfangsbedingungen}
-\subsubsection*{Anfangszustand $x$}
-Das Filter benötigt eine Anfangsbedingung. 
-In unserem Fall ist es die Ruhelage, die Masse bewegt sich nicht. 
-Zudem erfährt die Apparatur keine äussere Kraft.
-\[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right) \]
-
-\subsubsection*{Anfangsfehler / Kovarianzmatrix $P$}
-Da auch der Anfangszustand fehlerhaft sein kann, wird für das Filter ein Anfangsfehler verwendet. 
-Auf der Diagonalen werden die Varianzen eingesetzt, in den restlichen Felder stehen die Kovarianzen.
-Zur Erinnerung: Die Varianz ist ein Mass für die Streuung eines Wertes, die Kovarianz hingegen beschreibt die Abhängigkeit der Streuungen zweier Werte.
-
-Kovarianz: Cov(x, y) und Varianz: Var(x) = Cov(x, x)
-
-In unserem Fall ist der Anfangszustand gut bekannt. 
-Wir gehen davon aus, dass das System in Ruhe und in Abwesenheit eines Erdbeben startet, somit kann die Matrix mit Nullen bestückt werden. 
-Als Initialwert für die Kovarianzmatrix ergibt sich
-\[ 
-{P_0 }=
-\left(
-\begin{array}{ccc} 	
-0 & 0 &0 \\ 
-0 &0 & 0 \\ 
-0 & 0 &0 \\
-\end{array}
-\right).
- \] 
-Diese Matrix beschreibt die Unsicherheit des geschätzten Zustandes und wird sowohl für die Vorhersage als auch die Korrektur benötigt. 
-Sie wird nach jeder Schätzung aktualisiert. 
-Für einen gut bekannten Zustandsvektor können kleine Werte eingesetzt werden, für ungenaue Anfangsbedingungen sollten grosse Werte verwendet werden. 
-Grosse Werte ermöglichen dem Filter sich schnell einzupendeln. 
-
-\subsubsection*{Dynamikmatrix $A$}
-Das Kalman-Filter benötigt für die Vorhersage des nächsten Zustandes eine Beschreibung der Systemdynamik.
-Die Dynamikmatrix bildet den Kern des Filters. Diese wurde weiter oben bereits beschrieben. 
-Dabei wollen wird die äussere Kraft des Systems ermitteln.
-Da nichts über die äussere Kraft bekannt ist, müssen wir annehmen das deren Ableitung 0 ist. 
-Die System-Matrix lautet daher:
-\[ 
-A = \left(
- \begin{array}{ccc} 	
-0 & 1& 0 \\
-- \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m}\\
-0 & 0& 0\\ 
-\end{array}\right)  
- \]
-Dabei soll der Kalman-Filter in diskreten Zeitschritten $\Delta t$ arbeiten. 
-Die Übergangs-Matrix erhalten wir aus der Systemdynamikmatrix mittels Exponentialfunktion: 
-\[\Phi = \exp(A\Delta t). \]
-Die Matrix $\Phi$ beschreibt die Übergänge zwischen zeitlich aufeinanderfolgenden Zuständen $x_{k-1}$ und $x_{k}$
-
-\subsubsection*{Prozessrauschkovarianzmatrix $Q$}
-Die Prozessrauschmatrix teilt dem Filter mit, wie sich der Prozess verändert. 
-Kalman-Filter berücksichtigen Unsicherheiten wie Messfehler und -rauschen. 
-In der Matrix $Q$ geht es jedoch um die Unsicherheit, die der Prozess mit sich bringt. 
-Bei unserem Modell könnte das beispielsweise ein Windstoss an die Masse sein oder auch die Ungenauigkeiten im Modell, wie die Annahme das dich die Kraft nicht ändert.
-Für uns wäre dies:
-\[ 
-Q = \left(
- \begin{array}{ccc} 	
-{\sigma_s }^2& 0& 0 \\ 
-0 & {\sigma_v }^2& 0\\ 
-0 & 0& {\sigma_f }^2\\
-\end{array}\right)  
- \]
-Die Standabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
-Das Bedeutet wiederum dass $Q$ die Unsicherheit des Prozesses beschreibt und nicht die der Messung.
-
-\subsubsection*{Messmatrix $H$}
-Die Messmatrix gibt an, welche Parameter gemessen werden. 
-$H$ ist die Gleichung die für die Vorhersage der Messung.
-In unserem Falle ist es die Position der Massen. 
-\[ 
-H = (1, 0, 0) 
-\]
-
-\subsubsection*{Messrauschkovarianz $R$}
-Die Messrauschkovarianzmatrix beinhaltet, wie der Name schon sagt, das Rauschen der Messung. 
-In unserem Fall wird nur die Position der Masse gemessen. Da wir keine anderen Sensoren haben ist $R$ lediglich:
-\[ 
-R= ({\sigma_\mathrm{sensor}}^2).
- \] 
-Diese Messrauchen wird meistens vom Sensorhersteller angegeben. 
-Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt da heutige Sensoren sehr genau messen können. 
 
 \subsection{Fiter-Agorithmus}
 Nachdem alle Parameter aufgestellt sind, wird das Filter initialisiert.
@@ -230,12 +152,12 @@ Hierbei wird die Unsicherheit $P$, die Messmatrix $H$ und die Messunsicherheit $
 \subsubsection*{Aktualisieren}
 Im nächsten Schritt kommt nun die Wahrscheinlichkeit dazu. 
 \[{K_{k}}= {P_{k|k-1}} {H^T}{S_{k}^{-1}}\] 
-Dieser Vorgang wird Kalman-Gain genannt. 
+Die Grösse $K$ wird Kalman-Gain genannt. 
 Das Kalman-Gain gibt dem Zustand die Gewichtung, bzw. wie die Vorhersage auf den Zustand passt.
 Vereinfacht gesagt: Es wird das das Verhältnis zwischen der Unsicherheit der Vorhersage $P_k$ zu der zugehörigen Messunsicherheit $R_k$ gebildet. 
 In unserem Fall wird werden die Elemente der Kalman-Matrix vorweg berechnet, da das Kalman-Gain ohne Messungen auskommt. 
 
-Anhand der Informationen aus dem Kalman-Gain $K$ wird das System aktualisiert.
+Anhand der Informationen aus der Innovation wird das Kalman-Gain $K$ gebildet. Dabei beschreibt das Kalman-Gain die Wirkung der Innovation auf den geschätzten Zustand. So wird das System aktualisiert.
 \[
 {x_{k|k}}={x_{k|k-1}}+{K_{k}}{w_{k}}
 \] 
@@ -249,6 +171,91 @@ Der ganze Algorithmus und beginnt wieder mit der Vorhersage
 \[
 {x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k|k-1}}.
 \] 
+
+
+\subsection{Anfangsbedingungen}
+\subsubsection*{Anfangszustand $x$}
+Das Filter benötigt eine Anfangsbedingung. 
+In unserem Fall ist es die Ruhelage, die Masse bewegt sich nicht. 
+Zudem erfährt die Apparatur keine äussere Kraft.
+\[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right) \]
+
+\subsubsection*{Anfangsfehler / Kovarianzmatrix $P$}
+Da auch der Anfangszustand fehlerhaft sein kann, wird für das Filter ein Anfangsfehler verwendet. 
+Auf der Diagonalen werden die Varianzen eingesetzt, in den restlichen Felder stehen die Kovarianzen.
+Zur Erinnerung: Die Varianz ist ein Mass für die Streuung eines Wertes, die Kovarianz hingegen beschreibt die Abhängigkeit der Streuungen zweier Werte.
+
+Kovarianz: Cov(x, y) und Varianz: Var(x) = Cov(x, x)
+
+In unserem Fall ist der Anfangszustand gut bekannt. 
+Wir gehen davon aus, dass das System in Ruhe und in Abwesenheit eines Erdbeben startet, somit kann die Matrix mit Nullen bestückt werden. 
+Als Initialwert für die Kovarianzmatrix ergibt sich
+\[ 
+{P_0 }=
+\left(
+\begin{array}{ccc} 	
+0 & 0 &0 \\ 
+0 &0 & 0 \\ 
+0 & 0 &0 \\
+\end{array}
+\right).
+ \] 
+Diese Matrix beschreibt die Unsicherheit des geschätzten Zustandes und wird sowohl für die Vorhersage als auch die Korrektur benötigt. 
+Sie wird nach jeder Schätzung aktualisiert. 
+Für einen gut bekannten Zustandsvektor können kleine Werte eingesetzt werden, für ungenaue Anfangsbedingungen sollten grosse Werte verwendet werden. 
+Grosse Werte ermöglichen dem Filter sich schnell einzupendeln. 
+
+\subsubsection*{Dynamikmatrix $A$}
+Das Kalman-Filter benötigt für die Vorhersage des nächsten Zustandes eine Beschreibung der Systemdynamik.
+Die Dynamikmatrix bildet den Kern des Filters. Diese wurde weiter oben bereits beschrieben. 
+Dabei wollen wird die äussere Kraft des Systems ermitteln.
+Da nichts über die äussere Kraft bekannt ist, müssen wir annehmen das deren Ableitung 0 ist. 
+Die System-Matrix lautet daher:
+\[ 
+A = \left(
+ \begin{array}{ccc} 	
+0 & 1& 0 \\
+- \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m}\\
+0 & 0& 0\\ 
+\end{array}\right)  
+ \]
+Dabei soll der Kalman-Filter in diskreten Zeitschritten $\Delta t$ arbeiten. 
+$A$ beschreibt ein kontinuierliches System ($\dot x = Ax$), wir benötigen jedoch ein Zeit-diskretes System $x_{k+1} = \Phi x_k$.
+Die Übergangs-Matrix erhalten wir aus der Systemdynamikmatrix mittels Exponentialfunktion: 
+\[\Phi = \exp(A\Delta t). \]
+Die Matrix $\Phi$ beschreibt die Übergänge zwischen zeitlich aufeinanderfolgenden Zuständen $x_{k-1}$ und $x_{k}$
+
+\subsubsection*{Prozessrauschkovarianzmatrix $Q$}
+Die Prozessrauschmatrix teilt dem Filter mit, wie sich der Prozess verändert. 
+Die Matrix $Q$ beschreibt die Unsicherheit, die der Prozess mit sich bringt. 
+Bei unserem Modell könnte das beispielsweise ein Windstoss an die Masse sein oder auch die Ungenauigkeiten im Modell, wie die Annahme das dich die Kraft nicht ändert.
+Für uns wäre dies:
+\[ 
+Q = \left(
+ \begin{array}{ccc} 	
+{\sigma_s }^2& 0& 0 \\ 
+0 & {\sigma_v }^2& 0\\ 
+0 & 0& {\sigma_f }^2\\
+\end{array}\right)  
+ \]
+Die Standabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
+
+\subsubsection*{Messmatrix $H$}
+Die Messmatrix gibt an, welche Parameter gemessen werden. 
+$H$ ist die Matrix für die Vorhersage der Messung.
+In unserem Falle ist es die Position der Massen. 
+\[ 
+H = (1, 0, 0) 
+\]
+
+\subsubsection*{Messrauschkovarianz $R$}
+Die Messrauschkovarianzmatrix beinhaltet, wie der Name schon sagt, das Rauschen der Messung. 
+In unserem Fall wird nur die Position der Masse gemessen. Da wir keine anderen Sensoren haben ist $R$ lediglich:
+\[ 
+R= ({\sigma_\mathrm{sensor}}^2).
+ \] 
+Diese Messrauchen wird meistens vom Sensorhersteller angegeben. 
+Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt da heutige Sensoren sehr genau messen können. 
 
 \subsection{Zusammenfassung }
 Zusammenfassend kann das Kalman-Filter in offizieller Typus dargestellt werden. 

@@ -11,10 +11,67 @@ sehr spezielle Algebren, man nennt sie Körper.
 In diesem Abschnitt sollen die wichtigsten Eigenschaften von Körpern
 zusammengetragen werden.
 
+\begin{definition}
+Ein Körper $K$ ist ein additive Gruppe mit einer multiplikativen
+Verknüpfung derart, dass $K^* = K \setminus \{0\}$ eine Gruppe bezüglich
+der Multiplikation ist.
+Ausserdem gelten die Distributivgesetze 
+\[
+(a+b)c = ac+bc
+\qquad a,b,c\in K.
+\]
+\end{definition}
 
-XXX TODO
+Ein Körper ist also ein Ring derart, dass die Einheitengruppe $K^*$ ist.
 
+\begin{beispiel}
+Die Menge $\mathbb{F}_2=\{0,1\}$ mit der Additions- und
+Mutliplikationstabelle
+\begin{center}
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|}
+\hline
++&0&1\\
+\hline
+0&0&1\\
+1&1&0\\
+\hline
+\end{tabular}
+\qquad
+\qquad
+\qquad
+\begin{tabular}{|>{$}c<{$}|>{$}c<{$}>{$}c<{$}|}
+\hline
+\cdot&0&1\\
+\hline
+0&0&0\\
+1&0&1\\
+\hline
+\end{tabular}
+\end{center}
+ist der kleinste mögliche Körper.
+\end{beispiel}
 
+\begin{beispiel}
+Die Menge der rationalen Funktionen
+\[
+\mathbb{Q}(z)
+=
+\biggl\{
+f(z)
+=
+\frac{p(z)}{q(z)}
+\,
+\bigg|
+\,
+\begin{minipage}{5.5cm}
+\raggedright
+$p(z), q(z)$ sind Polynome mit rationalen Koeffizienten, $q(z)\ne 0$
+\end{minipage}
+\,
+\biggr\}
+\]
+ist ein Körper.
+\end{beispiel}
 
 
 

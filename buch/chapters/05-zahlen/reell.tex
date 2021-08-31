@@ -10,6 +10,15 @@ In den rationalen Zahlen lassen sich algebraische Gleichungen höheren
 Grades immer noch nicht lösen.
 Dass die Gleichung $x^2=2$ keine rationale Lösung hat, ist schon den
 Pythagoräern aufgefallen.
+\index{Pythagoräer}
+Ziel dieses Abschnitts ist, den Körper $\mathbb{Q}$ zu einem
+Körper $\mathbb{R}$ zu erweitern, in dem die Gleichung
+gelöst werden kann, ohne dabei Ordnungsrelation zu zerstören, die
+die hilfreiche und anschauliche Vorstellung der Zahlengeraden
+liefert.
+\index{Zahlengerade}%
+
+\subsubsection{Intervallschachtelung}
 Die geometrische Intuition der Zahlengeraden führt uns dazu, nach
 Zahlen zu suchen, die gute Approximationen für $\sqrt{2}$ sind.
 Wir können zwar keinen Bruch angeben, dessen Quadrat $2$ ist, aber
@@ -29,16 +38,47 @@ Zahl $\sqrt{2}$ gewonnen worden.}.
 Jedes der Intervalle enthält auch das nachfolgende Intervall, und
 die intervalllänge konvergiert gegen 0.
 Eine solche \emph{Intervallschachtelung} beschreibt also genau eine Zahl,
+\index{Intervallschachtelung}%
 aber möglicherweise keine, die sich als Bruch schreiben lässt.
 
+\subsubsection{Reelle Zahlen als Folgengrenzwerte}
+Mit einer Intervallschachtelung lässt sich $\sqrt{2}$ zwar festlegen,
+noch einfacher wäre aber eine Folge von rationalen Zahlen $a_n\in\mathbb{Q}$
+derart, die $\sqrt{2}$ beliebig genau approximiert.
+In der Analysis definiert man zu diesem Zweck, dass $a$ der Grenzwert
+einer Folge $(a_n)_{n\in\mathbb{N}}$ ist, wenn es zu jedem $\varepsilon > 0$
+ein $N$ gibt derart, dass $|a_n-a|<\varepsilon$ für $n>N$ ist.
+Das Problem dieser wohlbekannten Definition für die Konstruktion
+reeller Zahle ist, dass im Falle der Folge
+\[
+(a_n)_{n\in\mathbb{N}}=
+(1,
+\frac75,
+\frac{41}{29},
+\frac{239}{169},\dots) \to a=\sqrt{2}
+\]
+das Objekt $a$ noch gar nicht existiert.
+Es gibt keine rationale Zahl, die als Grenzwert dieser Folge dienen
+könnte.
+
+Folgen, die gegen Werte in $\mathbb{Q}$ konvergieren sind dagegen
+nicht in der Lage, neue Zahlen zu approximieren.
+Wir müssen also auszudrücken versuchen, dass eine Folge konvergiert,
+ohne den zugehörigen Grenzwert zu kennen.
+
+\subsubsection{Cauchy-Folgen}
 Die Menge $\mathbb{R}$ der reellen Zahlen kann man auch als Menge
-aller Cauchy-Folgen $(a_n)_{n\in\mathbb{N}}$ betrachten.
+aller Cauchy-Folgen $(a_n)_{n\in\mathbb{N}}$, $a_n\in\mathbb{Q}$,
+betrachten.
+\index{Cauchy-Folge}%
 Eine Folge ist eine Cauchy-Folge, wenn es für jedes $\varepsilon>0$
 eine Zahl $N(\varepsilon)$ gibt derart, dass $|a_n-a_m|<\varepsilon$
 für $n,m>N(\varepsilon)$.
 Ab einer geeigneten Stelle $N(\varepsilon)$ sind die Folgenglieder also
 mit Genauigkeit $\varepsilon$ nicht mehr unterscheidbar.
 
+
+\subsubsection{Relle Zahlen als Äquivalenzklassen von Cauchy-Folgen}
 Nicht jede Cauchy-Folge hat eine rationale Zahl als Grenzwert.
 Da wir für solche Folgen noch keine Zahlen als Grenzwerte haben,
 nehmen wir die Folge als eine mögliche Darstellung der Zahl.
@@ -61,13 +101,14 @@ b_n&\colon&&
 \]
 beide Folgen, die die Zahl $\sqrt{2}$ approximieren.
 Im Allgemeinen tritt dieser Fall ein, wenn $|a_n-b_n|$ eine
-Folge mit Grenzwert $0$ oder Nullfolge ist.
+Folge mit Grenzwert $0$ oder {\em Nullfolge} ist.
+\index{Nullfolge}%
 Eine reelle Zahl ist also die Menge aller rationalen Cauchy-Folgen,
 deren Differenzen Nullfolgen sind.
 
 Die Menge $\mathbb{R}$ der reellen Zahlen kann man also ansehen
-als bestehend aus Mengen von Folgen, die alle den gleichen Grenzwert
-haben.
+als bestehend aus Äquivalenzklassen von Folgen, die alle den gleichen
+Grenzwert haben.
 Die Rechenregeln der Analysis 
 \[
 \lim_{n\to\infty} (a_n + b_n)

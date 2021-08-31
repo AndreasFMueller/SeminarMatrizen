@@ -1,0 +1,85 @@
+%
+% spiegelung.tex -- template for standalon tikz images
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math,calc}
+\begin{document}
+\def\skala{1.1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
+\def\punkt#1{
+\fill #1 circle[radius=0.06];
+}
+
+\coordinate (M) at (0,0);
+
+\fill[color=blue] (M) circle[radius=0.06];
+\node[color=blue] at (M) [left] {$M$};
+
+\input{punkte.tex}
+
+\fill[color=red!30] (A) -- (B) -- (C) -- cycle;
+\draw[color=red] (A) -- (B) -- (C) -- cycle;
+\node at (A) [below] {$A$};
+\node at (B) [above right] {$B$};
+\node at (C) [above] {$C$};
+\node at (S) {$\circlearrowleft$};
+
+\fill[color=red!30] (A1) -- (B1) -- (C1) -- cycle;
+\draw[color=red] (A1) -- (B1) -- (C1) -- cycle;
+\node at (A1) [below] {$A'$};
+\node at (B1) [above] {$B'$};
+\node at (C1) [above right] {$C'$};
+\node at (S1) {$\circlearrowright$};
+
+\fill[color=red!30] (A2) -- (B2) -- (C2) -- cycle;
+\draw[color=red] (A2) -- (B2) -- (C2) -- cycle;
+\node at (A2) [below] {$A''$};
+\node at (B2) [above] {$B''$};
+\node at (C2) [left] {$C''$};
+\node at (S2) {$\circlearrowleft$};
+
+\draw[color=gray,dotted] (A) -- (A1);
+\draw[color=gray,dotted] (B) -- (B1);
+\draw[color=gray,dotted] (C) -- (C1);
+
+\draw[color=gray,dotted] (A1) -- (A2);
+\draw[color=gray,dotted] (B1) -- (B2);
+\draw[color=gray,dotted] (C1) -- (C2);
+
+\punkt{(A)}
+\punkt{(B)}
+\punkt{(C)}
+\punkt{(A1)}
+\punkt{(B1)}
+\punkt{(C1)}
+\punkt{(A2)}
+\punkt{(B2)}
+\punkt{(C2)}
+
+\fill[color=darkgreen!30] (M) -- (G1) arc ({\winkela}:{\winkela+\winkelb}:1) -- cycle;
+\draw[color=darkgreen] (G1) arc ({\winkela}:{\winkela+\winkelb}:1);
+\node[color=darkgreen] at ({\winkela+0.5*\winkelb}:0.7) {$\alpha$};
+
+\node at ($6*(G1)$) [right] {$g\mathstrut$};
+\node at ($-5.6*(G2)$) [left] {$h\mathstrut$};
+
+\clip (-3,-0.2) rectangle (4.5,5.5);
+
+\draw[line width=1pt] (G1oben) -- (G1unten);
+\draw[line width=1pt] (G2oben) -- (G2unten);
+
+\fill[color=blue] (M) circle[radius=0.06];
+
+\end{tikzpicture}
+\end{document}
+
