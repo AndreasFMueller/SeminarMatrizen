@@ -8,20 +8,23 @@
 Die kleinste sinnvolle Struktur ist die einer Gruppe.
 Eine solche besteht aus einer Menge $G$ mit einer Verknüpfung,
 die additiv
+\index{additive Verknüpfung}%
 \begin{align*}
-G\times G \to G&: (g,h) = gh
-\intertext{oder multiplikativ }
 G\times G \to G&: (g,h) = g+h
+\intertext{oder multiplikativ }
+G\times G \to G&: (g,h) = gh
 \end{align*}
+\index{multiplikative Verknüpfung}%
 geschrieben werden kann.
 Ein Element $0\in G$ heisst {\em neutrales Element} bezüglich der additiv
+\index{neutrales Element}%
 geschriebenen Verknüpfung falls $0+x=x$ für alle $x\in G$.
 \index{neutrales Element}%
 Ein Element $e\in G$ heisst neutrales Element bezüglich der multiplikativ 
 geschriebneen Verknüpfung, wenn $ex=x$ für alle $x\in G$.
 In den folgenden Definitionen werden wir immer die multiplikative
-Schreibweise verwenden, für Fälle additiv geschriebener siehe auch die
-Beispiele weiter unten.
+Schreibweise verwenden, für Fälle additiv geschriebener Verknüpfungen
+siehe auch die Beispiele weiter unten.
 
 \begin{definition}
 \index{Gruppe}%
@@ -32,24 +35,28 @@ Eigenschaften:
 \begin{enumerate}
 \item
 Die Verknüpfung ist assoziativ: $(ab)c=a(bc)$ für alle $a,b,c\in G$.
+\index{assoziativ}%
 \item
 Es gibt ein neutrales Element $e\in G$
 \item
 Für jedes Element $g\in G$ gibt es ein Element $h\in G$ mit 
 $hg=e$.
 \end{enumerate}
-Das Element $h$ heisst auch das Inverse Element zu $g$.
+Das Element $h$ heisst auch das inverse Element zu $g$.
+\index{inverses Element}%
 \end{definition}
 
 Falls nicht jedes Element invertierbar ist, aber wenigstens ein neutrales
 Element vorhanden ist, spricht man von einem {\em Monoid}.
 \index{Monoid}%
-Hat man nur eine Verknüpfung, spricht man oft von einer {\em Halbruppe}.
+Hat man nur eine Verknüpfung, aber kein neutrales Element,
+spricht man oft von einer {\em Halbruppe}.
 \index{Halbgruppe}%
 
 \begin{definition}
 Eine Gruppe $G$ heisst abelsch, wenn $ab=ba$ für alle $a,b\in G$.
 \end{definition}
+\index{abelsch}%
 
 Additiv geschrieben Gruppen werden immer als abelsch angenommen,
 multiplikativ geschrieben Gruppen können abelsch oder nichtabelsch sein.
@@ -63,7 +70,9 @@ Das additive Inverse eines Elementes $a$ ist $-a$.
 \end{beispiel}
 
 \begin{beispiel}
-Die von Null verschiedenen Elemente $\Bbbk^*$ eines Zahlekörpers bilden
+Die von Null verschiedenen Elemente $\Bbbk^*=\Bbbk\setminus\{0\}$ (definiert
+auf Seite~\pageref{buch:zahlen:def:bbbk*})
+eines Zahlekörpers bilden
 bezüglich der Multiplikation eine Gruppe mit neutralem Element $1$.
 Das multiplikative Inverse eines Elementes $a\in \Bbbk$ mit $a\ne 0$
 ist $a^{-1}=\frac1{a}$.
@@ -75,7 +84,7 @@ dem Nullvektor als neutralem Element.
 Betrachtet man $\Bbbk^n$ als Gruppe, verliert man die Multiplikation
 mit Skalaren aus den Augen.
 $\Bbbk^n$ als Gruppe zu bezeichnen ist also nicht falsch, man
-verliert dadurch aber 
+verliert dadurch aber den Blick auf die Multiplikation mit Skalaren.
 \end{beispiel}
 
 \begin{beispiel}
@@ -115,6 +124,7 @@ Ist $G$ eine Gruppe mit neutralem Element $e$, dann gilt
 $xe=x$ für alle $x\in G$
 \item
 Es gibt nur ein neutrales Element.
+\index{neutrales Element}%
 Wenn also $f\in G$ mit $fx=x$ für alle $x\in G$, ist dann folgt $f=e$.
 \item 
 Wenn $hg=e$ gilt, dann auch $gh=e$ und $h$ ist durch $g$ eindeutig bestimmt.
@@ -171,16 +181,22 @@ f = fe = e
 \]
 aus der Eigenschaft~1.
 
-Schliesslich sei $x$ ein beliebiges Inverses von $g$, dann ist
-$xg=e$, dann folgt
+Schliesslich sei $x$ ein beliebiges Inverses von $g$.
+Dann ist $xg=e$ und es folgt
 $x=xe=x(gh)=(xg)h = eh = h$, es gibt also nur ein Inverses von $g$.
 \end{proof}
 
-Diesem Problem sind wir zum Beispiel auch in
+Der Frage, ob Linksinverse und Rechtsinverse übereinstimmen,
+sind wir zum Beispiel bereits in
 Abschnitt~\ref{buch:grundlagen:subsection:gleichungssyteme}
-begegnet, wo wir nur gezeigt haben, dass $AA^{-1}=E$ ist.
-Da aber die invertierbaren Matrizen eine Gruppe
-bilden, folgt jetzt aus dem Satz automatisch, dass auch $A^{-1}A=E$.
+begegnet.
+Dort haben wir bereits gezeigt, dass nicht nur $AA^{-1}=I$,
+sondern auch $A^{-1}A=I$.
+Die dabei verwendete Methode war identisch mit dem hier gezeigten
+Beweis.
+Da die invertierbaren Matrizen eine Gruppe bilden, stellt sich
+dieses Resultat jetzt als Spezialfall des
+Satzes~\ref{buch:vektorenmatrizen:satz:gruppenregeln} dar.
 
 \subsubsection{Homomorphismen} \label{buch:gruppen:subsection:homomorphismen}
 Lineare Abbildung zwischen Vektorräumen zeichnen sich dadurch aus,
@@ -231,17 +247,20 @@ e
 ghg^{-1}\in\ker\varphi.
 \]
 Der Kern wird also von der Abbildung $h\mapsto ghg^{-1}$,
-der {\em Konjugation} in sich abgebildet.
+der {\em Konjugation}, in sich abgebildet.
+\index{Konjugation in einer Gruppe}
 
 \begin{definition}
 Eine Untergruppe $H \subset G$ heisst ein {\em Normalteiler},
 geschrieben $H \triangleleft G$
 wenn $gHg^{-1}\subset H$ für jedes $g\in G$.
-\index{Normalteiler}
+\index{Normalteiler}%
 \end{definition}
 
 Die Konjugation selbst ist ebenfalls keine Unbekannte, sie ist uns
-bei der Basistransformationsformel schon begegnet.
+bei der Basistransformationsformel
+\eqref{buch:vektoren-und-matrizen:eqn:basiswechselabb}
+schon begegnet.
 Die Tatsache, dass $\ker\varphi$ unter Konjugation erhalten bleibt,
 kann man also interpretieren als eine Eigenschaft, die unter
 Basistransformation erhalten bleibt.
@@ -312,7 +331,7 @@ auf einem geeigneten Vektorraum.
 
 \begin{definition}
 \label{buch:vektorenmatrizen:def:darstellung}
-Eine Darstellung einer Gruppe $G$ ist ein Homomorphismus 
+Eine {\em Darstellung} einer Gruppe $G$ ist ein Homomorphismus 
 $G\to\operatorname{GL}_n(\mathbb{R})$.
 \index{Darstellung}
 \end{definition}
@@ -324,11 +343,12 @@ sind alle Teilmengen von $\operatorname{GL}_n(\mathbb{R})$.
 Die Einbettungsabbildung $G\hookrightarrow \operatorname{GL}_n(\mathbb{R})$
 ist damit automatisch eine Darstellung, sie heisst auch die
 {\em reguläre Darstellung} der Gruppe $G$.
-\index{reguläre Darstellung}
+\index{reguläre Darstellung}%
+\index{Darstellung, reguläre}%
 \end{beispiel}
 
 In Kapitel~\ref{buch:chapter:permutationen} wird gezeigt, 
-dass Permutationen einer endlichen eine Gruppe bilden und wie
+dass Permutationen einer endlichen Menge eine Gruppe bilden und wie
 sie durch Matrizen dargestellt werden können.
 
 

@@ -13,6 +13,7 @@ Eine ähnliche Situation haben wir bei $M_n(\Bbbk)$ angetroffen.
 $M_n(\Bbbk)$ ist eine zunächst eine Gruppe bezüglich der Addition,
 hat aber auch noch eine Multiplikation, die nicht immer umkehrbar ist.
 Diese Art von Struktur nennt man einen Ring.
+\index{Ring}
 
 \subsubsection{Definition eines Rings}
 
@@ -21,6 +22,7 @@ Diese Art von Struktur nennt man einen Ring.
 Eine Menge $R$ mit einer additiven Operation $+$ mit neutralem Element
 $0$ und einer multiplikativ geschriebenen Operation $\cdot$ heisst ein
 {\em Ring}, wenn folgendes gilt.
+\index{Ring}%
 \begin{enumerate}
 \item
 $R$ ist eine Gruppe bezüglich der Addition.
@@ -56,14 +58,15 @@ kein neutrales Element hat oder beides.
 
 \begin{definition}
 \index{Ring mit Eins}%
-Ein Ring $R$ heisst ein Ring mit Eins, wenn die Multiplikation ein
+Ein Ring $R$ heisst ein {\em Ring mit Eins}, wenn die Multiplikation ein
 neutrales Element hat.
+\index{Ring mit Eins}%
 \end{definition}
 
 \begin{definition}
 \index{Ring!kommutativ}%
 \index{kommutativer Ring}%
-Ein Ring $R$ heisst kommutativ, wenn die Multiplikation kommutativ
+Ein Ring $R$ heisst {\em kommutativ}, wenn die Multiplikation kommutativ
 ist.
 \end{definition}
 
@@ -93,7 +96,7 @@ für $a,b\in c(\mathbb{Z})$.
 Die Algebra ist kommutativ und hat die konstante Folge 
 $u_n = 1\;\forall n$ als Eins.
 
-Wir betrachten jetzt ein Unterring $c_0(\mathbb{Z})\subset c(\mathbb{Z})$
+Wir betrachten jetzt den Unterring $c_0(\mathbb{Z})\subset c(\mathbb{Z})$
 bestehend aus den Folgen, die nur für endlich viele Folgenglieder von
 $0$ verschieden sind.
 Für eine Folge $a\in c_0(\mathbb{Z})$ gibt es eine Zahl $N$ derart, dass
@@ -138,8 +141,8 @@ Ebenso ist das Produkt dieser Zahlen
 weil Realteil $ac-bd\in\mathbb{Z}$ und der Imaginärteil $ad+bc\in\mathbb{Z}$
 ganze Zahlen sind.
 Die Menge $\mathbb{Z}[i]$ ist also ein kommutative Ring mit Eins, er
-heisst der Ring der ganzen {\em Gaussschen Zahlen}.
-\index{Gausssche Zahlen}%
+heisst der Ring der {\em ganzen Gaussschen Zahlen}.
+\index{ganze Gausssche Zahlen}%
 \end{beispiel}
 
 \begin{beispiel}
@@ -214,7 +217,7 @@ $U(M_n(\Bbbk))=\operatorname{GL}_n(\Bbbk)$.
 
 \subsubsection{Nullteiler}
 Ein möglicher Grund, warum ein Element $r\in R$ nicht invertierbar
-ist, kann sein, dass es ein Element $s\in R$ gibt mit $rs=0$.
+ist, kann sein, dass es ein Element $s\in R$ mit $rs=0$ gibt.
 Wäre nämlich $t$ ein inverses Element, dann wäre $0=t0 = t(rs) = (tr)s=s$.
 
 \begin{definition}
@@ -222,6 +225,8 @@ Ein Element $r\in R^*$ heisst ein {\em Nullteiler} in $R$,
 wenn es ein $s\in R^*$ gibt mit $rs=0$
 Ein Ring ohne Nullteiler heisst {\em nullteilerfrei}.
 \end{definition}
+\index{Nullteiler}%
+\index{nullteilerfrei}%
 
 In $\mathbb{R}$ ist man sich gewohnt zu argumentieren, dass wenn ein
 Produkt $ab=0$ ist, dann muss einer der Faktoren $a=0$ oder $b=0$ sein.
