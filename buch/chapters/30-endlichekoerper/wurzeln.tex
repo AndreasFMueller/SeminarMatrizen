@@ -52,10 +52,10 @@ Inverse kann zum Beispiel als die inverse Matrix mit dem
 Gauss-Algorithmus berechnet werden.
 In einem zweiten Schritt zeigen wir dann, dass man die Rechnung noch
 etwas vereinfachen kann, wenn man in Polynomringen arbeitet.
-Schliesslich zeigen wir dann im
-Abschnitt~\ref{buch:subsection:zerfaellungskoerper}, wie man 
-den Prozess iterieren kann und so für beliebige Polynome immer einen
-Körper finden kann, der alle Nullstellen enthält.
+%Schliesslich zeigen wir dann im
+%Abschnitt~\ref{buch:subsection:zerfaellungskoerper}, wie man 
+%den Prozess iterieren kann und so für beliebige Polynome immer einen
+%Körper finden kann, der alle Nullstellen enthält.
 Wir beginnen in Abschnitt~\ref{buch:subsection:irreduziblepolynome}
 damit, die Polynome, die für die Konstruktion in Frage kommen, etwas
 genauer zu charakterisieren.
@@ -608,7 +608,17 @@ $J$ mit $I\subset J\subset R$ entweder $I=J$ oder $J=R$ gilt.
 Die Ideale $p\mathbb{Z}\subset \mathbb{Z}$ sind maximal genau dann, wenn
 $p$ eine Primzahl ist.
 
-TODO: XXX Begründung
+Ist nämlich $p=n_1n_2$ eine Faktorisierung, dann ist
+$\mathbb{Z}\supset n_1\mathbb{Z} \supset p\mathbb{Z}$ 
+und $n_1\mathbb{Z}$ ist ein grössers Ideal als $p\mathbb{Z}$,
+d.~h.~$p\mathbb{Z}$ ist nicht maximal.
+
+In $\mathbb{Z}$ sind alle Ideale von der Form $n\mathbb{Z}$.
+Wenn es also ein Ideal $I\supset p\mathbb{Z}$ gibt, welches
+$p\mathbb{Z}$ echt enthält, dann gibt es $n\in\mathbb{Z}$ derart,
+dass $n\mathbb{Z} \subset p\mathbb{Z}$.
+Dies ist gleichbedeutend damit, dass $n$ ein echter Teiler von $p$
+ist, also ist $p$ keine Primzahl.
 \end{beispiel}
 
 \begin{satz}
@@ -616,6 +626,23 @@ Der Ring $R/I$ ist genau dann ein Körper, wenn $I$ ein maximales Ideal ist.
 \end{satz}
 
 \begin{proof}[Beweis]
+Nehmen wir zunächst an, dass $I$ ein maximales Ideal ist.
+Damit $R/I$ ein Körper ist, muss jedes von $0$ verschiedene Element 
+eine multiplikatives Inverses haben.
+Sei als $a\in R\setminus I$, dann ist $a+I$ ein von $0$ verschiedenes
+Körperelement.
+Die Menge $Ra+I$ ist dann ein Ideal von $R$, welches $I$ echt enthält.
+Weil $I$ maximal ist, ist $Ra+I=R$, also gibt es ein Element $b\in I$
+derart, dass $ab+I=1+I$, d.~h.~$b+I$ ist das gesuchte multiplikative 
+Inverse.
+
+Sei nun umgekehrt $R/I$ ein Körper und $J\supset I$ sei ein Ideal,
+welches $I$ echt enhält.
+Sei $a\in J\setminus I$.
+Da $R/I$ ein Körper ist, ist $a+I$ invertierbar, es gibt also ein
+$b\in R$ mit $ab+I=1+I$.
+Da $a\in J$ folgt $Ra\subset J$.
+Andererseits ist $1\in Ra$, also ist $J=R$ und das Ideal $J$ ist maximal.
 \end{proof}
 
 Ein irreduzibles Polynom $m\in\Bbbk[X]$ erzeugt ein maximales Ideal,
@@ -893,11 +920,4 @@ Besonders einfach ist die Rechung für $\Bbbk=\mathbb{F}_2$.
 Dieser Spezialfall ist für die praktische Anwendung in der Kryptographie
 von besonderer Bedeutung, daher wird er im 
 In Kapitel~\ref{buch:chapter:kryptographie} genauer untersucht.
-
-\subsection{Zerfällungskörper
-\label{buch:subsection:zerfaellungskoerper}}
-XXX TODO
-
-
-
 

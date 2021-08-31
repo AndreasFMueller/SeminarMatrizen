@@ -9,11 +9,11 @@
 \rhead{Galois-Körper}
 Ein Körper $\Bbbk$ enthält mindestens die Zahlen $0$ und $1$.
 Die Null ist nötig, damit $\Bbbk$ eine Gruppe bezüglich der
-Addition ist, die immer ein neutrales Element, geschrieben $0$
+Addition ist, die immer ein neutrales Element, geschrieben $0$,
 enthält.
 Die Eins ist nötig, damit $\Bbbk^*=\Bbbk\setminus\{0\}$ eine
 Gruppe bezüglich der Multiplikation ist, die immer eine neutrales
-Element, geschrieben $1$ enthält.
+Element, geschrieben $1$, enthält.
 Durch wiederholte Addition entstehen auch die Zahlen $2=1+1$, $3=2+1$ 
 und so weiter.
 Es sieht also so aus, als ob ein Körper immer unendliche viele
@@ -21,6 +21,8 @@ Elemente enthalten müsste.
 Wie können also endliche Körper entstehen?
 
 In diesem Abschnitt sollen die sogenannten Galois-Körper $\mathbb{F}_p$
+\index{Galois-Körper}%
+\index{Fp@$\mathbb{F}_p$}%
 mit genau $p$ Elementen konstruiert werden, die es für jede Primzahl $p$ gibt.
 Sie sind die Basis für weitere endliche Körper, die eine beliebige
 Primzahlpotenz $p^n$ von Elementen haben und die die Basis wichtiger
@@ -51,6 +53,7 @@ Zahlen $\{0,1,2,\dots,n-1\}$ identifiziert werden kann.
 
 \begin{definition}
 Die Zahlen $a,b\in\mathbb{Z}$ heissen {\em kongruent modulo $n$},
+\index{kongruent modulo $n$}%
 geschrieben
 \[
 a\equiv b\mod n,
@@ -60,6 +63,7 @@ wenn $a-b$ durch $n$ teilbar ist, also $n|(a-b)$.
 
 Die Zahlen mit gleichem Rest sind Äquivalenzklassen der Kongruenz modulo $n$.
 Die Zahlen mit Rest $k$ modulo $n$ bilden die {\em Restklasse}
+\index{Restklasse}%
 \[
 \llbracket k\rrbracket=\{\dots,k-2n,k-n,k,k+n,k+2n,\dots\} \subset\mathbb{Z}.
 \]
@@ -90,7 +94,7 @@ Tatsächlich kann man auf den Restklassen eine Ringstruktur definieren.
 Dazu muss man sicherstellen, dass die Auswahl eines Repräsentanten keinen
 Einfluss auf den Rest hat.
 Der Rest $a$ kann jede Zahl der Form $a+kn$ darstellen.
-Ebenso kann der Rest $b$ jede zahl der Form $b+ln$ darstellen.
+Ebenso kann der Rest $b$ jede Zahl der Form $b+ln$ darstellen.
 Deren Summe ist $a+b+(k+l)n\equiv a+b\mod n$.
 Der Repräsentant des Restes hat also keinen Einfluss auf die Summe.
 
@@ -121,8 +125,9 @@ Insbesondere darf kein Produkt $a\cdot b$ mit Faktoren in
 $\mathbb{Z}/n\mathbb{Z} \setminus \{\llbracket0\rrbracket\}$
 zu Null werden.
 Für $n=15$ funktioniert dies nicht, das Produkt $3\cdot 5\equiv 0\mod 15$.
-Man nennt von Null verschiedene Faktoren, deren Produkt Null ist, einen
-{\em Nullteiler}.
+Wir kommen daher zu der Forderung, dass der Ring $\mathbb{Z}/n\mathbb{Z}$ 
+nur dann ein Körper sein kann, wenn er nullteilerfrei ist.
+
 Falls sich $n=p_1\cdot p_2$ in zwei Faktoren zerlegen lässt, dann sind
 $p_1$ und $p_2$ Nullteiler in $\mathbb{Z}/n\mathbb{Z}$.
 Ein Körper kann also nur entstehen, wenn $n$ eine Primzahl ist.
@@ -130,7 +135,9 @@ Ein Körper kann also nur entstehen, wenn $n$ eine Primzahl ist.
 \begin{definition}
 \label{buch:endlichekoerper:def:galois-koerper}
 Ist $p$ eine Primzahl, dann heisst $\mathbb{F}_p=\mathbb{Z}/p\mathbb{Z}$
+\index{Primzahl}%
 der Galois-Körper der Ordnung $p$.
+\index{Galois-Körper}%
 \end{definition}
 
 Diese Definition ist nur gerechtfertigt, wenn $\mathbb{F}_p^*$ tatsächlich
@@ -152,6 +159,7 @@ lösen kann, wenn die beiden gegebenen Zahlen $a$ und $p$ teilerfremd sind.
 Dies ist aber dadurch garantiert, dass $p$ eine Primzahl ist und $1\le a <p$.
 Die multiplikative Inverse von $a$ in $\mathbb{F}_p^*$ kann also mit
 Hilfe des euklidischen Algorithmus effizient gefunden werden.
+\index{multiplikative Inverse in $\mathbb{F}_p$}%
 
 \begin{beispiel}
 Die kleinste Primzahl grösser als $2021$ ist $p=2063$.
@@ -210,6 +218,8 @@ Inverse von $2021$ in $\mathbb{F}_{2063}$.
 \end{beispiel}
 
 \subsubsection{Der kleine Satz von Fermat}
+\index{Fermat, kleiner Satz von}%
+\index{kleiner Satz von Fermat}%
 In $\mathbb{Z}$ wachsen die Potenzen einer Zahl immer weiter an.
 In einem endlichen Körper kann dies nicht gelten, da nur endlich
 viele Werte zur Verfügung stehen.
@@ -220,6 +230,22 @@ die Potenz mit Exponent $p$ muss also mit einer früheren Potenz
 übereinstimmen.
 Der kleine Satz von Fermat sagt etwas genauer: die $p$-te Potenz
 von $a$ ist genau die Zahl $a$:
+
+\begin{figure}
+\centering
+\includegraphics{chapters/30-endlichekoerper/images/fermat.pdf}
+\caption{$G$ ist die Menge aller verschiedenfarbigen geschlossenen
+Perlenketten mit $p$ Perlen und $a$ Farben.
+$A$ ist die Menge aller linearen verschiedenfarbigen Ketten.
+Die Abbildung $s_i$ schneidet die Ketten an der Stelle $i$ auf,
+dadurch entstehen die Menge $A_i$, verschiedenfarbigen linearen
+Ketten der Länge $p$ mit $a$ Farben.
+Die Abbildungen $s_i$ sind injektiv, die Mengen $A_i$ haben alle
+die gleiche Anzahl Elemente.
+Genau dann ist $|A|$ durch $p$ teilbar, wenn die Mengen $A_i$
+disjunkt sind.
+\label{buch:endliche-koerper:fig:fermat}}
+\end{figure}
 
 \begin{satz}[Kleiner Satz von Fermat]
 \label{buch:endliche-koerper:satz:fermat}
@@ -237,10 +263,10 @@ $p$ eine Primzahl ist.
 \begin{proof}[Beweis]
 Wir müssen zeigen, dass $p$ ein Teiler ist von $a^p-a$.
 Das nachfolgende kombinatorische Argument wird zum Beispiel
-von Mathologor auf seinem Youtube-Kanal im Video
+von Mathologer auf seinem Youtube-Kanal im Video
 \url{https://youtu.be/_9fbBSxhkuA} illustriert.
 
-Zum Beiweis interpretieren wir die vorkommenden Zahlen kombinatorisch.
+Zum Beweis interpretieren wir die vorkommenden Zahlen kombinatorisch.
 Die Zahl $a^p$ ist die Anzahl der verschiedenen Perlenketten der Länge
 $p$, die sich aus Glasperlen mit $a$ verschiedenen Farben herstellen
 lassen.
@@ -248,26 +274,52 @@ Davon bestehen $a$ Perlenketten aus nur einer einzigen Farbe.
 Die Zahl $a^p-a$ ist also die Anzahl der Perlenketten der Länge $p$
 aus Glasperlen mit $a$ verschiedenen Farben, die mindestens zwei
 verschiedene Farben verwenden.
+Wir bezeichnen die Menge der nicht einfarbigen Perlenketten der
+Länge $p$ mit $a$ Farben mit $A$.
+Es ist $|A|=a^p-a$.
 
-Wir stellen jetzt die Frage nach der Anzahl der geschlossenen
-Perlenketten der Länge $p$ als Glasperlen in $a$ verschiedenen Farben.
-Aus jeder geschlossenen Perlenkette lassen sich $p$ Perlenketten machen,
-indem man sie an einer der $p$ Trennstellen zwischen Perlen aufteilt.
+Zu sagen, dass $a^p-a$ durch $p$ teilbar ist, ist gleichbedeutend
+damit, dass die Menge der Perlenkette in $p$
+disjunkte, gleichmächtige Mengen aufgeteilt werden kann.
+Es ist also zu zeigen, dass sich die Menge $A$ genau dann in
+disjunkte gleichmächtige Mengen zerlegen lässt, wenn $p$ eine
+Primzahl ist.
 
-Wir müssen uns noch überlegen, unter welchen Voraussetzungen 
-alle diese möglichen Auftrennungen zu verschiedenen Perlenketten
-führen.
-Zwei Trennstellen, die $k$-Perlen auseinander liegen, führen nur dann
-zur gleichen Perlenkette, wenn die geschlossenen Ketten durch Drehung 
-um $k$ Perlen ineinander übergehen.
-Dies bedeutet aber auch, dass sich das Farbmuster alle $k$-Perlen
-wiederholen muss.
-Folglich ist $k$ ein Teiler von $p$.
-$p$ verschiedene Perlenketten entstehen also immer genau dann, wenn $p$
+Wir betrachten dazu die Menge der nicht einfarbigen, geschlossenen
+Perlenketten der Länge $p$ mit $a$ Farben.
+Einge dieser Perlenketten unterscheiden sich nur durch eine
+Drehung um einzelne Perlen.
+Sei $G$ die Menge der nicht einfarbigen, geschlossenen
+Perlenketten, die sich nicht nur um eine Drehung unterscheiden.
+
+Die Abbildung $s_i\colon G\to A$
+in Abbildung~\ref{buch:endliche-koerper:satz:fermat} 
+schneidet die Perlenkette in $G$ an der Stelle $i$ auf.
+Diese Abbildungen sond ganz offensichtlich injektiv.
+Die Bildmengen $A_i = s_i(G)$ haben daher alle gleich
+viele Elemente wie $G$: $|A_i|=|G|$.
+
+Da jede lineare Perlenkette in $A$ durch geeignetes Aufschneiden
+einer geschlossenen Perlenkette in $G$ entsteht, ist 
+\[
+A=\bigcup_{i=1}^p A_i.
+\]
+
+Wir müssen jetzt nur noch untersuchen, unter welchen Bedingungen
+die Mengen $A_i$ disjunkt sind.
+Zwei Mengen $A_i$ und $A_j$ enthalten genau dann eine
+gemeinsame Perlenkette, wenn es eine geschlossene Kette in $G$
+gibt, die beim Aufschneiden an den Stellen $i$ und $j$ die
+gleiche Kette ergeben.
+Dies bedeutet, dass sich die Farben zwischen $i$ und $j$ nach
+der Stelle $j$ wiederholen.
+Die Mengen sind also genau dann nicht disjunkt, wenn es
+peridische Ketten gibt mit einer Periode $k<p$.
+
+Da die Periode einer periodischen Kette ein Teiler von $p$
+ist, gibt es genau dann keine periodischen Ketten, wenn $p$
 eine Primzahl ist.
-
-Wir schliessen daraus, dass $a^p-a$ durch $p$ teilbar ist, genau dann,
-wenn $p$ eine Primzahl ist.
+Damit ist die Behauptung gezeigt.
 \end{proof}
 
 Der kleine Satz von Fermat kann auch dazu verwendet werden, Potenzen 
@@ -302,6 +354,8 @@ Sie ist zwar nicht unbedingt einfacher, aber manchmal nützlich für
 theoretische Überlegungen.
 
 \begin{satz}[Wilson]
+\index{Wilson, Satz von}%
+\index{Satz von Wilson}%
 Die ganze Zahl $p\ge 2$ ist genau dann eine Primzahl, wenn
 $(p-1)!\equiv -1\mod p$.
 \end{satz}
@@ -341,7 +395,7 @@ die Behauptung des Satzes.
 \end{proof}
 
 Mit dem Satz von Wilson kann man die Inverse einer beliebigen Zahl
-$a\in\mathbb{F}_p$ finden.
+$a\in\mathbb{F}_p$ wie folgt finden.
 Dazu verwendet man, dass $a$ einer der Faktoren in $(p-1)!$ ist.
 Lässt man diesen Faktor weg, erhält man eine Zahl
 \[
@@ -390,6 +444,7 @@ der Körper $\mathbb{F}_p$ in $\Bbbk$ enthalten sein muss.
 Dies ist der kleinste Teilkörper, der in $\Bbbk$ enthalten ist.
 
 \begin{definition}
+\index{Primkörper}
 Der kleinste Teilkörper eines Körpers $\Bbbk$ heisst der 
 {\em Primkörper} von $\Bbbk$.
 \end{definition}
@@ -398,7 +453,8 @@ Der Primkörper erlaubt jetzt, die Charakteristik eines Körpers $\Bbbk$
 zu definieren.
 
 \begin{definition}
-Die Charakteristik eines Körpers $\Bbbk$ ist $p$, wenn der Primkörper
+\index{Charakteristik}%
+Die {\em Charakteristik} eines Körpers $\Bbbk$ ist $p$, wenn der Primkörper
 $\mathbb{F}_p$ ist.
 Falls der Primkörper $\mathbb{Q}$ ist, ist die Charakteristik $0$.
 \end{definition}
@@ -411,6 +467,10 @@ Ein Körper mit Charakteristik $0$ enthält immer unendliche viele
 Elemente.
 
 \subsubsection{Teilbarkeit von Binomialkoeffizienten}
+Als Beispiel für die Auswrikung der Charakteristik auf die Arithmetik
+in einem endlichen Körper betrachten wir die Teilbarkeitseigenschaften
+der Binomialkoeffizienten.
+
 \begin{figure}
 \centering
 \includegraphics{chapters/30-endlichekoerper/images/binomial2.pdf}
@@ -437,11 +497,14 @@ sind alle Koeffizienten ausser dem ersten und letzten durch $5$ teilbar.
 \egroup
 Die Abbildung~\ref{buch:endliche-koerper:fig:binomial2} zeigt den
 Rest bei Teilung durch $2$ der Binomialkoeffizienten.
+\index{Binomialkoeffizient}%
 Man kann daraus ablesen, dass $\binom{n}{m}\equiv 0\mod 2$ für $n=2^k$ 
 und $0<m<n$.
 Abbildung~\ref{buch:endliche-koerper:fig:binomial5} zeigt das Pascal-Dreieck
 auch noch für $p=5$.
 Hier ist auch schön die Selbstähnlichkeit des Pascal-Dreiecks erkennbar.
+\index{Selbstähnlichkeit}%
+\index{Pascal-Dreieck}%
 Ersetzt man die ``5er-Dreiecke'' durch ein volles Dreieck mit der Farbe
 des kleinen Dreiecks an seiner Spitze, entsteht wieder das ursprüngliche
 Pascal-Dreieck.
@@ -454,6 +517,10 @@ Sei $p$ eine Primzahl, dann ist
 \binom{p}{m} \equiv 0\mod p
 \]
 für $0<m<n$.
+Für $a,b\in\mathbb{Z}$ bedeutet dies
+\[
+(a+b)^p \equiv a^p + b^p\mod p.
+\]
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -466,6 +533,30 @@ Für den Binomialkoeffizienten gilt
 Für $m<p$ kann keiner der Faktoren im Nenner $p$ sein, der Faktor $p$
 im Zähler kann also nicht weggekürzt werden, so dass der Binomialkoeffizient
 durch $p$ teilbar sein muss.
+
+In der binomischen Formel
+\[
+(a+b)^p
+=
+a^p
++
+\binom{p}{1} a^{p-1}b
++
+\binom{p}{2} a^{p-2}b^2
++
+\dots
++
+\binom{p}{p-1} ab^{p-1}
++
+b^p
+\]
+sind alle ``inneren'' Terme auf der rechten Seite durch $p$ teilbar,
+weil der Binomialkoeffizient durch $p$ teilbar ist.
+Modulo $p$ ergibt sich daher
+\[
+(a+b)^p \equiv a^p + b^p \mod p.
+\]
+Damit ist alles bewiesen.
 \end{proof}
 
 \begin{satz}
@@ -544,6 +635,7 @@ Binomialkoeffizienten der Zwischenterme der Summe
 \eqref{buch:endliche-koerper:fig:binomischeformel}
 als Elemente von $\mathbb{F}_p$.
 Daher gilt
+\index{Frobenius-Automorphismus}%
 
 \begin{satz}[Frobenius-Automorphismus]
 In einem Körper $\Bbbk$ der Charakteristik $p$ ist die Abbildung
