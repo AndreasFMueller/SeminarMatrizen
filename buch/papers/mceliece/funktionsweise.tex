@@ -12,8 +12,11 @@ bei dem Bob an Alice eine verschlüsselte Nachticht über ein öffentliches Netz
 
 \subsection{Vorbereitung
 \label{mceliece:section:vorbereitung}}
-Damit der Nachrichtenaustausch stattfinden kann, muss Alice (Empfängerin)
-zuerst ein Schlüsselpaar definieren.
+Bevor einen Datenaustausch zwischen Sender und Empfänger stattfinden kann,
+muss abgemacht werden, welche Länge $n$ das Code-Wort und welche Länge $k$ das Datenwort hat
+und wie viele Bitfehler $t$ (angewendet mit Fehlervektor $e_n$)
+für das Rauschen des Code-Wortes $c_n$ verwendet werden.
+Danach generiert Alice (Empfängerin) ein Schlüsselpaar.
 Dazu erstellt sie die einzelnen Matrizen $S_k$, $G_{n,k}$ und $P_n$.
 Diese drei einzelnen Matrizen bilden den privaten Schlüssel von Alice
 und sollen geheim bleiben.
@@ -29,7 +32,7 @@ und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfeh
 \[
     c_n\,=\,K_{n,k}\cdot d_k + e_n\,.
 \]
-Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment)
+Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment) $d_k$
 einen neuen, zufälligen Fehlervektor generiert.
 Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
 
@@ -79,7 +82,8 @@ Aus dem öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
 und eine systematische Analyse der Codeworte wird durch das Hinzufügen von zufälligen Bitfehlern zusätzlich erschwert.
 
 \subsection{Beispiel}
-Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden.
+Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden. 
+Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four} beschrieben.
 \begin{itemize}
     \item Daten- und Fehlervektor
     \begin{itemize}
@@ -336,7 +340,8 @@ Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden
 \end{itemize}
 
 
-\subsubsection{7/4-Code}
+\subsubsection{7/4-Code
+\label{mceliece:subsection:seven_four}}
 Beim 7/4-Code handelt es sich um einen linearen Code,
 der ein Bitfehler korrigieren kann.
 Es gibt unterschiedliche Varianten zum Erzeugen eines 7/4-Codes,
