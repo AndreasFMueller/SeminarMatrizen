@@ -439,9 +439,99 @@ Faktor $\frac23$ kleiner geworden ist.
 \end{beispiel}
 
 \begin{beispiel}
-Wir berechnen die Norm eines Jordan-Blocks.
-
-XXX TODO
+Wir berechnen die Norm eines $2\times2$-Jordan-Blocks.
+Ein $2$-dimensionaler Einheitsvektor kann als
+\[
+v\colon
+t\mapsto v(t)=
+\begin{pmatrix}\cos t\\\sin t\end{pmatrix}
+\]
+parametrisiert werden.
+Für die Zahl $\lambda=a+bi$ bildet der
+Jordanblock $J_2(\lambda)$ den Vektor $v(t)$ auf den Vektor
+\[
+J_2(\lambda)v(t)
+=
+\begin{pmatrix}
+\lambda&1\\
+0&\lambda
+\end{pmatrix}
+\begin{pmatrix}\cos t\\\sin t\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda\cos t + \sin t\\
+\lambda\sin t
+\end{pmatrix}
+\]
+ab
+mit der Länge
+\begin{align*}
+|J_2(\lambda)v(t)|^2
+&=
+|\lambda\cos t + \sin t|^2 + |\lambda\sin t|^2
+=
+(\Re\lambda \cos t + \sin t)^2
++
+(\Im\lambda \cos t)^2
++
+|\lambda|^2 \sin^2t
+\\
+&=
+a^2\cos^2 t
++
+2a\cos t\sin t + \sin^2 t + b^2\cos^2t + (a^2+b^2) \sin^2 t
+\\
+&=
+(a^2+b^2)(\cos^2t + \sin^2t) + \sin^2t + 2a\cos t\sin t
+=
+|\lambda|^2+2a\cos t\sin t + \sin^2 t
+\\
+&=
+|\lambda|^2 + a\sin 2t + \frac12(1-\cos 2t).
+\end{align*}
+Um den maximalen Wert zu finden, leiten wir nach $t$ ab und finden
+\begin{align*}
+\frac{d}{dt}
+|J_2(\lambda)v(t)|^2
+&=
+2a\cos 2t
++
+\sin 2t
+=
+0.
+\end{align*}
+Dividieren wir durch $\cos t$, ergibt sich die Gleichung
+\[
+\tan 2t = -2a
+\quad\Rightarrow\quad
+2t
+=
+\arctan(-2a)
+\quad\Rightarrow\quad
+\left\{
+\renewcommand{\arraystretch}{2.1}
+\setlength\arraycolsep{1pt}
+\begin{array}{ccc}
+\cos 2t &=& \displaystyle\frac{1}{\sqrt{1+4a^2}}\phantom{.}\\
+\sin 2t &=& \displaystyle\frac{-2a}{\sqrt{1+4a^2}}.
+\end{array}
+\right.
+\]
+Setzt man dies in die ursprüngliche Formel für die Länge des
+Bildvektors ein, erhält man
+\begin{align*}
+\|J_2\|^2
+=
+|J_2(\lambda)v(t)|^2
+&=
+|\lambda|^2 + \frac{-2a}{\sqrt{1+4a^2}} + \frac12\biggl(1-\frac{1}{\sqrt{1+4a^2}}\biggr)
+\\
+&=
+|\lambda|^2
++ \frac12
+-\frac{1+4a}{2\sqrt{1+4a^2}}.
+\end{align*}
+Für $a\to\infty$ wächst dies asymptotisch wie $a^2-1$.
 \end{beispiel}
 
 %
