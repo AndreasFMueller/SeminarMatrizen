@@ -8,30 +8,56 @@
 \lhead{Eigenwerte und Eigenvektoren}
 \rhead{}
 Die algebraischen Eigenschaften einer Matrix $A$ sind eng mit der
-Frage nach linearen Beziehungen unter den Potenzen von $A^k$ verbunden.
+Frage nach linearen Beziehungen zwischen den Potenzen $A^k$ von $A$ verbunden.
 Im Allgemeinen ist die Berechnung dieser Potenzen eher unübersichtlich,
 es sei denn, die Matrix hat eine spezielle Form.
 Die Potenzen einer Diagonalmatrix erhält man, indem man die Diagonalelemente
 potenziert.
+\index{Diagonalmatrix}%
 Auch für Dreiecksmatrizen ist mindestens die Berechnung der Diagonalelemente
 von $A^k$ einfach.
+\index{Dreiecksmatrix}%
 Die Theorie der Eigenwerte und Eigenvektoren ermöglicht, Matrizen in
-eine solche besonders einfache Form zu bringen.
+\index{Eigenwert}%
+\index{Eigenvektor}
+eine solche besonders einfache sogenannte Normalform zu bringen.
+\index{Normalform}%
+Ziel ist, einen Algorithmus zu finden, mit dem sich für jede lineare
+Abbildung eine Basis finden lässt, in der ihre Matrix eine besonders
+einfach Form hat, in der auch die Berechnung von Potenzen leicht
+möglich ist.
 
-In Abschnitt~\ref{buch:section:grundlagen} werden die grundlegenden
-Definitionen der Eigenwerttheorie in Erinnerung gerufen.
+Die Untersuchungen beginnen in
+Abschnitt~\ref{buch:section:grundlagen} mit Betrachtungen über
+Potenzen von Matrizen und ihren invarianten Unterräumen.
+\index{Matrixpotenz}%
+\index{invarianter Unterraum}%
+\index{Unterraum, invarianter}%
+Es ergibt sich bereits eine Normalform für nilpotente Matrizen.
+\index{nilpotent}%
+In Abschnitt~\ref{buch:section:eigenwerte-eigenvektoren} wird daraus die
+allgemeine Eigenwerttheorie entwickelt.
 Damit kann dann in Abschnitt~\ref{buch:section:normalformen}
-gezeigt werden, wie Matrizen in besonders einfache Form gebracht
-werden können.
-Die Eigenwerte bestimmen auch die Eigenschaften von numerischen
-Algorithmen, wie in den Abschnitten~\ref{buch:section:spektralradius}
-und \ref{buch:section:numerisch} dargestellt wird.
-Für viele Funktionen kann man auch den Wert $f(A)$ berechnen, unter
-geeigneten Voraussetzungen an den Spektralradius.
-Dies wird in Abschnitt~\ref{buch:section:spektraltheorie} beschrieben.
+gezeigt werden, wie Matrizen in Normalform gebracht werden können.
+Für viele Funktionen kann man auch den Wert $f(A)$ berechnen.
+In Abschnitt~\ref{buch:section:analytische-funktionen-einer-matrix} wird
+gezeigt, wie dies für analytische Funktionen und für Funktionen möglich
+\index{analytische Funktion}%
+ist, die durch Polynome approximiert werden.
+Es zeigt sich, dass dazu geeigneten Voraussetzungen an den sogenannten
+Spektralradius gestelltw erden müssen.
+\index{Spektralradius}%
+Es stellt sich heraus, dass man nicht für alle Matrizen $A$ eine 
+sinnvolle Definition von $f(A)$ für beliebige stetige Funktionen $f$
+erwarten kann.
+Möglich ist dies nur für sogenannte normale Matrizen, wie in
+der Spektraltheorie in
+Abschnitt~\ref{buch:section:spektraltheorie} dargestellt wird.
+\index{Spektraltheorie}
 
 
 \input{chapters/40-eigenwerte/grundlagen.tex}
+\input{chapters/40-eigenwerte/eigenwerte.tex}
 \input{chapters/40-eigenwerte/normalformen.tex}
 \input{chapters/40-eigenwerte/spektralradius.tex}
 \input{chapters/40-eigenwerte/spektraltheorie.tex}

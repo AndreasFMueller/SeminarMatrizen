@@ -115,7 +115,7 @@ k_i(z)
 \frac{(z-z_0)\dots \widehat{(z-z_i)}\dots (z-z_n)}{(z_i-z_0)\dots \widehat{(z_i-z_i)}\dots (z_i-z_n)}
 \]
 haben die Eigenschaft
-$k_i(z_j)=\delta_{ij}$.
+$k_i(z_j)=\delta_{i\!j}$.
 Damit lässt sich jetzt ein Polynom
 \[
 p(z) = \sum_{j=0}^n f(z_j) \frac{l_j(z)}{l_j(z_j)}
@@ -126,7 +126,7 @@ p(z_i)
 =
 \sum_{j=0}^n f(z_j) \frac{l_j(z_i)}{l_j(z_j)}
 =
-\sum_{j=0}^n f(z_j) \delta_{ij}
+\sum_{j=0}^n f(z_j) \delta_{i\!j}
 =
 f_(z_i)
 \]
@@ -699,15 +699,15 @@ Sei $A$ eine obere Dreiecksmatrix, das Argument für eine untere Dreiecksmatrix
 funktioniert gleich.
 Wir berechnen ein Diagonalelement für beide Produkte $AA^*$ und $A^*A$.
 Dazu brauchen wir die Matrixelemente von $A$ und $A^*$.
-Bezeichnen wir die Matrixelemente von $A$ mit $a_{ij}$, dann hat $A^*$
-die Matrixelemente $(A^*)_{ij}=\overline{a}_{ji}$.
+Bezeichnen wir die Matrixelemente von $A$ mit $a_{i\!j}$, dann hat $A^*$
+die Matrixelemente $(A^*)_{i\!j}=\overline{a}_{ji}$.
 Damit kann man die Diagonalelemente der Produkte als
 \begin{align*}
 (AA^*)_{ii}
 &=
-\sum_{j=1}^n a_{ij}\overline{a}_{ij}
+\sum_{j=1}^n a_{i\!j}\overline{a}_{i\!j}
 =
-\sum_{j=i}^n |a_{ij}|^2
+\sum_{j=i}^n |a_{i\!j}|^2
 \\
 (A^*A)_{ii}
 &=
