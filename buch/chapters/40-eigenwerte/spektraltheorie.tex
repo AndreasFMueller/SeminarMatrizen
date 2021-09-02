@@ -6,11 +6,12 @@
 \section{Spektraltheorie
 \label{buch:section:spektraltheorie}}
 Aufgabe der Spektraltheorie ist, Bedingungen an eine Matrix $A$ und eine
+\index{Spektraltheorie}
 Funktion $f(z)$ zu finden, unter denen es möglich ist, $f(A)$ auf 
 konsistente Art und Weise zu definieren.
 Weiter müssen Methoden entwickelt werden, mit denen $f(A)$ berechnet
 werden kann.
-Für ein Polynom $p(z)$ ist $p(A)$ durch einsetzen definiert.
+Für ein Polynom $p(z)$ ist $p(A)$ durch Einsetzen definiert.
 Für Funktionen, die sich nicht durch ein Polynom darstellen lassen,
 muss eine Approximation der Funktion durch Polynome verwendet werden.
 Sei also $p_n(z)$ eine Folge von Polynomen, die als Approximation der
@@ -41,7 +42,10 @@ konvergente Folge von Polynomen $p_n(z)$ auch die Matrizenfolge
 $p_n(A)$ konvergiert.
 
 Es wird sich zeigen, dass die Menge $K$ das Spektrum von $A$ ist,
+$K=\operatorname{Sp}(A)$,
+(Definition~\ref{buch:eigenwerte:def:spektrum}),
 also eine endliche Teilmenge von $\mathbb{C}$.
+\index{Spektrum}
 Jede Funktion kann auf so einer Menge durch Polynome exakt wiedergegeben
 werden.
 Es gibt insbesondere Folgen von Polynomen, die eingeschränkt
@@ -70,9 +74,11 @@ lassen, woraus sich dann Approximationen von $f(A)$ für diagonalisierbare
 Matrizen mit reellen Eigenwerten ergeben.
 
 Der Satz von Stone-Weierstrass, der in
+\index{Stone-Weierstrass, Satz von}%
+\index{Satz von Stone-Weierstrass}%
 Abschnitt~\ref{buch:subsetion:stone-weierstrass} dargestellt wird,
 ist ein sehr allgemeines Approximationsresultat, welches nicht nur
-zeigt, dass die Approximation unter sehr natürlichen Voraussetzungen
+zeigt, dass die Approximation unter einigermassen natürlichen Voraussetzungen
 beliebig genau möglich ist, sondern uns im komplexen Fall auch
 weitere Einsicht dafür geben kann, welche Voraussetzungen an eine
 komplexe Matrix gestellt werden müssen, damit man damit rechnen kann,
@@ -91,8 +97,10 @@ Approximationsverfahren entwickelt, wovon zwei kurz (ohne Beweise)
 vorgestellt werden sollen.
 
 \subsubsection{Das Legendre-Interpolationspolynom}
+\index{Legendre-Interpolationspolynom}%
 Zu vorgegebenen, verschiedenen Zahlen $z_i\in\mathbb{C}$, $0\le i\le n$,
 die auch die {\em Stützstellen} genannt werden,
+\index{Stützstelle}%
 gibt es immer ein Polynom vom Grade $n$, welches in den $z_i$ vorgegebene
 Werte $f(z_i)$ annimmt.
 Ein solches Polynom lässt sich im Prinzip mit Hilfe eines linearen
@@ -139,17 +147,19 @@ annimmt, doch ist die Stabilität für grosse $n$ eher beschränkt.
 
 
 \subsubsection{Gleichmassige Approximation mit Bernstein-Polynomen}
+\index{Bernstein-Polynom}%
 Das Legendre-Interpolationspolynom nimmt in den  Stützstellen die
 verlangten Werte an, aber ausserhalb der Stützstellen ist nicht
 garantiert, dass man eine gute Approximation einer Funktion $f(z)$
 erhält.
-
 Für die Approximation auf einem reellen Interval $[a,b]$ hat
-Sergei Natanowitsch Bernstein ein 
+Sergei Natanowitsch Bernstein eine Methode zur expliziten
+Konstruktion eines Approximationspolynoms formuliert.
+
 Dazu werden zuerst die reellen Bernsteinpolynome vom Grad $n$
 durch
 \begin{align*}
-B_{i,n}(t) = \binom{n}{i} t^i(1-t)^{n-i}.
+B_{i,n}(t) = \binom{n}{i} t^i(1-t)^{n-i}
 \end{align*}
 definiert.
 Als Approximationspolynom für die auf dem Interval 
@@ -179,6 +189,8 @@ verwendet.
 %
 \subsection{Der Satz von Stone-Weierstrasss
 \label{buch:subsetion:stone-weierstrass}}
+\index{Stone-Weierstrass, Satz von}%
+\index{Satz von Stone-Weierstrass}%
 Der Satz von Stone-Weierstrass behandelt im Gegensatz zu den in
 Abschnitt~\ref{buch:subsection:approximation-durch-polynome}
 besprochenen Approximationsmethoden nicht nur Funktionen von
@@ -207,8 +219,8 @@ erst ermöglichen werden.
 Aus den konstanten Funktionen lassen sich durch algebraische
 Operationen nur weitere konstante Funktionen erzeugen.
 Die konstanten Funktionen sind also nur dann eine genügend
-reichhaltige Menge, wenn die Menge $K$ nur einen einzigen Punkt
-enthält.
+reichhaltige Menge für die Approximation von Funktionen auf $K$,
+wenn die Menge $K$ nur einen einzigen Punkt enthält.
 Damit sich Funktionen approximieren lassen, die in zwei Punkten
 verschiedene Werte haben, muss es auch unter den zur Approximation
 zur Verfügung stehenden Funktionen solche haben, deren Werte sich
@@ -263,6 +275,8 @@ nicht widerspricht aber ein Hindernis für spätere Anwendungen ist.
 
 
 \subsubsection{Der Satz von Stone-Weierstrass für reelle Funktionen}
+\index{Satz von Stone-Weierstrass}%
+\index{Stone-Weierstrass, Satz von}%
 Die Beispiele von Abschnitt~\ref{buch:subsection:approximation-durch-polynome}
 haben bezeigt, dass sich reellwertige Funktionen einer reellen
 Variable durch Polynome beliebig genau approximieren lassen.
@@ -308,6 +322,7 @@ in $A$.
 Für den Beweis des Satzes wird ein Hilfsresultat benötigt, welches wir
 zunächst ableiten.
 Es besagt, dass sich die Wurzelfunktion $t\mapsto\sqrt{t}$
+\index{Wurzelfunktion}%
 auf dem Interval $[0,1]$ gleichmässig
 von unten durch Polynome approximieren lässt, die in
 Abbildung~\ref{buch:eigenwerte:fig:wurzelapproximation} dargestellt
@@ -365,6 +380,8 @@ Folge, die gegen $\sqrt{a}$ konvergiert.
 \end{proof}
 
 \begin{proof}[Beweis des Satzes von Stone-Weierstrass]
+\index{Stone-Weierstrass, Beweis}%
+\index{Satz von Stone-Weierstrasse, Beweis}%
 Da $A$ eine Algebra ist, ist mit jeder Funktion $f\in A$ für jedes Polynome
 $p\in\mathbb{R}[X]$ auch $p(f)$ eine Funktion in $A$.
 \begin{enumerate}
@@ -377,11 +394,11 @@ Sei ausserdem $m^2=\sup \{f(x)^2\;|\;x\in K\}$, so dass $f^2/m^2$ eine Funktion
 mit Werten im Intervall $[0,1]$ ist.
 Die Funktionen $f_n(x)=mu_n(f(x)^2/m^2)$ sind ebenfalls in $A$ und
 approximieren gleichmässig $\sqrt{f(x)^2}=|f(x)|$.
+
 \item Schritt: Für zwei Funktionen $f,g\in A$ gibt es eine monoton wachsende
 Folge, die $\max(f,g)$ gleichmässig beliebig genau approximiert
 und eine monoton fallende Folge, die $\min(f,g)$ gleichmässig beliebig 
 genau approximiert.
-
 
 Diese Folgen können aus der Approximationsfolge für den Betrag einer
 Funktion und den Identitäten
@@ -394,6 +411,7 @@ Funktion und den Identitäten
 \end{equation}
 gefunden werden, die in Abbildung~\ref{buch:eigenwerte:fig:minmax}
 graphisch erklärt werden.
+
 \item Schritt: Zu zwei beliebigen Punkten $x,y\in K$ und Werten
 $\alpha,\beta\in\mathbb{R}$ gibt es immer eine Funktion in $A$,
 die in den Punkten $x,y$ die vorgegebenen Werte $\alpha$ bzw.~$\beta$
@@ -405,12 +423,13 @@ f(t)
 =
 \beta + \frac{f_0(t)-f_0(y)}{f_0(x)-f_0(y)}(\alpha-\beta)
 \]
-wohldefiniert und nimmt die verlangten Werte an.
+wohldefiniert, liegt in $A$ und nimmt die verlangten Werte an.
+
 \item Schritt: Zu jeder stetigen Funktion $f\colon K\to\mathbb{R}$, jedem
 Punkt $x\in K$ und jedem $\varepsilon>0$ gibt es eine Funktion $g\in A$ derart,
 dass $g(x)=f(x)$ und $g(y) \le f(y)+\varepsilon$ für alle $y\in K$.
 
-Zu jedem $z\in K$ gibt es eine Funktion in $A$ mit
+Zu jedem $z\in K$ gibt es eine Funktion $h_z\in A$ mit
 $h_z(x)=f(x)$ und $h_z(z) \le f(z)+\frac12\varepsilon$.
 Wegen der Stetigkeit von $h_z$ gibt es eine Umgebung $V_z$ von $z$, in der
 immer noch gilt $h_z(y)\le f(y)+\varepsilon$ für $y\in V_z$.
@@ -428,8 +447,8 @@ Ausserdem ist $g(z)$ nach dem zweiten Schritt beliebig genau durch
 Funktionen in $A$ approximierbar.
 \item Schritt: Jede stetige Funktion $f\colon K\to\mathbb{R}$ kann
 beliebig genau durch Funktionen in $A$ approximiert werden.
-Sei $\varepsilon > 0$.
 
+Sei $\varepsilon > 0$.
 Nach dem vierten Schritt gibt es für jedes $y\in K$ eine Funktion $g_y$
 derart, dass $g_y(y)=f(y)$  und $g_y(x) \le f(x) + \varepsilon$ für
 $x\in K$.
@@ -501,13 +520,21 @@ f(\lambda_1)&            &      &            \\
 \end{pmatrix}.
 \]
 
-\begin{satz}
+Insgesamt haben wir damit den folgenden {\em Spektralsatz } für symmetrische
+und selbstadjungierte Matrizen erhalten.
+\index{Spektralsatz}%
+
+\begin{satz}[Spektralsatz]
 \label{buch:eigenwerte:satz:spektralsatz}
+\index{symmetrische Matrix}%
+\index{Matrix, symmetrisch}%
+\index{selbstadjungierte Matrix}%
+\index{Matrix, selbstadjungiert}%
 Ist $A$ symmetrische oder selbstadjungiert Matrix und $f$ eine Funktion
 auf dem Spektrum $\operatorname{Sp}(A)$ von $A$.
 Dann gibt es genau eine Matrix $f(A)$, die Grenzwert jeder beliebigen
-Folge $p_n(A)$ für Polynomfolgen, die $\operatorname{Sp}(A)$ gleichmässig
-gegen $f$ konvergieren.
+Folge $p_n(A)$ für Polynomfolgen, die auf $\operatorname{Sp}(A)$
+gleichmässig gegen $f$ konvergieren.
 \end{satz}
 
 \subsubsection{Unmöglichkeit der Approximation von $z\mapsto \overline{z}$
@@ -518,15 +545,10 @@ In diesem Abschnitt zeigen wir, dass sich die Funktion $z\mapsto\overline{z}$
 auf der Einheitskreisscheibe $K=\{z\in\mathbb{C}\;|\; |z|\le 1\}$ nicht
 gleichmässig durch Polynome $p(z)$ mit komplexen Koeffizienten approximieren
 lässt.
+Sei also $p_n(z)$ eine Folge von Polynomen, die auf der Einheitskreisscheibe
+gleichmässig gegen $\overline{z}$ konvergieren, also
+$\overline{z}=\lim_{n\to\infty}p_n(z)$.
 
-Wäre eine solche Approximation möglich, dann könnte man $\overline{z}$
-auch durch eine Potenzreihe
-\[
-\overline{z}
-=
-\sum_{k=0}^\infty a_kz^k
-\]
-darstellen.
 Das Wegintegral beider Seiten über den Pfad $\gamma(t) = e^{it}$
 in der komplexen Ebene ist
 \begin{align*}
@@ -541,12 +563,12 @@ i\biggl[ \frac{1}{i(k+1)} e^{it(k+1)}\biggr]_0^{2\pi}
 0
 \\
 \oint_\gamma
-\sum_{k=0}^\infty a_kz^k
+p(z)
 \,dz
 &=
-\sum_{k=0}^\infty a_k \oint_\gamma z^k\,dz
+\sum_{k=0}^\infty a_{n,k} \oint_\gamma z^k\,dz
 =
-\sum_{k=0}^\infty a_k\cdot 0
+\sum_{k=0}^\infty a_{n,k}\cdot 0
 =
 0
 \\
@@ -558,12 +580,13 @@ i\int_0^{2\pi} \,dt = 2\pi i,
 \end{align*}
 dabei wurde $\overline{\gamma}(t)=e^{-it}$ verwendet.
 Insbesondere widersprechen sich die beiden Integrale.
-Die ursprüngliche Annahmen, $\overline{z}$ lasse sich durch Polynome
+Die ursprüngliche Annahme, $\overline{z}$ lasse sich durch Polynome
 gleichmässig approximieren, muss daher verworfen werden.
 
 \subsubsection{Der Satz von Stone-Weierstrass für komplexe Funktionen}
 Der Satz von Stone-Weierstrass kann nach dem vorangegangene Abschnitt
-also nicht gelten.
+also für komplexe Funktionen nicht gelten, wir haben eine Funktion
+gefunden, die sich nicht approximieren lässt.
 Um den Beweis des Satzes~\ref{buch:satz:stone-weierstrass}
 auf komplexe Zahlen zu übertragen, muss im ersten Schritt ein Weg
 gefunden werden, den Betrag einer Funktion zu approximieren.
@@ -585,6 +608,8 @@ nur dann bestimmen kann, wenn mit jeder Funktion aus $A$ auch die
 komplex konjugierte Funktion zur Verfügung steht.
 
 \begin{satz}[Stone-Weierstrass]
+\index{Satz von Stone-Weierstrass für komplexe Funktionen}
+\index{Stone-Weierstrass, Satz für komplexe Funktionen}
 Enthält eine $\mathbb{C}$-Algebra $A$ von stetigen, komplexwertigen
 Funktionen auf einer kompakten Menge $K$ die konstanten Funktionen,
 trennt sie Punkte und ist ausserdem mit jeder Funktion $f\in A$ auch
@@ -603,7 +628,8 @@ Beweis des reellen Satzes von Stone-Weierstrass übertragen lässt.
 \subsection{Normale Matrizen
 \label{buch:subsection:normale-matrizen}}
 Aus dem Satz von Stone-Weierstrass für komplexe Matrizen kann man
-jetzt einen Spektralsätze für eine etwas grössere Klasse von Matrizen
+jetzt einen Spektralsatz für eine etwas grössere Klasse von Matrizen
+\index{Spektralsatz}%
 ableiten, als im Satz~\ref{buch:eigenwerte:satz:spektralsatz}
 möglich war.
 Der Satz besagt, dass für eine beliebige Funktion $f$ auf dem Spektrum
@@ -621,7 +647,7 @@ $\overline{z}$ eingesetzt werden.
 Dies erklärt aber noch nicht, wie für $n\times n$-Matrizen
 vorzugehen ist, wenn $n>1$ ist.
 
-Die Notwendigkeit, die Variable $\overline{z}$ hinzuzunehmen
+Die Notwendigkeit, die Variable $\overline{z}$ hinzuzunehmen,
 ergab sich aus der Anforderung, dass der Betrag aus $|z|^2=z\overline{z}$
 konstruiert werden können muss.
 Insbesondere muss beim Einsetzen eine Matrix entstehen, die nur 
@@ -660,6 +686,7 @@ $AA^* = A^*A$ ist.
 
 \begin{definition}
 Eine Matrix $A\in M_n(\mathbb{C})$ heisst {\em normal}, wenn $AA^*=A^*A$ gilt.
+\index{normal}%
 \end{definition}
 
 \subsubsection{Beispiele normaler Matrizen}
@@ -667,12 +694,16 @@ Eine Matrix $A\in M_n(\mathbb{C})$ heisst {\em normal}, wenn $AA^*=A^*A$ gilt.
 \begin{enumerate}
 \item
 Hermitesche und Antihermitesche Matrizen sind normal, denn solche
+\index{hermitesch}%
+\index{anithermitesch}%
 Matrizen erfüllen $A^*=\pm A$ und damit
 \(
 AA^* = \pm A^2 = A^*A.
 \)
 \item
 Symmetrische und antisymmetrische Matrizen sind normal,
+\index{symmetrisch}%
+\index{antisymmetrisch}%
 denn aus $A=A^t$ folgt $A^*=\overline{A}^t$ und damit
 \begin{align*}
 AA^* &=  A\overline{A}^t = 
@@ -681,8 +712,10 @@ A^*A &=
 \end{align*}
 \item
 Unitäre Matrizen $U$ sind normal, das $UU^*=I=U^*U$ gilt.
+\index{unitär}%
 \item
 Orthogonale Matrizen sind normal wegen $O(n) = U(n) \cap M_n(\mathbb{R})$.
+\index{orthogonal}%
 \end{enumerate}
 
 Jede Matrix lässt sich durch Wahl einer geeigneten Basis in Jordansche 
@@ -692,6 +725,7 @@ Satz zeigt.
 
 \begin{satz}
 Eine Dreiecksmatrix ist genau dann normal, wenn sie diagonal ist.
+\index{Dreiecksmatrix}%
 \end{satz}
 
 \begin{proof}[Beweis]
@@ -716,11 +750,12 @@ Damit kann man die Diagonalelemente der Produkte als
 \sum_{j=1}^i |a_{ji}|^2
 \end{align*}
 ausrechnen.
-Der obere Ausdruck ist die quadrierte Länge der Zeile $i$ der Matrix $A$,
-der untere ist die quadrierte Länge der Spalte $i$.
+Der obere Ausdruck ist die quadrierte Länge des Zeilenvektors $i$ der Matrix $A$,
+der untere ist die quadrierte Länge des Spaltenvektors $i$.
 Da die Matrix eine obere Dreiecksmatrix ist, hat die erste Spalte höchstens
 ein einziges von $0$ verschiedenes Element.
-Daher kann auch die erste Zeile höchstens dieses eine Elemente haben.
+Da die erste Spalte die gleiche Länge hat,
+kann auch die erste Zeile höchstens dieses eine Element haben.
 Die Matrix hat daher Blockstruktur mit einem $1\times 1$-Block in der
 linken obere Ecke und einem  $n-1$-dimensionalen Block für den Rest.
 Durch Wiederholen des Arguments für den $(n-1)\times (n-1)$-Block 
@@ -764,6 +799,27 @@ B^*A^*AB
 was zeigt, dass auch $AB$ normal ist.
 \end{proof}
 
+\subsubsection{Spektralsatz für normale Matrizen}
+Mit dem Begriff der normalen Matrix lässt sich der Spektralsatz nun
+abschliessen formulieren.
+Die vorangegangene Diskussion hat gezeigt, dass man einen solchen
+Satz für nicht normale Matrizen nicht erwarten kann.
+
+\begin{satz}
+\label{buch:eigenwerte:satz:spektralnormal}
+Ist $A$ eine normale Matrix und $f$ eine Funktion auf dem Spektrum
+$\operatorname{Sp}(A)$ von $A$.
+Dann gibt es genau eine Matrix $f(A)$, die der Grenzwert
+\[
+f(A)
+=
+\lim_{n\to\infty} p_n(A,A^*)
+\]
+jeder beliebigen
+Folge $p_n(z,\overline{z})$ von Polynomen in $z$ und $\overline{z}$ ist,
+die auf $\operatorname{Sp}(A)$ gleichmässig gegen $f$ konvergieren.
+\end{satz}
+
 \subsubsection{Äquivalente Bedingungen}
 Es gibt eine grosse Zahl äquivalenter Eigenschaften für normale Matrizen.
 Die folgenden Eigenschaften sind äquivalent:
@@ -775,24 +831,30 @@ Es gibt eine orthonormale Basis von Eigenvektoren von $A$ für $\mathbb{C}^n$
 \item
 Für jeden Vektor $x\in\mathbb{C}^n$ gilt $\|Ax\|=\|A^*x\|$
 \item
-Die Forbenius-Norm der Matrix $A$ kann mit den Eigenwerten $\lambda_i$
+Die Frobenius-Norm der Matrix $A$ kann mit den Eigenwerten $\lambda_i$
+\index{Frobenius-Norm}%
 von $A$ berechnet werden:
 $\operatorname{Spur}(A^*A) = \sum_{i=1}^n |\lambda_i|^2$
 \item
 Der hermitesche Teil $\frac12(A+A^*)$ und der antihermitesche Teil
 $\frac12(A-A^*)$ von $A$ vertauschen.
+\index{hermitesch}%
+\index{antihermitesch}%
 \item
 $A^*$ ist ein Polynom vom Grad $n-1$ in $A$.
 \item
 Es gibt eine unitäre Matrix $U$ derart, dass $A^*=AU$
+\index{unitär}%
 \item
-Es gibt eine Polarzerlegugn $A=UP$ mit einer unitären Matrix $U$ und
+Es gibt eine Polarzerlegung $A=UP$ mit einer unitären Matrix $U$ und
+\index{Polarzerlegung}
 einer postiv semidefiniten Matrix $P$, die untereinander vertauschen.
 \item
 Es gibt eine Matrix $N$ mit verschiedenen Eigenwerten, mit denen $A$
 vertauscht.
 \item
-Wenn $A$ die (absteigend geordneten) singulärwerte $\sigma_i$ und
+Wenn $A$ die (absteigend geordneten) Singulärwerte $\sigma_i$ und
+\index{Singulärwert}%
 die absteigend geordneten Eigenwerte $\lambda_i$ hat,
 dann it $\sigma_i=|\lambda_i|$.
 \end{enumerate}
