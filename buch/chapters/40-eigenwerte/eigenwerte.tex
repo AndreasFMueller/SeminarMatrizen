@@ -11,11 +11,22 @@ $A\in M_n(\Bbbk)$.
 In den meisten Anwendungen wird $\Bbbk=\mathbb{R}$ sein.
 Da aber in $\mathbb{R}$ nicht alle algebraischen Gleichungen lösbar sind,
 ist es manchmal notwendig, den Vektorraum zu erweitern um zum Beispiel
+auf dem Umweg über komplexe Zahlen
 Eigenschaften der Matrix $A$ abzuleiten.
 
 \begin{definition}
-Ein Vektor $v\in V$ heisst {\em Eigenvektor} von $A$ zum Eigenwert
+Ein Vektor $v\in V$ heisst {\em Eigenvektor} von $A$ zum {\em Eigenwert}
+\index{Eigenwert}%
+\index{Eigenvekor}%
 $\lambda\in\Bbbk$, wenn $v\ne 0$ und $Av=\lambda v$ gilt.
+Die Menge
+\[
+\operatorname{Sp}(A)
+=
+\{\lambda\in\mathbb{C}\,|\, \text{$\lambda$ ist Eigenwert von $A$}\}
+\]
+heisst das {\em Spektrum} von $A$.
+\index{Spektrum}%
 \end{definition}
 
 Die Bedingung $v\ne 0$ dient dazu, pathologische Situationen auszuschliessen.
@@ -27,7 +38,7 @@ Ausserdem wäre $0$ ein Eigenvektor zu jedem beliebigen Eigenwert.
 
 Eigenvektoren sind nicht eindeutig bestimmt, jedes von $0$ verschiedene
 Vielfache von $v$ ist ebenfalls ein Eigenvektor.
-Zu einem Eigenwert kann man also einen Eigenvektor jeweils mit 
+Zu einem Eigenwert kann man also einen Eigenvektor mit 
 geeigneten Eigenschaften finden, zum Beispiel kann man für $\Bbbk = \mathbb{R}$
 Eigenvektoren auf Länge $1$ normieren.
 Im Folgenden werden wir oft die abkürzend linear unabhängige Eigenvektoren
@@ -82,17 +93,17 @@ s\lambda u + t\lambda v
 \lambda(su+tv),
 \]
 also ist auch $su+tv\in E_\lambda$.
-Der Fall $E_\lambda = \{0\}=0$ bedeutet natürlich, dass $\lambda$ gar kein
+Der Spezialfall $E_\lambda = \{0\}=0$ bedeutet natürlich, dass $\lambda$ gar kein
 Eigenwert ist.
 
 \begin{satz}
-Wenn $\dim E_\lambda=n$, dann ist $A=\lambda E$.
+Wenn $\dim E_\lambda=n$ ist, dann ist $A=\lambda I$.
 \end{satz}
 
 \begin{proof}[Beweis]
 Da $V$ ein $n$-dimensionaler Vektoraum ist, ist $E_\lambda=V$.
 Jeder Vektor $v\in V$ erfüllt also die Bedingung $Av=\lambda v$,
-oder $A=\lambda E$.
+oder $A=\lambda I$.
 \end{proof}
 
 Wenn man die Eigenräume von $A$ kennt, dann kann man auch die Eigenräume
@@ -105,9 +116,9 @@ Av=\lambda v
 =
 (\lambda+\mu)v,
 \]
-somit ist $v$ ein Eigenvektor von $A+\mu E$ zum Eigenwert $\lambda+\mu$.
+somit ist $v$ ein Eigenvektor von $A+\mu I$ zum Eigenwert $\lambda+\mu$.
 Insbesondere können wir statt die Eigenvektoren von $A$ zum Eigenwert $\lambda$
-zu studieren, auch die Eigenvektoren zum Eigenwert $0$ von $A-\lambda E$
+zu studieren, auch die Eigenvektoren zum Eigenwert $0$ von $A-\lambda I$
 untersuchen.
 
 %
@@ -116,9 +127,9 @@ untersuchen.
 \subsection{Verallgemeinerte Eigenräume
 \label{buch:subsection:verallgemeinerte-eigenraeume}}
 Wenn $\lambda$ ein Eigenwert der Matrix $A$ ist, dann ist
-ist $A-\lambda E$ injektiv und $\ker(A-\lambda E)\ne 0$.
-Man kann daher die invarianten Unterräume $\mathcal{K}(A-\lambda E)$
-und $\mathcal{J}(A-\lambda E)$.
+ist $A-\lambda I$ injektiv und $\ker(A-\lambda I)\ne 0$.
+Man kann daher die invarianten Unterräume $\mathcal{K}(A-\lambda I)$
+und $\mathcal{J}(A-\lambda I)$ bilden.
 
 \begin{beispiel}
 Wir untersuchen die Matrix
@@ -134,8 +145,8 @@ A
 \]
 Man kann zeigen, dass $\lambda=1$ ein Eigenwert ist.
 Wir suchen die Zerlegung des Vektorraums $\mathbb{R}^4$ in invariante
-Unterräume $\mathcal{K}(A-E)$ und $\mathcal{J}(A-E)$.
-Die Matrix $B=A-E$ ist
+Unterräume $\mathcal{K}(A-I)$ und $\mathcal{J}(A-I)$.
+Die Matrix $B=A-I$ ist
 \[
 B
 =
@@ -146,7 +157,7 @@ B
 0&0& 0&2
 \end{pmatrix}
 \]
-und wir berechnen davon die Potenz
+und wir berechnen davon die vierte Potenz
 \[
 D=B^4=(A-E)^4
 =
@@ -191,26 +202,26 @@ verwenden.
 
 Als erstes überprüfen wir, ob diese Basisvektoren tatsächlich invariante
 Unterräume sind.
-Für $\mathcal{J}(A-E) = \langle b_1,b_2\rangle$
+Für $\mathcal{J}(A-I) = \langle b_1,b_2\rangle$
 berechnen wir
 \begin{align*}
-(A-E)b_1
+(A-I)b_1
 &=
 \begin{pmatrix} 0\\4\\4\\1 \end{pmatrix}
 =
 4b_2+b_1,
 \\
-(A-E)b_2
+(A-I)b_2
 &=
 \begin{pmatrix} 0\\1\\1\\0 \end{pmatrix}
 =
 b_2.
 \end{align*}
-Dies beweist, dass $\mathcal{J}(A-E)$ invariant ist.
-In dieser Basis hat die von $A-E$ beschriebene lineare Abbildung
-auf $\mathcal{J}(A-E)$ die Matrix
+Dies beweist, dass $\mathcal{J}(A-I)$ invariant ist.
+In dieser Basis hat die von $A-I$ beschriebene lineare Abbildung
+auf $\mathcal{J}(A-I)$ die Matrix
 \[
-A_{\mathcal{J}(A-E)}
+A_{\mathcal{J}(A-I)}
 =
 \begin{pmatrix}
 1&4\\
@@ -218,7 +229,7 @@ A_{\mathcal{J}(A-E)}
 \end{pmatrix}.
 \]
 
-Für den Kern $\mathcal{K}(A-E)$ findet man analog
+Für den Kern $\mathcal{K}(A-I)$ findet man analog
 \[
 \left.
 \begin{aligned}
@@ -231,7 +242,7 @@ Ab_4
 \end{aligned}
 \quad\right\}
 \qquad\Rightarrow\qquad
-A_{\mathcal{K}(A-E)}
+A_{\mathcal{K}(A-I)}
 =
 \begin{pmatrix}
 0&-1\\
@@ -252,8 +263,8 @@ A'
  & &0& 1
 \end{array}\right),
 \]
-die Blöcke gehören zu den invarianten Unterräumen $\mathcal{K}(A-E)$
-und $\mathcal{K}(A-E)$.
+die Blöcke gehören zu den invarianten Unterräumen $\mathcal{K}(A-I)$
+und $\mathcal{K}(A-I)$.
 Die aus $A-E$ gewonnen invarianten Unterräume sind offenbar auch invariante
 Unterräume für $A$.
 \end{beispiel}
@@ -264,43 +275,50 @@ Unterraum
 \[
 \mathcal{E}_{\lambda}(A)
 =
-\mathcal{K}(A-\lambda E)
+\mathcal{K}(A-\lambda I)
 \]
-der verallgemeinerte Eigenraum von $A$.
+der {\em verallgemeinerte Eigenraum} von $A$.
+\index{verallgemeinerter Eigenraum}%
+\index{Eigenraum, verallgemeinerter}%
 \end{definition}
 
 Es ist klar, dass
-$E_\lambda(A)=\ker (A-\lambda E)\subset\mathcal{E}_{\lambda}(A)$.
+$E_\lambda(A)=\ker (A-\lambda I)\subset\mathcal{E}_{\lambda}(A)$.
 
 \subsection{Zerlegung in invariante Unterräume
 \label{buch:subsection:zerlegung-in-invariante-unterraeume}}
-Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $A-\lambda E$
-injektiv und damit $\ker(A-\lambda E)=0$.
-Es folgt, dass $\mathcal{K}^i(A-\lambda E)=0$ und daher auch
-$\mathcal{J}^i(A-\lambda E)=V$.
-Die Zerlegung in invariante Unterräume $\mathcal{J}(A-\lambda E)$ und
-$\mathcal{K}(A-\lambda E)$ liefert in diesem Falle also nichts Neues.
+Wenn $\lambda$ kein Eigenwert von $A$ ist, dann ist $A-\lambda I$
+injektiv und damit $\ker(A-\lambda I)=0$.
+Es folgt, dass $\mathcal{K}^i(A-\lambda I)=0$ und daher auch
+$\mathcal{J}^i(A-\lambda I)=V$.
+Die Zerlegung in invariante Unterräume $\mathcal{J}(A-\lambda I)$ und
+$\mathcal{E}_\lambda(A)=\mathcal{K}(A-\lambda I)$ liefert in diesem Falle also nichts Neues.
 
-Für einen Eigenwert $\lambda_1$ von $A$ dagegen, erhalten wir die Zerlegung
+Für einen Eigenwert $\lambda_1$ von $A$ dagegen erhalten wir die Zerlegung
 \[
 V
 =
 \mathcal{E}_{\lambda_1}(A)
 \oplus
-\underbrace{\mathcal{J}(A-\lambda_1 E)}_{\displaystyle =V_2},
+\underbrace{\mathcal{J}(A-\lambda_1 I)}_{\displaystyle =V_2},
 \]
 wobei $\mathcal{E}_{\lambda_1}(A)\ne 0$ ist.
-Die Matrix $A-\lambda_1 E$ ist eingeschränkt auf $\mathcal{E}_{\lambda_1}(A)$
+Die Matrix $A-\lambda_1 I$ eingeschränkt auf $\mathcal{E}_{\lambda_1}(A)$ ist
 nilpotent.
-Die Zerlegung in invariante Unterräume ist zwar mit Hilfe von $A-\lambda_1E$
+Man kann sagen, auf dem Unterraum $\mathcal{E}_{\lambda_i}(A)$ hat 
+$A$ die Form $\lambda_1 I + N$, wobei $N$ nilpotent ist.
+
+Die Zerlegung in invariante Unterräume ist zwar mit Hilfe von $A-\lambda_1I$
 gewonnen worden, ist aber natürlich auch eine Zerlegung in invariante 
 Unterräume für $A$.
 Wir können daher das Problem auf $V_2$ einschränken und nach einem weiteren
-Eigenwert $\lambda_2$ von $A$ in $V_2$ suchen, was wieder eine Zerlegung
-in invariante Unterräume liefert.
+Eigenwert $\lambda_2$ von $A$ in $V_2$ suchen.
+Dieser neue Eigenwert liefert eine Zerlegung von $V_2$
+in invariante Unterräume.
 Indem wir so weiterarbeiten, bis wir den ganzen Raum ausgeschöpft haben,
 können wir eine Zerlegung des ganzen Raumes $V$ finden, so dass $A$ auf
-jedem einzelnen Summanden eine sehr einfach Form hat:
+jedem einzelnen Summanden die sehr einfach Form
+``$\lambda I + \text{nilpotent}$'' hat:
 
 \begin{satz}
 \label{buch:eigenwerte:satz:zerlegung-in-eigenraeume}
@@ -319,28 +337,28 @@ V
 \oplus
 \mathcal{E}_{\lambda_l}(A).
 \]
-Die Einschränkung von $A-\lambda_{i}E$ auf den Eigenraum 
+Die Einschränkung von $A-\lambda_{i}I$ auf den Eigenraum 
 $\mathcal{E}_{\lambda_i}(A)$ ist nilpotent.
 \end{satz}
 
 \subsection{Das charakteristische Polynom
 \label{buch:subsection:das-charakteristische-polynom}}
 Ein Eigenvektor von $A$ erfüllt $Av=\lambda v$ oder gleichbedeutend
-$(A-\lambda E)v=0$, er ist also eine nichttriviale Lösung des homogenen
-Gleichungssystems mit Koeffizientenmatrix $A-\lambda E$. 
-Ein Eigenwert ist also ein Skalar derart, dass $A-\lambda E$
+$(A-\lambda I)v=0$, er ist also eine nichttriviale Lösung des homogenen
+Gleichungssystems mit Koeffizientenmatrix $A-\lambda I$. 
+Ein Eigenwert ist also ein Skalar derart, dass $A-\lambda I$
 singulär ist.
 Ob eine Matrix singulär ist, kann mit der Determinante festgestellt
 werden.
 Die Eigenwerte einer Matrix $A$ sind daher die Nullstellen
-von $\det(A-\lambda E)$.
+von $\det(A-\lambda I)$.
 
 \begin{definition}
 Das {\em charakteristische Polynom}
 \[
 \chi_A(x)
 =
-\det (A-x E)
+\det (A-x I)
 =
 \left|
 \begin{matrix}
@@ -352,24 +370,36 @@ a_{n1}   & a_{n2}   &\dots   & a_{nn}-x
 \right|.
 \]
 der Matrix $A$ ist ein Polynom vom Grad $n$ mit Koeffizienten in $\Bbbk$.
+\index{charakteristisches Polynom}%
+\index{Polynome, charakteristisches}%
 \end{definition}
 
 Findet man eine Nullstelle $\lambda\in\Bbbk$ von $\chi_A(x)$,
-dann ist die Matrix $A-\lambda E\in M_n(\Bbbk)$ und mit dem Gauss-Algorithmus
+dann ist die Matrix $A-\lambda I\in M_n(\Bbbk)$ und mit dem Gauss-Algorithmus
 kann man auch mindestens einen Vektor $v\in \Bbbk^n$ finden,
 der $Av=\lambda v$ erfüllt.
-Eine Matrix der Form  wie in Satz~\ref{buch:eigenwerte:satz:jordanblock}
+Eine Dreiecksmatrix der Form 
+\[
+A=\begin{pmatrix}
+\lambda&   *   &   *   &   *   &\dots &*\\
+   0   &\lambda&   *   &   *   &\dots &*\\
+   0   &   0   &\lambda&   *   &\dots &*\\
+   0   &   0   &   0   &\lambda&\dots &*\\
+\vdots &\vdots &\vdots &       &\ddots&\vdots\\
+   0   &   0   &   0   &   0   &\dots &\lambda
+\end{pmatrix}
+\]
 hat
 \[
 \chi_A(x)
 =
 \left|
 \begin{matrix}
-\lambda-x &     1     &           &      &         &         \\
-          & \lambda-x &     1     &      &         &         \\
-          &           & \lambda-x &      &         &         \\
-          &           &           &\ddots&         &         \\
-          &           &           &      &\lambda-x&     1   \\
+\lambda-x &     *     &     *     &      &    *    &     *   \\
+          & \lambda-x &     *     &      &    *    &     *   \\
+          &           & \lambda-x &      &    *    &     *   \\
+          &           &           &\ddots&    *    &     *   \\
+          &           &           &      &\lambda-x&     *   \\
           &           &           &      &         &\lambda-x
 \end{matrix}
 \right|
@@ -380,16 +410,18 @@ hat
 \]
 als charakteristisches Polynom, welches $\lambda$ als einzige
 Nullstelle hat.
-Der Eigenraum der Matrix ist aber nur eindimensional, man kann also
-im Allgemeinen für jede Nullstelle des charakteristischen Polynoms
-nicht mehr als einen Eigenvektor (d.~h.~einen eindimensionalen Eigenraum)
-erwarten.
+Wenn die Einträge oberhalb der Diagonalen nicht alle 0 sind,
+dann hat der Eigenraum der Matrix Dimension, die keiner ist als
+$n$.
+Man kann also im Allgemeinen für jede Nullstelle des charakteristischen
+Polynoms nicht mehr als einen Eigenvektor (d.~h.~einen eindimensionalen
+Eigenraum) erwarten.
 
 Wenn das charakteristische Polynom von $A$ keine Nullstellen in $\Bbbk$ hat,
 dann kann es auch keine Eigenvektoren in $\Bbbk^n$ geben.
 Gäbe es nämlich einen solchen Vektor, dann müsste eine der Komponenten
-des Vektors von $0$ verschieden sein, wir nehmen an, dass es die Komponente
-in Zeile $k$ ist.
+des Vektors von $0$ verschieden sein.
+Wir nehmen an, dass es die Komponente in Zeile $k$ ist.
 Die Komponente $v_k$ kann man auf zwei Arten berechnen, einmal als
 die $k$-Komponenten von $Av$ und einmal als $k$-Komponente von $\lambda v$:
 \[
@@ -406,8 +438,11 @@ sein, im Widerspruch zur Annahme.
 Durch Hinzufügen von geeigneten Elementen können wir immer zu einem 
 Körper $\Bbbk'$ übergehen, in dem das charakteristische Polynom
 in Linearfaktoren zerfällt.
-In diesem Körper kann man jetzt das homogene lineare Gleichungssystem
-mit Koeffizientenmatrix $A-\lambda E$ lösen und damit mindestens 
+\index{Linearfaktor}%
+Für reelle Matrizen kann man zum Beispiel zu $\mathbb{C}$ übergehen,
+da ein reelles Polynom alle Nullstellen in $\mathbb{C}$ hat.
+In diesem Körper $\Bbbk'$ kann man jetzt das homogene lineare Gleichungssystem
+mit Koeffizientenmatrix $A-\lambda I$ lösen und damit mindestens 
 einen Eigenvektor $v$ für jeden Eigenwert finden.
 Die Komponenten von $v$ liegen in $\Bbbk'$, und mindestens eine davon kann
 nicht in $\Bbbk$ liegen.
@@ -454,20 +489,22 @@ Die Matrix $A$ lässt sich also über dem Körper $\mathbb{Q}(\!\sqrt{2})$
 diagonalisieren, nicht aber über dem Körper $\mathbb{Q}$.
 
 Da $A'$ Diagonalform hat mit $\pm\sqrt{2}$ auf der Diagonalen, folgt
-$A^{\prime 2} = 2E$, die Matrix $A'$ erfüllt also die Gleichung
+$A^{\prime 2} = 2I$, die Matrix $A'$ erfüllt also die Gleichung
 \begin{equation}
-A^{\prime 2}-E= \chi_{A}(A) = 0.
+A^{\prime 2}-I= \chi_{A}(A) = 0.
 \label{buch:grundlagen:eqn:cayley-hamilton-beispiel}
 \end{equation}
-Dies is ein Spezialfall des Satzes von Cayley-Hamilton
-(Satz~\ref{buch:normalformen:satz:cayley-hamilton})
-welcher besagt, dass jede Matrix $A$ eine Nullstelle ihres 
-charakteristischen Polynoms ist: $\chi_A(A)=0$.
 Die Gleichung~\ref{buch:grundlagen:eqn:cayley-hamilton-beispiel}
 wurde zwar in $\mathbb{Q}(\!\sqrt{2})$ hergeleitet, aber in ihr kommen
 keine Koeffizienten aus $\mathbb{Q}(\!\sqrt{2})$ vor, die man nicht auch
 in $\mathbb{Q}$ berechnen könnte.
-Sie gilt daher ganz allgemein.
+Sie gilt daher ganz allgemein, also $A^2-I=0$.
+Dies is ein Spezialfall des Satzes von Cayley-Hamilton
+\index{Cayley-Hamilton, Satz von}%
+\index{Satz von Cayley-Hamilton}%
+(Satz~\ref{buch:normalformen:satz:cayley-hamilton})
+welcher besagt, dass jede Matrix $A$ eine Nullstelle ihres 
+charakteristischen Polynoms ist: $\chi_A(A)=0$.
 \end{beispiel}
 
 \begin{beispiel}
@@ -483,7 +520,7 @@ M_2(\mathbb{R})
 über dem Körper $\Bbbk = \mathbb{R}$
 hat das charakteristische Polynom
 \[
-\det(A-xE)
+\det(A-xI)
 =
 \left|
 \begin{matrix}
@@ -500,43 +537,51 @@ x^2+1.
 \]
 Die charakteristische Gleichung $\chi_A(x)=0$ hat in $\mathbb{R}$
 keine Lösungen, daher gehen wir zum Körper $\Bbbk'=\mathbb{C}$ über,
-in dem dank dem Fundamentalsatz der Algebra alle Nullstellen zu finden
-sind, sie sind $\pm i$.
+in dem dank dem Fundamentalsatz \ref{buch:zahlen:satz:fundamentalsatz}
+der Algebra alle Nullstellen zu finden sind, sie sind $\pm i$.
 In $\mathbb C$ lassen sich dann auch Eigenvektoren finden, man muss dazu die
-folgenden linearen Gleichungssyteme lösen:
+folgenden homogenen linearen Gleichungssyteme in Tableauform lösen:
 \begin{align*}
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}|}
+\hline
 32-i&-41\\
-25  &-32-i
+25  &-32-i\\
+\hline
 \end{tabular}
 &
 \rightarrow
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}|}
+\hline
 1 & t\\
-0 &  0 
+0 &  0 \\
+\hline
 \end{tabular}
 &
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}|}
+\hline
 32+i&-41\\
-25  &-32+i
+25  &-32+i\\
+\hline
 \end{tabular}
 &
 \rightarrow
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}|}
+\hline
 1 & \overline{t}\\
-0 &  0 
+0 &  0 \\
+\hline
 \end{tabular},
 \intertext{wobei wir $t=-41/(32-i) =-41(32+i)/1025= -1.28 -0.04i = (64-1)/50$
 abgekürzt haben.
 Die zugehörigen Eigenvektoren sind}
-v_i&=\begin{pmatrix}t\\i\end{pmatrix}
+v_i&=\begin{pmatrix}t\\-1\end{pmatrix}
 &
-v_{-i}&=\begin{pmatrix}\overline{t}\\i\end{pmatrix}
+v_{-i}&=\begin{pmatrix}\overline{t}\\-1\end{pmatrix}.
 \end{align*}
 Mit den Vektoren $v_i$ und $v_{-i}$ als Basis kann die Matrix $A$ als
 komplexe Matrix, also mit komplexem $T$ in die komplexe Diagonalmatrix 
 $A'=\operatorname{diag}(i,-i)$ transformiert werden.
-Wieder kann man sofort ablesen, dass $A^{\prime2}+E=0$, und wieder kann
+Wieder kann man sofort ablesen, dass $A^{\prime2}+I=0$, und wieder kann
 man schliessen, dass für die relle Matrix $A$ ebenfalls $\chi_A(A)=0$
 gelten muss.
 \end{beispiel}
