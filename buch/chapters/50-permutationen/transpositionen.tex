@@ -12,11 +12,12 @@ Es zeigt sich aber, dass sich eine Permutation in noch elementarere
 Bausteine zerlegen lässt, die Transpositionen.
 
 \begin{definition}
-Einen Transposition $\tau\in S_n$ ist ein Permutation, die genau
+Eine {\em Transposition} $\tau\in S_n$ ist ein Permutation, die genau
 zwei Elemente vertauscht.
-Die Transposition $\tau_{ij}$ ist definiert durch
+\index{Transposition}%
+Die Transposition $\tau_{i\!j}$ ist definiert durch
 \[
-\tau_{ij}(x)
+\tau_{i\!j}(x)
 =
 \begin{cases}
 i&\qquad x=j\\
@@ -41,7 +42,7 @@ Es ist also
 \[
 \sigma 
 =
-\tau_{12} \tau_{23} \tau_{34} \dots \tau_{k-3,k-2} \tau_{k-2,k-1} \tau_{k-1,k}.
+\tau_{12} \tau_{23} \tau_{34} \cdots \tau_{k-3,k-2} \tau_{k-2,k-1} \tau_{k-1,k}.
 \]
 \begin{satz}
 Jede Permutation $\sigma\in S_n$ lässt sich als ein Produkt von 
@@ -66,6 +67,8 @@ die Anzahl gerade ist oder nicht, ist sehr wohl eine charkterisierende
 Eigenschaft einer Permutation.
 
 \begin{definition}
+\index{Vorzeichen}%
+\index{Signum}%
 Das {\em Vorzeichen} oder {\em Signum} einer Permutation $\sigma$ ist
 die Zahl $\operatorname{sgn}(\sigma)=(-1)^k$, wenn $\sigma$ als Produkt
 von $k$ Transpositionen geschrieben werden kann.
@@ -77,16 +80,18 @@ dann ist $\sigma^{-1}=\tau_k\dots\tau_2\tau_1$, sowohl $\sigma$ wie
 $\sigma^{-1}$ können also mit der gleichen Zahl von Transpositionen
 geschrieben werden, sie haben also auch das gleiche Vorzeichen.
 
-Die Abbildung $S_n\to\{\pm\}$, die einer Permutation das Signum zuordnet,
-ist ein Homomorphismus von Gruppen,
+Die Abbildung $S_n\to\{\pm1\}$, die einer Permutation das Signum zuordnet,
+ist ein Homomorphismus von Gruppen
+(siehe Definition~\ref{buch:gruppen:def:homomorphismus}),
+\index{Homomorphismus}%
 d.~h.
 \[
 \operatorname{sgn}(\sigma_1\sigma_2)
 =
 \operatorname{sgn}(\sigma_1)
-\operatorname{sgn}(\sigma_2)
+\operatorname{sgn}(\sigma_2).
 \]
-da ganz offensichtlich $\sigma_1\sigma_2$ mit $k_1+k_2$ Transpositionen
+Da ganz offensichtlich $\sigma_1\sigma_2$ mit $k_1+k_2$ Transpositionen
 geschrieben kann, wenn $\sigma_i$ mit $k_i$ Transpositionen geschrieben
 werden kann.
 
@@ -101,16 +106,24 @@ A_n
 \{
 \sigma\in S_n\;|\; \operatorname{sgn}(\sigma)=1
 \}
-\subset S_n.
+=
+\ker \operatorname{sgn}
+\subset
+S_n.
 \]
+\index{Kern}%
+\index{alterniernde Gruppe}%
 heisst die {\em alternierende Gruppe} der Ordnung $n$
 Die Elemente von $A_n$ heissen auch die {\em geraden} Permutationen,
+\index{gerade Permutation}%
+\index{ungerade Permutation}%
 die
 Elemente von $S_n\setminus A_n$ heissen auch die {\em ungeraden}
 Permutationen.
 \end{definition}
 
 Die alternierende Gruppe $A_n$ ist tatsächlich eine Untergruppe.
+\index{Untergruppe}%
 Zunächst ist $\operatorname{sgn}(e)=(-1)^0=1$, also ist $e\in A_n$.
 Es wurde schon gezeigt, dass mit jedem Element $\sigma\in A_n$ auch
 das inverse Element $\sigma^{-1}\in A_n$ ist.

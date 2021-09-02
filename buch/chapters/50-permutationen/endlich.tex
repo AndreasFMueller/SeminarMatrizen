@@ -8,15 +8,24 @@
 \rhead{Permutationen}
 Eine endliche Anzahl $n$ von Objekten können auf $n!$ Arten angeordnet
 werden.
-Als Objektmenge nehmen wir $[n] = \{ 1,\dots,n\}$.
+Da es in dieser Diskussion nicht auf die Art der Objekte ankommt,
+nehmen wir als Objektmenge die Zahlen $[n] = \{ 1,\dots,n\}$
+(siehe auch Definition~\ref{buch:zahlen:def:[n]}).
 Die Operation, die die Objekte in eine bestimmte Reihenfolge bringt,
 ist eine Abbildung $\sigma\colon[n]\to[n]$.
-Eine Permutation ist eine umkehrbare Abbildung $[n]\to[n]$.
+
+\begin{definition}
+\label{buch:permutationen:def:permutation}
+Eine {\em Permutation} ist eine umkehrbare Abbildung $[n]\to[n]$.
+\index{Permutation}
 Die Menge $S_n$ aller umkehrbaren Abbildungen $[n]\to[n]$
 mit der Verknüpfung von Abbildungen als Operation heisst die
 die {\em symmetrische Gruppe}.
+\index{symmetrische Gruppe}%
 Die identische Abbildung $\sigma(x)=x$ ist das {\em neutrale
 Element} der Gruppe $S_n$ und wir auch mit $e$ bezeichnet.
+\index{neutrales Element}%
+\end{definition}
 
 \subsection{Permutationen als $2\times n$-Matrizen}
 Eine Permutation kann als $2\times n$-Matrix geschrieben werden:
@@ -67,24 +76,28 @@ dass die Zahlen in der ersten Zeile ansteigend sind:
 \subsection{Zyklenzerlegung
 \label{buch:subsection:zyklenzerlegung}}
 Eine Permutation $\sigma\in S_n$ kann auch mit sogenanten Zyklenzerlegung
+\index{Zyklenzerlegung}%
 analysiert werden.
-Zum Beispiel:
-\begin{center}
-\includegraphics{chapters/50-permutationen/images/zyklenzerlegung.pdf}
-\end{center}
 
 \begin{definition}
 Ein Zyklus $Z$ ist eine unter $\sigma$ invariante Teilmenge von $[n]$
 minimaler Grösse.
+\index{Zyklus}%
+\index{invariante Teilmenge}%
+\index{minimale Grösse}%
 Die Zyklenzerlegung ist eine Zerlegung von $[n]$ in Zyklen
 \[
 [n]
 =
-\cup_{i=1}^k Z_i,
+\bigcup_{i=1}^k Z_i,
 \]
 wobei jede Menge $Z_i$ ein Zyklus ist.
 \end{definition}
 
+Zum Beispiel:
+\begin{center}
+\includegraphics{chapters/50-permutationen/images/zyklenzerlegung.pdf}
+\end{center}
 Der folgende Algorithmus findet die Zyklenzerlegung einer Permutation.
 
 \begin{satz}
@@ -116,18 +129,21 @@ weiter bei 2.
 
 Mit Hilfe der Zyklenzerlegung von $\sigma$ lassen sich auch
 gewisse Eigenschaften von $\sigma$ ableiten.
-Sei also $[n] = Z_1\cup\dots\cup Z_k$ die Zyklenzerlegung.
-Für jedes Element $x\in S_i$ gilt $\sigma^{|S_i|}(x) = x$.
+Sei also $[n] = Z_1\cup\dots\cup Z_k$ die Zyklenzerlegung von $\sigma$.
+Für jedes Element $x\in Z_i$ gilt $\sigma^{|Z_i|}(x) = x$.
 Die kleinste Zahl $m$, für die $\sigma^m=e$ ist, das kleinste
 gemeinsame Vielfache der Zyklenlängen:
 \[
 m = \operatorname{kgV} (|Z_1|,|Z_2|,\dots,|Z_k|).
 \]
+\index{kgV}
+\index{kleinstes gemeinsames Vielfaches}
 
 \subsection{Konjugierte Elemente in $S_n$}
-Zwei Elemente $g_1,g_2\in G$ einer Gruppe heissen konjugiert, wenn
+Zwei Elemente $g_1,g_2\in G$ einer Gruppe heissen {\em konjugiert}, wenn
+\index{konjugiert}
 es ein Element $c\in G$ gibt derart, dass $cg_1c^{-1}=g_2$.
-Bei Matrizen hat dies bedeutet, dass die beiden Matrizen durch
+Bei Matrizen bedeutet dies bedeutet, dass die beiden Matrizen durch
 Basiswechsel auseinander hervorgehen.
 Dasselbe lässt sich auch im Kontext der symmetrischen Gruppe sagen.
 
@@ -136,7 +152,18 @@ Es gibt also eine Permutation $\gamma\in S_n$ derart, dass
 $\sigma_1=\gamma\sigma_2\gamma^{-1}$ oder $\gamma^{-1}\sigma_1\gamma=\sigma_2$.
 Dann gilt auch für die Potenzen
 \begin{equation}
-\sigma_1^k = \gamma\sigma_2^k\gamma^{-1}.
+\sigma_1^k
+=
+(\gamma\sigma_2\gamma^{-1})^k
+=
+\gamma\sigma_2\underbrace{\gamma^{-1}
+\gamma}_{\displaystyle=e}\sigma_2\underbrace{\gamma^{-1}
+\gamma}_{\displaystyle=e}\sigma_2\underbrace{\gamma^{-1}\gamma}_{\displaystyle=e}
+\cdots
+\underbrace{\gamma^{-1}
+\gamma}_{\displaystyle=e}\sigma_2\gamma^{-1}
+=
+\gamma\sigma_2^k\gamma^{-1}.
 \label{buch:permutationen:eqn:konjpot}
 \end{equation}
 Ist $Z_i$ ein Zyklus von $\sigma_2$ und $x\in Z_i$, dann ist
@@ -156,19 +183,21 @@ von $\sigma_1$ ab.
 Es folgt daher der folgende Satz:
 
 \begin{satz}
-Sind $\sigma_1,\sigma_2\in S_n$ konjugiert $\sigma_1=\gamma\sigma_2\gamma^{-1}$
+Seien $\sigma_1,\sigma_2\in S_n$ konjugiert $\sigma_1=\gamma\sigma_2\gamma^{-1}$
 mit dem $\gamma\in S_n$.
 Wenn $Z_1,\dots,Z_k$ die Zyklen von $\sigma_2$ sind, dann sind 
 $\gamma(Z_1),\dots,\gamma(Z_k)$ die Zyklen von $\sigma_1$.
 \end{satz}
 
 Die Zyklenzerlegung kann mit der Jordan-Normalform
+\index{Jordan-Normalform}%
 (Abschnitt~\ref{buch:subsection:jordan-normalform})
 einer Matrix verglichen werden.
 Durch einen Basiswechsel, welcher durch eine ``Konjugation''
+\index{Basiswechsel}%
 von Matrizen ausgedrückt wir, kann die Matrix in eine besonders 
 übersichtliche Form gebracht werden.
-Wenn $\sigma$ die Zyklenzerlegung $Z_1,\dots,Z_k$ mit Zyklenlängen
+Wenn $\sigma$ die Zyklenzerlegung $Z_1,\dots,Z_k$ hat mit Zyklenlängen
 $l_i=|Z_i|$, dann kann man die Menge $[n]$ wie folgt in Teilmengen
 \begin{align*}
 X_1 &= \{1,\dots, l_1\},
