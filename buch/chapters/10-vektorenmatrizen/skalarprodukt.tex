@@ -505,35 +505,36 @@ g_{i\!j}
 \overline{g}_{ji}
 \quad 1\le i,j\le n.
 \]
-Sie ist nicht mehr symmetrisch, aber selbstadjungiert, gemäss 
+Sie ist nicht mehr symmetrisch, aber hermitesch, gemäss 
 der folgenden Definition.
 
 \begin{definition}
-\label{buch:grundlagen:definition:selstadjungiert}
+\label{buch:grundlagen:definition:hermitesch}
 Sei $A$ eine komplexe Matrix mit Einträgen $a_{i\!j}$, dann ist
 $\overline{A}$ die Matrix mit komplex konjugierten Elementen
 $\overline{a}_{i\!j}$.
 Die {\em adjungierte} Matrix ist $A^*=\overline{A}^t$.
 \index{adjungiert}%
-Eine Matrix heisst {\em selbstadjungiert}, wenn $A^*=A$.
-\index{selbstadjungiert}%
+Eine Matrix heisst {\em hermitesch}, wenn $A^*=A$.
+\index{hermitesch}%
+Sie heisst {\em antihermitesch}, wenn $A^*=-A$.
 \end{definition}
 
-\subsection{Symmetrische und selbstadjungierte Abbilungen
-\label{buch:subsection:symmetrisch-und-selbstadjungiert}}
-In Definition~\ref{buch:grundlagen:definition:selstadjungiert}
-wurde der Begriff der selbstadjungierten Matrix basierend
+\subsection{Selbstadjungierte Abbilungen
+\label{buch:subsection:selbstadjungiert}}
+In Definition~\ref{buch:grundlagen:definition:hermitesch}
+wurde der Begriff der hermiteschen Matrix basierend
 eingeführt.
 Als Eigenschaft einer Matrix ist diese Definition notwendigerweise
 abhängig von der Wahl der Basis.
 Es ist nicht unbedingt klar, dass derart definierte Eigenschaften
 als von der Basis unabhängige Eigenschaften betrachtet werden können.
 Ziel dieses Abschnitts ist, Eigenschaften wie Symmetrie oder
-Selbstadjungiertheit auf basisunabhängige Eigenschaften von
+hermitesch auf basisunabhängige Eigenschaften von
 linearen Abbildungen in einem Vektorraum $V$ mit Skalarprodukt
 $\langle\;,\;\rangle$ zu verstehen.
 
-\subsubsection{Symmetrische Abbildungen}
+\subsubsection{Reelle selbstadjungierte Abbildungen}
 Sei $f\colon V\to V$ eine lineare Abbildung.
 In einer Basis $\{b_1,\dots,b_n\}\subset V$ wird $f$ durch eine
 Matrix $A$ beschrieben.
@@ -553,17 +554,17 @@ a_{ji}
 \]
 ist.
 Daraus leitet sich jetzt die basisunabhängige Definition einer
-symmetrischen Abbildung ab.
+selbstadjungierten Abbildung ab.
 
 \begin{definition}
-Eine lineare Abbildung $f\colon V\to V$ heisst {\em symmetrisch}, wenn
+Eine lineare Abbildung $f\colon V\to V$ heisst {\em selbstadjungiert}, wenn
 $\langle x,Ay\rangle=\langle Ax,y\rangle$ gilt für beliebige 
 Vektoren $x,y\in V$.
-\index{symmetrische Abbildung}%
+\index{selbstadjungierte Abbildung}%
 \end{definition}
 
 Für $V=\mathbb{R}^n$ und das Skalarprodukt $\langle x,y\rangle=x^ty$ 
-erfüllt eine symmetrische Abbildung mit der Matrix $A$ die Gleichung
+erfüllt eine selbstadjungierte Abbildung mit der Matrix $A$ die Gleichung
 \[
 \left.
 \begin{aligned}
@@ -580,15 +581,16 @@ x^tAy
 x^tA^ty = x^tAy\quad\forall x,y\in\mathbb{R}^n,
 \]
 was gleichbedeutend ist mit $A^t=A$.
-Der Begriff der symmetrischen Abbildung ist also eine natürliche
+Der Begriff der selbstadjungierten Abbildung ist also eine natürliche
 Verallgemeinerung des Begriffs der symmetrischen Matrix.
 
-\subsubsection{Selbstadjungierte Abbildungen}
+\subsubsection{Selbstadjungierte komplexe Abbildungen}
 In einem komplexen Vektorraum ist das Skalarprodukt nicht mehr bilinear
 und symmetrisch, sondern sesquilinear und konjugiert symmetrisch.
 
 \begin{definition}
-Eine lineare Abbildung $f\colon V\to V$ heisst {\em selbstadjungiert},
+Eine lineare Selbstabbildung $f\colon V\to V$  eines komplexen
+Vektorraumes heisst {\em selbstadjungiert},
 wenn $\langle x,fy\rangle=\langle fx,y\rangle$ für alle $x,y\in\mathbb{C}$.
 \index{selbstadjungiert}%
 \end{definition}
