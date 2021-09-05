@@ -6,6 +6,9 @@
 \section{Aufbau\label{mceliece:section:Aufbau}}
 \rhead{Aufbau}
 Das McEliece-Kryptosystem besteht aus folgenden Elementen:
+Nachfolgend sind alle Bestandteile für das McEliece-Kryptosystem aufgelistet,
+wobei alle Vektoren und Matrizen, sowie die Rechenoperationen damit,
+im binären Raum $\mathbb{F}_2$ stattfinden.
 
 \subsection{Datenvektor $d_k$
 \label{mceliece:subsection:d_k}}
@@ -27,7 +30,7 @@ der in der Lage ist, $t$ Fehler zu korrigieren.
 Im Zusammenhang mit McEliece werden dabei meist binäre Goppa-Codes \cite{mceliece:goppa} verwendet,
 es können prinzipiell auch andere Codes wie beispielsweise Reed-Solomon verwendet werden,
 jedoch besitzen einige (unter anderem auch Reed-Solomon) Codes Schwachstellen \cite{mceliece:lorenz}.
-Das Codieren mit diesem linearen Code kann mithilfe dessen Generatormatrix $G_{n,k}$ erfolgen.
+Das Codieren mit diesem linearen Code kann mithilfe seiner Generatormatrix $G_{n,k}$ erfolgen.
 Da es sich um einen fehlerkorrigierenden Code handelt,
 wird das Codewort länger als das Datenwort,
 es wird also Redundanz hinzugefügt,
@@ -41,7 +44,7 @@ Mit der Inversen $P_n^{-1}$ kann die Bitvertauschung rückgängig gemacht werden
 \subsection{Public-Key $K_{n,k}$
 \label{mceliece:subsection:k_nk}}
 Der öffentliche Schlüssel, welcher zum Verschlüsseln verwendet wird,
-berechnet sich aus den bereits bekannten Matrizen wiefolgt:
+berechnet sich aus den bereits bekannten Matrizen wie folgt:
 \[
     K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}\,.
 \]
@@ -50,7 +53,7 @@ berechnet sich aus den bereits bekannten Matrizen wiefolgt:
 \label{mceliece:subsection:e_n}}
 Dieser Vektor der Länge $n$ besteht aus $t$ Einsen, welche zufällig innerhalb des Vektors angeordnet sind,
 alle anderen Einträge sind Null.
-Dieser Fehlervektor besitzt also gleich viele Einer,
+Dieser Fehlervektor besitzt also gleich viele Einsen
 wie die Anzahl Fehler, die der Linearcode der Generatormatrix $G_{n,k}$ zu korrigieren vermag.
 
 \subsection{Daten-Vektor $d_k$

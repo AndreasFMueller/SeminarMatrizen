@@ -8,7 +8,7 @@
 \rhead{Funktionsweise}
 Um den Ablauf des Datenaustausches mittels McEliece-Verschlüsselung zu erläutern,
 wird ein Szenario verwendet,
-bei dem Bob an Alice eine verschlüsselte Nachticht über ein öffentliches Netzwerk zukommen lässt.
+bei dem Bob an Alice eine verschlüsselte Nachricht über ein öffentliches Netzwerk zukommen lässt.
 
 \subsection{Vorbereitung
 \label{mceliece:section:vorbereitung}}
@@ -33,7 +33,7 @@ und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfeh
     c_n\,=\,K_{n,k}\cdot d_k + e_n\,.
 \]
 Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment) $d_k$
-einen neuen, zufälligen Fehlervektor generiert.
+ein neuer, zufälliger Fehlervektor generiert.
 Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
 
 \subsection{Entschlüsselung
@@ -45,7 +45,7 @@ Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüs
     &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n\,.
 \end{align*}
 Zuerst wird der Effekt der Permutationsmatrix rückgängig gemacht,
-indem das Codewort mit dessen Inversen $P_n^{-1}$ multipliziert wird:
+indem das Codewort mit der Inversen $P_n^{-1}$ multipliziert wird:
 \begin{align*}
     c_{n}''\,=\,P_n^{-1}\cdot c_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
                                          &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n\,. \\
@@ -71,18 +71,18 @@ hängt vom verwendeten Linearcode ab:
             &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\
             &=S_{k}\cdot d_k\,.
 \end{align*}
-Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
+Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der Inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
 womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde:
 \begin{align*}
     d'_{k}\,=\,S_{k}^{-1} \cdot c'_k&=S_{k}^{-1} \cdot S_{k}\cdot d_k\\
                                     &=d_k\,.
 \end{align*}
-Möchte ein Angreifer die verschlüsselte Nachricht knacken, muss dieser die drei privaten Matrizen $S_k$, $G_{n,k}$ und $P_n$ kennen.
+Möchte ein Angreifer die verschlüsselte Nachricht knacken, muss er die drei privaten Matrizen $S_k$, $G_{n,k}$ und $P_n$ kennen.
 Aus dem öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
 und eine systematische Analyse der Codeworte wird durch das Hinzufügen von zufälligen Bitfehlern zusätzlich erschwert.
 
 \subsection{Beispiel}
-Die Verschlüsselung soll mittels einem numerischen Beispiel demonstriert werden. 
+Die Verschlüsselung soll mittels eines numerischen Beispiels demonstriert werden. 
 Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four} beschrieben.
 \begin{itemize}
     \item Daten- und Fehlervektor
@@ -162,6 +162,7 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
                 0 & 0 & 1 & 0 & 0 & 0 & 0\\
                 0 & 1 & 0 & 0 & 0 & 0 & 0
             \end{pmatrix}
+            \,.
         \]
     \end{itemize}
     \item Öffentlicher Schlüssel:
@@ -205,6 +206,7 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
                 0 & 1 & 0 & 1\\
                 1 & 0 & 0 & 1
             \end{pmatrix}
+            \,.
         \end{align*}
     \end{itemize}
     \item Verschlüsselung:
@@ -248,6 +250,7 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
             0\\
             0
         \end{pmatrix} 
+        \,.
         \end{align*}
     \end{itemize}
     \item Entschlüsselung (Permutation rückgängig machen):
@@ -284,6 +287,7 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
                 1\\
                 1
             \end{pmatrix}
+            \,.
         \end{align*}
     \end{itemize}
     \item Entschlüsselung (Bitfehlerkorrektur mit Linearcode):
@@ -308,6 +312,7 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
                 1
             \end{pmatrix}
             \text{)}
+            \,.
         \end{align*}
     \end{itemize}
     \item Entschlüsselung (Umkehrung des $S_4$-Matrix-Effekts):
@@ -335,15 +340,15 @@ Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four
                 1\\
                 1
             \end{pmatrix}
+            \,.
         \end{align*}
     \end{itemize}
 \end{itemize}
 
-
-\subsubsection{7/4-Code
+\subsection{7/4-Code
 \label{mceliece:subsection:seven_four}}
 Beim 7/4-Code handelt es sich um einen linearen Code,
-der ein Bitfehler korrigieren kann.
+der einen Bitfehler korrigieren kann.
 Es gibt unterschiedliche Varianten zum Erzeugen eines 7/4-Codes,
 wobei der hier verwendete Code mithilfe des irreduziblen Generator-Polynoms $P_g = x^3 +x + 1$ generiert wird.
 Somit lässt sich das Code-Polynom $P_c$ berechnen, indem das Daten-Polynom $P_d$ mit dem Generatorpolynom $P_g$ multipliziert wird (Codiervorgang):
@@ -352,8 +357,8 @@ Somit lässt sich das Code-Polynom $P_c$ berechnen, indem das Daten-Polynom $P_d
 \]
 Damit diese Multiplikation mit Matrizen ausgeführt werden kann, werden die Polynome in mit Vektoren dargestellt (Kapitel \ref{buch:section:polynome:vektoren}):
 \[
-    P_g = \textcolor{red}{1}\cdot x^0 + \textcolor{blue}{1}\cdot x^1 + \textcolor{green}{0}\cdot x^2 + \textcolor{orange}{1}\cdot x^3 \implies
-    [\textcolor{red}{1}, \textcolor{blue}{1} ,\textcolor{green}{0}, \textcolor{orange}{1}] = g_4\,.
+    P_g = \textcolor{red}{1}\cdot x^0 + \textcolor{blue}{1}\cdot x^1 + \textcolor{darkgreen}{0}\cdot x^2 + \textcolor{orange}{1}\cdot x^3 \implies
+    [\textcolor{red}{1}, \textcolor{blue}{1} ,\textcolor{darkgreen}{0}, \textcolor{orange}{1}] = g_4\,.
 \]
 Auch das Daten-Polynom wird mit einem Vektor dargestellt: $P_d = d_0 \cdot x^0 + d_1 \cdot x^1 + d_2 \cdot x^2 + d_3 \cdot x^3 \implies [d_0, d_1, d_2, d_3] = d_4$\,.
 Der Vektor $g_4$ wird nun in die sogenannte Generatormatrix $G_{7,4}$ gepackt,
@@ -362,13 +367,13 @@ sodass die Polynommultiplikation mit $d_4$ mittels Matrixmultiplikation realisie
 \[
     c_7=G_{7,4} \cdot d_4=
     \begin{pmatrix}
-            \textcolor{red}{1} &                    0  &                    0  &                    0  \\
-           \textcolor{blue}{1} &    \textcolor{red}{1} &                    0  &                    0  \\
-          \textcolor{green}{0} &   \textcolor{blue}{1} &    \textcolor{red}{1} &                    0  \\
-         \textcolor{orange}{1} &  \textcolor{green}{0} &   \textcolor{blue}{1} &    \textcolor{red}{1} \\
-                            0  & \textcolor{orange}{1} &  \textcolor{green}{0} &   \textcolor{blue}{1} \\
-                            0  &                    0  & \textcolor{orange}{1} &  \textcolor{green}{0} \\
-                            0  &                    0  &                    0  & \textcolor{orange}{1} 
+              \textcolor{red}{1} &                       0  &                       0  &                       0  \\
+             \textcolor{blue}{1} &       \textcolor{red}{1} &                       0  &                       0  \\
+        \textcolor{darkgreen}{0} &      \textcolor{blue}{1} &       \textcolor{red}{1} &                       0  \\
+           \textcolor{orange}{1} & \textcolor{darkgreen}{0} &      \textcolor{blue}{1} &       \textcolor{red}{1} \\
+                              0  &    \textcolor{orange}{1} & \textcolor{darkgreen}{0} &      \textcolor{blue}{1} \\
+                              0  &                       0  &    \textcolor{orange}{1} & \textcolor{darkgreen}{0} \\
+                              0  &                       0  &                       0  &    \textcolor{orange}{1} 
     \end{pmatrix}
     \begin{pmatrix}
         d_0\\        
