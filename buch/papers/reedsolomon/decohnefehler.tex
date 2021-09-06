@@ -33,7 +33,8 @@ Definiert ist sie als
 \[
 F(\omega) = \int_{-\infty}^{\infty} f(t) \mathrm{e}^{-j\omega t} dt \qquad \Rightarrow \qquad \mathfrak{F}^{-1}(F(\omega)) = f(t) = \frac{1}{2 \pi} \int_{-\infty}^{\infty} F(\omega) \mathrm{e}^{j \omega t} d\omega.
 \]
-Im wesentlichen ändert sich bei der inversen diskreten Fouriertransformation $e^{j/2\pi}$ zu $e^{-j/2\pi}$. Zusätzlich benötigt die inverse noch einen Korrekturfaktor $1/n$. Wir erwarten daher, dass wir auch im endlichen Körper $A$ die Zahl $a$ durch $a^{-1}$ ersetzen können. Mit der primitiven Einheitswurzel ergibt das 
+Im wesentlichen ändert sich bei der inversen diskreten Fouriertransformation $e^{j/2\pi}$ zu $e^{-j/2\pi}$. Zusätzlich benötigt die Inverse noch einen Korrekturfaktor $1/n$. Wir erwarten daher, dass wir auch im endlichen Körper $A$ die Zahl $a$ durch $a^{-1}$ ersetzen können. Mit der primitiven Einheitswurzel ergibt das 
+\index{Korrekturfaktor}%
 %Damit beschäftigen wir uns im Abschnitt \ref{reedsolomon:subsection:sfaktor} weiter, konkret suchen wir momentan aber eine Inverse für unsere primitive Einheitswurzel $a$. 
 \[
 8^1 \qquad \rightarrow \qquad 8^{-1}.
@@ -45,7 +46,7 @@ Mit einem solchen Problem haben wir uns bereits in Abschnitt \ref{buch:section:e
 
 \subsection{Inverse der primitiven Einheitswurzel
 \label{reedsolomon:subsection:invEinh}}
-
+\index{Inverse}%
 Die Funktionsweise des euklidischen Algorithmus ist im Abschnitt \ref{buch:section:euklid} ausführlich beschrieben.
 Für unsere Anwendung wählen wir die Parameter $a = 8$ und $b = 11$ ($\mathbb{F}_{11}$).
 Daraus erhalten wir 
@@ -169,7 +170,8 @@ als unseren Vorfaktor setzen müssen um, die Gleichung \ref{reedsolomon:equation
 \subsection{Allgemeine Decodierung
 	\label{reedsolomon:subsection:algdec}}
 
-Wir haben jetzt alles für eine erfolgreiche Rücktransformation vom empfangenen Nachrichtenvektor beisammen. Die allgemeine Gleichung für die Rücktransformation lautet
+Wir haben jetzt alles für eine erfolgreiche Rücktransformation vom empfangenen Nachrichtenvektor beisammen.
+Die allgemeine Gleichung für die Rücktransformation lautet
 \[
 m = s \cdot A^{-1} \cdot v.
 \]
@@ -201,10 +203,11 @@ m = 10 \cdot A^{-1} \cdot v \qquad \Rightarrow \qquad m = 10 \cdot \begin{pmatri
 \cdot
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 5 \\ 2 \\ 10 \\ 2 \\ 7 \\ 10 \\ 4 \\
-\end{pmatrix}
+\end{pmatrix},
 \]
-und wir erhalten
+erhalten wir
 \[
 m = [0,0,0,0,4,7,2,5,8,1]
 \]
 als unsere Nachricht zurück.
+

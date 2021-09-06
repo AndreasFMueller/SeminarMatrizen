@@ -26,7 +26,7 @@ Der Nachrichtenblock im Beispiel besteht aus
 \[
 n = q - 1 = 10 \text{ Zahlen},
 \]
-wobei die null weggelassen wird. Wenn wir versuchen würden, mit der null zu codieren, so stellen wir fest, dass wir wieder null an der gleichen Stelle erhalten und somit wäre die Codierung nicht eindeutig.
+wobei die Null weggelassen wird. Wenn wir versuchen würden, mit der Null zu codieren, so stellen wir fest, dass wir wieder Null an der gleichen Stelle erhalten und somit wäre die Codierung nicht eindeutig.
 
 % Notes
 %Da bei allen Codes, die codiert werden wird an der gleichen Stelle eine Nullstelle auftreten.
@@ -51,7 +51,7 @@ k = n - 2t = 6\text{ Zahlen}
 \]
 übertragen. 
 
-Zusammenfassend haben wir einen Nachrichtenblock mit der Länge von 10 Zahlen definiert, der 6 Zahlen als Nutzlast beinhaltet und in der Lage ist, aus 2 fehlerhafte Stellen im Block die ursprünglichen Nutzdaten zu rekonstruieren. Zudem werden wir im weiteren feststellen, dass dieser Code maximal vier Fehlerstellen erkennen, diese aber nicht rekonstruieren kann.
+Zusammenfassend haben wir einen Nachrichtenblock mit der Länge von 10 Zahlen definiert, der 6 Zahlen als Nutzlast beinhaltet und in der Lage ist, aus 2 fehlerhafte Stellen im Block die ursprünglichen Nutzdaten zu rekonstruieren. Zudem werden wir im Weiteren feststellen, dass dieser Code maximal vier Fehlerstellen erkennen, diese aber nicht rekonstruieren kann.
 
 Wir legen nun für das Beispiel die Nachricht
 \[
@@ -76,7 +76,7 @@ dar.
 \subsection{Der Ansatz der diskreten Fouriertransformation
 	\label{reedsolomon:subsection:diskFT}}
 
-Im vorherigen Abschnitt \ref{reedsolomon:section:dtf} haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulerische Zahl $e$ in endlichen Körpern nicht existiert.
+Im vorherigen Abschnitt \ref{reedsolomon:section:dtf} haben wir schon einmal die diskrete Fouriertransformation zum Codieren einer Nachricht verwendet. In den endlichen Körpern wird dies jedoch nicht gelingen, da die Eulersche Zahl $e$ in endlichen Körpern nicht existiert.
 Wir wählen deshalb eine Zahl $a$, die die gleichen Aufgaben haben soll wie $e^{\frac{j}{2 \pi}}$ in der diskreten Fouriertransformation, nur mit dem Unterschied, dass $a$ in $\mathbb{F}_{11}$ ist. Dazu soll die Potenz von $a$ den gesamten Zahlenbereich von $\mathbb{F}_{11}$ abdecken.
 Dazu ändern wir die Darstellung von
 \[
@@ -115,7 +115,8 @@ in die von $a$ abhängige Schreibweise
 
 \subsubsection{Die primitiven Einheitswurzeln
 	\label{reedsolomon:subsection:primsqrt}}
-
+\index{primitive Einheitswurzel}%
+\index{Einheitswurzel, primitiv}%
 Wenn wir jetzt Zahlen von $\mathbb{F}_{11}$ an Stelle von $a$ einsetzen, erhalten wir
 \begin{center}
 \begin{tabular}{c c c c c c c}
@@ -151,6 +152,7 @@ Wenden wir diese Vorgehensweise auch für andere endliche Körper an, so werden 
 
 \subsubsection{Bildung einer Transformationsmatrix
 	\label{reedsolomon:subsection:transMat}}
+\index{Transformationsmatrix}%
 
 Mit der Wahl einer Einheitswurzel ist es uns jetzt möglich, unsere Nachricht zu Codieren. Daraus sollen wir dann einen Übertragungsvektor $v$ erhalten, den wir an den Empfänger schicken können. 
 Für die Codierung setzen wir alle Zahlen in $\mathbb{F}_{11}\setminus\{0\}$ nacheinander in $m(X)$ ein. Da wir zuvor eine von $a$ abhängige Schreibweise gewählt haben setzen wir stattdessen $a^i$ ein mit $a = 8$ als die von uns gewählten primitiven Einheitswurzel. Daraus ergibt sich
@@ -167,6 +169,7 @@ Für die Codierung setzen wir alle Zahlen in $\mathbb{F}_{11}\setminus\{0\}$ nac
 	\end{tabular}
 \end{center}
 als unser Übertragungsvektor. 
+\index{Ubertragungsvektor@Übertragungsvektor}%
 
 \subsection{Allgemeine Codierung
 	\label{reedsolomon:subsection:algCod}}
@@ -197,3 +200,4 @@ Für unseren Übertragungsvektor resultiert
 v = [5,3,6,5,2,10,2,7,10,4],
 \]
 den wir jetzt über einen beliebigen Nachrichtenkanal versenden können.
+\index{Nachrichtenkanal}%
