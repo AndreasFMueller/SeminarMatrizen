@@ -1,12 +1,15 @@
 \subsection{Polare Darstellung des geometrischen Produktes}
-Beide Teile des geometrischen Produktes lassen sich durch trigonometrische Terme beschreiben. Das Skalarprodukt kann als 
-\begin{equation}
-    \textbf{u}\cdot \textbf{v} = |\textbf{u}||\textbf{v}|\cos{\alpha}
-\end{equation}
-beschrieben werden. Wobei $\alpha$ der Winkel zwischen $\textbf{u}$ und $\textbf{v}$ ist.
+\index{Polardarstellung}%
+Beide Teile des geometrischen Produktes lassen sich durch trigonometrische Terme beschreiben.
+Das Skalarprodukt kann als 
+\begin{equation*}
+    \textbf{u}\cdot \textbf{v} = |\textbf{u}|\,|\textbf{v}|\cos{\alpha}
+\end{equation*}
+beschrieben werden, wobei $\alpha$ der Winkel zwischen $\textbf{u}$ und $\textbf{v}$ ist.
 
-Beim äusseren Produkt wurde bereits erwähnt, dass es aus dem Produkt der Fläche des von den zwei Vektoren aufgespannten Parallelogram und einer Umlaufrichtung beschrieben wird. Die Fläche eines Parallelograms lässt sich auch mit einen Sinus Term
-\begin{equation}
+Beim äusseren Produkt wurde bereits erwähnt, dass es aus dem Produkt der Fläche des von den zwei Vektoren aufgespannten Parallelograms und einer Umlaufrichtung beschrieben wird.
+Die Fläche eines Parallelograms lässt sich auch mit einen Sinus-Term
+\begin{equation*}
     \textbf{u} \wedge \textbf{v}
     = 
     \sum_{i<j}
@@ -15,21 +18,21 @@ Beim äusseren Produkt wurde bereits erwähnt, dass es aus dem Produkt der Fläc
         u_j & v_j
     \end{vmatrix}\textbf{e}_i\textbf{e}_j  
     = 
-    \underbrace{|u||v|\sin{\alpha}}_{\text{Fläche}}\textbf{b}_1\textbf{b}_2
-\end{equation}
+    \underbrace{|\textbf{u}|\,|\textbf{v}|\sin{\alpha}}_{\text{Fläche}}\textbf{b}_1\textbf{b}_2
+\end{equation*}
 beschreiben.
 Die Fläche des Parallelogramms liegt dabei auf der von $\textbf{b}_1$ und $\textbf{b}_2$ aufgespannten Ebene.
 
 Nun kann man diese Terme wieder zum geometrischen Produkt
-\begin{equation}
+\begin{equation*}
     \textbf{u}\textbf{v}
     = 
-    |\textbf{u}||\textbf{v}|\cos{(\alpha)} 
+    |\textbf{u}|\,|\textbf{v}|\cos{(\alpha)} 
     + 
-    |\textbf{u}||\textbf{v}|\sin{(\alpha)} \textbf{b}_1\textbf{b}_2
+    |\textbf{u}|\,|\textbf{v}|\sin{(\alpha)} \textbf{b}_1\textbf{b}_2
     = 
-    |\textbf{u}||\textbf{v}|(\cos{(\alpha)} + \sin{(\alpha)}\textbf{b}_1\textbf{b}_2)
-\end{equation}
+    |\textbf{u}|\,|\textbf{v}|(\cos{(\alpha)} + \sin{(\alpha)}\textbf{b}_1\textbf{b}_2)
+\end{equation*}
 vereinen.
 Daraus kann geschlussfolgert werden, dass
 \begin{equation}

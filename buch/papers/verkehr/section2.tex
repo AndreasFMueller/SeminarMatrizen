@@ -4,6 +4,7 @@
 Um zwei der vorgestellten Suchalgorithmen zu vergleichen, wurden zwei Versuchsreihen erstellt. Dazu wurden in einem ersten Schritt zufällige Netzwerke generiert und anschliessend der Dijkstra- und der A*-Algorithmus auf das Netzwerk angewandt.
 Dieser Vorgang wurde für die zufällig generierten Netzwerke mit einer Knotenzahl von 10, 20 50, 100, 200, 500 und 1000 je zehnmal wiederholt.
 Die Anzahl der Knoten im abgesuchten Netzwerk wirkt sich direkt auf die Rechenzeit aus. Der \emph{Dijkstra}-Algorithmus weist eine Zeitkomplexität von $\mathcal{O}(|E|\log{}|V|)$ auf, wobei $E$ die Menge der Kanten (engl. \emph{edges}) und $V$ die Menge der Knoten (engl. \emph{vertices}) des Graphen $G$ darstellt.
+\index{Zeitkomplexität}%
 Für den A*-Algorithmus ist die Zeitkomplexität einerseits abhängig von der verwendeten Heuristik, andererseits aber auch vom vorliegenden Netzwerk selbst. Aus diesem Grund lässt sich keine definitive Angabe zur Zeitkomplexität machen.
 
 Die beiden Versuchsreihen unterscheiden sich zudem dahingehend, dass der Start- und Zielknoten bei der ersten Versuchsreihe im Netzwerk diametral gegenüber liegen. Dadurch gehen viele Knoten verloren, welcher \emph{Dijkstra} als uninformierter Suchalgorithmus absuchen würde. In der zweiten Veruschsreihe werden hingegen Start- un Zielpunkt zufällig im Netzwerk ausgewählt. Es wird deshalb erwartet, dass die Unterschiede in der Rechenzeit der beiden Algorithmen in der zweiten Versuchsreihe deutlich ausgeprägter sind.

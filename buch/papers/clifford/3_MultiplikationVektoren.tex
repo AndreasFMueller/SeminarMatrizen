@@ -1,35 +1,37 @@
 \subsection{Multiplikation von Vektoren}
 Was geschieht nun, wenn zwei beliebige Vektoren
-\begin{equation}
+\begin{equation*}
     \textbf{u} = 
     \sum_{i=1}^{n} u_i \textbf{e}_i 
     \quad
     \text{und}
     \quad
     \textbf{v} = \sum_{i=1}^{n} v_i \textbf{e}_i
-\end{equation}
+\end{equation*}
  miteinander multipliziert werden? 
- Wieder werden die Vektoren zuerst als Linearkombinationen darstellen und danach in zwei Summen aufgeteilt, eine Summe mit quadrierten Termen und eine Summe mit Mischtermen
+ Wieder werden die Vektoren zuerst als Linearkombinationen dargestellt und danach in zwei Summen aufgeteilt,
+eine Summe mit quadrierten Termen und eine Summe mit Mischtermen
 \begin{equation}
-    \begin{split}
+%    \begin{split}
         \textbf{u}\textbf{v} 
         =
-        \left ( 
+        \biggl( 
         \sum_{i=1}^{n} u_i \textbf{e}_i
-        \right ) 
-        \left ( 
+        \biggr) 
+        \biggl( 
         \sum_{i=1}^{n} v_i \textbf{e}_i
-        \right) 
+        \biggr) 
         = 
         \sum_{i=1}^n u_iv_i\underbrace{\textbf{e}_i^2}_{1} 
-        + \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j,
-    \end{split}
+        + \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j.
+%    \end{split}
 \end{equation}
-Die Summe der quadrierten Termen ist bereits aus \eqref{eq:quad_a_3}, sie ist nämlich das Skalarprodukt von $u$ und $v$. Die Summe der Mischterme bilden etwas Neues, dass wir das äussere Produkt von $u$ und $v$ nennen.
+Die Summe der quadrierten Terme ist bereits aus \eqref{eq:quad_a_3} bekannt,
+sie ist nämlich das Skalarprodukt von $\textbf{u}$ und $\textbf{v}$.
+Die Summe der Mischterme bilden etwas Neues, dass wir das äussere Produkt von $\textbf{u}$ und $\textbf{v}$ nennen.
 \begin{beispiel}
     Die Multiplikation von Vektoren in $\mathbb{R}^2$ ergibt
-\begin{equation}
-    \begin{split}
+\begin{align*}
         \textbf{u}\textbf{v} 
         &= 
         (u_1\textbf{e}_1 + u_2\textbf{e}_2)(v_1\textbf{e}_1 + v_2\textbf{e}_2) 
@@ -46,21 +48,20 @@ Die Summe der quadrierten Termen ist bereits aus \eqref{eq:quad_a_3}, sie ist n�
         \underbrace{(u_1v_1 + u_2v_2)}_{\text{Skalarprodukt}} 
         + 
         \underbrace{(u_1v_2 - u_2v_1)\textbf{e}_1\textbf{e}_2}_{\text{Äusseres Produkt}}.
-    \end{split}
-\end{equation}
+\qedhere
+\end{align*}
 \end{beispiel}
-\subsubsection{Äusseres Produkt}
+\subsubsection{Das äussere Produkt}
 Das äussere Produkt von zwei Vektoren wird mit einem $\wedge$ dargestellt:
-\begin{equation}
+\begin{equation*}
     \textbf{u}\wedge \textbf{v} 
     = 
     \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j .
-\end{equation}
+\end{equation*}
 \begin{beispiel}
 Das äusseres Produkt von zwei Vektoren in $\mathbb{R}^3$ ist
-\begin{equation}
-	\begin{split}
-		u \wedge v 
+\begin{align*}
+		\textbf{u} \wedge \textbf{v}
 		&= 
 		u_1v_2\textbf{e}_1\textbf{e}_2 
 		+ 
@@ -79,11 +80,13 @@ Das äusseres Produkt von zwei Vektoren in $\mathbb{R}^3$ ist
 		(u_1v_3 - v_3u_1)\textbf{e}_1\textbf{e}_3 
 		+ 
 		(u_2v_3 - u_3v_2)\textbf{e}_2\textbf{e}_3.
-	\end{split}
-\end{equation}
+\qedhere
+\end{align*}
 \end{beispiel}
 
-Im letzten Schritt des Beispiels wurden, mit Hilfe der Antikommutativität des Produkts die Vektorprodukte, welche die gleichen Einheitsvektoren beinhalten, zusammengefasst. Dieses Vorgehen kann man auch allgemein anwenden, wie in den Gleichungen \eqref{eq:u_wedge_v}--\eqref{eq:u_wedge_v_5} geteigt werden soll. Die Summe
+Im letzten Schritt des Beispiels wurden mit Hilfe der Antikommutativität des Produkts die Vektorprodukte zusammengefasst, welche die gleichen Einheitsvektoren beinhalten.
+Dieses Vorgehen kann man auch allgemein anwenden, wie in den folgenden Gleichungen \eqref{eq:u_wedge_v}--\eqref{eq:u_wedge_v_5} gezeigt werden soll.
+Die Summe
 \begin{align}
         \textbf{u}\wedge \textbf{v}
         &= 
@@ -91,14 +94,13 @@ Im letzten Schritt des Beispiels wurden, mit Hilfe der Antikommutativität des P
         u_iv_j\textbf{e}_i\textbf{e}_j,
         \label{eq:u_wedge_v}
         \intertext{wird in zwei verschiedene Summen}
-        %\label{eq:u_wedge_v_1}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         + 
         \sum_{\begin{subarray}{l}i,j=1\\j < i\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j
         \label{eq:u_wedge_v_2}
         \intertext{aufgeteilt. 
-        	Die linke Summe beinhaltet den Basisvektor mit dem höheren Index an erster Stelle und die rechte Summe diesen jeweils an zweiter Stelle.Nun werden die Indices der zweiten Summe vertauscht, sie wird}
+        	Die linke Summe beinhaltet den Basisvektor mit dem höheren Index an erster Stelle und die rechte Summe diesen jeweils an zweiter Stelle.Nun werden die Indizes der zweiten Summe vertauscht, sie wird}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         + 
@@ -108,7 +110,7 @@ Im letzten Schritt des Beispiels wurden, mit Hilfe der Antikommutativität des P
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         - 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_jv_i\textbf{e}_i\textbf{e}_j.
-        \intertext{Nun können die zwei Summen wieder}
+        \intertext{Nun können die zwei Summen wieder zu}
         \label{eq:u_wedge_v_4}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n (u_iv_j -u_jv_i)\textbf{e}_i\textbf{e}_j
@@ -122,14 +124,14 @@ Im letzten Schritt des Beispiels wurden, mit Hilfe der Antikommutativität des P
 \end{align}
 
 Die Determinante einer $2\times2$ Matrix beschreibt die Fläche, welche von den Spaltenvektoren aufgespannt wird, wie in Abbildung \ref{figure:det} dargestellt.
-\begin{figure}[htb]
+\begin{figure}
 	\centering
 	\begin{minipage}[t]{.45\linewidth}
 		\centering
-		\begin{tikzpicture}
+		\begin{tikzpicture}[>=latex]
 			\draw[thin,gray!40] (0,0) grid (4,4);
-			\draw[<->] (0,0)--(4,0) ;
-			\draw[<->] (0,0)--(0,4) ;
+			\draw[->] (0,0)--(4.2,0) node[right]{$x$};
+			\draw[->] (0,0)--(0,4.2) node[above]{$y$};
 			\draw[line width=0,fill=gray!40] (0,0)--(3,1)--(4,3)--(1,2);
 			\draw[line width=2pt,blue,-stealth](0,0)--(3,1) node[anchor=north
 			west]{$\boldsymbol{u}$};
@@ -144,10 +146,10 @@ Die Determinante einer $2\times2$ Matrix beschreibt die Fläche, welche von den 
 	\hfill%
 	\begin{minipage}[t]{.45\linewidth}
 		\centering
-		\begin{tikzpicture} 
+		\begin{tikzpicture}[>=latex]
 			\draw[thin,gray!40] (0,0) grid (4,4);
-			\draw[<->] (0,0)--(4,0) node[right]{$x$};
-			\draw[<->] (0,0)--(0,4) node[above]{$y$};
+			\draw[->] (0,0)--(4.2,0) node[right]{$x$};
+			\draw[->] (0,0)--(0,4.2) node[above]{$y$};
 			\draw[line width=0,fill=gray!40] (0,0)--(3,1)--(4,3)--(1,2);
 			\draw[line width=2pt,blue,-stealth](0,0)--(3,1) node[anchor=north
 			west]{$\boldsymbol{u}$};
@@ -162,7 +164,7 @@ Die Determinante einer $2\times2$ Matrix beschreibt die Fläche, welche von den 
 	\end{minipage}
 \end{figure}
 Das äussere Produkt besteht nun also aus der Summe 
-    \(\sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n\)
+    %\(\sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n\)
     von Flächen 
     \(\begin{vmatrix} 
     	u_i & v_i \\
@@ -170,6 +172,8 @@ Das äussere Produkt besteht nun also aus der Summe
     \end{vmatrix}\)
 , welche in $\textbf{e}_i\textbf{e}_j$ aufgespannt sind, wie man in \eqref{eq:u_wedge_v_5} sieht. 
 Dieses Produkt $\textbf{e}_i\textbf{e}_j$ der Basisvektoren interpretiert man als Umlaufrichtung.
+\index{Umlaufrichtung}%
 Die gebildete Fläche wird in Richtung des ersten Vektors umschritten. 
 Dies ist in Abbildung \ref{figure:wedge} dargestellt, wobei bei diesem Beispiel die Umlaufrichtung im Gegenuhrzeigersinn ist, da die Fläche in Richtung $\textbf{u}$ umschritten wird. 
-Diese Fläche mit einer Richtung nennt man in der geometrischen Algebra einen Bivektor, da er eine Art zwei dimensionaler Vektor ist. 
+Diese Fläche mit einer Richtung nennt man in der geometrischen Algebra einen Bivektor, da er eine Art zweidimensionaler Vektor ist. 
+\index{Bivektor}%
