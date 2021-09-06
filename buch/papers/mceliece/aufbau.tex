@@ -6,6 +6,10 @@
 \section{Aufbau\label{mceliece:section:Aufbau}}
 \rhead{Aufbau}
 Das McEliece-Kryptosystem besteht aus folgenden Elementen:
+Nachfolgend sind alle Bestandteile für das McEliece-Kryptosystem aufgelistet,
+wobei alle Vektoren und Matrizen sowie die Rechenoperationen damit
+im binären Raum $\mathbb{F}_2$ stattfinden.
+\index{F2@$\mathbb{F}_2$}%
 
 \subsection{Datenvektor $d_k$
 \label{mceliece:subsection:d_k}}
@@ -13,50 +17,60 @@ In diesem Vektor der Länge $k$ sind die zu verschlüsselnden Daten enthalten.
 
 \subsection{Binäre Zufallsmatrix $S_k$
 \label{mceliece:subsection:s_k}}
-$S_k$ ist eine Binäre Zufallsmatrix der Grösse $k \times k$.
+$S_k$ ist eine binäre Zufallsmatrix der Grösse $k \times k$.
 Auch muss diese Matrix in $\mathbb{F}_2$ invertierbar sein.
 Für kleine Matrizen kann durchaus jedes Matrizenelement zufällig generiert werden,
 wobei danach mithilfe des Gauss-Algorithmus deren Inverse bestimmt werden kann.
+\index{Gauss-Algorithmus}%
+\index{inverse Matrix}%
 Da eine solche Matrix möglicherweise singulär ist, muss in diesem Fall eine neue Zufallsmatrix erzeugt werden.
+\index{Zufallsmatrix}%
 Für grössere Matrizen existieren bessere Methoden, auf welche hier nicht weiter eingegangen wird \cite{mceliece:GenerationRandMatrix}.
 
 \subsection{Linear-Code-Generatormatrix $G_{n,k}$
 \label{mceliece:subsection:g_nk}}
+\index{Generator-Matrix}%
+\index{Linear-Code}%
 Das wichtigste Element des McEliece-Systems ist ein fehlerkorrigierender Code,
 der in der Lage ist, $t$ Fehler zu korrigieren.
+\index{fehlerkorrigierender Code}%
 Im Zusammenhang mit McEliece werden dabei meist binäre Goppa-Codes \cite{mceliece:goppa} verwendet,
-es können prinzipiell auch andere Codes wie beispielsweise Reed-Solomon verwendet werden,
+\index{Goppa-Code}%
+es können prinzipiell auch andere Codes wie beispielsweise Reed-Solomon (Kapitel~\ref{chapter:reedsolomon}) verwendet werden,
+\index{Reed-Solomon-Code}%
 jedoch besitzen einige (unter anderem auch Reed-Solomon) Codes Schwachstellen \cite{mceliece:lorenz}.
-Das Codieren mit diesem linearen Code kann mithilfe dessen Generatormatrix $G_{n,k}$ erfolgen.
+Das Codieren mit diesem linearen Code kann mithilfe seiner Generatormatrix $G_{n,k}$ erfolgen.
 Da es sich um einen fehlerkorrigierenden Code handelt,
 wird das Codewort länger als das Datenwort,
 es wird also Redundanz hinzugefügt,
+\index{Redundanz}%
 um die Fehlerkorrektur möglich zu machen.
 
 \subsection{Permutations-Matrix $P_n$
 \label{mceliece:subsection:p_n}}
-Mit der zufällig generierten Permutationsmatrix $P_n$ wird die Reihenfolge der Bits geändert.
+Mit der zufällig generierten Permutationsmatrix $P_n$ (Abschnitt~\ref{buch:section:permutationsmatrizen}) wird die Reihenfolge der Bits geändert.
+\index{Permutationsmatrix}
 Mit der Inversen $P_n^{-1}$ kann die Bitvertauschung rückgängig gemacht werden.
 
 \subsection{Public-Key $K_{n,k}$
 \label{mceliece:subsection:k_nk}}
 Der öffentliche Schlüssel, welcher zum Verschlüsseln verwendet wird,
-berechnet sich aus den bereits bekannten Matrizen wiefolgt:
+berechnet sich aus den bereits bekannten Matrizen wie folgt:
 \[
-    K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}\,.
+    K_{n,k}=P_{n}\cdot G_{n,k}\cdot S_{k}.
 \]
 
 \subsection{Fehler-Vektor $e_n$
 \label{mceliece:subsection:e_n}}
 Dieser Vektor der Länge $n$ besteht aus $t$ Einsen, welche zufällig innerhalb des Vektors angeordnet sind,
 alle anderen Einträge sind Null.
-Dieser Fehlervektor besitzt also gleich viele Einer,
+Dieser Fehlervektor besitzt also gleich viele Einsen
 wie die Anzahl Fehler, die der Linearcode der Generatormatrix $G_{n,k}$ zu korrigieren vermag.
 
 \subsection{Daten-Vektor $d_k$
 \label{mceliece:subsection:d_k}}
-In diesem Vektor der Länge $k$ ist die Nachricht (oder einen Teil davon) enthalten.
+In diesem Vektor der Länge $k$ ist die Nachricht oder ein Teil davon enthalten.
 
 \subsection{Code-Vektor $c_n$
 \label{mceliece:subsection:c_n}}
-In diesem Vektor der Länge $n$ ist die verschlüsselte Nachricht (oder einen Teil davon) enthalten.
+In diesem Vektor der Länge $n$ ist die verschlüsselte Nachricht oder ein Teil davon enthalten.

@@ -39,11 +39,12 @@ Die \texttt{for i} Schleife iteriert \"uber alle Zeilen der $\mathbf{A}$ Matrix,
 \end{algorithm}
 Die Laufzeit dieser Struktur mit drei \texttt{for} Schleifen ist $\mathcal{O} (n^3)$.
 
-\subsubsection{Divide and Conquer Methode}
-
-F\"ur gewisse Algorithmen f\"uhren \textit{Divide and Conquer}  Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
+\subsubsection{Divide-and-Conquer-Methode}
+F\"ur gewisse Algorithmen f\"uhren \textit{Divide-and-Conquer}-Ans\"atze \cite{multiplikation:DAC} zu markant besseren Laufzeiten.
 Die Grundidee ist, dass ein Problem in mehrere, meist simplere und kleinere Teilprobleme aufgeteilt wird.
+\index{Divide-and-Conquer-Ansatz}%
 Das bekannteste Beispiel ist wohl die \textit{Fast Fourier Transform} wobei die Laufzeit von $\mathcal{O} (n^2)$ zu $\mathcal{O}(n \log n)$ verbessert werden kann.
+\index{Fast Fourier Transform}%
 
 Die Matrizenmultiplikation kann ebenfalls mit solch einem Ansatz berechnet werden.
 Zur vereinfachten Veranschaulichung kann die Situation mit $\mathbf{A}$ und $\mathbf{B}$ der Gr\"osse $2^n \times 2^n$ verwendet werden.
@@ -71,10 +72,10 @@ mit \begin{equation}
 \end{equation}
 ist identisch zu der Gleichung \eqref{multiplikation:eq:MM}, f\"ur die Multiplikation der Untermatrizen $\mathbf{A}_{ik}$ und $\mathbf{B}_{kj}$ wird die Matrizenmultiplikation verwendet.
 
-Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide and Conquer} Ansatz,
+Der Algorithmus \ref{multiplikation:alg:devide_mm} zeigt den \textit{Divide-and-Conquer}-Ansatz.
 Die Grundstruktur dieser Methode besteht aus dem rekursiven Aufruf der Funktion mit den erzeugten Blockmatrizen.
-Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ durchgef\"uhrt.
-\begin{algorithm}\footnotesize\caption{Divide and Conquer Matrizenmultiplikation}
+Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $2 \times 2$ durchgef\"uhrt.
+\begin{algorithm}\footnotesize\caption{Divide-and-Conquer-Matrizenmultiplikation}
 	\setlength{\lineskip}{7pt}
 	\label{multiplikation:alg:devide_mm}
 	\begin{algorithmic}
@@ -104,18 +105,24 @@ Der rekursive Aufruf wird bis zu der Gr\"osse der Matrizen von $N = 2 \times 2$ 
 \end{algorithm}
 
 Die Laufzeit dieser rekursiven Funktion kann mit dem \textit{Master Theorem} \cite{multiplikation:master_theorem} berechnet werden. Das \textit{Master Theorem} bestimmt die Zeitkomplexit\"at von rekursiven Algorithmen.
+\index{Master Theorem}%
 Ohne auf dieses vertieft einzugehen, bestimmt die Anzahl rekursiver Aufrufe $\mathcal{T} $ der Funktion die Laufzeit.
+\index{rekursiver Algorithmus}%
+\index{Algorithmus, rekursiv}%
 In diesem Fall wird die Funktion pro Durchlauf acht mal rekursiv aufgerufen, dies f\"uhrt zu
 \begin{equation} \label{multiplikation:eq:laufzeitdac}
 	\mathcal{T}(n) =	8 \cdot \mathcal{T} \left(\frac{n}{2}\right ) + n^2  = \mathcal{O}(n^{\log_2 8}) = \mathcal{O}  (n^{3} ),
 \end{equation}
 also einer kubischen Laufzeit.
+\index{kubische Laufzeit}%
+\index{Laufzeit, kubisch}%
 Die Addition zweier Matrizen $\mathbf{A} + \mathbf{B} = \mathbf{C}$ hat eine Laufzeit von $\mathcal{O}(n^{2})$ und kann neben dem dominierendem Anteil von $\mathcal{O}(n^{3})$ ignoriert werden.
-In diesem Fall hat der \textit{Divide and Conquer} Ansatz zu keiner Verbesserung gef\"uhrt.
+In diesem Fall hat der \textit{Divide-and-Conquer}-Ansatz zu keiner Verbesserung gef\"uhrt.
 
 
 \subsection{Strassens Algorithmus}
-
+\index{Strassens Algorithmus}%
+\index{Algorithmus von Strassen}%
 Strassens Algorithmus \cite{multiplikation:strassen_1969} beschreibt die Matrizenmultiplikation mit einer Vielzahl von Additionen, Subtraktionen und Multiplikationen von Blockmatrizen.
 Die sieben grundlegenden Terme
 \begin{equation} \label{multiplikation:eq:strassen}
@@ -185,8 +192,9 @@ der Matrix $\mathbf{C}$ gebraucht.
 	\end{algorithmic}
 \end{algorithm}
 Strassens Methode wird in der Abbildung \ref{multiplikation:fig:strassen} grafisch dargestellt.
-Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$ .
-Die gr\"unen Felder auf der linken Seite, zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
+Jedes Feld steht f\"ur eine Multiplikation zweier Matrizenelementen von $\mathbf{A}$ oder $\mathbf{B}$.
+Die gr\"unen Felder auf der linken Seite
+zeigen die Addition, welche f\"ur den dazugeh\"origen Term ben\"otigt wird.
 Die sieben Spalten beschreiben die Matrizen $\mathbf{P,Q,R, \ldots, V}$.
 Rote Felder stehen f\"ur eine Subtraktion und die gr\"unen f\"ur eine Addition.
 Graue Felder bedeuten, dass die dazugehörige Spalte nicht für die Berechnung benötigt wird.
@@ -207,8 +215,10 @@ und ist somit schneller als die Standardmethode.
 Man beachte, dass die Anzahl von Additionen und Subtraktionen gr\"osser und die Anzahl der Multiplikationen kleiner wurde.
 
 \subsection{Winograds Algorithmus}
-
+\index{Winograds Algorithmus}%
+\index{Algorithmus von Winograd}%
 Einen weiteren Ansatz lieferte Shmuel Winograd im Jahre 1968 \cite{multiplikation:winograd_1968}.
+\index{Winograd, Shmuel}%
 Er beschrieb einen neuen Algorithmus f\"ur das Skalarprodukt
 \begin{equation} \label{multiplikation:eq:skalar}
 	\langle x,y \rangle = \sum_{i=1}^{n}x_i y_i.
@@ -223,7 +233,7 @@ und
 \end{equation}
 die jeweils nur von $x$ und $y$ abhängen.
 Dazu werden $2 \cdot  \lfloor n/2 \rfloor \leq n$ Multiplikationen benötigt.
-Das Skalarprodukt ist nun geben mit
+Das Skalarprodukt ist nun geben durch
 \begin{equation}
 	\langle x,y \rangle =
 	\begin{cases}
@@ -244,7 +254,7 @@ Damit können wir die Laufzeit der Methode von Winograd mit der Laufzeit der Sta
 \Leftrightarrow &                                                                N & \le & T.
 \end{array}
 \end{equation}
-Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix, entspricht $N=m+p$ Vektoren mit welchen man $T=mp$ Skalarprodukte berechnet.
+Eine Matrizenmultiplikation mit $\mathbf{A}$ einer $m \times n$ und $\mathbf{B}$ einer $n \times p$ Matrix entspricht $N=m+p$ Vektoren, mit welchen man $T=mp$ Skalarprodukte berechnet.
 Dies f\"uhrt zu
 \begin{equation}
 		(m+p) \left \lfloor \frac{n}{2} \right \rfloor + mp \left \lfloor \frac{n+1}{2} \right \rfloor = \frac{mn}{2} + \frac{pn}{2} + \frac{mpn}{2} + \frac{mp}{2}
@@ -317,9 +327,14 @@ Im Abschnitt \ref{muliplikation:sec:bigo} wurde bereits erläutert: falls $n \ri
 
 
 \subsection{Basic Linear Algebra Subprograms (BLAS)}
-
+\index{Basic Linear Algebra Subprograms (BLAS)}%
+\index{BLAS}%
 Die gebräuchliche Methode f\"ur die Anwendung einer optimierten Matrizenmultiplikation ist die Verwendung einer Subroutine aus den \textit{Basic Linear Algebra Subprograms (BLAS)}  \cite{multiplikation:BLAS}.
 Die meisten numerischen Bibliotheken von high-level Skriptsprachen wie \texttt{Matlab}, \texttt{NumPy (Python)}, \texttt{GNU Octave} oder \texttt{Mathematica} ben\"utzen eine Form von \textit{BLAS}.
+\index{Matlab@\texttt{Matlab}}%
+\index{NumPy@\texttt{NumPy}}%
+\index{GNU Octave@\texttt{GNU Octave}}%
+\index{Mathematica@\texttt{Mathematica}}%
 
 \textit{BLAS} sind dabei in drei unterschiedliche Levels aufgeteilt.
 
@@ -375,7 +390,7 @@ Die \textit{BLAS} sind auf die modernen Computerprozessoren optimiert und k\"onn
 Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementiert.
 \begin{itemize}
 	\item Standard Matrizenmultiplikation
-	\item \textit{Divide and Conquer} Matrizenmultiplikation
+	\item \textit{Divide-and-Conquer}-Matrizenmultiplikation
 	\item Strassens Matrizenmultiplikation
 	\item Winograds Matrizenmultiplikation
 	\item \texttt{BLAS} Matrizenmultiplikation in \texttt{C}
@@ -384,17 +399,26 @@ Folgende Algorithmen wurden jeweils in \texttt{C} und \texttt{Python} implementi
 
 Der Code kann im zum Buch gehörigem \textit{GitHub} \footnote{\url{https://github.com/AndreasFMueller/SeminarMatrizen.git}} Repository gefunden werden.
 Anzumerken ist, dass die Matrizenmultiplikation von \texttt{NumPy} als einzige Implementation Multiprocessing und Multithreading verwendet, dies f\"uhrt zu den tiefen Messzeiten.
-In Abbildung \ref{multiplikation:fig:python} und Abbildung \ref{multiplikation:fig:c_meas_4096} sind de Messresultate grafisch dargestellt. Die selben Messresultate sind tabellarisch in Tabelle \ref{multiplikation:tab:messung_Python} und Tabelle \ref{multiplikation:tab:messung_C} ersichtlich.
+In Abbildung
+\ref{multiplikation:fig:c_meas_4096}
+und Abbildung
+\ref{multiplikation:fig:python}
+sind de Messresultate grafisch dargestellt.
+Die selben Messresultate sind tabellarisch in Tabelle
+\ref{multiplikation:tab:messung_C}
+und Tabelle
+\ref{multiplikation:tab:messung_Python}
+ersichtlich.
 
 Die gezeigten Algorithmen haben alle eine Laufzeit der Form $\mathcal{O}(n^k) $.
 Bei einer doppelt logarithmischen Darstellung unterscheiden sich diese in Geraden mit unterschiedlichen Steigungen.
-Bei den grafisch gezeigten Messresultate, können diese Steigungen gut erkannt werden, wobei die tiefere Laufzeit des Strassen Algorithmus eindrücklich zu sehen ist.
+Bei den grafisch gezeigten Messresultaten können diese Steigungen gut erkannt werden, wobei die tiefere Laufzeit des Strassen Algorithmus eindrücklich zu sehen ist.
 Der benötigte Overhead der Algorithmen zeigt sich in unterschiedlichen $y$-Achsenschnittpunkte.
 
 In der Messung mit der Programmiersprache \texttt{C} kann ein typischer Cache-Effekt beobachtet wer-
 den.
 Bei den Algorithmen von Winograd und der Standardmethode hat bei einer Matrizengrösse von $n = 2048$ wohl eine Zeile der Matrix nicht an einer Cache Speicherstelle Platz.
-Diese beiden Algorithmen sind die Einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
+Diese beiden Algorithmen sind die einzigen, welche \texttt{for}-Schleifen über die ganze Breite der Matrizen verwenden.
 Dies führt dazu, dass ganze Zeilen zwischengespeichert werden müssen.
 Bei den anderen Algorithmen ist dies nicht der Fall.
 
@@ -476,8 +500,8 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_c}
-	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Programmiersprache \texttt{C}.
-	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als deren der anderen Algorithmen.
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten der verschieden Algorithmen in der Programmiersprache \texttt{C}.
+	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als die der anderen Algorithmen.
 	Die Messung von Winograd ist beinahe gleich wie die Messung mit der Standardmethode, deshalb ist sie nicht gut sichtbar.}
 	\label{multiplikation:fig:c_meas_4096}
 \end{figure}
@@ -486,8 +510,8 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \begin{figure}
 	\center
 	\includegraphics[width=\linewidth]{papers/multiplikation/images/meas_python}
-	\caption{Doppelt logarithmisch dargestellte Laufzeiten, der verschieden Algorithmen, in der Skriptsprache \texttt{Python}.
-	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als deren der anderen Algorithmen.
+	\caption{Doppelt logarithmisch dargestellte Laufzeiten der verschieden Algorithmen in der Skriptsprache \texttt{Python}.
+	Die Steigung der Messreihe mit Strassens Algorithmus ist deutlich kleiner als die der anderen Algorithmen.
 }
 	\label{multiplikation:fig:python}
 \end{figure}
@@ -500,7 +524,7 @@ Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die La
 
 Doch haben Entdeckungen wie jene von Strassen und Winograd ihre Daseinsberechtigung.
 Nicht auf jeden Computersystemen können die \textit{BLAS} angewandt werden.
-Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGA's)}.
+Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder auch an \textit{Field Programmable Gate Arrays (FPGAs)}.
 Der Overhead der gezeigten Algorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
 Um diesem entgegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
 Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algorithmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.
