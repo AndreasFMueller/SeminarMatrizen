@@ -1,7 +1,7 @@
 \subsection{Quadrat von Vektoren}
 \subsubsection{Ziel der Multiplikation}
-Was eine Addition von Vektoren bedeutet ist sehr intuitiv und auch leicht geometrisch darzustellen wie in Abbildung \ref{figure:addition}, was allerdings das Produkt von Vektoren ergibt mag anfänglich unintuitiv wirken.
-\begin{figure}[htb]
+Was eine Addition von Vektoren bedeutet ist sehr intuitiv und auch leicht geometrisch darzustellen wie in Abbildung \ref{figure:addition}. Was allerdings das Produkt von Vektoren ergibt mag anfänglich unintuitiv wirken.
+\begin{figure}[tb]
 	\centering
 		\begin{tikzpicture}
 			\draw[thin,gray!40] (0,0) grid (4,4);
@@ -16,31 +16,35 @@ Im Folgenden werden wir versuchen diese Operation ähnlich intuitiv darzustellen
 
 Um sinnvoll eine neue Operation zwischen zwei Elementen einer Algebra, in diesem Fall sind diese Elemente Vektoren, zu definieren, muss man überlegen, was das Ziel dieser Operation sein soll.
  
-Als grundsätzliches Ziel wird definiert, dass das Quadrat eines Vektor dessen Länge im Quadrat ergibt, da dies auch in vielen anderen Bereichen der Mathematik,zum Beispiel bei komplexen Zahlen,so definiert ist.  
-
-Zusätzlich soll auch das Assoziativgesetz für die Multiplikation von Vektoren gelten, dass heisst wir dürfen ausklammern
+\begin{ziel}
+	\label{clifford:ziel}
+	Der Vektorraum der $n$-dimensionalen Vektoren soll zu einer Algebra so erweitert werden, dass das Quadrat von Vektoren durch die Länge des Vektors ausgedrückt werden kann.
+\end{ziel}
+Zusätzlich soll auch das Assoziativgesetz für die Multiplikation von Vektoren gelten, dass heisst wir dürfen wie in
 \begin{equation}
     \label{eq:assoziativ}
     \textbf{e}_i(\textbf{e}_j + \textbf{e}_k) 
     = 
-    \textbf{e}_i\textbf{e}_j + \textbf{e}_i\textbf{e}_k.
+    \textbf{e}_i\textbf{e}_j + \textbf{e}_i\textbf{e}_k
 \end{equation}
-Allerdings gilt das Kommutativgesetz leider, oder wie man sehen wird zum Glück, nur für skalare Elemente 
+ausklammern.
+Allerdings gilt das Kommutativgesetz leider, oder wie man sehen wird zum Glück, nur für skalare Elemente wie in
 \begin{equation}
     \label{eq:kommSkalar}
     a\textbf{e}_ib\textbf{e}_j 
     = 
     ab\textbf{e}_i\textbf{e}_j \qquad a,b \in \mathbb{R}
 \end{equation}
-und nicht für Vektoren
+aber nicht für Vektoren. Im Allgemeinen wird
 \begin{equation}
     \label{eq:kommVector}
     \textbf{e}_i\textbf{e}_j 
     \neq 
-    \textbf{e}_j\textbf{e}_i.
+    \textbf{e}_j\textbf{e}_i
 \end{equation}
+sein.
 \subsubsection{Quadrieren eines Vektors}
-Betrachten wir nun mit diesen Regeln das Quadrat eines Vektors. Zuerst werden die Vektoren als Linearkombinationen geschrieben
+Betrachten wir nun mit diesen Regeln das Quadrat eines Vektors. Zuerst werden die Vektoren als Linearkombinationen geschrieben:
 \begin{equation}
 	    \textbf{a}^2 = 
 		\left ( 
@@ -51,40 +55,43 @@ Betrachten wir nun mit diesen Regeln das Quadrat eines Vektors. Zuerst werden di
 		\right )
 		\label{eq:quad_a_1}.
 \end{equation}
-Das Quadrat kann nun in zwei Summen aufgeteilt werden
+Das Quadrat kann nun in zwei Summen 
 \begin{equation}
 	\textbf{a}^2 =
 	\textcolor{red}{\sum_{i=1}^{n} a_i^2\textbf{e}_i^2} 
 	+ 
 	\textcolor{blue}{\sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j } 
-	\label{eq:quad_a_2},
+	\label{eq:quad_a_2}
 \end{equation}
-wobei die roten Summe die quadrierten Terme und die blaue Summe die Mischterme beinhaltet. Da $\textbf{e}_i^2 = 1$ gilt, weil das zuvor definierte Ziel des Quadrates eines Vektors dessen Länge ergibt und die Basisvektoren Länge 1 haben, wird dies nun eingesetzt
+aufgeteilt werden, wobei die roten Summe die quadrierten Terme und die blaue Summe die Mischterme beinhaltet.
+Wie zuvor in \ref{clifford:ziel} definiert, ergibt das Quadrat eines Vektors dessen Länge. Da die Basisvektoren orthonormiert sind muss $\textbf{e}_i^2 = 1$ gelten.
 \begin{equation}
-	\textbf{a}^2 = \textcolor{cyan}{\sum_{i=1}^{n} a_i^2} + \textcolor{orange}{\sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j}.
+	\textbf{a}^2 = \textcolor{red}{\sum_{i=1}^{n} a_i^2} + \textcolor{blue}{\sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j}.
 	\label{eq:quad_a_3}
 \end{equation}
 \begin{beispiel}
-Das Quadrat des Vektor $a$ in $\mathbb{R}^2$ ist
+Das Quadrat des Vektor $\textbf{a}$ in $\mathbb{R}^2$ ist
 \begin{equation}
     \begin{split}
     \textbf{a}^2 
     &= (a_1\textbf{e}_1+a_2\textbf{e}_2)(a_1\textbf{e}_1+a_2\textbf{e}_2) \\\
     &= \textcolor{red}{a_1^2\textbf{e}_1^2 + a_2^2\textbf{e}_2^2} 
     + \textcolor{blue}{a_1\textbf{e}_1a_2\textbf{e}_2 + a_2\textbf{e}_2a_1\textbf{e}_2}   \\\
-    & = \textcolor{cyan}{a_1^2 + a_2^2} + \textcolor{orange}{a_1b\textbf{e}_1a_2\textbf{e}_2 + a_2\textbf{e}_2a_1\textbf{e}_2}
-    \end{split}.
+    & = \textcolor{red}{a_1^2 + a_2^2} + \textcolor{blue}{a_1b\textbf{e}_1a_2\textbf{e}_2 + a_2\textbf{e}_2a_1\textbf{e}_2}.
+    \end{split}
 \end{equation}
 \end{beispiel}
 
-Die hellblaue Teil ist nun bereits die Länge im Quadrat, also das zuvor definierte Ziel der Multiplikation. 
-Daraus lässt sich schliessen, dass der restliche Teil dieser Gleichung null ergeben muss
+Der rote Teil von \ref{eq:quad_a_3} ist nun bereits die Länge im Quadrat, also das zuvor definierte Ziel der Multiplikation. 
+Daraus lässt sich schliessen, dass der restliche Teil dieser Gleichung
 \begin{equation}
     \label{eq:Mischterme_Null}
-    \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j  = \textcolor{blue}{a_1a_2(\textbf{e}_1\textbf{e}_2 + \textbf{e}_2\textbf{e}_1)} + a_1a_3(\textbf{e}_1\textbf{e}_3 + \textbf{e}_3\textbf{e}_1) + \dots =  0.
+    \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  a_ia_j\textbf{e}_i\textbf{e}_j  = \textcolor{rot}{a_1a_2(\textbf{e}_1\textbf{e}_2 + \textbf{e}_2\textbf{e}_1)} + a_1a_3(\textbf{e}_1\textbf{e}_3 + \textbf{e}_3\textbf{e}_1) + \dots =  0.
 \end{equation}
-Aus dieser Erkenntnis können weitere Eigenschaften für die Multiplikation hergeleitet werden.
-Da dies für beliebige $a_i$ gelten muss werden alle Terme bis auf $a_1$ und $a_2$ gleich null gesetzt. Somit fallen alle Terme bis auf den blauen weg. Wird dies weiter vereinfacht ergibt sich
+ ergeben muss.
+ Aus dieser Erkenntnis können weitere Eigenschaften für die Multiplikation hergeleitet werden.
+ 
+Da dies für beliebige $a_i$ gelten muss werden alle Terme bis auf $a_1$ und $a_2$ gleich null gesetzt. Somit fallen alle Terme bis auf den roten weg. Wird dies weiter vereinfacht, ergibt sich
 \begin{equation}
 \begin{split}
     a_1a_2(\textbf{e}_1\textbf{e}_2 + \textbf{e}_2\textbf{e}_1) &= 0 \\
@@ -93,26 +100,22 @@ Da dies für beliebige $a_i$ gelten muss werden alle Terme bis auf $a_1$ und $a_
 \end{split}
 \end{equation}
 \begin{satz}
-  Die Multiplikation von Vektoren ist antikommutativ, wenn die multiplizierten Vektoren orthogonal sind, es gilt also
+  Die Multiplikation von orthogonalen Vektoren ist antikommutativ
     \begin{equation}
         \textbf{e}_i\textbf{e}_j = -\textbf{e}_j\textbf{e}_i \quad \textrm{für} \quad \textbf{e}_i \perp \textbf{e}_j.
     \end{equation}
 \end{satz}
-Dieses Wissen reicht nun bereits um alle Produkte der Basisvektoren zu berechnen, was in Tabelle \ref{tab:multip_vec} gemacht wurde.
+Dieses Wissen reicht nun bereits, um alle Produkte der Basisvektoren zu berechnen, was in Tabelle \ref{tab:multip_vec} gemacht wurde.
 \begin{table}
 \begin{center}
-\begin{tabular}{ |c|c|c|c|c|c| } 
+\begin{tabular}{ |c|ccccc| } 
  \hline
   & $\textbf{e}_1$ & $\textbf{e}_2$ & $\dots$ & $\textbf{e}_{n-1}$ & $\textbf{e}_{n}$ \\
   \hline
  $\textbf{e}_1$ & 1 & $\textbf{e}_1\textbf{e}_2$ & $\dots$ & $\textbf{e}_1\textbf{e}_{n-1}$ & $\textbf{e}_1\textbf{e}_{n}$ \\
- \hline
  $\textbf{e}_2$ & $-\textbf{e}_1\textbf{e}_2$ & 1 & $\dots$ & $\textbf{e}_2\textbf{e}_{n-1}$ & $\textbf{e}_2\textbf{e}_{n}$ \\
- \hline
  $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ \\
- \hline
  $\textbf{e}_{n-1}$ & $-\textbf{e}_1\textbf{e}_{n-1}$ & $-\textbf{e}_2\textbf{e}_{n-1}$  & $\dots$ & $1$ & $\textbf{e}_{n-1}\textbf{e}_{n}$ \\
- \hline
  $\textbf{e}_{n}$ & $-\textbf{e}_1\textbf{e}_{n}$ & $-\textbf{e}_2\textbf{e}_{n}$  & $\dots$ & $-\textbf{e}_{n-1}\textbf{e}_{n}$ & 1 \\
  \hline
 \end{tabular}

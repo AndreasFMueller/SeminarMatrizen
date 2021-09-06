@@ -1,13 +1,14 @@
 \subsection{Multiplikation von Vektoren}
-Was geschieht nun wenn zwei beliebige Vektoren, $u$ und $v$
+Was geschieht nun, wenn zwei beliebige Vektoren
 \begin{equation}
     \textbf{u} = 
     \sum_{i=1}^{n} u_i \textbf{e}_i 
-    \qquad 
+    \quad
+    \intertext{und}
+    \quad
     \textbf{v} = \sum_{i=1}^{n} v_i \textbf{e}_i
 \end{equation}
  miteinander multipliziert werden? 
- 
  Wieder werden die Vektoren zuerst als Linearkombinationen darstellen und danach in zwei Summen aufgeteilt, eine Summe mit quadrierten Termen und eine Summe mit Mischtermen
 \begin{equation}
     \begin{split}
@@ -24,9 +25,9 @@ Was geschieht nun wenn zwei beliebige Vektoren, $u$ und $v$
         + \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j,
     \end{split}
 \end{equation}
-wobei die Summe der quadrierten Termen bereits bekannt vorkommen könnte, es ist nämlich das Skalarprodukt von $u$ und $v$. Die Summe der Mischterme bilden etwas neues, dass wir das äussere Produkt von $u$ und $v$ nennen.
+Die Summe der quadrierten Termen ist bereits aus \eqref{eq:quad_a_3}, sie ist nämlich das Skalarprodukt von $u$ und $v$. Die Summe der Mischterme bilden etwas Neues, dass wir das äussere Produkt von $u$ und $v$ nennen.
 \begin{beispiel}
-    Multiplikation von Vektoren in $\mathbb{R}^2$
+    Die Multiplikation von Vektoren in $\mathbb{R}^2$ ergibt
 \begin{equation}
     \begin{split}
         \textbf{u}\textbf{v} 
@@ -44,16 +45,16 @@ wobei die Summe der quadrierten Termen bereits bekannt vorkommen könnte, es ist
         &=  
         \underbrace{(u_1v_1 + u_2v_2)}_{\text{Skalarprodukt}} 
         + 
-        \underbrace{(u_1v_2 - u_2v_1)\textbf{e}_1\textbf{e}_2}_{\text{Äusseres Produkt}}
+        \underbrace{(u_1v_2 - u_2v_1)\textbf{e}_1\textbf{e}_2}_{\text{Äusseres Produkt}}.
     \end{split}
 \end{equation}
 \end{beispiel}
 \subsubsection{Äusseres Produkt}
-Das äussere Produkt von zwei Vektoren wird mit einem $\wedge$ dargestellt
+Das äussere Produkt von zwei Vektoren wird mit einem $\wedge$ dargestellt:
 \begin{equation}
     \textbf{u}\wedge \textbf{v} 
     = 
-    \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j 
+    \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  u_iv_j\textbf{e}_i\textbf{e}_j .
 \end{equation}
 \begin{beispiel}
 Das äusseres Produkt von zwei Vektoren in $\mathbb{R}^3$ ist
@@ -82,36 +83,36 @@ Das äusseres Produkt von zwei Vektoren in $\mathbb{R}^3$ ist
 \end{equation}
 \end{beispiel}
 
-Im letzten Schritt des Beispiels wurden nun, mit Hilfe der antikommutativität des Produkts, die Vektorprodukte, welche die gleichen Einheitsvektoren beinhalten, zusammengefasst. Dieses Vorgehen kann man auch allgemein anwenden, wie in den Gleichungen \eqref{eq:u_wedge_v}-\eqref{eq:u_wedge_v_5} hergeleitet. Die Summe,
+Im letzten Schritt des Beispiels wurden, mit Hilfe der Antikommutativität des Produkts die Vektorprodukte, welche die gleichen Einheitsvektoren beinhalten, zusammengefasst. Dieses Vorgehen kann man auch allgemein anwenden, wie in den Gleichungen \eqref{eq:u_wedge_v}--\eqref{eq:u_wedge_v_5} geteigt werden soll. Die Summe
 \begin{align}
         \textbf{u}\wedge \textbf{v}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i \neq j\end{subarray}}^n  
         u_iv_j\textbf{e}_i\textbf{e}_j,
         \label{eq:u_wedge_v}
-        \intertext{wird in zwei verschiedene Summen aufgeteilt. 
-        	Wobei die linke Summe jeweils den Basisvektor mit dem höheren Index an erster Stelle und die rechte Summe diesen jeweils an zweiter Stelle hat}
+        \intertext{wird in zwei verschiedene Summen}
         \label{eq:u_wedge_v_1}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         + 
-        \sum_{\begin{subarray}{l}i,j=1\\j < i\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j. 
-        \intertext{Nun werden die Indexe der zweiten Summe vertauscht}
+        \sum_{\begin{subarray}{l}i,j=1\\j < i\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j
         \label{eq:u_wedge_v_2}
+        \intertext{aufgeteilt. 
+        	Die linke Summe beinhaltet den Basisvektor mit dem höheren Index an erster Stelle und die rechte Summe diesen jeweils an zweiter Stelle.Nun werden die Indices der zweiten Summe vertauscht, sie wird}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         + 
-        \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_jv_i\textbf{e}_j\textbf{e}_i,
-       	\intertext{und diese wird nun mit Hilfe der Antikommutativität umgeformt zu}
+        \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_jv_i\textbf{e}_j\textbf{e}_i.
+       	\intertext{Mit Hilfe der Antikommutativität kann dies umgeformt werden zu}
         &= 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_iv_j\textbf{e}_i\textbf{e}_j 
         - 
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n u_jv_i\textbf{e}_i\textbf{e}_j.
-        \intertext{Nun können die zwei Summen wieder zusammengefasst werden}
+        \intertext{Nun können die zwei Summen wieder}
         \label{eq:u_wedge_v_4}
         &= 
-        \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n (u_iv_j -u_jv_i)\textbf{e}_i\textbf{e}_j.
-        \intertext{Der Term in der Summe könnte einem bereits bekannt vorkommen, es ist nämlich die Determinante einer Matrix mit $u$ und $v$ als ihre Spalten}
+        \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n (u_iv_j -u_jv_i)\textbf{e}_i\textbf{e}_j
+        \intertext{zusammengefasst werden. Der Koeffizient $(u_iv_j - u_jv_i)$ in der Summe ist wohlbekannt, es ist nämlich die Determinante einer $2\times2$ Matrix mit $\textbf{u}$ und $\textbf{v}$ als ihre Spalten}
         &= 
         \label{eq:u_wedge_v_5}
         \sum_{\begin{subarray}{l}i,j=1\\i < j\end{subarray}}^n \begin{vmatrix} 
@@ -119,7 +120,8 @@ Im letzten Schritt des Beispiels wurden nun, mit Hilfe der antikommutativität d
         u_j & v_j
     \end{vmatrix}\textbf{e}_i\textbf{e}_j.
 \end{align}
-Die Determinante einer Matrix beschreibt die Fläche, welche von den Spaltenvektoren aufgespannt wird, wie in Abbildung \ref{figure:det} dargestellt.
+
+Die Determinante einer $2\times2$ Matrix beschreibt die Fläche, welche von den Spaltenvektoren aufgespannt wird, wie in Abbildung \ref{figure:det} dargestellt.
 \begin{figure}[htb]
 	\centering
 	\begin{minipage}[t]{.45\linewidth}
@@ -151,7 +153,7 @@ Die Determinante einer Matrix beschreibt die Fläche, welche von den Spaltenvekt
 			west]{$\boldsymbol{u}$};
 			\draw[line width=2pt,red,-stealth](0,0)--(1,2) node[anchor=south east]{$\boldsymbol{v}$};
 			\draw[->] (2.15,1.5) arc (0:310:0.3);
-			\draw[black] (2,1.5)--(2.5,3.2) node[anchor = south]{$u\wedge v = \begin{vmatrix} 
+			\draw[black] (2,1.5)--(3.3,3.2) node[anchor = south]{$u\wedge v = \begin{vmatrix} 
 					u_i & v_i \\
 					u_j & v_j
 				\end{vmatrix} e_1e_2 = (u_iv_j - v_iu_j)\textbf{e}_1\textbf{e}_2$};
@@ -166,8 +168,8 @@ Das äussere Produkt besteht nun also aus der Summe
     	u_i & v_i \\
     	u_j & v_j
     \end{vmatrix}\)
-, welche in $\textbf{e}_i\textbf{e}_j$ aufgespannt sind, wie man in \ref{eq:u_wedge_v_5} sieht. 
+, welche in $\textbf{e}_i\textbf{e}_j$ aufgespannt sind, wie man in \eqref{eq:u_wedge_v_5} sieht. 
 Dieses Produkt $\textbf{e}_i\textbf{e}_j$ der Basisvektoren interpretiert man als Umlaufrichtung.
-Wobei die gebildete Fläche in Richtung des ersten Vektors umschritten wird. 
-Dies ist in Abbildung \ref{figure:wedge} dargestellt, wobei bei diesem Beispiel die Umlaufrichtung im Gegenuhrzeigersinn ist, da die Fläche in Richtung u umschritten wird. 
+Die gebildete Fläche wird in Richtung des ersten Vektors umschritten. 
+Dies ist in Abbildung \ref{figure:wedge} dargestellt, wobei bei diesem Beispiel die Umlaufrichtung im Gegenuhrzeigersinn ist, da die Fläche in Richtung $\textbf{u}$ umschritten wird. 
 Diese Fläche mit einer Richtung nennt man in der geometrischen Algebra einen Bivektor, da er eine Art zwei dimensionaler Vektor ist. 
