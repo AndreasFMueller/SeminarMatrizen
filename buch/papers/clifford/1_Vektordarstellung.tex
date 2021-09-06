@@ -1,9 +1,9 @@
 \section{Vektoroperationen\label{clifford:section:Vektoroperationen}}
 \rhead{Vektoroperationen}
-\subsection{Vektordarstellung\label{clifford:section:Vektordarstellung}}
+Das grundsätzliche Ziel der geometrischen Algebra ist, die lineare Algebra in eine Algebra mit Multiplikation zu erweitern und dieses Produkt dann geometrisch interpretieren um  geometrische Probleme lösen zu können.
+ \subsection{Vektordarstellung\label{clifford:section:Vektordarstellung}}
 Vektoren können neben der üblichen Spaltendarstellung, auch als Linearkombination aus Basisvektoren
-\begin{equation}
-    \begin{split}
+\begin{align}
     \textbf{a} 
     &=
     \begin{pmatrix} 
@@ -20,7 +20,8 @@ Vektoren können neben der üblichen Spaltendarstellung, auch als Linearkombinat
     + 
     a_n\begin{pmatrix}
     0 \\ 0 \\ \vdots \\ 1  
-    \end{pmatrix} \\\ 
+    \end{pmatrix},\\
+\intertext{oder auch als}
     &= 
     a_1\textbf{e}_1 
     +
@@ -29,14 +30,12 @@ Vektoren können neben der üblichen Spaltendarstellung, auch als Linearkombinat
     \dots + a_n\textbf{e}_n
     = 
     \sum_{i=1}^{n} a_i \textbf{e}_i
-    \qquad
+    \quad
     a_i \in \mathbb{R}
     , \textbf{e}_i \in \mathbb{R}^n
-    \end{split}
-\end{equation}
+\end{align}
 dargestellt werden.
-Diese Basisvektoren werden so gewählt, dass sie orthonormal sind. 
-Um die Darstellung zu vereinfachen werden sie durch $\textbf{e}_1 , \textbf{e}_2, \dots$ ersetzt.
+Diese Basisvektoren werden so gewählt, dass sie orthonormiert sind. 
 \begin{beispiel}
 Eine Linearkombination von Basisvektoren in $\mathbb{R}^4$ könnte wie folgt aussehen
     \begin{equation}
