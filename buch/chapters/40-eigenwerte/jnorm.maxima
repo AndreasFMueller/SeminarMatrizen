@@ -1,0 +1,6 @@
+J: matrix([a+b*%i, 1], [0, a+b*%i]);
+v: matrix([cos(t)],[sin(t)]);
+w: J.v;
+n: expand(transpose(conjugate(w)).w);
+d: expand(diff(n,t));
+

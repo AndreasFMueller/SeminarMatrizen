@@ -17,12 +17,16 @@ Entwicklungssatz
 \begin{equation}
 \det(A)
 =
-\sum_{i=1}^n (-1)^{i+j} a_{ij} \cdot \det(A_{ij})
+\sum_{i=1}^n (-1)^{i+j} a_{i\!j} \cdot \det(A_{i\!j})
 \label{buch:permutationen:entwicklungssatz}
 \end{equation}
 von Laplace für die Determinante.
-In den Produkten $a_{ij}\cdot\det(A_{ij})$ enthält 
-die Untermatrix $A_{ij}$ weder Elemente der Zeile $i$ noch der 
+\index{Entwicklungssatz}%
+\index{Laplace, Entwicklungssatz von}%
+Die Matrizen $A_{i\!j}$ sind die Minoren der Matrix $A$
+(siehe auch Seite~\pageref{buch:linear:def:minor}).
+In den Produkten $a_{i\!j}\cdot\det(A_{i\!j})$ enthält 
+die Untermatrix $A_{i\!j}$ weder Elemente der Zeile $i$ noch der 
 Zeile $j$.
 Die Summanden auf der rechten Seite von
 \eqref{buch:permutationen:entwicklungssatz}
@@ -31,7 +35,7 @@ sind daher Produkte der Form
 a_{1i_1}
 a_{2i_2}
 a_{3i_3}
-\dots
+\cdots
 a_{ni_n},
 \]
 in denen nur Faktoren aus verschiedenen Spalten der Matrix $A$
@@ -55,9 +59,10 @@ in der Form
 =
 \sum_{\sigma\in S_n} 
 c(\sigma)
+\,
 a_{1\sigma(1)}
 a_{2\sigma(2)}
-\dots
+\cdots
 a_{n\sigma(n)}
 \label{buch:permutationen:cformel}
 \end{equation}
@@ -73,13 +78,15 @@ also
 =
 \sum_{\sigma \in S_n}
 c(\sigma)
+\,
 (P_\tau)_{1\sigma(1)}
 (P_\tau)_{2\sigma(2)}
-\dots
+\cdots
 (P_\tau)_{n\sigma(n)}
 =
 c(\tau)
-1\cdot 1\cdot\dots\cdot 1
+\,
+1\cdot 1\cdots 1
 =
 c(\tau).
 \]
@@ -96,14 +103,14 @@ Die Determinante einer $n\times n$-Matrix $A$ kann berechnet werden als
 \operatorname{sgn}(\sigma)
 a_{1\sigma(1)}
 a_{2\sigma(2)}
-\dots
+\cdots
 a_{n\sigma(n)}
 =
 \sum_{\tau\in S_n}
 \operatorname{sgn}(\tau)
 a_{\tau(1)1}
 a_{\tau(2)2}
-\dots
+\cdots
 a_{\tau(n)n}.
 \]
 Insbesondere folgt auch $\det(A)=\det(A^t)$.

@@ -1,26 +1,30 @@
 %
 % dtf.tex -- Idee mit DFT
 %
-\section{Übertragung mit Hilfe der diskrten Fourier-Transformation
+\section{Übertragung mit Hilfe der diskreten Fourier-Transformation
 \label{reedsolomon:section:dtf}}
-\rhead{Umwandlung mit DTF}
+\rhead{Fehlerkorrektur mit diskreter Fourier-Transformation}
 Die Grundidee eines fehlerkorrigierenden Code ist, dass Informationen eines Datenpunktes
 durch die Codierung auf viele übertragene Werte verteilt werden.
 Die Decodierung ist in der Lage, den ursprünglichen Datenwert zu rekonstruieren,
 sogar wenn einzelne wenige übertragene Werte beschädigt worden sind.
 \par
 Die Fourier-Transformation transformiert einen einzelnen Wert, 
+\index{Fourier-Transformation}%
 eine Dirac-Funktion, auf ein Spektrum, welches sich über die ganze Frequenzachse erstreckt.
+\index{Dirac-Funktion}%
+\index{Spektrum}%
 Aus der Filtertheorie ist bekannt, dass der ursprüngliche Impuls mehr oder weniger rekonstruierbar ist,
 	vorausgesetzt, es gehen nicht zu viele Frequenzen bei der Übertragung verloren.
-\par
+\index{Filtertheorie}%
 Es liegt daher nahe zu versuchen, die Fourier-Transformation 
 für Codierung und Decodierung zu verwenden.
 
-\subsection{Beispiel mit Fehlerkorrektur mit Fourier-Transformation
+\subsection{Beispiel: Fehlerkorrektur mit Fourier-Transformation
 \label{reedsolomon:subsection:sendbsp}}
 Das folgende Beispiel soll zeigen, wie die Idee der Fehlerkorrektur umgesetzt wurde. 
 Die Fehlererkennung des Reed-Solomon-Codes funktioniert nach einem sehr Ähnlichen Prinzip.
+\index{Reed-Solomon-Code}%
 
 %Das folgende Beispiel soll zeigen, wie Fehlerkorrektur möglich ist.
 %Dieses auf eine Art, die der Funktionsweise des Reed-Solomon-Codes,
@@ -45,8 +49,10 @@ In der folgenden Aufzählung werden diese einzelne Schritte erklärt und erläut
 \begin{enumerate}[(1)]
  \item Das Signal besteht aus 64 zufälligen, ganzzahligen Datenwerten zwischen 0 und 10.
  Für die Rekonstruktion werden zusätzliche Datenwerte benötigt, wir fügen deshalb 32 Werte hinzu.
- Diese setzen wir willkürlich alle auf Null und nennen sie Fehlerkorrekturstellen.
+ Diese setzen wir willkürlich alle auf Null und nennen sie {\em Fehlerkorrekturstellen}.
+\index{Fehlerkorrekturstellen}%
  Wir erhalten so einen erweiterten Signalvektor der Länge $N =96$.
+\index{Signalvektor}%
  \item Mit der Fourier-Transformation wird der ganze Signalvektor codiert.
  Dadurch wird jede Informationseinheit auf alle Punkte des Spektrums verteilt.
  \item Wir dürfen annehmen, dass bei der Übertragung, nur einzelne übertragene 
@@ -58,11 +64,12 @@ In der folgenden Aufzählung werden diese einzelne Schritte erklärt und erläut
  Der Empfänger erkennt daher im allgemeinen nicht, ob und wo Übertragungsfehler aufgetreten sind.
  \item Ohne Übertragungsfehler kann der Signalvektor durch die inverse Fourier-Transformation vollständig
  	wiederhergestellt werden.
- Dazu gehören auch die Nullen an den Fehlerkorrekturstellen 64 - 96.
+ Dazu gehören auch die Nullen an den Fehlerkorrekturstellen 64--96.
  \par 
  Sind Übertragungsfehler aufgetreten, werden an diesen Stellen die Werte von Null abweichen.
  Somit haben wir bereits Fehler erkannt.
- \item Die Werte an den Fehlerkorrekturstellen 64 - 96, die nicht mehr Null sind, nennen wir das Syndrom.
+ \item Die Werte an den Fehlerkorrekturstellen 64--96, die nicht mehr Null sind, nennen wir das {\em Syndrom}.
+\index{Syndrom}%
  Im Syndrom steckt nur Information über die Fehler, sie werden durch die inverse Fourier-Transformation erzeugt.
  \item Um die Fehler zu rekonstruieren, kann man versuchen, die Information im Syndrom mit Fourier-Transformation zu transformieren.
  Da das Syndrom nur ein Teil der Fehlerinformation ist, liefert die Fourier-Transformation eine Approximation der Fehler.
@@ -70,7 +77,6 @@ In der folgenden Aufzählung werden diese einzelne Schritte erklärt und erläut
 \end{enumerate}
 Im Beispiel haben wir mit dem Syndrom nur etwa ein Drittel der Fehlerinformation, es ist daher zu erwarten, 
 dass die Fehlerwerte auch nur ein Drittel so gross sind.
-\par 
 Damit können die Fehler korrigiert und die Originaldaten wiederhergestellt werden.
 Der Rekonstruktionsauftrag ist damit erfolgreich ausgeführt.
 
@@ -116,9 +122,12 @@ Die Analogie geht aber noch weiter.
  \end{equation}
 	für verschiedene \( w = e^{-\frac{2\pi j}{N} k}, k=1, \dots ,N-1\) übermittelt.
 Das Syndrom entstand durch die Wahl ${f_{64}}=0$ bis ${f}_{N-1}=0$ (graue Koeffizenten).
-\par
+
 Die Polynominterpolation und die Fourier-Transformation rechnen beide mit reellen Zahlen.
-Wenn die Approximation nicht mehr genügend gut ist um die Fehler zu erkennen und rekonstruieren,
+Wenn die Approximation nicht mehr genügend gut ist, um die Fehler zu erkennen und zu rekonstruieren,
 dann brauchen wir andere Varianten.
-Um dieser Approximation zu entkommen, verlassen wir die reellen Zahlen und gehen zum endlichen Körpern, oder auch Galois-Körper genannt.
-Dieser bietet uns einige Vorteile.
+Um dieser Approximation zu entkommen, verlassen wir die reellen Zahlen und gehen zu endlichen Körpern, auch Galois-Körper genannt.
+\index{endlicher Körper}%
+\index{Galois-Körper}%
+\index{Körper, endlich}%
+Diese bieten uns einige Vorteile.

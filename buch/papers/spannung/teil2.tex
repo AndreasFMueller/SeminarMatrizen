@@ -1,18 +1,18 @@
 \section{Dreiachsiger Spannungszustand\label{spannung:section:Dreiachsiger_Spannungszustand}}
 \rhead{Dreiachsiger Spannungszustand}
-Durch komplexe Spannungsausbreitungen im Boden entstehen im 3D Spannungszustand unterschiedliche Normal- und Schubspannungen.
+Durch komplexe Spannungsausbreitungen im Boden entstehen im 3D-Spannungszustand unterschiedliche Normal- und Schubspannungen.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.30\linewidth,keepaspectratio]{papers/spannung/Grafiken/infinitesimalerWuerfel.png}
 	\caption{Beispiel eines Spannungszustandes; Vergrösserung eines infinitesimalen Bodenteilchen}
 	\label{fig:infinitesimalerWuerfel}
 \end{figure}
-Ein Tensor 0. Stufe, sprich ein Skalar, kann lediglich den 1D Spannungszustand beschreiben.
-Um den 3D Spannungszustandes als ein mathematisches Objekt darstellen zu können, wird ein Tensor 2. Stufe, sprich eine Matrix, eingesetzt.
+Ein Tensor 0.~Stufe, sprich ein Skalar, kann lediglich den 1D-Spannungszustand beschreiben.
+Um den 3D-Spannungszustandes als ein mathematisches Objekt darstellen zu können, wird ein Tensor 2.~Stufe, sprich eine Matrix, eingesetzt.
 Die Spannungen sind durch die zwei Indizes
-\[
+\(
 i, j\in\left\{1, 2, 3\right\}
-\]
+\)
 definiert.
 Daher ergeben sich die neun Spannungen.
 Die nachfolgenden Zusammenhänge sind in \cite{spannung:Voigtsche-Notation} beschrieben.
@@ -30,11 +30,11 @@ Dieser Spannungstensor kann schliesslich mit $3^2$ Einträgen als $3\times3$ Mat
 \]
 dargestellt werden und beschreibt somit den gesamten Spannungszustand.
 Die Dehnungen wirken in die gleichen Richtungen wie die korrespondierenden Spannungen und sind durch die zwei Indizes
-\[
+\(
 k, l\in\left\{1, 2, 3\right\}
-\]
+\)
 definiert.
-Der Dehnungstensor ist ebenfalls ein Tensor 2. Stufe und kann somit auch als $3\times3$ Matrix mit
+Der Dehnungstensor ist ebenfalls ein Tensor 2.~Stufe und kann somit auch als $3\times3$ Matrix mit
 \[
 \overline{\varepsilon}
 =
@@ -48,7 +48,7 @@ Der Dehnungstensor ist ebenfalls ein Tensor 2. Stufe und kann somit auch als $3\
 \]
 dargestellt werden und beschreibt den gesamten Dehnungszustand.
 
-Der Spannungs- und Dehnungstensor 2. Stufe kann je in einen Tensor 1. Stufe überführt werden, welches ein Spaltenvektor ist.
+Der Spannungs- und Dehnungstensor 2.~Stufe kann je in einen Tensor 1.~Stufe überführt werden, welches ein Spaltenvektor ist.
 Man darf Zeile um Zeile in eine Spalte notieren, sodass es einen Spaltenvektor ergibt.
 So ergibt sich der Spannungsvektor
 
@@ -108,18 +108,19 @@ und der Dehnungsvektor
 \end{pmatrix}
 .
 \]
-Um die Beziehung von Spannung und Dehnung, welche mit Tensoren 2. Stufe ausgedrückt werden, zu beschreiben, wird ein Elastizitätstensor 4. Stufe benötigt.
-Dieser ist im 1D Spannungszustand ein Tensor 0. Stufe und somit ein Skalar, der Elastizitätsmodul $E$.
+Um die Beziehung von Spannung und Dehnung, welche mit Tensoren 2.~Stufe ausgedrückt werden, zu beschreiben, wird ein Elastizitätstensor 4.~Stufe benötigt.
+\index{Elastizitätstensor}%
+Dieser ist im 1D-Spannungszustand ein Tensor 0.~Stufe und somit ein Skalar, der Elastizitätsmodul $E$.
 
-Dieser Elastizitätstensor 4. Stufe kann als Tensor 2. Stufe, sprich als Matrix, dargestellt werden.
+Dieser Elastizitätstensor 4.~Stufe kann als Tensor 2.~Stufe, sprich als Matrix, dargestellt werden.
 So wird die Spannungsgleichung stark vereinfacht, da nun eine Matrix auf einen Vektor operiert.
-Dieser Tensor muss für eine Spannung jeden Einfluss aus allen 9 Dehnungen mit Konstanten erfassen.
-Dies bedeutet um eine von 9 Spannungen berechnen zu können müssen alle 9 Dehnung mit unterschiedlichen Faktoren summiert werden.
-Es ergeben sich $9^2$ Einträge, welches mit den 4 Indizes
-\[
+Dieser Tensor muss für eine Spannung jeden Einfluss aus allen neun Dehnungen mit Konstanten erfassen.
+Dies bedeutet um eine von neun Spannungen berechnen zu können müssen alle neun Dehnung mit unterschiedlichen Faktoren summiert werden.
+Es ergeben sich $9^2$ Einträge, welches mit den vier Indizes
+\(
 i, j, k, l\in\left\{1, 2, 3\right\}
 ,
-\]
+\)
 die zueinander verknüpft werden müssen, zu begründen ist.
 Es ergeben sich $3^4$ Einträge, sprich eine $9\times9$ Matrix, welche allgemein
 \[
@@ -157,6 +158,7 @@ C_{ijkl}\cdot\varepsilon_{kl}
 \]
 geschrieben werden.
 Der Elastizitätstensor muss für isotrope Materialien zwingend symmetrisch sein.
+\index{isotrop}%
 Folglich gilt:
 \[
 \overline{\overline{C}}
@@ -169,6 +171,8 @@ Die Konstanten $C$ werden nun nach dem Hook'schen Gesetz mit Hilfe des Elastizit
 Da dieser Modul durch die eindimensionale Betrachtung definiert ist,
 muss für die dreidimensionale Betrachtung eine weitere Kennzahl eingeführt werden.
 Dies ist die Querdehnungszahl $\nu$ (auch Poisson-Zahl), welche durch
+\index{Querdehnungszahl}%
+\index{Poisson-Zahl}%
 \[
 \nu
 =
@@ -228,7 +232,7 @@ Die Normalspannung $\sigma_{22}$ lässt sich zum Beispiel als
 \]
 berechnen.
 
-Reduzierte Spannungs- und Dehnungsgleichungen
+\section{Reduzierte Spannungs- und Dehnungsgleichungen}
 
 Man betrachte nun die Eigenschaften des Elastizitätstensors.
 Dieser ist quadratisch und symmetrisch, die verschiedenen Einträge wechseln sich aber miteinander ab.
@@ -270,6 +274,7 @@ und folglich auch
 \]
 gilt.
 Diese Eigenschaft wird durch die Voigt'sche Notation \cite{spannung:Voigtsche-Notation} ausgenutzt, um die Gleichung vereinfachen zu können.
+\index{Voigt'sche Notation}%
 Durch diese Symmetrie gilt
 \[
 \overline{\sigma}
@@ -442,7 +447,8 @@ Es ist ersichtlich, dass die Schubdehnungen keinen Einfluss auf $\sigma_{33}$ ha
 Der Einfluss der zu $\sigma_{33}$ äquivalenten Dehnung $\varepsilon_{33}$ hat den grössten Einfluss.
 Die anderen Normalspannungen $\sigma_{11}$ und $\sigma_{22}$ haben einen unter anderem mit $\nu$ korrigierten Einfluss.
 
-Von  $\overline{\overline{C}}$ bildet man die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$, mithilfe des Gauss - Jordan Algorithmus, um die Gleichung umstellen zu können.
+Von  $\overline{\overline{C}}$ bildet man die inverse Matrix $\overline{\overline{C}}\mathstrut^{-1}$, mithilfe des Gauss-Jordan-Algorithmus, um die Gleichung umstellen zu können.
+\index{Gauss-Algorithmus}%
 Durch einige Berechnungsschritte erhält man die Dehnungsgleichung:
 
 \[
@@ -492,4 +498,4 @@ Um wieder die Einflüsse der Parameter veranschaulichen zu können berechnet man
 \]
 Diese hängt wieder am meisten von $\sigma_{22}$ ab.
 Ist die Querdehnung $\nu$ grösser, so wird die Dehnung $\varepsilon_{22}$ reduziert.
-Bei inkompressiblen Medien, bei welchen keine Dehnungen und nur identische Normalspannungen auftreten können, ist folglich $\nu=0.5$.
+Bei inkompressiblen Medien, bei welchen keine Dehnungen und nur identische Normalspannungen auftreten können, ist folglich $\nu=\frac12$.

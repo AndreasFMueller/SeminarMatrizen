@@ -14,8 +14,8 @@ die negativen Zahlen kennenlernen.
 
 Wir können hierbei denselben Trick anwenden,
 wie schon beim Übergang von den natürlichen zu den ganzen Zahlen.
-Wir kreieren wieder Paare $(z, n)$, deren Elemente nennen wir \emph{Zähler} und
-\emph{Nenner}, wobei $z, n \in \mathbb Z$ und zudem $n \ne 0$.
+Wir kreieren wieder Paare $(z, n)$, deren Elemente wir \emph{Zähler} und
+\emph{Nenner} nennen, wobei $z, n \in \mathbb Z$ und zudem $n \ne 0$.
 Die Rechenregeln für Addition und Multiplikation lauten
 \[
 (a, b) + (c, d)
@@ -27,8 +27,8 @@ Die Rechenregeln für Addition und Multiplikation lauten
 (ac, bd)
 .
 \]
-Die ganzen Zahlen lassen sich als in dieser Darstellung als
-$z \mapsto (z, 1)$ einbetten.
+Die ganzen Zahlen $z\in\mathbb{Z}$ lassen sich in dieser Darstellung als
+$z \mapsto (z, 1)$ in diese Menge von Paaren einbetten.
 
 Ähnlich wie schon bei den ganzen Zahlen ist diese Darstellung
 aber nicht eindeutig.
@@ -67,6 +67,7 @@ Rationale Zahlen sind genau die Äquivalenzklassen dieser Paare $(a, b)$ von
 ganzen Zahlen $a$ und $b\ne 0$.
 Da diese Schreibweise recht unhandlich ist, wird normalerweise die Notation
 als Bruch $\frac{a}{b}$ verwendet.
+\index{Bruch}%
 Die Rechenregeln werden dadurch zu den wohlvertrauten
 \[
 \frac{a}{b}+\frac{c}{d}
@@ -120,6 +121,7 @@ Kürzen und Erweitern ineinander übergeführt werden können.
 
 Die Menge der Äquivalenzklassen von Brüchen ist die Menge $\mathbb{Q}$
 der rationalen Zahlen.
+\index{Q@$\mathbb{Q}$}%
 In $\mathbb{Q}$ sind Addition, Subtraktion und Multiplikation mit den
 gewohnten Rechenregeln, die bereits in $\mathbb{Z}$ gegolten haben,
 uneingeschränkt möglich.
@@ -127,7 +129,7 @@ uneingeschränkt möglich.
 \subsubsection{Kehrwert}
 Zu jedem Bruch $\frac{a}{b}$ lässt sich der Bruch $\frac{b}{a}$,
 der sogenannte {\em Kehrwert}
-\index{Kehrwert}
+\index{Kehrwert}%
 konstruieren.
 Er hat die Eigenschaft, dass
 \[
@@ -139,7 +141,7 @@ Er hat die Eigenschaft, dass
 \]
 gilt.
 Der Kehrwert ist also das multiplikative Inverse, jede von $0$ verschiedene
-rationale Zahl hat eine Inverse.
+rationale Zahl hat eine solche Inverse.
 
 \subsubsection{Lösung von linearen Gleichungen}
 Mit dem Kehrwert lässt sich jetzt jede lineare Gleichung lösen.
@@ -165,13 +167,24 @@ und Division möglich sind mit der einzigen Einschränkung, dass nicht durch
 $0$ dividiert werden kann.
 Körper sind die natürliche Bühne für die lineare Algebra, da sich lineare
 Gleichungssysteme ausschliesslich mit den Grundoperation lösen lassen.
+Eine formelle Definition eines Körpers werden wir in 
+Abschnitt~\ref{buch:subsection:koerper} geben.
 
 Wir werden im Folgenden für verschiedene Anwendungszwecke weitere Körper
 konstruieren, zum Beispiel die reellen Zahlen $\mathbb{R}$ und die
 rationalen Zahlen $\mathbb{C}$.
 Wann immer die Wahl des Körpers keine Rolle spielt, werden wir den
 Körper mit $\Bbbk$ bezeichnen.
-\index{$\Bbbk$}%
+\index{k@$\Bbbk$}%
 
+Ein Körper $\Bbbk$ zeichnet sich dadurch aus, dass alle ELemente ausser $0$
+invertierbar sind. 
+Diese wichtige Teilmenge wird mit $\Bbbk^* = \Bbbk \setminus\{0\}$ mit
+bezeichnet.
+\label{buch:zahlen:def:bbbk*}
+In dieser Relation sind beliebige Multiplikationen ausführbar, das Element
+$1\in\Bbbk^*$ ist neutrales Element bezüglich der Multiplikation.
+Die Menge $\Bbbk^*$ trägt die Struktur einer Gruppe, siehe dazu auch
+den Abschnitt~\ref{buch:grundlagen:subsection:gruppen}.
 
 

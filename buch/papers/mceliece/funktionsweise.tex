@@ -8,14 +8,17 @@
 \rhead{Funktionsweise}
 Um den Ablauf des Datenaustausches mittels McEliece-Verschlüsselung zu erläutern,
 wird ein Szenario verwendet,
-bei dem Bob an Alice eine verschlüsselte Nachticht über ein öffentliches Netzwerk zukommen lässt.
+bei dem Bob an Alice eine verschlüsselte Nachricht über ein öffentliches Netzwerk zukommen lässt.
 
 \subsection{Vorbereitung
 \label{mceliece:section:vorbereitung}}
-Damit der Nachrichtenaustausch stattfinden kann, muss Alice (Empfängerin)
-zuerst ein Schlüsselpaar definieren.
+Bevor einen Datenaustausch zwischen Sender und Empfänger stattfinden kann,
+muss abgemacht werden, welche Länge $n$ das Code-Wort und welche Länge $k$ das Datenwort hat
+und wie viele Bitfehler $t$ (angewendet mit Fehlervektor $e_n$)
+für das Rauschen des Code-Wortes $c_n$ verwendet werden.
+Danach generiert Alice (Empfängerin) ein Schlüsselpaar.
 Dazu erstellt sie die einzelnen Matrizen $S_k$, $G_{n,k}$ und $P_n$.
-Diese drei einzelnen Matrizen bilden den privaten Schlüssel von Alice
+Diese drei Matrizen bilden den privaten Schlüssel von Alice
 und sollen geheim bleiben.
 Der öffentliche Schlüssel $K_{n,k}$ hingegen berechnet sich
 aus der Multiplikation der privaten Matrizen (Abschnitt \ref{mceliece:subsection:k_nk})
@@ -25,36 +28,36 @@ und wird anschliessend Bob zugestellt.
 \label{mceliece:section:verschl}}
 Bob berechnet nun die verschlüsselte Nachricht $c_n$, indem er seine Daten $d_k$
 mit dem öffentlichen Schlüssel $K_{n,k}$ von Alice multipliziert
-und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfehler hinzufügt.
+und anschliessend durch eine Addition mit einem Fehlervektor $e_n$ einige Bitfehler hinzufügt:
 \[
-    c_n\,=\,K_{n,k}\cdot d_k + e_n\,.
+    c_n=K_{n,k}\cdot d_k + e_n.
 \]
-Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment)
-einen neuen, zufälligen Fehlervektor generiert.
+Dabei wird für jede Nachricht (oder für jedes Nachrichtenfragment) $d_k$
+ein neuer, zufälliger Fehlervektor generiert.
 Die verschlüsselte Nachricht $c_n$ wird anschliessend Alice zugestellt.
 
 \subsection{Entschlüsselung
 \label{mceliece:section:entschl}}
 Alice entschlüsselt die erhaltene Nachricht in mehreren einzelnen Schritten.
-Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel $K_{n,k}$ mit seinen Ursprungsmatrizen dargestellt.
+Um etwas Transparenz in diese Prozedur zu bringen, wird der öffentliche Schlüssel $K_{n,k}$ mit seinen Ursprungsmatrizen dargestellt:
 \begin{align*}
-    c_n\,&=\,K_{n,k}\cdot d_k + e_n \\
-    &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n
+    c_n&=K_{n,k}\cdot d_k + e_n \\
+    &= P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + e_n.
 \end{align*}
 Zuerst wird der Effekt der Permutationsmatrix rückgängig gemacht,
-indem das Codewort mit dessen Inversen $P_n^{-1}$ multipliziert wird.
+indem das Codewort mit der Inversen $P_n^{-1}$ multipliziert wird:
 \begin{align*}
-    c_{n}''\,=\,P_n^{-1}\cdot c_n\,&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
-                                         &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+    c_{n}''=P_n^{-1}\cdot c_n&= P_n^{-1}\cdot P_{n}\cdot G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+                                         &= G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n.
 \end{align*}
 Eine weitere Vereinfachung ist nun möglich,
 weil $P_n^{-1}$ einerseits auch eine gewöhnliche Permutationsmatrix ist
 und andererseits ein zufälliger Fehlervektor $e_n$ multipliziert mit einer Permutationsmatrix
-wiederum einen gleichwertigen, zufälligen Fehlervektor $e_n'$ ergibt.
+wiederum einen zufälligen Fehlervektor gleicher Länge und mit der gleichen Anzahl Fehlern $e_n'$ ergibt:
 \begin{align*}
-    c_{n}''\,&=\,G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
-             &=\,G_{n,k}\cdot S_{k}\cdot d_k + e'_n\quad \quad \quad | \,
-    e'_n\,=\,P_n^{-1}\cdot e_n
+    c_{n}''&=G_{n,k}\cdot S_{k}\cdot d_k + P_n^{-1}\cdot e_n \\
+             &=G_{n,k}\cdot S_{k}\cdot d_k + e'_n \quad \text{mit} \quad
+    e'_n=P_n^{-1}\cdot e_n.
 \end{align*}
 Dank des fehlerkorrigierenden Codes, der durch die implizite Multiplikation mittels $G_{n,k}$ auf die Daten angewendet wurde,
 können nun die Bitfehler, verursacht durch den Fehlervektor $e'_n$,
@@ -62,22 +65,366 @@ entfernt werden.
 Da es sich bei diesem Schritt nicht um eine einfache Matrixmultiplikation handelt,
 wird die Operation durch eine Funktion dargestellt.
 Wie dieser Decoder genau aufgebaut ist,
-hängt vom verwendeten Linearcode ab.
+hängt vom verwendeten Linearcode ab:
 \begin{align*}
-    c_{k}'\,&=\text{Linear-Code-Decoder($c''_n$)}\\
-            &=\text{Linear-Code-Decoder($G_{n,k}\cdot S_{k}\cdot d_k + e'_n$)}\\
-            &=S_{k}\cdot d_k
+    c_{k}'&=\text{Linear-Code-Decoder}(c''_n)\\
+            &=\text{Linear-Code-Decoder}(G_{n,k}\cdot S_{k}\cdot d_k + e'_n)\\
+            &=S_{k}\cdot d_k.
 \end{align*}
-Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
-womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde.
-\begin{align*}
-                            c_{k}'\,&=S_{k}\cdot d_k \quad | \cdot S_k^{-1}\\
-    d'_{k}\,=\,S_{k}^{-1} \cdot c'_k&=S_{k}^{-1} \cdot S_{k}\cdot d_k\\
-                                    &=d_k
-\end{align*}
+Zum Schluss wird das inzwischen fast entschlüsselte Codewort $c'_k$ mit der Inversen der zufälligen Binärmatrix $S^{-1}$ multipliziert,
+womit der Inhalt der ursprünglichen Nachricht nun wiederhergestellt wurde:
+\begin{equation*}
+    d'_{k}=S_{k}^{-1} \cdot c'_k=S_{k}^{-1} \cdot S_{k}\cdot d_k
+                                    =d_k.
+\end{equation*}
+Möchte ein Angreifer die verschlüsselte Nachricht knacken, muss er die drei privaten Matrizen $S_k$, $G_{n,k}$ und $P_n$ kennen.
+Aus dem öffentlichen Schlüssel lassen sich diese nicht rekonstruieren
+und eine systematische Analyse der Codeworte wird durch das Hinzufügen von zufälligen Bitfehlern zusätzlich erschwert.
 
 \subsection{Beispiel}
+Die Verschlüsselung soll mittels eines numerischen Beispiels demonstriert werden. 
+Der verwendete Linear-Code wird im Abschnitt \ref{mceliece:subsection:seven_four} beschrieben.
+\begin{itemize}
+    \item Daten- und Fehlervektor
+    \begin{itemize}
+        \item[]
+        \[d_4=
+        \begin{pmatrix}
+            1\\
+            1\\
+            1\\
+            0 
+        \end{pmatrix}
+        ,\quad
+        e_7=
+        \begin{pmatrix}
+            0\\
+            0\\
+            1\\
+            0\\
+            0\\
+            0\\
+            0
+        \end{pmatrix}.
+        \]
+    \end{itemize}
+    \item Private Matrizen:
+    \begin{itemize}
+        \item[]
+        \[S_4=
+            \begin{pmatrix}
+                0 & 0 & 1 & 1\\
+                0 & 0 & 0 & 1\\
+                0 & 1 & 0 & 1\\
+                1 & 0 & 0 & 1
+            \end{pmatrix},\quad
+            S_4^{-1}=
+            \begin{pmatrix}
+                0 & 1 & 0 & 1\\
+                0 & 1 & 1 & 0\\
+                1 & 1 & 0 & 0\\
+                0 & 1 & 0 & 0\\
+            \end{pmatrix},
+        \]
+        \item[]
+        \[
+            G_{7,4}=
+            \begin{pmatrix}
+                1 & 0 & 0 & 0\\
+                1 & 1 & 0 & 0\\
+                0 & 1 & 1 & 0\\
+                1 & 0 & 1 & 1\\
+                0 & 1 & 0 & 1\\
+                0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 1
+            \end{pmatrix},
+        \]
+        \item[]
+        \[
+            P_7=
+            \begin{pmatrix}
+                0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 & 1\\
+                1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 1 & 0 & 0
+            \end{pmatrix},
+        \quad
+            P_7^{-1}=P_7^t=
+            \begin{pmatrix}
+                0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 1 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 & 1\\
+                0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                0 & 1 & 0 & 0 & 0 & 0 & 0
+            \end{pmatrix}.
+        \]
+    \end{itemize}
+    \item Öffentlicher Schlüssel:
+\index{Schlüssel, öffentlicher}%
+\index{öffentlicher Schlüssel}%
+    \begin{itemize}
+        \item[]
+        \begin{align*}
+            K_{7,4}&=P_{7}\cdot G_{7,4}\cdot S_{4}=\\
+            \begin{pmatrix} %k
+                0 & 0 & 1 & 0\\
+                1 & 0 & 0 & 1\\
+                0 & 0 & 1 & 1\\
+                1 & 1 & 1 & 1\\
+                0 & 1 & 0 & 1\\
+                0 & 1 & 0 & 0\\
+                1 & 0 & 0 & 0
+            \end{pmatrix}
+            &=
+            \begin{pmatrix} %p
+                0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 & 1\\
+                1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 1 & 0 & 0
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix} %g
+                1 & 0 & 0 & 0\\
+                1 & 1 & 0 & 0\\
+                0 & 1 & 1 & 0\\
+                1 & 0 & 1 & 1\\
+                0 & 1 & 0 & 1\\
+                0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 1
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix} %s
+                0 & 0 & 1 & 1\\
+                0 & 0 & 0 & 1\\
+                0 & 1 & 0 & 1\\
+                1 & 0 & 0 & 1
+            \end{pmatrix}
+            .
+        \end{align*}
+    \end{itemize}
+    \item Verschlüsselung:
+    \begin{itemize}
+        \item[]
+        \begin{align*}
+            c_7&=K_{7,4}\cdot d_4 + e_7=\\
+        \begin{pmatrix} %c
+            1\\
+            1\\
+            0\\
+            1\\
+            1\\
+            1\\
+            1
+        \end{pmatrix}
+        &=
+        \begin{pmatrix} %k
+            0 & 0 & 1 & 0\\
+            1 & 0 & 0 & 1\\
+            0 & 0 & 1 & 1\\
+            1 & 1 & 1 & 1\\
+            0 & 1 & 0 & 1\\
+            0 & 1 & 0 & 0\\
+            1 & 0 & 0 & 0
+        \end{pmatrix}
+        \cdot
+        \begin{pmatrix} %d
+            1\\
+            1\\
+            1\\
+            0 
+        \end{pmatrix}
+        +
+        \begin{pmatrix} %e
+            0\\
+            0\\
+            1\\
+            0\\
+            0\\
+            0\\
+            0
+        \end{pmatrix} 
+        .
+        \end{align*}
+    \end{itemize}
+    \item Entschlüsselung (Permutation rückgängig machen):
+    \begin{itemize}
+        \item[]
+        \begin{align*}
+            c_{7}''&=P_7^{-1}\cdot c_7=\\
+            \begin{pmatrix} %c''
+                0\\
+                1\\
+                1\\
+                1\\
+                1\\
+                1\\
+                1
+            \end{pmatrix}
+            &=
+            \begin{pmatrix} %p^-1
+                0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 0 & 0 & 1\\
+                0 & 0 & 0 & 0 & 1 & 0 & 0\\
+                0 & 1 & 0 & 0 & 0 & 0 & 0
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix} %c
+                1\\
+                1\\
+                0\\
+                1\\
+                1\\
+                1\\
+                1
+            \end{pmatrix}
+            .
+        \end{align*}
+    \end{itemize}
+    \item Entschlüsselung (Bitfehlerkorrektur mit Linearcode):
+    \begin{itemize}
+        \item[]
+        \begin{align*}
+            c_{7}'&=\text{Linear-Code-Decoder($c''_7$)}=\\
+            \begin{pmatrix} %c'
+                1\\
+                0\\
+                1\\
+                1
+            \end{pmatrix}
+            &=\text{Linear-Code-Decoder(}
+            \begin{pmatrix}
+                0\\
+                1\\
+                1\\
+                1\\
+                1\\
+                1\\
+                1
+            \end{pmatrix}
+            \text{)}
+            .
+        \end{align*}
+    \end{itemize}
+    \item Entschlüsselung (Umkehrung des $S_4$-Matrix-Effekts):
+    \begin{itemize}
+        \item[]
+        \begin{align*}
+            d'_{4}&=S_{4}^{-1} \cdot c'_4 \,(= d_4)\\
+            \begin{pmatrix}
+                1\\
+                1\\
+                1\\
+                0
+            \end{pmatrix}
+            &=
+            \begin{pmatrix} %s^-1
+                0 & 1 & 0 & 1\\
+                0 & 1 & 1 & 0\\
+                1 & 1 & 0 & 0\\
+                0 & 1 & 0 & 0\\
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix} %c'
+                1\\
+                0\\
+                1\\
+                1
+            \end{pmatrix}
+            .
+        \end{align*}
+    \end{itemize}
+\end{itemize}
 
-TODO:
--alle Beispielmatrizen- und Vektoren hierhin zügeln, numerisches Beispiel kreieren\\
--erläutern des 7/4-codes (ja/nein)?
+\subsection{7/4-Code
+\label{mceliece:subsection:seven_four}}
+Beim 7/4-Code handelt es sich um einen linearen Code,
+der einen Bitfehler korrigieren kann.
+\index{7/4-Code}%
+\index{linearer Code}%
+\index{Code, linear}%
+Es gibt unterschiedliche Varianten zum Erzeugen eines 7/4-Codes,
+wobei der hier verwendete Code mithilfe des irreduziblen Generatorpolynoms $P_g = x^3 +x + 1$ generiert wird.
+\index{Generatorpolynom}%
+Somit lässt sich das Codepolynom $P_c$ berechnen, indem das Datenpolynom $P_d$ mit dem Generatorpolynom $P_g$ multipliziert wird (Codiervorgang):
+\[
+    P_c=P_g \cdot P_d.
+\]
+Damit diese Multiplikation mit Matrizen ausgeführt werden kann, werden die Polynome als Vektoren dargestellt (Kapitel \ref{buch:section:polynome:vektoren}):
+\[
+    P_g = \textcolor{red}{1}\cdot x^0 + \textcolor{blue}{1}\cdot x^1 + \textcolor{darkgreen}{0}\cdot x^2 + \textcolor{orange}{1}\cdot x^3 \implies
+    [\textcolor{red}{1}, \textcolor{blue}{1} ,\textcolor{darkgreen}{0}, \textcolor{orange}{1}] = g_4.
+\]
+Auch das Datenpolynom wird mit einem Vektor dargestellt: $P_d = d_0 \cdot x^0 + d_1 \cdot x^1 + d_2 \cdot x^2 + d_3 \cdot x^3 \implies [d_0, d_1, d_2, d_3] = d_4$.
+Der Vektor $g_4$ wird nun in die sogenannte Generatormatrix $G_{7,4}$ gepackt,
+sodass die Polynommultiplikation mit $d_4$ mittels Matrixmultiplikation realisiert werden kann:
+
+\[
+    c_7=G_{7,4} \cdot d_4=
+    \begin{pmatrix}
+              \textcolor{red}{1} &                       0  &                       0  &                       0  \\
+             \textcolor{blue}{1} &       \textcolor{red}{1} &                       0  &                       0  \\
+        \textcolor{darkgreen}{0} &      \textcolor{blue}{1} &       \textcolor{red}{1} &                       0  \\
+           \textcolor{orange}{1} & \textcolor{darkgreen}{0} &      \textcolor{blue}{1} &       \textcolor{red}{1} \\
+                              0  &    \textcolor{orange}{1} & \textcolor{darkgreen}{0} &      \textcolor{blue}{1} \\
+                              0  &                       0  &    \textcolor{orange}{1} & \textcolor{darkgreen}{0} \\
+                              0  &                       0  &                       0  &    \textcolor{orange}{1} 
+    \end{pmatrix}
+    \begin{pmatrix}
+        d_0\\        
+        d_1\\
+        d_2\\
+        d_3
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        c_0\\        
+        c_1\\
+        c_2\\
+        c_3\\
+        c_4\\
+        c_5\\
+        c_6\\
+    \end{pmatrix}.
+\]
+Beim nun entstandenen Codevektor $c_7=[c_0, ..., c_6]$ entsprechen die Koeffizienten dem dazugehörigen Codepolynom $P_c=c_0\cdot x^0+...+c_6\cdot x^6$.
+Aufgrund der Multiplikation mit dem Generatorpolynom $P_g$ lässt sich das Codewort auch wieder restlos durch $P_g$ dividieren.
+Wird dem Codewort nun einen Bitfehler hinzugefügt, entsteht bei der Division durch $P_g$ einen Rest.
+Beim gewählten Polynom beträgt die sogenannte Hamming-Distanz drei, das bedeutet,
+\index{Hamming-Distanz}%
+dass vom einen gültigen Codewort zu einem anderen gültigen Codewort drei Bitfehler auftreten müssen.
+Somit ist es möglich, auf das ursprüngliche Bitmuster zu schliessen, solange maximal ein Bitfehler vorhanden ist.
+Jeder der möglichen acht Bitfehler führt bei der Division zu einem anderen Rest,
+womit das dazugehörige Bit identifiziert und korrigiert werden kann,
+indem beispielsweise die Bitfehler mit dem dazugehörigen Rest in der sogenannten Syndromtabelle (Tabelle \ref{mceliece:tab:syndrome}) hinterlegt werden.
+\index{Syndromtabelle}%
+\begin{table}
+    \begin{center}
+        \begin{tabular}{|l|l|}
+            \hline
+            Syndrom (Divisionsrest)     &korrespondierender Bitfehler\\
+            \hline
+            1 ($[1,0,0]$)               &$[1,0,0,0,0,0,0]$\\    
+            2 ($[0,1,0]$)               &$[0,1,0,0,0,0,0]$\\    
+            3 ($[1,1,0]$)               &$[0,0,0,1,0,0,0]$\\    
+            4 ($[0,0,1]$)               &$[0,0,1,0,0,0,0]$\\    
+            5 ($[1,0,1]$)               &$[0,0,0,0,0,0,1]$\\    
+            6 ($[0,1,1]$)               &$[0,0,0,0,1,0,0]$\\    
+            7 ($[1,1,1]$)               &$[0,0,0,0,0,1,0]$\\
+            \hline
+
+        \end{tabular}
+    \end{center}
+    \caption{\label{mceliece:tab:syndrome}Syndromtabelle 7/4-Code}
+\end{table}
+\index{Syndrom}%

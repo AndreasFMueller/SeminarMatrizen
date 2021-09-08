@@ -8,7 +8,8 @@
 \rhead{Teil 2}
 Wollen wir nun eine bestimmte Art anschauen, wie man Fraktale erzeugen kann.
 Im Beispiel auf Seite \pageref{ifs:trinagle} haben wir ein Dreieck aus 4 skalierten Kopien zusammengefügt.
-Lässt man die Kopie im Zentrum des Dreiecks weg, entsteht die Grundlage des sogenannten Sierpinski-Dreieck in Abbildung \ref{ifs:sierpinski10}.
+Lässt man die Kopie im Zentrum des Dreiecks weg, entsteht die Grundlage des sogenannten Sierpinski-Dreiecks in Abbildung \ref{ifs:sierpinski10}.
+\index{Sierpinski-Dreieck}%
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{papers/ifs/images/sierpinski}
@@ -16,7 +17,7 @@ Lässt man die Kopie im Zentrum des Dreiecks weg, entsteht die Grundlage des sog
 	\label{ifs:sierpinski10}
 \end{figure}
 Es besteht aus drei kleineren Kopien von sich selbst.
-Es ist also ein Selbstähnliches Gebilde.
+Es ist also ein selbstähnliches Gebilde.
 Diese Eigenschaft wollen wir uns zunutze machen.
 
 
@@ -73,7 +74,7 @@ Wendet man alle drei Funktionen auf das Sierpinski-Dreieck an
 	X = \bigcup\limits_{i = 1}^{3} f_i(X),
 \end{align*}
 entsteht also wieder ein Sierpinski-Dreieck.
-Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktionen auf eine beliebige Startmenge anwenden, konvergiert die Menge gegen das Sierpinski-Dreieck.
+Man kann sogar noch einen Schritt weiter gehen und sagen: Wenn wir die Funktionen auf eine beliebige Startmenge anwenden, konvergiert die Menge gegen das Sierpinski-Dreieck.
 \begin{figure}	
 	\centering
 	\subfigure[]{
@@ -88,19 +89,21 @@ Man kann sogar noch einen Schritt weiter gehen, und sagen: Wenn wir die Funktion
 	\subfigure[]{
 		\label{ifs:sierpconstd}
 		\includegraphics[width=0.25\textwidth]{papers/ifs/images/sierpinski6}}
-	\caption{Konstruktion eines Sierpinski-Dreiecks mit einem Schwarzen Quadrat als Start\\
-		(a) 1. Iteration (b) 2. Iteration (c) 3. Iteration (d) 5. Iteration}
+	\caption{Konstruktion eines Sierpinski-Dreiecks mit einem schwarzen Quadrat als Start\\
+		(a) 1.~Iteration, (b) 2.~Iteration, (c) 3.~Iteration, (d) 5.~Iteration}
 	\label{ifs:sierpconst}
 \end{figure}
 Im Beispiel der Abbildung \ref{ifs:sierpconst} sehen wir, wie das Bild nach jeder Iteration dem Sierpinski-Dreieck ähnlicher wird.
-Der `Abstand' zum Original wird immer kleiner, und konvergiert gegen null.
+Der `Abstand' zum Original wird immer kleiner und konvergiert gegen null.
 
 \subsection{Iterierte Funktionensysteme
 \label{ifs:subsection:IteratedFunktionensysteme}}
+\index{iterierte Funktionssysteme}%
 In diesem Abschnitt wollen wir die Erkenntnis, wie wir aus einer beliebigen Menge ein Sierpinski-Dreieck generieren können, verallgemeinern.
 
 
 $S_1,\dots,S_n$ sind Kontraktionen auf einer Menge $D \subset \mathbb{R}^n$. Es gilt
+\index{Kontraktion}%
 \begin{align}
 	|S_i(x) - S_i(y)| \leq c_i|x - y|
 \end{align}
@@ -124,10 +127,37 @@ Wird diese Transformation iterativ ausgeführt, das heisst $S^0(E) = E, S^k(E) =
 \end{equation}
 In Worte gefasst bedeutet das, dass jede Gruppe von Kontraktionen iterativ ausgeführt gegen eine eindeutige Menge konvergiert.
 Diese Menge ist auch als Attraktor eines IFS bekannt.
+\index{Attraktor}%
 Der Beweis für die Existenz eines eindeutigen Attraktors ist in \cite{ifs:fractal-geometry} beschrieben. 
 
 \subsection{Beispiel: Barnsley-Farn}
+\begin{figure}	
+	\centering
+	\makebox[\textwidth][c]{
+		\includegraphics[width=1.4\textwidth]{papers/ifs/images/farn}}
+	\caption{Barnsley-Farn}
+	\label{ifs:farn}
+\end{figure}%
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{papers/ifs/images/farncolor2}
+	\caption{Vier Transformationen des Barnsley-Farn in unterschiedlichen Farben}
+	\label{ifs:farncolor}
+\end{figure}%
+\begin{figure}	
+	\centering
+	\includegraphics[width=\textwidth]{papers/ifs/images/chaosspiel.pdf}
+	%\subfigure[]{
+	%	\label{ifs:farnNoWeight}
+	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnnotweight}}
+	%\subfigure[]{
+	%	\label{ifs:farnrightWeight}
+	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnrightwight}}
+	\caption{(a) Chaosspiel ohne Gewichtung, (b) $S_4$ zu wenig gewichtet}
+	\label{ifs:farnweight}
+\end{figure}%
 Der Barnsley-Farn, Abbildung \ref{ifs:farn}, ist ein Beispiel eines Fraktals, welches mit einem IFS generiert werden kann.
+\index{Barnsley-Farn}%
 Wie man schnell erkennen kann, besteht der Farn aus Blättern, welche eine grosse Ähnlichkeit zum ganzen Farn haben.
 Die vier affinen Transformationen
 \begin{align}
@@ -185,7 +215,7 @@ Die vier affinen Transformationen
 	\begin{pmatrix}
 		0 \\
 		0.44
-	\end{pmatrix},\\
+	\end{pmatrix},
 	\label{ifs:farnFormel}
 \end{align}
 welche für die Konstruktion des Farns benötigt werden, sind in der Abbildung \ref{ifs:farncolor} farblich dargestellt.
@@ -211,6 +241,7 @@ Weitere Iterationen hätten in dieser Darstellungsgrösse kaum mehr einen Unters
 
 
 Die zweite Methode ist das Chaosspiel \cite{ifs:chaos}. 
+\index{Chaosspiel}%
 Bis jetzt wurde immer davon gesprochen, die Transformationen auf die gesamte Menge anzuwenden.
 Bei komplizierteren IFS welche viele Iterationen brauchen, bis man den Attraktor erkennen kann, ist die erste Methode ziemlich rechenintensiv.
 Beim Chaosspiel werden die Transformationen nicht auf die Menge angewendet, sondern nur auf einen einzelnen Punkt.
@@ -220,41 +251,13 @@ Es wird bei jedem Iterationsschritt nur eine Transformation $S_i$, welche zufäl
 Da, wie wir beim Barnsley-Farn gut sehen, nicht jede Transformation gleich viel des Bildes ausmacht, werden diese beim Chaosspiel gewichtet.
 Je mehr eine Transformation kontrahiert, desto weniger Punkte braucht es, um die resultierende Teilabbildung darzustellen.
 Im Fall des Barnsley-Farns wird $S_1$ in $1\%$, $S_2$ in $85\%$ und $S_3$ und $S_4$ in $7\%$ der Iterationen ausgeführt.
-Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, $S_1$, viel weniger Punkte braucht als der grüne Hauptteil des Blattes, $S_2$.
+Wir sehen auch in Abbildung \ref{ifs:farncolor} gut, dass der rote Stiel, erzeugt von $S_1$, viel weniger Punkte braucht als der grüne Hauptteil des Blattes, erzeugt von $S_2$.
 
-In Abbildung \ref{ifs:farnNoWeight} wurden die vier gleich stark gewichtet.
-Man sieht, dass trotzt gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn nicht so gut abgebildet wird.
+In Abbildung \ref{ifs:farnweight}(a) wurden die vier Transformationen gleich stark gewichtet.
+Man sieht, dass trotz gleich vieler Iterationen wie in Abbildung \ref{ifs:farn}, der Farn nicht so gut abgebildet wird.
 
-Am besten sieht man den Effekt einer schlechten Gewichtung in Abbildung \ref{ifs:farnrightWeight}.
+Am besten sieht man den Effekt einer schlechten Gewichtung in Abbildung \ref{ifs:farnweight}(b).
 Hier wurde $S_4$, welches für das rechte untere Teilblatt zuständig ist, mit nur $1\%$ statt $7\%$ gewichtet.
 Man sieht, wie sich der Mangel an Punkten auf die anderen Abbildungen das Farnblattes auswirkt.
 In jeder Kopie des ganzen Farns fehlen die Punkte für dieses rechte untere Teilblatt.
 
-
-
-\begin{figure}	
-	\centering
-	\makebox[\textwidth][c]{
-		\includegraphics[width=1.4\textwidth]{papers/ifs/images/farn}}
-	\caption{Barnsley-Farn}
-	\label{ifs:farn}
-\end{figure}
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{papers/ifs/images/farncolor2}
-	\caption{Vier Transformationen des Barnsley-Farn in unterschiedlichen Farben}
-	\label{ifs:farncolor}
-\end{figure}
-
-\begin{figure}	
-	\centering
-	\includegraphics{papers/ifs/images/chaosspiel.pdf}
-	%\subfigure[]{
-	%	\label{ifs:farnNoWeight}
-	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnnotweight}}
-	%\subfigure[]{
-	%	\label{ifs:farnrightWeight}
-	%	\includegraphics[width=0.45\textwidth]{papers/ifs/images/farnrightwight}}
-	\caption{(a) Chaosspiel ohne Gewichtung (b) $S_4$ zu wenig gewichtet}
-	\label{ifs:farnweight}
-\end{figure}

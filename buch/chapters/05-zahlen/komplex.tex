@@ -6,7 +6,8 @@
 \section{Komplexe Zahlen
 \label{buch:section:komplexe-zahlen}}
 \rhead{Komplexe Zahlen}
-In den reellen Zahlen lassen sich viele algebraische Gleichungen lösen.
+In den reellen Zahlen lassen sich viele algebraische Gleichungen lösen,
+die in $\mathbb{Q}$ nicht lösbar waren.
 Andere, z.~B.~die Gleichung
 \begin{equation}
 x^2+1=0,
@@ -15,6 +16,7 @@ x^2+1=0,
 haben weiterhin keine Lösung.
 Der Grund dafür ist das Bestreben bei der Konstruktion der reellen Zahlen, 
 die Ordnungsrelation zu erhalten.
+\index{Ordnungsrelation}%
 Diese ermöglicht, Näherungsintervall und Intervallschachtelungen
 zu definieren.
 
@@ -37,16 +39,18 @@ Die erste Komponente soll die bekannten reellen Zahlen darstellen,
 deren Quadrat positiv ist.
 Die zweite Komponente soll für die Zahlen verwendet werden, deren Quadrat
 negativ ist.
-Die Zahl, deren Quadrat $-1$ sein soll, bezeichnen wir auch mit dem
+Die Zahl, deren Quadrat $-1$ sein soll, bezeichnen wir mit dem
 Paar $(0,1)$ und schreiben dafür auch $i=(0,1)$ mit $i^2=-1$.
+Das Paar $i=(0,1)$ heisst auch die {\em imaginäre Einheit}.
+\index{imaginäre Einheit}%
 
 Die Rechenregeln sollen weiterhin erhalten bleiben, sie müssen daher
 wie folgt definiert werden:
 \begin{equation}
 \begin{aligned}
-(a,b) + (c,d) &= (a+c,b+d) & (a+bi) + (c+di) &= (a+c) + (b+d)i
+(a,b) + (c,d) &= (a+c,b+d) &&& (a+bi) + (c+di) &= (a+c) + (b+d)i
 \\
-(a,b) \cdot (c,d) & (ad-bd, ad+bc) & (a+bi)\cdot(c+di) &= ac-bd + (ad+bc)i.
+(a,b) \cdot (c,d) &= (ad-bd, ad+bc) &&& (a+bi)\cdot(c+di) &= ac-bd + (ad+bc)i.
 \end{aligned}
 \label{buch:zahlen:cregeln}
 \end{equation}
@@ -65,8 +69,10 @@ Die Menge $\mathbb{C}$ verhält sich daher wie eine zweidimensionaler
 reeller Vektorraum.
 
 \subsubsection{Real- und Imaginärteil}
-Ist $z=a+bi$ eine komplexe Zahl, dann heisst $a$ der Realteil $a=\Re z$
-und $b$ heisst der Imaginärteil $\Im z$.
+Ist $z=a+bi$ eine komplexe Zahl, dann heisst $a$ der {\em Realteil} $a=\Re z$
+\index{Realteil}%
+und $b$ heisst der {\em Imaginärteil} $\Im z$.
+\index{Imaginärteil}%
 Real- und Imaginärteil sind lineare Abbildungen $\mathbb{C}\to\mathbb{R}$,
 sie projizieren einen Punkt auf die Koordinatenachsen, die entsprechend
 auch die reelle und die imaginäre Achse heissen.
@@ -86,13 +92,43 @@ a
 \Re z.
 \]
 Zusätzlich kehrt das Vorzeichen der einen Komponente.
-Wir kommen auf diese Eigenschaft zurück, wenn wir später in Abschnitt~XXX
+Wir kommen auf diese Eigenschaft zurück, wenn wir später in
+Abschnitt~\ref{buch:grundlagen:subsection:ringe}
 komplexe Zahlen als Matrizen beschreiben.
+
+\subsubsection{Gausssche Zahlenebene}
+Beschränkt man die Multiplikation auf einen reellen Faktor, wird $\mathbb{C}$
+zu einem zweidimensionalen reellen Vektorraum.
+Man kann die komplexe Zahl $a+bi$ daher auch als Punkt $(a,b)$ in der
+sogenannten {\em Gaussschen Ebene} betrachten (Abbildung~\ref{buch:zahlen:cfig}).
+\index{Gaussche Zahlenebene}%
+Die Addition von komplexen Zahlen ist in diesem Bild die vektorielle
+Addition, die Multiplikation mit reellen Zahlen werden wir weiter unten
+genauer untersuchen müssen.
+
+\begin{figure}
+\centering
+\includegraphics{chapters/05-zahlen/images/komplex.pdf}
+\caption{Argument und Betrag einer komplexen Zahl $z=a+ib$ in der 
+Gaussschen Zahlenebene
+\label{buch:zahlen:cfig}}
+\end{figure}%
+
+Die Zahlenebene führt auf eine weitere mögliche Parametrisierung einer
+komplexen Zahl.
+Ein Punkt $z$ der Ebene kann in Polarkoordinaten auch durch den {\em Betrag}
+\index{Betrag}%
+\index{Polarkoordinaten}%
+und den Winkel zwischen der reellen Achse und dem Radiusvektor zum Punkt,
+dem sogenannten {\em Argument},
+charakterisiert werden.
 
 \subsubsection{Komplexe Konjugation}
 Der komplexen Zahl $u=a+bi$ ordnen wir die sogenannte
 {\em komplex konjugierte} Zahl $\overline{z} = a-bi$.
 Mit Hilfe der komplexen Konjugation kann man den Real- und Imaginärteil
+\index{komplexe Konjugation}%
+\index{Konjugation, komplexe}%
 algebraisch ausdrücken:
 \[
 \Re z 
@@ -124,7 +160,8 @@ Wenn $x\ge 0$ ist und $x\le 0$, dann ist $x=0$.
 In $\mathbb{C}$ steht diese Ordnungsrelation nicht mehr zur Verfügung.
 Eine komplexe Zahl ist von $0$ verschieden, wenn die Länge des Vektors in der
 Zahlenebene verschieden von $0$ ist.
-Wir definieren daher den Betrag einer komplexen Zahl $z=a+bi$ als
+Wir definieren daher den {\em Betrag} einer komplexen Zahl $z=a+bi$ als
+\index{Betrag}
 \[
 |z|^2
 =
@@ -158,7 +195,7 @@ Produkt der komplexen Zahlen sein.
 
 Wie berechnet man den Quotienten $\frac{z}{w}$ für zwei beliebige komplexe
 Zahlen $z=a+bi$ und $w=c+di$ mit $w\ne 0$?
-Dazu erweitert man den Bruch mit der komplex konjugierten des Nenners:
+Dazu erweitert man den Bruch mit der komplex Konjugierten des Nenners:
 \begin{align*}
 \frac{z}{w}
 &=
@@ -169,7 +206,7 @@ Dazu erweitert man den Bruch mit der komplex konjugierten des Nenners:
 Da der Nenner $|w|^2>0$ eine reelle Zahl ist, ist die Division einfach,
 es ist die Multiplikation mit der reellen Zahl $1/|w|^2$.
 
-Wir können den Quotienten auch in Komponenten ausdrücken:
+Wir können den Quotienten auch durch Real- und Imaginärteil ausdrücken:
 \begin{align*}
 \frac{z}{w}
 &=
@@ -180,38 +217,20 @@ Wir können den Quotienten auch in Komponenten ausdrücken:
 \frac{ac-bd +(ad+bc)i}{c^2+d^2}.
 \end{align*}
 
-\subsubsection{Gausssche Zahlenebene}
-Beschränkt man die Multiplikation auf einen reellen Faktor, wird $\mathbb{C}$
-zu einem zweidimensionalen reellen Vektorraum.
-Man kann die komplexe Zahl $a+bi$ daher auch als Punkt $(a,b)$ in der
-sogenannten Gaussschen Ebene betrachten.
-Die Addition von komplexen Zahlen ist in diesem Bild die vektorielle
-Addition, die Multiplikation mit reellen Zahlen werden wir weiter unten
-genauer untersuchen müssen.
-
-\begin{figure}
-\centering
-\includegraphics{chapters/05-zahlen/images/komplex.pdf}
-\caption{Argument und Betrag einer komplexen Zahl $z=a+ib$ in der 
-Gaussschen Zahlenebene
-\label{buch:zahlen:cfig}}
-\end{figure}
-Die Zahlenebene führt auf eine weitere Parametrisierung einer
-komplexen Zahl.
-Ein Punkt $z$ der Ebene kann in Polarkoordinaten auch durch den Betrag
-und den Winkel zwischen der reellen Achse und dem Radiusvektor zum Punkt
-beschrieben werden.
-
 
 \subsubsection{Geometrische Interpretation der Rechenoperationen}
-Die Addition kompelxer Zahlen wurde bereits als Vektoraddition
-in der Gausschen Zahlenebene. 
+Die Addition komplexer Zahlen wurde bereits als Vektoraddition
+in der Gausschen Zahlenebene interpretiert. 
 Die Multiplikation ist etwas komplizierter, wir berechnen Betrag
 und Argument von $zw$ separat.
 Für den Betrag erhalten wir
 \begin{align*}
 |zw|^2
 &=
+zw\overline{(zw)}
+=
+zw\overline{z}\overline{w}
+=
 z\overline{z}w\overline{w}
 =
 |z|^2|w|^2
@@ -252,6 +271,7 @@ und $c\ne 0$, was uns ermöglicht, den Bruch durch $ac$ zu kürzen:
 \bigr).
 \end{align*}
 Im letzten Schritt haben wir die Additionsformel für den Tangens verwendet.
+\index{Additionstheorem für Tangens}%
 Daraus liest man ab, dass das Argument eines Produkts die Summe der
 Argumente ist.
 Die Multiplikation mit einer festen komplexen Zahl führt also mit der ganzen
@@ -263,17 +283,18 @@ wenn wir die komplexen Zahlen als Matrizen beschreiben wollen.
 Die komplexen Zahlen $\mathbb{C}$ sind als Erweiterung von $\mathbb{R}$
 so konstruiert worden, dass die Gleichung $x^2+1=0$ eine Lösung hat.
 Etwas überraschend ist dagegen, dass in dieser Erweiterung jetzt jede
-beliebige algebraische Gleichung lösbar geworden.
+beliebige algebraische Gleichung lösbar geworden ist.
 Dies ist der Inhalt des Fundamentalsatzes der Algebra.
 
 \begin{satz}[Fundamentalsatz der Algebra]
+\label{buch:zahlen:satz:fundamentalsatz}
 \index{Fundamentalsatz der Algebra}%
 Jede algebraische Gleichung der Form
 \[
 p(x)=x^n + a_{n-1}x^{n-1}+a_1x+a_0=0,\qquad a_k\in\mathbb{C}
 \]
 mit komplexen Koeffizienten hat $n$ möglicherweise mit Vielfachheit
-gezähle Nullstellen $\alpha_1,\dots,\alpha_m$, d.~h.~das Polynom $p(x)$
+gezählte Nullstellen $\alpha_1,\dots,\alpha_m$, d.~h.~das Polynom $p(x)$
 lässt sich in Linearfaktoren
 \[
 p(x)
@@ -281,12 +302,12 @@ p(x)
 (x-\alpha_1)^{k_1}(x-\alpha_2)^{k_2}\cdot\ldots\cdot(x-\alpha_m)^{k_m}
 \]
 zerlegen, wobei $k_1+k_2+\dots+k_m=n$.
-Die Zahlen $k_j$ heisst die {\em Vielfachheit} der Nullstelle $\alpha_j$.
+Die Zahl $k_j$ heisst die {\em Vielfachheit} der Nullstelle $\alpha_j$.
 \end{satz}
 
 Der Fundamentalsatz der Algebra wurde erstmals von Carl Friedrich Gauss
 \index{Gauss, Carl Friedrich}%
-bewiesen.
+vollständig bewiesen.
 Seither sind viele alternative Beweise mit Methoden aus den verschiedensten
 Gebieten der Mathematik gegeben worden.
 Etwas salopp könnten man sagen, dass der Fundamentalsatz ausdrückt, dass
@@ -304,10 +325,11 @@ Da Drehungen um verschiedene Achsen nicht vertauschen, kann eine solche
 Erweiterung nicht mehr kommutativ sein.
 
 William Rowan Hamilton propagierte ab 1843 eine Erweiterung von $\mathbb{C}$
+\index{Hamilton, William Rowan}%
 mit zwei zusätzlichen Einheiten $j$ und $k$ mit den nichtkommutativen
 Relationen
 \begin{equation}
-i^2 = j^2 = k^2 = ijk = -1.
+i^2 = j^2 = k^2 = i\!jk = -1.
 \label{buch:zahlen:eqn:quaternionenregeln}
 \end{equation}
 Er nannte die Menge aller Linearkombinationen 
@@ -319,6 +341,9 @@ die {\em Quaternionen}, die Einheiten $i$, $j$ und $k$ heissen auch
 Einheitsquaternionen.
 \index{Einheitsquaternionen}%
 Konjugation, Betrag und Division können ganz ähnlich wie bei den
+\index{Konjugation von Quaternionen}%
+\index{Betrag einer Quaternion}%
+\index{Division durch eine Quaternion}%
 komplexen Zahlen definiert werden und machen $\mathbb{H}$ zu einer
 sogenannten {\em Divisionsalgebra}.
 \index{Divisionsalgebra}%
@@ -331,24 +356,24 @@ Aus den Regeln für die Quadrate der Einheiten in
 $i^{-1}=-i$, $j^{-1}=-j$ und $k^{-1}=-k$.
 Die letzte Bedingung liefert daraus
 \[
-ijk=-1
+i\!jk=-1
 \qquad\Rightarrow\qquad
 \left\{
 \quad
 \begin{aligned}
-ij
+i\!j
 &=
-ijkk^{-1}=-1k^{-1}=k
+i\!jkk^{-1}=-1k^{-1}=k
 \\
-i^2jk&=-i=-jk
+i^2\!jk&=-i=-jk
 \\
 -j^2k&=-ji=k
 \end{aligned}
 \right.
 \]
 Aus den Relationen~\eqref{buch:zahlen:eqn:quaternionenregeln}
-folgt also insbesondere auch, dass $ij=-ji$.
-Ebenso kann abgeleitet werden, dass $jk=-kj$ und $ik=-ki$.
+folgt also insbesondere auch, dass $i\!j=-ji$.
+Ebenso kann abgeleitet werden, dass $jk=-k\!j$ und $ik=-ki$.
 Man sagt, die Einheiten sind {\em antikommutativ}.
 \index{antikommutativ}%
 
@@ -358,9 +383,15 @@ Komponenten $a_0,\dots,a_3$ vollständig beschrieben ist.
 Eine Transformationsmatrix des dreidimensionalen Raumes enthält
 dagegen neun Koeffizienten, die vergleichsweise komplizierte 
 Abhängigkeiten erfüllen müssen.
+Kapitel~\ref{chapter:clifford} behandelt nicht nur die Beschreibung
+von Drehungen des dreidimensionalen Raumes sondern eine weitreichende
+Verallgemeinerung dieser Idee, die sogenannte {\em geometrische Algebra}.
+\index{geometrische Algebra}%
 Quaternionen haben auch in weiteren Gebieten interessante Anwendungen,
 zum Beispiel in der Quantenmechanik, wo antikommutierende Operatoren
+\index{Quantenmechanik}%
 bei der Beschreibung von Fermionen eine zentrale Rolle spielen.
+\index{Fermion}%
 
 Aus rein algebraischer Sicht kann man die Frage stellen, ob es eventuell
 auch noch grössere Divisionsalgebren gibt, die $\mathbb{H}$ erweitern.

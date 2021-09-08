@@ -10,9 +10,12 @@ Das Ziel dieses Papers ist, verschiedenen Algorithmen der Matrizenmultiplikation
 Gezielt wird auf Algorithmen eingegangen, welche das Problem schneller als der Standardalgorithmus l\"osen.
 
 \label{muliplikation:sec:bigo}
-Die Big $\mathcal{O}$ Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Relation zur Inputgrösse \cite{multiplikation:bigo}.
-$f(x) \in \mathcal{O}(g(x))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$, wenn $x \rightarrow \infty$.
-Dies ist gegeben, falls es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
+Die Big-$\mathcal{O}$-Notation beschreibt die Laufzeitkomplexit\"at eines Algorithmus in Relation zur Inputgrösse \cite{multiplikation:bigo}.
+\index{BigOnotation@Big-$\mathcal{O}$-Notation}%
+\index{Laufzeitkomplexität}%
+$f(n) \in \mathcal{O}(g(n))$ besagt, dass die Funktion $f$ nicht wesentlich schneller w\"achst als $g$, wenn $n \rightarrow \infty$.
+%Dies ist gegeben, falls es für $f \in \mathcal{O}(n^k)$ eine Konstante $C$ gibt, mit $f(n) \leq Cn^k$.
+Dies ist gegeben, falls es für $f(n) \in \mathcal{O}(g(n))$ eine Konstante $C$ gibt, mit $f(n) \leq Cg(n)$.
 % Es gibt eine Konstante $K$ derart, dass $f(x) \le K g(x)$ für $x\to\infty$.
 Vereinfacht werden f\"ur Algorithmen die folgenden Sprechweisen verwendet:
 \begin{itemize}
@@ -27,13 +30,13 @@ Vereinfacht werden f\"ur Algorithmen die folgenden Sprechweisen verwendet:
 
 Konstanten werden nicht beachtet, eine Laufzeit von  $4n^2$ führt, für $n \rightarrow \infty$ zu $\mathcal{O}(n^2)$.
 In der Abbildung \ref{multiplikation:fig:bigo} k\"onnen die verschiedenen Laufzeiten miteinander verglichen werden.
-Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven abgebildet.
+Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(n) = n^k$ als Geraden und Exponentialfunktionen der Form $f(n) = a^n$ als nach oben gekr\"ummte Kurven abgebildet.
 
 
 
 \subsubsection{Beispielalgorithmen}
 
-Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
+Es folgen einige Beispiele von Algorithmen, welche einer bestimmten Zeitkomplexit\"atsklasse zugeteilt werden k\"onnen.
 
 
 \begin{table}[t]
@@ -112,26 +115,33 @@ Es folgen einige Beispiele von Algorithmen, welche zu einer bestimmten Zeitkompl
 %\end{table}
 
 \paragraph{Beschr\"ankter Algorithmus}
-Algorithmus \ref{multiplikation:alg:b1} ist ein Beispiel mit beschränkter Laufzeit $\mathcal{O}(1)$
+\index{beschränkter Algorithmus}%
+\index{Algorithmus, beschränkt}%
+Algorithmus~\ref{multiplikation:alg:b1} ist ein Beispiel mit beschränkter Laufzeit $\mathcal{O}(1)$.
 Da $a$ und $b$ Skalare sind, hat keine Gr\"osse $n$ einen Einfluss auf die Laufzeit.
 
 Wie erwähnt werden Konstanten nicht beachtet, der Algorithmus \ref{multiplikation:alg:b2} f\"uhrt ebenso zu  $\mathcal{O}(1)$ und nicht zu $\mathcal{O}(2)$.
 
 
 \paragraph{Linearer Algorithmus}
-
-Der Algorithmus \ref{multiplikation:alg:linear} hat ein lineares Verhalten.
+\index{linearer Algorithmus}%
+\index{Algorithmus, linear}%
+Der
+%Algorithmus~\ref{multiplikation:alg:linear}
+Algorithmus~3
+hat ein lineares Verhalten.
 Die \texttt{for}-Schleife wird $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O}(n)$.
 
 \paragraph{Quadratischer Algorithmus}
-
-Der Algorithmus \ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
-Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhrt deshalb zu $\mathcal{O} (n^2 )$.
+\index{quadratischer Algorithmus}%
+\index{Algorithmus, quadratisch}%
+Der Algorithmus~\ref{multiplikation:alg:q1} hat ein quadratisches Verhalten.
+Die beiden \texttt{for}-Schleifen werden jeweils $n$-mal durchlaufen und f\"uhren deshalb zu $\mathcal{O} (n^2 )$.
 
 
 \begin{figure}
 	\center
 	\includegraphics[]{papers/multiplikation/images/bigo}
-	\caption{Laufzeiten von verschiedensten Zeitkomplexitäten. Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(x) = x^k$ als Gerade und Exponentialfunktionen der Form $f(x) = a^x$ als nach oben gekr\"ummte Kurven dargestellt.}
+	\caption{Laufzeiten von verschiedenen Zeitkomplexitäten. Bei einer doppelt logarithmischen Darstellung werden Polynome der Form $f(n) = n^k$ als Geraden und Exponentialfunktionen der Form $f(n) = a^n$ als nach oben gekr\"ummte Kurven dargestellt.}
 	\label{multiplikation:fig:bigo}
 \end{figure}

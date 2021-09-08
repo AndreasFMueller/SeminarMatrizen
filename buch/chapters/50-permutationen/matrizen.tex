@@ -7,11 +7,12 @@
 \label{buch:section:permutationsmatrizen}}
 \rhead{Permutationsmatrizen}
 Die Eigenschaft, dass eine Vertauschung das Vorzeichen kehrt, ist
-eine wohlebekannte Eigenschaft der Determinanten.
+eine wohlbekannte Eigenschaft der Determinanten.
 In diesem Abschnitt soll daher eine Darstellung von Permutationen
 als Matrizen gezeigt werden und die Verbindung zwischen dem
 Vorzeichen einer Permutation und der Determinanten hergestellt
 werden.
+\index{Determinante}%
 
 \subsection{Matrizen}
 Gegeben sei jetzt eine Permutation $\sigma\in S_n$. 
@@ -33,7 +34,7 @@ e_n&\mapsto e_{\sigma(n)}
 Die Matrix $P_\sigma$ der linearen Abbildung $f_{\sigma}$ hat in Spalte $i$
 genau eine $1$ in der Zeile $\sigma(i)$, also
 \[
-(P_\sigma)_{ij} = \delta_{j\sigma(i)}.
+(P_\sigma)_{i\!j} = \delta_{j\sigma(i)}.
 \]
 
 \begin{beispiel}
@@ -61,27 +62,35 @@ A_\sigma
 \end{beispiel}
 
 \begin{definition}
-Eine Permutationsmatrix ist eine Matrix $P\in M_n(\Bbbk)$ 
+\label{buch:permutationen:def:permutationsmatrix}
+\index{Permutationsmatrix}%
+Eine {\em Permutationsmatrix} ist eine Matrix $P\in M_n(\Bbbk)$ 
 derart, die in jeder Zeile und Spalte genau eine $1$ enthalten ist,
 während alle anderen Matrixelemente $0$ sind.
 \end{definition}
 
 Es ist klar, dass aus einer Permutationsmatrix auch die Permutation
 der Standardbasisvektoren abgelesen werden kann.
+\index{Standardbasisvektor}%
 Die Verknüpfung von Permutationen wird zur Matrixmultiplikation
+\index{Matrixmultiplikation}%
 von Permutationsmatrizen, die Zuordnung $\sigma\mapsto P_\sigma$
 ist also ein Homomorphismus
-$
-S_n \to M_n(\Bbbk^n),
-$
-es ist $P_{\sigma_1\sigma_2}=P_{\sigma_1}P_{\sigma_2}$.
+\index{Homomorphismus}%
+$S_n \to M_n(\Bbbk^n)$,
+es ist
+$P_{\sigma_1\sigma_2}=P_{\sigma_1}P_{\sigma_2}$.
+$\sigma$ heisst gemäss Definition~\ref{buch:vektorenmatrizen:def:darstellung}
+auch Darstellung der Gruppe $S_n$.
+\index{Darstellung}%
 
 \subsection{Transpositionen}
 Transpositionen sind Permutationen, die genau zwei Elemente von $[n]$
 vertauschen.
-Wir ermitteln jetzt die Permutationsmatrix der Transposition $\tau=\tau_{ij}$
+Wir ermitteln jetzt die Permutationsmatrix der Transposition $\tau=\tau_{i\!j}$.
+Sie ist
 \[
-P_{\tau_{ij}}
+P_{\tau_{i\!j}}
 =
 \begin{pmatrix}
 1&      & &      &     &      & &      & \\
@@ -93,8 +102,7 @@ P_{\tau_{ij}}
  &      & &      &     &      &1&      & \\
  &      & &      &     &      & &\ddots& \\
  &      & &      &     &      & &      &1
-\end{pmatrix}
-\qedhere
+\end{pmatrix}.
 \]
 
 Die Permutation $\sigma$ mit dem Zyklus $1\to 2\to\dots\to l-1\to l\to 1$
@@ -148,7 +156,7 @@ P_{\tau_{l-1,l}}
 0&0&1&0&\dots\\
 \vdots&\vdots&\vdots&\vdots&\ddots
 \end{pmatrix}
-\dots
+\cdots
 \\
 &=
 \begin{pmatrix}
@@ -159,7 +167,7 @@ P_{\tau_{l-1,l}}
 \vdots&\vdots&\vdots&\vdots&\ddots
 \end{pmatrix}
 \\
-&\vdots\\
+&\quad\vdots\\
 &=
 \begin{pmatrix}
 0&0&0&0&\dots&0&1\\
@@ -168,15 +176,17 @@ P_{\tau_{l-1,l}}
 0&0&1&0&\dots&0&0\\
 \vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
 0&0&0&0&\dots&1&0
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
 
 \subsection{Determinante und Vorzeichen}
 Die Transpositionen haben Permutationsmatrizen, die aus der Einheitsmatrix
+\index{Einheitsmatrix}%
+\index{Determinante}%
 entstehen, indem genau zwei Zeilen vertauscht werden.
 Die Determinante einer solchen Permutationsmatrix ist
 \[
-\det P_{\tau} = - \det E = -1 = \operatorname{sgn}(\tau).
+\det P_{\tau} = - \det I = -1 = \operatorname{sgn}(\tau).
 \]
 Nach der Produktregel für die Determinante folgt für eine Darstellung
 der Permutation $\sigma=\tau_1\dots\tau_l$ als Produkt von Transpositionen,
@@ -184,7 +194,7 @@ dass
 \begin{equation}
 \det P_{\sigma}
 =
-\det P_{\tau_1} \dots \det P_{\tau_l}
+\det P_{\tau_1} \cdots \det P_{\tau_l}
 =
 (-1)^l
 =

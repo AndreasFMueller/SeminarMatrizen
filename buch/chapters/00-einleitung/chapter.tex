@@ -14,17 +14,23 @@ Die Geometrie studiert zum Beispiel Objekte wie Punkte, Geraden, Kreise
 und deren Beziehungen untereinander, die man definieren kann ganz ohne
 das Wissen, was eine Zahl ist.
 Apollonius von Perga (262--190 BCE) hat in seinem Buch über Kegelschnitte
+\index{Apollonius von Perga}%
+\index{Perga, Appollonius von}%
 als erster einen algebraischen Zusammenhang zwischen Zahlen festgestellt,
 die man also die Vorläufer heutiger Koordinaten eines Punktes ansehen könnte.
-Erst im 16.~Jahrhundert entwickelte sich die Algebra allerdings weit genug,
+Erst im 16.~Jahrhundert entwickelte sich die Algebra weit genug,
 dass eine Algebraisierung der Geometrie möglich wurde.
 Pierre de Fermat
 \index{Fermat, Pierre de}%
 und René Descartes
 \index{Descartes, René}%
 schufen die sogenannte {\em analytische Geometrie}. 
+\index{analytische Geometrie}%
+\index{Geometrie, analytische}%
 Das rechtwinklige Koordinatensystem, nach Descartes auch karteisches
 Koordinatensystem genannt, beschreibt Punkte als Zahlenpaare $(x,y)$
+\index{kartesisches Koordinatensystem}%
+\index{Koordinatensystem, kartesisches}%
 und Kurven in der Ebene durch ihre Gleichungen.
 Geraden können als Graphen der Funktion $f(x) = ax+b$ oder als Lösungsmenge
 linearer Gleichungen wie $ax+by=c$ verstanden werden.
@@ -46,7 +52,7 @@ x^2+(y-1)^2=4
 einen Kreis mit Radius $2$ um den Punkt $(0,1)$.
 Der Kreis hat natürlich zwei Schnittpunkte mit der $x$-Achse, wie mit jeder
 Gerade, deren Abstand vom Mittelpunkt des Kreises kleiner ist als der Radius.
-Schnittpunkte haben die Koordinaten $(x_S,0)$ und $x_S$ muss die
+Die Schnittpunkte haben die Koordinaten $(x_S,0)$ und $x_S$ muss die
 Gleichung
 \[
 x_S^2 + (0-1)^2 = x_S^2+1=4
@@ -54,11 +60,14 @@ x_S^2 + (0-1)^2 = x_S^2+1=4
 x_S^2=3
 \]
 erfüllen.
+\index{rationale Zahlen}%
 Eine solche Lösung ist nicht möglich, wenn man sich auf rationale
 Koordinaten $x_S\in\mathbb{Q}$ beschränkt, die Erweiterung auf
 reelle Zahlen ist notwendig.
+\index{reelle Zahlen}%
 
 Kapitel~\ref{buch:chapter:zahlen} übernimmt die Aufgabe, die Zahlensysteme
+\index{Zahlensysteme}%
 klar zu definieren und ihre wichtigsten Eigenschaften zusammenzutragen.
 Sie bilden das Fundament aller folgenden Konstruktionen.
 
@@ -69,12 +78,13 @@ Die Zahl $\alpha=\sqrt{2}$ ist ja nur ein Objekt, mit dem gerechnet werden
 kann wie mit jeder anderen Zahl, welche aber die zusätzliche Rechenregel
 $\alpha^2=2$ erfüllt.
 Die Erweiterung von $\mathbb{R}$ zu den komplexen Zahl verlangt nur,
+\index{komplexe Zahlen}%
 dass man der Menge $\mathbb{R}$ ein neues algebraisches Objekt $i$
 hinzufügt, welches als spezielle Eigenschaft die Gleichung $i^2=-1$ hat.
 Bei $\sqrt{2}$ hat die geometrische Anschauung suggeriert, dass es eine
 solche Zahl ``zwischen'' den rationalen Zahlen gibt, aber für $i$
 gibt es keine solche Anschauung.
-Die imaginäre Einheit $i$ erhielt daher auch diesen durchaus
+Die imaginäre Einheit $i$ erhielt daher von Descartes auch diesen durchaus
 abwertend gemeinten Namen.
 
 Die Zahlensysteme lassen sich also verstehen als einfachere Zahlensysteme,
@@ -89,6 +99,7 @@ erfüllen will, auch einfach wieder die Existenz des neuen Objektes
 postulieren?
 
 Komplexen Zahlen und Matrizen zeigen, wie das gehen könnte.
+\index{Matrizen}%
 Indem man vier rationale Zahlen als $2\times 2$-Matrix in der Form
 \[
 A=
@@ -181,7 +192,7 @@ die Menge der Matrizen
 a,b\in\mathbb{Q}
 \right\}
 \]
-verhält sich daher genau so wie die Menge der rationalen Zahlen, denen
+verhält sich daher genau so wie die Menge der rationalen Zahlen, der
 man ein ``imaginäres'' neues Objekt $\!\sqrt{2}$ hinzugefügt hat.
 
 Matrizen sind also ein Werkzeug, mit dem sich ein algebraisches Systeme
@@ -199,24 +210,33 @@ einzelnen Objektes, sowohl $\sqrt{2}$ wie auch $i$ sind Lösungen einer
 Polynomgleichung.
 
 Eine besondere Rolle spielen in der Mathematik die Symmetrien.
+\index{Symmetrie}%
 Eine der frühesten Anwendungen dieses Gedankens in der Algebra war
 die Überlegung, dass sich die Nullstellen einer Polynomgleichung
 permutieren lassen.
 Die Idee der Permutationsgruppe taucht auch in algebraischen Konstruktionen
 wie der Determinanten auf.
+\index{Permutation}%
+\index{Permutationsgruppe}%
+\index{Determinante}%
 Tatsächlich lassen sich Permutationen auch als Matrizen schreiben
 und die Rechenregeln für Determinanten sind ein direktes Abbild
 gewisser Eigenschaften von Transpositionen.
+\index{Transposition}%
 Einmal mehr haben Matrizen ermöglicht, ein neues Konzept in einer
 bekannten Sprache auszudrücken.
 
 Die Darstellungstheorie ist das Bestreben, nicht nur Permutationen,
+\index{Darstellungstheorie}%
 sondern beliebige Gruppen von Symmetrien als Mengen von Matrizen
 darzustellen.
 Die abstrakten Symmetriegruppen erhalten damit immer konkrete 
 Realisierungen als Matrizenmengen.
 Auch kompliziertere Strukturen wie Ringe, Körper oder Algebren
 lassen sich mit Matrizen realisieren.
+\index{Ring}%
+\index{Körper}%
+\index{Algebra}%
 Aber die Idee ist nicht auf die Geometrie beschränkt, auch analytische
 oder kombinatorische Eigenschaften lassen sich in Matrizenstrukturen
 abbilden und damit neuen rechnerischen Behandlungen zugänglich
@@ -225,8 +245,10 @@ machen.
 Das Kapitel~\ref{buch:chapter:homologie} illustriert, wie weit dieser
 Plan führen kann.
 Die Konstruktion der Homologiegruppen zeigt, wie sich die Eigenschaften
-der Gestalt gewisser geometrischer Strukturen zunächst mit Matrizen,
-die kombinatorische Eigenschaften beschreiben, ausdrücken lassen.
+\index{Homologiegruppe}%
+der Gestalt gewisser geometrischer Strukturen zunächst mit Matrizen
+ausdrücken lassen,
+die kombinatorische Eigenschaften beschreiben.
 Anschliessend können daraus wieder algebraische Strukturen gewonnen
 werden.
 Gestalteigenschaften werden damit der rechnerischen Untersuchung zugänglich.

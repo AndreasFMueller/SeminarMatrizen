@@ -1,0 +1,138 @@
+%
+% fermat.tex -- Illustration zum kleinen Satz von Fermat
+%
+% (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
+%
+\documentclass[tikz]{standalone}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{txfonts}
+\usepackage{pgfplots}
+\usepackage{csvsimple}
+\usetikzlibrary{arrows,intersections,math,calc}
+\begin{document}
+\def\skala{1}
+\begin{tikzpicture}[>=latex,thick,scale=\skala]
+
+\def\s{34}
+
+\definecolor{farbe1}{rgb}{0.0,0.4,0.0}
+\definecolor{farbe2}{rgb}{0.0,1.0,1.0}
+\definecolor{farbe3}{rgb}{0.0,0.4,0.6}
+\definecolor{farbe4}{rgb}{0.0,0.0,0.8}
+\definecolor{farbe5}{rgb}{0.4,0.0,1.0}
+\definecolor{farbe6}{rgb}{0.8,0.0,0.0}
+\definecolor{farbe7}{rgb}{0.8,0.4,0.4}
+\definecolor{farbe8}{rgb}{1.0,0.8,0.0}
+
+\def\perle#1#2#3{
+	\fill[color=#3] ($#1+({#2*0.15},0)$) circle[radius=0.075];
+}
+
+\def\perlena#1#2#3#4#5#6{
+	\draw #1 -- ($#1+({0.15*9},0)$);
+	\perle{#1}{0}{#2}
+	\perle{#1}{1}{#3}
+	\perle{#1}{2}{#4}
+	\perle{#1}{3}{#5}
+	\perle{#1}{4}{#6}
+}
+\def\perlenb#1#2#3#4#5#6{
+	\perle{#1}{5}{#2}
+	\perle{#1}{6}{#3}
+	\perle{#1}{7}{#4}
+	\perle{#1}{8}{#5}
+	\perle{#1}{9}{#6}
+}
+
+\begin{scope}[xshift=3cm]
+\draw (0,0) circle[radius=4];
+\foreach \k in {-1,...,8}{
+	\draw (0,0) -- ({90+\k*\s}:4);
+}
+\foreach \k in {1,...,8}{
+	\node at ({90+\s*(\k-0.5)}:3.7) {$A_{\k\mathstrut}$};
+}
+
+\pgfmathparse{90-(360-9*\s)/2-\s}
+\xdef\b{\pgfmathresult}
+\foreach \d in {-10,-5,...,10}{
+	\fill ({\b+\d}:2.8) circle[radius=0.04];
+}
+\node at ({90-(\s/2)}:3.7) {$A_{p\mathstrut}$};
+
+\node at (-4,4) {$s_1$};
+\node at (-3.8,2.6) {$s_2$};
+\node at (-4.8,0.6) {$s_3$};
+\node at (-4.2,-2) {$s_4$};
+\node at (-4,-4) {$s_5$};
+
+\perlena{({-3*sin(-0.5*\s)-0.54},{3*cos(-0.5*\s)})}{farbe8}{farbe1}{farbe2}{farbe3}{farbe4}
+\perlenb{({-3*sin(-0.5*\s)-0.54},{3*cos(-0.5*\s)})}{farbe5}{farbe6}{farbe7}{black,opacity=0}{black,opacity=0}
+
+\perlena{({-3*sin(0.5*\s)-0.74},{3*cos(0.5*\s)})}{farbe1}{farbe2}{farbe3}{farbe4}{farbe5}
+\perlenb{({-3*sin(0.5*\s)-0.74},{3*cos(0.5*\s)})}{farbe6}{farbe7}{black,opacity=0}{black,opacity=0}{farbe8}
+
+\perlena{({-3*sin(1.5*\s)-0.74},{3*cos(1.5*\s)-0.2})}{farbe2}{farbe3}{farbe4}{farbe5}{farbe6}
+\perlenb{({-3*sin(1.5*\s)-0.74},{3*cos(1.5*\s)-0.2})}{farbe7}{black,opacity=0}{black,opacity=0}{farbe8}{farbe1}
+
+\perlena{({-3*sin(2.5*\s)-0.0},{3*cos(2.5*\s)-0.0})}{farbe3}{farbe4}{farbe5}{farbe6}{farbe7}
+\perlenb{({-3*sin(2.5*\s)-0.0},{3*cos(2.5*\s)-0.0})}{black,opacity=0}{black,opacity=0}{farbe8}{farbe1}{farbe2}
+
+\perlena{({-3*sin(3.5*\s)-0.74},{3*cos(3.5*\s)+0.2})}{farbe4}{farbe5}{farbe6}{farbe7}{black,opacity=0}
+\perlenb{({-3*sin(3.5*\s)-0.74},{3*cos(3.5*\s)+0.2})}{black,opacity=0}{farbe8}{farbe1}{farbe2}{farbe3}
+
+\perlena{({-3*sin(4.5*\s)-0.74},{3*cos(4.5*\s)})}{farbe5}{farbe6}{farbe7}{black,opacity=0}{black,opacity=0}
+\perlenb{({-3*sin(4.5*\s)-0.74},{3*cos(4.5*\s)})}{farbe8}{farbe1}{farbe2}{farbe3}{farbe4}
+
+\perlena{({-3*sin(5.5*\s)-0.64},{3*cos(5.5*\s)})}{farbe6}{farbe7}{black,opacity=0}{black,opacity=0}{farbe8}
+\perlenb{({-3*sin(5.5*\s)-0.64},{3*cos(5.5*\s)})}{farbe1}{farbe2}{farbe3}{farbe4}{farbe5}
+
+\perlena{({-3*sin(6.5*\s)-0.64},{3*cos(6.5*\s)})}{farbe7}{black,opacity=0}{black,opacity=0}{farbe8}{farbe1}
+\perlenb{({-3*sin(6.5*\s)-0.64},{3*cos(6.5*\s)})}{farbe2}{farbe3}{farbe4}{farbe5}{farbe6}
+
+\perlena{({-3*sin(7.5*\s)-1.14},{3*cos(7.5*\s)+0.1})}{black,opacity=0}{black,opacity=0}{farbe8}{farbe1}{farbe2}
+\perlenb{({-3*sin(7.5*\s)-1.14},{3*cos(7.5*\s)+0.1})}{farbe3}{farbe4}{farbe5}{farbe6}{farbe7}
+
+\node at (45:4) [above right] {$A$};
+
+\clip (-7,-4.4) rectangle (0,4.8);
+\foreach \k in {1,...,5}{
+	\pgfmathparse{20*(3-\k)}
+	\xdef\c{\pgfmathresult}
+	\pgfmathparse{90+(\k-0.5)*\s}
+	\xdef\a{\pgfmathresult}
+	\pgfmathparse{\a-180}
+	\xdef\b{\pgfmathresult}
+	\draw[->] (-7.5,0) to[out={\c},in={180+\b}] (\a:4);
+	%\node at (\a:4) [left] {$\b$};
+}
+\end{scope}
+
+\def\pearl#1#2{
+	\fill[color=#2] ($({90+(#1-0.5)*\s}:0.6)$) circle[radius=0.12];
+	\draw[line width=0.1pt] ($({90+(#1-0.5)*\s}:0.6)$) circle[radius=0.12];
+}
+
+\def\kette{
+	\draw (0,0) circle[radius=0.6];
+	\pearl{1}{farbe1}
+	\pearl{2}{farbe2}
+	\pearl{3}{farbe3}
+	\pearl{4}{farbe4}
+	\pearl{5}{farbe5}
+	\pearl{6}{farbe6}
+	\pearl{7}{farbe7}
+	\pearl{0}{farbe8}
+}
+
+\begin{scope}[xshift=-4.5cm]
+\fill[color=white] (-1.5,-2.5) rectangle (1.5,2.5);
+\draw (-1.5,-2.5) rectangle (1.5,2.5);
+\kette
+\node at (-1.5,2.5) [below right] {$G$};
+\end{scope}
+
+\end{tikzpicture}
+\end{document}
+

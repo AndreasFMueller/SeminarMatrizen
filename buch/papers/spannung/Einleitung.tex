@@ -1,6 +1,10 @@
 \section{Einleitung\label{spannung:section:Einleitung}}
 \rhead{Einleitung}
 Das Hook'sche Gesetz beschreibt die Beziehung von Spannung und Dehnung von linear-elastischen Materialien im Eindimensionalen.
+\index{Hook'sches Gesetz}%
+\index{Spannung}%
+\index{Dehnung}%
+\index{elastisches Material}%
 In diesem Kapitel geht es darum, das Hook'sche Gesetz im Dreidimensionalen zu beschreiben.
 Durch variable Krafteinwirkungen entstehen in jedem Punkt des Materials eine Vielzahl an unterschiedlichen Spannungen.
 In jedem erdenklichen Punkt im Dreidimensionalen herrscht daher ein entsprechender individueller Spannungszustand.
@@ -8,6 +12,7 @@ Um das Hook'sche Gesetz für den 3D Spannungszustand formulieren zu können, rei
 Darum werden Vektoren, Matrizen und Tensoren zu Hilfe gezogen.
 Mit diesen lässt sich eine Spannungsformel für den 3D Spannungszustand bilden.
 Diese Spannungsformel ist Grundlage für Computerprogramme und geotechnische Versuche, wie der Oedometer-Versuch.
+\index{Oedometer-Versuch}%
 
 Um die mathematischen und physikalischen Berechnungen anwenden zu können,
 müssen vorerst ein paar spezifische Bedingungen vorausgesetzt und Annahmen getroffen werden.
@@ -18,7 +23,11 @@ wie sie in gängigen Lehrbüchern der Mechanik oder der Geotechnik behandelt wer
 \section{Spannungsausbreitung\label{spannung:section:Spannungsausbreitung}}
 \rhead{Spannungsausbreitung}
 Die Geotechnik ist eine Ingenieurdisziplin, bei welcher man Erdbau und den Erdbau tangierende Bauwerke dimensioniert.
+\index{Geotechnik}%
+\index{Erdbau}%
 Sie beinhaltet aber auch die statische Beurteilung von Boden und Fels.
+\index{Boden}%
+\index{Fels}%
 
 Belastet man den Boden mit einer Spannung
 \[
@@ -47,12 +56,14 @@ Das können beispielsweise verschiedene Bodenkennwerte oder auch der Wassergehal
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.35\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild5.png}
+	%\includegraphics[width=0.35\linewidth,keepaspectratio]{papers/spannung/Grafiken/Bild5.png}
+	\includegraphics{papers/spannung/images/tiefe.pdf}
 	\caption{Funktionen der Spannung und Dehnung im Zusammenhang mit der Tiefe}
 	\label{fig:Bild5}
 \end{figure}
 
-Bei jeder dieser Zusatzspannung geht eine entsprechende Zusatzdehnung des Bodens einher, welche eine Setzung bedeutet.
+Mit jeder dieser Zusatzspannung geht eine entsprechende Zusatzdehnung des Bodens einher, welche eine Setzung bedeutet.
+\index{Setzung}%
 Im einfachsten Fall kann modellhaft mit
 \[
 \varepsilon
@@ -76,6 +87,7 @@ berechnet werden mit:
 Diese Zusammenhänge sind wie erwähnt unter anderem im  Lehrbuch \cite{spannung:Grundlagen-der-Geotechnik} beschrieben.
 In der praktischen Geotechnik wird man allerdings weitaus schwierigere Situationen antreffen.
 Ein Beispiel wäre eine Baugrube mit einem Baugrubenabschluss, wo ein Teil des Bodens abgetragen ist (siehe Abbildung~\ref{fig:Bild3}).
+\index{Baugrube}%
 Die Ausbreitung der Zusatzspannung $\sigma(x,y,t)$ würde hier deutlich komplizierter ausfallen.
 Dies bedeutet auch eine komplexere Setzung der Bodenoberfläche infolge einer Flächenlast $\sigma$.
 Aus allen zusätzlichen Spannungen müssen die adäquaten Dehnungen mit Hilfe einer Spannungsgleichung berechnet werden.

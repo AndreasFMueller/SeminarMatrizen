@@ -6,6 +6,8 @@
 \section{Zusammenfassung
 \label{reedsolomon:section:zf}}
 \rhead{Zusammenfassung}
+\index{Reed-Solomon-Code, Zusammenfassung}%
+\index{Zusammenfassung Reed-Solomon-Code}%
 Dieser Abschnitt beinhaltet eine Übersicht über die Funktionsweise eines Reed-Solomon-Codes für beliebige endliche Körper.
 
 \subsubsection{Schritt 1: primitives Element}
@@ -55,11 +57,11 @@ Die Codierungsmatrix ändert sich somit zur Decodierungsmatrix
 Daraus lässt sich der Nachrichtenblock aus dem Übertragungsvektor rekonstruieren.
 
 \subsubsection{Schritt 4: Decodierung mit Fehler}
-Sollte der Übertragungsvektor fehlerhaft empfangen werden, so kann der Nachrichtenblock nicht durch invertieren der Matrix rekonstruiert werden.
+Sollte der Übertragungsvektor fehlerhaft empfangen werden, so kann der Nachrichtenblock nicht durch Invertieren der Matrix rekonstruiert werden.
 Zur Lokalisierung der Fehlerstellen nehmen wir das Polynom $f(X)$ zur Hilfe, welches wir über den Satz von Fermat bestimmt haben.
 Berechnen wir daraus das $\operatorname{kgV}$ von $f(X)$ und $d(X)$, so erhalten wir ein Lokatorpolynom.
-Durch das bestimmen der Exponenten erhalten wir die Fehlerhaften Stellen im Übertragungsvektor.
-Für die Rekonstruktion stellen wir ein Gleichungssystem auf und entfernen daraus die Fehlerhaften Zeilen.
+Durch das Bestimmen der Exponenten erhalten wir die fehlerhaften Stellen im Übertragungsvektor.
+Für die Rekonstruktion stellen wir ein Gleichungssystem auf und entfernen daraus die fehlerhaften Zeilen.
 Im Anschluss kann das verkleinerte Gleichungssystem gelöst werden. 
 Als Resultat erhalten wir die fehlerfreie Nachricht.
 %Aus diesem Grund suchen wir nach einem Lokatorpolynom, welches uns die Fehlerhaften Stellen im Übertragungsvektor anzeigt.

@@ -1,9 +1,11 @@
 \section{Kristalle}
+\index{Kristalle}%
 Eine nicht allzu häufig gestellte Frage ist, wie ein Kristall definiert ist.
 Um zu klären, was ein Kristall mit Symmetrien zu tun hat, ist jedoch genau diese Frage äusserst relevant. 
 Glücklicherweise ist das Innere eines Kristalles relativ einfach definiert.
 \begin{definition}[Kristall]
     Ein Kristall besteht aus Atomen, welche sich in einem Muster arrangieren, welches sich in drei Dimensionen periodisch wiederholt.
+\index{periodisch}%
 \end{definition}
 
 \begin{figure}
@@ -15,18 +17,22 @@ Glücklicherweise ist das Innere eines Kristalles relativ einfach definiert.
     }
 \end{figure}
 \subsection{Kristallgitter}
+\index{Kristallgitter}%
 Ein zweidimensionales Beispiel eines solchen Muster ist Abbildung \ref{fig:punktgruppen:lattice}.
 Für die Überschaubarkeit haben wir ein simples Motiv eines einzelnen grauen Punktes dargestellt und betrachten dies nur in zwei Dimensionen.
 Die eingezeichneten Vektoren \(\vec{a}_1\) und \(\vec{a}_2\) sind die kleinstmöglichen Schritte im Raum bis sich das Kristallgitter wiederholt.
 Wird ein beliebiger grauer Gitterpunkt in Abbildung \ref{fig:punktgruppen:lattice} gewählt und um eine ganzzahlige Linearkombination von \(\vec{a}_1\) und \(\vec{a}_2\) verschoben, endet er zwangsweise auf einem Gitterpunkt, wenn nicht wieder am selben Ort.
+\index{Gitterpunkt}%
 Im dreidimensionalen Raum können alle Gitterpunkte mit derselben Idee und einem zusätzlichen Vektor \(\vec{a}_3\) also
 \[
   \vec{r} = n_1 \vec{a}_1 + n_2 \vec{a}_2 + n_3 \vec{a}_3 = \sum_i n_i \vec{a}_i
 \]
 erreicht werden sofern \(n_1,n_2,n_3 \in \mathbb{Z}\) sind.
 Sind die Vektoren  \(\vec{a}_1\), \(\vec{a}_2\), \(\vec{a}_3\) gegeben, ist ein Kristallgitter eindeutig beschrieben, weswegen sie auch als Grundvektoren bekannt sind.
+\index{Grundvektor}%
 
 \subsection{Translationssymmetrie} 
+\index{Translationssymmetrie}%
 Da sich das ganze Kristallgitter wiederholt, wiederholen sich auch dessen Eigenschaften periodisch mit den Grundvektoren.
 Sollte man sich auf einem Gitterpunkt in einem Kristall aufhalten, ist es unmöglich zu wissen, auf welchem Gitterpunkt man sich befindet, da die Umgebungen aller Punkte identisch sind. 
 Mit anderen Worten: Jedes Kristallgitter $ G $ ist \emph{translationssymmetrisch} in der Translation 
@@ -54,6 +60,7 @@ Dabei sollte erwähnt werden, dass eine Translationssymmetrie nur in unendlich g
 \end{figure}
 
 \begin{satz} \label{thm:punktgruppen:crystal-restriction}
+\index{Rotationssymmetrie}
    Die Rotationssymmetrien eines Kristalls sind auf 2-fach, 3-fach, 4-fach und 6-fach beschränkt.
    Mit anderen Worten: Es sind nur Drehwinkel von
     0\(^{\circ}\),
@@ -122,6 +129,7 @@ ein.
 \end{figure}
 
 \subsection{Kristallklassen}
+\index{Kristallklasse}%
 
 Im vorausgegangenen Abschnitt wurde gezeigt, dass in einem zweidimensionalen Kristallgitter nicht alle Symmetrien möglich sind.
  Mit weiteren ähnlichen Überlegungen kann gezeigt werden, dass Kristalle im dreidimensionalen Raum nur auf genau 32 Arten rein punktsymmetrische Symmetriegruppen bilden können.
@@ -138,13 +146,21 @@ Im vorausgegangenen Abschnitt wurde gezeigt, dass in einem zweidimensionalen Kri
 \end{figure}
 
 \subsubsection{Schönflies-Symbolik}
-
+\index{Schönflies-Symbol}%
 Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:kristallklassen} ist mit ihrem zugehörigen Schönflies-Symbol bezeichnet.
  Die Schönflies-Symbolik stammt von dem Mathematiker Arthur Moritz Schönflies, welcher sich unter anderem mit der Klasifizierung der Punktgruppen auseinandergesetzt hat.
+\index{Schönflies, Arthur Moritz}%
  Er hat Untergruppen gebildet, welche als Grossbuchstaben in Abbildung \ref{fig:punktgruppen:kristallklassen} zu sehen sind.
  \begin{itemize}
    \item In Kristallen ist nur die Drehgruppe \(C\), Diedergruppe \(D\), Drehspiegelgruppe \(S\), Tetraedergruppe \(T\) und die Oktaedergruppe \(O\) zu finden.
+\index{Drehgruppe}%
+\index{Diedergruppe}%
+\index{Drehspiegelgruppe}%
+\index{Tetraedergruppe}%
+\index{Oktaedergruppe}%
 	   Es gäbe auch die Ikosaedergruppe \(I\) und die Kugelgruppe \(K\), diese sind aber nach Satz \ref{thm:punktgruppen:crystal-restriction} nicht kompatibel mit der Translationssymmetrie eines Kristalles und daher in der Kristallographie nicht relevant.  
+\index{Ikosaedergruppe}%
+\index{Kugelgruppe}%
    \item Dank Abschnitt \ref{sec:punktgruppen:Translationssymmetrie} wissen wir, wieso in Abbildung \ref{fig:punktgruppen:kristallklassen} auf \(C\) nur ganz bestimmte Subskripte folgen.
      Ist im Subskript eine Zahl \(n\) zu finden, steht dies für eine \(n\)-fache Symmetrie.
      Daher darf \(C_5\) auf der Abbildung \ref{fig:punktgruppen:kristallklassen} nicht vorkommen, da \(360^\circ/5 =  72^\circ\) was nach Satz \ref{thm:punktgruppen:crystal-restriction} keine mögliche Rotationssymmetrie eines Kristalles ist.
@@ -159,6 +175,7 @@ Jede der 32 Kristallklassen auf der Abbildung \ref{fig:punktgruppen:kristallklas
        \item[\(d\)] symbolisiert eine diagonale Symmetrieebene.
          Es wird ersichtlich wie diagonal gemeint ist, wenn man \(D_2\) zu \(D_{2d}\) vergleicht.
        \item[\(i\)] steht für ein Inversionszentrum. Hat eine Symmetriegruppe ein Inversionszentrum, bedeutet dies dass sie im Ursprung punktsymmetrisch ist.
+\index{Inversionszentrum}%
      \end{itemize}
  \end{itemize}
 Zu beachten ist jedoch, dass manche Symmetriegruppen mit mehreren Schönflies-Symbolen beschieben werden können.
