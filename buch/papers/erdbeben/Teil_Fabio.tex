@@ -1,202 +1,158 @@
-\section{Kalman-Filter}
-\subsection{Was ist ein Erdbeben?}
-Für das Verständnis möchten wir zuerst erklären, was ein Erdbeben genau ist.
-Das soll uns helfen, eine Verknüpfung zwischen dem Naturphänomen und der mathematischen Problemstellung herzustellen.
-
-
-Unter einem Erdbeben verstehen wir eine Erschütterung des Erdkörpers.
-Dabei reiben zwei tektonische Platten aneinander, welche sich durch die Gesteinsverzahnung gegenseitig blockieren.
-Aufgrund dieser Haftreibung entstehen Spannungen, die sich immer mehr bis zum Tipping Point aufbauen.
-Irgendwann ist der Punkt erreicht, in dem die Scherfestigkeit der Gesteine überwunden wird.
-Wenn dies passiert, entlädt sich die aufgebaute Spannung und setzt enorme Energien frei, die wir als Erdbeben wahrnehmen.
-
-Ein Erdbeben breitet sich vom Erdbebenherd in allen Richtungen gleich aus.
-Vergleichbar ist, wenn man einen Stein in einen Teich wirft und die Wellen beobachten kann, die sich ausbreiten.
-
-Wir möchten nun mittels Kalman-Filter die Erdbebenbeschleunigung herausfinden.
-Die Erdbebenbeschleunigung ist in der Praxis zur Entwicklung von Erdbebengefährdungskarten, sowie der Ausarbeitung von Baunormen für erdbebengerechte Bauweise von Bedeutung.
-
+\section{Anwendung des Kalman-Filters}
+\subsection{Ziel}
+Bis jetzt haben wir gelesen, was das Kalman-Filter bewirkt und wie es funktioniert.
+Nun möchten wir mit einem Beispiel herausfinden, ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann
 
 \subsection{Künstliche Erdbebendaten}
-Nun möchten wir anhand eines eigenen Beispiels das Kalman-Filter anwenden.
-Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben, müssen wir künstliche Daten erzeugen, um sie in das Filter einzugeben und somit den Prozess starten.
-Dafür nehmen wir die Formel für harmonisch gedämpfte Schwingungen, die
+Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben, müssen wir mittels Matlab künstliche Daten erzeugen und sie dann in das Filter eingeben.
+Diese Vorgehensweise erlaubt uns das Erdbeben beliebig zu gestalten und weil es digital simuliert wird, haben wir keine Bauschäden zu beklagen.
+
+\subsection{Wahl der Schwingung}
+Wir müssen uns überlegen, mit welcher Schwingung wir ein realitätsnahes Beben erzeugen können.
+
+Mit einer ungedämpften harmonischen Schwingung können wir zwar die meisten Vorgänge in der Physik erklären.
+Da aber unser Erdbeben irgendwann abklingen muss, wählen wir die gedämpfte harmonische Schwingung.
+Die dazugehörige Schwingungsgleichung lautet
 
 \begin{equation}
-	y = A \sin(\omega t e^{-lambda t})
+	y = A \sin(\omega t e^{-\lambda t})
 \end{equation} 
 
-lautet. 
-
-A ist die Amplitude der Schwingung und beschreibt die Heftigkeit eines Erdbebens, die Magnitude.
-Omega repräsentiert die Erdbebenfrequenz, die in der Realität zwischen 1 Hz und 30 Hz beträgt.
-Wir wählen als Erwartungswert 15 Herz und für die Standardabweichung 1 Hz.
-Lambda ist die Bodendämpfung, für die wir 0.2 wählen.
-Wir haben diese Zahl aus der Literatur entnommen, denn sie ist für das Bauwesen bedeutend.
-Lambda ist ein Materialparameter von Böden.
-
-Je grösser Lambda gewählt wird, desto stärker wirkt die Dämpfung der Massenschwingung.
-Die Funktion ist zeitabhängig und wir lassen pro Sekunde zehn Messwerte generieren.
-
-Die Frequenz basiert auf einer random-Funktion, da wir das Erdbeben unberechenbar gestalten möchten.
-Mit dem Golay-Filter können wir hohe Frequenz-Anteile in die Berechnung mit einfliessen lassen, anstatt sie abzuschneiden.
-Die Bildung eines üblichen Mittelwerts wäre hier weniger geeignet.
-
-\begin{lstlisting}
-freq = sgolayfilt(randn(size(Time)),0,11)*freqstd...
-+freqmean;
-\end{lstlisting}
-
-Mit der Frequenz erhalten wir die Winkelbeschleunigung und damit können wir die Amplitude berechnen. 
-
-
-\begin{lstlisting}
-w = 2 * pi * freq;
-a = Amplitude*sin(cumsum(w.*[0;diff(Time)])).*exp(-lambda*Time);
-\end{lstlisting}
-
-Mit der Matlab-Funktion ode45 haben wir eine Funktion gefunden, um die Differentialgleichung aufzulösen. ode45 basiert auf dem Runge-Kutta-Verfahren, einem Einschrittverfahren, bei dem die Lösung ausgehend von einem gegebenen Anfangswert, in einer Näherung gesucht wird.
-
-\begin{lstlisting}
-[T,Y] = ode45(@(t,x)ErzeugteSchwingung(t,x,m,k,d,a,Time),[0 tend], IC, SolverOptions);
-\end{lstlisting}
-
-Grafik einfügen
-
-In der Grafik erkennen wir in den Sekunden 0 bis 10, dass die Sinuskurve gezackt ist.
-Das deutet darauf hin, dass die Frequenz des Erdbebens einen hohen Einfluss auf die Masse des Seismographen hat.
-Ab der 10. Sekunde bis zu tend, pendelt sich die Masse in ihre Eigenfrequenz ein und verhält sich unabhängiger vom Erdbeben.
-
-\subsection{Versuch (bin noch dran)}
-
-Um den Kalman-Filter auszuprobieren, setzen wir nun Werte ein.
-Für die Systemparameter wählen wir m=1.0, D = 0.3 und k = 0.1 und fügen es in die Differentialgleichung
+Für die Variablen der harmonisch gedämpften Schwingung setzen wir die Werte
 
 \begin{equation}
-	m\ddot x + 2k \dot x + Dx = f	
+A = 5
 \end{equation} 
 
-ein und erhalten
+ein.
+
+$A$ ist die Amplitude der Schwingung, die uns die Heftigkeit des Erdebebens beschreibt.
+Sie ist vergleichbar mit der Magnitude.
+
+$\omega$ definiert sich durch 
 
 \begin{equation}
-	1\ddot x + 0.1 \dot x + 0.3x = f	
+	\omega = 2 \pi f
+\end{equation}
+
+wobei die Frequenz f mit
+
+\begin{equation}
+	f = E(Frequenz) + \sigma^2(Frequenz)
+\end{equation}
+
+erzeugt wird.
+
+Zusätzlich haben wir $f$ mit dem Savitzky-Golay-Filter gefiltert.
+Das Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an und bildet ein Polygon n-ter Ordnung. 
+In unserer Anwendung schaut sich das Filter, im Sinne eines verschieblichen Fensters, jeweils zehn aufeinanderfolgende Datenpunkte an und bildet ein Polygon 0-ter Ordnung. 
+Da wir den Grad 0 gewählt haben, erhalten wir pro zehn Punkte nur eine Gerade mit der Steigung 0. 
+Diese Art von Mittelwertbildung nennt sich auch moving average oder auf Deutsch gleitender Mittelwert.
+
+Für den Erwartungswert und die Standardabweichung setzen wir die Zahlen 
+
+\begin{equation}
+E(f) = 15 Hz
+\end{equation}
+
+und 
+\begin{equation}
+\sigma^2 = 10 Hz
+\end{equation}
+
+ein.
+
+$\lambda$ ist die Bodendämpfung, für die wir 0.2 wählen.
+Sie ist dafür verantwortlich, dass unser Erdbeben abklingen wird und kreiert bei der gedämpften Schwingung die typische Hüllkurve der Amplitude.
+Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
+
+\subsection{Ab hier bin ich noch dran/ Versuch im Standardfall}
+Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
+Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca. 100 g hat.
+Da wir das Erdbeben nach Augenmass realistisch darstellen möchten, geben wir der realistischen Masse eher weniger Gewichtung und definieren $m = 0.01$
+Zur Federkonstante D und Dämpfung k konnten wir leider keine brauchbaren Grössen finden und treffen die Annahme, dass $D = 1$ und $k = 0.01$.
+
+Da unser Seismograph von der Umgebung durch Wind, Temperatur oder menschgemachten Vibrationen beeinflusst wird, müssen wir ein Prozessrauschen definieren.
+Die dazugehörige Matrix $Q$ beinhaltet die Standardabweichung für die Position, Geschwindigkeit und äussere Kraft.
+Wir nehmen an, dass
+
+\begin{equation}
+	Q = \left(
+	\begin{array}{ccc} 	
+		{\sigma_x }^2& 0& 0 \\ 
+		0 & {\sigma_v }^2& 0\\ 
+		0 & 0& {\sigma_f }^2\\
+	\end{array}\right)= \left(
+	\begin{array}{ccc} 	
+		{0.00001 }^2& 0& 0 \\ 
+		0 & {0.00001 }^2& 0\\ 
+		0 & 0& {1 }^2\\
+	\end{array}\right)
 \end{equation} 
 
-\subsection{Matlab Code}
+Auch für die Messung setzen wir ein Rauschen voraus und definieren
+
+\begin{equation}
+R= ({\sigma_x}^2)=
+({0.00001}^2)
+\end{equation}
+
+Sind nun die benötigten Systemparameter und das Rauschen definiert, erzeugen wir das Erdbeben und schauen wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
+
+Wie wir in Abbildung 20.4 sehen, liegen wir mit unseren definierten Werten ziemlich gut.
+Das Positions-Zeit-Diagramm stellt eine realistische Erdbebenschwingung auf.
+Das Ziel, ein künstliches Erdbeben zu kreieren haben wir somit erreicht.
+Nun möchten wir noch herausfinden, ob auch das Kalman-Filter eine gute Schätzung hervorbringen konnte.
+Wir betrachten in Abbildung 20.5 das vergrösserte Kraft-Zeit-Diagramm und erkennen, dass die Schätzung sehr nahe an die Erdbebenschwingung kommt.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=15cm]{papers/erdbeben/Standard_alles.PNG}
+		\caption{Die Grafik Position vs. Zeit zeigt die typische Aufzeichnung eines Erdbebens. In der Grafik Kraft vs. Zeit wird unteranderem die äussere Beschleunigung mittels Kalman Filters bestimmt.}
+	\end{center}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=15cm]{papers/erdbeben/Erdbeben_Standardfall_Zoom.PNG}
+		\caption{Erst das Vergrössern des Diagrammes zeigt uns auf, wie gut die Schätzung des Kalman-Filters funktioniert.}
+	\end{center}
+\end{figure}
+
+Wir können nun an den Systemparametern Werte verändern oder das Rauschen des Prozesses und der Messung verstärken.
+
+\subsection{Veränderung der Systemparameter}
 
 
-\begin{lstlisting}
-	%% Initialisierte Werte
-	t0      =  0.00; % Anfangszeit
-	deltat  =  0.01; % Zeitschritt
-	tend    = 50.00; % Endzeit
-\end{lstlisting}
-Ein natürliches Erdbeben dauert zwischen wenigen Sekunden bis etwa eine Minute an.
-50 Sekunden genügen für unsere Daten. 
-Pro Sekunde erhalten wir 100 Messpunkte, die für den Prozess des Filters eine präzise Anwendung ermöglichen.
-
-\begin{lstlisting}
-	% Standard-Abweichungen Prozess
-	sigmax = 0.05e-3;  % Position
-	sigmav = 0.01e-3;  % Geschwindigkeit
-	sigmaf = 1;        % (Äussere) Kraft
-	
-	% Standard-Abweichung Messung
-	sigmam = 0.01e-3;
-\end{lstlisting}
-
-Wir vertrauen dem System und geben kleine Standardabweichungen für die Position, Geschwindigkeit und Kraft ein.
-Bei der Messung erwarten wir auch, dass die Sensoren genau funktionieren.
-Jedoch hängt das vom Hersteller ab oder muss statistisch ermittelt werden.
 
 
-\begin{lstlisting}
-	% Systemparameter
-m = 1.00; % Masse
-D = 0.30; % Federkonstante
-k = 0.10; % Dämpfung
-\end{lstlisting}
-Hier werden die Spezifikationen des Seismographen definiert.
+\subsection{Verstärkung des Prozessrauschens}
+Vertrauen wir dem Seismographen weniger als beim Standardfall, erhöhen wir das Prozessrauschen.
+Mit der Erhöhung des Rauschens teilen wir dem Filter mit, dass wir 
 
-\begin{lstlisting}
-%% Kalmanfilter
-% Initialisierung
+Gründe dafür könnten den Standort oder die Bauweise des Seismographen sein.
+Seismographen sind meistens an Orten verbaut, wo es aus der Umgebung wenig Einflüsse gibt.
+Steht der Seismograph in der Nähe einer grösseren Stadt, werden viel mehr Vibrationen aufgezeichnet, die aber nicht von einem Erdbeben stammen und somit die Aufzeichnung verfälschen.
+Auch die Qualität des Seismographen spielt eine Rolle, wie genau die Position oder Geschwindigkeit aufgezeichnet wird.
 
-% Anfangszustand (Position, Geschwindigkeit, Kraft)
-x0 = [0; 0; 0];
+Wir verstärken das Prozessrauschen um den Faktor 10'000 aber belassen den Rest gleich wie beim Standardfall.
+Wir erwarten nun, dass die Geschwindigkeit und Position der Masse verrauschter und somit unkenntlicher erfasst wird.
 
-% Unsicherheit des Anfangszustand
-P0 = [0, 0, 0; ...
-0, 0, 0; ...
-0, 0, 0];
+Das Seismogramm zeichnet nun 
+Wir erwarten, dass die Aufzeichnung der Position und Geschwindigkeit ungenauer wird, 
 
-% Systemmatrizen
-A = [0, 1, 0;...             %   Dynamikmatrix
--D/m, -2*k/m, 1;...      
-0, 0, 0];                %   Ableitungen von f(t) unbekant. Annahme: 0
-A = expm(A * deltat);
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=15cm]{papers/erdbeben/Prozessrauschen_geändert.PNG}
+		\caption{Das verstärkte Rauschen dominiert über der Erdbebenschwingung. Die Aufzeichnung wird unbrauchbar.}
+	\end{center}
+\end{figure}
 
-Q = [sigmax^2, 0, 0;...      
-0, sigmav^2, 0;...
-0, 0, sigmaf^2];         %   Prozessrauschen (Covarianz)
+\subsection{Verstärkung des Messrauschens}
 
 
-\begin{lstlisting}
-% Messprozess
-H = [1, 0, 0];  % Messmatrix
-R = sigmam^2;   % Messrauschen  (Könnte durch Versuche bestimmt werden)
-\end{lstlisting}
-Tritt ein Erdbeben ein, wird die Position der Masse in die Messmatrix eingetragen.
 
 
-I = eye(3);          % Identity matrix  (Einheitsmatrix)
-
-\begin{lstlisting}
-% Filterprozess
-
-% Initialisieren der Variablen
-N     = length(t);    % Anzahl Punkte im Einheitsvektor (= Anzahl Messwerte)
-xhat  = zeros(3, N);  % Matrix mit geschätzten Zuständen
-
-% Index ':' bedeutet:      'alles'
-% Index '(1, :)' bedeutet: 'alles aus der 1. Zeile'
-
-% Anfangszustand setzen
-xhat(:, 1) = x0; 
-P = P0;
-\end{lstlisting}
-
-\begin{lstlisting}
-	
-% Kalman-Matrizen konvergiert. Vorab-Berechnung in 'genügenden' Iterationen
-for idx = 1:100
-Ppred = A * P * A' + Q;   % Prädizieren der Kovarianz
-S = (H * Ppred * H' + R); % Innovationskovarianz
-K = Ppred * H' / S;       % Filter-Matrix (Kalman-Gain)
-P = (I - K * H) * Ppred;  % Aktualisieren der Kovarianz  
-end
-\end{lstlisting}
-
-In diesem Schritt wird die Kovarianz vorhergesagt, mit der Messung verglichen und nach jeder Berechnung aktualisiert.
-
-\begin{lstlisting}
-% Anfangszustand gegeben
-% Erster zu berechnender Wert ist der zweite
-for idx = 2:N
-% Vorhersage
-xpred = A * xhat(:, idx-1);   % Prädizierter Zustand aus Bisherigem und System
-% Ppred = A * P * A' + Q;   % Prädizieren der Kovarianz
-
-% Korrektur
-y = xt(idx) - H * xpred;        % Messungen/ Kraft aus System - Vohersage
-% S = (H * Ppred * H' + R);     % Innovationskovarianz
-% K = Ppred * H' / S;           
-
-xhat(:, idx) = xpred + K * y;    % Aktualisieren des Systemzustands
-% P = (I - K * H) * Ppred;       % Aktualisieren der Kovarianz
-end
-\end{lstlisting}
-
-\subsection{Resultate}
+\subsection{Fazit}
 Grafik einfügen
 Wir erkennen, dass wir mit dem Kalman-Filter eine gute Methode gefunden haben, die äussere Beschleunigung zu schätzen. Die Schätzung der nächsten Position der Federmasse liegt immer ziemlich nahe der tatsächlichen Messung. Man muss aber auch berücksichtigen, dass die Federschwingung ziemlich kontrolliert verläuft und das Kalman-Filter somit präzise Vorhersagen treffen kann.
