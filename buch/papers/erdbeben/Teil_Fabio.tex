@@ -1,11 +1,14 @@
 \section{Anwendung des Kalman-Filters}
 \subsection{Ziel}
 Bis jetzt haben wir gelesen, was das Kalman-Filter bewirkt und wie es funktioniert.
-Nun möchten wir mit einem Beispiel herausfinden, ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann
+Nun möchten wir mit einem Beispiel herausfinden,
+ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann.
 
 \subsection{Künstliche Erdbebendaten}
 Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben, müssen wir mittels Matlab künstliche Daten erzeugen und sie dann in das Filter eingeben.
-Diese Vorgehensweise erlaubt uns das Erdbeben beliebig zu gestalten und weil es digital simuliert wird, haben wir keine Bauschäden zu beklagen.
+Diese Vorgehensweise erlaubt uns das Erdbeben beliebig zu gestalten
+und weil es digital simuliert wird,
+haben wir keine Bauschäden zu beklagen.
 
 \subsection{Wahl der Schwingung}
 Wir müssen uns überlegen, mit welcher Schwingung wir ein realitätsnahes Beben erzeugen können.
@@ -15,7 +18,7 @@ Da aber unser Erdbeben irgendwann abklingen muss, wählen wir die gedämpfte har
 Die dazugehörige Schwingungsgleichung lautet
 
 \begin{equation}
-	y = A \sin(\omega t e^{-\lambda t})
+	y = A \sin(\omega t) e^{-\lambda t}
 \end{equation} 
 
 Für die Variablen der harmonisch gedämpften Schwingung setzen wir die Werte
@@ -38,37 +41,39 @@ $\omega$ definiert sich durch
 wobei die Frequenz f mit
 
 \begin{equation}
-	f = E(Frequenz) + \sigma^2(Frequenz)
+	f = E(\mathrm{Frequenz}) + \sigma^2(\mathrm{Frequenz})
 \end{equation}
 
 erzeugt wird.
 
 Zusätzlich haben wir $f$ mit dem Savitzky-Golay-Filter gefiltert.
-Das Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an und bildet ein Polygon n-ter Ordnung. 
-In unserer Anwendung schaut sich das Filter, im Sinne eines verschieblichen Fensters, jeweils zehn aufeinanderfolgende Datenpunkte an und bildet ein Polygon 0-ter Ordnung. 
-Da wir den Grad 0 gewählt haben, erhalten wir pro zehn Punkte nur eine Gerade mit der Steigung 0. 
+Das Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an
+und bildet ein Polynom $n$-ter Ordnung. 
+In unserer Anwendung schaut sich das Filter, im Sinne eines verschieblichen Fensters,
+jeweils zehn aufeinanderfolgende Datenpunkte an und bildet ein Polynom $0$-ter Ordnung.
+Da wir den Grad $0$ gewählt haben, erhalten wir pro zehn Punkte nur eine Gerade mit der Steigung $0$. 
 Diese Art von Mittelwertbildung nennt sich auch moving average oder auf Deutsch gleitender Mittelwert.
 
 Für den Erwartungswert und die Standardabweichung setzen wir die Zahlen 
 
 \begin{equation}
-E(f) = 15 Hz
+E(f) = \SI{15}{\hertz}
 \end{equation}
 
 und 
 \begin{equation}
-\sigma^2 = 10 Hz
+\sigma^2 = \SI{10}{\hertz}
 \end{equation}
 
 ein.
 
-$\lambda$ ist die Bodendämpfung, für die wir 0.2 wählen.
+$\lambda$ ist die Bodendämpfung, für die wir $0.2$ wählen.
 Sie ist dafür verantwortlich, dass unser Erdbeben abklingen wird und kreiert bei der gedämpften Schwingung die typische Hüllkurve der Amplitude.
 Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
 
 \subsection{Ab hier bin ich noch dran/ Versuch im Standardfall}
 Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
-Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca. 100 g hat.
+Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca. \SI{100}{\gram} hat.
 Da wir das Erdbeben nach Augenmass realistisch darstellen möchten, geben wir der realistischen Masse eher weniger Gewichtung und definieren $m = 0.01$
 Zur Federkonstante D und Dämpfung k konnten wir leider keine brauchbaren Grössen finden und treffen die Annahme, dass $D = 1$ und $k = 0.01$.
 
@@ -143,7 +148,7 @@ Wir erwarten, dass die Aufzeichnung der Position und Geschwindigkeit ungenauer w
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=15cm]{papers/erdbeben/Prozessrauschen_geändert.PNG}
+		\includegraphics[width=15cm]{papers/erdbeben/Prozessrauschen_geaendert.PNG}
 		\caption{Das verstärkte Rauschen dominiert über der Erdbebenschwingung. Die Aufzeichnung wird unbrauchbar.}
 	\end{center}
 \end{figure}
