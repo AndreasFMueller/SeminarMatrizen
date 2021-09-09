@@ -517,7 +517,6 @@ Die Hardwareinformationen des verwendeten Computers sind in der Tabelle \ref{mul
 \end{figure}
 
 \section{Fazit}
-\rhead{Fazit}
 
 Wie man im Abschnitt \ref{multiplikation:section:Implementation} sehen kann, sind die gezeigten Algorithmen trotz der theoretisch geringeren Zeitkomplexitäten den Implementationen der numerischen Bibliotheken klar unterlegen.
 Ein optimierter Speicherzugriff hat einen weitaus grösseren Einfluss auf die Laufzeit als die Zeitkomplexität des Algorithmus.
@@ -528,3 +527,5 @@ Denke man an sehr kleine Mikrocontroller ohne Floatingpoint Recheneinheiten oder
 Der Overhead der gezeigten Algorithmen ist in allen Fällen grösser als bei der Standardmethode (z.B. sieben rekursive Aufrufe gegenüber drei \texttt{for}-Schleifen).
 Um diesem entgegenzuwirken muss der Laufzeitunterschied zwischen Addition und Multiplikation gross genug sein.
 Wenn dies gegeben ist und dazu noch grosse Matritzen multipliziert werden, kann die Verwendung der Algorithmen von Strassen oder Winograd zu einer Senkung der Laufzeit führen.
+
+\rhead{Fazit}
