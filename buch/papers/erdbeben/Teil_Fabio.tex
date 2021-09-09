@@ -18,27 +18,27 @@ Da aber unser Erdbeben irgendwann abklingen muss, wählen wir die gedämpfte har
 Die dazugehörige Schwingungsgleichung lautet
 
 \begin{equation}
-	y = A \sin(\omega t) e^{-\lambda t}
-\end{equation} 
+	y = A e^{-\lambda t} \sin(\omega t)
+\end{equation}
 
 Für die Variablen der harmonisch gedämpften Schwingung setzen wir die Werte
 
 \begin{equation}
 A = 5
-\end{equation} 
+\end{equation}
 
 ein.
 
 $A$ ist die Amplitude der Schwingung, die uns die Heftigkeit des Erdebebens beschreibt.
 Sie ist vergleichbar mit der Magnitude.
 
-$\omega$ definiert sich durch 
+$\omega$ definiert sich durch
 
 \begin{equation}
 	\omega = 2 \pi f
 \end{equation}
 
-wobei die Frequenz f mit
+wobei die Frequenz $f$ mit
 
 \begin{equation}
 	f = E(\mathrm{Frequenz}) + \sigma^2(\mathrm{Frequenz})
@@ -48,19 +48,19 @@ erzeugt wird.
 
 Zusätzlich haben wir $f$ mit dem Savitzky-Golay-Filter gefiltert.
 Das Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an
-und bildet ein Polynom $n$-ter Ordnung. 
+und bildet ein Polynom $n$-ter Ordnung.
 In unserer Anwendung schaut sich das Filter, im Sinne eines verschieblichen Fensters,
 jeweils zehn aufeinanderfolgende Datenpunkte an und bildet ein Polynom $0$-ter Ordnung.
-Da wir den Grad $0$ gewählt haben, erhalten wir pro zehn Punkte nur eine Gerade mit der Steigung $0$. 
-Diese Art von Mittelwertbildung nennt sich auch moving average oder auf Deutsch gleitender Mittelwert.
+Da wir den Grad $0$ gewählt haben, erhalten wir pro zehn Punkte eine Gerade mit der Steigung $0$.
+Diese Art von der Filterung nennt sich gleitender Mittelwert.
 
-Für den Erwartungswert und die Standardabweichung setzen wir die Zahlen 
+Für den Erwartungswert und die Standardabweichung setzen wir die Zahlen
 
 \begin{equation}
 E(f) = \SI{15}{\hertz}
 \end{equation}
 
-und 
+und
 \begin{equation}
 \sigma^2 = \SI{10}{\hertz}
 \end{equation}
@@ -74,8 +74,8 @@ Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
 \subsection{Ab hier bin ich noch dran/ Versuch im Standardfall}
 Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
 Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca. \SI{100}{\gram} hat.
-Da wir das Erdbeben nach Augenmass realistisch darstellen möchten, geben wir der realistischen Masse eher weniger Gewichtung und definieren $m = 0.01$
 Zur Federkonstante D und Dämpfung k konnten wir leider keine brauchbaren Grössen finden und treffen die Annahme, dass $D = 1$ und $k = 0.01$.
+Für die Masse definieren wir $m = 0.01$.
 
 Da unser Seismograph von der Umgebung durch Wind, Temperatur oder menschgemachten Vibrationen beeinflusst wird, müssen wir ein Prozessrauschen definieren.
 Die dazugehörige Matrix $Q$ beinhaltet die Standardabweichung für die Position, Geschwindigkeit und äussere Kraft.
@@ -83,17 +83,17 @@ Wir nehmen an, dass
 
 \begin{equation}
 	Q = \left(
-	\begin{array}{ccc} 	
-		{\sigma_x }^2& 0& 0 \\ 
-		0 & {\sigma_v }^2& 0\\ 
+	\begin{array}{ccc}
+		{\sigma_x }^2& 0& 0 \\
+		0 & {\sigma_v }^2& 0\\
 		0 & 0& {\sigma_f }^2\\
 	\end{array}\right)= \left(
-	\begin{array}{ccc} 	
-		{0.00001 }^2& 0& 0 \\ 
-		0 & {0.00001 }^2& 0\\ 
+	\begin{array}{ccc}
+		{0.00001 }^2& 0& 0 \\
+		0 & {0.00001 }^2& 0\\
 		0 & 0& {1 }^2\\
 	\end{array}\right)
-\end{equation} 
+\end{equation}
 
 Auch für die Messung setzen wir ein Rauschen voraus und definieren
 
@@ -102,62 +102,82 @@ R= ({\sigma_x}^2)=
 ({0.00001}^2)
 \end{equation}
 
-Sind nun die benötigten Systemparameter und das Rauschen definiert, erzeugen wir das Erdbeben und schauen wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
+Sind nun die benötigten Systemparameter und das Rauschen definiert, erzeugen wir das Erdbeben und schauen, wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
 
-Wie wir in Abbildung 20.4 sehen, liegen wir mit unseren definierten Werten ziemlich gut.
-Das Positions-Zeit-Diagramm stellt eine realistische Erdbebenschwingung auf.
-Das Ziel, ein künstliches Erdbeben zu kreieren haben wir somit erreicht.
-Nun möchten wir noch herausfinden, ob auch das Kalman-Filter eine gute Schätzung hervorbringen konnte.
-Wir betrachten in Abbildung 20.5 das vergrösserte Kraft-Zeit-Diagramm und erkennen, dass die Schätzung sehr nahe an die Erdbebenschwingung kommt.
+\subsection*{Ergebnis}
+
+Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagramm sehen, erzeugen unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung.
+Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
+Die zweite Ableitung ergibt uns die Kraft, welche für unsere Aufgabenstellung relevant ist.
+Sehr gut ersichtlich ist die Hüllkurve der Amplitude, wie wir sie bei einer gedämpften Schwingung erwarten.
+Die blaue Kurve ist die geschätzte äussere Kraft des Kalman-Filters.
+Erst wenn wir näher zoomen, erkennen wir in der Abbildung~\ref{erdbeben:fig:standard-zoom} wie nahe die Schätzung an der idealen Schwingung liegt.
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=15cm]{papers/erdbeben/Standard_alles.PNG}
-		\caption{Die Grafik Position vs. Zeit zeigt die typische Aufzeichnung eines Erdbebens. In der Grafik Kraft vs. Zeit wird unteranderem die äussere Beschleunigung mittels Kalman Filters bestimmt.}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Standard_alles.PNG}
+		\caption{Das Position-Zeit-Diagramm zeigt uns die typische Aufzeichnung eines Seismographen während eines Erdbebens. Um die Geschwindigkeit zu erhalten müssen wir die Positionsveränderung einmal ableiten. Ein weiteres Ableiten erzeugt uns die Beschleunigung resp. die Kraft.}
+    \label{erdbeben:fig:standard-alles}
 	\end{center}
 \end{figure}
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=15cm]{papers/erdbeben/Erdbeben_Standardfall_Zoom.PNG}
-		\caption{Erst das Vergrössern des Diagrammes zeigt uns auf, wie gut die Schätzung des Kalman-Filters funktioniert.}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Erdbeben_Standardfall_Zoom.PNG}
+		\caption{Erst das Vergrössern an die Datenpunkte zeigt uns auf, wie gut die Schätzung des Kalman-Filters funktioniert.}
+    \label{erdbeben:fig:standard-zoom}
 	\end{center}
 \end{figure}
-
-Wir können nun an den Systemparametern Werte verändern oder das Rauschen des Prozesses und der Messung verstärken.
 
 \subsection{Veränderung der Systemparameter}
+Was wir nun austesten möchten, sind die Auswirkungen wenn z.B. der Seismograph andere Systemparameter aufweist.
+Wir nehmen an, dass sich im Vergleich zum Standardfall die Masse erhöht, die Federkonstante schwächer und die Bodendämpfung doppelt so stark wirkt.
+Somit gilt neu
+\[
+m = 0.05
+\qquad \qquad
+D = 0.5
+\qquad \text{und} \qquad
+k = 0.02.
+\]
 
+Da wir mit dieser Anpassung die Trägheit des Seismogrammes erhöht haben, erwarten wir sicher eine langsamere Bewegung der Masse, das heisst die Frequenz wird sich reduzieren.
 
+Betrachten wir die Abbildung~\ref{erdbeben:fig:systemparameter-geaendert} können wir diese Erwartung bestätigen.
+Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die höhere Energie der Masse und geringeren Rücklenkkraft der Feder begründen können.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Systemparameter_geaendert_2.PNG}
+		\caption{Im Geschwindigkeits-Diagramm erkennen wir in den ersten $6-7$ Sekunden, wie die Erdbebenschwingung die Masse beeinflusst. Gleichzeitig und vorallem im gesamten Zeitverlauf, pendelt sich die Masse in die Eigenschwingung ein.}
+    \label{erdbeben:fig:systemparameter-geaendert}
+	\end{center}
+\end{figure}
 
 
 \subsection{Verstärkung des Prozessrauschens}
-Vertrauen wir dem Seismographen weniger als beim Standardfall, erhöhen wir das Prozessrauschen.
-Mit der Erhöhung des Rauschens teilen wir dem Filter mit, dass wir 
-
-Gründe dafür könnten den Standort oder die Bauweise des Seismographen sein.
-Seismographen sind meistens an Orten verbaut, wo es aus der Umgebung wenig Einflüsse gibt.
-Steht der Seismograph in der Nähe einer grösseren Stadt, werden viel mehr Vibrationen aufgezeichnet, die aber nicht von einem Erdbeben stammen und somit die Aufzeichnung verfälschen.
-Auch die Qualität des Seismographen spielt eine Rolle, wie genau die Position oder Geschwindigkeit aufgezeichnet wird.
-
-Wir verstärken das Prozessrauschen um den Faktor 10'000 aber belassen den Rest gleich wie beim Standardfall.
-Wir erwarten nun, dass die Geschwindigkeit und Position der Masse verrauschter und somit unkenntlicher erfasst wird.
-
-Das Seismogramm zeichnet nun 
-Wir erwarten, dass die Aufzeichnung der Position und Geschwindigkeit ungenauer wird, 
+Falls wir unseren Seismographen in der Nähe einer grösseren Stadt aufstellen, so müssen wir aufgrund der Vibrationen mit einem stärkeren Prozessrauschen rechnen.
+Dieses Rauschen beeinflusst die Position und Geschwindigkeit in der Zustands-Matrix $Q$.
+Aus diesem Grund erhöhen wir die Standardabweichungen in der Matrix $Q$ um den Faktor $1'000$.
+Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt auf, dass die Kalman-Schätzung der Kraft nur gering an den Messwerten anpasst.
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=15cm]{papers/erdbeben/Prozessrauschen_geaendert.PNG}
-		\caption{Das verstärkte Rauschen dominiert über der Erdbebenschwingung. Die Aufzeichnung wird unbrauchbar.}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Prozessrauschen_geaendert.PNG}
+		\caption{}
+    \label{erdbeben:fig:prozessrauschen-geaendert}
 	\end{center}
 \end{figure}
 
 \subsection{Verstärkung des Messrauschens}
+Als letztes verstärken wir das Messrauschen um den Faktor 100 und belassen wieder den Rest wie im Standardfall.
+Diese Anpassung bewirkt bei der Position und Geschwindigkeit grosse Abweichungen zwischen der Messgrösse und des Schätzwertes.
+Im ganzen ist der Output sehr ungenau und somit nicht mehr brauchbar.
 
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Messrauschen_geaendert.PNG}
+		\caption{Das verstärkte Messrauschen dominiert über der Erdbebenschwingung. Die Aufzeichnung wird unbrauchbar und die Schätzung zu ungenau.}
+	\end{center}
+\end{figure}
 
-
-
-\subsection{Fazit}
-Grafik einfügen
-Wir erkennen, dass wir mit dem Kalman-Filter eine gute Methode gefunden haben, die äussere Beschleunigung zu schätzen. Die Schätzung der nächsten Position der Federmasse liegt immer ziemlich nahe der tatsächlichen Messung. Man muss aber auch berücksichtigen, dass die Federschwingung ziemlich kontrolliert verläuft und das Kalman-Filter somit präzise Vorhersagen treffen kann.
