@@ -71,9 +71,9 @@ $\lambda$ ist die Bodendämpfung, für die wir $0.2$ wählen.
 Sie ist dafür verantwortlich, dass unser Erdbeben abklingen wird und kreiert bei der gedämpften Schwingung die typische Hüllkurve der Amplitude.
 Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
 
-\subsection{Ab hier bin ich noch dran/ Versuch im Standardfall}
+\subsection{Versuch im Standardfall}
 Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
-Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca. \SI{100}{\gram} hat.
+Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca.\ \SI{100}{\gram} hat.
 Zur Federkonstante D und Dämpfung k konnten wir leider keine brauchbaren Grössen finden und treffen die Annahme, dass $D = 1$ und $k = 0.01$.
 Für die Masse definieren wir $m = 0.01$.
 
@@ -89,8 +89,8 @@ Wir nehmen an, dass
 		0 & 0& {\sigma_f }^2\\
 	\end{array}\right)= \left(
 	\begin{array}{ccc}
-		{0.00001 }^2& 0& 0 \\
-		0 & {0.00001 }^2& 0\\
+		{0.00001}^2& 0& 0 \\
+		0 & {0.00001}^2& 0\\
 		0 & 0& {1 }^2\\
 	\end{array}\right)
 \end{equation}
@@ -110,20 +110,21 @@ Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagram
 Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
 Die zweite Ableitung ergibt uns die Kraft, welche für unsere Aufgabenstellung relevant ist.
 Sehr gut ersichtlich ist die Hüllkurve der Amplitude, wie wir sie bei einer gedämpften Schwingung erwarten.
+
 Die blaue Kurve ist die geschätzte äussere Kraft des Kalman-Filters.
 Erst wenn wir näher zoomen, erkennen wir in der Abbildung~\ref{erdbeben:fig:standard-zoom} wie nahe die Schätzung an der idealen Schwingung liegt.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Standard_alles.PNG}
-		\caption{Das Position-Zeit-Diagramm zeigt uns die typische Aufzeichnung eines Seismographen während eines Erdbebens. Um die Geschwindigkeit zu erhalten müssen wir die Positionsveränderung einmal ableiten. Ein weiteres Ableiten erzeugt uns die Beschleunigung resp. die Kraft.}
+		\caption{Das Position-Zeit-Diagramm zeigt uns die typische Aufzeichnung eines Seismographen während eines Erdbebens. Um die Geschwindigkeit zu erhalten müssen wir die Position einmal ableiten. Ein weiteres Ableiten erzeugt uns die Beschleunigung, respektive die Kraft.}
     \label{erdbeben:fig:standard-alles}
 	\end{center}
 \end{figure}
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Erdbeben_Standardfall_Zoom.PNG}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Standard_Zoom.PNG}
 		\caption{Erst das Vergrössern an die Datenpunkte zeigt uns auf, wie gut die Schätzung des Kalman-Filters funktioniert.}
     \label{erdbeben:fig:standard-zoom}
 	\end{center}
@@ -149,7 +150,7 @@ Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die h
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Systemparameter_geaendert_2.PNG}
-		\caption{Im Geschwindigkeits-Diagramm erkennen wir in den ersten $6-7$ Sekunden, wie die Erdbebenschwingung die Masse beeinflusst. Gleichzeitig und vorallem im gesamten Zeitverlauf, pendelt sich die Masse in die Eigenschwingung ein.}
+		\caption{Im Geschwindigkeits-Diagramm erkennen wir, dass sich im Vergleich zum Standardfall, die Auslenkung und Frequenz vergrössert hat. Dies wird mit der Erhöhung der Masse und somit der Trägheit begründet. Auch stellen wir fest, dass die Positionsmessung überwiegend die Eigenfrequenz misst.}
     \label{erdbeben:fig:systemparameter-geaendert}
 	\end{center}
 \end{figure}
@@ -157,27 +158,47 @@ Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die h
 
 \subsection{Verstärkung des Prozessrauschens}
 Falls wir unseren Seismographen in der Nähe einer grösseren Stadt aufstellen, so müssen wir aufgrund der Vibrationen mit einem stärkeren Prozessrauschen rechnen.
-Dieses Rauschen beeinflusst die Position und Geschwindigkeit in der Zustands-Matrix $Q$.
-Aus diesem Grund erhöhen wir die Standardabweichungen in der Matrix $Q$ um den Faktor $1'000$.
-Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt auf, dass die Kalman-Schätzung der Kraft nur gering an den Messwerten anpasst.
+Dieses Rauschen beeinflusst die Varianzen der Position und Geschwindigkeit in der Matrix $Q$.
+Aus diesem Grund erhöhen wir die Standardabweichungen in der Matrix $Q$ um den Faktor $100$.
+Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt auf, dass das Kalman-Filter die Schätzung der Kraft nur gering an den Messwerten anpasst.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Prozessrauschen_geaendert.PNG}
-		\caption{}
+		\caption{Mit dem Erhöhen des Prozessrauschens gehen wir von einer grösseren Unsicherheit der Systemmatrix aus. Aus diesem Grund folgt das Filter vor allem den Messwerten, was sichtbare Folgen für die Schätzkurve im Kraft-Zeit-Diagramm hat. Hier möchte das Filter auch den Messwerten folgen. Da wir aber für die Kraft keine Messwerte aufzeichnen, erhalten wir eine sehr schwache Kurve}
     \label{erdbeben:fig:prozessrauschen-geaendert}
 	\end{center}
 \end{figure}
 
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Prozessrauschen_geaendert_zoom.PNG}
+		\caption{Die Position kann immernoch präzise geschätzt werden und die Ableitung zur Geschwindigkeit ergibt gute Resultate. Jedoch ist die Schätzkurve der Kraft sehr weit von der idealen Kurve entfernt und nicht nutzbar.}
+		\label{erdbeben:fig:prozessrauschen-geaendert-zoom}
+	\end{center}
+\end{figure}
+
 \subsection{Verstärkung des Messrauschens}
-Als letztes verstärken wir das Messrauschen um den Faktor 100 und belassen wieder den Rest wie im Standardfall.
-Diese Anpassung bewirkt bei der Position und Geschwindigkeit grosse Abweichungen zwischen der Messgrösse und des Schätzwertes.
-Im ganzen ist der Output sehr ungenau und somit nicht mehr brauchbar.
+Als letztes verstärken wir das Messrauschen um den Faktor $100$ und belassen wieder den Rest wie im Standardfall.
+Wie man eigentlich schon erwarten kann, zeigt uns die Abbildung~\ref{erdbeben:fig:messrauschen-geaendert}, dass das Signal des Messsensors vom Messrauschen gestört wird.
+Weil die Messung somit ungenau wird, kann das Kalman-Filter nicht mehr genau arbeiten und produziert einen ungenauen Output.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Messrauschen_geaendert.PNG}
-		\caption{Das verstärkte Messrauschen dominiert über der Erdbebenschwingung. Die Aufzeichnung wird unbrauchbar und die Schätzung zu ungenau.}
+		\caption{Im Kraft-Zeit-Diagramm erhalten wir nur bis ca. $t = 10$ gute Schätzwerte. Von $t = 10$ bis $t = 30$ wirkt das Messrauschen zu stark und erhalten keine brauchbaren Werte mehr}
+	 \label{erdbeben:fig:messrauschen-geaendert}
 	\end{center}
 \end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Messrauschen_geaendert_zoom.PNG}
+		\caption{Im Position-Zeit-Diagramm erhielten wir bis jetzt immer genaue Schätzungen. Mit einem starken Messrauschen fällt es nun dem Filter schwerer, präzise Werte zu generieren. Die Nahaufnahme im Kraft-Zeit-Diagramm bestätigt uns aber, dass die Messfehler zu gross sind, um ein klares Bild über die äussere Kraft zu erhalten.}
+		\label{erdbeben:fig:messrauschen-geaendert_zoom}
+	\end{center}
+\end{figure}
+
+\subsection{Fazit}
+
 
