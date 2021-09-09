@@ -16,11 +16,13 @@ Die Gruppe
 \]
 besteht aus den Matrizen, deren Determinante nicht $0$ ist.
 Da die Menge der Matrizen mit $\det A=0$ eine abgeschlossene Menge
-in $M_n(\mathbb{R}) \simeq \mathbb{R}^{n^2}$ ist, ist
+in $M_n(\mathbb{R}) \cong \mathbb{R}^{n^2}$ ist, ist
 $\operatorname{GL}_n(\mathbb{R})$ eine offene Teilmenge in $\mathbb{R}^{n^2}$,
 sie besitzt also automatisch die Struktur einer $n^2$-Mannigfaltigkeit.
-Dies gilt jedoch auch für alle anderen Matrizengruppen, die in diesem
-Abschnitt genauer untersucht werden sollen.
+Doch auch alle anderen Matrizengruppen,
+die in diesem Abschnitt genauer untersucht werden sollen,
+stellens ich als Untermannigfaltigkeiten von
+$\operatorname{GL}_n(\mathbb{R})$ heraus.
 
 \subsection{Mannigfaltigkeitsstruktur der Matrizengruppen
 \label{buch:subsection:mannigfaltigkeitsstruktur-der-matrizengruppen}}
@@ -74,8 +76,9 @@ Die Abbildung $l_{g_1^{-1}g_2}$ ist aber nur die Multiplikation mit
 einer Matrix, also eine lineare Abbildung, so dass der Kartenwechsel
 nichts anderes ist als die Darstellung der Matrix der Linksmultiplikation
 $l_{g_1^{-1}g_2}$ im Koordinatensystem der Karte $U_e$ ist.
-Differenzierbarkeit der Kartenwechsel ist damit sichergestellt,
-die Matrizengruppen sind automatisch differenzierbare Mannigfaltigkeiten.
+Differenzierbarkeit der Kartenwechsel ist damit sichergestellt.
+Somit sind
+die Matrizengruppen automatisch differenzierbare Mannigfaltigkeiten.
 
 Die Konstruktion aller Karten aus einer einzigen Karte für eine
 Umgebung des neutralen Elements zeigt auch, dass es für die Matrizengruppen
@@ -115,7 +118,7 @@ enthalten.
 Diffferenzierbare Kurven $\gamma(t)$ in $\operatorname{GL}_n(\mathbb{R})$
 haben daher in jedem Punkt Tangentialvektoren, die als Matrizen in
 $M_n(\mathbb{R})$ betrachtet werden können.
-Wenn $\gamma(t)$ die Matrixelemente $\gamma_{ij}(t)$ hat, dann ist der
+Wenn $\gamma(t)$ die Matrixelemente $\gamma_{i\!j}(t)$ hat, dann ist der
 Tangentialvektor im Punkt $\gamma(t)$ durch
 \[
 \frac{d}{dt}
@@ -152,7 +155,8 @@ Eine solche Kurve muss die Differentialgleichung
 erfüllen, wobei $A\in M_n(\mathbb{R})$ der gegebene Tangentialvektor
 in $e=I$ ist.
 
-Die Matrixexponentialfunktion
+Die {\em Matrixexponentialfunktion}
+\index{Matrixexponentialfunktion}%
 \[
 e^{At}
 =
@@ -184,7 +188,7 @@ $\operatorname{SO}(2)\subset \operatorname{GL}_2(\mathbb{R})$}
 Drehungen der Ebene können in einer orthonormierten Basis durch
 Matrizen der Form
 \[
-D_{\alpha}
+R_{\alpha}
 =
 \begin{pmatrix}
 \cos\alpha&-\sin\alpha\\
@@ -196,36 +200,39 @@ Wir bezeichnen die Menge der Drehmatrizen in der Ebene mit
 $\operatorname{SO}(2)\subset\operatorname{GL}_2(\mathbb{R})$.
 Die Abbildung
 \[
-D_{\bullet}
+R_{\bullet}
 \colon
 \mathbb{R}\to \operatorname{SO}(2)
 :
-\alpha \mapsto D_{\alpha}
+\alpha \mapsto R_{\alpha}
 \]
 hat die Eigenschaften
-\begin{align*}
-D_{\alpha+\beta}&= D_{\alpha}D_{\beta}
+\begin{equation}
+\begin{aligned}
+R_{\alpha+\beta}&= R_{\alpha}R_{\beta}
 \\
-D_0&=I
+R_0&=I
 \\
-D_{2k\pi}&=I\qquad \forall k\in\mathbb{Z}.
-\end{align*}
-Daraus folgt zum Beispiel, dass $D_{\bullet}$ eine $2\pi$-periodische
+R_{2k\pi}&=I\qquad \forall k\in\mathbb{Z}.
+\end{aligned}
+\label{buch:lie:so2matrizen}
+\end{equation}
+Daraus folgt zum Beispiel, dass $R_{\bullet}$ eine $2\pi$-periodische
 Funktion ist.
-$D_{\bullet}$ bildet die Menge der Winkel $[0,2\pi)$ bijektiv auf
+$R_{\bullet}$ bildet die Menge der Winkel $[0,2\pi)$ bijektiv auf
 die Menge der Drehmatrizen in der Ebene ab.
 
 Für jedes Intervall $(a,b)\subset\mathbb{R}$ mit Länge
-$b-a < 2\pi$ ist die Abbildung $\alpha\mapsto D_{\alpha}$ umkehrbar,
+$b-a < 2\pi$ ist die Abbildung $\alpha\mapsto R_{\alpha}$ umkehrbar,
 die Umkehrung kann als Karte verwendet werden.
 Zwei verschiedene Karten $\alpha_1\colon U_1\to\mathbb{R}$ und
 $\alpha_2\colon U_2\to\mathbb{R}$ bilden die Elemente $g\in U_1\cap U_2$
 in Winkel $\alpha_1(g)$ und $\alpha_2(g)$ ab, für die 
-$D_{\alpha_1(g)}=D_{\alpha_2(g)}$ gilt.
+$R_{\alpha_1(g)}=R_{\alpha_2(g)}$ gilt.
 Dies ist gleichbedeutend damit, dass $\alpha_1(g)=\alpha_2(g)+2\pi k$
 mit $k\in \mathbb{Z}$.
 In einem Intervall in $U_1\cap U_2$ muss $k$ konstant sein.
-Die Kartenwechselabblidung ist also nur die Addition eines Vielfachen
+Die Kartenwechselabbildung ist also nur die Addition eines Vielfachen
 von $2\pi$, mit der identischen Abbildung als Ableitung.
 Diese Karten führen also auf besonders einfache Kartenwechselabbildungen.
 
@@ -239,22 +246,27 @@ Die Zahlen der Form $e^{i\alpha}$ haben den Betrag $1$ und die Abbildung
 f\colon \mathbb{R}\to \mathbb{C}:\alpha \mapsto e^{i\alpha}
 \]
 hat die Eigenschaften
-\begin{align*}
+\begin{equation}
+\begin{aligned}
 f(\alpha+\beta) &= f(\alpha)f(\beta)
 \\
 f(0)&=1
 \\
 f(2\pi k)&=1\qquad\forall k\in\mathbb{Z},
-\end{align*}
-die zu den Eigenschaften der Abbildung $\alpha\mapsto D_{\alpha}$ 
+\end{aligned}
+\label{buch:lie:so2komplex}
+\end{equation}
+die zu den Eigenschaften
+\eqref{buch:lie:so2matrizen} der Abbildung $\alpha\mapsto R_{\alpha}$ 
 analog sind.
 
 Jede komplexe Zahl $z$ vom Betrag $1$ kann geschrieben werden in der Form
-$z=e^{i\alpha}$, die Abbildung $f$ ist also eine Parametrisierung des
+$z=e^{i\alpha}$.
+Die Abbildung $f$ ist also eine Parametrisierung des
 Einheitskreises in der Ebene.
 Wir bezeichen $S^1=\{z\in\mathbb{C}\;|\; |z|=1\}$ die komplexen Zahlen vom
 Betrag $1$.
-$S^1$ ist eine Gruppe bezüglich der Multiplikation, da für jede Zahl
+$S^1$ ist eine Gruppe bezüglich der Multiplikation, da für alle Zahlen
 $z,w\in S^1$ gilt
 $|z^{-1}|=1$ und $|zw|=1$ und damit $z^{-1}\in S^1$ und $zw\in S^1$.
 
@@ -266,32 +278,32 @@ Damit kann man jetzt die Abbildung
 \colon
 S^1\to \operatorname{SO}(2)
 :
-z\mapsto  D_{\alpha(z)}
+z\mapsto  R_{\alpha(z)}
 \]
 konstruieren.
-Da $D_{\alpha}$ $2\pi$-periodisch ist, geben um Vielfache
+Da $R_{\alpha}$ $2\pi$-periodisch ist, geben um Vielfache
 von $2\pi$ verschiedene Wahlen von $\alpha(z)$ die gleiche
-Matrix $D_{\alpha(z)}$, die Abbildung $\varphi$ ist daher
+Matrix $R_{\alpha(z)}$, die Abbildung $\varphi$ ist daher
 wohldefiniert.
 $\varphi$ erfüllt ausserdem die Bedingungen
 \begin{align*}
 \varphi(z_1z_2)
 &=
-D_{\alpha(z_1z_2)}
+R_{\alpha(z_1z_2)}
 =
-D_{\alpha(z_1)+\alpha(z_2)}
+R_{\alpha(z_1)+\alpha(z_2)}
 =
-D_{\alpha(z_1)}D_{\alpha(z_2)}
+R_{\alpha(z_1)}R_{\alpha(z_2)}
 =
-\varphi(z_1)\varphi(z_2)
+\varphi(z_1)\varphi(z_2),
 \\
 \varphi(1)
 &=
-D_{\alpha(1)}
+R_{\alpha(1)}
 =
-D_0
+R_0
 =
-I
+I.
 \end{align*}
 Die Abbildung $\varphi$ ist ein Homomorphismus der Gruppe $S^1$
 in die Gruppe $\operatorname{SO}(2)$.
@@ -301,7 +313,7 @@ in der komplexen Ebene identifiziert werden.
 \subsubsection{Tangentialvektoren von $\operatorname{SO}(2)$}
 Da die Gruppe $\operatorname{SO}(2)$ eine eindimensionale Gruppe
 ist, kann jede Kurve $\gamma(t)$ durch den Drehwinkel $\alpha(t)$
-mit $\gamma(t) = D_{\alpha(t)}$ beschrieben werden.
+mit $\gamma(t) = R_{\alpha(t)}$ beschrieben werden.
 Die Ableitung in $M_2(\mathbb{R})$ ist
 \begin{align*}
 \frac{d}{dt} \gamma(t)
@@ -334,24 +346,27 @@ Die Ableitung in $M_2(\mathbb{R})$ ist
 \cdot
 \dot{\alpha}(t)
 =
-D_{\alpha(t)}J\cdot\dot{\alpha}(t).
+R_{\alpha(t)}J\cdot\dot{\alpha}(t).
 \end{align*}
-Alle Tangentialvektoren von $\operatorname{SO}(2)$ im Punkt $D_\alpha$
-entstehen aus $J$ durch Drehung mit der Matrix $D_\alpha$ und Skalierung
-mit $\dot{\alpha}(t)$.
+Alle Tangentialvektoren von $\operatorname{SO}(2)$ im Punkt $R_\alpha$
+entstehen aus $J$ durch Drehung mit der Matrix $R_\alpha$ und Skalierung
+mit der Winkelgeschwindigkeit $\dot{\alpha}(t)$.
+\index{Winkelgeschwindigkeit}%
 
 %
 % Isometrien von R^n
 %
 \subsection{Isometrien von $\mathbb{R}^n$
 \label{buch:gruppen:isometrien}}
+Isometrien von $\mathbb{R}^n$ führen automatisch auf eine interessante
+Lie-Gruppe.
 
 \subsubsection{Skalarprodukt}
 Lineare Abbildungen des Raumes $\mathbb{R}^n$ können durch
 $n\times n$-Matrizen beschrieben werden.
 Die Matrizen, die das Standardskalarprodukt $\mathbb{R}^n$ erhalten,
 bilden eine Gruppe, die in diesem Abschnitt genauer untersucht werden soll.
-Eine Matrix $A\in M_{n}(\mathbb{R})$ ändert das Skalarprodukt, wenn
+Eine Matrix $A\in M_{n}(\mathbb{R})$ ändert das Skalarprodukt nicht, wenn
 für jedes beliebige Paar $x,y$ von Vektoren gilt
 $\langle Ax,Ay\rangle = \langle x,y\rangle$.
 Das Standardskalarprodukt kann mit dem Matrixprodukt ausgedrückt werden:
@@ -372,17 +387,20 @@ Mit dem Skalarprodukt kann man auch die Matrixelemente einer Matrix
 einer Abbildung $f$ in der Standardbasis bestimmen.
 Das Skalarprodukt $\langle e_i, v\rangle$ ist die Länge der Projektion
 des Vektors $v$ auf die Richtung $e_i$.
-Die Komponenten von $Ae_j$ sind daher $a_{ij}=\langle e_i,f(e_j)\rangle$.
-Die Matrix $A$ der Abbildung $f$ hat also die Matrixelemente
-$a_{ij}=e_i^tAe_j$.
+Die Komponenten von $Ae_j$ sind daher $a_{i\!j}=\langle e_i,f(e_j)\rangle$.
+Die Matrix $A$ der Abbildung $f$ hat folglich die Matrixelemente
+$a_{i\!j}=e_i^tAe_j$.
 
 \subsubsection{Die orthogonale Gruppe $\operatorname{O}(n)$}
 Die Matrixelemente von $A^tA$ sind
-$\langle A^tAe_i, e_j\rangle =\langle e_i,e_j\rangle = \delta_{ij}$
-sind diejenigen der Einheitsmatrix,
-die Matrix $A$ erfüllt $AA^t=I$ oder $A^{-1}=A^t$.
+$\langle A^tAe_i, e_j\rangle =\langle e_i,e_j\rangle = \delta_{i\!j}$
+also die der Einheitsmatrix.
+Die Matrix $A$ erfüllt $AA^t=I$ oder $A^{-1}=A^t$.
 Dies sind die {\em orthogonalen} Matrizen.
-Die Menge $\operatorname{O}(n)$ der isometrischen Abbildungen besteht
+\index{orthogonale Matrix}%
+Die Menge $\operatorname{O}(n)$ der isometrischen Abbildungen
+\index{O(n)@$\operatorname{O}(n)$}%
+von $\mathbb{R}^n$ besteht
 daher aus den Matrizen
 \[
 \operatorname{O}(n)
@@ -401,7 +419,7 @@ n^2 - \frac{n(n+1)}{2}
 =
 \frac{n(n-1)}2.
 \]
-Im Spezialfall $n=2$ ist die Gruppe $O(2)$ eindimensional.
+Im Spezialfall $n=2$ ist die Gruppe $\operatorname{O}(2)$ eindimensional.
 
 \subsubsection{Tangentialvektoren}
 Die orthogonalen Matrizen bilden eine abgeschlossene Untermannigfaltigkeit
@@ -440,16 +458,17 @@ A^t&=-A
 \]
 Die Tangentialvektoren von $\operatorname{O}(n)$ sind also genau
 die antisymmetrischen Matrizen.
+\index{antisymmetrisch}%
 
 Für $n=2$ sind alle antisymmetrischen Matrizen Vielfache der Matrix
 $J$, wie in Abschnitt~\ref{buch:gruppen:drehungen2d}
 gezeigt wurde.
 
-Für jedes Paar $i<j$ ist die Matrix $A_{ij}$ mit den Matrixelementen
-$(A_{ij})_{ij}=-1$ und $(A_{ij})_{ji}=1$
+Für jedes Paar $i<j$ ist die Matrix $A_{i\!j}$ mit den Matrixelementen
+$(A_{i\!j})_{i\!j}=-1$ und $(A_{i\!j})_{ji}=1$
 antisymmetrisch.
 Für $n=2$ ist $A_{12}=J$.
-Die $n(n-1)/2$ Matrizen $A_{ij}$ bilden eine Basis des
+Die $n(n-1)/2$ Matrizen $A_{i\!j}$ bilden eine Basis des
 $n(n-1)/2$-dimensionale Tangentialraumes von $\operatorname{O}(n)$.
 
 Tangentialvektoren in einem anderen Punkt $g\in\operatorname{O}(n)$
@@ -464,6 +483,7 @@ Wegen $\det (AA^t)=\det A\det A^t = (\det A)^2=1$ kann die Determinante
 einer orthogonalen Matrix nur $\pm 1$ sein.
 Orientierungserhaltende Isometrien haben Determinante $1$.
 
+\begin{definition}
 Die Gruppe
 \[
 \operatorname{SO}(n)
@@ -471,7 +491,13 @@ Die Gruppe
 \{A\in\operatorname{O}(n)\;|\; \det A=1\}
 \]
 heisst die {\em spezielle orthogonale Gruppe}.
-Die Dimension der Gruppe $\operatorname{O}(n)$ ist $n(n-1)/2$.
+\index{spezielle orthogonale Gruppe}%
+\index{orthogonale Gruppe, speziell}%
+\index{Gruppe, spezielle orthogonale}%
+\index{SO(n)@$\operatorname{SO}(n)$}%
+\end{definition}
+
+%Die Dimension der Gruppe $\operatorname{SO}(n)$ ist $n(n-1)/2$.
 
 \subsubsection{Die Gruppe $\operatorname{SO}(3)$}
 Die Gruppe $\operatorname{SO}(3)$ der Drehungen des dreidimensionalen
@@ -485,7 +511,7 @@ Der Drehwinkel ist der dritte Parameter.
 Drehungen mit kleinen Drehwinkeln können zusammengesetzt werden
 aus den Matrizen
 \begin{align*}
-D_{x,\alpha}
+R_{x,\alpha}
 &=
 \begin{pmatrix}
 1&0&0\\
@@ -493,7 +519,7 @@ D_{x,\alpha}
 0&\sin\alpha& \cos\alpha
 \end{pmatrix},
 &
-D_{y,\beta}
+R_{y,\beta}
 &=
 \begin{pmatrix}
  \cos\beta&0&\sin\beta\\
@@ -501,7 +527,7 @@ D_{y,\beta}
 -\sin\beta&0&\cos\beta
 \end{pmatrix},
 &
-D_{z,\gamma}
+R_{z,\gamma}
 &=
 \begin{pmatrix}
 \cos\gamma&-\sin\gamma&0\\
@@ -524,16 +550,73 @@ Auch die Winkel $\alpha$, $\beta$ und $\gamma$ können als die
 drei Koordinaten der Mannigkfaltigkeit $\operatorname{SO}(3)$
 angesehen werden.
 
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/rodriguez.pdf}
+\caption{Herleitung der Rodrigues-Formel~\eqref{buch:lie:eqn:rodrigues}
+für die Beschreibung einer
+Drehung mit Drehachse $\vec{k}$.
+\label{buch:lie:fig:rodrigues}}
+\end{figure}
+Die Drehung des Vektors $\vec{x}$ um die Achse mit Richtung $\vec{k}$,
+$|\vec{k}|=1$, kann man mit dem Vektorprodukt und dem Skalarprodukt
+beschreiben.
+Die Vektoren $\vec{x}-(\vec{x}\cdot\vec{k})\vec{k}$, $-\vec{x}\times\vec{k}$
+und $\vec{k}$ bilden ein Rechtssystem im Punkt $\vec{x}$, dessen zweite
+Achse tangential an die Bahn von $\vec{x}$ unter der Drehung ist.
+
+Die Komponente $(\vec{k}\cdot\vec{x})\vec{k}$ parallel zu $\vec{k}$
+ändert sich bei der Drehung nicht.
+In der Ebene mit der orthogonalen Basis aus den Vektoren
+$\vec{x}-(\vec{x}\cdot\vec{k})\vec{k}$ und $-\vec{x}\times\vec{k}$
+kann man die Drehung $R_\alpha$ um den Winkel $\alpha$ mit den
+trigonometrischen Funktionen beschreiben
+(siehe Abbildung~\ref{buch:lie:fig:rodrigues}):
+\begin{align}
+\vec{x}
+\mapsto
+R_\alpha\vec{x}
+&=
+(\vec{x}-(\vec{x}\cdot\vec{k})\vec{k})
+\cos\alpha
+-
+\vec{x}\times\vec{k}
+\sin\alpha
++
+(\vec{k}\cdot\vec{x})\vec{k}
+\notag
+\\
+&=
+\vec{x}\cos\alpha
++
+(1-\cos\alpha)(\vec{x}\cdot\vec{k})\vec{k}
++
+\vec{k}\times\vec{x}\sin\alpha.
+\label{buch:lie:eqn:rodrigues}
+\end{align}
+Dies ist bekannt als die {\em Formel von Rodrigues}
+\index{Formel von Rodrigues}%
+\index{Rodrigues-Formel}%
+Wir halten noch fest, dass die Ableitung an der Stelle $\alpha=0$
+der Tangentialvektor
+\begin{equation}
+\frac{d}{d\alpha}R_\alpha\vec{x}\,\bigg|_{\alpha=0}
+=
+\vec{k}\times\vec{x}
+\label{buch:lie:eqn:so3tangentialvektor}
+\end{equation}
+ist.
+
 %
 % Spezielle lineare Gruppe
 %
 \subsection{Volumenerhaltende Abbildungen und
 die Gruppe $\operatorname{SL}_n(\mathbb{R})$
 \label{buch:gruppen:sl}}
-Die Elemente der Gruppe $SO(n)$ erhalten Längen, Winkel und die
+Die Elemente der Gruppe $\operatorname{SO}(n)$ erhalten Längen, Winkel und die
 Orientierung, also auch das Volumen.
 Es gibt aber volumenerhaltende Abbildungen, die Längen oder Winkel
-nicht notwendigerweise erhalten.
+nicht notwendigerweise erhalten, zum Beispiel Scherungen.
 Matrizen $A\in M_n(\mathbb{R})$, die das Volumen erhalten,
 haben die Determinante $\det A=1$.
 Wegen $\det(AB)=\det A\det B$ ist das Produkt zweier Matrizen mit
@@ -541,6 +624,7 @@ Determinante $1$ wieder eine solche, sie bilden daher eine Gruppe.
 
 \begin{definition}
 Die volumenerhaltenden Abbildungen bilden die Gruppe
+\index{volumenerhaltend}%
 \[
 \operatorname{SL}_n(\mathbb{R})
 =
@@ -551,6 +635,9 @@ A\in M_n(\mathbb{R})
 \}
 \]
 sie heisst die {\em spezielle lineare Gruppe}.
+\index{spezielle lineare Gruppe}%
+\index{Gruppe, spezielle lineare}%
+\index{SLn(R)@$\operatorname{SL}_n(\mathbb{R})$}%
 \end{definition}
 
 Wir wollen jetzt die Tangentialvektoren von $\operatorname{SL}_n(\mathbb{R})$
@@ -576,6 +663,10 @@ c(t)&d(t)
 \frac{d}{dt}
 \det A(t)\bigg|_{t=0}
 &=
+\frac{d}{dt}\bigl(a(t)d(t)-b(t)c(t)\bigr)\bigg|_{t=0}
+\\
+&&&&
+&=
 \dot{a}(0) d(0)+a(0)\dot{d}(0)
 -
 \dot{b}(0) c(0)-b(0)\dot{c}(0)
@@ -592,7 +683,7 @@ Dies gilt nicht nur im Falle $n=2$, sondern ganz allgemein für beliebige
 $n\times n$-Matrizen.
 
 \begin{satz}
-Ist $A(t)$ eine differenzierbare Kurve in $\operatorname{SL}_n(\mathbb{B})$
+Ist $A(t)$ eine differenzierbare Kurve in $\operatorname{SL}_n(\mathbb{R})$
 mit $A(0)=I$, dann ist $\operatorname{Spur}\dot{A}(0)=0$.
 \end{satz}
 
@@ -626,8 +717,8 @@ jenes für $i=1$, somit ist die Ableitung von $\det A(t)$
 \frac{d}{dt}\det A_{11}(t).
 \label{buch:gruppen:eqn:detspur}
 \end{equation}
-Die Beziehung \eqref{buch:gruppen:eqn:detspur} kann für einen Beweis mit
-vollständiger Induktion verwendet werden.
+Die Beziehung \eqref{buch:gruppen:eqn:detspur} kann wie folgt
+für einen Beweis mit vollständiger Induktion verwendet werden.
 
 Die Induktionsverankerung für $n=1$ besagt, dass $\det A(t)=a_{11}(t)$
 genau dann konstant $=1$ ist, wenn $\dot{a}_{11}(0)=\operatorname{Spur}A(0)$
@@ -668,6 +759,19 @@ A=\begin{pmatrix}a&b\\c&d\end{pmatrix}
 A=\begin{pmatrix}a&b\\c&-a\end{pmatrix}.
 \]
 Der Tangentialraum ist also dreidimensional.
+\begin{figure}
+\centering
+\includegraphics{chapters/60-gruppen/images/sl2.pdf}
+\caption{Tangentialvektoren und die davon erzeugen Einparameteruntergruppen
+für die Lie-Gruppe $\operatorname{SL}_2(\mathbb{R})$ der flächenerhaltenden
+linearen Abbildungen von $\mathbb{R}^2$.
+In allen drei Fällen wird das blaue Quadrat mit den Ecken in den
+Standardbasisvektoren von einer Matrix der Einparameteruntergruppe zu
+zum roten Viereck verzerrt, der Flächeninhalt bleibt aber erhalten.
+In den beiden Fällen $B$ und $C$ stellen die grünen Kurven die Bahnen
+der Bilder der Standardbasisvektoren dar.
+\label{buch:gruppen:fig:sl2}}
+\end{figure}%
 Als Basis könnte man die folgenden Vektoren verwenden:
 \begin{align*}
 A
@@ -714,8 +818,10 @@ I\cosh t + C \sinh t
 \end{align*}
 wobei in der Auswertung der Potenzreihe für $e^{Ct}$ verwendet wurde,
 dass $C^2=I$.
+Die von $A$, $B$ und $C$ erzeugten Einparameteruntergruppen sind in
+Abbildung~\ref{buch:gruppen:fig:sl2} visualisiert.
 
-Die Matrizen $e^{At}$ Streckungen der einen Koordinatenachse und
+Die Matrizen $e^{At}$ sind Streckungen der einen Koordinatenachse und
 Stauchungen der anderen derart, dass das Volumen erhalten bleibt.
 Die Matrizen $e^{Bt}$ sind Drehmatrizen, die Längen und Winkel und
 damit erst recht den Flächeninhalt erhalten.
@@ -764,25 +870,26 @@ Dies ist die gegenüber $e^{At}$ um $45^\circ$ verdrehte Situation,
 auch diese Matrizen sind flächenerhaltend.
 \begin{figure}
 \centering
-\includegraphics{chapters/60-gruppen/images/sl2.pdf}
-\caption{Tangentialvektoren und die davon erzeugen Einparameteruntergruppen
-für die Lie-Gruppe $\operatorname{SL}_2(\mathbb{R})$ der flächenerhaltenden
-linearen Abbildungen von $\mathbb{R}^2$.
-In allen drei Fällen wird ein blauer Rhombus mit den Ecken in den
-Standardbasisvektoren von einer Matrix der Einparameteruntergruppe zu
-zum roten Viereck verzerrt, der Flächeninhalt bleibt aber erhalten.
-In den beiden Fällen $B$ und $C$ stellen die grünen Kurven die Bahnen
-der Bilder der Standardbasisvektoren dar.
-\label{buch:gruppen:fig:sl2}}
-\end{figure}%
-\begin{figure}
-\centering
 \includegraphics{chapters/60-gruppen/images/scherungen.pdf}
-\caption{Weitere Matrizen mit Spur $0$ und ihre Wirkung 
-Die inken beiden Beispiele $M$ und $N$ sind nilpotente Matrizen,
-die zugehörigen Einparameter-Untergruppen beschreiben Schwerungen.
+\caption{Weitere Matrizen mit Spur $0$ und ihre Wirkung.
+Die linken beiden Beispiele $M$ und $N$ sind nilpotente Matrizen,
+die zugehörigen Einparameteruntergruppen beschreiben Scherungen.
 \label{buch:gruppen:fig:scherungen}}
 \end{figure}
+
+Die Gruppe $\operatorname{SL}_2(\mathbb{R})$ hat aber auch die
+Tangentialvektoren
+\begin{align*}
+M&=\begin{pmatrix}0&1\\0&0\end{pmatrix}=\frac12(B+C)
+&&\text{und}&
+N&=\begin{pmatrix}0&0\\1&0\end{pmatrix}=\frac12(-B+C),
+\intertext{die die Scherungen}
+e^{Mt}&= \begin{pmatrix}1&0\\t&0\end{pmatrix}
+&&
+e^{NT}&=\begin{pmatrix}1&t\\0&1\end{pmatrix}
+\end{align*}
+als Einparameteruntergruppen haben.
+Diese sind in Abbildung~\ref{buch:gruppen:fig:scherungen} dargestellt.
 \end{beispiel}
 
 %
@@ -802,9 +909,20 @@ a,b,c,d\in\mathbb{C},\det(A)=1, AA^*=I
 \right\}
 \]
 heisst die {\em spezielle unitäre Gruppe}.
+\index{spezielle unitäre Gruppe}%
+\index{unitäre Gruppe, speziell}%
+\index{Gruppe, speziell unitäre}%
+\index{SU(n)@$\operatorname{SU}(n)$}%
 Wegen $\det(AB)=\det(A)\det(B)=1$ und $(AB)^*AB=B^*A^*AB=B^*B=I$ ist 
 $\operatorname{SU}(2)$ eine Untergruppe von $\operatorname{GL}_2(\mathbb{C})$.
-Die Bedingungen $\det A=1$ und $AA^*=I$ schränken die möglichen Werte
+Die Bedingungen
+\begin{equation}
+\det A=1
+\qquad\text{und}\qquad
+AA^*=I
+\label{buch:lie:eqn:su2bed}
+\end{equation}
+schränken die möglichen Werte
 von $a$ und $b$ weiter ein.
 Aus 
 \[
@@ -815,7 +933,7 @@ A^*
 \overline{b}&\overline{d}
 \end{pmatrix}
 \]
-und den Bedingungen führen die Gleichungen
+und den Bedingungen~\eqref{buch:lie:eqn:su2bed} folgen die Gleichungen
 \[
 \begin{aligned}
 a\overline{a}+b\overline{b}&=1
@@ -831,7 +949,7 @@ c\overline{a}+d\overline{b}&=0
 \\
 c\overline{c}+d\overline{d}&=1&&\Rightarrow&|c|^2+|d|^2&=1
 \\
-ad-bc&=1
+ad-bc&=1.
 \end{aligned}
 \]
 Aus der zweiten Gleichung kann man ableiten, dass es eine Zahl $t\in\mathbb{C}$
@@ -846,7 +964,7 @@ t(|a|^2+|b|^2)
 =
 t,
 \]
-also muss die Matrix $A$ die Form haben
+also muss die Matrix $A$ die Form 
 \[
 A
 =
@@ -854,10 +972,11 @@ A
 a&b\\
 -\overline{b}&\overline{a}
 \end{pmatrix}
-\qquad\text{mit}\quad |a|^2+|b|^2=1.
+\qquad\text{mit}\quad |a|^2+|b|^2=1
 \]
+haben.
 Schreibt man $a=a_1+ia_2$ und $b=b_1+ib_2$ mit rellen $a_i$ und $b_i$,
-dann besteht $SU(2)$  aus den Matrizen der Form
+dann besteht $\operatorname{SU}(2)$  aus den Matrizen der Form
 \[
 A=
 \begin{pmatrix}
