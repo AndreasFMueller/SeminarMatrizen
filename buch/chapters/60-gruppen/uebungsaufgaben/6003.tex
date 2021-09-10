@@ -1,0 +1,134 @@
+Für die Lie-Algebra $\operatorname{sl}_2(\mathbb{R})$ wurde die Basis
+\[
+A=\begin{pmatrix} 1&0\\0&-1 \end{pmatrix},
+\qquad
+N=\begin{pmatrix} 0&1\\0&0\end{pmatrix},
+\qquad
+N=\begin{pmatrix} 0&0\\1&0\end{pmatrix}
+\]
+gefunden.
+Dies bedeutet, dass die Elemente
+der Gruppe $\operatorname{SL}_2(\mathbb{R})$ nahe der Einheitsmatrix
+als ein Produkt von Matrizen der Form
+\[
+D=e^{At}=\begin{pmatrix}e^t&0\\0&e^{-1}\end{pmatrix},
+\quad
+S=e^{Ns} = \begin{pmatrix}1&s\\0&1\end{pmatrix},
+\quad
+T=e^{Mt} = \begin{pmatrix}1&0\\t&1\end{pmatrix}
+\]
+geschrieben werden können.
+\begin{teilaufgaben}
+\item
+Finden Sie zur Drehung $R_\alpha\in\operatorname{SO}(2)$
+aus \eqref{buch:lie:eqn:ralphadefinition} eine solche Zerlegung
+$R_\alpha=DST$.
+\item
+Schreiben Sie die Matrix
+\[
+A=\begin{pmatrix}
+\frac12&-\frac{\sqrt{3}}2\\
+\frac{\sqrt{3}}2&\frac12
+\end{pmatrix}
+\]
+als Produkt $A=DST$.
+\end{teilaufgaben}
+
+\begin{loesung}
+\begin{teilaufgaben}
+\item
+Zunächst schreiben wir etwas einfacher 
+\[
+D=\begin{pmatrix}c&0\\0&c^{-1}\end{pmatrix}.
+\]
+Dann multiplizeren wir 
+\begin{align*}
+DST
+&=
+\begin{pmatrix}c&0\\0&c^{-1}\end{pmatrix}
+\begin{pmatrix}1&s\\0&1\end{pmatrix}
+\begin{pmatrix}1&0\\t&1\end{pmatrix}
+\\
+&=
+\begin{pmatrix}c&0\\0&c^{-1}\end{pmatrix}
+\begin{pmatrix}1+st&s\\t&1\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+(1+st)c&sc\\
+c^{-1}t&c^{-1}
+\end{pmatrix}.
+\end{align*}
+Der Vergleich mit 
+\[
+R_\alpha
+=
+\begin{pmatrix}
+\cos\alpha&-\sin\alpha\\
+\sin\alpha& \cos\alpha
+\end{pmatrix}
+=
+\begin{pmatrix}
+(1+st)c&sc\\
+c^{-1}t&c^{-1}
+\end{pmatrix}
+\]
+erlaubt jetzt, die Parameter, $c$, $s$ und $t$ abzulesen.
+Zunächst folgt aus dem Eintrag rechts unten, dass
+\[
+c=\frac{1}{\cos\alpha}
+\]
+sein muss.
+Aus dem Eintrag links unten in der Matrix folgt dann
+\[
+c^{-1}t = t\cos\alpha = \sin\alpha
+\quad\Rightarrow\quad
+t=\frac{\sin\alpha}{\cos\alpha}=\tan\alpha.
+\]
+Der Eintrag rechts oben führt schliesslich auf die Gleichung
+\[
+sc=\frac{s}{\cos\alpha}=-\sin\alpha
+\quad\Rightarrow\quad
+s=-\sin\alpha\cos\alpha
+\]
+für $s$.
+Damit sind zwar die Parameter bestimmt, es ist aber noch nachzuprüfen,
+dass sich damit auch der korrekte Eintrag oben links in der Matrix
+ergibt.
+Es ist
+\[
+(1+st)c
+=
+\frac{1-\sin\alpha\cos\alpha\tan\alpha}{\cos\alpha}
+=
+\frac{1-\sin^2\alpha}{\cos\alpha}
+=
+\frac{\cos^2\alpha}{\cos\alpha}=\cos\alpha,
+\]
+somit ist
+\[
+c=\frac{1}{\cos\alpha},\; t=\tan\alpha,\; s=-\sin\alpha\cos\alpha=-\frac12\sin2\alpha
+\]
+tatsächlich die gesuchte Lösung.
+\item
+Die Matrix $A$ ist die Drehung $A=R_{60^\circ}$, daher können wir nach
+a) folgern:
+\begin{align*}
+c&=\frac{1}{\cos 60^\circ}= 2\\
+s&=-\frac12\sin120^\circ =-\frac{\sqrt{3}}4\\
+t&=\tan 60^\circ = \sqrt{3}.
+\end{align*}
+Daher gilt
+\[
+DST
+=
+\begin{pmatrix}2&0\\0&\frac12\end{pmatrix}
+\begin{pmatrix}1&-\frac{\sqrt{3}}4\\0&1\end{pmatrix}
+\begin{pmatrix}1&0\\ \sqrt{3}&1\end{pmatrix}
+=
+A,
+\]
+wie man mit einem Computeralgebraprogramm leicht nachprüfen kann.
+\qedhere
+\end{teilaufgaben}
+\end{loesung}
