@@ -199,6 +199,14 @@ Weil die Messung somit ungenau wird, kann das Kalman-Filter nicht mehr genau arb
 	\end{center}
 \end{figure}
 
-\subsection{Fazit}
+\subsection{Zusammenfassung}
+Wir haben uns zum Ziel gesetzt, die äussere Beschleunigung $a(t)$, bzw. die Kraft $f(t)$ eines Erdbebens zu ermitteln.
 
+Mit der Software Matlab haben wir einen virtuellen Seismographen gebaut und ein künstliches Erdbeben erzeugt.
+Der Seismograph war fähig die Position der Masse während der Einwirkung des Erdbebens aufzuzeichnen.
+$a(t)$ kann zwar nicht mit Sensoren gemessen werden, jedoch erhalten wir $a(t)$ durch zweifaches Ableiten.
+Da wir so aber die innere Beschleunigung erhalten, mussten wir das Kalman-Filter anwenden.
+Das Kalman-Filter half uns die äussere Beschleunigung zu schätzen und lieferte erstaunlich genaue Werte.
+
+Schlussendlich haben wir aufgezeigt, das Veränderungen an den System- und Rauschparametern die Genauigkeit und Zuverlässigkeit des Kalman-Filters beeinträchtigen.
 
