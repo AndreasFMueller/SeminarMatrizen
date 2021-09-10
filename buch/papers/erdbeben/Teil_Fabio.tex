@@ -12,64 +12,40 @@ haben wir keine Bauschäden zu beklagen.
 
 \subsection{Wahl der Schwingung}
 Wir müssen uns überlegen, mit welcher Schwingung wir ein realitätsnahes Beben erzeugen können.
-
 Mit einer ungedämpften harmonischen Schwingung können wir zwar die meisten Vorgänge in der Physik erklären.
 Da aber unser Erdbeben irgendwann abklingen muss, wählen wir die gedämpfte harmonische Schwingung.
 Die dazugehörige Schwingungsgleichung lautet
-
 \begin{equation}
-	y = A e^{-\lambda t} \sin(\omega t)
+	y = A e^{-\lambda t} \sin(\omega t).
 \end{equation}
-
-Für die Variablen der harmonisch gedämpften Schwingung setzen wir die Werte
-
-\begin{equation}
-A = 5
-\end{equation}
-
-ein.
-
-$A$ ist die Amplitude der Schwingung, die uns die Heftigkeit des Erdebebens beschreibt.
+Dabei ist $A=5$ die anfängliche Amplitude der Schwingung,
+die uns die Heftigkeit des Erdebebens beschreibt.
 Sie ist vergleichbar mit der Magnitude.
-
-$\omega$ definiert sich durch
-
+$\lambda$ bezeichnet die Bodendämpfung, für die wir $0.2$ wählen.
+Sie ist dafür verantwortlich, dass unser Erdbeben abklingt
+und kreiert die bei gedämpften Schwingungen typische Hüllkurve.
+Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
+Die Kreisfrequenz $\omega$ ist durch
 \begin{equation}
 	\omega = 2 \pi f
 \end{equation}
-
-wobei die Frequenz $f$ mit
-
+gegeben, 
+wobei die Momentanfrequenz $f = \mathcal N(\mu_f, \sigma_f) $ einer Normalverteilung mit
 \begin{equation}
-	f = E(\mathrm{Frequenz}) + \sigma^2(\mathrm{Frequenz})
+  \mu_f = \SI{15}{\hertz}
+  \qquad \text{und} \qquad
+  \sigma_f = \SI{10}{\hertz}
 \end{equation}
+folgt.
 
-erzeugt wird.
-
-Zusätzlich haben wir $f$ mit dem Savitzky-Golay-Filter gefiltert.
+Zusätzlich haben wir $f$ mit einem Savitzky-Golay-Filter gefiltert.
 Das Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an
-und bildet ein Polynom $n$-ter Ordnung.
-In unserer Anwendung schaut sich das Filter, im Sinne eines verschieblichen Fensters,
-jeweils zehn aufeinanderfolgende Datenpunkte an und bildet ein Polynom $0$-ter Ordnung.
-Da wir den Grad $0$ gewählt haben, erhalten wir pro zehn Punkte eine Gerade mit der Steigung $0$.
-Diese Art von der Filterung nennt sich gleitender Mittelwert.
-
-Für den Erwartungswert und die Standardabweichung setzen wir die Zahlen
-
-\begin{equation}
-E(f) = \SI{15}{\hertz}
-\end{equation}
-
-und
-\begin{equation}
-\sigma^2 = \SI{10}{\hertz}
-\end{equation}
-
-ein.
-
-$\lambda$ ist die Bodendämpfung, für die wir $0.2$ wählen.
-Sie ist dafür verantwortlich, dass unser Erdbeben abklingen wird und kreiert bei der gedämpften Schwingung die typische Hüllkurve der Amplitude.
-Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
+und bildet  darüber ein Polynom $n$-ter Ordnung.
+In unserer Anwendung schaut sich das Filter, im Sinne eines verschiebbaren Fensters,
+jeweils elf aufeinanderfolgende Datenpunkte an
+und approximiert diese mit ein Polynom $0$-ter Ordnung,
+also einer Konstanten.
+Somit erhalten wir mit Matlab-Standardfunktionen einen gleitenden Mittelwert.
 
 \subsection{Versuch im Standardfall}
 Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
@@ -92,27 +68,32 @@ Wir nehmen an, dass
 		{0.00001}^2& 0& 0 \\
 		0 & {0.00001}^2& 0\\
 		0 & 0& {1 }^2\\
-	\end{array}\right)
+	\end{array}\right).
 \end{equation}
 
 Auch für die Messung setzen wir ein Rauschen voraus und definieren
 
 \begin{equation}
 R= ({\sigma_x}^2)=
-({0.00001}^2)
+({0.00001}^2).
 \end{equation}
 
-Sind nun die benötigten Systemparameter und das Rauschen definiert, erzeugen wir das Erdbeben und schauen, wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
+Sind nun die benötigten Systemparameter und Varianzen definiert,
+erzeugen wir ein Erdbeben mittels Simulation und schauen,
+wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
 
-\subsection*{Ergebnis}
+\subsubsection{Ergebnis}
 
-Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagramm sehen, erzeugen unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung.
-Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
-Die zweite Ableitung ergibt uns die Kraft, welche für unsere Aufgabenstellung relevant ist.
-Sehr gut ersichtlich ist die Hüllkurve der Amplitude, wie wir sie bei einer gedämpften Schwingung erwarten.
+Abbildung~\ref{erdbeben:fig:standard-alles} zeigt zuoberst unsere Messwerte,
+also die Position der Masse relativ zum Seismografen.
+Wir sehen, dass unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung erzeugen.
+Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit,
+und die zweite Ableitung ergibt uns die Kraft, welche für unsere Aufgabenstellung relevant ist.
+Sehr gut ersichtlich ist die typische Hüllkurve, wie wir sie bei einer gedämpften Schwingung erwarten.
 
 Die blaue Kurve ist die geschätzte äussere Kraft des Kalman-Filters.
-Erst wenn wir näher zoomen, erkennen wir in der Abbildung~\ref{erdbeben:fig:standard-zoom} wie nahe die Schätzung an der idealen Schwingung liegt.
+Erst wenn wir näher zoomen, erkennen wir in Abbildung~\ref{erdbeben:fig:standard-zoom},
+wie nahe die Schätzung an der idealen Schwingung liegt.
 
 \begin{figure}
 	\begin{center}
@@ -131,21 +112,25 @@ Erst wenn wir näher zoomen, erkennen wir in der Abbildung~\ref{erdbeben:fig:sta
 \end{figure}
 
 \subsection{Veränderung der Systemparameter}
-Was wir nun austesten möchten, sind die Auswirkungen wenn z.B. der Seismograph andere Systemparameter aufweist.
-Wir nehmen an, dass sich im Vergleich zum Standardfall die Masse erhöht, die Federkonstante schwächer und die Bodendämpfung doppelt so stark wirkt.
+Was wir nun testen möchten, sind die Auswirkungen wenn zum Beispiel der Seismograph andere Systemparameter aufweist.
+Wir nehmen an, dass sich im Vergleich zum Standardfall die Masse erhöht, die Federkonstante schwächer und die Federdämpfung doppelt so stark wirkt.
 Somit gilt neu
 \[
-m = 0.05
-\qquad \qquad
+m = 0.05,
+\qquad
 D = 0.5
 \qquad \text{und} \qquad
 k = 0.02.
 \]
 
-Da wir mit dieser Anpassung die Trägheit des Seismogrammes erhöht haben, erwarten wir sicher eine langsamere Bewegung der Masse, das heisst die Frequenz wird sich reduzieren.
+Da wir mit dieser Anpassung die Trägheit des Seismogrammes erhöht haben,
+erwarten wir eine langsamere Bewegung der Masse,
+das heisst die Frequenz wird kleiner.
 
-Betrachten wir die Abbildung~\ref{erdbeben:fig:systemparameter-geaendert} können wir diese Erwartung bestätigen.
-Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die höhere Energie der Masse und geringeren Rücklenkkraft der Feder begründen können.
+Betrachten wir Abbildung~\ref{erdbeben:fig:systemparameter-geaendert},
+können wir diese Erwartung bestätigen.
+Zudem bemerken wir eine grössere Auslenkung der Position,
+die wir mir durch die höhere Energie der Masse und geringeren Rücklenkkraft der Feder erklären können.
 
 \begin{figure}
 	\begin{center}
@@ -181,7 +166,7 @@ Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt a
 \subsection{Verstärkung des Messrauschens}
 Als letztes verstärken wir das Messrauschen um den Faktor $100$ und belassen wieder den Rest wie im Standardfall.
 Wie man eigentlich schon erwarten kann, zeigt uns die Abbildung~\ref{erdbeben:fig:messrauschen-geaendert}, dass das Signal des Messsensors vom Messrauschen gestört wird.
-Weil die Messung somit ungenau wird, kann das Kalman-Filter nicht mehr genau arbeiten und produziert einen ungenauen Output.
+Weil die Messung somit ungenau wird, kann das Kalman-Filter nicht mehr genau arbeiten und produziert eine ungenaues Resultat.
 
 \begin{figure}
 	\begin{center}
