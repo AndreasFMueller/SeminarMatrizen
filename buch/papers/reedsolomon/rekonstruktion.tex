@@ -16,8 +16,8 @@ markiert dabei diese fehlerhaften Stellen im Übertragungsvektor
 w = [5,3,6,8,2,10,2,7,1,4].
 \]
 Als Ausgangslage verwenden wir die Matrix, mit der wir den Nachrichtenvektor ursprünglich codiert haben.
-Unser Ziel ist es wie auch schon im Abschnitt \ref{reedsolomon:section:decohnefehler} eine Möglichkeit zu finden, wie wir den Übertragungsvektor decodieren können. 
-Aufgrund der Fehlerstellen müssen wir aber davon ausgehen, das wir nicht mehr den gleichen Weg verfolgen können wie wir im Abschnitt \ref{reedsolomon:section:decohnefehler} angewendet haben.
+Unser Ziel ist es, wie auch schon im Abschnitt \ref{reedsolomon:section:decohnefehler}, eine Möglichkeit zu finden, wie wir den Übertragungsvektor decodieren können. 
+Aufgrund der Fehlerstellen müssen wir aber davon ausgehen, dass wir nicht mehr den gleichen Weg verfolgen können, wie wir ihn in Abschnitt \ref{reedsolomon:section:decohnefehler} angewandt haben.
 
 \rhead{Rekonstruktion der Nachricht}
 Wir stellen also die Matrix auf und markieren gleichzeitig die Fehlerstellen:
@@ -49,9 +49,9 @@ Wir stellen also die Matrix auf und markieren gleichzeitig die Fehlerstellen:
 \end{pmatrix}
 .
 \]
-Die rot markierten Stellen im Übertragungsvektor enthalten Fehler und bringt uns daher keinen weiteren Nutzen. 
+Die rot markierten Stellen im Übertragungsvektor enthalten Fehler und bringen uns daher keinen weiteren Nutzen. 
 Aus diesem Grund werden diese Stellen aus dem Vektor entfernt, was wir hier ohne Probleme machen können, da dieser Code ja über Fehlerkorrekturstellen verfügt, deren Aufgabe es ist, eine bestimmte Anzahl an Fehler kompensieren zu können.
-Die dazugehörigen Zeilen in der Matrix werden ebenfalls entfernt, da die Matrix gleich viele Zeilen wie im Übertragungsvektor aufweisen muss, damit man ihn decodieren kann.
+Die dazugehörenden Zeilen in der Matrix werden ebenfalls entfernt, da die Matrix gleich viele Zeilen wie im Übertragungsvektor aufweisen muss, damit man ihn decodieren kann.
 
 Daraus resultiert
 \[
@@ -76,8 +76,8 @@ Daraus resultiert
 .
 \]
 Die Matrix ist jedoch nicht mehr quadratisch, was eine Rekonstruktion durch Inversion ausschliesst. 
-Um die quadratische Form wieder herzustellen müssen wir zwei Spalten aus der Matrix entfernen.
-Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, das die Nachricht aus Nutzdatenteil und Fehlerkorrekturteil besteht, wobei der letzteres bekanntlich aus lauter Nullstellen besteht.
+Um die quadratische Form wieder herzustellen, müssen wir zwei Spalten aus der Matrix entfernen.
+Wir kennen aber das Resultat aus den letzten vier Spalten, da wir wissen, dass die Nachricht aus Nutzdatenteil und Fehlerkorrekturteil besteht, wobei das letztere bekanntlich aus lauter Nullstellen besteht.
 Wir nehmen die markierten Spalten in
 \[
 \begin{pmatrix}
@@ -99,7 +99,7 @@ Wir nehmen die markierten Spalten in
 	m_0 \\ m_1 \\ m_2 \\ m_3 \\ m_4 \\ m_5 \\ \textcolor{darkgreen}{m_6} \\ \textcolor{darkgreen}{m_7} \\ \textcolor{darkgreen}{m_8} \\ \textcolor{darkgreen}{m_9} \\
 \end{pmatrix}
 \]
-aus der Matrix heraus und erhalten so das Überbestimmte Gleichungssystem
+aus der Matrix heraus und erhalten so das überbestimmte Gleichungssystem
 \[
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\ \textcolor{red}{7} \\ \textcolor{red}{4} \\
@@ -141,7 +141,7 @@ Die roten Zeilen können wir aufgrund der Überbestimmtheit ebenfalls entfernen 
 \end{pmatrix}
 .
 \]
-Nun können wir den Gauss-Algorithmus anwenden um die Matrix zu Invertieren.
+Nun können wir den Gauss-Algorithmus anwenden, um die Matrix zu invertieren.
 \[
 \begin{pmatrix}
 	5 \\ 3 \\ 6 \\ 2 \\ 10 \\ 2 \\
@@ -183,7 +183,7 @@ Multiplizieren wir nun aus, erhalten wir unseren Nutzdatenteil
 \[
 m = [4,7,2,5,8,1]
 \]
-zurück, den wir ursprünglich versendet haben.
+zurück, den wir ursprünglich versandt haben.
 
 Wir möchten noch anmerken, dass es mehrere Wege für die Rekonstruktion des Nutzdatenteils gibt, diese aber alle auf dem Lokatorpolynom basieren. 
 
