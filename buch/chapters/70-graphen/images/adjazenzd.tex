@@ -10,12 +10,14 @@
 \usepackage{txfonts}
 \usepackage{pgfplots}
 \usepackage{csvsimple}
+\usepackage{color}
 \usetikzlibrary{arrows,intersections,math,calc}
 \begin{document}
 \def\skala{1}
 \begin{tikzpicture}[>=latex,thick,scale=\skala]
 
 \def\r{1.8}
+\def\R{\bgroup\color{red}0\egroup}
 
 \begin{scope}
 \coordinate (A) at ({\r*cos(0*72)},{\r*sin(0*72)});
@@ -71,15 +73,16 @@ B(G)
 \end{pmatrix*}$};
 \end{scope}
 
+
 \begin{scope}[xshift=3cm,yshift=1.1cm]
 \node at (0,0) [right] {$\displaystyle
 A(G)
 =
 \begin{pmatrix*}[r]
- 0& 1& 1& 0& 1\\
- 1& 0& 1& 1& 0\\
- 1& 1& 0& 1& 0\\
- 0& 1& 1& 0& 1\\
+ 0&\R&\R& 0&\R\\
+ 1& 0&\R&\R& 0\\
+ 1& 1& 0&\R& 0\\
+ 0& 1& 1& 0&\R\\
  1& 0& 0& 1& 0
 \end{pmatrix*},
 \quad
@@ -90,7 +93,7 @@ D(G)
 0&3&0&0&0\\
 0&0&3&0&0\\
 0&0&0&3&0\\
-0&0&0&0&1
+0&0&0&0&2
 \end{pmatrix*}
 $};
 \end{scope}
