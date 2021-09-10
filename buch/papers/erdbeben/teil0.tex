@@ -22,10 +22,18 @@ Stoppt das Erdbeben, schwingt das Gehäuse nicht mehr.
 Die Masse schwing jedoch in seiner Eigendynamik weiter. 
 Eine Relativbewegung des Bodens kann damit als Auslenkung im Zeitverlauf gemessen werden.
 In modernen Seismographen wird die Bodenbewegung in alle Richtungen gemessen, sowohl Horizontal als auch Vertikal. 
+
+
 Wir konstruieren uns eine einfachere Version eines Seismographen mit einem Gehäuse, an dem zwei Federn und eine Masse befestigt sind. 
 Der Seismograph ist in Abbildung ~\ref{erdbeben:Seismograph} ersichtlich.
 Ein Sensor unter der Masse misst die Position, bzw. die Auslenkung der Feder und der Masse.
 Dies bedeutet, unser Seismograph kann nur in eine Dimension Messwerte aufnehmen. 
+
+Für mehrere Dimensionen $(x,y,z)$ würde der Satz von Pythagoras für das System benötigt.
+Da sich der Pythagoras bekanntlich nicht linear verhält, kann kein (lineares) Kalman-Filter implementiert werden. 
+Einfachheitshalber beschränken wir uns auf den linearen Fall, da dadurch die wesentlichen Punkte bereits aufgezeigt werden. 
+Für ein nicht-lineares System werden Extended Kalman-Filter benötigt, bei denen die System-Matrix $A$ durch die Jacobi-Matrix des System ersetzt wird.
+
 
 \begin{figure}
  \begin{center}
@@ -50,6 +58,7 @@ Im Fall unseres Seismographen, handelt es sich um ein Feder-Masse-Pendel.
 Dieser kann durch die Differentialgleichung zweiter Ordnung einer gedämpften Schwingung am harmonischen Oszillator beschrieben werden. 
 Die Gleichung lautet:
 \begin{equation}
+	\label{erdbeben:Systemgleichung}
 m\ddot s + 2k \dot s + Ds = f.
 \end{equation}
 wobei $m$ die Masse, $k$ die Dämpfungskonstante und $D$ die Federkonstante bezeichnet.
@@ -66,25 +75,19 @@ Somit entstehen die Gleichungen für die Geschwindigkeit $ \dot s_1(t)$ der Mass
 und
 \[ \dot s_2 = -\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \] 
 für die Beschleunigung $\dot s_2(t)$ der Masse.
-Diese können wir nun in der Form
-\[ \ddot f =-\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \]
-als skalare Gleichung darstellen.
 
 Die für uns relevanten Zustände sind die Position der Masse, die Geschwindigkeit der Masse und die äussere Beschleunigung des ganzen Systems.
-Unüblich ist nun, dass der Stör-Term $f$ in Gleichung (20.1) gerade das ist, was wir eigentlich bestimmen möchten.  
+Unüblich ist nun, dass der Stör-Term $f$ in Gleichung~\eqref{erdbeben:Systemgleichung} gerade das ist, was wir eigentlich bestimmen möchten.  
 In unserem Fall wird die äusseren Beschleunigung gesucht, da diese der Erdbebenanregung gleich kommt.
 Deshalb nehmen wir $f$ als dritte Grösse in den Zustandsvektor auf und definieren:
 
 \[ 
- x = (s_1, s_2, f)^T.
+x= \left( \begin{array}{c} {s_1}\\ {s_2}\\{f}\end{array}\right)^T
 \] 
   
-Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$. Für $\dot s_1$ und $\dot s_2$ folgen diese direkt aus Gleichung (20.1), aber über $\dot f$ wissen wir nichts. 
-Wir müssen also eine Annahme treffen: $\dot f = 0$. Diese Annahme ist im Allgemeinen falsch, aber etwas Besseres haben wir zurzeit nicht zur Verfügung. 
-Zudem treffen wir die Annahme, das sich die Kraft über die Beobachtungszeit nicht verändert.
+Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$. Für $\dot s_1$ und $\dot s_2$ folgen diese direkt aus Gleichung  ~\eqref{erdbeben:Systemgleichung}, aber über $\dot f$ wissen wir nichts. 
+Wir müssen also eine Annahme treffen: $\dot f = 0$, somit verändert sich die Kraft über die Betrachtungszeit nicht. Diese Annahme ist im Allgemeinen falsch, aber etwas Besseres haben wir zurzeit nicht zur Verfügung. 
 Wir werden dies in einem späteren Schritt kompensieren müssen.
-Da die Kraft unbekannt ist, wird die letzte Zeile mit Nullen gefüllt, denn genau diese Werte wollen wir. 
-
 
 Durch Rücksubstituion ergibt sich uns folgende Systemgleichung in Matrix schreibweise, wobei $\dot {s_1}= v$ ist. Damit haben wir nun alles, was wir für die Matrix-Darstellung von Gleichung (20.1) benötigen. Diese lautet:
 \begin{equation}
