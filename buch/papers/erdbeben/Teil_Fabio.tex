@@ -1,14 +1,12 @@
 \section{Anwendung des Kalman-Filters}
 \subsection{Ziel}
 Bis jetzt haben wir gelesen, was das Kalman-Filter bewirkt und wie es funktioniert.
-Nun möchten wir mit einem Beispiel herausfinden,
-ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann.
+Nun möchten wir mit einem Beispiel herausfinden, ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann.
 
 \subsection{Künstliche Erdbebendaten}
-Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben, müssen wir mittels Matlab künstliche Daten erzeugen und sie dann in das Filter eingeben.
+Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben, müssen wir mittels Matlab künstliche Daten  erzeugen und sie dann in das Filter eingeben.
 Diese Vorgehensweise erlaubt uns das Erdbeben beliebig zu gestalten
-und weil es digital simuliert wird,
-haben wir keine Bauschäden zu beklagen.
+und weil es digital simuliert wird, haben wir keine Bauschäden zu beklagen.
 
 \subsection{Wahl der Schwingung}
 Wir müssen uns überlegen, mit welcher Schwingung wir ein realitätsnahes Beben erzeugen können.
@@ -108,16 +106,18 @@ Sind nun die benötigten Systemparameter und das Rauschen definiert, erzeugen wi
 
 Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagramm sehen, erzeugen unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung.
 Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
-Die zweite Ableitung ergibt uns die Kraft, welche für unsere Aufgabenstellung relevant ist.
-Sehr gut ersichtlich ist die Hüllkurve der Amplitude, wie wir sie bei einer gedämpften Schwingung erwarten.
+Die zweite Ableitung ergibt uns die Kraft, die in unserer Aufgabenstellung gesucht ist.
 
-Die blaue Kurve ist die geschätzte äussere Kraft des Kalman-Filters.
-Erst wenn wir näher zoomen, erkennen wir in der Abbildung~\ref{erdbeben:fig:standard-zoom} wie nahe die Schätzung an der idealen Schwingung liegt.
+Zoomen wir näher ran, erkennen wir in der Abbildung~\ref{erdbeben:fig:standard-zoom} im Positions-Diagramm eine Überlagerung der Massen-Eigenschwingung mit der Erdbebenschwingung.
+Die Masse schwingt mit einer tiefer Frequenz und hoher Amplitude, hingegen das Erdbeben mit einer hohen Frequenz und tiefer Amplitude.
+
+Vergleichen wir nun die Position mit der Kraft, stellen wir fest, dass das Kalman-Filter eine Schätzung wiedergibt, die auch eine Frequenz von \SI{15}{\hertz} hat.
+Das Filter war imstande die Eigenfrequenz zu eliminieren und die tatsächliche Kraft des Erdbebens zu wiedergeben.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Standard_alles.PNG}
-		\caption{Das Position-Zeit-Diagramm zeigt uns die typische Aufzeichnung eines Seismographen während eines Erdbebens. Um die Geschwindigkeit zu erhalten müssen wir die Position einmal ableiten. Ein weiteres Ableiten erzeugt uns die Beschleunigung, respektive die Kraft.}
+		\caption{Das Position-Zeit-Diagramm zeigt uns die typische Aufzeichnung eines Seismographen während eines Erdbebens. Um die Geschwindigkeit zu erhalten müssen wir die Position einmal ableiten. Ein weiteres Ableiten erzeugt uns die Beschleunigung, respektive die Kraft. Sehr gut ersichtlich ist die Hüllkurve der Amplitude, wie wir sie bei einer gedämpften Schwingung erwarten.}
     \label{erdbeben:fig:standard-alles}
 	\end{center}
 \end{figure}
@@ -207,6 +207,8 @@ Der Seismograph war fähig die Position der Masse während der Einwirkung des Er
 $a(t)$ kann zwar nicht mit Sensoren gemessen werden, jedoch erhalten wir $a(t)$ durch zweifaches Ableiten.
 Da wir so aber die innere Beschleunigung erhalten, mussten wir das Kalman-Filter anwenden.
 Das Kalman-Filter half uns die äussere Beschleunigung zu schätzen und lieferte erstaunlich genaue Werte.
+Ausserdem hat es das Filter geschafft, die Eigenfrequenz der Masse und die Erdbebenfrequenz zu separieren.
+Folglich erhielten wir eine Schätzung, die nur das Erdbeben betraf.
 
-Schlussendlich haben wir aufgezeigt, das Veränderungen an den System- und Rauschparametern die Genauigkeit und Zuverlässigkeit des Kalman-Filters beeinträchtigen.
+Zuletzt haben wir aufgezeigt, das Veränderungen an den System- und Rauschparametern die Genauigkeit und Zuverlässigkeit des Kalman-Filters beeinträchtigen können.
 
