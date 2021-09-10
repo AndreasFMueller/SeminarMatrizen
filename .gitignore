@@ -16,3 +16,4 @@ buch*.pdf
 *.DS_Store
 
 
+*.synctex(busy)
