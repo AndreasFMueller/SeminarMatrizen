@@ -9,8 +9,6 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %%
 
-
-
 \rhead{Kalman-Filter}
 \section{Kalman-Filter}
 Im letzten Abschnitt haben wir Gleichungen für unser System gefunden.
@@ -33,7 +31,7 @@ wobei die Korrektur abhänging von der Differenz zwischen erwarteter und effekti
 
 Dabei sind sowohl die Vorhersage als auch die Messung nur Schätzungen und unweigerlich fehlerbehaftet.
 Unter der Annahme, dass die Fehler normalverteilt sind,
-lassen sich beide Schätzungen zu einer neuen, im statistischen Sinne optimalen Schätzung kombinieren.
+lassen sich beide Schätzungen zu einer neuen, optimalen Schätzung kombinieren.
 Die genaue Herleitung des Kalman-Filters ist relativ aufwendig
 und kann unter Anderem in \cite{erdbeben:skript:wrstat} nachgelesen werden.
 
@@ -87,8 +85,8 @@ $\odot$ beschreibt dabei die Multiplikation und die Normierung auf den Flächeni
 	&=
 	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} dx}.
 \end{align*}
-Die genaue Berechnung ist eine reine Fingerübung.
-Nach einigem Aufwand findet man die Ausdrücke 
+Die genaue Berechnung ist nicht schwierig aber aufwendig und wird hier deshalb ausgelassen.
+Nach einigem Rechnen findet man die Ausdrücke
 \[ \mu_f = \frac{\mu_1\sigma_2^2 + \mu_2 \sigma_1^2}{\sigma_1^2 + \sigma_2^2} \]
 für den neuen Mittelwert und
 \[
@@ -109,20 +107,23 @@ Was in zwei Dimensionen erklärt wurde, funktioniert auch in mehreren Dimensione
 Dieses Prinzip mach sich das Kalman Filter zu nutze, und wird von uns für die Erdbeben Berechnung genutzt. 
 
 \subsection{Filter-Matrizen}
-Da wir nun ein Werkzeug besitzen, dass die Beschleunigung, welche auf das Gehäuse wirkt, ermitteln kann, wird dieses nun Schritt für Schritt erklärt. 
-Um den Kalman Filter zu starten, müssen gewisse Bedingungen definiert werden. 
+Da wir nun ein Werkzeug besitzen, dass die Beschleunigung, welche auf das Gehäuse wirkt, ermitteln kann,
+wird dieses nun Schritt für Schritt erklärt. 
+Um das Kalman Filter zu starten, müssen gewisse Bedingungen definiert werden. 
 In diesem Abschnitt werden die einzelnen Parameter und Matrizen erklärt und erläutert, wofür sie nützlich sind. 
 
 Dabei muss genau auf den Index geachtet werden.
 Wir verwenden die Standard-Notation, wie sie auch im Artikel~\cite{erdbeben:wikipedia} zu finden ist.
 Sie ist an die Notation der bedingten Wahrscheinlichkeiten angelehnt.
-Hierbei steht der betrachtete Zeitschritt links und der gegenwärtige reechts eines Vertikalstrichs.
-Dies bedeutet, dass die Notation $x_{n|m}$ die Schätzung von $x$ zum Zeitpunkt $n$ aufgrund des Wissens bis zum und und mit dem Zeitpunkt $m$ repräsentiert.
+Hierbei steht der betrachtete Zeitschritt links und der gegenwärtige rechts eines Vertikalstrichs.
+Dies bedeutet, dass die Notation $x_{n|m}$ die Schätzung von $x$ zum Zeitpunkt $n$ 
+aufgrund des Wissens bis zum und mit dem Zeitpunkt $m$ repräsentiert.
 
 \subsubsection*{Vorhersage}
-Im Filterschritt Vorhersage wird der nächste Zustand anhand des Anfangszustand und der Systemmatrix berechnet. 
-Die Systemmatrix $A$ aus Gleichung~\eqref{erdbeben:systemmatrix} beschreibt jedoch ein kontinuierliches System $\dot x = Ax$.
+Im Filterschritt Vorhersage wird anhand des aktuellen Zustands und der Systemmatrix eine Schätzung für den nächsten Zustand berechnet. 
+Die Systemmatrix $A$ aus Gleichung~\eqref{erdbeben:systemmatrix} beschreibt ein kontinuierliches System $\dot x = Ax$.
 Wir benötigen jedoch ein Zeit-diskretes System $x_{k+1} = \Phi x_k$.
+
 Die Exponentialfunktion $\exp(At)$ beschreibt die Entwicklung eine Zustandes im Laufe der Zeit.
 Die Übergangs-Matrix $\Phi$ erhalten wir folglich aus der Systemdynamikmatrix $A$ durch die Exponentialfunktion
 \[\Phi = \exp(A\Delta t). \]
@@ -164,7 +165,7 @@ Entsprechende Korrekturen werden dann gross bzw. nur gering ausfallen.
 \subsubsection*{Aktualisieren}
 
 Für eine optimale Schätzung des Zustandes muss die Vorhersage entsprechend der Innovation korrigiert werden.
-In der Literatur findet man für eine optimales Korrektur die Gleichungen:
+In der Literatur findet man für eine optimales Korrektur die Gleichungen
 \begin{align*}
 {S_{k}} &={H}{P_{k|k-1}}{H}^T+{R_{k}}
 \\
@@ -178,7 +179,7 @@ Die optimale Schätzung des neuen Zustandes wird dann zu
 \] 
 Dazu kommt eine neue Kovarianz $P$ für den nächste Vorhersageschritt:
 \[
-{P_{k|k}}=(I-{K_{k}}{H}){P_{k|k-1}} 
+{P_{k|k}}=(I-{K_{k}}{H}){P_{k|k-1}}. 
 \] 
 Der ganze Algorithmus ist nun vollständig und beginnt wieder mit der Vorhersage 
 \[
@@ -198,8 +199,10 @@ Zudem erfährt die Apparatur keine äussere Kraft.
 \[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right) \]
 
 \subsubsection*{Systemmatrix $A$ und $\Phi$}
-Für unseren Seismographen haben wir die entsprechende Matrixdarstellung in Gleichung ~\eqref{erdbeben:Systemgleichung} bereits gefunden.
-Zudem haben wir weiter oben bereits entdeckt, wie wir mittels Exponentialfunktion zu einer zeitdiskreten Beschreibung für das Kalman-Filter kommen.
+Für unseren Seismographen haben wir die entsprechende Matrixdarstellung
+in Gleichung~\eqref{erdbeben:systemmatrix} bereits gefunden.
+Zudem haben wir weiter oben bereits beschrieben,
+wie wir mittels Exponentialfunktion zu einer zeitdiskreten Beschreibung für das Kalman-Filter kommen.
 Es gilt
 \[ \Phi = \exp(A \Delta t) .\]
 
@@ -229,7 +232,7 @@ Somit kann die Matrix mit Nullen bestückt werden und wir starten mit
 Die Prozessrauschmatrix teilt dem Filter mit, wie sich der Prozess verändert. 
 Die Matrix $Q$ beschreibt die Unsicherheit, die der Prozess mit sich bringt. 
 Bei unserem Modell könnte das beispielsweise ein Windstoss an die Masse sein
-oder auch die Ungenauigkeiten im Modell, wie die Annahme, dass sich die Kraft nicht ändert.
+oder auch Ungenauigkeiten im Modell, wie die Annahme, dass sich die Kraft nicht ändert.
 Für uns wäre dies:
 \[ 
 Q = \left(
@@ -242,7 +245,7 @@ Q = \left(
 Die Standabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
 
 \subsubsection*{Messmatrix $H$}
-Die Messmatrix gibt an, welche Parameter gemessen werden. 
+Die Messmatrix gibt an, welche Zustände gemessen werden. 
 $H$ ist die Matrix, welche aus der Vorhersage des Zustand eine Vorhersage der Messung erzeugt.
 In unserem Falle messen wir nur die Position der Massen und verwenden deshalb
 \[ 
@@ -253,29 +256,30 @@ H = (1, 0, 0)
 Die Messrauschkovarianzmatrix beinhaltet, wie der Name schon sagt, das Rauschen der Messung. 
 In unserem Fall wird nur die Position der Masse gemessen. Da wir keine anderen Sensoren haben ist $R$ lediglich:
 \[ 
-R= ({\sigma_\mathrm{sensor}}^2).
+R= (\sigma_\mathrm{sensor}^2).
  \] 
 Diese Messrauchen wird meistens vom Sensorhersteller angegeben. 
-Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt da heutige Sensoren sehr genau messen können. 
+Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt,
+da heutige Sensoren sehr genau messen können.
 
+\clearpage
 \subsection{Zusammenfassung }
-
-Das Filter beginnt mit dem Anfangszustand für $k=0$
-
-\begin{itemize}
+Das Filter beginnt mit dem Anfangszustand für $k=0$.
+Anschliessend werden folgende Schritte iterativ ausgeführt:
+\begin{enumerate}
 \item Nächster Zustand vorhersagen
 \[
-{x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k-1|k-1}}.
+{x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k-1|k-1}}
 \] 
 
  \item Nächste Fehlerkovarianz vorhersagen
 \[
-{P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}.
+{P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}
 \] 
 
-\item Innovation (= Messung -  Vorhersage)
+\item Innovation (= Messung - Vorhersage)
 \[
-{w_{k}}={z_{k}}-{H}{x_{k|k-1}}.
+{w_{k}}={z_{k}}-{H}{x_{k|k-1}}
 \] 
 
 \item Optimales Kalman-Gain berechnen
@@ -294,6 +298,6 @@ Das Filter beginnt mit dem Anfangszustand für $k=0$
 {P_{k|k}}=(I-{K_{k}}{H}){P_{k|k-1}}
 \] 
 
-\item Die Outputs von $k$ werden die Inputs für ${k-1}$ und werden wieder in Schritt 1 verwendet
-\end{itemize}
+\end{enumerate}
+Die Outputs von $k$ werden die Inputs für ${k+1}$ und werden wieder in Schritt 1 verwendet.
 

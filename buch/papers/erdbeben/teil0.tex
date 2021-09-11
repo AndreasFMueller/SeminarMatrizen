@@ -4,10 +4,7 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %%
 
-%\section{Was ist ein Erdbeben? \label{erdbeben:section:teil0}}
 \rhead{Erdbeben}
-%Für das Verständnis möchten wir zuerst erklären, was ein Erdbeben genau ist.
-%Das soll uns helfen, eine Verknüpfung zwischen dem Naturphänomen und der mathematischen Problemstellung herzustellen.
 \noindent
 Unter einem Erdbeben verstehen wir eine Erschütterung des Erdkörpers.
 Dabei reiben zwei tektonische Platten aneinander, welche sich durch die Gesteinsverzahnung gegenseitig blockieren.
@@ -16,18 +13,17 @@ Wenn dies passiert, entlädt sich die aufgebaute Spannung und setzt enorme Energ
 Ein Erdbeben breitet sich vom Erdbebenherd in allen Richtungen gleich aus.
 Vergleichbar ist, wenn man einen Stein in einen Teich wirft und die Wellen beobachten kann, die sich ausbreiten.
 
-\subsection{Funktion eines Seismograph}
+\section{Funktion eines Seismographen}
 Um ein Erdbeben kenntlich zu machen, werden in der Regel Seismographen mit vielen Sensoren verwendet. 
 Ein Seismograph besteht im Grunde aus einer federgelagerten Masse.
 Bei einem Erdbeben folgt das Gehäuse direkt der Bewegung des Erdbebens.
 Die federgelagerte Masse wird jedoch erst durch die Feder bewegt und folgt verzögert.
 Zudem schwingt die Masse auch ohne Erdbeben weiter -- das System besitzt eine Eigendynamik.
-Eine Relativbewegung des Bodens kann folglich als Auslenkung im Zeitverlauf gemessen werden.
+Eine Relativbewegung des Gehäuses kann folglich als Auslenkung im Zeitverlauf gemessen werden.
 Allerdings misst man so nicht direkt das Erbeben, sondern eine Überlagerung der Effekte aus Erdbeben- und Federkraft.
 
-
 In modernen Seismographen wird die Bodenbewegung in alle Richtungen gemessen,
-sowohl Horizontal als auch Vertikal. 
+sowohl horizontal als auch vertikal. 
 Wir konstruieren hier eine einfachere Version eines Seismographen mit einem Gehäuse,
 an dem zwei Federn und eine Masse befestigt sind. 
 Abbildung~\ref{erdbeben:Seismograph} zeigt eine schematische Darstellung unseres Systems.
@@ -36,9 +32,8 @@ Unser Seismograph misst also nur eindimensional.
 
 Für mehrere Dimensionen würde der Satz von Pythagoras für die Auslenkung der Federn benötigt.
 Die benötigten Quadrate und Wurzeln brechen jedoch die Linearität des Systems.
-Die Systembeschreibung wird dann deutlich komplexer.
-Der Einfachheit halber beschränken wir uns deshalb auf den linearen Fall,
-welcher bereits alle wesentlichen Punkte aufgezeigen kann.
+Die Systembeschreibung wird dann deutlich komplexer, bringt aber nichts wesentlich Neues hervor.
+Wir beschränken uns deshalb auf den linearen Fall.
 
 Wir werden sehen, dass diese Art der Problemstellung effektiv mittels Kalman-Filter gelöst werden kann.
 Für ein nicht-lineares System werden Extended Kalman-Filter benötigt,
@@ -52,11 +47,10 @@ bei denen die System-Matrix $A$ durch die Jacobi-Matrix ersetzt wird.
  \end{center}
 \end{figure}
 
-\subsection{Ziel}
-Unser Seismograph misst nur die Position der Masse über die Zeit. 
-Wir wollen jedoch die Beschleunigung $a(t)$ des Boden,
-respektive die Kraft $f(t)$,
-welche auf das Gehäuse wirkt, bestimmten.  
+Unser Seismograph misst jedoch nur die Position der Masse über die Zeit. 
+Wir wollen aber die Beschleunigung $a(t)$ des Boden,
+respektive die Kraft,
+welche auf das Gehäuse wirkt, bestimmen.  
 Anhand dieser Beschleunigung,
 beziehungsweise der Krafteinwirkung durch die Bodenbewegung,
 wird später das Bauwerk bemessen.
@@ -83,8 +77,10 @@ Wir möchten diese Gleichung folglich in die Darstellung $\dot x = Ax$ überfüh
 wobei $x$ der Zustandsvektor und $A$ die Systemmatrix bezeichnet.
 Wir subsituieren $\dot s = v$ für die Geschwindigkeit und erhalten das Gleichungssystem
 \begin{align}
-  \dot s &= v \\
-  \dot v &= -\frac{D}{m} {s} -\frac{2k}{m} {v} + \frac{f} {m}.
+  \begin{split}
+    \dot s &= v \\ 
+    \dot v &= -\frac{D}{m} {s} -\frac{2k}{m} {v} + \frac{f} {m}.
+  \end{split}
   \label{erdbenen:systemgleichungen}
 \end{align}
 
@@ -116,15 +112,4 @@ Sie lautet:
   \begin{pmatrix} s(t) \\ v(t) \\ f(t) \end{pmatrix}.
   \label{erdbeben:systemmatrix}
 \end{equation}
-
-
-
-
-
-
-
-
-
-
-
 
