@@ -3,11 +3,12 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %%
-\section{Was ist ein Erdbeben? \label{erdbeben:section:teil0}}
-\rhead{Erdbeben}
-Für das Verständnis möchten wir zuerst erklären, was ein Erdbeben genau ist.
-Das soll uns helfen, eine Verknüpfung zwischen dem Naturphänomen und der mathematischen Problemstellung herzustellen.
 
+%\section{Was ist ein Erdbeben? \label{erdbeben:section:teil0}}
+\rhead{Erdbeben}
+%Für das Verständnis möchten wir zuerst erklären, was ein Erdbeben genau ist.
+%Das soll uns helfen, eine Verknüpfung zwischen dem Naturphänomen und der mathematischen Problemstellung herzustellen.
+\noindent
 Unter einem Erdbeben verstehen wir eine Erschütterung des Erdkörpers.
 Dabei reiben zwei tektonische Platten aneinander, welche sich durch die Gesteinsverzahnung gegenseitig blockieren.
 Diese Haftreibung durch die Steine wird so lange aufgebaut, bis sie nicht mehr gehalten werden kann.
@@ -17,23 +18,31 @@ Vergleichbar ist, wenn man einen Stein in einen Teich wirft und die Wellen beoba
 
 \subsection{Funktion eines Seismograph}
 Um ein Erdbeben kenntlich zu machen, werden in der Regel Seismographen mit vielen Sensoren verwendet. 
-Ein Seismograph besteht im Grunde aus einer federgelagerten Masse. Wirkt eine Bodenerregung auf das Gerät ein, schwing das Gehäuse und dadurch auch die gekoppelte Masse. 
-Stoppt das Erdbeben, schwingt das Gehäuse nicht mehr. 
-Die Masse schwing jedoch in seiner Eigendynamik weiter. 
-Eine Relativbewegung des Bodens kann damit als Auslenkung im Zeitverlauf gemessen werden.
-In modernen Seismographen wird die Bodenbewegung in alle Richtungen gemessen, sowohl Horizontal als auch Vertikal. 
+Ein Seismograph besteht im Grunde aus einer federgelagerten Masse.
+Bei einem Erdbeben folgt das Gehäuse direkt der Bewegung des Erdbebens.
+Die federgelagerte Masse wird jedoch erst durch die Feder bewegt und folgt verzögert.
+Zudem schwingt die Masse auch ohne Erdbeben weiter -- das System besitzt eine Eigendynamik.
+Eine Relativbewegung des Bodens kann folglich als Auslenkung im Zeitverlauf gemessen werden.
+Allerdings misst man so nicht direkt das Erbeben, sondern eine Überlagerung der Effekte aus Erdbeben- und Federkraft.
 
 
-Wir konstruieren uns eine einfachere Version eines Seismographen mit einem Gehäuse, an dem zwei Federn und eine Masse befestigt sind. 
-Der Seismograph ist in Abbildung ~\ref{erdbeben:Seismograph} ersichtlich.
-Ein Sensor unter der Masse misst die Position, bzw. die Auslenkung der Feder und der Masse.
-Dies bedeutet, unser Seismograph kann nur in eine Dimension Messwerte aufnehmen. 
+In modernen Seismographen wird die Bodenbewegung in alle Richtungen gemessen,
+sowohl Horizontal als auch Vertikal. 
+Wir konstruieren hier eine einfachere Version eines Seismographen mit einem Gehäuse,
+an dem zwei Federn und eine Masse befestigt sind. 
+Abbildung~\ref{erdbeben:Seismograph} zeigt eine schematische Darstellung unseres Systems.
+Ein Sensor unter der Masse misst die Position der Masse relativ zum Gehäuse.
+Unser Seismograph misst also nur eindimensional.
 
-Für mehrere Dimensionen $(x,y,z)$ würde der Satz von Pythagoras für das System benötigt.
-Da sich der Pythagoras bekanntlich nicht linear verhält, kann kein (lineares) Kalman-Filter implementiert werden. 
-Einfachheitshalber beschränken wir uns auf den linearen Fall, da dadurch die wesentlichen Punkte bereits aufgezeigt werden. 
-Für ein nicht-lineares System werden Extended Kalman-Filter benötigt, bei denen die System-Matrix $A$ durch die Jacobi-Matrix des System ersetzt wird.
+Für mehrere Dimensionen würde der Satz von Pythagoras für die Auslenkung der Federn benötigt.
+Die benötigten Quadrate und Wurzeln brechen jedoch die Linearität des Systems.
+Die Systembeschreibung wird dann deutlich komplexer.
+Der Einfachheit halber beschränken wir uns deshalb auf den linearen Fall,
+welcher bereits alle wesentlichen Punkte aufgezeigen kann.
 
+Wir werden sehen, dass diese Art der Problemstellung effektiv mittels Kalman-Filter gelöst werden kann.
+Für ein nicht-lineares System werden Extended Kalman-Filter benötigt,
+bei denen die System-Matrix $A$ durch die Jacobi-Matrix ersetzt wird.
 
 \begin{figure}
  \begin{center}
@@ -45,58 +54,67 @@ Für ein nicht-lineares System werden Extended Kalman-Filter benötigt, bei dene
 
 \subsection{Ziel}
 Unser Seismograph misst nur die Position der Masse über die Zeit. 
-Wir wollen jedoch die Beschleunigung $a(t)$ des Boden, bzw. die Kraft $f(t)$, welche auf das Gehäuse wirkt, bestimmten.  
-Anhand dieser Beschleunigung, bzw. der Krafteinwirkung durch die Bodenbewegung, wird später das Bauwerk bemessen.
+Wir wollen jedoch die Beschleunigung $a(t)$ des Boden,
+respektive die Kraft $f(t)$,
+welche auf das Gehäuse wirkt, bestimmten.  
+Anhand dieser Beschleunigung,
+beziehungsweise der Krafteinwirkung durch die Bodenbewegung,
+wird später das Bauwerk bemessen.
 Dies bedeutet, die für uns interessante Grösse $f(t)$ wird nicht durch einen Sensor erfasst. 
 Jedoch können wir durch zweifaches ableiten der Positionsmessung $s(t)$ die Beschleunigung der Masse berechnen. 
-Das heisst: Die Messung ist zweifach Integriert die Kraft $f(t)$ inklusive der Eigendynamik der Masse.
-Um die Krafteinwirkung der Masse zu berechnen, müssen wir Gleichungen für unser System finden.
+Die Messung entspricht also dem zweiten Integral der Kraft $f(t)$,
+wobei diese einerseits durch das Erdbeben, und andererseits durch die Federn zustande kommt.
+Im Folgenden möchten wir die Erdbeben- und Federkräfte trennen.
+Dafür benötigen wir zuerst eine mathematische Beschreibung unseres Systems.
 
 \subsection{Systemgleichung}
 Im Paper~\cite{erdbeben:mendezmueller} wurde das System gleich definiert und vorgegangen. 
 Im Fall unseres Seismographen, handelt es sich um ein Feder-Masse-Pendel.
-Dieser kann durch die Differentialgleichung zweiter Ordnung einer gedämpften Schwingung am harmonischen Oszillator beschrieben werden. 
-Die Gleichung lautet:
+Dieses kann als gedämpfter harmonischer Oszillator beschrieben werden. 
+Die zugehörige Differentialgleichung lautet:
 \begin{equation}
 	\label{erdbeben:Systemgleichung}
 m\ddot s + 2k \dot s + Ds = f.
 \end{equation}
 wobei $m$ die Masse, $k$ die Dämpfungskonstante und $D$ die Federkonstante bezeichnet.
 
+Für lineare Systeme ist eine Matrix-Darstellung handlicher.
+Wir möchten diese Gleichung folglich in die Darstellung $\dot x = Ax$ überführen,
+wobei $x$ der Zustandsvektor und $A$ die Systemmatrix bezeichnet.
+Wir subsituieren $\dot s = v$ für die Geschwindigkeit und erhalten das Gleichungssystem
+\begin{align}
+  \dot s &= v \\
+  \dot v &= -\frac{D}{m} {s} -\frac{2k}{m} {v} + \frac{f} {m}.
+  \label{erdbenen:systemgleichungen}
+\end{align}
 
-Da die Differentialgleichung linear ist möchten wir diese Gleichung in die Darstellung $\dot x = Ax$ überführen, wobei $x$ der Zustandsvektor und $A$ die Systemmatrix bezeichnet. Dazu verwenden wir die Subsitution:
-\[ 
-s_1 = s 
-\qquad \text{und} \qquad
-s_2 = \dot s.
-\]
-Somit entstehen die Gleichungen für die Geschwindigkeit $ \dot s_1(t)$ der Masse :
-\[ \dot {s_1} = {s_2}\] 
-und
-\[ \dot s_2 = -\frac{D}{m} {s_1} -\frac{2k}{m} {s_2} + \frac{f} {m} \] 
-für die Beschleunigung $\dot s_2(t)$ der Masse.
-
-Die für uns relevanten Zustände sind die Position der Masse, die Geschwindigkeit der Masse und die äussere Beschleunigung des ganzen Systems.
-Unüblich ist nun, dass der Stör-Term $f$ in Gleichung~\eqref{erdbeben:Systemgleichung} gerade das ist, was wir eigentlich bestimmen möchten.  
-In unserem Fall wird die äusseren Beschleunigung gesucht, da diese der Erdbebenanregung gleich kommt.
+Die relevanten Zustände sind also die Position $s$ und die Geschwindigkeit $v$.
+Die für uns eigentlich interessante Grösse ist jedoch der Stör-Term $f$.
+Dieser entspricht der Kraft durch das Erdbeben.
 Deshalb nehmen wir $f$ als dritte Grösse in den Zustandsvektor auf und definieren:
-
 \[ 
-x= \left( \begin{array}{c} {s_1}\\ {s_2}\\{f}\end{array}\right)^T
+  x = \begin{pmatrix} {s} \\ {v} \\ {f} \end{pmatrix}
 \] 
   
-Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$. Für $\dot s_1$ und $\dot s_2$ folgen diese direkt aus Gleichung  ~\eqref{erdbeben:Systemgleichung}, aber über $\dot f$ wissen wir nichts. 
-Wir müssen also eine Annahme treffen: $\dot f = 0$, somit verändert sich die Kraft über die Betrachtungszeit nicht. Diese Annahme ist im Allgemeinen falsch, aber etwas Besseres haben wir zurzeit nicht zur Verfügung. 
+Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$.
+Für $s$ und $v$  haben wir diese in Gleichung~\eqref{erdbenen:systemgleichungen} bereits gefunden.
+Über die Kraft $f$ wissen wir jedoch nichts.
+Wir müssen also eine Annahme treffen: Die Kraft ändert sich nicht, $\dot f = 0$.
+Diese Annahme ist im Allgemeinen natürlich falsch, aber etwas Besseres haben wir nicht zur Verfügung.
 Wir werden dies in einem späteren Schritt kompensieren müssen.
 
-Durch Rücksubstituion ergibt sich uns folgende Systemgleichung in Matrix schreibweise, wobei $\dot {s_1}= v$ ist. Damit haben wir nun alles, was wir für die Matrix-Darstellung von Gleichung (20.1) benötigen. Diese lautet:
+Wir haben nun alles für die Matrix-Form von Gleichung~\eqref{erdbeben:Systemgleichung} zusammen.
+Sie lautet:
 \begin{equation}
-\frac{d}{dt} \left(\begin{array}{c} s(t) \\ v(t) \\ f(t) \end{array}\right) = \left(
- \begin{array}{ccc} 	
-0 & 1& 0 \\ 
-- \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m}\\
-0 & 0 & 0\\
-\end{array}\right)  \left(\begin{array}{c} s(t)\\ v(t)\\ f(t) \end{array}\right).
+  \frac{d}{dt} \begin{pmatrix} s(t) \\ v(t) \\ f(t) \end{pmatrix}
+  =
+ \begin{pmatrix}
+  \phantom- 0 & \phantom-1& 0 \\ 
+  - \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m} \\
+  \phantom-0 & \phantom-0 & 0\\
+  \end{pmatrix}
+  \begin{pmatrix} s(t) \\ v(t) \\ f(t) \end{pmatrix}.
+  \label{erdbeben:systemmatrix}
 \end{equation}
 
 
