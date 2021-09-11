@@ -20,38 +20,30 @@ Da wir die äussere Kraft nicht direkt messen können, benötigen wir ein Werkze
 Dies ist eine typische Anwendung für das Kalman-Filter.
 
 Das Filter schätzt den Zustand eines Systems anhand von Messungen und kann den nächsten Zustand errechnen und aus dieser Schätzung auch eine erwartete Messung herleiten.
-Die für das Filter relevante Grösse ist dann nicht mehr die eigentliche Messung, sondern die Differenz aus Messung und Erwartung, da diese Differenz, die Innovation, eine Aussage über die nicht-deterministischen, externen Einflüsse auf das System ermöglicht.
 Das Filter berücksichtigt dazu nicht nur die Messung und den Zustand, sondern auch die Unsicherheiten dieser beiden Grössen, welche als Parameter in das Modell des Systems einfliessen.
 
 Unser Ziel ist es, anhand der Messung die eigentlich interessante Grösse $f$ zu bestimmen. 
-Dabei wird durch eine deterministische Vorhersage, in dem der Zustand mit der Eigendynamik des Systems multipliziert wird. 
-Die Idee dahinter ist, dass das Kalman-Filter die nicht-deterministische Grösse $f$ anhand der Messung und der Vorhersage zu bestimmen.
+Durch Kenntnis über den aktuellen Zustand und der Eigendynamik des Systems berechnen wir eine Vorhersage des nächsten Zustandes.
+Die für das Filter relevante Grösse ist dann nicht mehr die eigentliche Messung, sondern die Differenz aus Messung und Vorhersage, da diese Differenz, die Innovation, eine Aussage über die nicht-deterministischen, externen Einflüsse auf das System ermöglicht.
 
-Für mehrere Dimensionen (x,y,z) würde der Satz von Pythagoras für das System benötigt.
-Da sich der Pythagoras bekanntlich nicht linear verhält, kann kein lineares Kalman-Filter implementiert werden. 
-Da das Kalman-Filter besonders effektiv und einfach für lineare Abläufe geeignet ist, würde eine zweidimensionale Betrachtung den Rahmen dieser Arbeit sprengen. 
-Einfachheitshalber beschränken wir uns auf den linearen Fall, da dadurch die wesentlichen Punkte bereits aufgezeigt werden. 
-Für ein nicht-lineares System werden Extended Kalman-Filter benötigt, bei denen die System-Matrix (A) durch die Jacobi-Matrix des System ersetzt wird.
+Die genau Herleitung des Kalman-Filter befindet sich für Interessierte im Wahrscheinlichkeit und Statistik Skript von A. Müller. 
+Im folgenden Abschnitt werden die Resultate zitiert. 
 
 \subsection{Geschichte}
 Das Kalman-Filter wurde 1960 von Rudolf Emil Kalman entdeckt und direkt von der NASA für die Appollo Mission benutzt.
-Das Filter kommt mit wenig Rechenleistung aus und war somit dafür geeignet die Rakete bei der Navigation zu unterstützen. Eine typische Anwendungen des Kalman-Filters ist Glättung von verrauschten Daten und die Schätzung von Parametern. Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphones und Videospielen vor.
+Das Filter kommt mit wenig Rechenleistung aus und war somit dafür geeignet die Rakete bei der Navigation zu unterstützen. 
+Eine typische Anwendungen des Kalman-Filters ist Glättung von verrauschten Daten und die Schätzung von Parametern. Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphones und Videospielen vor.
 
-\subsection{Wahrscheinlichkeit}
-Das Kalman-Filter schätzt den wahrscheinlichsten Wert zwischen Normalverteilungen.
+\subsection{Exkurs Wahrscheinlichkeit} 
+	\label{erdbeben:Wahrscheindlichkeit} 
+Das Kalman-Filter schätzt den wahrscheinlichsten Wert zwischen Normalverteilungen, in unserem Fall sind dies die Messung und die Vorhersage.
 Dies bedeutet, das Filter schätzt nicht nur den Mittelwert, sondern auch die Standartabweichung.
 Da Normalverteilungen dadurch vollständig definiert sind, schätzt ein Kalman-Filter die gesamte Verteilungsfunktion des Zustandes.
-In der Abbildung~\ref{erdbeben: Zwei Normalverteilungen} sind zwei Funktionen dargestellt. 
+In der Abbildung~\ref{erdbeben:Gauss3} sind zwei Funktionen dargestellt. 
 Die eine Funktion zeigt die errechnete Vorhersage des Zustands, bzw. deren Normalverteilung. 
 Die andere Funktion zeigt die verrauschte Messung des nächsten Zustand, bzw. deren Normalverteilung. 
-Wie man am Beispiel der Gauss-Verteilungen in Abblidung~\ref{erdbeben: Zwei Normalverteilungen} sehen kann, ist sowohl der geschätzte Zustand als auch der gemessene Zustand normalverteilt und haben dementsprechend unterschiedliche Standardabweichungen $\sigma$ und Erwartungswerte $\mu$. Dies wird in~\cite{erdbeben:aragher_understanding_2012}beschrieben.
-\begin{figure}
- \begin{center}
- \includegraphics[width=5cm]{papers/erdbeben/Gausskurve2.pdf}
- \caption{Zwei Normalerteilungen; Die eine Funktion zeigt die Vorhersage, die andere die Messung}
-    \label{erdbeben: Zwei Normalverteilungen}
- \end{center}
-\end{figure}
+Wie man am Beispiel der Gauss-Verteilungen in Abblidung~\ref{erdbeben:Gauss3} sehen kann, ist sowohl der geschätzte Zustand als auch der gemessene Zustand normalverteilt und haben dementsprechend unterschiedliche Standardabweichungen $\sigma$ und Erwartungswerte $\mu$. Das folgende wird in~\cite{erdbeben:aragher_understanding_2012}beschrieben.
+
 Wir haben eine Vorhersage aus der Systemdynamik und eine Messung des Zustandes.
 Diese widersprechen sich im Allgemeinen. 
 Jedoch wissen wir die Wahrscheinlichkeiten der beiden Aussagen. 
@@ -67,14 +59,17 @@ und der Messung:
 \]
 Diesen werden nun multipliziert und durch deren Fläche geteilt um sie wieder zu normieren, $\odot$ beschreibt dabei die Multiplikation und die Normierung auf den Flächeninhalt eins :
 \begin{align*}
-	{y_f}(x; {\mu_f}, {\sigma_f}) = {y_1}(x;{ \mu_1},{ \sigma_1}) \odot {y_2}(x; {\mu_2}, {\sigma_2})
+	{y_f}(x; {\mu_f}, {\sigma_f}) 
+	&=
+	 {y_1}(x;{ \mu_1},{ \sigma_1}) \odot {y_2}(x; {\mu_2}, {\sigma_2})
+	\\
 	&=
 	\frac{1}{\sqrt{2\pi\sigma_1^2}}\quad e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \odot \frac{1}{\sqrt{2\pi\sigma_2^2}}\quad e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}
 	\\
 	&=
 	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} dx}.
 \end{align*}
-Diese Kombination der beiden Verteilungen resultiert wiederum in einer Normalverteilung
+Durch geschicktes umformen resultiert aus der Kombination der beiden Verteilungen wiederum in einer Normalverteilung
 mit Erwartungswert
 \[ \mu_f = \frac{\mu_1\sigma_2^2 + \mu_2 \sigma_1^2}{\sigma_1^2 + \sigma_2^2} \]
 und Varianz
@@ -83,30 +78,27 @@ und Varianz
 \]
 Dadurch gleicht sich die neue Kurve den anderen an. Interessant daran ist, dass die fusionierte Kurve sich der genauere Normal-Verteilung anpasst.
 Ist ${\sigma_2}$ klein und ${\sigma_1}$ gross, so wird sich die fusionierte Kurve näher an ${y_2}(x;{\mu_2},{\sigma_2})$ begeben.
-Somit ist $\mu_f$ ist das gewichtete Mittel der beiden $\mu_{1,2}$, und die Varianzen sind die Gewichte!
+Somit ist $\mu_f$ das gewichtete Mittel der beiden $\mu_{1,2}$ und die Varianzen sind die Gewichte. 
+Das Interessante an $\mu_{f}$ ist, dass ${\mu_2}$  ${\sigma_1}$ beeinflusst. 
+Somit beeinflusst die Messung die Schätzung und umgekehrt.
 Die neue Funktion ist die best mögliche Schätzung für zwei Verteilungen, welche den selben Zustand beschreiben. 
 Dies ist in der Abbildung~\ref{erdbeben:Gauss3} anhand der rote Funktion ersichtlich. 
 \begin{figure}
  \begin{center}
  \includegraphics[width=5cm]{papers/erdbeben/Gausskurve3.pdf}
- \caption{Durch das Multiplizieren der blauen und der orangen Verteilung entsteht die die rote, optimale Funktion}
+ \caption{Durch das Multiplizieren der blauen Mess- und der orangen Schätz-Verteilung entsteht die die rote, optimale Funktion}
  \label{erdbeben:Gauss3}
  \end{center}
 \end{figure}
+
 Was in zwei Dimensionen erklärt wurde, funktioniert auch in mehreren Dimensionen. 
 Dieses Prinzip mach sich das Kalman Filter zu nutze, und wird von uns für die Erdbeben Berechnung genutzt. 
 
-\section{Filter-Matrizen}
+\subsection{Filter-Matrizen}
 Da wir nun ein Werkzeug besitzen, dass die Beschleunigung, welche auf das Gehäuse wirkt, ermitteln kann, wird dieses nun Schritt für Schritt erklärt. 
 Um den Kalman Filter zu starten, müssen gewisse Bedingungen definiert werden. 
 In diesem Abschnitt werden die einzelnen Parameter und Matrizen erklärt und erläutert, wofür sie nützlich sind. 
 
-\subsection{Fiter-Agorithmus}
-Nachdem alle Parameter aufgestellt sind, wird das Filter initialisiert.
-Zuerst wird der nächste Zustand der Masse vorhergesagt, danach wird die Messung präzisiert und laufend aktualisiert. 
-Das Filter berechnet aufgrund der aktuellen Schätzung eine Vorhersage. 
-Diese wird, sobald verfügbar, mit der Messung verglichen. 
-Aus dieser Differenz und den Unsicherheiten des Prozesses ($Q$) und der Messung ($R$) wird der wahrscheinlichste, neue Zustand geschätzt.
 Dabei muss genau auf den Index geachtet werden. Nach dem Artikel~\cite{erdbeben:wikipedia} ist die Indexierung so genormt:
 Der Zeitschritt wird mit $k$ definiert, $k-1$ ist somit ein Zeitschritt vor $k$.
 Auf der linken Seite von | wird der aktuelle Zustand verlangt, bzw. ausgegeben, auf der rechten Seiten den bisherigen Zustand.
@@ -114,79 +106,77 @@ Dies bedeutet, dass die Notation $x_{n|m}$ die Schätzung von $x$ zum Zeitpunkt 
 
 \subsubsection*{Vorhersage}
 Im Filterschritt Vorhersage wird der nächste Zustand anhand des Anfangszustand und der Systemmatrix berechnet. 
-Dies funktioniert mit dem Rechenschritt:
+Die Systemmatrix $A$ beschreibt ein kontinuierliches System $\dot x = Ax$. 
+Wir benötigen jedoch ein Zeit-diskretes System $x_{k+1} = \Phi x_k$.
+Die Exponentialfunktion $\exp(At)$ beschreibt die Entwicklung eine Zustandes im Laufe der Zeit.
+Die Übergangs-Matrix $\Phi$ erhalten wir folglich aus der Systemdynamikmatrix mittels Exponentialfunktion: 
+\[\Phi = \exp(A\Delta t). \]
+Die Matrix $\Phi$ beschreibt die Übergänge zwischen zeitlich aufeinanderfolgenden Zuständen $x_{k-1}$ und $x_{k}$ anhand folgender Gleichung:
 \[
 {x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k-1|k-1}}.
 \] 
-Die Kovarianz $P_{k|k-1}$ wird ebenfalls neu berechnet. Zudem kommt noch die Prozessunsicherheit $Q$ dazu, so dass die Unsicherheit des Anfangsfehlers $P$ laufend verändert. 
-Dies funktioniert durch multiplizieren der Systemmatrix mit dem aktualisierten Anfangsfehler. 
-Dazu wird noch die Prozessunsicherheit addiert, somit entsteht die Gleichung
+
+Im Abschnitt ~\ref{erdbeben:Wahrscheindlichkeit} benötigten wir die Varianzen der Normalverteilungen. 
+Im mehrdimensionalen Fall übernimmt dies die Kovarinanzmatrix $P$.
+Sie wird in jedem Schritt aktualisiert. 
+Dazu wird noch die Prozessunsicherheit $Q$ addiert, somit entsteht die Gleichung
 \[
 {P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}.
 \] 
-Es vergeht genau $\Delta t$ Zeit, und dieser Vorgang wird wiederholt. 
-Das hochgestellte T bezeichnet die transponierte Matrix.
-Dabei wird in den späteren Schritten überprüft, wie genau die letzte Anpassung von $P$ zur Messung stimmt. 
-Ist der Unterschied klein, wird die Kovarianz $P$ kleiner, ist der Unterschied gross, wird auch die Kovarianz grösser. 
+Es vergeht genau $\Delta t$ Zeit, und dieser Vorgang wird wiederholt.  
 Das Filter passt sich selber an und korrigiert sich bei grosser Abweichung.
 
 \subsubsection*{Messen}
 Der Sensor wurde noch nicht benutz, doch genau der liefert Werte für das Filter. 
-Die aktuellen Messwerte $z$ werden die Innovation $w$ mit dem Zustandsvektor $x$ und der Messmatrix $H$ zusammengerechnet.
-Hier bei wird lediglich die Messung mit dem Fehler behaftet, und die Messmatrix $H$ mit der Vorhersage multipliziert.
+Aus der Vorhersage des Zustandes $x_{k|k-1}$ und der Messmatrix $H$ erhalten wird eine Vorhersage der Messung. 
+Die Innovation
 \[
-{w_{k}}={z_{k}}-{H}{x_{k|k-1}}.
+{w_{k}}={z_{k}}-{H}{x_{k|k-1}}
 \] 
-Die Innovation ist der Teil der Messung, die nicht durch die Systemdynamik erklärt werden kann. 
-Die Hilfsgröße Innovation beschreibt, wie genau die Vorhersage den aktuellen Messwert mittels der Systemmatrix $\Phi$ beschreiben kann. 
+beschreibt, wie genau die Vorhersage den aktuellen Messwert $z$ mittels der Systemmatrix $\Phi$ beschreiben kann. 
+Die Innovation ist der Teil der Messung, der nicht im Modell erfasst ist.
+Dies leuchtet ein, eine Innovation von $0$ bedeutet, dass die Messung nichts Neues hervorbrachte.
 Für eine schlechte Vorhersage wird die dazugehörige Innovation gross, für eine genaue Vorhersage dagegen klein sein. 
-Entsprechende Korrekturen müssen dann gross bzw. nur gering ausfallen. 
-Innovation = Messung - Vorhersage. Dies leuchtet ein, eine Innovation von 0 bedeutet, dass die Messung nichts Neues hervorbrachte.
-
-Im nächsten Schritt wir analysiert, mit welcher Kovarianz weiter gerechnet wird. 
-Hierbei wird die Unsicherheit $P$, die Messmatrix $H$ und die Messunsicherheit $R$ miteinander verrechnet. 
-\[ 
-{S_{k}}={H}{P_{k|k-1}}{H}^T+{R_{k}}
-\] 
+Entsprechende Korrekturen werden dann gross bzw. nur gering ausfallen. 
 
 \subsubsection*{Aktualisieren}
-Im nächsten Schritt kommt nun die Wahrscheinlichkeit dazu. 
-\[{K_{k}}= {P_{k|k-1}} {H^T}{S_{k}^{-1}}\] 
-Die Grösse $K$ wird Kalman-Gain genannt. 
-Das Kalman-Gain gibt dem Zustand die Gewichtung, bzw. wie die Vorhersage auf den Zustand passt.
-Vereinfacht gesagt: Es wird das das Verhältnis zwischen der Unsicherheit der Vorhersage $P_k$ zu der zugehörigen Messunsicherheit $R_k$ gebildet. 
-In unserem Fall wird werden die Elemente der Kalman-Matrix vorweg berechnet, da das Kalman-Gain ohne Messungen auskommt. 
 
-Anhand der Informationen aus der Innovation wird das Kalman-Gain $K$ gebildet. Dabei beschreibt das Kalman-Gain die Wirkung der Innovation auf den geschätzten Zustand. So wird das System aktualisiert.
+Für eine optimale Schätzung des Zustandes muss die Vorhersage entsprechend der Innovation korrigiert werden.
+In der Literatur findet man für eine optimales Korrektur die Gleichungen:
+\begin{align*}
+{S_{k}} &={H}{P_{k|k-1}}{H}^T+{R_{k}}
+\\
+{K_{k}} &= {P_{k|k-1}} {H^T}{S_{k}^{-1}}
+\end{align*}
+Dabei ist $K$ das Kalman-Gain. 
+Mit dessen Hilfe erhalten wir die optimale Schätzung des nächsten Zustandes
 \[
-{x_{k|k}}={x_{k|k-1}}+{K_{k}}{w_{k}}
+{x_{k|k}}={x_{k|k-1}}+{K_{k}}{w_{k}}.
 \] 
-Dabei wird der Unterschied zwischen dem erwarteten, errechneten, Zustand und dem gemessenen Zustand berechnet.
-
-Dazu kommt  eine neue Kovarianz für den nächste Vorhersageschritt:
+Dazu kommt eine neue Kovarianz $P$ für den nächste Vorhersageschritt:
 \[
 {P_{k|k}}=(I-{K_{k}}{H}){P_{k|k-1}} 
 \] 
-Der ganze Algorithmus und beginnt wieder mit der Vorhersage 
+Der ganze Algorithmus ist nun vollständig und beginnt wieder mit der Vorhersage 
 \[
 {x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k|k-1}}.
 \] 
 
 
-\subsection{Anfangsbedingungen}
+\subsection{Parameter und Anfangsbedingungen}
 \subsubsection*{Anfangszustand $x$}
+
 Das Filter benötigt eine Anfangsbedingung. 
 In unserem Fall ist es die Ruhelage, die Masse bewegt sich nicht. 
 Zudem erfährt die Apparatur keine äussere Kraft.
 \[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right) \]
 
+\subsubsection*{Systemmatrix $A$}
+Für unseren Seismographen haben wir die entsprechende Matrixdarstellung in Gleichung ~\eqref{erdbeben:Systemgleichung} bereits gefunden. 
+
 \subsubsection*{Anfangsfehler / Kovarianzmatrix $P$}
 Da auch der Anfangszustand fehlerhaft sein kann, wird für das Filter ein Anfangsfehler verwendet. 
 Auf der Diagonalen werden die Varianzen eingesetzt, in den restlichen Felder stehen die Kovarianzen.
-Zur Erinnerung: Die Varianz ist ein Mass für die Streuung eines Wertes, die Kovarianz hingegen beschreibt die Abhängigkeit der Streuungen zweier Werte.
-
-Kovarianz: Cov(x, y) und Varianz: Var(x) = Cov(x, x)
-
 In unserem Fall ist der Anfangszustand gut bekannt. 
 Wir gehen davon aus, dass das System in Ruhe und in Abwesenheit eines Erdbeben startet, somit kann die Matrix mit Nullen bestückt werden. 
 Als Initialwert für die Kovarianzmatrix ergibt sich
@@ -200,30 +190,9 @@ Als Initialwert für die Kovarianzmatrix ergibt sich
 \end{array}
 \right).
  \] 
-Diese Matrix beschreibt die Unsicherheit des geschätzten Zustandes und wird sowohl für die Vorhersage als auch die Korrektur benötigt. 
-Sie wird nach jeder Schätzung aktualisiert. 
 Für einen gut bekannten Zustandsvektor können kleine Werte eingesetzt werden, für ungenaue Anfangsbedingungen sollten grosse Werte verwendet werden. 
 Grosse Werte ermöglichen dem Filter sich schnell einzupendeln. 
 
-\subsubsection*{Dynamikmatrix $A$}
-Das Kalman-Filter benötigt für die Vorhersage des nächsten Zustandes eine Beschreibung der Systemdynamik.
-Die Dynamikmatrix bildet den Kern des Filters. Diese wurde weiter oben bereits beschrieben. 
-Dabei wollen wird die äussere Kraft des Systems ermitteln.
-Da nichts über die äussere Kraft bekannt ist, müssen wir annehmen das deren Ableitung 0 ist. 
-Die System-Matrix lautet daher:
-\[ 
-A = \left(
- \begin{array}{ccc} 	
-0 & 1& 0 \\
-- \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m}\\
-0 & 0& 0\\ 
-\end{array}\right)  
- \]
-Dabei soll der Kalman-Filter in diskreten Zeitschritten $\Delta t$ arbeiten. 
-$A$ beschreibt ein kontinuierliches System ($\dot x = Ax$), wir benötigen jedoch ein Zeit-diskretes System $x_{k+1} = \Phi x_k$.
-Die Übergangs-Matrix erhalten wir aus der Systemdynamikmatrix mittels Exponentialfunktion: 
-\[\Phi = \exp(A\Delta t). \]
-Die Matrix $\Phi$ beschreibt die Übergänge zwischen zeitlich aufeinanderfolgenden Zuständen $x_{k-1}$ und $x_{k}$
 
 \subsubsection*{Prozessrauschkovarianzmatrix $Q$}
 Die Prozessrauschmatrix teilt dem Filter mit, wie sich der Prozess verändert. 
@@ -258,43 +227,41 @@ Diese Messrauchen wird meistens vom Sensorhersteller angegeben.
 Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt da heutige Sensoren sehr genau messen können. 
 
 \subsection{Zusammenfassung }
-Zusammenfassend kann das Kalman-Filter in offizieller Typus dargestellt werden. 
-Dabei beginnt das Filter mit dem Anfangszustand für $k=0$
 
-1. Nächster Zustand vorhersagen
+Das Filter beginnt mit dem Anfangszustand für $k=0$
+
+\begin{itemize}
+\item Nächster Zustand vorhersagen
 \[
 {x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k-1|k-1}}.
 \] 
 
-2. Nächste Fehlerkovarianz vorhersagen
+ \item Nächste Fehlerkovarianz vorhersagen
 \[
 {P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}.
 \] 
 
-3. Zustand wird gemessen
+\item Innovation (= Messung -  Vorhersage)
 \[
 {w_{k}}={z_{k}}-{H}{x_{k|k-1}}.
 \] 
 
-4. Innovation (= Messung -  Vorhersage)
-\[ 
-{S_{k}}={H}{P_{k|k-1}}{H}^T+{R_{k}}
-\] 
+\item Das Kalman Filter anwenden
+\begin{align*}
+{S_{k}} &={H}{P_{k|k-1}}{H}^T+{R_{k}}\\
+{K_{k}} &= {P_{k|k-1}} {H^T}{S_{k}^{-1}}
+\end{align*}
 
-5. Das Kalman Filter anwenden
-\[
-{K_{k}}= {P_{k|k-1}} {H^T}{S_{k}^{-1}}
-\] 
-
-6. Schätzung aktualisieren
+\item Schätzung aktualisieren
 \[
 {x_{k|k}}={x_{k|k-1}}+{K_{k}}{w_{k}}
 \] 
 
-7. Fehlerkovarianz aktualisieren
+\item Fehlerkovarianz aktualisieren
 \[
 {P_{k|k}}=(I-{K_{k}}{H}){P_{k|k-1}}
 \] 
 
-8. Die Outputs von $k$ werden die Inputs für ${k-1}$ und werden wieder im Schritt 1 verwendet
+\item Die Outputs von $k$ werden die Inputs für ${k-1}$ und werden wieder im Schritt 1 verwendet
+\end{itemize}
 
