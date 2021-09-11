@@ -41,7 +41,7 @@ bei denen die System-Matrix $A$ durch die Jacobi-Matrix ersetzt wird.
 
 \begin{figure}
  \begin{center}
- \includegraphics[width=5cm]{papers/erdbeben/Apperatur}
+ \includegraphics[width=\linewidth,keepaspectratio]{papers/erdbeben/Apperatur}
  \caption{Aufbau des Seismographen mit Gehäuse, Masse, Federn und Sensor}
  \label{erdbeben:Seismograph}
  \end{center}
@@ -54,9 +54,9 @@ welche auf das Gehäuse wirkt, bestimmen.
 Anhand dieser Beschleunigung,
 beziehungsweise der Krafteinwirkung durch die Bodenbewegung,
 wird später das Bauwerk bemessen.
-Dies bedeutet, die für uns interessante Grösse $f(t)$ wird nicht durch einen Sensor erfasst. 
+Dies bedeutet, die für uns interessante Grösse $F(t)$ wird nicht durch einen Sensor erfasst. 
 Jedoch können wir durch zweifaches ableiten der Positionsmessung $s(t)$ die Beschleunigung der Masse berechnen. 
-Die Messung entspricht also dem zweiten Integral der Kraft $f(t)$,
+Die Messung entspricht also dem zweiten Integral der Kraft $F(t)$,
 wobei diese einerseits durch das Erdbeben, und andererseits durch die Federn zustande kommt.
 Im Folgenden möchten wir die Erdbeben- und Federkräfte trennen.
 Dafür benötigen wir zuerst eine mathematische Beschreibung unseres Systems.
@@ -68,48 +68,48 @@ Dieses kann als gedämpfter harmonischer Oszillator beschrieben werden.
 Die zugehörige Differentialgleichung lautet:
 \begin{equation}
 	\label{erdbeben:Systemgleichung}
-m\ddot s + 2k \dot s + Ds = f.
+m\ddot s + 2k \dot s + Ds = F.
 \end{equation}
 wobei $m$ die Masse, $k$ die Dämpfungskonstante und $D$ die Federkonstante bezeichnet.
 
 Für lineare Systeme ist eine Matrix-Darstellung handlicher.
 Wir möchten diese Gleichung folglich in die Darstellung $\dot x = Ax$ überführen,
 wobei $x$ der Zustandsvektor und $A$ die Systemmatrix bezeichnet.
-Wir subsituieren $\dot s = v$ für die Geschwindigkeit und erhalten das Gleichungssystem
+Wir substituieren $\dot s = v$ für die Geschwindigkeit und erhalten das Gleichungssystem
 \begin{align}
   \begin{split}
     \dot s &= v \\ 
-    \dot v &= -\frac{D}{m} {s} -\frac{2k}{m} {v} + \frac{f} {m}.
+    \dot v &= -\frac{D}{m} {s} -\frac{2k}{m} {v} + \frac{F} {m}.
   \end{split}
   \label{erdbenen:systemgleichungen}
 \end{align}
 
 Die relevanten Zustände sind also die Position $s$ und die Geschwindigkeit $v$.
-Die für uns eigentlich interessante Grösse ist jedoch der Stör-Term $f$.
+Die für uns eigentlich interessante Grösse ist jedoch der Stör-Term $F$.
 Dieser entspricht der Kraft durch das Erdbeben.
-Deshalb nehmen wir $f$ als dritte Grösse in den Zustandsvektor auf und definieren:
+Deshalb nehmen wir $F$ als dritte Grösse in den Zustandsvektor auf und definieren:
 \[ 
-  x = \begin{pmatrix} {s} \\ {v} \\ {f} \end{pmatrix}
+  x = \begin{pmatrix} s \\ v \\ F \end{pmatrix}
 \] 
   
 Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$.
 Für $s$ und $v$  haben wir diese in Gleichung~\eqref{erdbenen:systemgleichungen} bereits gefunden.
-Über die Kraft $f$ wissen wir jedoch nichts.
-Wir müssen also eine Annahme treffen: Die Kraft ändert sich nicht, $\dot f = 0$.
+Über die Kraft $F$ wissen wir jedoch nichts.
+Wir müssen also eine Annahme treffen: Die Kraft ändert sich nicht, $\dot F = 0$.
 Diese Annahme ist im Allgemeinen natürlich falsch, aber etwas Besseres haben wir nicht zur Verfügung.
 Wir werden dies in einem späteren Schritt kompensieren müssen.
 
 Wir haben nun alles für die Matrix-Form von Gleichung~\eqref{erdbeben:Systemgleichung} zusammen.
 Sie lautet:
 \begin{equation}
-  \frac{d}{dt} \begin{pmatrix} s(t) \\ v(t) \\ f(t) \end{pmatrix}
+  \frac{d}{dt} \begin{pmatrix} s(t) \\ v(t) \\ F(t) \end{pmatrix}
   =
  \begin{pmatrix}
   \phantom- 0 & \phantom-1& 0 \\ 
   - \frac{D}{m} &-\frac{2k}{m} & \frac{1} {m} \\
   \phantom-0 & \phantom-0 & 0\\
   \end{pmatrix}
-  \begin{pmatrix} s(t) \\ v(t) \\ f(t) \end{pmatrix}.
+  \begin{pmatrix} s(t) \\ v(t) \\ F(t) \end{pmatrix}.
   \label{erdbeben:systemmatrix}
 \end{equation}
 

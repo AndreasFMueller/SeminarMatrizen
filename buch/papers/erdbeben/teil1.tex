@@ -14,12 +14,13 @@
 Im letzten Abschnitt haben wir Gleichungen für unser System gefunden.
 Als nächstes brauchen wir also ein Werkzeug,
 um aus der Messung der Position $s(t)$ den gesammten Zustand $x(t)$ zu schätzen.
-Das ist genau das, was Kalman-Filter tun: Ahand von Messungen den Zustand eines Systems schätzen.
+Das ist genau das, was Kalman-Filter tun:
+Anhand von Messungen den Zustand eines Systems schätzen.
 
-Kalman-Filter wurde 1960 von Rudolf Emil Kalman erfunden und direkt von der NASA für die Appollo Mission benutzt.
+Kalman-Filter wurde 1960 von Rudolf Emil Kalman erfunden und direkt von der NASA für die Apollo Mission benutzt.
 Diese Filter kommen mit wenig Rechenleistung aus und waren somit geeignet, die Rakete bei der Navigation zu unterstützen. 
 Heutige, typische Anwendungen von Kalman-Filtern sind die Glättung verrauschter Daten und die Schätzung von Parametern.
-Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphones und Videospielen vor.
+Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphone und Videospiel vor.
 
 Kalman-Filter funktionieren nach folgendem Zwei-Schritt-Verfahren:
 Zuerst wird,
@@ -48,7 +49,7 @@ Jedoch kennen wir auch die Wahrscheinlichkeiten der beiden Aussagen.
 
 \begin{figure}
  \begin{center}
- \includegraphics[width=5cm]{papers/erdbeben/Gausskurve3.pdf}
+ \includegraphics[width=.5\linewidth,keepaspectratio]{papers/erdbeben/Gausskurve3.pdf}
  \caption{
     Seien blau und orange zwei normalverteilte Schätzungen eines Zustandes, etwa eine Vorhersage und eine Messung.
     Dann ist die rote Kurve die optimale Schätzung.
@@ -73,7 +74,7 @@ und der Messung
 \]
 Diesen werden nun multipliziert und durch deren Fläche geteilt,
 um sie wieder zu normieren.
-$\odot$ beschreibt dabei die Multiplikation und die Normierung auf den Flächeninhalt eins:
+$\odot$~beschreibt dabei die Multiplikation und die Normierung auf den Flächeninhalt eins:
 \begin{align*}
 	{y_f}(x; {\mu_f}, {\sigma_f}) 
 	&=
@@ -94,26 +95,26 @@ für den neuen Mittelwert und
 \]
 für die Varianz.
 
-Interessant daran ist, dass sich die fusionierte Kurve der genauere Normal-Verteilung anpasst.
+Interessant daran ist, dass sich die fusionierte Kurve der genaueren Normalverteilung anpasst.
 Ist ${\sigma_2}$ klein und ${\sigma_1}$ gross,
 so wird sich die fusionierte Kurve näher an ${y_2}(x;{\mu_2},{\sigma_2})$ begeben.
 $\mu_f$ ist das gewichtete Mittel der beiden $\mu_{1,2}$, und die Varianzen $\sigma_{1,2}$ sind die Gewichte.
 Das Interessante an $\mu_{f}$ ist, dass ${\mu_2}$ das Gewicht für ${\sigma_1}$ ist. 
 Somit ist die Unsicherheit der Messung das Gewicht der Vorhersage und umgekehrt.
-Diese neue Funktion ist die best mögliche Schätzung für zwei Verteilungen, welche den selben Zustand beschreiben.
+Diese neue Funktion ist die bestmögliche Schätzung für zwei Verteilungen, welche den selben Zustand beschreiben.
 Dies ist in der Abbildung~\ref{erdbeben:Gauss3} anhand der roten Funktion ersichtlich. 
 
 Was in zwei Dimensionen erklärt wurde, funktioniert auch in mehreren Dimensionen. 
-Dieses Prinzip mach sich das Kalman Filter zu nutze, und wird von uns für die Erdbeben Berechnung genutzt. 
+Dieses Prinzip mach sich das Kalman Filter zu nutze, und wird von uns für die Erdbebenberechnung genutzt. 
 
 \subsection{Filter-Matrizen}
 Da wir nun ein Werkzeug besitzen, dass die Beschleunigung, welche auf das Gehäuse wirkt, ermitteln kann,
-wird dieses nun Schritt für Schritt erklärt. 
-Um das Kalman Filter zu starten, müssen gewisse Bedingungen definiert werden. 
+wird dies nun Schritt für Schritt erklärt. 
+Um das Kalman-Filter zu starten, müssen gewisse Bedingungen definiert werden. 
 In diesem Abschnitt werden die einzelnen Parameter und Matrizen erklärt und erläutert, wofür sie nützlich sind. 
 
 Dabei muss genau auf den Index geachtet werden.
-Wir verwenden die Standard-Notation, wie sie auch im Artikel~\cite{erdbeben:wikipedia} zu finden ist.
+Wir verwenden die Standardnotation, wie sie auch im Artikel~\cite{erdbeben:wikipedia} zu finden ist.
 Sie ist an die Notation der bedingten Wahrscheinlichkeiten angelehnt.
 Hierbei steht der betrachtete Zeitschritt links und der gegenwärtige rechts eines Vertikalstrichs.
 Dies bedeutet, dass die Notation $x_{n|m}$ die Schätzung von $x$ zum Zeitpunkt $n$ 
@@ -135,14 +136,14 @@ Damit haben wir die Systemdynamik nun in der für unser Kalman-Filter notwendige
 
 Als nächstes benötigen wir die Unsicherheit der Vorhersage.
 Im Abschnitt ~\ref{erdbeben:Wahrscheindlichkeit} haben wir dafür die Varianzen der Normalverteilungen verwendet.
-Im mehrdimensionalen Fall übernimmt dies die Kovarinanzmatrix $P$.
+Im mehrdimensionalen Fall übernimmt dies die Kovarianzmatrix $P$.
 Sie wird in jedem Schritt aktualisiert.
 Hinzu kommt die Prozessunsicherheit $Q$, welche als Parameter in unser Modell einfliesst.
 $Q$ beschreibt Unsicherheiten im Modell,
 wie etwa unsere Annahme, dass die Kraft sich nicht ändert,
 aber auch nicht-modellierbare Einflüsse wie Vibrationen.
 $P$ wird dabei laufend aktuallisiert.
-Die optimale Gleichung lautet
+Die Gleichung lautet
 \[
 {P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}.
 \] 
@@ -150,7 +151,7 @@ Es vergeht genau $\Delta t$ Zeit, und dieser Vorgang wird wiederholt.
 Das Filter passt sich selber an und korrigiert sich bei grosser Abweichung.
 
 \subsubsection*{Messen}
-Der Sensor wurde noch nicht benutz, doch genau der liefert die Messwerte $z_k$ für unser Filter. 
+Der Sensor wurde noch nicht benutzt, doch genau der liefert die Messwerte $z_k$ für unser Filter. 
 Aus der Vorhersage des Zustandes $x_{k|k-1}$ und der Messmatrix $H$ erhalten wird eine Vorhersage der Messung. 
 Die Innovation
 \[
@@ -190,13 +191,14 @@ Der ganze Algorithmus ist nun vollständig und beginnt wieder mit der Vorhersage
 \subsection{Parameter und Anfangsbedingungen}
 Die Grössen $P$, $Q$, $R$ und $\Phi$ können grundsätzlich in jedem Zeitschritt ändern.
 Für die meisten Anwendungen sind sie jedoch konstant und fliessen als Parameter ins Modell ein.
+So auch in unserem Falle.
 Aufgrund der iterativen Arbeitsweise von Kalman-Filtern benötigen wir zudem ein paar Anfangswerte.
 
 \subsubsection*{Anfangszustand $x$}
 Für die erste Vorhersage benötigt das Filter einen Anfangszustand.
 In unserem Fall ist es die Ruhelage, die Masse bewegt sich nicht. 
-Zudem erfährt die Apparatur keine äussere Kraft.
-\[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right) \]
+Zudem erfährt die Apparatur keine äussere Kraft:
+\[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right). \]
 
 \subsubsection*{Systemmatrix $A$ und $\Phi$}
 Für unseren Seismographen haben wir die entsprechende Matrixdarstellung
@@ -217,14 +219,13 @@ Wir gehen davon aus,
 dass das System in Ruhe und in Abwesenheit eines Erdbeben startet.
 Somit kann die Matrix mit Nullen bestückt werden und wir starten mit
 \[ 
-{P_0 }=
-\left(
-\begin{array}{ccc} 	
+P_0 =
+\begin{pmatrix}
 0 & 0 &0 \\ 
 0 &0 & 0 \\ 
 0 & 0 &0 \\
-\end{array}
-\right).
+\end{pmatrix}
+.
  \] 
 
 
@@ -235,12 +236,12 @@ Bei unserem Modell könnte das beispielsweise ein Windstoss an die Masse sein
 oder auch Ungenauigkeiten im Modell, wie die Annahme, dass sich die Kraft nicht ändert.
 Für uns wäre dies:
 \[ 
-Q = \left(
- \begin{array}{ccc} 	
-{\sigma_s }^2& 0& 0 \\ 
-0 & {\sigma_v }^2& 0\\ 
-0 & 0& {\sigma_f }^2\\
-\end{array}\right)  
+Q =
+ \begin{pmatrix}
+\sigma_s^2& 0& 0 \\ 
+0 & \sigma_v ^2& 0\\ 
+0 & 0& \sigma_f^2\\
+\end{pmatrix} .
  \]
 Die Standabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
 
@@ -249,25 +250,24 @@ Die Messmatrix gibt an, welche Zustände gemessen werden.
 $H$ ist die Matrix, welche aus der Vorhersage des Zustand eine Vorhersage der Messung erzeugt.
 In unserem Falle messen wir nur die Position der Massen und verwenden deshalb
 \[ 
-H = (1, 0, 0) 
+H = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} .
 \]
 
 \subsubsection*{Messrauschkovarianz $R$}
 Die Messrauschkovarianzmatrix beinhaltet, wie der Name schon sagt, das Rauschen der Messung. 
 In unserem Fall wird nur die Position der Masse gemessen. Da wir keine anderen Sensoren haben ist $R$ lediglich:
 \[ 
-R= (\sigma_\mathrm{sensor}^2).
+R= (\sigma_\mathrm{Sensor}^2).
  \] 
 Diese Messrauchen wird meistens vom Sensorhersteller angegeben. 
 Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt,
 da heutige Sensoren sehr genau messen können.
 
-\clearpage
 \subsection{Zusammenfassung }
 Das Filter beginnt mit dem Anfangszustand für $k=0$.
 Anschliessend werden folgende Schritte iterativ ausgeführt:
 \begin{enumerate}
-\item Nächster Zustand vorhersagen
+\item Nächsten Zustand vorhersagen
 \[
 {x_{k|k-1}}=\Phi{x_{k-1|k-1}}= \exp(A\Delta t){x_{k-1|k-1}}
 \] 
