@@ -8,6 +8,7 @@
 \rhead{Google-Matrix}
 Das Internet besteht aus einer grossen Zahl von Websites, etwa 400~Millionen
 aktiven Websites, jede besteht aus vielen einzelnen Seiten.
+\index{Internet}%
 Es ist daher angemessen von $N\approx 10^9$ verschiedenen Seiten auszugehen.
 Eine natürliche Sprache umfasst dagegen nur einige 100000 bis Millionen
 von Wörtern.
@@ -17,21 +18,23 @@ Die Zahl der Wörter, die auf den $N$ Seiten vorkommen können, ist also
 viel kleiner als die Zahl der zur Verfügung stehenden Wörter.
 Ein einzelnes Wort wird daher notwendigerweise auf einer grossen Zahl
 von Seiten vorkommen.
-Eine Suche nach einem bestimmten Wort wird also in der überwiegenden Zahl
+Eine Suche nach einem bestimmten Wort wird in der überwiegenden Zahl
 der Fälle derart viele Treffer zurückgeben, dass das Suchresultat
 nur dann nützlich sein kann, wenn eine zusätzliche Informationsquelle
-ermöglicht, die Treffer in eine sinnvolle Ordnung zu bringem.
+ermöglicht, die Treffer in eine sinnvolle Ordnung zu bringen.
 
 Genau dieses Problem stellte sich den vielen traditionellen Suchmaschienen
 in der ersten grossen Boomphase des Internets.
-Traditionelle Informatione-Retrieval-Systeme operieren auf einem relativ
+Traditionelle Information-Retrieval-Systeme operieren auf einem relativ
+\index{Information-Retrieval}%
 kleinen Dokumentbestand und gehen davon aus, dass bereits wenige, spezifische
 Wörter nur in einem kleinen Teil des Dokumentbestandes vorkommen und damit
 eine übersichtliche Treffermenge ergeben.
-Die Einengung der Treffermenge dank der Suche nach spezifischer Menge
+Die Einengung der Treffermenge dank der Suche nach einzelnen Wörtern
 bedeutet aber auch, dass nach Synonymen oder alternative Formen eines
 Wortes separat gesucht werden muss, was die Übersichtlichkeit wieder
 zerstört.
+\index{Treffermenge}%
 
 %
 % Ein Modell für Webseitenbesucher
@@ -45,33 +48,34 @@ zerstört.
 \label{buch:figure:modellinternet}}
 \end{figure}
 
-Das kombinierte Vorkommen von Wörtern oder Begriffen alleine kann also 
-nicht ausreichen, um die Seiten zum Beispiel einem Fachgebiet zuzuordnen.
+Selbst das kombinierte Vorkommen von Wörtern oder Begriffen alleine reicht
+nicht aus, um die Seiten zum Beispiel einem Fachgebiet zuzuordnen.
 Dazu muss eine externe Informationsquelle angezapft werden.
 Bei traditionellen Dokumenten liefert der Kontext, in dem ein
 Dokument erfasst wurde, solche ergänzenden Informationen.
 Eine Publikation in einem Fachjournal ordnet einen Text einem Fachgebiet zu.
 Im World-Wide-Web liefert die Link-Struktur diesen Kontext.
-Dokumente zu ähnlichen Themen werden bevorzugt untereinander verlinkt
-sein.
+\index{Link}%
+Dokumente zu ähnlichen oder verwandten Themen werden bevorzugt
+untereinander verlinkt sein.
 
 Gesucht ist jetzt also ein Modell, welches objektiv die Linkstruktur
-bewertet und daraus eine Rangordnung der passenden Wörter ableitet.
+bewertet und daraus eine Rangordnung der Suchresultate ableitet.
 Die Linkstruktur kann natürlich als gerichteter Graph betrachtet und 
-mit Hilfe der Matrix~\eqref{buch:graphen:eqn:linkmatrix}
-beschrieben werden.
+mit Hilfe der Adjazenzmatrix~\eqref{buch:graphen:eqn:adjazenzmatrixgerichtet}
+\index{Adjazenzmatrix}%
+eines gerichteten Graphen beschrieben werden.
 Dies trägt jedoch der Anzahl der Wahlmöglichkeiten nicht Rechnung.
-Eine Website mit nur einem Link auf die Seite $j$ hat mehr Gewicht
-als eine Seite mit vielen Links, unter denen der Link auf die Seite $j$
-einer von vielen ist.
-Im Beispiel-Inter der Abbildung~\ref{buch:figure:modellinternet}
-signalisiert die Seite $t$ mit nur einem Link auf die Seite $8$
+Eine Website mit nur einem Link auf die Seite $j$ gibt der Seite $j$
+mehr Gewicht als eine Seite mit vielen Links, unter denen der Link
+auf die Seite $j$ einer von Vielen ist.
+Im Beispiel-Internet der Abbildung~\ref{buch:figure:modellinternet}
+signalisiert die Seite $6$ mit nur einem Link auf die Seite $8$
 viel deutlicher, dass $8$ eine wichtige Seite ist, also die die
 Seite $5$ tut, die auch noch zwei andere Links enthält.
 Wir können diesen Unterschied berücksichtigen, indem wir zu einem
 Wahrscheinlichkeitsmodell übergehen, was wir im folgenden Abschnitt
 tun werden.
-
 
 %
 % Wahrscheinlichkeitsinterpretation
@@ -104,7 +108,9 @@ lange Zeit ungefähr nach den gleichen Dingen suchen und sich daher
 auf die gleiche Weise auf den verschiedenen Seiten verteilen und dass
 insbesondere die Verteilung stationär ist, dass also $P(S_i) = P(S'_i)$
 gilt.
+\index{Suchmaschine}%
 Suchmaschinen wie Google gehen davon aus, dass alle Besucher ungefähr
+\index{Google}%
 die gleichen Suchprioritäten haben, so dass es sich lohnt, die Suchresultate
 nach der Wahrscheinlichkeit $P(S_i)$ zu ordnen und dem Suchenden die
 wahrscheinlichsten Dokumente als erste zu zeigen.
@@ -113,19 +119,19 @@ wahrscheinlichsten Dokumente als erste zu zeigen.
 Um einen Zusammenhang zwischen $P(S_i)$ und $P(S'_j)$ herzustellen, muss
 die Navigation entlang der Links modelliert werden.
 Die naheliegende Wahrscheinlichkeitsinterpretation ist die bedingte
-Wahrscheinlichkeit $P(S'_j|S_i)$ dass der Besucher auf der Seite $j$
+Wahrscheinlichkeit $P(S'_j\mid S_i)$ dass der Besucher auf der Seite $j$
 landet, nachdem er auf der Seite $i$ die Linknavigation verwendet hat.
 Wenn es keinen Link zwischen den Seiten $i$ und $j$ gibt, dann ist diese
-Navigation natürlich nicht möglich und es folgt $P(S'_j|S_i)=0$.
-Falls es einen Link gibt, ist $P(S'_j|S_i)\ge 0$.
+Navigation natürlich nicht möglich und es folgt $P(S'_j\mid S_i)=0$.
+Falls es einen Link gibt, ist $P(S'_j\mid S_i)\ge 0$.
 
 A priori wissen wir nicht, wie wahrscheinlich es ist, dass der Besucher
 dem Link auf die Seite $j$ folgt, normalerweise werden nicht alle
 Links mit gleicher Wahrscheinlichkeit verwendet.
-Wir nehmen daher zusätzlich an, dass alle Links gleich wahrscheinlich
+Wir nehmen daher vereinfachend an, dass alle Links gleich wahrscheinlich
 sind.
-Die Seite $i$ enthält $n_i$ Links, also ist die Wahrscheinlichkeit,
-auf einer von $i$ aus verlinkten Seite $j$ zu landen $P(S'_j|S_i) = 1/n_i$.
+Enthält die Seite $i$ genau $n_i$ Links, dann ist die Wahrscheinlichkeit,
+auf einer von $i$ aus verlinkten Seite $j$ zu landen, $P(S'_j\mid S_i) = 1/n_i$.
 
 \subsubsection{Totale Wahrscheinlichkeit}
 Der Satz von der totalen Wahrscheinlichkeit ermöglicht, einen Zusammenhang
@@ -136,13 +142,16 @@ Es gilt
 \begin{equation}
 P(S'_j)
 =
-P(S'j|S_1) P(S_1)
+P(S'j\mid S_1) P(S_1)
 +
-P(S'j|S_2) P(S_2)
+P(S'j\mid S_2) P(S_2)
 +
 \dots
 +
-P(S'j|S_N) P(S_N).
+P(S'j\mid S_N) P(S_N)
+=
+\sum_{i=1}^N P(S_j'\mid S_i)P(S_i)
+.
 \label{buch:google:eqn:totalewahrscheinlichkeit}
 \end{equation}
 Dies kann in Matrix- und Vektorform übersichtlicher geschrieben werden.
@@ -170,18 +179,21 @@ P(S'_N)
 \end{pmatrix}
 \]
 zusammen.
-Die bedingten Wahrscheinlichkeiten $h_{ji}=P(S'_j|S_i)$ sind mit zwei Indizes
-beschrieben, sie bilden daher in natürlicher Weise eine Matrix
-\[
+Die bedingten Wahrscheinlichkeiten $h_{ji}=P(S'_j\mid S_i)$ sind mit zwei Indizes
+beschrieben, sie bilden daher in natürlicher Weise die sogenannte
+{\em Link-Matrix}
+\index{Link-Matrix}%
+\begin{equation}
 H
 =
 \begin{pmatrix}
-P(S'_1|S_1)&P(S'_1|S_2)&\dots &P(S'_1|S_N)\\
-P(S'_2|S_1)&P(S'_2|S_2)&\dots &P(S'_2|S_N)\\
+P(S'_1\mid S_1)&P(S'_1\mid S_2)&\dots &P(S'_1\mid S_N)\\
+P(S'_2\mid S_1)&P(S'_2\mid S_2)&\dots &P(S'_2\mid S_N)\\
 \vdots     &\vdots     &\ddots&\vdots     \\
-P(S'_N|S_1)&P(S'_N|S_2)&\dots &P(S'_N|S_N)
+P(S'_N\mid S_1)&P(S'_N\mid S_2)&\dots &P(S'_N\mid S_N)
 \end{pmatrix}.
-\]
+\label{buch:google:eqn:linkmatrix}
+\end{equation}
 Die Formel~\eqref{buch:google:eqn:totalewahrscheinlichkeit} wird dann zur
 Formel für das Produkt Matrix mal Vektor:
 \[
@@ -189,7 +201,7 @@ Formel für das Produkt Matrix mal Vektor:
 =
 \sum_{i=1}^N h_{ji} p_i
 =
-\sum_{i=1}^N P(S'_j|S_i) P(S_i)
+\sum_{i=1}^N P(S'_j\mid S_i) P(S_i)
 =
 p'_j
 \qquad\Rightarrow\qquad
@@ -217,13 +229,26 @@ H =
 \end{equation}
 \qedhere
 \end{beispiel}
-
+Die Link-Matrix kann aus der Adjazenzmatrix des gerichteten Graphen
+bestimmt werden.
+Dazu ist zu beachten, dass jede Spalte durch die Anzahl der Einsen 
+in dieser Spalte zu teilen ist.
+Ein Zeilenvektor, der die Zahl der Einsen enthält, entsteht durch
+Multiplikation mit einem Zeilenvektor $U^t$ aus lauter Einsen.
+Mit dem Hadamard-Produkt ist dann die Link-Matrix durch
+\[
+H
+=
+(U(U^tA(G))^{\odot(-1)})\odot A(G)
+\]
+gegeben, wobei $(U^tA(G))^{\odot(-1)}$ die Inverse bezüglich des
+Hadamard-Produktes ist.
 %
 % Freier Wille
 %
 \subsection{``Freier Wille''
 \label{buch:subsection:freier-wille}}
-Das Modell in
+Das in
 Abschnitt~\eqref{buch:subsection:wahrscheinlichkeitsinterpretation}
 beschriebene Modell geht unter anderem davon aus, dass der Benutzer
 ausschliesslich die Navigation entlang der Links verwendet.
@@ -245,38 +270,39 @@ Wir bezeichnen das Ereignis, dass der Benutzer nicht die Link-Navigation
 verwendet mit $F$ für ``freier Wille'', obwohl es so etwas natürlich nicht
 gibt.
 Die Wahrscheinlichkeit, auf der Seite $S'_j$ zu landen, setzt sich jetzt
-aus den zwei Fällen $F$ und $\overline{F}$ zusammen, für die erneut der
+aus den zwei Fällen $F$ und $\smash{\overline{F}}$ zusammen, für die erneut der
 Satz von der totalen Wahrscheinlichkeit den Zusammenhang
 \[
 P(S'_j)
 =
-P(S'_j|\overline{F}) P(\overline{F})
+P(S'_j\mid \overline{F}) P(\overline{F})
 +
-P(S'_j|F) P(F)
+P(S'_j\mid F) P(F)
 \]
+liefert.
 Die Wahrscheinlichkeit $\alpha = P(F)$, mit der der Benutzer den
-``freiene Willen'' bemüht, kann experimentell durch Studien ermittelt
+``freien Willen'' bemüht, kann experimentell durch Studien ermittelt
 werden, die das Benutzerverhalten beobachten.
 
-Die Wahrscheinlichkeit $P(S'_j|\overline{F})$ entsteht dadurch, dass
+Die Wahrscheinlichkeit $P(S'_j\mid \overline{F})$ entsteht dadurch, dass
 der Benutzer der Linknavigation folgt, sie entspricht also der früher
-berechnenten Wahrscheinlichkeit
+berechneten Wahrscheinlichkeit
 \[
-P(S'_j|\overline{F}) = \sum_{i=1}^N P(S'_j|S_i) P(S_i).
+P(S'_j\mid \overline{F}) = \sum_{i=1}^N P(S'_j\mid S_i) P(S_i).
 \]
 oder in Vektorform
 \[
-(P(S'_j|\overline{F}))_{j=1,\dots,n}
+(P(S'_j\mid \overline{F}))_{j=1,\dots,n}
 =
 Hp.
 \]
 
-Über die spontane Besuchswahrscheinlichkeit $P(S'_j|F)$ wissen wir 
+Über die spontane Besuchswahrscheinlichkeit $P(S'_j\mid F)$ wissen wir 
 nichts.
 Eine erste Annahme könnte sein, dass jede Seite gleich wahrscheinlich
-ist, dass also $P(S'_j|F)=1/N$.
+ist, dass also $P(S'_j\mid F)=1/N$.
 Alternativ könnte man auch eine Wahrscheinlichkeitsverteilung
-$q_j = P(S'_j|F)$ experimentell zu ermitteln versuchen.
+$q_j = P(S'_j\mid F)$ experimentell zu ermitteln versuchen.
 Unter der Annahme, dass alle Seitenbesuche im Falle $F$ auf Grund
 eines Sucheresultats einer Suchmaschine erfolgen, könnte die
 Suchmaschine den Vektor $q$ aus ihrer eigenen Suchstatistik ermitteln.
@@ -286,7 +312,7 @@ Das erweiterte Modell kann also durch
 P(S'_j)
 =
 \sum_{i=1}^N
-\alpha P(S'_j|S_i) P(S_i)
+\alpha P(S'_j\mid S_i) P(S_i)
 +
 (1-\alpha) q_j
 \qquad\Rightarrow\qquad
@@ -309,7 +335,7 @@ Wir streben daher an, die Formel~\eqref{buch:google:eqn:composed}
 ebenfalls in die Form $p=Gp$ mit einer neuen Matrix $G$ zu bringen.
 
 Die Matrixform von
-\label{buch:google:eqn:composed}
+\eqref{buch:google:eqn:composed}
 zeigt, dass sich die gesuchte Matrix $G$ zusammensetzt aus dem Summanden
 $\alpha H$ und einem weiteren Summanden $A$ mit der Eigenschaft, dass
 $Ap = q$ für jeden beliebigen Wahrscheinlichkeitsvektor $p$.
@@ -384,8 +410,10 @@ heisst die
 \index{Google-Matrix}%
 \end{definition}
 
-Die Google-Matrix wurde von Sergei Brin und Larry Page 
-in dem Artikel \cite{BRIN1998107} als Basis der Suchmaschine
+Die Google-Matrix wurde von Sergey Brin und Larry Page 
+\index{Brin, Sergey}%
+\index{Page, Larry}%
+in dem Artikel \cite{BRIN1998107} als Grundlage der Suchmaschine
 Google beschrieben.
 Sie war die Basis für den Erfolg von Google und wird dem Prinzip nach
 auch heute noch zur Rangierung der Suchresultate verwendet.
@@ -406,6 +434,8 @@ ansehen.
 Die Kundenwebsite wird daher in den Suchresultaten weiter oben gezeigt.
 Das Problem rührt natürlich daher, dass alle Links als gleichermassen
 aussagekräftig betrachtet werden.
+Solche Websites werden heutzutage von der Berechnung der Google-Matrix
+ausgeschlossen.
 
 Die aktuell verwendete Variante der Google-Matrix ist natürlich ein
 Betriebsgeheimnis der Firma Google.
@@ -417,7 +447,7 @@ Betriebsgeheimnis der Firma Google.
 \label{buch:subsection:wahrscheinlichkeitsverteilung}}
 Die Google-Matrix $G$ selbst interessiert weniger als die
 Wahrscheinlichkeitsverteilung $p$.
-Ziel dieses Abschnittes, ist den Vektor $p$ zu berechnen.
+Ziel dieses Abschnittes ist, den Vektor $p$ zu berechnen.
 
 \subsubsection{Stationäre Verteilung}
 Die Einträge $P(S_i)$ des Vektors $p$ geben die Wahrscheinlichkeit an, mit
@@ -445,14 +475,17 @@ Gp = p.
 $p$ ist also ein Eigenvektor der Matrix $G$ zum Eigenwert $1$.
 
 Für ein sehr kleines Netzwerk wie im oben dargestellten Beispiel ist es
-einfach, mit verbreiteten numerischen Algorithmen alle Eigenwerte und
+einfach, mit gängigen numerischen Algorithmen alle Eigenwerte und
 Eigenvektoren zu finden.
 Benötigt wird allerdings nur der Eigenvektor zum Eigenwert $1$.
 
 \begin{beispiel}
-Ein Eigenvektor zum Eigenwert $1$ der Matrix $G$, die aus der Matrix $H$
+Octave
+\index{Octave}
+findet den folgenden Eigenvektor zum Eigenwert $1$ der Matrix $G$,
+die aus der Matrix $H$
 von \eqref{buch:google:eqn:linkmatrixbeispiel}
-und dem Vektor $q=\frac18u$ und $\alpha=0.9$ gebildet wurde, ist
+und dem Vektor $q=\frac18U$ und $\alpha=0.9$ gebildet wurde:
 \[
 p_0=\begin{pmatrix}
    0.20100\\
@@ -491,10 +524,14 @@ erhält man die Wahrscheinlichkeitsverteilung $p$.
 
 
 \subsubsection{Potenzverfahren}
-Die üblichen Algorithmen wie der Francis-Algorithmus zur Bestimmung
-von Eigenwerten und Eigenvektoren ist für grosse Matrizen nicht praktikabel.
+Die üblichen Algorithmen wie der von den meisten Softwarepaketen
+verwendete Francis-Algorithmus \cite{francis:watkins_paper,buch:watkins}
+\index{Francis-Algorithmus}%
+zur Bestimmung von Eigenwerten
+und Eigenvektoren ist für grosse Matrizen nicht praktikabel.
 Da aber $1$ der betragsgrösste Eigenwert ist, kann sehr oft ein zugehöriger
 Eigenvektor mit der nachfolgend beschriebenen {\em Potenzmethode}
+\index{Potenzmethode}%
 gefunden werden.
 
 Sei $A$ eine $n\times n$-Matrix, der Einfachheit halber nehmen wir an,
@@ -535,8 +572,8 @@ a_n\biggl(\frac{\lambda_n}{\lambda_1}\biggr)^k v_n.
 \]
 Da alle Brüche Betrag $<1$ haben, konvergiert die rechte Seite für $k\to\infty$
 gegeben den  ersten Summanden.
-Durch wiederholte Anwendung von $A/\lambda_1$ auf einen (fast) belieibigen
-Startvektor $v$ erhält man also eine Folge von Vektoren, die gegen eine
+Durch wiederholte Anwendung von $A/\lambda_1$ auf einen (fast) beliebigen
+Startvektor $v$ erhält man also eine Folge von Vektoren, die gegen einen
 Eigenvektor zum Eigenwert $\lambda_1$ konvergiert.
 
 Numerische Ungenauigkeiten können bewirken, dass die Iteration mit der
