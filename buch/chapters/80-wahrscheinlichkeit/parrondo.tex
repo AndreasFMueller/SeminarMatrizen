@@ -32,7 +32,7 @@ E(X)
 =
 1\cdot P(X=1) + (-1)\cdot P(X=-1)
 =
-\frac12+e + (-1)\biggl(\frac12-e\biggr)
+\frac12+e + (-1)(\frac12-e)
 =
 2e.
 \)
@@ -41,6 +41,7 @@ Die Gewinnerwartung ist also genau dann negativ, wenn $e<0$ ist.
 \subsubsection{Das Spiel $B$}
 Das zweite Spiel $B$ ist etwas komplizierter, da der Spielablauf vom 
 aktuellen Kapital $K$ des Spielers abhängt.
+\index{Kapital}%
 Wieder gewinnt oder verliert der Spieler eine Einheit,
 die Gewinnwahrscheinlichkeit hängt aber vom Dreierrest des Kapitals ab.
 Sei $Y$ die Zufallsvariable, die den Gewinn beschreibt.
@@ -49,9 +50,9 @@ andernfalls ist sie $\frac34$.
 Formell ist
 \begin{equation}
 \begin{aligned}
-P(Y=1|\text{$K$ durch $3$ teilbar}) &=  \frac{1}{10}
+P(Y=1\mid \text{$K$ durch $3$ teilbar}) &=  \frac{1}{10}
 \\
-P(Y=1|\text{$K$ nicht durch $3$ teilbar}) &= \frac{3}{4}
+P(Y=1\mid \text{$K$ nicht durch $3$ teilbar}) &= \frac{3}{4}
 \end{aligned}
 \label{buch:wahrscheinlichkeit:eqn:Bwahrscheinlichkeiten}
 \end{equation}
@@ -74,7 +75,7 @@ statt, der Eintrag $b_{ij}$ ist die Wahrscheinlichkeit
 \[
 b_{ij}
 =
-P(K\equiv i|K\equiv j),
+P(K\equiv i\mid K\equiv j),
 \]
 dass ein Übergang vom Zustand $j$ in den Zustand $i$ stattfindet.
 Die Matrix ist
@@ -95,11 +96,11 @@ Mit den Wahrscheinlichkeiten von
 findet man die Gewinnerwartung
 \begin{equation}
 \begin{aligned}
-E(Y| \text{$K$ durch $3$ teilbar})
+E(Y\mid \text{$K$ durch $3$ teilbar})
 &=
-1\cdot P(Y=1|K\equiv 0\mod 3)
+1\cdot P(Y=1\mid K\equiv 0\mod 3)
 +
-(-1)\cdot P(Y=-1|K\equiv 0\mod 3)
+(-1)\cdot P(Y=-1\mid K\equiv 0\mod 3)
 \\
 &=
 \frac1{10}
@@ -108,11 +109,11 @@ E(Y| \text{$K$ durch $3$ teilbar})
 =
 -\frac{8}{10}
 \\
-E(Y| \text{$K$ nicht durch $3$ teilbar})
+E(Y\mid \text{$K$ nicht durch $3$ teilbar})
 &=
-1\cdot P(Y=1|K\not\equiv 0\mod 3)
+1\cdot P(Y=1\mid K\not\equiv 0\mod 3)
 +
-(-1)\cdot P(Y=-1|K\not\equiv 0\mod 3)
+(-1)\cdot P(Y=-1\mid K\not\equiv 0\mod 3)
 \\
 &=
 \frac34-\frac14
@@ -131,9 +132,9 @@ Die Gewinnerwartung in diesem Fall ist dann
 \begin{align}
 E(Y)
 &=
-E(Y|\text{$K$ durch $3$ teilbar}) \cdot \frac13
+E(Y\mid \text{$K$ durch $3$ teilbar}) \cdot \frac13
 +
-E(Y|\text{$K$ nicht durch $3$ teilbar}) \cdot \frac23
+E(Y\mid\text{$K$ nicht durch $3$ teilbar}) \cdot \frac23
 \notag
 \\
 &=
@@ -164,13 +165,13 @@ G=\begin{pmatrix}
 \end{pmatrix}
 \]
 gibt die Gewinne an, die bei einem Übergang anfallen.
-Die Matrixelemente $g_{ij}b_{ij}$ des Hadamard-Produktes 
-$G\odot B$
-von $G$ mit $B$ enthält in den Spalten die Gewinnerwartungen
+Die Matrix mit den Matrixelementen $g_{ij}b_{ij}$ ist das Hadamard-Produktes 
+$G\odot B$ von $G$ mit $B$.
+Sie enthält in den Spalten die Gewinnerwartungen
 für die einzelnen Übergänge aus einem Zustand.
 Die Summe der Elemente der Spalte $j$ enthält die Gewinnerwartung
 \[
-E(Y|K\equiv j)
+E(Y\mid K\equiv j)
 =
 \sum_{i=0}^2 g_{ij}b_{ij}
 \]
@@ -181,9 +182,9 @@ $U^t=\begin{pmatrix}1&1&1\end{pmatrix}$
 entsteht:
 \[
 \begin{pmatrix}
-E(Y|K\equiv 0)&
-E(Y|K\equiv 1)&
-E(Y|K\equiv 2)
+E(Y\mid K\equiv 0)&
+E(Y\mid K\equiv 1)&
+E(Y\mid K\equiv 2)
 \end{pmatrix}
 =
 U^t
@@ -194,7 +195,7 @@ Die Gewinnerwartung ist dann das Produkt
 E(Y)
 =
 \sum_{i=0}^2
-E(Y|K\equiv i) p_i
+E(Y\mid K\equiv i) p_i
 =
 U^t
 (G\odot B)p.
@@ -247,7 +248,7 @@ Das Spiel kennt die Dreierreste als die drei für das Spiel ausschlaggebenden
 Zuständen.
 Das Zustandsdiagramm~\ref{buch:wahrscheinlichkeit:fig:spielB} zeigt
 die möglichen Übergänge und ihre Wahrscheinlichkeiten, die zugehörige
-Matrix ist
+Übergangsmatrix ist
 \[
 B
 =
@@ -255,7 +256,7 @@ B
 0          &\frac14 &\frac34\\
 \frac1{10} &0       &\frac14\\
 \frac9{10} &\frac34 &0
-\end{pmatrix}
+\end{pmatrix}.
 \]
 Die Matrix $B$ ist nicht negativ und man kann nachrechnen, dass $B^2>0$ ist.
 Damit ist die Perron-Frobenius-Theorie von
@@ -263,6 +264,7 @@ Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
 anwendbar.
 
 Ein Eigenvektor zum Eigenwert $1$ kann mit Hilfe des Gauss-Algorithmus
+\index{Gauss-Algorithmus}%
 gefunden werden:
 \begin{align*}
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
@@ -301,7 +303,7 @@ Daraus liest man einen möglichen Lösungsvektor mit den Komponenten
 $5$, $2$ und $6$ ab.
 Wir suchen aber einen Eigenvektor, der als Wahrscheinlichkeitsverteilung
 dienen kann.
-Dazu müssen sich die Komponente zu $1$ summieren, was man durch normieren
+Dazu müssen sich die Komponenten zu $1$ summieren, was man durch Normieren
 in der $l^1$-Norm erreichen kann:
 \begin{equation}
 p
@@ -344,11 +346,13 @@ nach
 \begin{align*}
 P(Y=+1)
 &=
-P(Y=+1|K\equiv 0) \cdot P(K\equiv 0)
+P(Y=+1\mid K\equiv 0) \cdot P(K\equiv 0)
 +
-P(Y=+1|K\equiv 1) \cdot P(K\equiv 1)
+P(Y=+1\mid K\equiv 1) \cdot P(K\equiv 1)
+\\
+&\qquad
 +
-P(Y=+1|K\equiv 2) \cdot P(K\equiv 2)
+P(Y=+1\mid K\equiv 2) \cdot P(K\equiv 2)
 \\
 &=
 \frac{1}{10}\cdot\frac{5}{13}
@@ -368,11 +372,13 @@ P(Y=+1|K\equiv 2) \cdot P(K\equiv 2)
 \\
 P(Y=-1)
 &=
-P(Y=-1|K\equiv 0) \cdot P(K\equiv 0)
+P(Y=-1\mid K\equiv 0) \cdot P(K\equiv 0)
 +
-P(Y=-1|K\equiv 1) \cdot P(K\equiv 1)
+P(Y=-1\mid K\equiv 1) \cdot P(K\equiv 1)
+\\
+&\qquad
 +
-P(Y=-1|K\equiv 2) \cdot P(K\equiv 2)
+P(Y=-1\mid K\equiv 2) \cdot P(K\equiv 2)
 \\
 &=
 \frac{9}{10}\cdot\frac{5}{13}
@@ -479,9 +485,9 @@ G\odot F = \begin{pmatrix}
 Nach der früher dafür gefundenen Formel ist
 \begin{align*}
 \begin{pmatrix}
-E(Y|K\equiv 0)&
-E(Y|K\equiv 1)&
-E(Y|K\equiv 2)
+E(Y\mid K\equiv 0)&
+E(Y\mid K\equiv 1)&
+E(Y\mid K\equiv 2)
 \end{pmatrix}
 &=
 U^t (G\odot \tilde{B})
@@ -710,10 +716,10 @@ A=\begin{pmatrix}
 \subsubsection{Das Spiel $C$}
 In jeder Durchführung des Spiels wird mit einem Münzwurf entschieden,
 ob Spiel $A$ oder Spiel $B$ gespielt werden soll.
-Mit je Wahrscheinlichkeit $\frac12$ werden also die Übergansmatrizen
+Mit Wahrscheinlichkeit je $\frac12$ werden also die Übergansmatrizen
 $A$ oder $B$ verwendet:
 \[
-P(K\equiv i|K\equiv j)
+P(K\equiv i\mid K\equiv j)
 =
 A\cdot P(\text{Münzwurf Kopf})
 +

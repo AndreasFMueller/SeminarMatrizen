@@ -5,10 +5,11 @@
 %
 \section{Wärmeleitung auf einem Graphen
 \label{buch:section:waermeleitung-auf-einem-graphen}}
-Die Vektoren, auf denen die Laplace-Matrix operiert, können betrachtet
-werden als Funktionen, die jedem Knoten einen Wert zuordnen.
+Die Vektoren, auf denen die Laplace-Matrix operiert, können
+als Funktionen betrachtet werden, die jedem Knoten einen Wert zuordnen.
 Eine mögliche physikalische Interpretation davon ist die Temperaturverteilung
 auf dem Graphen.
+\index{Temperaturverteilung}%
 Die Kanten zwischen den Knoten erlauben der Wärmeenergie, von einem Knoten
 zu einem anderen zu fliessen.
 Je grösser die Temperaturdifferenz zwischen zwei Knoten ist, desto
@@ -29,7 +30,7 @@ d_iT_i
 \biggr)
 \]
 Der Term auf der rechten Seite ist genau die Wirkung der 
-Laplace-Matrix auf dem Vektor $T$ der Temperaturen:
+Laplace-Matrix $L=L(G)$ auf dem Vektor $T$ der Temperaturen:
 \begin{equation}
 \frac{dT}{dt}
 =
@@ -38,6 +39,7 @@ Laplace-Matrix auf dem Vektor $T$ der Temperaturen:
 \end{equation}
 Der Wärmefluss, der durch die
 Wärmeleitungsgleichung~\eqref{buch:graphen:eqn:waermeleitung} beschrieben
+\index{Wärmeleitungsgleichung}%
 wird, codiert ebenfalls wesentliche Informationen über den Graphen.
 Je mehr Kanten es zwischen verschiedenen Teilen eines Graphen gibt,
 desto schneller findet der Wärmeaustausch zwischen diesen Teilen
@@ -50,6 +52,7 @@ Die Lösungen der Wärmeleitungsgleichung liefern also Informationen
 Die Wärmeleitungsgleichung~\eqref{buch:graphen:eqn:waermeleitung} 
 ist eine lineare Differentialgleichung mit konstanten Koeffizienten,
 die mit der Matrixexponentialfunktion gelöst werden.
+\index{Matrixexponentialfunktion}%
 Die Lösung ist
 \[
 f(t) = e^{-\kappa Lt}f(0).
@@ -58,93 +61,131 @@ f(t) = e^{-\kappa Lt}f(0).
 Die Berechnung der Lösung mit der Matrixexponentialreihe ist ziemlich
 ineffizient, da grosse Matrizenprodukte berechnet werden müssen.
 Da die Matrix $L$ symmetrisch ist, gibt es eine Basis aus 
-orthonormierten Eigenvektoren und die Eigenwerte sind reell.
-Wir bezeichnen die Eigenvektoren mit $f_1,\dots,f_n$  und die
+orthonormierten Eigenvektoren und die zugehörigen Eigenwerte sind reell.
+Wir bezeichnen die Eigenvektoren mit $\chi_1,\dots,\chi_n$  und die
 zugehörigen Eigenwerte mit $\lambda_i$.
-Die Funktion $f_i(t)= e^{-\kappa\lambda_it}f_i$ ist dann eine Lösung
+Die Funktion $\chi_i(t)= e^{-\kappa\lambda_it}\chi_i$ ist dann eine Lösung
 der Wärmeleitungsgleichung, denn die beiden Seiten
-\begin{align*}
-\frac{d}{dt}f_i(t)
+\begin{equation}
+\begin{aligned}
+\text{linke Seite:}&&
+\frac{d}{dt}\chi_i(t)
 &=
--\kappa\lambda_ie^{-\kappa\lambda_it}f_i
+-\kappa\lambda_ie^{-\kappa\lambda_it}\chi_i
 =
--\kappa\lambda_i f_i(t)
+-\kappa\lambda_i \chi_i(t)
 \\
--\kappa Lf_i(t)
+\text{rechte Seite:}&&
+-\kappa L\chi_i(t)
 &=
--\kappa e^{-\kappa\lambda_it} Lf_i
+-\kappa e^{-\kappa\lambda_it} L\chi_i
 =
--\kappa e^{-\kappa\lambda_it} \lambda_i f_i
+-\kappa e^{-\kappa\lambda_it} \lambda_i \chi_i
 =
--\kappa \lambda_i f_i(t)
-\end{align*}
+-\kappa \lambda_i \chi_i(t)
+\end{aligned}
+\end{equation}
 von \eqref{buch:graphen:eqn:waermeleitung} stimmen überein.
 
 Eine Lösung der Wärmeleitungsgleichung zu einer beliebigen
 Anfangstemperaturverteilung $f$ kann durch Linearkombination aus 
-den Lösungen $f_i(t)$ zusammengesetzt werden.
-Dazu ist nötig, $f$ aus den Vektoren $f_i$ linear zu kombinieren.
-Da aber die $f_i$ orthonormiert sind, ist dies besonders einfach,
+den Lösungen $\chi_i(t)$ zusammengesetzt werden.
+Dazu ist nötig, $f$ aus den Vektoren $\chi_i$ linear zu kombinieren.
+Da aber die $\chi_i$ orthonormiert sind, ist dies besonders einfach,
 die Koeffizienten sind die Skalarprodukte mit den Eigenvektoren:
 \[
-f=\sum_{i=1}^n \langle f_i,f\rangle f_i.
+f=\sum_{i=1}^n \langle \chi_i,f\rangle \chi_i.
 \]
-Daraus kann man die allgmeine Lösungsformel
+Daraus kann man die allgemeine Lösungsformel
 \begin{equation}
 f(t)
 =
-\sum_{i=1}^n \langle f_i,f\rangle f_i(t)
+\sum_{i=1}^n \langle \chi_i,f\rangle \chi_i(t)
 =
-\sum_{i=1}^n \langle f_i,f\rangle e^{-\kappa\lambda_i t}f_i
+\sum_{i=1}^n \langle \chi_i,f\rangle e^{-\kappa\lambda_i t}\chi_i
 \label{buch:graphen:eqn:eigloesung}
 \end{equation}
 ableiten.
 
-\subsection{Beispiel: Ein zyklischer Graph}
+\subsection{Beispiel: Ein zyklischer Graph
+\label{buch:graphen:subsection:zyklischer-graph}}
 \begin{figure}
 \centering
 \includegraphics{chapters/70-graphen/images/kreis.pdf}
-\caption{Beispiel Graph zur Illustration der verschiedenen Basen auf einem
+\caption{Beispielgraph zur Illustration der verschiedenen Basen auf einem
 Graphen.
 \label{buch:graphen:fig:kreis}}
 \end{figure}
 Wir illustrieren die im folgenden entwickelte Theorie an dem Beispielgraphen
 von Abbildung~\ref{buch:graphen:fig:kreis}.
-Besonders interessant sind die folgenden Funktionen:
+Für jedes $k=0,\dots,n-1$ ist der Vektor mit den Komponenten
 \[
-\left.
-\begin{aligned}
-s_m(k)
+\chi_k(l) = e^{2\pi ikl/n}, \quad l=1,\dots,n
+\]
+ein Eigenvektor der Laplace-Matrix zum Eigenwert
+$\lambda_k=4\sin^2\frac{\pi k}{n}$.
+Tatsächlich ist
+\begin{align*}
+(L\chi_k)(l)
 &=
-\sin\frac{2\pi mk}{n}
+-\chi_k(l-1)
++
+2\chi_k(l)
+-
+\chi_k(l+1)
 \\
-c_m(k)
 &=
-\cos\frac{2\pi mk}{n}
+-e^{2\pi ik(l-1)/n}
++
+2e^{2\pi ikl/n}
+-
+e^{2\pi ik(l+1)/n}
+\\
+&=
+(-e^{-2\pi ik/n}+2-e^{2\pi ik/n})e^{2\pi ikl/n}
+\\
+&=
+-(e^{2\pi ik/2n}-e^{-2\pi ik/2n})^2 \chi_k(l)
+\\
+&=
+-
+\biggl(
+\frac{e^{2\pi ik/2n}-e^{-2\pi ik/2n}}{2i}
+\biggr)^2
+(2i)^2 \chi_k(l)
+\\
+&=
+4\sin^2\frac{\pi k}n \chi_k(l)
+\end{align*}
+
+Natürlich sind auch Real- und Imaginärteil Eigenvektoren:
+\[
+\begin{aligned}
+s_k(l)
+&=
+\sin\frac{2\pi kl}{n}
+=
+\Im \chi_k(l)
+\\
+c_k(l)
+&=
+\cos\frac{2\pi kl}{n}
+=
+\Re\chi_k(l)
 \end{aligned}
-\;
-\right\}
-\quad
-\Rightarrow
-\quad
-e_m(k)
-=
-e^{2\pi imk/n}
-=
-c_m(k) + is_m(k).
 \]
 Das Skalarprodukt dieser Funktionen ist
 \[
-\langle e_m, e_{m'}\rangle
+\langle \chi_m, \chi_{m'}\rangle
 =
 \frac1n
-\sum_{k=1}^n
-\overline{e^{2\pi i km/n}}
-e^{2\pi ikm'/n}
+\sum_{l=1}^n
+\overline{e^{2\pi i ml/n}}
+e^{2\pi im'l/n}
 =
 \frac1n
-\sum_{k=1}^n
-e^{\frac{2\pi i}{n}(m'-m)k}
+\sum_{l=1}^n
+e^{\frac{2\pi i}{n}(m'-m)l}
 =
 \delta_{mm'}
 \]
@@ -157,21 +198,9 @@ c_0, c_1,s_1,c_2,s_2,\dots c_{\frac{n}2-1},c_{\frac{n}2-1},c_{\frac{n}2}
 \]
 eine orthonormierte Basis.
 
-
-Die Laplace-Matrix kann mit der folgenden Definition zu einer linearen
-Abbildung auf Funktionen auf dem Graphen gemacht werden.
-Sei $f\colon V\to \mathbb{R}$ und $L$ die Laplace-Matrix mit
-Matrixelementen $l_{vv'}$ wobei $v,v'\in V$ ist.
-Dann definieren wir die Funktion $Lf$ durch
-\[
-(Lf)(v)
-=
-\sum_{v'\in V} l_{vv'}f(v').
-\]
-
 \subsection{Standardbasis und Eigenbasis
 \label{buch:subsection:standardbasis-und-eigenbasis}}
-Die einfachste Basis, aus der siche Funktionen auf dem Graphen linear
+Die einfachste Basis, aus der sich Funktionen auf dem Graphen linear
 kombinieren lassen, ist die Standardbasis.
 Sie hat für jeden Knoten $v$ des Graphen eine Basisfunktion mit den Werten
 \[
@@ -180,5 +209,37 @@ e_v\colon V\to\mathbb R:v'\mapsto \begin{cases}
 0\qquad&\text{sonst.}
 \end{cases}
 \]
+Sie zeichnet sich dadurch aus, dass sie perfekt lokalisiert ist.
+Im Gegensatz dazu zeigt das Beispiel von
+Abschnitt~\ref{buch:graphen:subsection:zyklischer-graph}, dass
+die Eigenfunktionen von $L(G)$ typischerweise delokalisiert sind.
+Im Beispiel hat $\chi_k(l)$ überall auf dem Graphen den gleichen
+Betrag.
+Die ``Frequenz'' einer Eigenfunktion dagegen ist exakt bestimmt.
 
+\subsection{Fourier-Theorie auf einem Graphen}
+Die Eigenfunktionen der Laplace-Matrix auf einem Graphen erlauben
+also, das Wärmeleitungsproblem auf dem Graphen auf ganz ähnliche
+Art zu lösen, wie die Fourier-Theorie das Wärmeleitungsproblem auf
+$\mathbb{R}$ oder auf einem Intervall löst.
+Es ist daher angemessen, die Entwicklung einer Funktion
+$f\colon G\to\mathbb{C}$ nach den Eigenvektoren $\chi_k$
+als Fourier-Transformation zu bezeichnen und die Koeffizienten
+\(
+c_k = \langle \chi_k, f\rangle
+\)
+als die Fourier-Koeffizienten.
+Grundlegende Eigenschaften der Fourier-Transformation stehen damit
+auch für die Analyse von Funktionen auf einem Graphen zur Verfügung.
+
+Es fehlen allerdings Eigenschaften, die mit zusätzlicher Struktur
+auf dem Definitionsbereich zusammenhängen.
+Die Faltung zum Beispiel setzt eine Rechenoperation auf dem
+Definitionsbereich voraus, welche natürlich in einem Graphen nicht erwartet
+werden kann.
+Im Beispiel von Abschnitt~\ref{buch:graphen:subsection:zyklischer-graph}
+lässt sich eine solche Struktur finden, die Knoten des Graphen können
+als die Elemente einer zyklischen Gruppe betrachtet werden.
+Daraus lassen sich die bekannten Faltungsformeln der diskreten
+Fourier-Transformation ableiten.
 

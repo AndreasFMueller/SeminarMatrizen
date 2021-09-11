@@ -73,20 +73,21 @@ Standardbasisvektor mit Hilfe der
 Lösungsformel~\eqref{buch:graphen:eqn:eigloesung}
 gefunden werden.
 Aus physikalischen Gründen ist aber offensichtlich, dass die
-Wärmeenergie Fundamentallösungen $F_i(t)$ für kurze Zeiten $t$
-in der Nähe des Knoten $i$ konzentriert ist.
-Dies ist aber aus der expliziten Formel
+Wärmeenergie der Fundamentallösungen $F_i(t)$ für kurze Zeiten $t$
+in der Nähe des Knotens $i$ konzentriert ist.
+Dies ist aber aus der Fourier-Entwicklung
 \begin{equation}
 F_i(t)
 =
-\sum_{j=1}^n \langle f_j,e_i\rangle e^{-\kappa \lambda_i t} f_j
+\sum_{j=1}^n \langle \chi_j,e_i\rangle e^{-\kappa \lambda_i t} \chi_j
 =
 \sum_{j=1}^n \overline{f}_{ji} e^{-\kappa \lambda_i t},
 \label{buch:graphen:eqn:fundamentalgraph}
 \end{equation}
 nicht unmittelbar erkennbar.
 
-Man kann aber aus~\eqref{buch:graphen:eqn:fundamentalgraph} ablesen,
+Man kann aber aus~\eqref{buch:graphen:eqn:fundamentalgraph}
+wenigstens ablesen,
 dass für zunehmende Zeit die hohen Frequenzen sehr schnell gedämpft
 werden.
 Die hohen Frequenzen erzeugen also den scharfen Peak für Zeiten nahe
@@ -115,7 +116,7 @@ Die Darstellung im Frequenzraum und in der Zeit sind also extreme
 Darstellungen, entweder Frequenzlokalisierung oder zeitliche Lokalisierung
 ermöglichen, sich aber gegenseitig ausschliessen.
 
-\subsubsection{Dilatation}
+\subsubsection{Dilatation im Frequenzraum, spektrale Dilatation}
 Eine Wavelet-Basis für die $L^2$-Funktionen auf $\mathbb{R}$ erlaubt
 eine Funktion auf $\mathbb{R}$ auf eine Art zu analysieren, die eine
 ungenaue zeitliche Lokalisierung bei entsprechend ungenauer
@@ -140,7 +141,7 @@ Graphen gibt es keine Rechtfertigung für diese spezielle Wahl von
 Streckungsfaktoren mehr.
 Es stellt sich daher die Frage, ob man für eine beliebige Menge
 \(
-T= \{ t_1,t_2,\dots\} \}
+T= \{ t_1,t_2,\dots\}
 \)
 von Streckungsfaktoren eine Familie von Funktionen $\chi_j$ zu finden
 derart, dass man sich die $\chi_j$ in einem gewissen Sinn als aus
@@ -164,14 +165,14 @@ Menge von reellen Zahlen ohne innere algebraische Struktur ist.
 \centering
 \includegraphics{chapters/70-graphen/images/gh.pdf}
 \caption{Lokalisierungsfunktion $g(\lambda)$ für die Dilatation (links).
-Die Dilatierten Funktionen $g_i=\tilde{D}_{1/a_i}g$ lokalisieren
+Die dilatierten Funktionen $g_i=\tilde{D}_{1/a_i}g$ lokalisieren
 die Frequenzen jeweils um die Frequenzen $a_i$ im Frequenzraum.
 Der Konstante Vektor ist vollständig delokalisiert, die Funktion $h$
 in der rechten Abbildung entfernt die hohen Frequenzen und liefert Funktionen,
-die in der Umgebung eines Knotens wie die Konstante Funktion aussehen.
+die in der Umgebung eines Knotens wie die konstante Funktion aussehen.
 \label{buch:graphs:fig:lokalisierung}}
 \end{figure}
-Das Mutter-Wavelet einer Wavelet-Analyse zeichnet definiert, in welchem Mass
+Das Mutter-Wavelet einer Wavelet-Analyse definiert, in welchem Mass
 sich Funktionen im Orts- und im Frequenzraum lokalisieren lassen.
 Die Standardbasis der Funktionen auf einem Graphen repräsentieren die
 perfekte örtliche Lokalisierung, Eigenbasis der Laplace-Matrix $L$ repräsentiert
@@ -181,8 +182,8 @@ $\lambda\to\infty$ rasch abfällt mit einem Maximum irgendwo dazwischen
 (Abbildung~\ref{buch:graphs:fig:lokalisierung}).
 Sie kann als eine Lokalisierungsfunktion im Frequenzraum betrachtet werden.
 
-Die Matrix $g(L)$ bildet entfernt aus einer Funktion die ganz hohen und 
-die ganz tiefen Frequenz, lokalisiert also die Funktionen im Frequenzraum.
+Die Matrix $g(L)$ entfernt die ganz hohen und die ganz tiefen Frequenz
+aus einer Funktion, lokalisiert also die Funktionen im Frequenzraum.
 Die Standardbasisvektoren werden dabei zu Funktionen, die nicht mehr nur
 auf einem Knoten von $0$ verschieden sind, aber immer noch einigermassen
 auf dem Graphen lokalisiert sind.
@@ -191,7 +192,7 @@ $\lambda_0 < \lambda_1\le \dots\le \lambda_n$ der Laplace-Matrix
 von Interesse.
 
 Die Matrix $g(L)$ kann mit Hilfe der Spektraltheorie berechnet werden,
-was im vorliegenden Fall naheliegend ist, weil ja die Eigenvektoren von
+was im vorliegenden Fall naheliegend ist, weil ja die Eigenvektoren 
 der Laplace-Matrix bereits bekannt sind.
 Die Matrix $\chi^t$ bildet die Standardbasisvektoren in die
 Eigenbasis-Vektoren ab, also in eine Zerlegung im Frequenzraum ab,
@@ -211,7 +212,7 @@ g(\lambda_0)&0&\dots&0\\
 \label{buch:graphen:eqn:mutterwavelet}
 \end{equation}
 
-\subsubsection{Dilatation}
+\subsubsection{Spektrale Dilatation der Mutterwavelets}
 Die Dilatation um $a$ im Ortsraum wird zu einer Dilatation um $1/a$ im
 Frequenzraum.
 Statt also nach einer echten Dilatation der Spaltenvektoren in $g(L)$
@@ -266,12 +267,20 @@ h(L) + \sum_{i}g_i(L)=I
 gelten würde.
 Nach der Spektraltheorie gilt das nur, wenn für alle Eigenwerte
 $\lambda_k$, $k=1,\dots,n$
-\[
+\begin{equation}
 h(\lambda_k) + \sum_ig(a_i\lambda_k)=1
-\]
+\label{buch:graphen:eqn:summegh}
+\end{equation}
 gilt.
-Für beliebige Funktionen $g$ und $h$ kann man nicht davon ausgehen,
-aber man kann erwarten.
+
+Allerdings kann man im Allgemeinen nicht erwarten,
+dass \ref{buch:graphen:eqn:summegh} für
+beliebige Funktionen $g$ und $h$ gilt.
+Da es aber nur auf die Werte auf den Eigenwerten ankommt,
+muss nur sichergestellt sein, dass 
+die linke Seite von \eqref{buch:graphen:eqn:summegh}
+nicht verschwindet.
+Dies garantiert, dass die Wavelet-Entwicklung umkehrbar ist.
 Man muss daher zusätzlich verlangen, dass
 \[
 h(\lambda_k) + \sum_{i} g(a_i\lambda_k) > 0
@@ -301,7 +310,7 @@ B\|v\|^2
 Die Zahlen $A$  und $B$ heissen die {\em Frame-Konstanten} des Frames.
 \end{definition}
 
-Die oben gefundenen Vektoren, die Spalten Vektoren von $h(L)$ und $g_i(L)$
+Die oben gefundenen Vektoren, die Spaltenvektoren von $h(L)$ und $g_i(L)$,
 bilden daher ein Frame.
 Die Frame-Konstanten kann man unmittelbar ausrechnen.
 Der mittlere Term von \eqref{buch:graphen:eqn:frame} ist 
@@ -318,12 +327,14 @@ h(\lambda)^2 + \sum_i g_i(\lambda)^2
 \]
 abgeschätzt werden kann.
 Die Frame-Konstanten sind daher
-\begin{align*}
+\[
+\begin{aligned}
 A&=\min_{k} f(\lambda_k)
 &
 &\text{und}&
 B&=\max_{k} f(\lambda_k).
-\end{align*}
+\end{aligned}
+\]
 Die Konstruktion hat also ein Frame für die Funktionen auf dem Graphen
 etabliert, die viele Eigenschaften einer Multiskalenanalyse in diese
 wesentlich weniger symmetrische Situation rettet.
