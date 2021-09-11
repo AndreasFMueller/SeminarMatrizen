@@ -9,41 +9,44 @@
 \rhead{}
 Ein Graph ist eine Menge von Knoten, die untereinander mit Kanten
 verbunden sind.
-Graphen können zum Beispiel verwendet werden um Netzwerke zu beschreiben,
+\index{Graph}%
+Graphen können zum Beispiel verwendet werden, um Netzwerke zu beschreiben,
 aber auch viele andere Datenstrukturen.
 \index{Graph}%
-Die Knoten können einzelne Objekte beschreiben, die Kanten beschreiben
+Die Knoten können einzelne Objekte darstellen, die Kanten entsprechen
 dann Beziehungen zwischen diesen Objekten.
 Graphen haben zwar nur eine eindimensionale Geometrie, sie können aber auch als
-erste Approximation dreidimensionaler Objekte dienen.
+erste Approximation höherdimensionaler geometrischer Strukturen dienen.
 
 Die Bedeutung des Graphenkozeptes wird unterstrichen von der Vielzahl
-von Fragestellungen, die über Graphen gestellt, und der
+von Fragestellungen, die über Graphen gestellt worden sind, und der
 zugehörigen Lösungsalgorithmen, die zu ihrer Beantwortung gefunden
 worden sind.
 Die Komplexitätstheorie hat sogar gezeigt, dass sich jedes diskrete
+\index{Komplexitätstheorie}%
 Problem in ein Graphenproblem umformulieren lässt.
 \index{Komplexitätstheorie}%
 
 Das Problem, einen Stundenplan zu finden, der sicherstellt, dass
+\index{Stundenplan}%
 alle Studierenden jedes Fach besuchen können, für die sie sich
 angemeldet haben, lässt sich zum Beispiel wie folgt als ein
 Graphenproblem formulieren.
 Die Fächer betrachten wir als Knoten des Graphen.
-Für jedes Paar von Fächern ziehen wir eine Kante des Graphen, wenn 
+Für jedes Paar von Fächern ziehen wir eine Kante, wenn 
 sich mindestens ein Studierender für beide Fächer angemeldet hat.
 Die Kante drückt aus, dass die beiden Fächer nicht zur gleichen Zeit
 geplant werden dürfen.
 Das Problem, einen Stundenplan zu finden, besteht jetzt darin, für
-jedes Fach ein Zeitintervall zu finden, während dem es durchgeführt
+jedes Fach ein Zeit\-intervall zu finden, während dem es durchgeführt
 werden soll.
-\index{Stundenplan}%
-Natürlich steht nur eine beschränkte Anzahl Zeitintervalle zur Verfügung
-und benachbarte Knoten dürfen nicht ins gleiche Zeitintervall geplant
-werden.
+Natürlich steht nur eine beschränkte Anzahl Zeitintervalle zur Verfügung.
+Benachbarte, also mit einer Kante verbundene Knoten dürfen nicht
+ins gleiche Zeitintervall geplant werden.
 Das zugehörige abstrakte Graphenproblem heisst das Färbeproblem: 
 \index{Färbeproblem}%
-ist es möglich, mit einer beschränkten Anzahl von Farben die Knoten
+ist es möglich, mit einer beschränkten Anzahl von Farben, oder im
+vorliegenden Fall Zeitintervalle, die Knoten
 des Graphen so einzufärben, dass benachbarte Knoten niemals die gleiche
 Farbe haben.
 

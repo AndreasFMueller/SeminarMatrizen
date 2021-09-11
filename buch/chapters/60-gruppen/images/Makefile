@@ -3,7 +3,8 @@
 #
 # (c) 2021 Prof Dr Andreas Müller, OST Ostschweizer Fachhochschule
 #
-all:	phasenraum.pdf kartenkreis.pdf karten.pdf sl2.pdf scherungen.pdf
+all:	phasenraum.pdf kartenkreis.pdf karten.pdf sl2.pdf scherungen.pdf \
+	rodriguez.pdf nichtkomm.pdf
 
 phasenraum.pdf:	phasenraum.tex
 	pdflatex phasenraum.tex
@@ -23,3 +24,8 @@ sl2.pdf:	sl2.tex
 scherungen.pdf:	scherungen.tex 
 	pdflatex scherungen.tex
 
+rodriguez.pdf:	rodriguez.tex rodriguez.jpg
+	pdflatex rodriguez.tex
+
+nichtkomm.pdf:	nichtkomm.tex c60.jpg
+	pdflatex nichtkomm.tex
