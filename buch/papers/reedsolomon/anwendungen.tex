@@ -5,18 +5,18 @@
 %
 \section{Anwendungen des Reed-Solomon-Codes
 	\label{reedsolomon:section:anwendung}}
-\rhead{Anwendungen}
 
 In den vorherigen Abschnitten haben wir betrachtet, wie Reed-Solomon-Codes in der Theorie funktionieren. 
 In diesem Abschnitt werden wir einige Anwendungen vorstellen, bei denen ein Reed-Solomon-Code zum Einsatz kommt.
 
 All diese Anwendungen teilen das gleiche Problem: Die Daten können nur durch einen höchstwahrscheinlich fehlerbehafteten Kanal empfangen werden. Es gibt keine andere Methode, an diese Daten zu kommen, als über diesen Kanal.
 
-In der Netzwerktechnik zum Beispiel ist es üblich, dass bei Paketverluste oder beschädigt empfangene Datenpaketen diese einfach noch einmal innert wenigen Millisekunden angefordert werden können.
+\rhead{Anwendungen}
+In der Netzwerktechnik zum Beispiel ist es üblich, dass bei Paketverlusten oder beschädigt empfangenen Datenpaketen diese einfach noch einmal innert weniger Millisekunden angefordert werden können.
 \index{Paketverluste}%
 In der Raumfahrt ist dies nicht möglich, da aufgrund der beschränkten Speichermöglichkeit die gesammelten Daten so rasch wie möglich zur Erde gesendet werden. 
 \index{Raumfahrt}%
-Diese Daten wiederum brauchen aufgrund der grossen Distanz Stunden bis die Daten beim Empfänger ankommen.
+Diese Daten wiederum brauchen aufgrund der grossen Distanz Stunden, bis sie beim Empfänger ankommen.
 Fehlerhafte Daten können also auf Grund der Zeitverzögerung nicht mehr angefordert werden. 
 
 Bei CDs oder DVDs gibt es zwar kein zeitliches Problem, jedoch erschweren Kratzer, Verschmutzungen oder Produktionsfehler das Lesen einer solchen Disk.
@@ -26,7 +26,7 @@ Bei CDs oder DVDs gibt es zwar kein zeitliches Problem, jedoch erschweren Kratze
 \index{Digital Video Disk}%
 Da vor allem Produktionsfehler und Kratzer irreversibel sind und die Disk nicht nach jedem Kratzer ersetzt werden, wird die korrekte Ausgabe der gespeicherten Information durch die Fehlerkorrektur sichergestellt. 
 
-Einen ähnlichen Ansatz verfolgen QR-Codes, wobei die Information auch dann noch gelesen werden kann wenn der Code nicht mehr vollständig vorhanden ist. 
+Einen ähnlichen Ansatz verfolgen QR-Codes, wobei die Information auch dann noch gelesen werden kann, wenn der Code nicht mehr vollständig vorhanden ist. 
 \index{QR-Code}%
 
 %Wie man sieht, eignen sich Reed-Solomon-Codes vor allem für Anwendungen, bei der die Informationen nicht auf einen Anderen Weg beschafft werden kann. 
@@ -39,11 +39,11 @@ Einen ähnlichen Ansatz verfolgen QR-Codes, wobei die Information auch dann noch
 % da aufgrund der grossen Distanz Stunden vergehen können bis gesendete Daten auf der Erde empfangen werden kann. 
 %
 
-Obwohl alle diese Codes nach dem gleichen Prinzip arbeiten gibt es starke Unterschiede in deren Funktionsweise. 
-Dies kommt vor allem daher, da die Codes nur Ressourcen zur Verfügung haben, die von der Hardware bereitstellt wird,  auf denen die Codes implementiert wurden.
-Diese Codes bedienen sich daher verschiedener Tricks und Optimierungen um möglichst effizient zu arbeiten.
+Obwohl all diese Codes nach dem gleichen Prinzip arbeiten, gibt es starke Unterschiede in deren Funktionsweise. 
+Dies kommt vor allem daher, dass die Codes nur Ressourcen zur Verfügung haben, die von der Hardware bereitgestellt werden, auf denen die Codes implementiert wurden.
+Diese Codes bedienen sich daher verschiedener Tricks und Optimierungen, um möglichst effizient zu arbeiten.
 
-Um die Fähigkeit eines verwendeten Reed-Solomon-Codes zu beschreiben verwendet man die Notation ($n$,$k$), wobei $n$ die Grösse des Nachrichtenblocks angibt und $k$ die Anzahl der Stellen, die für Nutzdaten gebraucht werden können.
+Um die Fähigkeit eines verwendeten Reed-Solomon-Codes zu beschreiben, verwendet man die Notation ($n$,$k$), wobei $n$ die Grösse des Nachrichtenblocks angibt und $k$ die Anzahl der Stellen, die für Nutzdaten gebraucht werden können.
 
 %Dies kommt vor allem daher, da diese Codes an ihre Hardware gebunden sind, auf denen sie implementiert worden sind.
 %Deshalb wurden diese Codes stark optimiert damit sie möglichst Effizient arbeiten können. 
@@ -78,20 +78,20 @@ Um die Fähigkeit eines verwendeten Reed-Solomon-Codes zu beschreiben verwendet 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{papers/reedsolomon/images/Voyager_Sonde}
-	\caption{Mit einer Entfernung von über 22.8 Milliarden Kilometer ist die Voyager 1 Raumsonde das am weitesten entfernte, von Menschen erschaffene Objekt. Obwohl ihre Schwestersonde Voyager 2 zuerst ins All gestartet wurde befindet Sie sich ``nur'' 19 Milliarden Kilometer weit weg von der Erde. Aufgrund abnehmender Batterieleistung werden die beiden Sonden ihre wissenschaftlichen Aktivitäten etwa 2025 einstellen, bleiben aber bis in die 2030er mit uns in Kontakt.}
+	\caption{Mit einer Entfernung von über 22.8 Milliarden Kilometer ist die Voyager 1 Raumsonde das am weitesten entfernte, von Menschen erschaffene Objekt. Obwohl ihre Schwestersonde Voyager 2 zuerst ins All gestartet wurde, befindet sie sich ``nur'' 19 Milliarden Kilometer weit weg von der Erde. Aufgrund abnehmender Batterieleistung werden die beiden Sonden ihre wissenschaftlichen Aktivitäten etwa 2025 einstellen, bleiben aber bis in die 2030er Jahre mit uns in Kontakt.}
 \index{Voyager 1 und 2}%
 	\label{fig:voyager}
 \end{figure}
 
 \subsection{Raumfahrt}
-Obwohl Reed-Solomon-Codes bereits in den 1960er entwickelt wurden fanden sie erstmals Anwendung in der Voyager Raumsonde der NASA. Die Daten der zwei im Jahre 1977 gestarteten Sonden (siehe Abbildung \ref{fig:voyager}) werden mit einem ($255$,$233$)-Code
+Obwohl Reed-Solomon-Codes bereits in den 1960er Jahren entwickelt wurden, fanden sie erstmals Anwendung in der Voyager Raumsonde der NASA. Die Daten der zwei im Jahre 1977 gestarteten Sonden (siehe Abbildung \ref{fig:voyager}) werden mit einem ($255$,$233$)-Code
 \index{Voyager Raumsonde}%
 \index{NASA}%
 codiert. 
 Der Nachrichtenblock hat somit eine Länge von $255$ Zahlen, wovon $233$ als Nutzlast zur Verfügung stehen.
-Damit ist es möglich bis zu $11$ Fehler im Nachrichtenblock zu korrigieren. 
+Damit ist es möglich, bis zu $11$ Fehler im Nachrichtenblock zu korrigieren. 
 Der codierte Nachrichtenblock wird in kleinere Blöcke aufgeteilt, mit einem Faltungscode erneut codiert und anschliessend gesendet.
-Ein Faltungscode ist wie ein Reed-Solomon-Code in der Lage Fehler zu korrigieren, 
+Ein Faltungscode ist wie ein Reed-Solomon-Code in der Lage, Fehler zu korrigieren, 
 codiert seine Information aber auf eine andere Weise. Aus jedem unterteilten Block wird vor dem Versenden ein Paritätsbit erzeugt und dem Block angehängt. Anhand dieses Paritätsbits überprüft der Empfänger, ob bei der Übertragung der Block beschädigt wurde. Ist dies der Fall, wird der Block bei der Decodierung nicht beachtet. Diese so entstandenen ``Lücken'' im Datenstrom werden wiederum vom Reed-Solomon-Code korrigiert. Dieses Zusammenspiel beider Codes garantiert so eine hohe Robustheit gegenüber Übertragungsfehler. 
 
 \begin{figure}
@@ -102,7 +102,7 @@ codiert seine Information aber auf eine andere Weise. Aus jedem unterteilten Blo
 	\subfigure[]{
 		\includegraphics[width=0.45\textwidth]{papers/reedsolomon/images/Compact_Disc_zoomed_in}
 	}
-	\caption{CDs kamen 1982 auf den Markt. Sie funktioniert durch das Einpressen oder Einbrennen von Punkten und Strichen, die die Daten repräsentieren. Gelesen werden diese wiederum durch die Reflektion eines Lasers an diesen Punkten und Strichen.}
+	\caption{CDs kamen 1982 auf den Markt. Sie funktionieren durch das Einpressen oder Einbrennen von Punkten und Strichen, die die Daten repräsentieren. Gelesen werden diese wiederum durch die Reflektion eines Lasers an diesen Punkten und Strichen.}
 	\label{fig:cd}
 \end{figure}
 % 
@@ -122,11 +122,11 @@ codiert seine Information aber auf eine andere Weise. Aus jedem unterteilten Blo
 
 
 \subsection{CD/DVD}
-Compact discs verwenden sogar zwei ineinander verschachtelte Reed-Solomon-Codes, einen (32,28)-Code und einen (28,24)-Code.
+Compact Discs verwenden sogar zwei ineinander verschachtelte Reed-Solomon-Codes, einen (32,28)-Code und einen (28,24)-Code.
 Beide Codes sind in der Lage, Fehler aus dem jeweils anderen gelesenen Block zu korrigieren. Dieses spezielle Zusammenspielen dieser beiden Codes wird auch Cross-interleaved Reed-Solomon-Code (CIRC) genannt.
 \index{CIRC}%
 \index{Cross-interleaved Reed-Solomon code}%
-Diese Vorgehensweise erzielt eine hohe Robustheit gegenüber Produktionsfehlern oder Verschmutzung auf der Disc. Bei CDs sind diese in der Lage, bis zu 4000 fehlerhafte Bits am Stück (ca. $2.5mm$) zu erkennen und zu korrigieren. 
+Diese Vorgehensweise erzielt eine hohe Robustheit gegenüber Produktionsfehlern oder Verschmutzung auf der Disc. Bei CDs sind diese in der Lage, bis zu 4000 fehlerhafte Bits am Stück (ca. $2.5$mm) zu erkennen und zu korrigieren. 
 
 Die Digital Video Disc funktioniert nach dem selben Konzept mit grösseren Codeblöcken. Die DVD verwendet einen (208,192)-Code und einen (182,172)-Code.
 
@@ -147,7 +147,7 @@ Die Digital Video Disc funktioniert nach dem selben Konzept mit grösseren Codeb
 %	\subfigure[]{
 %	\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode}
 %	}
-	\caption{Anhand der grösse würde man darauf schliessen, dass bei (a) mehr Informationen codiert sind als bei (b). Tatsächlich aber beinhalten beide Codes die gleiche Information. Das liegt daran, da die Fehlerkorrekturfähigkeit von QR-Codes sich in insgesamt vier Levels aufteilen lassen. Der höchste Fehlerkorrektur-Level, der bei (a) angewendet wurde, ist in der Lage, bis zu 30\% der Daten wiederherzustellen. Der kleinste Level schafft etwa 7\%, der in (b) veranschaulicht wird. Da die Grösse also nichts über die Menge an Daten aussagt, könnte es sich bei (a) auch um einen Code mit viel Nutzdaten und kleinem Fehlerkorrektur-Level handeln. Der Unterschied ist von Auge nicht sichtbar.}
+	\caption{Anhand der Grösse würde man darauf schliessen, dass bei (a) mehr Informationen codiert sind als bei (b). Tatsächlich aber beinhalten beide Codes die gleiche Information. Das liegt daran, dass die Fehlerkorrekturfähigkeit von QR-Codes sich in insgesamt vier Levels aufteilen lassen. Das höchste Fehlerkorrektur-Level, das bei (a) angewendet wurde, ist in der Lage, bis zu 30\% der Daten wiederherzustellen. Das kleinste Level schafft etwa 7\%, das in (b) veranschaulicht wird. Da die Grösse also nichts über die Menge an Daten aussagt, könnte es sich bei (a) auch um einen Code mit viel Nutzdaten und kleinem Fehlerkorrektur-Level handeln. Der Unterschied ist von Auge nicht sichtbar.}
 	\label{fig:qr}
 \end{figure}
 
@@ -165,19 +165,19 @@ Die Digital Video Disc funktioniert nach dem selben Konzept mit grösseren Codeb
 	\subfigure[]{
 		\includegraphics[width=0.4\textwidth]{papers/reedsolomon/images/designer_qrcode}
 	}
-	\caption{Während (a) noch einen unveränderten QR-Code repräsentiert, handelt es sich bei (b) nun um einen Designer-QR-Code. Beide Codes verfügen über einen mittleren Fehlerkorrektur-Level von theoretisch 15\%. Da bei (b) jetzt einen Teil des Codes durch ein Logo verdeckt wird, schränkt sich die Fehlerkorrekturfähigkeit je nach Grösse des verdeckten Teils mehr oder weniger stark ein. Unser Designer-Code in (b) ist nur noch in der Lage etwa 9\% des Codes zu rekonstruieren.}
+	\caption{Während (a) noch einen unveränderten QR-Code repräsentiert, handelt es sich bei (b) nun um einen Designer-QR-Code. Beide Codes verfügen über einen mittleren Fehlerkorrektur-Level von theoretisch 15\%. Da bei (b) jetzt ein Teil des Codes durch ein Logo verdeckt wird, schränkt sich die Fehlerkorrekturfähigkeit je nach Grösse des verdeckten Teils mehr oder weniger stark ein. Unser Designer-Code in (b) ist nur noch in der Lage, etwa 9\% des Codes zu rekonstruieren.}
 	\label{fig:designqr}
 \end{figure}
 
 \subsection{QR-Codes}
 \index{QR-Code}%
-Quick Response Codes oder auch QR-Codes funktionieren nach einem sehr ähnlichen Prinzip wie in unserem Beispiel der Abschnitte \ref{reedsolomon:section:codebsp} - \ref{reedsolomon:section:rekonstruktion} nur das QR-Codes in einem $\mathbb{F}_{256}$ Körper arbeiten.
+Quick Response Codes oder auch QR-Codes funktionieren nach einem sehr ähnlichen Prinzip wie in unserem Beispiel die Abschnitte \ref{reedsolomon:section:codebsp} - \ref{reedsolomon:section:rekonstruktion}, nur der QR-Code in einem $\mathbb{F}_{256}$ Körper arbeitet.
 Die physische Grösse eines Codes ist stark abhängig von der Menge an codierten Daten sowie dem verwendeten Fehlerkorrektur-Level.
-Es ist so auf dem ersten Blick nicht ersichtlich, wie viel Nutzinformationen ein QR-Code enthält.
+Es ist so auf den ersten Blick nicht ersichtlich, wie viel Nutzinformationen ein QR-Code enthält.
 Die QR-Codes in Abbildung \ref{fig:qr} zeigen jeweils die gleiche Information mit unterschiedlichem Fehlerkorrektur-Level.
 Codes mit einem höheren Korrektur-Level können auch für Designer-Codes zweckentfremdet werden.
 \index{Designed-QR-Code}%
-Dabei wird z.~B.~das Firmenlogo oder einen Schriftzug über den QR-Code gelegt, ohne das die Funktion des Codes beeinträchtigt wird. Ein Beispiel dazu ist in Abbildung \ref{fig:designqr} zu finden. 
+Dabei wird z.~B.~das Firmenlogo oder ein Schriftzug über den QR-Code gelegt, ohne dass die Funktion des Codes beeinträchtigt wird. Ein Beispiel dazu ist in Abbildung \ref{fig:designqr} zu finden. 
 
 % 
 

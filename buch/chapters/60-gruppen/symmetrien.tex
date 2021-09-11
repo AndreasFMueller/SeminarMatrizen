@@ -15,7 +15,7 @@ bedeutet.
 Spiegelsymmetrische Objekte zeichnen sich zum Beispiel dadurch aus,
 dass Messungen von Strecken die gleichen Werte ergeben wie die Messungen
 der entsprechenden gespiegelten Strecken (siehe auch
-Abbildung~\ref{buch:lie:bild:castlehoward}, was die Herkunft des
+Abbildung~\ref{buch:lie:bild:castlehoward}), was die Herkunft des
 Begriffs verständlich macht.
 \begin{figure}
 \centering
@@ -31,8 +31,8 @@ In der Physik wird dem Begriff der Symmetrie daher auch eine erweiterte
 Bedeutung gegeben.
 Jede Transformation eines Systems, welche bestimmte Grössen nicht
 verändert, wird als Symmetrie bezeichnet.
-Die Gesetze der Physik sind typischerweise unabhängig davon, wo man den
-den Nullpunkt der Zeit oder das räumlichen Koordinatensystems ansetzt,
+Die Gesetze der Physik sind typischerweise unabhängig davon, wo man
+den Nullpunkt der Zeit oder des räumlichen Koordinatensystems ansetzt,
 eine Transformation des Zeitnullpunktes oder des Ursprungs des
 Koordinatensystems ändert daher die Bewegungsgleichungen nicht, sie ist
 eine Symmetrie des Systems.
@@ -52,8 +52,8 @@ zusätzliche geometrische Struktur, man nennt sie eine differenzierbare
 Mannigfaltigkeit.
 Dieser Begriff wird im Abschnitt~\ref{buch:subsection:mannigfaltigkeit}
 eingeführt.
-Es wird sich zum Beispiel zeigen, dass die Menge der Drehungen der
-Ebene mit den Punkten eines Kreises parametrisieren lassen,
+Es wird sich zum Beispiel zeigen, dass sich die Menge der Drehungen der
+Ebene mit den Punkten eines Kreises parametrisieren lässt,
 die Lösungen der Gleichung $x^2+y^2=1$ sind.
 
 Eine Lie-Gruppe ist eine Gruppe, die gleichzeitig eine differenzierbare
@@ -94,10 +94,10 @@ Die folgenden Beispiele sollen zeigen, wie solche Symmetriedefinitionen
 auf algebraische Bedingungen an die Matrixelemente führen.
 
 Zu jeder Abbildung $f\colon\mathbb{R}^n\to\mathbb{R}^n$, unter der 
-ein geometrisches Objekt in $\mathbb{R}^n$ symmetrisch ist, können wir
+ein geometrisches Objekt in $\mathbb{R}^n$ unveränder bleibt, können wir
 sofort weitere Abbildungen angeben, die ebenfalls Symmetrien sind.
 Zum Beispiel sind die iterierten Abbildungen $f\circ f$, $f\circ f\circ f$
-u.~s.~w., die wir auch $f^n$ mit $n\in\mathbb{N}$ schreiben werden,
+usw., die wir auch $f^n$ mit $n\in\mathbb{N}$ schreiben werden,
 ebenfalls Symmetrien.
 Wenn die Symmetrie auch umkehrbar ist, dann gilt dies sogar für alle
 $n\in\mathbb{Z}$.
@@ -105,7 +105,9 @@ Wir erhalten so eine Abbildung
 $\varphi\colon \mathbb{Z}\to \operatorname{GL}_n(\mathbb{R}):n\mapsto f^n$
 mit den Eigenschaften $\varphi(0)=f^0 = I$ und
 $\varphi(n+m)=f^{n+m}=f^n\circ f^m = \varphi(n)\circ\varphi(m)$.
-$\varphi$ ist ein Homomorphismus der Gruppe $\mathbb{Z}$ in die Gruppe
+$\varphi$ ist ein Homomorphismus (siehe
+Definition~\ref{buch:gruppen:def:homomorphismus})
+der Gruppe $\mathbb{Z}$ in die Gruppe
 $\operatorname{GL}_n(\mathbb{R})$.
 Wir nennen dies eine {\em diskrete Symmetrie}.
 
@@ -114,10 +116,10 @@ Wir nennen dies eine {\em diskrete Symmetrie}.
 Von besonderem Interesse sind kontinuierliche Symmetrien.
 Dies sind Abbildungen eines Systems, die von einem Parameter
 abhängen.
-Zum Beispiel können wir Drehungen der Ebene $\mathbb{R}^2$ um den
-Winkel $\alpha$ durch Matrizen 
+Zum Beispiel können Drehungen der Ebene $\mathbb{R}^2$ um den
+Winkel $\alpha$ durch die Matrizen 
 \[
-D_{\alpha}
+R_{\alpha}
 =
 \begin{pmatrix}
 \cos\alpha&-\sin\alpha\\
@@ -126,18 +128,20 @@ D_{\alpha}
 \]
 beschrieben werden.
 Ein Kreis um den Nullpunkt bleibt unter jeder dieser Drehungen invariant.
-Im Gegensatz dazu sind alle $3n$-Ecke mit Schwerpunkt $0$ nur invariant
-unter der einen Drehung $D_{\frac{2\pi}3}$ invariant.
-Die kleinste Menge, die einen vorgegebenen Punkt enthält und unter
-allen Drehungen $D_\alpha$ invariant ist, ist immer ein Kreis um
+Im Gegensatz dazu sind alle gleichseitigen Dreiecke mit Schwerpunkt $0$
+nur unter der einen Drehung $R_{\frac{2\pi}3}$ invariant.
+Eine minimale Menge, die einen vorgegebenen Punkt enthält und unter
+allen Drehungen $R_\alpha$ invariant ist, ist immer ein Kreis um
 den Nullpunkt.
 
 \begin{definition}
+\label{buch:lie:def:einparameteruntergruppe}
 Ein Homomorphismus $\varphi\colon\mathbb{R}\to\operatorname{GL}_n(\mathbb{R})$
 von der additiven Gruppe $\mathbb{R}$ in die allgemeine lineare Gruppe
-heisst eine {\em Einparameter-Untergruppe} von
+heisst eine {\em Einparameteruntergruppe} von
 $\operatorname{GL}_n(\mathbb{R})$.
 \end{definition}
+\index{Einparameteruntergruppe}
 
 Die Abbildung 
 \[
@@ -146,16 +150,18 @@ Die Abbildung
 \mathbb{R}\to\operatorname{GL}_n(\mathbb{R})
 :
 \alpha \mapsto
-D_{\alpha}
+R_{\alpha}
 =
 \begin{pmatrix}
 \cos\alpha&-\sin\alpha\\
 \sin\alpha& \cos\alpha
 \end{pmatrix}
 \]
-ist also eine Einparameter-Untergruppe von $\operatorname{GL}_2(\mathbb{R})$.
+ist also eine Einparameteruntergruppe von $\operatorname{GL}_2(\mathbb{R})$.
 
 \subsubsection{Der harmonische Oszillator}
+\index{harmonischer Oszillator}%
+\index{Oszillator}%
 \begin{figure}
 \centering
 \includegraphics{chapters/60-gruppen/images/phasenraum.pdf}
@@ -165,17 +171,21 @@ im Phasenraum sind Ellipsen mit Halbachsenverhältnis $\omega^{-1}$.
 \label{chapter:gruppen:fig:phasenraum}}
 \end{figure}
 Eine Masse $m$ verbunden mit einer Feder mit der Federkonstanten $K$
+\index{Federkonstante}%
 schwingt um die Ruhelage $x=0$ entsprechend der Differentialgleichung
 \[
 m\frac{d^2}{dt^2} x(t) =  -Kx(t).
 \]
 Die Kreisfrequenz der Schwingung ist
+\index{Kreisfrequenz}%
+\index{Schwingung}%
 \[
 \omega = \sqrt{\frac{K}{m}}.
 \]
 Das System kann als zweidimensionales System im Phasenraum mit den 
 Koordinaten $x_1=x$ und $x_2=p=m\dot{x}$ beschrieben werden.
 Die zweidimensionale Differentialgleichung ist
+\index{zweidimensionale Differentialgleichung}%
 \begin{equation}
 \left.
 \begin{aligned}
@@ -230,7 +240,7 @@ p(t)
 \label{buch:gruppen:eqn:phi}
 \end{equation}
 schreiben.
-Die Matrizen $\Phi_t$ bilden eine Einparameter-Untergruppe von
+Die Matrizen $\Phi_t$ bilden eine Einparameteruntergruppe von
 $\operatorname{GL}_n(\mathbb{R})$, da
 \begin{align*}
 \Phi_s\Phi_t
@@ -265,11 +275,13 @@ gilt.
 Die Lösungen der 
 Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
 sind in Abbildung~\ref{chapter:gruppen:fig:phasenraum}
+dargestellt.
 Die Matrizen $\Phi_t$ beschreiben eine kontinuierliche Symmetrie
 des Differentialgleichungssystems, welches den harmonischen Oszillator
 beschreibt.
 
 \subsubsection{Fluss einer Differentialgleichung}
+\index{Fluss}%
 Die Abbildungen $\Phi_t$ von \eqref{buch:gruppen:eqn:phi} sind jeweils
 Matrizen in $\operatorname{GL}_n(\mathbb{R})$.
 Der Grund dafür ist, dass die
@@ -333,9 +345,10 @@ Die Abbildung
 \[
 \Phi\colon \mathbb{R}\times\mathbb{R}^n\to\mathbb{R}^n
 :
-(t,x_0) \mapsto \Phi_t(x_0) = x(t,x_0)
+(t,x_0) \mapsto \Phi_t(x_0) := x(t,x_0)
 \]
 heisst der {\em Fluss} der Differentialgleichung
+\index{Fluss}%
 \eqref{buch:gruppen:eqn:dgl},
 wenn für jedes $x_0\in\mathbb{R}^n$ die Kurve $t\mapsto \Phi_t(x_0)$
 eine Lösung der Differentialgleichung ist mit Anfangsbedingung $x_0$.
@@ -358,10 +371,10 @@ Das funktioniert auch, weil $f(t_0,x_0)$ selbst ein Vektor von
 $\mathbb{R}^n$ ist, in dem die Bahnkurve verläuft.
 
 Diese Idee funktioniert nicht mehr zum Beispiel für eine
-Differentialgleichung auf einer Kugeloberfläche, weil alle Punkte
+Differentialgleichung auf einer Kugel\-oberfläche, weil alle Punkte
 $x(t_0)+hf(t_0,x_0)$ für alle $h\ne 0$ nicht mehr auf der Kugeloberfläche
 liegen.
-Physikalisch äussert sich das ein einer zusätzlichen Kraft, die nötig
+Physikalisch äussert sich das in einer zusätzlichen Kraft, die nötig
 ist, die Bahn auf der Kugeloberfläche zu halten.
 Diese Kraft stellt zum Beispiel sicher, dass die Vektoren $f(t,x)$ für
 Punkte $x$ auf der Kugeloberfläche immer tangential an die Kugel sind.
@@ -370,12 +383,13 @@ nicht mehr ein Objekt, welches als Teil der Kugeloberfläche definiert
 werden kann, er kann nur definiert werden, wenn man sich die Kugel als
 in einen höherdimensionalen Raum eingebettet vorstellen kann.
 
-Um die Idee der Differentialgleichung auf einer beliebigen Fläche
-konsistent zu machen ist daher notwendig, die Idee einer Tagentialrichtung
+Um die Idee einer Differentialgleichung auf einer beliebigen Fläche
+konsistent zu machen, ist daher notwendig, die Idee einer Tagentialrichtung
 auf eine Art zu definieren, die nicht von der Einbettung der Fläche
 in den $n$-dimensionalen Raum abhängig ist.
 Das in diesem Abschnitt entwickelte Konzept der {\em Mannigfaltigkeit}
 löst dieses Problem.
+\index{Mannigfaltigkeit}%
 
 \subsubsection{Karten}
 Die Navigation auf der Erdoberfläche verwendet das Koordinatensystem
@@ -385,6 +399,11 @@ den geographischen Polen befindet, denn deren Koordinaten sind
 nicht mehr eindeutig.
 Alle Punkte mit geographischer Breite $90^\circ$ und beliebiger 
 geographischer Länge beschreiben den Nordpol.
+\index{geographische Länge}%
+\index{geographische Breite}%
+\index{Nordpol}%
+\index{Länge, geographisch}%
+\index{Breite, geographisch}%
 Auch die Ableitung funktioniert dort nicht mehr.
 Bewegt man sich mit konstanter Geschwindigkeit über den Nordpol,
 springt die Ableitung der geographischen Breite von einem positiven
@@ -412,6 +431,7 @@ verschiedenen Koordinatensystemen versehen werden kann.
 Ein Koordinatensystem ist eine umkehrbare Abbildung einer offenen Teilmenge
 $U\subset M$ in den Raum $\mathbb{R}^n$.
 Die Komponenten dieser Abbildung heissen die {\em Koordinaten}.
+\index{Koordinaten}%
 
 \begin{figure}
 \centering
@@ -429,12 +449,13 @@ entstehen soll.
 \end{figure}
 
 \begin{definition}
-Eine Karte auf $M$ ist eine umkehrbare Abbildung
-$\varphi\colon U\to \mathbb{R}^n$ (siehe auch
-Abbildung~\ref{buch:gruppen:fig:karten}).
-Ein differenzierbarer Atlas ist eine Familie von Karten $\varphi_\alpha$
+\index{Karte}%
+Eine {\em Karte} auf $M$ ist eine umkehrbare Abbildung
+$\varphi\colon U\to \mathbb{R}^n$ einer offenen Menge $U_\alpha\subset M$
+(siehe auch Abbildung~\ref{buch:gruppen:fig:karten}).
+Ein {\em differenzierbarer Atlas} ist eine Familie von Karten $\varphi_\alpha$
 derart, dass die Definitionsgebiete $U_\alpha$ die ganze Menge $M$
-überdecken, und dass die Kartenwechsel Abbildungen
+überdecken, und dass die Kartenwechselabbildungen
 \[
 \varphi_{\beta\alpha}=\varphi_\beta\circ\varphi_\alpha^{-1}
 \colon
@@ -444,8 +465,9 @@ derart, dass die Definitionsgebiete $U_\alpha$ die ganze Menge $M$
 \]
 als Abbildung von offenen Teilmengen von $\mathbb{R}^n$ differenzierbar
 ist.
-Eine {$n$-dimensionale differenzierbare Mannigfaltigkeit} ist eine
+Eine {\em $n$-dimensionale differenzierbare Mannigfaltigkeit} ist eine
 Menge $M$ mit einem differenzierbaren Atlas.
+\index{Atlas}%
 \end{definition}
 
 Karten und Atlanten regeln also nur, wie sich verschiedene lokale
@@ -569,7 +591,7 @@ konstruieren, der $S^n$ zu einer $n$-dimensionalen Mannigfaltigkeit macht.
 \subsubsection{Tangentialraum}
 Mit Hilfe einer Karte $\varphi_\alpha\colon U_\alpha\to\mathbb{R}^n$
 kann das Geschehen in einer Mannigfaltigkeit in den vertrauten 
-$n$-dimensionalen Raum $\mathbb{B}^n$ transportiert werden. 
+$n$-dimensionalen Raum $\mathbb{R}^n$ transportiert werden. 
 Eine Kurve $\gamma\colon \mathbb{R}\to M$, die so parametrisiert sein
 soll, dass $\gamma(t)\in U_\alpha$ für $t$ in einer Umgebung $I$ von $0$ ist,
 wird von der Karte in eine Kurve
@@ -606,7 +628,8 @@ Aus
 =
 \varphi_{\beta\alpha}\circ\gamma_\alpha
 \]
-folgt durch Ableitung nach dem Kurvenparameter $t$, dass
+folgt durch Ableitung nach dem Kurvenparameter $t$ mit Hilfe der
+Kettenregel, dass
 \[
 \frac{d}{dt}\gamma_\beta(t)
 =
@@ -624,7 +647,7 @@ $\varphi_{\beta\alpha}$ stellt also nur sicher, dass die Beschreibung
 eines Systemes mit Differentialgleichungen in verschiedenen
 Koordinatensystemen auf die gleichen Lösungskurven in der
 Mannigfaltigkeit führt.
-Insbesondere ist die Verwendung von Karten ist also nur ein Werkzeug,
+Insbesondere ist die Verwendung von Karten also nur ein Werkzeug,
 mit dem die Unmöglichkeit einer globalen Besschreibung einer
 Mannigfaltigkeit $M$ mit einem einzigen globalen Koordinatensystem
 ohne Singularitäten umgangen werden kann.
@@ -658,9 +681,9 @@ Die Koordinatenumrechnung ist gegeben durch
 \dot{x}(t)
 =
 D\varphi_{31}(\gamma(t)) 
-\dot{y}(t)
+\dot{y}(t).
 \]
-wird für die spezielle Kurve $\gamma(t)=(\cos t,\sin t)$ wird dies zu
+Für die spezielle Kurve $\gamma(t)=(\cos t,\sin t)$ wird dies zu
 \[
 D\varphi_{31}(\gamma(t)) 
 \cdot
@@ -690,7 +713,7 @@ Darüber hinweg hilft auch die Tatsache nicht, dass die Kreislinie
 in den Vektorraum $\mathbb{R}^2$ eingebettet sind, wo sich Vektoren
 durch Translation miteinander vergleichen lassen.
 Ein nichtverschwindender Tangentialvektor im Punkt $(1,0)$ hat, 
-betrachtet als Vektor in $\mathbb{R}^2$ verschwindende $x$-Komponente,
+betrachtet als Vektor in $\mathbb{R}^2$, verschwindende $x$-Komponente,
 für Tangentialvektoren im Inneren eines Quadranten ist dies nicht
 der Fall.
 
@@ -701,18 +724,25 @@ Dies ist möglich, weil die Kreislinie eine kontinuierliche Symmetrie,
 nämlich die Drehung um den Winkel $t$ hat, die es erlaubt, den Punkt $(1,0)$
 in den Punkt $(\cos t,\sin t)$ abzubilden.
 Erst diese Symmetrie ermöglicht den Vergleich.
-Dieser Ansatz ist für alle Matrizen erfolgreich, wie wir später sehen werden.
+Dieser Ansatz ist für alle Matrizengruppen erfolgreich,
+wie wir später sehen werden.
 
 Ein weiterer Ansatz, Tangentialvektoren zu vergleichen, ist die Idee, 
 einen sogenannten Zusammenhang zu definieren, eine Vorschrift, wie
+\index{Zusammenhang}%
+\index{Paralleltransport}%
 Tangentialvektoren infinitesimal entlang von Kurven in der Mannigfaltigkeit
 transportiert werden können.
 Auf einer sogenannten {\em Riemannschen Mannigfaltigkeit} ist zusätzlich
 zur Mannigfaltigkeitsstruktur die Längenmessung definiert.
+\index{Riemannsche Mannigfaltigkeit}%
+\index{Mannigfaltigkeit!Riemannsche}%
 Sie kann dazu verwendet werden, den Transport von Vektoren entlang einer
 Kurve so zu definieren, dass dabei Längen und Winkel erhalten bleiben.
+\index{Längenmessung}%
 Dieser Ansatz ist die Basis der Theorie der Krümmung sogenannter
 Riemannscher Mannigfaltigkeiten.
+\index{Krümmung}%
 
 %\subsection{Der Satz von Noether
 %\label{buch:subsection:noether}}

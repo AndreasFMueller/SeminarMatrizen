@@ -10,5 +10,133 @@
 Im zweiten Teil kommen die Teilnehmer des Seminars selbst zu Wort.
 Die im ersten Teil dargelegten mathematischen Methoden und
 grundlegenden Modelle werden dabei verfeinert, verallgemeinert
-und auch numerisch überprüft.
+und auf vielfältige Weise angewandt.
+
+Den Anfang machen {\em Robine Luchsinger} und {\em Pascal Andreas Schmid},
+\index{Luchsinger, Robine}%
+\index{Schmid, Pascal Andreas}%
+die zeigen, wie man basierend auf der Adjazenzmatrix Suchalgorithmen
+für Netzwerke aufbauen kann.
+Sie konzentrieren sich dabei auf Verkehrsnetze, die die zusätzliche
+Eigenschaft haben, eine geometrische Realsierung zu besitzen.
+Diese führt zu zusätzlichen Einschränkungen, die einen positiven
+Einfluss auf die Effizienz der Suchalgorithmen haben können.
+
+Die naive Umsetzung der Definition der Matrizenmultiplikation in
+ein Coputerprogramm ist nicht unbedingt die effizienteste.
+{\em Michael Schmid} stellt die Algorithmen von Strassen und
+\index{Schmid, Michael}%
+Windograd vor, welche ermöglichen, die Laufzeitkomplexität
+von $O(n^3)$ auf $O(n^{2.8074})$ oder noch schneller zu verbessern.
+Allerdings nur unter gewissen Voraussetzungen, die im Paper
+ebenfalls diskutiert werden.
+
+Eine der schönsten Anwendungen der Gruppentheorie ist die
+Kristallographie.
+{\em Naoki Pross} und {\em Tim Tönz} zeigen, wie man mit ihrer
+\index{Pross, Naoki}%
+\index{Tönz, Tim}%
+Hilfe Kristalle klassifizieren kann, und sie illustrieren am Beispiel
+der Piezoelektrizität, dass man auch physikalische Eigenschaften daraus
+ableiten kann.
+
+Der Reed-Solomon-Code ist ein Klassiker unter den fehlerkorrigierenden
+Codes.
+Berühmt gemacht durch seine Anwendung in den Voyager-Sonden und in CDs
+und DVDs, begegnet er uns heute auch in den allgegenwärtigen QR-Codes.
+Ein ganzes Arsenal von algebraischen Methoden ist nötig, um seine
+Funktionsweise zu verstehen.
+{\em Joshua Bär} und {\em Michael Steiner} zeigen in vielen Einzelschritten,
+\index{Bär, Joshua}%
+\index{Steiner, Michael}%
+wie die man die einzelnen Ideen an vertrauteren Beispielen aus der
+elementaren Algebra und der Fourier-Theorie verstehen kann.
+Die Übertragung in einen Polynomring über einem endlichen Körper 
+ist dann nicht mehr schwierig.
+Die Analogie wird deutlich, wenn man das Codierungsverfahren und
+die diskrete Fourier-Transformation beide als Matrizen schreibt.
+
+Wer glaubt, mit linearen Abbildungen lassen sich nur gradlinige
+Objekte beschreiben, liegt völlig falsch.
+Die Arbeit von {\em Alain Keller} zeigt, dass die Iteration von
+\index{Keller, Alain}%
+affinen Abbildungen hochkomplexe Fraktale hervorbringen kann.
+Solche iterierten Funktionsschemata erzeugen aber nicht nur schöne
+Bilder, man kann daraus auch eine Idee zur Kompression von
+Bildern ableiten.
+
+Es gibt zwar noch keine ernstzunehmenden Quantencomputer, aber man weiss
+bereits, dass ein leistungsfähriger Quantencomputer viele der heute
+im Internet üblichen Verschlüsselungsverfahren, allen voran das RSA-Verfahren,
+brechen könnte.
+Das McEliece-Kryptosystem kombiniert verschiedene Arten von Matrizen
+mit zufälligem Rauschen und einem fehlerkorrigierenden Code.
+Wie {\em Reto Fritsche} erklärt, kommt dabei ein Verschlüsselungsverfahren
+\index{Fritsche, Reto}%
+heraus, welches nach heutigem Wissensstand gegen Angriffe mit
+Quantencomputern resistent ist.
+
+Vektoren und Matrizen bilden die Basis vieler geometrischer
+Anwendungen.
+Doch ist die Beschreibung von Bewegungen im Raum mit Matrizen nicht
+immer einfach.
+In der Ebene kann man die komplexen Zahlen als Modell verwenden,
+wo Drehungen und Translationen durch einfache arithmetische
+Operationen mit Zahlen beschrieben werden können.
+{\em Marius Baumann} und {\em Thierry Schwaller} tauchen in die
+\index{Baumann, Marius}%
+\index{Schwaller, Thierry}%
+geometrische Algebra ein, welche diese Idee verallgemeinert.
+Sie illustrieren, wie sich mit geometrischer Algebra Bewegungen
+in $\mathbb{R}^n$ einfach beschreiben lassen.
+So gibt es zum Beispiel ein Euler-Formel, für Drehungen und Spiegelungen
+kann die selbe Abbildungsformel verwendet werden und die Zusammensetzung
+von Transformationen ist eine Multiplikation in einer Algebra, die
+aus den Vektoren konstruiert worden ist.
+In drei Dimensionen ist diese Algebra der Quaternionen zum Beispiel
+in der Computergraphik sehr beliebt.
+
+Man soll sein Haus nicht auf Sand bauen, sagt eine Redensart.
+Etwas mathematischer heisst das, dass man den Spannungszustand,
+der von einem Gebäude im darunterliegenden Boden aufgebaut wird,
+im Detail verstehen und modellieren können sollte.
+Dazu muss man erst eine geeignete Darstellung finden.
+{\em Thomas Reichlin} und {\em Adrian Schuler} zeigen, wie man 
+\index{Reichlin, Thomas}%
+\index{Schuler, Adrian}%
+dazu eigentlich über die Welt der Matrizen hinaus gehen muss und
+sich mit sogenannten Tensoren herumschlagen muss.
+Dank sinnvollen Annahmen über die reale Situation im Boden
+kann man aber auf eine handlichere Beschreibung zurückkommen,
+die wieder nur Matrizen verwendet.
+Ausserdem ergeben sich daraus spezielle Blockstrukturen der
+Matrizen.
+
+Ein Erdbeben versetzt alles auf der Erdoberfläche in Bewegung und
+kann beträchtliche Schäden anrichten.
+Daher wird die seismische Aktivität weiltweit überwacht.
+Ein Seismograph enthält eine schwingungsfähige Masse, die die Bewegungen
+aufzeichen kann.
+Doch welcher Teil der aufgezeichneten Bewegung kommt vom Erdbeben
+und welcher Teil ist Eigenschwingung der Messmasse?
+Dieser Frage gehen {\em Fabio Viecelli} und {\em Lukas Zogg} nach.
+\index{Viecelli, Fabio}%
+\index{Zogg, Lukas}%
+Die Antwort gelingt mit einem Klassiker unter den Ingenieur-Methoden:
+dem Kalman-Filter.
+Die Autoren stellen die für den Filter nötigen Matrizen zusammen
+und illustrieren mit Hilfe von Simulationen, wie er funktioniert.
+
+Eine Matrix kann dazu verwende werden, die Kosten zusammenzustellen,
+die die Lösung einzelner Aufgaben durch verschiedene Anbieter
+verursachen würden.
+Doch wie findet man jetzt diejenige Zuteilung der Aufgaben
+zu den Anbietern, die die Gesamtkosten minimiert.
+Für dieses klassische Zuordnungsproblem ist die
+von {\em Marc Kühne} beschriebene ungarische Methode,
+\index{Kühne, Marc}%
+auch als Munkres-Algorithmus bekannt, eine besonders effiziente
+Lösung.
+
+
 
