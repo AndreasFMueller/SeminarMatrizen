@@ -29,9 +29,9 @@ Weniger leistungsfähige Systeme können den Algorithmus immer noch
 nutzen, entweder mit geringerer Verschlüsselungsrate oder geringerer
 Sicherheit.
 
-In diesem Abschnitt soll gezeigt werde, wie sich die AES
-spezifizierten Operationen als mit der Arithmetik der
-endlichen Körper beschreiben lassen.
+In diesem Abschnitt soll gezeigt werde, wie sich die im AES
+spezifizierten Operationen mit der Arithmetik 
+eines endlichen Körpers beschreiben lassen.
 Im Abschnitt~\ref{buch:subsection:byte-operationen} werden
 Bytes als Elemente in einem endlichen Körper $\mathbb{F}_{2^8}$
 interpretiert.
@@ -128,7 +128,7 @@ Abbildung.
 Der letzte Schritt ist dann wieder eine Addition von
 $q(X)=X^7+X^6+X+1\in \mathbb{F}_{2^8}$, durch Subtraktion
 von $q(X)$ invertiert werden kann.
-Die $S$-Box-Operation kann also bektoriell geschrieben werden also
+Die $S$-Box-Operation kann also vektoriell geschrieben werden als
 \[
 	S(x) = A\overline{x}+q.
 \]
@@ -175,7 +175,7 @@ nur auf Spalten wird.
 Die Zeilenmischoperation permutiert die Zeilen in den vier Zeilen
 eines Blocks zyklisch, die erste Zeile bleibt an Ort, die zweite
 Zeile wird um ein Byte rotiert, die dritte um zwei und die letzte
-um 3 Bytes, wie in Abbildung~\ref{buch:crypto:fig:zeilenshift}
+um 3 Bytes, wie in Abbildung~\ref{buch:crypto:fig:shift}
 dargestellt.
 Diese Operation könnte mit einer Permutationsmatrix beschrieben werden,
 dies wäre jedoch keine effiziente Implementation.
@@ -183,7 +183,7 @@ Der Zeilenschift hat ansonsten keine elegante algebraische Beschreibung.
 
 \subsubsection{Spalten mischen}
 Jede Spalte von \eqref{buch:crypto:eqn:block} kann als Vektor des
-vierdimensionalen Vektorraumes $\mathbb{F}_{2^8}^4$.
+vierdimensionalen Vektorraumes $\mathbb{F}_{2^8}^4$ angesehen werden.
 Die Zeilenmischoperation wendet ein lineare Abbildung auf jeden
 Spaltenvektor von~\eqref{buch:crypto:eqn:block}.
 Die Koeffizienten der Matrix sind Elemente von $\mathbb{F}_{2^8}$.
@@ -335,7 +335,7 @@ die natürlich ebenfalls umkehrbar ist.
 
 \subsection{Schlüssel
 \label{buch:subsection:schlüssel}}
-Die von den Byte- und Blockoperationen mischen die einzelnen Bits
+Die Byte- und Blockoperationen mischen die einzelnen Bits
 der Daten zwar ganz schön durcheinander, aber es wird noch kein
 Schlüsselmaterial eingearbeitet, welches den Prozess einzigartig
 macht.
@@ -343,7 +343,8 @@ macht.
 \subsubsection{Schlüsseladdition}
 Nach jeder Spaltenmischoperation wird ein Rundenschlüssel
 zum Blockhinzuaddiert.
-Beim ersten Mal wird dazu einfach das Schlüsselmaterial verwendet.
+Beim ersten Mal wird dazu einfach das vom Benutzer vorgegebene
+Schlüsselmaterial verwendet.
 Für die folgenden Runden muss aus diesem Schlüssel neues
 Material, die sogenannten Rundenschlüssel, gewonnen werden.
 
@@ -402,7 +403,7 @@ Die Operation $\pi$ vertauscht die Bytes des Vektors zyklisch:
 \item
 Die $S$-Operation wendet die $S$-Box auf alle Bytes eines Vektors an.
 \item
-Die $r_i$ Operation addiert in Runde eine Konstante $r_i$ zur $0$-Komponente.
+Die $r_i$ Operation addiert in Runde $i$ eine Konstante $r_i$ zur $0$-Komponente.
 \end{itemize}
 Die Konstante $r_i$ ist wieder ein einzelnes Byte und es ist daher
 naheliegend, diese Bytes mit Hilfe der Arithmetik in $\mathbb{F}_{2^8}$

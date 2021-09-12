@@ -29,71 +29,74 @@ Für die ``schwierigste'' Operation, die Division, steht der
 euklidische Algorithmus zur Verfügung.
 
 Die nächstschwierigere Operation ist die Potenzfunktion.
-Für $g\in \Bbbk$ und $a\in\mathbb{N}$ ist die Potenz $g^a\in\Bbbk$
-natürlich durch die wiederholte Multiplikation definiert.
-In der Praxis werden aber $g$ und $a$ Zahlen mit vielen Binärstellen
-sein, die die wiederholte Multiplikation ist daher sicher nicht
-effizient, das Kriterium der einfachen Berechenbarkeit scheint
-also nicht erfüllt.
-Der folgende Algorithmus berechnet die Potenz in $O(\log_2 a)$
-Multiplikationen.
+Dank dem Algorithmus~\ref{buch:crypto:teile-und-hersche} ist auch
+sie effizient durchführbar.
 
-\begin{algorithmus}[Divide-and-conquer]
-\label{buch:crypto:algo:divide-and-conquer}
-Sei $a=a_0 + a_12^1 + a_22^2 + \dots + a_k2^k$ die Binärdarstellung
-der Zahl $a$.
-\begin{enumerate}
-\item setze $f=g$, $x=1$, $i=0$
-\label{divide-and-conquer-1}
-\item solange $i\ge k$ ist, führe aus
-\label{divide-and-conquer-2}
-\begin{enumerate}
-\item
-\label{divide-and-conquer-3}
-falls $a_i=1$ setze $x \coloneqq x \cdot f$
-\item
-\label{divide-and-conquer-4}
-$i \coloneqq i+1$ und $f\coloneqq f\cdot f$
-\end{enumerate}
-\end{enumerate}
-Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
-berechnet werden.
-\end{algorithmus}
-
-\begin{proof}[Beweis]
-Die Initalisierung in Schritt~\ref{divide-and-conquer-1} stellt sicher,
-dass $x$ den Wert $g^0$ hat. 
-Schritt~\ref{divide-and-conquer-4} stellt sicher,
-dass die Variable $f$ immer den Wert $g^{2^i}$ hat.
-Im Schritt~\ref{divide-and-conquer-3} wird zu $x$ die Potenz
-$g^{a_i2^i}$ hinzumultipliziert.
-Am Ende des Algorithmus hat daher $x$ den Wert
-\[
-x = g^{a_02^0} \cdot g^{a_12^1} \cdot g^{a_22^2} \cdot\ldots\cdot 2^{a_k2^k}
-=
-g^{a_0+a_12+a_22^2+\dots+a_k2^k}
-=
-g^a.
-\]
-Die Schleife wird $\lfloor1+\log_2ab\rfloor$ mal durchlaufen.
-In jedem Fall wird auf jeden Fall die Multiplikation in 
-Schritt~\ref{divide-and-conquer-4} durchgeführt
-und im schlimmsten Fall auch noch die Multiplikation in
-Schritt~\ref{divide-and-conquer-3}.
-Es werden also nicht mehr als $2\lfloor 1+\log_2a\rfloor=O(\log_2a)$
-Multiplikationen durchgeführt.
-\end{proof}
+%Für $g\in \Bbbk$ und $a\in\mathbb{N}$ ist die Potenz $g^a\in\Bbbk$
+%natürlich durch die wiederholte Multiplikation definiert.
+%In der Praxis werden aber $g$ und $a$ Zahlen mit vielen Binärstellen
+%sein, die die wiederholte Multiplikation ist daher sicher nicht
+%effizient, das Kriterium der einfachen Berechenbarkeit scheint
+%also nicht erfüllt.
+%Der folgende Algorithmus berechnet die Potenz in $O(\log_2 a)$
+%Multiplikationen.
+%
+%\begin{algorithmus}[Divide-and-conquer]
+%\label{buch:crypto:algo:divide-and-conquer}
+%Sei $a=a_0 + a_12^1 + a_22^2 + \dots + a_k2^k$ die Binärdarstellung
+%der Zahl $a$.
+%\begin{enumerate}
+%\item setze $f=g$, $x=1$, $i=0$
+%\label{divide-and-conquer-1}
+%\item solange $i\ge k$ ist, führe aus
+%\label{divide-and-conquer-2}
+%\begin{enumerate}
+%\item
+%\label{divide-and-conquer-3}
+%falls $a_i=1$ setze $x \coloneqq x \cdot f$
+%\item
+%\label{divide-and-conquer-4}
+%$i \coloneqq i+1$ und $f\coloneqq f\cdot f$
+%\end{enumerate}
+%\end{enumerate}
+%Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
+%berechnet werden.
+%\end{algorithmus}
+%
+%\begin{proof}[Beweis]
+%Die Initalisierung in Schritt~\ref{divide-and-conquer-1} stellt sicher,
+%dass $x$ den Wert $g^0$ hat. 
+%Schritt~\ref{divide-and-conquer-4} stellt sicher,
+%dass die Variable $f$ immer den Wert $g^{2^i}$ hat.
+%Im Schritt~\ref{divide-and-conquer-3} wird zu $x$ die Potenz
+%$g^{a_i2^i}$ hinzumultipliziert.
+%Am Ende des Algorithmus hat daher $x$ den Wert
+%\[
+%x = g^{a_02^0} \cdot g^{a_12^1} \cdot g^{a_22^2} \cdot\ldots\cdot 2^{a_k2^k}
+%=
+%g^{a_0+a_12+a_22^2+\dots+a_k2^k}
+%=
+%g^a.
+%\]
+%Die Schleife wird $\lfloor1+\log_2ab\rfloor$ mal durchlaufen.
+%In jedem Fall wird auf jeden Fall die Multiplikation in 
+%Schritt~\ref{divide-and-conquer-4} durchgeführt
+%und im schlimmsten Fall auch noch die Multiplikation in
+%Schritt~\ref{divide-and-conquer-3}.
+%Es werden also nicht mehr als $2\lfloor 1+\log_2a\rfloor=O(\log_2a)$
+%Multiplikationen durchgeführt.
+%\end{proof}
 
 \begin{beispiel}
 Man berechne die Potenz $7^{2021}$ in $\mathbb{F}_p$.
 Die Binärdarstellung von 2021 ist $2021_{10}=\texttt{11111100101}_2$.
 Wir stellen die nötigen Operationen des
-Algorithmus~\ref{buch:crypto:algo:divide-and-conquer} in der folgenden
+Algorithmus~\ref{buch:crypto:algo:teile-und-hersche} in der folgenden
 Tabelle
 \begin{center}
 \begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
 \hline
- i&   f& a_i&    x\\
+ i&   q& k_i&    f\\
 \hline
  0&   7&   1&    7\\
  1&  49&   0&    7\\
@@ -109,6 +112,8 @@ Tabelle
 \hline
 \end{tabular}
 \end{center}
+In der Spalte $q$ stehen die Potenzen $a^{i+1}=7^{i+1}$, in Spalte $f$ die
+ausgerechneten Produkte.
 Daraus liest man ab, dass $7^{2021}=333\in\mathbb{F}_{1291}$.
 \end{beispiel}
 
@@ -125,39 +130,39 @@ Primafaktoren ähnlicher Grössenordnung wie $p$ sind.
 Die Funktion $x\mapsto g^x$ ist die gesuchte, schwierig zu invertierende
 Funktion.
 
-Auf dern ersten Blick scheint der
-Algorithmus~\ref{buch:crypto:algo:divide-and-conquer}
-den Nachteil zu haben, dass erst die Binärdarstellung der Zahl $a$ 
-ermittelt werden muss.
-In einem Computer ist dies aber normalerweise kein Problem, da $a$
-im Computer ohnehin binär dargestellt ist.
-Die Binärziffern werden in der Reihenfolge vom niederwertigsten zum
-höchstwertigen Bit benötigt.
-Die folgende Modifikation des Algorithmus ermittelt laufend
-auch die Binärstellen von $a$.
-Die dazu notwendigen Operationen sind im Binärsystem besonders
-effizient implementierbar, die Division durch 2 ist ein Bitshift, der
-Rest ist einfach das niederwertigste Bit der Zahl.
-
-\begin{algorithmus}
-\label{buch:crypto:algo:divide-and-conquer2}
-\begin{enumerate}
-\item
-Setze $f=g$, $x=1$, $i=0$
-\item
-Solange $a>0$ ist, führe aus
-\begin{enumerate}
-\item
-Verwende den euklidischen Algorithmus um $r$ und $b$ zu bestimmen mit $a=2b+r$
-\item
-Falls $r=1$ setze $x \coloneqq x \cdot f$
-\item
-$i \coloneqq i+1$, $a = b$ und $f\coloneqq f\cdot f$
-\end{enumerate}
-\end{enumerate}
-Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
-berechnet werden.
-\end{algorithmus}
+%Auf dern ersten Blick scheint der
+%Algorithmus~\ref{buch:crypto:algo:divide-and-conquer}
+%den Nachteil zu haben, dass erst die Binärdarstellung der Zahl $a$ 
+%ermittelt werden muss.
+%In einem Computer ist dies aber normalerweise kein Problem, da $a$
+%im Computer ohnehin binär dargestellt ist.
+%Die Binärziffern werden in der Reihenfolge vom niederwertigsten zum
+%höchstwertigen Bit benötigt.
+%Die folgende Modifikation des Algorithmus ermittelt laufend
+%auch die Binärstellen von $a$.
+%Die dazu notwendigen Operationen sind im Binärsystem besonders
+%effizient implementierbar, die Division durch 2 ist ein Bitshift, der
+%Rest ist einfach das niederwertigste Bit der Zahl.
+%
+%\begin{algorithmus}
+%\label{buch:crypto:algo:divide-and-conquer2}
+%\begin{enumerate}
+%\item
+%Setze $f=g$, $x=1$, $i=0$
+%\item
+%Solange $a>0$ ist, führe aus
+%\begin{enumerate}
+%\item
+%Verwende den euklidischen Algorithmus um $r$ und $b$ zu bestimmen mit $a=2b+r$
+%\item
+%Falls $r=1$ setze $x \coloneqq x \cdot f$
+%\item
+%$i \coloneqq i+1$, $a = b$ und $f\coloneqq f\cdot f$
+%\end{enumerate}
+%\end{enumerate}
+%Die Potenz $x=g^a$ kann so in $O(\log_2a)$ Multiplikationen
+%berechnet werden.
+%\end{algorithmus}
 
 
 %
@@ -200,6 +205,8 @@ $y=g^b\in\mathbb{F}_p$.
 \centering
 \includegraphics{chapters/90-crypto/images/dh.pdf}
 \caption{Schlüsselaustausch nach Diffie-Hellman.
+\index{Diffie-Hellmann}%
+\index{Schlüsseltausch}%
 Die Kommunikationspartner $A$ und $B$ einigen sich öffentlich auf
 $p\in\mathbb{N}$ und $g\in\mathbb{F}_p$.
 $A$ wählt dann einen privaten Schlüssel $a\in\mathbb{N}$ und
@@ -224,12 +231,13 @@ werden.
 
 \subsection{Elliptische Kurven
 \label{buch:subsection:elliptische-kurven}}
+\index{elliptische Kurve}%
 Das Diffie-Hellman-Verfahren basiert auf der Schwierigkeit, in einem 
 Körper $\mathbb{F}_p$ die Gleichung $a^x=b$ nach $x$ aufzulösen.
 Die Addition in $\mathbb{F}_p$ wird dazu nicht benötigt.
-Es reicht, eine Menge mit einer Multiplikation zu haben, in der das
+Es reicht, eine Menge mit einer Multiplikation zu haben, fir die
 die Gleichung $a^x=b$ schwierig zu lösen ist.
-Ein Gruppe wäre also durchaus ausreichend.
+Ein Halbgruppe wäre also durchaus ausreichend.
 
 Ein Kandidat für eine solche Gruppe könnte der Einheitskreis
 $S^1=\{z\in\mathbb{C}\;|\; |z|=1\}$ in der komplexen Ebene sein.
@@ -255,6 +263,7 @@ aus einem endlichen Körper verwendet werden.
 Gesucht ist also eine Gleichung in zwei Variablen, deren Lösungsmenge
 in einem endlichen Körper eine Gruppenstruktur trägt.
 Die Lösungsmenge ist eine ``Kurve'' von Punkten mit
+\index{Kurve}%
 Koordinaten in einem endlichen Körper.
 
 In diesem Abschnitt wird gezeigt, dass sogenannte elliptische Kurven
@@ -276,11 +285,12 @@ Für einen endlichen Körper können wir dies im allgemeinen nicht erwarten,
 aber wenn wir genügend viele Wurzeln zu $\mathbb{F}$ hinzufügen können wir
 mindestens erreichen, dass die Lösungsmenge so viele Elemente hat, 
 dass ein Versuch, die Gleichung $g^x=b$ mittels Durchprobierens zu
-lösen, zum Scheitern verurteil ist.
+lösen, zum Scheitern verurteilt ist.
 
 \begin{definition}
 \label{buch:crypto:def:ellipticcurve}
 Die {\em elliptische Kurve} $E_{a,b}(\Bbbk)$ über dem Körper $\Bbbk$ ist 
+\index{elliptische Kurve}%
 die Menge
 \[
 E_{a,b}(\Bbbk)
@@ -361,7 +371,7 @@ Gruppenoperation in der elliptischen Kurve.
 \label{buch:crypto:fig:elliptischekurve}}
 \end{figure}
 Abbildung~\ref{buch:crypto:fig:elliptischekurve}
-zeigt eine elliptische Kurve in der Ebene.
+zeigt eine elliptische Kurve in der Ebene $\mathbb{R}^2$.
 
 \subsubsection{Geometrische Definition der Gruppenoperation}
 In der speziellen Form \ref{buch:crypto:ellvereinfacht} ist die
@@ -520,8 +530,9 @@ ermöglichen also, das Element $g_1g_2^{-1}$ zu berechnen.
 Interessant daran ist, dass in den Formeln die Konstanten $a$ und $b$ 
 gar nicht vorkommen.
 
-Es bleibt noch der wichtige Fall des Quadrierens in der Gruppe zu
-behandeln, also den Fall $g_1=g_2$.
+Es bleibt noch der für den Algorithmus~\ref{buch:crypto:teile-und-hersche}
+wichtige Fall des Quadrierens in der Gruppe zu
+behandeln, also der Fall $g_1=g_2$.
 In diese Fall sind die Formeln
 \eqref{buch:crypto:eqn:x3}
 und
@@ -556,7 +567,7 @@ ergibt die Gleichung
 (y_1^2+x_1y_1-x_1^3-ax_1-b)
 \label{buch:crypto:eqn:tangente1}
 \end{align}
-Damit bei $t=0$ eine doppelte Nullstelle mussen die letzten beiden
+Damit bei $t=0$ eine doppelte Nullstelle müssen die letzten beiden
 Koeffizienten verschwinden, dies führt auf die Gleichungen
 \begin{align}
 y_1^2+x_1y_1&=x_1^3+ax_1+b
@@ -567,7 +578,7 @@ y_1^2+x_1y_1&=x_1^3+ax_1+b
 +(y_1
 -3x_1^2
 -a)u
-&=0
+&=0.
 \label{buch:crypto:eqn:rest2}
 \end{align}
 Die erste Gleichung \eqref{buch:crypto:eqn:rest1} drückt aus,
@@ -624,7 +635,7 @@ y
 y_1^3+(x_1^2+x_1+a)y_1^2+(x_1^4 +a^2)y_1+x_1^6+ax_1^4+ax_1^3+a^2x_1^2+a^2x_1+a^3
 }{
  x_1^3
-}
+}.
 \end{aligned}
 \label{buch:crypto:eqn:tangentechar2}
 \end{equation}
@@ -646,6 +657,7 @@ Y^2+XY = X^3-aX-b
 trägt eine Gruppenstruktur, die wie folgt definiert ist:
 \begin{enumerate}
 \item Der Punkt $(0,0)$ entspricht dem neutralen Element.
+XXX (0,0) muss erst definiert werden
 \item Das inverse Element von $(x,y)$ ist $(-x,-y-x)$.
 \item Für zwei verschiedene Punkte $g_1$ und $g_2$ kann $g_3=(g_1g_2)^{-1}$
 mit Hilfe der Formeln
@@ -671,9 +683,11 @@ Die Addition in $\mathbb{F}_p$ wird für diesen Algorithmus überhaupt
 nicht benötigt.
 
 In einer elliptischen Kurve gibt es ebenfalls eine Multiplikation,
-aus der sich mit dem 
-Algorithmus~\ref{buch:crypto:teile-und-hersche} eine effizienter
-Potenzieralgorithmus konstruieren lässt.
+für die sich mit Algorithmus~\ref{buch:crypto:teile-und-hersche}
+eine effizienter Potenzieralgorithmus konstruieren lässt.
+Die resultierende Potenzfunktion stellt sich ebenfalls als 
+schwierig zu invertieren heraus, kann also ebenfalls für einen
+Diffie-Hellmann-Schlüsseltausch verwendet werden.
 
 Die im Internet Key Exchange Protokol
 in RFC 2409

@@ -34,22 +34,23 @@ besprochen.
 \label{buch:subsection:potenzieren}}
 Wir gehen davon aus, dass wir einen schnellen Algorithmus zur
 Berechnung des Produktes zweier Elemente $a,b$ in einer
-beliebigen Gruppe $G$ haben.
-Die Gruppe $G$ kann die Multiplikation der ganzen oder reellen Zahlen
-sein, dies wird zum Beispiel in Implementation der Potenzfunktion
-verwendet.
+beliebigen Halbgruppe $G$ haben.
+Die Halbgruppe $G$ kann die Multiplikation der ganzen oder reellen Zahlen
+sein, dies wird zum Beispiel in Implementationen der Potenzfunktion
+in Programmierbibliotheken verwendet.
 Für kryptographische Anwendungen ist $G$ die multiplikative Gruppe
-eines endlichen Körpers oder eine elliptische Kurve.
+eines endlichen Körpers oder eine elliptische Kurve
+(siehe Abschnitt~\ref{buch:subsection:elliptische-kurven}).
 
-Zur Berechnung von $a^k$ sind bei einer naiven Durchführung des
-Algorithmus $k-1$ Multiplikationen nötig, immer sofort gefolgt
+Zur Berechnung von $a^k$ in $\mathbb{F}_p$ sind bei einer naiven Vorgehen
+$k-1$ Multiplikationen nötig, immer sofort gefolgt
 von einer Reduktion $\mod p$ um sicherzustellen, dass die Resultate
 nicht zu gross werden.
 Ist $l$ die Anzahl der Binärstellen von $k$, dann benötigt dieser
-naive Algorithmus $O(2^l)$ Multiplikationen, die Laufzeit wächst
+naive Algorithmus $O(2^l)$ Operationen, die Laufzeit wächst
 also exponentiell mit der Bitlänge von $k$ an.
 Der nachfolgend beschriebene Algorithmus reduziert die Laufzeit auf
-die $O(l)$.
+$O(l)$.
 
 Zunächst schreiben wir den Exponenten $k$ in binärer Form als
 \[
@@ -78,12 +79,15 @@ erhalten werden:
 a^{2^i} = a^{2\cdot 2^{i-1}} = (a^{2^{i-1}})^2,
 \]
 also durch maximal $l-1$ Multiplikationen.
-Wenn $k$ keine Ganzzahl ist sondern binäre Nachkommastellen hat, also
+
+Wenn $a\in\mathbb{R}$ und $k$ keine Ganzzahl ist sondern auch noch
+binäre Nachkommastellen hat, also
 \[
-k=k_l2^l + \dots + k_12^1 + k_02^0 + k_{-1}2^{-1} + k_{-2}2^{-2}+\dots,
+k=k_l2^l + \dots + k_12^1 + k_02^0 + {\color{red}k_{-1}2^{-1} + k_{-2}2^{-2}+\dots,}
 \]
-dann können die Potenzen $a^{2^{-i}}$ durch wiederholtes Wurzelziehen
+dann können die Potenzen ${\color{red}a^{2^{-i}}}$ durch wiederholtes Wurzelziehen
 \[
+\color{red}
 a^{2^{-i}} = a^{\frac12\cdot 2^{-i+1}} = \sqrt{a^{2^{-i+1}}}
 \]
 gefunden werden.
@@ -95,8 +99,8 @@ implementieren.
 Der folgende Algorithmus berechnet $a^k$ in $O(\log_2(k))$
 Multiplikationen
 \begin{enumerate}
-\item Initialisiere $p=1$ und $q=a$
-\item Falls $k$ ungerade ist, setze $p:=p\cdot q$ 
+\item Initialisiere $f=1$ und $q=a$
+\item Falls $k$ ungerade ist, also $k_i=1$, setze $f:=f\cdot q$ 
 \item Setze $q:=q^2$ und $k := k/2$, wobei die ganzzahlige Division durch $2$
 am effizientesten als Rechtsshift implementiert werden kann.
 \item Falls $k>0$, fahre weiter bei 2.
@@ -106,8 +110,8 @@ am effizientesten als Rechtsshift implementiert werden kann.
 \begin{beispiel}
 Die Berechnung von $1.1^{17}$ mit diesem Algorithmus ergibt
 \begin{enumerate}
-\item $p=1$, $q=1.1$
-\item $k$ ist ungerade: $p:=1.1$
+\item $f=1$, $q=1.1$
+\item $k$ ist ungerade: $f:=1.1$
 \item $q:=q^2=1.21$, $k := 8$
 \item $k$ ist gerade
 \item $q:=q^2=1.4641$, $k := 4$
@@ -115,11 +119,12 @@ Die Berechnung von $1.1^{17}$ mit diesem Algorithmus ergibt
 \item $q:=q^2=2.14358881$, $k := 2$
 \item $k$ ist gerade
 \item $q:=q^2=4.5949729863572161$, $k := 1$
-\item $k$ ist ungerade: $p:=1.1\cdot p = 5.05447028499293771$
+\item $k$ ist ungerade: $f:=f\cdot q=1.1\cdot p = 5.05447028499293771$
 \item $k:=0$
 \end{enumerate}
 Multiplikationen sind nur nötig in den Schritten 3, 5, 7, 9, 10, es
-werden also genau $5$ Multiplikationen ausgeführt.
+werden also genau $5$ Multiplikationen ausgeführt statt die
+16 Multiplikationen, die bei der naiven Vorgehensweise nötig wären.
 \end{beispiel}
 
 \subsection{Rechenoperationen in $\mathbb{F}_p$
@@ -167,29 +172,26 @@ des Divisionsalgorithmus.
 	&\text{Summanden}&\text{Summe}&\text{reduziert}
 \\
 \hline
-\texttt{101111}               &                &\texttt{101111} 
-	&\texttt{101111}&\texttt{101111}&\texttt{101111}
+\texttt{101111}               &                &\texttt{101111} &\texttt{101111}&\texttt{101111}&\texttt{101111}
 \\
-\texttt{101111\phantom{0}}    &\texttt{{\color{red}1011110}}&\texttt{101001}
-	&               &               &
+\texttt{101111\phantom{0}}    &\texttt{{\color{red}1011110}}&\texttt{101001} &               &               &
 \\
-\texttt{101111\phantom{00}}   &\texttt{0{\color{red}111010}}&\texttt{011101}
-	&               &               &
+\texttt{101111\phantom{00}}   &\texttt{{\color{red}1010010}}&\texttt{011101} &               &               &
 \\
-\texttt{101111\phantom{000}}  &\texttt{0001010}&\texttt{000101}
-	&\texttt{000101}&\texttt{110100}&\texttt{110100}
+\texttt{101111\phantom{000}}  &\texttt{0111010}&\texttt{111010} &\texttt{000101}&\texttt{110100}&\texttt{110100}
 \\
-\texttt{101111\phantom{0000}} &\texttt{0010100}&\texttt{001010}
-	&               &               &
+\texttt{101111\phantom{0000}} &\texttt{\color{red}1110100}&\texttt{111111} &               &               &
 \\
-\texttt{101111\phantom{00000}}&\texttt{0101000}&\texttt{010100}
-	&\texttt{010100}&\texttt{{\color{red}1001000}}&\texttt{10011}\rlap{$\mathstrut=19$}
+\texttt{101111\phantom{00000}}&\texttt{\color{red}1111110}&\texttt{010100} &\texttt{010100}&\texttt{{\color{red}1001000}}&\texttt{10011}\rlap{$\mathstrut=19$}
 \end{tabular}
 \end{center}
-\caption{Multiplikation von $41=\texttt{101001}_2$ mit $47=\texttt{101111}_2$,
-Reduktion nach jeder Multiplikation mit $2$: falls das Resultat
+\caption{Multiplikation von $41=\texttt{101001}_2$ mit $47=\texttt{101111}_2$
+in $\mathbb{F}_{53}$.
+Um die Länge des Resultates zu kontrollieren, wird nach jeder
+Multplikation mit $2$ modulo $p=53$ reduziert.
+Falls das Resultat
 $>p$ ist, wie in den rot markierten Zeilen $p=53=\texttt{110101}_2$
-durchgeführt.
+so lange nötig subtrahiert.
 Bei der Bildung der Summe wird ebenfalls in jedem Schritt falls nötig
 reduziert, angezeigt durch die roten Zahlen in der zweitletzten
 Spalte.
@@ -221,8 +223,9 @@ m(X)
 X^l + m_{l-1}X^{l-1} + m_{l-2}X^{l-2} + \dots + m_2X^2 + m_1X + m_0
 \]
 gegeben.
-Ein Element in $\mathbb{F}_2[X]/(m)$ kann dargestellt werden durch ein
-Polynom vom Grad $l-1$, also durch
+Ein Element in $\mathbb{F}_2[X]/(m)$ kann
+durch ein Polynom vom Grad $l-1$
+dargestellt werden, also durch
 \[
 a = a_{l-1}X^{l-1} + a_{l-2}X^{l-2} +\dots + a_2X^2 + a_1X + a_0.
 \]
@@ -268,7 +271,7 @@ Das Minimalpolynom $m(X)=X^8+X^4+X^3+X+1$ bedeutet, dass in $\mathbb{F}_{2^l}$
 $X^8=X^4+X^3+X+1$ gilt, so dass man das Überlaufbit durch 
 $X^4+X^3+X+1$ ersetzen und addieren kann.
 
-Ein Produktes $p(X)\cdot q(X)$, wobei $p(X)$ und
+Ein Produkt $p(X)\cdot q(X)$, wobei $p(X)$ und
 $q(X)$ Repräsentaten von Elementen $\mathbb{F}_{2^l}$ sind, kann jetzt
 wie folgt berechnet werden.
 Mit dem Schieberegister werden die Vielfachen $X^k\cdot p(X)$ 
