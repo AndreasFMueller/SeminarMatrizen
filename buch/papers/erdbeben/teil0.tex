@@ -3,18 +3,21 @@
 %
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %%
-
-\rhead{Erdbeben}
-\noindent
 Unter einem Erdbeben verstehen wir eine Erschütterung des Erdkörpers.
+\index{Erdbeben}%
 Dabei reiben zwei tektonische Platten aneinander, welche sich durch die Gesteinsverzahnung gegenseitig blockieren.
+\index{tektonische Platten}%
 Diese Haftreibung durch die Steine wird so lange aufgebaut, bis sie nicht mehr gehalten werden kann.
 Wenn dies passiert, entlädt sich die aufgebaute Spannung und setzt enorme Energien frei, die wir als Erdbeben wahrnehmen.
 Ein Erdbeben breitet sich vom Erdbebenherd in allen Richtungen gleich aus.
+\index{Erdbebenherd}%
 Vergleichbar ist, wenn man einen Stein in einen Teich wirft und die Wellen beobachten kann, die sich ausbreiten.
 
 \section{Funktion eines Seismographen}
+\rhead{Funktion eines Seismographen}%
+\index{Seismograph}%
 Um ein Erdbeben kenntlich zu machen, werden in der Regel Seismographen mit vielen Sensoren verwendet. 
+\index{Sensor}%
 Ein Seismograph besteht im Grunde aus einer federgelagerten Masse.
 Bei einem Erdbeben folgt das Gehäuse direkt der Bewegung des Erdbebens.
 Die federgelagerte Masse wird jedoch erst durch die Feder bewegt und folgt verzögert.
@@ -36,8 +39,12 @@ Die Systembeschreibung wird dann deutlich komplexer, bringt aber nichts wesentli
 Wir beschränken uns deshalb auf den linearen Fall.
 
 Wir werden sehen, dass diese Art der Problemstellung effektiv mittels Kalman-Filter gelöst werden kann.
+\index{Kalman-Filter}%
 Für ein nicht-lineares System werden Extended Kalman-Filter benötigt,
-bei denen die System-Matrix $A$ durch die Jacobi-Matrix ersetzt wird.
+\index{Extended Kalman-Filter}%
+bei denen die Systemmatrix $A$ durch die Jacobi-Matrix ersetzt wird.
+\index{Systemmatrix}%
+\index{Jacobi-Matrix}%
 
 \begin{figure}
  \begin{center}
@@ -55,22 +62,26 @@ Anhand dieser Beschleunigung,
 beziehungsweise der Krafteinwirkung durch die Bodenbewegung,
 wird später das Bauwerk bemessen.
 Dies bedeutet, die für uns interessante Grösse $F(t)$ wird nicht durch einen Sensor erfasst. 
-Jedoch können wir durch zweifaches ableiten der Positionsmessung $s(t)$ die Beschleunigung der Masse berechnen. 
+Jedoch können wir durch zweifaches Ableiten der Positionsmessung $s(t)$ die Beschleunigung der Masse berechnen. 
 Die Messung entspricht also dem zweiten Integral der Kraft $F(t)$,
-wobei diese einerseits durch das Erdbeben, und andererseits durch die Federn zustande kommt.
+wobei diese einerseits durch das Erdbeben und andererseits durch die Federn zustande kommt.
 Im Folgenden möchten wir die Erdbeben- und Federkräfte trennen.
 Dafür benötigen wir zuerst eine mathematische Beschreibung unseres Systems.
 
 \subsection{Systemgleichung}
 Im Paper~\cite{erdbeben:mueller2008deconvolving} wurde das System gleich definiert und vorgegangen. 
 Im Fall unseres Seismographen, handelt es sich um ein Feder-Masse-Pendel.
+\index{Feder-Masse-Pendel}%
 Dieses kann als gedämpfter harmonischer Oszillator beschrieben werden. 
+\index{harmonischer Oszillator}%
 Die zugehörige Differentialgleichung lautet:
 \begin{equation}
 	\label{erdbeben:Systemgleichung}
 m\ddot s + 2k \dot s + Ds = F.
 \end{equation}
 wobei $m$ die Masse, $k$ die Dämpfungskonstante und $D$ die Federkonstante bezeichnet.
+\index{Dampfungskonstante@Dämpfungskonstante}%
+\index{Federkonstante}%
 
 Für lineare Systeme ist eine Matrix-Darstellung handlicher.
 Wir möchten diese Gleichung folglich in die Darstellung $\dot x = Ax$ überführen,
@@ -89,7 +100,7 @@ Die für uns eigentlich interessante Grösse ist jedoch der Stör-Term $F$.
 Dieser entspricht der Kraft durch das Erdbeben.
 Deshalb nehmen wir $F$ als dritte Grösse in den Zustandsvektor auf und definieren:
 \[ 
-  x = \begin{pmatrix} s \\ v \\ F \end{pmatrix}
+  x = \begin{pmatrix} s \\ v \\ F \end{pmatrix}.
 \] 
   
 Für die Standard-Form $\dot x = Ax$ brauchen wir als nächstes die Ableitungen aller Elemente von $x$.

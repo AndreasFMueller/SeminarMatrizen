@@ -9,8 +9,8 @@
 % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
 %%
 
-\rhead{Kalman-Filter}
 \section{Kalman-Filter}
+\rhead{Kalman-Filter}
 Im letzten Abschnitt haben wir Gleichungen für unser System gefunden.
 Als nächstes brauchen wir also ein Werkzeug,
 um aus der Messung der Position $s(t)$ den gesammten Zustand $x(t)$ zu schätzen.
@@ -18,13 +18,22 @@ Das ist genau das, was Kalman-Filter tun:
 Anhand von Messungen den Zustand eines Systems schätzen.
 
 Kalman-Filter wurde 1960 von Rudolf Emil Kalman erfunden und direkt von der NASA für die Apollo Mission benutzt.
+\index{Kalman, Rudolf Emil}%
+\index{NASA}%
+\index{Apollo}%
 Diese Filter kommen mit wenig Rechenleistung aus und waren somit geeignet, die Rakete bei der Navigation zu unterstützen. 
+\index{Rakete}%
 Heutige, typische Anwendungen von Kalman-Filtern sind die Glättung verrauschter Daten und die Schätzung von Parametern.
-Dies kommt heutzutage in jedem Satellit, Navigationssystem, Smartphone und Videospiel vor.
+Dies kommt heutzutage in jedem Satelliten, Navigationssystem, Smartphone und Videospiel vor.
+\index{Satellit}%
+\index{Navigationssystem}%
+\index{Smartphone}%
+\index{Videospiel}%
 
 Kalman-Filter funktionieren nach folgendem Zwei-Schritt-Verfahren:
+\index{Zweischrittverfahren}%
 Zuerst wird,
-ausgehend von der aktuellen Schätzung des Zustands und der Eigendynamik des Systzems,
+ausgehend von der aktuellen Schätzung des Zustands und der Eigendynamik des Systems,
 eine Vorhersage berechnet.
 Daraus lässt sich eine erwartete Messung ableiten.
 Anschliessend wird diese Vorhersage korrigiert,
@@ -32,6 +41,7 @@ wobei die Korrektur abhänging von der Differenz zwischen erwarteter und effekti
 
 Dabei sind sowohl die Vorhersage als auch die Messung nur Schätzungen und unweigerlich fehlerbehaftet.
 Unter der Annahme, dass die Fehler normalverteilt sind,
+\index{normalverteilt}%
 lassen sich beide Schätzungen zu einer neuen, optimalen Schätzung kombinieren.
 Die genaue Herleitung des Kalman-Filters ist relativ aufwendig
 und kann unter Anderem in \cite{erdbeben:skript:wrstat} nachgelesen werden.
@@ -66,11 +76,11 @@ Durch das Multiplizieren zweier Normalverteilungen entsteht eine neue Normalvert
 
 Wir haben also eine Normalverteilung der Vorhersage
 \[ 
-{y_1}(x;{\mu_1},{\sigma_1})=\frac{1}{\sqrt{2\pi\sigma_1^2}}\quad e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} 
+{y_1}(x;{\mu_1},{\sigma_1})=\frac{1}{\sqrt{2\pi\sigma_1^2}} e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} 
 \]
 und der Messung
 \[ 
-{y_2}(x;{\mu_2},{\sigma_2})=\frac{1}{\sqrt{2\pi\sigma_2^2}}\quad e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}.
+{y_2}(x;{\mu_2},{\sigma_2})=\frac{1}{\sqrt{2\pi\sigma_2^2}} e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}.
 \]
 Diesen werden nun multipliziert und durch deren Fläche geteilt,
 um sie wieder zu normieren.
@@ -81,10 +91,10 @@ $\odot$~beschreibt dabei die Multiplikation und die Normierung auf den Flächeni
 	 {y_1}(x;{ \mu_1},{ \sigma_1}) \odot {y_2}(x; {\mu_2}, {\sigma_2})
 	\\
 	&=
-	\frac{1}{\sqrt{2\pi\sigma_1^2}}\quad e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \odot \frac{1}{\sqrt{2\pi\sigma_2^2}}\quad e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}
+	\frac{1}{\sqrt{2\pi\sigma_1^2}} e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \odot \frac{1}{\sqrt{2\pi\sigma_2^2}} e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}
 	\\
 	&=
-	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} dx}.
+	\frac{ \frac{1}{\sqrt{2\pi\sigma_1^2}}e^{-\frac{(x-{\mu_1})^2}{2{\sigma_1}^2}} \cdot \frac{1}{\sqrt{2\pi\sigma_2^2}}e^{-\frac{(x-{\mu_2})^2}{2{\sigma_2}^2}}}{\int {y_1} {y_2} \,dx}.
 \end{align*}
 Die genaue Berechnung ist nicht schwierig aber aufwendig und wird hier deshalb ausgelassen.
 Nach einigem Rechnen findet man die Ausdrücke
@@ -99,7 +109,7 @@ Interessant daran ist, dass sich die fusionierte Kurve der genaueren Normalverte
 Ist ${\sigma_2}$ klein und ${\sigma_1}$ gross,
 so wird sich die fusionierte Kurve näher an ${y_2}(x;{\mu_2},{\sigma_2})$ begeben.
 $\mu_f$ ist das gewichtete Mittel der beiden $\mu_{1,2}$, und die Varianzen $\sigma_{1,2}$ sind die Gewichte.
-Das Interessante an $\mu_{f}$ ist, dass ${\mu_2}$ das Gewicht für ${\sigma_1}$ ist. 
+Das Interessante an $\mu_{f}$ ist, dass ${\sigma_2^2}$ das Gewicht für ${\mu_1}$ ist. 
 Somit ist die Unsicherheit der Messung das Gewicht der Vorhersage und umgekehrt.
 Diese neue Funktion ist die bestmögliche Schätzung für zwei Verteilungen, welche den selben Zustand beschreiben.
 Dies ist in der Abbildung~\ref{erdbeben:Gauss3} anhand der roten Funktion ersichtlich. 
@@ -123,7 +133,7 @@ aufgrund des Wissens bis zum und mit dem Zeitpunkt $m$ repräsentiert.
 \subsubsection*{Vorhersage}
 Im Filterschritt Vorhersage wird anhand des aktuellen Zustands und der Systemmatrix eine Schätzung für den nächsten Zustand berechnet. 
 Die Systemmatrix $A$ aus Gleichung~\eqref{erdbeben:systemmatrix} beschreibt ein kontinuierliches System $\dot x = Ax$.
-Wir benötigen jedoch ein Zeit-diskretes System $x_{k+1} = \Phi x_k$.
+Wir benötigen jedoch ein zeitdiskretes System $x_{k+1} = \Phi x_k$.
 
 Die Exponentialfunktion $\exp(At)$ beschreibt die Entwicklung eine Zustandes im Laufe der Zeit.
 Die Übergangs-Matrix $\Phi$ erhalten wir folglich aus der Systemdynamikmatrix $A$ durch die Exponentialfunktion
@@ -137,8 +147,10 @@ Damit haben wir die Systemdynamik nun in der für unser Kalman-Filter notwendige
 Als nächstes benötigen wir die Unsicherheit der Vorhersage.
 Im Abschnitt ~\ref{erdbeben:Wahrscheindlichkeit} haben wir dafür die Varianzen der Normalverteilungen verwendet.
 Im mehrdimensionalen Fall übernimmt dies die Kovarianzmatrix $P$.
+\index{Kovarianzmatrix}%
 Sie wird in jedem Schritt aktualisiert.
 Hinzu kommt die Prozessunsicherheit $Q$, welche als Parameter in unser Modell einfliesst.
+\index{Prozessunsicherheit}%
 $Q$ beschreibt Unsicherheiten im Modell,
 wie etwa unsere Annahme, dass die Kraft sich nicht ändert,
 aber auch nicht-modellierbare Einflüsse wie Vibrationen.
@@ -147,13 +159,16 @@ Die Gleichung lautet
 \[
 {P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}.
 \] 
-Es vergeht genau $\Delta t$ Zeit, und dieser Vorgang wird wiederholt.  
+Es vergeht genau $\Delta t$ Zeit und dieser Vorgang wird wiederholt.  
 Das Filter passt sich selber an und korrigiert sich bei grosser Abweichung.
 
 \subsubsection*{Messen}
 Der Sensor wurde noch nicht benutzt, doch genau der liefert die Messwerte $z_k$ für unser Filter. 
+\index{Sensor}%
 Aus der Vorhersage des Zustandes $x_{k|k-1}$ und der Messmatrix $H$ erhalten wird eine Vorhersage der Messung. 
+\index{Messmatrix}%
 Die Innovation
+\index{Innovation}%
 \[
 {w_{k}}={z_{k}}-{H}{x_{k|k-1}}
 \] 
@@ -166,6 +181,7 @@ Entsprechende Korrekturen werden dann gross bzw. nur gering ausfallen.
 \subsubsection*{Aktualisieren}
 
 Für eine optimale Schätzung des Zustandes muss die Vorhersage entsprechend der Innovation korrigiert werden.
+\index{optimale Schätzung}%
 In der Literatur findet man für eine optimales Korrektur die Gleichungen
 \begin{align*}
 {S_{k}} &={H}{P_{k|k-1}}{H}^T+{R_{k}}
@@ -173,6 +189,7 @@ In der Literatur findet man für eine optimales Korrektur die Gleichungen
 {K_{k}} &= {P_{k|k-1}} {H^T}{S_{k}^{-1}}
 \end{align*}
 Dabei ist $K$ das Kalman-Gain.
+\index{Kalman-Gain}%
 $K$ beschreibt, wie die Vorhersage korrigiert werden muss.
 Die optimale Schätzung des neuen Zustandes wird dann zu
 \[
@@ -198,7 +215,16 @@ Aufgrund der iterativen Arbeitsweise von Kalman-Filtern benötigen wir zudem ein
 Für die erste Vorhersage benötigt das Filter einen Anfangszustand.
 In unserem Fall ist es die Ruhelage, die Masse bewegt sich nicht. 
 Zudem erfährt die Apparatur keine äussere Kraft:
-\[ {x_0 }= \left( \begin{array}{c} {s_0}\\ {v_0}\\{f_0}\end{array}\right) = \left( \begin{array}{c} 0\\ 0\\ 0\end{array}\right). \]
+\[ {x_0 }
+=
+\begin{pmatrix}
+{s_0}\\ {v_0}\\{F_0}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\ 0\\ 0
+\end{pmatrix}.
+\]
 
 \subsubsection*{Systemmatrix $A$ und $\Phi$}
 Für unseren Seismographen haben wir die entsprechende Matrixdarstellung
@@ -240,10 +266,10 @@ Q =
  \begin{pmatrix}
 \sigma_s^2& 0& 0 \\ 
 0 & \sigma_v ^2& 0\\ 
-0 & 0& \sigma_f^2\\
+0 & 0& \sigma_F^2\\
 \end{pmatrix} .
  \]
-Die Standabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
+Die Standardabweichungen müssten statistisch ermittelt werden, da der Fehler nicht vom Sensor kommt und somit nicht vom Hersteller gegeben ist. 
 
 \subsubsection*{Messmatrix $H$}
 Die Messmatrix gibt an, welche Zustände gemessen werden. 
@@ -257,7 +283,7 @@ H = \begin{pmatrix} 1 & 0 & 0 \end{pmatrix} .
 Die Messrauschkovarianzmatrix beinhaltet, wie der Name schon sagt, das Rauschen der Messung. 
 In unserem Fall wird nur die Position der Masse gemessen. Da wir keine anderen Sensoren haben ist $R$ lediglich:
 \[ 
-R= (\sigma_\mathrm{Sensor}^2).
+R= \begin{pmatrix}\sigma_\mathrm{Sensor}^2\end{pmatrix}.
  \] 
 Diese Messrauchen wird meistens vom Sensorhersteller angegeben. 
 Für unsere theoretische Apparatur wird hier ein kleiner Fehler eingesetzt,
@@ -277,7 +303,7 @@ Anschliessend werden folgende Schritte iterativ ausgeführt:
 {P_{k|k-1}}=\Phi {P_{k-1|k-1}} {\Phi _{k}}^T + {Q_{k-1}}
 \] 
 
-\item Innovation (= Messung - Vorhersage)
+\item Innovation ($= \text{Messung} - \text{Vorhersage}$)
 \[
 {w_{k}}={z_{k}}-{H}{x_{k|k-1}}
 \] 

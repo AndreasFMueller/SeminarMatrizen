@@ -1,12 +1,13 @@
 \section{Anwendung des Kalman-Filters}
+\rhead{Anwendung des Kalman-Filters}
 Bis jetzt haben wir gesehen, was das Kalman-Filter bewirkt und wie es funktioniert.
 Nun möchten wir mit einem konkreten Beispiel herausfinden,
-ob das Filter unsere gesuchte Grösse $f(t)$ bestimmen kann.
+ob das Filter unsere gesuchte Grösse $F(t)$ bestimmen kann.
 
 Da wir keine Rohdaten über vergangene Erdbeben zur Hand haben,
 müssen wir mittels Simulation künstliche Daten erzeugen.
 Diese können wir dann mit unserem Filter verarbeiten.
-Diese Vorgehensweise erlaubt uns das Erdbeben beliebig zu gestalten
+Diese Vorgehensweise erlaubt uns, das Erdbeben beliebig zu gestalten
 und weil es digital simuliert wird, haben wir auch keine Bauschäden zu beklagen.
 
 \subsection{Wahl der Schwingung}
@@ -29,23 +30,30 @@ Für die Frequenz $f$ wählen wir eine Zufallssquenz mit Erwartungswert und Stan
   \sigma = \SI{10}{\hertz}.
 \end{equation}
 Zusätzlich haben wir $f$ mit einem Savitzky-Golay-Filter gefiltert.
+\index{Savitzky-Golay-Filter}%
 Ein Savitzky-Golay-Filter schaut sich immer eine definierte Anzahl von Datenpunkte an
 und bildet ein Polynom $n$-ter Ordnung.
 In unserer Anwendung schaut sich das Filter, im Sinne eines verschiebbaren Fensters,
 jeweils elf aufeinanderfolgende Datenpunkte an und bildet ein Polynom $0$-ter Ordnung,
 also eine Konstante.
 Somit erhalten wir mit Matlab-Standardfunktionen einen gleitenden Mittelwert,
+\index{gleitender Mittelwert}%
 um all zu schnelle Änderungen der Frequenz zu unterdrücken.
 
 $\lambda$ ist die Bodendämpfung, für die wir $0.2$ wählen.
+\index{Bodendämpfung}%
 Sie ist dafür verantwortlich, dass unser Erdbeben abklingt
 und kreiert bei der gedämpften Schwingung die typische Hüllkurve.
+\index{Hüllkurve}%
 Wir nehmen an, dass $\lambda$ ein Materialparameter von geologischen Böden ist.
 
 \subsection{Versuch im Standardfall}
 Im nächsten Schritt müssen wir sinnvolle Systemparameter für unseren Seismographen definieren.
 Eine kurze Recherche zeigt, dass die Masse ein Gewicht von ca.\ \SI{100}{\gram} hat.
+\index{Masse}%
 Zur Federkonstante $D$ und Dämpfung $k$ konnten wir leider keine brauchbaren Grössen finden.
+\index{Federkonstante}%
+\index{Dämpfung}%
 Wir treffen die Annahmen $D = 1$ und $k = 0.01$.
 Für die Masse definieren wir $m = 0.01$.
 
@@ -65,6 +73,7 @@ Für das Prozessrauschen werden die Bedingungen
 \end{equation}
 angesetzt.
 Die Annahme, dass sich die Erdbebenkraft $F$ nicht ändert,
+\index{Erdbebenkraft}%
 kompensieren wir hier endlich durch einen grossen Wert von $\sigma_F^2$.
 Auch für die Messung setzen wir ein Rauschen voraus und definieren
 \begin{equation}
@@ -78,18 +87,6 @@ Auch für die Messung setzen wir ein Rauschen voraus und definieren
 Damit sind nun die benötigten Systemparameter und das Rauschen definiert.
 Als nächstes erzeugen wir ein Erdbeben und schauen,
 wie gut das Kalman-Filter die äussere Beschleunigung schätzen kann.
-
-\subsection*{Ergebnis}
-
-Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagramm sehen, erzeugen unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung.
-Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
-Die zweite Ableitung ergibt uns die Kraft, die in unserer Aufgabenstellung gesucht ist.
-
-Zoomen wir näher ran, erkennen wir wieder im Positions-Diagramm eine Überlagerung der Massen-Eigenschwingung mit der Erdbebenschwingung.
-Die Masse schwingt mit einer tiefen Frequenz und hoher Amplitude, hingegen das Erdbeben mit einer hohen Frequenz und tiefer Amplitude.
-
-Vergleichen wir nun die Position mit der Kraft, stellen wir fest, dass das Kalman-Filter eine Schätzung wiedergibt, die auch eine Frequenz von \SI{15}{\hertz} hat.
-Das Filter war imstande die Eigenfrequenz zu eliminieren und die tatsächliche Kraft des Erdbebens wiederzugeben.
 
 \begin{figure}
   \begin{center}
@@ -106,22 +103,17 @@ Das Filter war imstande die Eigenfrequenz zu eliminieren und die tatsächliche K
   \end{center}
 \end{figure}
 
-\subsection{Veränderung der Systemparameter}
-Wir möchten nun testen, was die Auswirkungen sind, wenn zum Beispiel der Seismograph andere Systemparameter aufweist.
-Wir nehmen an, dass sich im Vergleich zum Standardfall die Masse erhöht, die Federkonstante schwächer und die Bodendämpfung doppelt so stark wirkt.
-Somit gilt neu
-\[
-m = 0.05,
-\qquad \qquad
-D = 0.5
-\qquad \text{und} \qquad
-k = 0.02.
-\]
-Da wir mit dieser Anpassung die Trägheit des Seismogrammes erhöht haben,
-erwarten wir eine langsamere Bewegung der Masse, das heisst die Eigenfrequenz wird reduziert.
+\subsection*{Ergebnis}
 
-Betrachten wir Abbildung~\ref{erdbeben:fig:systemparameter-geaendert} können wir diese Erwartung bestätigen.
-Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die höhere Energie der Masse und geringeren Rücklenkkraft der Feder begründen können.
+Wie wir in Abbildung~\ref{erdbeben:fig:standard-alles} im Positions-Zeit-Diagramm sehen, erzeugen unsere vorher gewählten Parameter eine realistische Erdbebenaufzeichnung.
+Leiten wir die Position einmal ab, erhalten wir die Geschwindigkeit.
+Die zweite Ableitung ergibt uns die Kraft, die in unserer Aufgabenstellung gesucht ist.
+
+Zoomen wir näher heran, erkennen wir wieder im Positions-Diagramm eine Überlagerung der Massen-Eigenschwingung mit der Erdbebenschwingung.
+Die Masse schwingt mit einer tiefen Frequenz und hoher Amplitude, hingegen das Erdbeben mit einer hohen Frequenz und tiefer Amplitude.
+
+Vergleichen wir nun die Position mit der Kraft, stellen wir fest, dass das Kalman-Filter eine Schätzung wiedergibt, die auch eine Frequenz von \SI{15}{\hertz} hat.
+Das Filter war imstande die Eigenfrequenz zu eliminieren und die tatsächliche Kraft des Erdbebens wiederzugeben.
 
 \begin{figure}
   \begin{center}
@@ -136,15 +128,6 @@ Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir auf die h
     \label{erdbeben:fig:systemparameter-geaendert}
   \end{center}
 \end{figure}
-
-\subsection{Verstärkung des Prozessrauschens}
-Falls wir unseren Seismographen in der Nähe einer grösseren Stadt aufstellen, so müssen wir aufgrund der Vibrationen mit einem stärkeren Prozessrauschen rechnen.
-Dieses Rauschen beeinflusst die Varianzen der Position und Geschwindigkeit in der Matrix $Q$.
-Aus diesem Grund erhöhen wir die Standardabweichungen der Positions $\sigma_s$ und Geschwindigkeit $\sigma_v$ in der Matrix $Q$ um den Faktor $100$.
-Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt auf,
-dass das Kalman-Filter die Schätzung der Kraft nur gering an den Messwerten anpasst,
-da wir den Schätzungen für die Position nun wenig Vertrauen schenken und stärker der Modell-Annahme $\dot F = 0$ folgen.
-Die Theorie dazu haben wir im Abschnitt~\ref{erdbeben:Wahrscheindlichkeit} angeschaut.
 
 \begin{figure}
   \begin{center}
@@ -163,13 +146,25 @@ Die Theorie dazu haben wir im Abschnitt~\ref{erdbeben:Wahrscheindlichkeit} anges
   \end{center}
 \end{figure}
 
-\subsection{Verstärkung des Messrauschens}
-Als letztes verstärken wir das Messrauschen um den Faktor $100$ und belassen wieder den Rest wie im Standardfall.
-Wie man eigentlich schon erwarten kann,
-zeigt uns die Abbildung~\ref{erdbeben:fig:messrauschen-geaendert},
-dass das Signal des Messsensors vom Messrauschen start gestört wird.
-Weil die Messung zu ungenau ist,
-kann das Kalman-Filter nicht mehr gut arbeiten und produziert einen ungenauen Output.
+\subsection{Veränderung der Systemparameter}
+Wir möchten nun testen, was die Auswirkungen sind, wenn zum Beispiel der Seismograph andere Systemparameter aufweist.
+Wir nehmen an, dass sich im Vergleich zum Standardfall die Masse erhöht, die Federkonstante schwächer und die Bodendämpfung doppelt so stark wirkt.
+Somit gilt neu
+\[
+m = 0.05,
+\qquad \qquad
+D = 0.5
+\qquad \text{und} \qquad
+k = 0.02.
+\]
+Da wir mit dieser Anpassung die Trägheit des Seismographen erhöht haben,
+erwarten wir eine langsamere Bewegung der Masse, das heisst die Eigenfrequenz wird reduziert.
+
+
+Betrachten wir Abbildung~\ref{erdbeben:fig:systemparameter-geaendert}, können wir diese Erwartung bestätigen.
+Nebst dem bemerken wir eine grössere Auslenkung der Position, die wir mit der höheren Energie der Masse und geringeren Rücklenkkraft der Feder begründen können.
+
+
 
 \begin{figure}
   \begin{center}
@@ -188,11 +183,31 @@ kann das Kalman-Filter nicht mehr gut arbeiten und produziert einen ungenauen Ou
   \end{center}
 \end{figure}
 
-\subsection{Zusammenfassung}
+\subsection{Verstärkung des Prozessrauschens}
+Falls wir unseren Seismographen in der Nähe einer grösseren Stadt aufstellen, so müssen wir aufgrund der Vibrationen mit einem stärkeren Prozessrauschen rechnen.
+Dieses Rauschen beeinflusst die Varianzen der Position und Geschwindigkeit in der Matrix $Q$.
+Aus diesem Grund erhöhen wir die Standardabweichungen der Positions $\sigma_s$ und Geschwindigkeit $\sigma_v$ in der Matrix $Q$ um den Faktor $100$.
+Die Auswertung in Abbildung~\ref{erdbeben:fig:prozessrauschen-geaendert} zeigt auf,
+dass das Kalman-Filter die Schätzung der Kraft nur gering an den Messwerten anpasst,
+da wir den Schätzungen für die Position nun wenig Vertrauen schenken und stärker der Modell-Annahme $\dot F = 0$ folgen.
+Die Theorie dazu haben wir im Abschnitt~\ref{erdbeben:Wahrscheindlichkeit} angeschaut.
+
+
+\subsection{Verstärkung des Messrauschens}
+Als letztes verstärken wir das Messrauschen um den Faktor $100$ und belassen wieder den Rest wie im Standardfall.
+Wie man eigentlich schon erwarten kann,
+zeigt uns die Abbildung~\ref{erdbeben:fig:messrauschen-geaendert},
+dass das Signal des Messsensors vom Messrauschen start gestört wird.
+Weil die Messung zu ungenau ist,
+kann das Kalman-Filter nicht mehr gut arbeiten und produziert einen ungenauen Output.
+
+
+\section{Zusammenfassung}
+\rhead{Zusammenfassung}
 Wir haben uns zum Ziel gesetzt,
 die äussere Beschleunigung $a(t)$,
 beziehungsweise die Kraft $f(t)$ eines Erdbebens
-aus den Messugnen eines Seismographen zu berechen.
+aus den Messungen eines Seismographen zu berechen.
 
 Wir haben einen Seismographen mathematisch beschrieben und
 mit der Software Matlab Messresultate während eines künstlichen Erdbebens erzeugt.
