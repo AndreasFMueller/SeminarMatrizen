@@ -22,6 +22,9 @@
 \setboolean{guidelines}{false}
 \setboolean{guidelines}{true}
 
+\definecolor{textfarbe}{rgb}{0.4,1,0.8}
+\definecolor{textfarbe}{rgb}{1,1,1}
+
 \begin{document}
 \begin{tikzpicture}[>=latex, scale=1]
 \tikzmath{
@@ -38,7 +41,7 @@
 
 %\clip (0,0) circle (6);
 
-\draw[fill=blue](0,0) rectangle({\bogenbreite},{\bogenhoehe});
+\draw[fill=black](0,0) rectangle({\bogenbreite},{\bogenhoehe});
 \hsize=13.6cm
 
 \begin{scope}
@@ -48,26 +51,26 @@
 %\node at (18.7,8.9) [scale=5.0]{\includegraphics{nozzle-hell3.jpg}};
 %\node at (18.7,8.9) [scale=5.0]{\includegraphics{nozzle.jpg}};
 %\node at ({\bogenbreite/2},13.0) {\includegraphics[width=42cm]{matrix.pdf}};
-\node at ({\bogenbreite/2},13.0) {\includegraphics[width=42cm]{matrix-blue.png}};
+\node at ({\bogenbreite/2},13.0) {\includegraphics[width=42cm]{matrix-black.png}};
 \end{scope}
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},24.3)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{24}{24}\selectfont Mathematisches Seminar}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},21.9)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{50}{50}\selectfont Matrizen}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},19.7)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont Andreas Müller und Roy Seitz}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},18.4)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Joshua Bär,			% E
@@ -78,7 +81,7 @@
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},17.75)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Marc Kühne,
@@ -88,7 +91,7 @@
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},17.1)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Michael Schmid,		% MSE
@@ -97,7 +100,7 @@
 	}};
  
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},16.45)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Thierry Schwaller,		% E
@@ -107,7 +110,7 @@
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},15.8)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	Lukas Zogg%,			% B
@@ -115,7 +118,7 @@
 	}};
 
 \node at ({\einschlag+2*\gelenk+\ruecken+1.5*\breite},15.15)
-	[color=white,scale=1]
+	[color=textfarbe,scale=1]
 	{\hbox to\hsize{\hfill%
 	\sf \fontsize{13}{5}\selectfont
 	%Reto Wildhaber%			% B
@@ -124,11 +127,11 @@
 %\node at (0,3) [color=white] {\sf \LARGE Mathematisches Seminar 2017};
 
 % Rücken
-\node at ({\bogenbreite/2 + 0.05},20.5) [color=white,rotate=-90]
+\node at ({\bogenbreite/2 + 0.05},20.5) [color=textfarbe,rotate=-90]
 	{\sf\fontsize{35}{0}\selectfont Matrizen};
 
 % Buchrückseite
-\node at ({\einschlag+0.5*\breite},18.6) [color=white] {\sf
+\node at ({\einschlag+0.5*\breite},18.6) [color=textfarbe] {\sf
 \fontsize{13}{16}\selectfont
 \vbox{%
 \parindent=0pt
