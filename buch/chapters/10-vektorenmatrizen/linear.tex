@@ -469,13 +469,13 @@ $n\times l$-Matrix $B\in M_{n\times l}(\Bbbk)$ haben als Produkt
 eine $m\times l$-Matrix $C=AB\in M_{m\times l}(\Bbbk)$ mit den
 Koeffizienten
 \begin{equation}
-c_{i\!j} = \sum_{k=1}^n a_{ik} b_{kj}.
+c_{i\!j} = \sum_{k=1}^n a_{ik} b_{k\!j}.
 \label{buch:vektoren-und-matrizen:eqn:matrixmultiplikation}
 \end{equation}
 \end{definition}
 
 Die Koeffizienten $a_{ik}$ kommen aus der Zeile $i$ von $A$, die Koeffizienten
-$b_{kj}$ stehen in der Spalte $j$ von $B$, die Multiplikationsregel
+$b_{k\!j}$ stehen in der Spalte $j$ von $B$, die Multiplikationsregel
 \eqref{buch:vektoren-unbd-matrizen:eqn:matrixmultiplikation}
 besagt also, dass das Element $c_{i\!j}$ entsteht als das Produkt
 der Zeile $i$ von $A$ mit der Spalte $j$ von $C$.
@@ -640,14 +640,14 @@ Variablen $x_j$.
 Mit der {\em Zeilensubtraktion} auf Zeile $k>i$ können die Einträge in der
 \index{Zeilenoperation}%
 Spalte $j$ zu Null gemacht werden.
-Dazu wird das $a_{kj}$-fache der Zeile $i$ von Zeile $k$ subtrahiert:
+Dazu wird das $a_{k\!j}$-fache der Zeile $i$ von Zeile $k$ subtrahiert:
 \[
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|>{$}c<{$}|}
 \hline
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
 a_{i1}&\dots &{\color{red}1}&\dots &a_{in}&b_i   \\[-2pt]
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
-a_{k1}&\dots &a_{kj}&\dots &a_{kn}&b_m   \\[-2pt]
+a_{k1}&\dots &a_{k\!j}&\dots &a_{kn}&b_m   \\[-2pt]
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
 \hline
 \end{tabular}
@@ -657,7 +657,7 @@ a_{k1}&\dots &a_{kj}&\dots &a_{kn}&b_m   \\[-2pt]
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
 a_{i1}&\dots &{\color{red}1}&\dots &a_{in}&b_i   \\[-2pt]
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
-{\color{blue}a_{k1}-a_{kj}a_{i1}}&\dots &{\color{blue}0}&\dots &{\color{blue}a_{kn}-a_{kj}a_{in}}&{\color{blue}b_m-a_{kj}b_{n}}\\[-2pt]
+{\color{blue}a_{k1}-a_{k\!j}a_{i1}}&\dots &{\color{blue}0}&\dots &{\color{blue}a_{kn}-a_{k\!j}a_{in}}&{\color{blue}b_m-a_{k\!j}b_{n}}\\[-2pt]
 \vdots&      &\vdots&\ddots&\vdots&\vdots\\
 \hline
 \end{tabular}
