@@ -9,4 +9,5 @@ CHAPTERFILES = $(CHAPTERFILES)						\
 	chapters/80-wahrscheinlichkeit/markov.tex			\
 	chapters/80-wahrscheinlichkeit/positiv.tex			\
 	chapters/80-wahrscheinlichkeit/parrondo.tex			\
+	chapters/80-wahrscheinlichkeit/uebungsaufgaben/8001.tex		\
 	chapters/80-wahrscheinlichkeit/chapter.tex

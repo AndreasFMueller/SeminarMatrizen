@@ -17,7 +17,6 @@ werden.
 % Beschreibung der Markov-Eigenschaft
 % 
 \subsection{Markov-Eigenschaft}
-% XXX Notation, Zustände, Übergangswahrscheinlichkeit
 Ein stochastischer Prozess ist eine Familie von Zufallsvariablen
 \index{stochastischer Prozess}%
 \index{Prozess, stochastisch}%
@@ -61,7 +60,6 @@ Zustand $x$ erreicht, wenn er zu den Zeitpunkten $t_0,t_1,\dots,t_n$
 die Zustände $x_0,x_1,\dots,x_n$ durchlaufen hat.
 
 \subsubsection{Gedächtnislosigkeit}
-% XXX Gedächtnislösigkeit, Markov-Eigenschaft
 \index{Markov-Eigenschaft}%
 In vielen Fällen ist nur der letzte durchlaufene Zustand wichtig.
 Die Zustände in den Zeitpunkten $t_0<\dots<t_{n-1}$ haben dann keinen
@@ -110,7 +108,6 @@ p_{xy}(t,s)
 mit den Zuständen $x,y\in\mathcal{S}$ indiziert sind.
 
 \subsubsection{Die Chapman-Kolmogorov-Gleichung}
-% XXX Chapman-Kolmogorov-Gleichung
 \index{Chapman-Kolmogorov-Gleichung}%
 Man beachte, dass in der Definition der Markov-Eigenschaft
 keine Voraussetzungen darüber gemacht werden, wie nahe
@@ -158,7 +155,6 @@ Jeder Summand auf der rechten Seite beschreibt einen Weg des Prozesses
 derart, dass er zu den Zwischenzeitpunkten bestimmte 
 Zwischenzustände durchläuft.
 
-% XXX Pfadwahrscheinlichkeit
 \begin{definition}
 Die Wahrscheinlichkeit, dass der stochastische Prozess zwischen Zeitpunkten
 $t_0$ und $t_n$ die Zwischenzustände $x_i$ zu Zeiten $t_i$ durchläuft ist
@@ -182,7 +178,6 @@ heisst die {\em Pfadwahrscheinlichkeit} für genannten Pfad.
 % Diskrete Markov-Kette
 %
 \subsection{Diskrete Markov-Kette}
-% XXX Diskrete Zeit, Endliche Zustandsmenge
 Die Markov-Eigenschaft besagt, dass man keine Information verliert,
 wenn man die Vorgeschichte eines Zeitpunktes ignoriert.
 Insbesondere kann man eine Menge von geeigneten diskreten
@@ -272,7 +267,6 @@ Eine Permutationsmatrix beschreibt einen stochastischen Prozess, dessen
 \end{beispiel}
 
 \subsubsection{Zustandswahrscheinlichkeiten}
-% XXX Zustandswahrscheinlichkeit
 Die Wahrscheinlichkeit, mit der sich der Prozess zum Zeitpunkt $n$
 im Zustand $i\in\mathcal{S}$ befindet, wird
 \[
@@ -298,7 +292,6 @@ Die Zeitentwicklung kann also durch Multiplikation mit der Übergangsmatrix
 berechnet werden.
 
 \subsubsection{Zeitunabhängige Übergangswahrscheinlichkeiten}
-% XXX Übergangswahrscheinlichkeit
 \index{zeitunabhängige Übergangswahrscheinlichkeiten}
 Besonderes einfach wird die Situation, wenn die Übergangsmatrix $T(n+1,n)$
 nicht von der Zeit abhängt.
@@ -310,7 +303,6 @@ durch die Matrix-Potenzen $T(n+m,n)=T^m$.
 Im Folgenden gehen wir immer von einer homogenen Markov-Kette aus.
 
 \subsubsection{Stationäre Verteilung}
-% XXX stationäre Verteilung
 Im Beispiel der Google-Matrix erwarten wir intuitiv, dass sich mit
 der Zeit eine Verteilung einstellt,  die sich über die Zeit nicht
 mehr ändert.
@@ -412,7 +404,6 @@ möglich.
 Eine eindeutige stationäre Verteilung können wir also nur erwarten,
 wenn alle Zustände miteinander kommunizieren.
 
-% XXX irreduzible Markov-Ketten
 \begin{definition}
 Eine homogene Markov-Kette heisst {\em irreduzibel}, alle Zustände miteinander
 kommunizieren.
@@ -543,12 +534,9 @@ Für zwei Punkte $x$ und $y$ bilden die konvexen Kombination
 $tx+(1-t)y$ für $t\in[0,1]$ die Verbindungsstrecke der beiden
 Vektoren.
 Eine Menge ist also konvex, wenn sie mit zwei Punkten immer auch
-ihre Verbindungsstrecke enthält
-% XXX Bild für Konvexe Menge
+ihre Verbindungsstrecke enthält.
+% XXX Bild für konvexe Mengen
 
-
-
-% XXX Grenzverteilung
 \subsubsection{Grenzverteilung}
 Im Beispiel der Google-Matrix wurde ein iterativer Algorithmus
 zur Berechnung des Pagerank verwendet.
@@ -609,7 +597,6 @@ gleich sind.
 \end{beispiel}
 
 \subsubsection{Erwartungswert und Varianz}
-% XXX Erwartungswert und Varianz für eine Grenzverteilung
 Wenn sich im Laufe der Zeit eine Grenzverteilung einstellen soll, dann
 muss es auch möglich sein, Erwartungswert und Varianz dieser Verteilung
 zu berechnen.
@@ -658,7 +645,6 @@ A^{\odot k} = A\odot A^{\odot (k-1)}
 definieren.
 
 \subsubsection{Erwartungswert von Werten auf Übergängen}
-% XXX Erwartungswert für Zufallsvariablen, die von den Übergängen abhängen
 In Abschnitt~\ref{buch:section:paradoxon-von-parrondo} wird ein Spiel
 vorgestellt, in dem der Gewinn davon abhängt, welcher Übergang stattfindet,
 nicht welcher Zustand erreicht wird.
@@ -709,10 +695,16 @@ Indem man $G$ durch $G^{\odot k}$ ersetzt, kann man beliebige höhere
 Momente berechnen.
 
 \subsection{Absorbierende Zustände}
-In diesem Abschnitt gehen wir immer von einer irreduziblen Markov-Kette
-aus.
+In diesem Abschnitt gehen wir immer von einer irreduziblen, homogenen
+Markov-Kette aus.
+Ihre Übergangsmatrix enthält die Wahrscheinlichkeiten
+\[
+T_{i\!j}
+=
+P(X_{k+1}=i\mid X_{k}=j)
+\]
+für alle Zeiten $k$.
 
-% XXX Definition
 Eine Grenzverteilung beschreibt die relative Häufigkeit, mit der
 der Prozess in den verschiedenen Zuständen vorbeikommt.
 In einem Spiel, in dem der Spieler ruiniert werden kann, gibt es
@@ -758,7 +750,7 @@ ausgehend von einem transienten Zustand
 in einem bestimmten absorbierenden Zustand landet.
 Die Matrix $Q$ beschreibt die Übergänge, bevor dies passiert.
 Die Potenzen von $T$ sind
-\[
+\begin{equation}
 T^2
 =
 \left(
@@ -790,7 +782,17 @@ I&\displaystyle R\sum_{l=0}^{k-1} Q^l \\
 0&Q^k
 \end{array}
 \right).
+\label{buch:markov:eqn:Tpowers}
+\end{equation}
+Die Potenzen enthalten die Wahrscheinlichkeiten
+\[
+(T^k)_{i\!j}
+=
+P(X_k=i\mid X_0=j),
 \]
+dass der Prozess ausgehend vom Zustand $j$ im Schritt $k$ im
+Zustand $i$ ankommt.
+
 Wegen der angenommenen Irreduzibilität wird man
 früher oder später in einem absorbierenden Zustand landet,
 daher muss $\lim_{k\to\infty} Q^k=0$ sein.
@@ -801,137 +803,175 @@ Reihe summieren, man erhält die Matrix
 \]
 die für $k\to\infty$ gegen
 \[
-N
+F
 =
 \lim_{k\to\infty} \sum_{l=0}^{k-1} Q^l
 =
 (I-Q)^{-1}
 \]
 konvergiert.
-Die Matrix $N$ heisst die {\em Fundamentalmatrix} der absorbierenden
+Die Matrix $F$ heisst die {\em Fundamentalmatrix} der absorbierenden
 Markov-Kette.
 \index{Fundamental-Matrix}%
+Sie gestattet, viele interessante Grössen des Markov-Prozesses zu
+berechnen.
 
-\subsubsection{Absorbtionszeit}
-% XXX Absorptionszeit
-Wie lange dauert es im Mittel, bis der Prozess in einem
-Absorptionszustand $i$ stecken bleibt?
-\index{Absorbtionszeit}%
-Die Fundamentalmatrix $N$ der Markov-Kette beantwortet diese
-Frage.
-Wenn der Prozess genau im Schritt $k$ zum ersten Mal im Zustand $i$
-ankommt, dann ist $E(k)$ die mittlere Wartezeit.
-Der Prozess verbringt also zunächst $k-1$ Schritte in transienten
-Zuständen, bevor er in einen absorbierenden Zustand $i$ wechselt.
-
-Wir brauchen die Wahrscheinlichkeit für einen Entwicklung des Zustandes
-ausgehend vom Zustand $j$, die nach $k-1$ Schritten im Zustand $l$
-landet, von wo er in den absorbierenden Zustand wechselt.
-Diese Wahrscheinlichkeit ist
+\subsubsection{Erwartete Anzahl Besuche eines Zustandes}
+Wie häufig wird ein Zustand $i$ ausgehend von einem Zustand $j$
+besucht?
+\index{Anzahl Besuche}%
+Dazu definieren wir die ``Besuchs''-Zufallsvariable
 \[
-P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
-=
-\sum_{i_1,\dots,i_{k-2}}
-r_{il} q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}
+B_{k}=\begin{cases}
+1&\qquad\text{$X_k=i$}\\
+0&\qquad\text{sonst,}
+\end{cases}
 \]
-Von den Pfaden, die zur Zeit $k-1$ im Zustand $l$ ankommen gibt es
-aber auch einige, die nicht absorbiert werden.
-Für die Berechnung der Wartezeit möchten wir nur die Wahrscheinlichkeit
-innerhalb der Menge der Pfade, die auch tatsächlich absorbiert werden,
-das ist die bedingte Wahrscheinlichkeit
-\begin{equation}
-\begin{aligned}
-P(X_k = i\wedge X_{k-1} = l \wedge X_0=j\mid X_k=i)
-&=
-\frac{
-P(X_k = i\wedge X_{k-1} = l \wedge X_0=j)
-}{
-P(X_k=i)
-}
-\\
-&=
-\sum_{i_1,\dots,i_{k-2}}
-q_{li_{k-2}} q_{i_{k-2}i_{k-3}}\dots q_{i_2i_1} q_{i_1j}.
-\end{aligned}
-\label{buch:wahrscheinlichkeit:eqn:ankunftswahrscheinlichkeit}
-\end{equation}
-Auf der rechten Seite steht das Matrixelement $(l,j)$ von $Q^{k-1}$.
+die genau dann $1$ ist, wenn der Prozess ausgehend von $j$ im Zustand
+beim $k$-ten Schritt den Zustand $i$ besucht.
+Die Zufallsvariable der Anzahl $B$ der Besuche des Zustands $i$ ist die
+Summe der $B_k$.
+Ein weiterer Nutzen dieser Definition ist, dass sich die Wahrscheinlichkeit
+jetzt als Erwartungswert ausdrücken lässt, es ist
+$P(X_k=i \mid X_0=j) = E(B_k)$.
 
-% XXX Differenz 
+Damit lässt sich jetzt die Fundamentalmatrix auf andere Art interpretieren.
+Der Eintrag $N_{i\!j}$ ist
+\begin{align*}
+F_{i\!j}
+&=
+\biggl(\sum_{k=0}^\infty Q^k\biggr)_{i\!j}
+\\
+&=
+P(X_0=i\mid X_0=j)
++
+P(X_1=i\mid X_0=j)
++
+P(X_2=i\mid X_0=j)
++\dots
+\\
+&=E(B_0) + E(B_1) + E(B_2) + \dots
+\\
+&=E(B_0+B_1+B_2+\dots)
+=E(B).
+\end{align*}
+Die Summe der $B_k$ ist aber die erwartete Anzahl der Besuch im Zustand $i$.
 
-Für die Berechnung der erwarteten Zeit ist müssen wir die
-Wahrscheinlichkeit mit $k$ multiplizieren und summieren:
-\begin{align}
-E(k)
-&=
-\sum_{k=0}^\infty
-k(
-q^{(k)}_{l\!j} 
--
-q^{(k-1)}_{l\!j} 
-)
-\notag
-\\
-&=
-\dots
-+
-k(
-q^{(k-1)}_{l\!j} 
--
-q^{(k)}_{l\!j} 
-)
-+
-(k+1)(
-q^{(k)}_{l\!j} 
--
-q^{(k+1)}_{l\!j} 
-)
-+
-\dots
-\label{buch:wahrscheinlichkeit:eqn:telescope}
-\\
-&=
-\dots
-+
-k
-q^{(k-1)}_{l\!j} 
-\underbrace{
-\mathstrut
--
-q^{(k)}_{l\!j} 
-+
-(k+1)
-q^{(k)}_{l\!j} }_{\displaystyle q^{(k)}_{l\!j}}
-\mathstrut
--
-(k+1)
-q^{(k+1)}_{l\!j} 
-+
-\dots
-\\
-&=
-\dots
-+
-q^{(k)}_{l\!j}
-+
-\dots
+\begin{satz}
+\label{buch:markov:satz:anzahlbesuche}
+Die erwartete Anzahl Besuche des Zustands $i$ eines homogenen,
+absorbierenden Markovprozesses ausgehend vom Zustand $j$ ist das
+Element $F_{i\!j}$ der Fundamentalmatrix $F=(I-Q)^{-1}$.
+\end{satz}
+
+\subsubsection{Absorptionszeit}
+\index{Absorptionszeit}%
+Wie lange dauert es im Mittel, bis der Prozess ausgehend vom Zustand $j$
+in einem Absorbptionszustand $i$ stecken bleibt?
+Sie ist gleich gross wie die Zeit, während der der Prozess nicht absorbierende
+Zustände besucht.
+Die Zeit $t_j$, bis der Prozess in einen absorbierenden Zustand wechselt, ist also
+die erwartete Anzahl Besuche nicht absorbierender Zustände.
+Es folgt:
+\[
+t_j
 =
-\sum_{k} q^{(k)}_{l\!j}.
-\notag
-\end{align}
-In zwei benachbarten Termen in 
-\eqref{buch:wahrscheinlichkeit:eqn:telescope}
-heben sich die Summanden $kq^{(k)}_{l\!j}$ weg, man spricht von
-einer teleskopischen Reihe.
-\index{teleskopische Reihe}%
-Die verbleibenden Terme sind genau die Matrixelemente der Fundamentalmatrix $N$.
-Die Fundamentalmatrix enthält also im Eintrag $(l,j)$ die Wartezeit
-bis zur Absorption über den Zustand $l$.
+\sum_{\text{$i$ nicht absorbierend}} E(\text{Anzahl Besuche von $i$}\mid X_0=j)
+=
+\sum_{\text{$i$ nicht absorbierend}} F_{i\!j}.
+\]
+$t_j$ ist also die Summe der Elemente der Spalte $j$ der Fundamentalmatrix $F$.
+Man kann diese Summe auch vektoriell schreiben mit einem Zeilenvektor $U^t$
+aus lauter Nullen.
+Der Zeilenvektor $t$ mit Einträgen $t_j$ ist dann
+\(
+t = U^tF.
+\)
+\begin{satz}
+\label{buch:markov:satz:absorptionszeit}
+Die Absorptionszeit $t_j$ einer absorbierenden, homogenen Markov-Kette
+ausgehend vom Zustand $j$ ist
+das $j$-te Element des Zeilenvektors $U^tF$ oder die Summe der
+Einträge in Spalte $j$ der Fundamentalmatrix $F$.
+\end{satz}
 
-\subsubsection{Wartezeit}
-% XXX Mittlere Zeit bis zu einem bestimmten Zustand
+\subsubsection{Absorptionswahrscheinlichkeit}
+\index{Absorptionswahrscheinlichkeit}%
+Wie gross ist die Wahrscheinlichkeit, dass der Prozess ausgehend von
+Zustand $j$ irgendwann im Zustand $i$ absorbiert wird?
+Die Potenzen $T^k$ der Übergangsmatrix enthalten in Zeile $j$
+und Spalte $i$ die Wahrscheinlichkeit, dass nach spätestens $k$ Schritten
+geschehen ist.
+Wir müssen daher den Grenzwert
+\(
+\lim_{k\to\infty}T^k
+\)
+berechnen.
+Da $\|Q\|<1$ folgt aus~\eqref{buch:markov:eqn:Tpowers} sofort
+\[
+T^\infty
+=
+\lim_{k\to\infty}T^k
+=
+\left(
+\begin{array}{cc}
+I&RF\\
+0&0
+\end{array}
+\right).
+\]
+Die Matrix $RF$ enthält enthält also in Zeile $i$ und Spalte $j$
+die Wahrscheinlichkeit, dass der Prozess ausgehend vom Zustand $j$
+irgendwann im Zustand $i$ absorbiert wird.
+
+\subsubsection{Absorption über den letzten Zustand $l$}
+Wie gross ist die Wahrscheinlichkeit, dass die von $j$ ausgehende
+Absorption in den Zustand $i$ als letzten Zustand vor der Absorption
+den Zustand $l$ hat?
+Wir schreiben $l\overset{\smash{k}}{\twoheadrightarrow} i$ für das Ereignis, dass der Prozess
+im $k$-ten Schritt über den letzten
+Zustand $l$ in den Absorbtionszustand $i$ übergeht.
+Ist uns der Zeitpunkt dies Übergangs egal, lassen wir das $k$
+weg und schreiben nur $l\twoheadrightarrow i$.
+
+Damit $l\overset{\smash{k}}{\twoheadrightarrow} i$ eintritt, muss der Prozess im $(k-1)$-ten Schritt im
+Zustand $l$ ankommen, was er mit Wahrscheinlichkeit
+\[
+P(X_{k-1}=l\wedge X_0=j) = (Q^{k-1})_{l\!j}
+\]
+tut, und dann den Übergang von $l$ nach $i$ nehmen, was er mit
+Wahrscheinlichkeit $r_{il}$ tut.
+Somit ist die gesuchte Wahrscheinlichkeit
+\begin{equation}
+P(X_K=i\wedge X_{k-1}=l\wedge X_0=j)
+=
+P(l\overset{k}{\twoheadrightarrow} i\wedge X_0=j)
+=
+r_{il}(Q^{k-1})_{l\!j}.
+\label{buch:markov:eqn:Pilj}
+\end{equation}
+
+Die Wahrscheinlichkeit, dass der Prozess zu irgend einer Zeit von $j$
+ausgehend über den letzten Zustand $l$ in den Absorptionszustand $i$
+übergeht, ist die Summe der Wahrscheinlichkeiten~\eqref{buch:markov:eqn:Pilj}
+für alle $k$.
+Der Faktor $r_{il}$ ist all diesen Termen gemeinsam, die Summe der
+$Q$-Terme kann wieder durch die Fundamentalmatrix als
+\[
+P(l\twoheadrightarrow i\wedge X_0 = j)
+=
+\sum_{k=0}^\infty r_{il}(Q^k)_{l\!j}
+=
+r_{il}\biggl(\sum_{k=0}^\infty (Q^k)\biggr)_{l\!j}
+=
+r_{il}F_{l\!j}
+\]
+geschrieben werden.
+
+\subsubsection{Wartezeit für eine beliebige Markov-Kette}
 \index{Wartezeit}%
-Die mittlere Wartezeit bis zum Erreichen eines Zustands kann mit der
+Die mittlere Wartezeit bis zum Erreichen eines Zustands in einer
+beliebigen Markov-Kette kann mit der
 Theorie zur Berechnung der Absorptionszeit berechnet werden.
 Dazu modifiziert man den Prozess dahingehend, dass der Zielzustand
 ein absorbierender Zustand wird.
@@ -969,9 +1009,9 @@ Die Wartezeit bis zum Erreichen des Zustands $i$ ausgehend von einem
 Zustand $n$ kann jetzt aus der Absorbtionszeit der Markov-Kette
 im Zustand $1$ mit Hilfe der Fundamentalmatrix
 \[
-\tilde{N} 
+\tilde{F} 
 =
-(E-\tilde{Q})^{-1}
+(I-\tilde{Q})^{-1}
 \]
 berechnet werden.
 

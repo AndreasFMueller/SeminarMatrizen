@@ -87,9 +87,10 @@
 	\rechteck{7}{10}{darkgreen}
 	\rechteck{11}{11}{blue}
 	\Rechteck{0}{11}
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (0,{-\s-0.25}) -- (-3.5,{-\s-0.25});
 	\node[color=darkgreen] at ({0},{(9*2-1)*\s}) {$B_{k-2\mathstrut}$};
 	\node at (1.75,{9*2*\s}) {$\Delta_{k-1}$};
-	\node at (1.75,{-\s}) [above] {$\partial_{k-1\mathstrut}$};
+	\node at (1.75,{-\s-0.25}) [above] {$\partial_{k-1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*10+1)*\s});
 	\node at ({-\s-0.17},{10*\s}) [left] {$Z_{k-2\mathstrut}$};
@@ -103,9 +104,10 @@
 	\rechteck{0}{2}{red}
 	\Rechteck{0}{11}
 	\node at (0,{-\s}) [below] {$C_{k-1\mathstrut}$};
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (0,{-\s-0.25}) -- (-3.5,{-\s-0.25});
 	\node[color=darkgreen] at ({0},{(5*2-1)*\s}) {$B_{k-1\mathstrut}$};
 	\node at (1.75,{6.5*2*\s}) {$\Delta_k$};
-	\node at (1.75,{-\s}) [above] {$\partial_{k\mathstrut}$};
+	\node at (1.75,{-\s-0.25}) [above] {$\partial_{k\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*7+1)*\s});
 	\node at ({-\s-0.17},{7*\s}) [left] {$Z_{k-1\mathstrut}$};
@@ -118,6 +120,7 @@
 	\rechteck{0}{3}{red}
 	\Rechteck{0}{10}
 	\node at (0,{-\s}) [below] {$C_{k\mathstrut}$};
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (0,{-\s-0.25}) -- (-3.5,{-\s-0.25});
 	\node[color=darkgreen] at ({-0.25},{9*\s})
 		{$B_{k\mathstrut}$};
 	\node[color=darkgreen] at (0.24,{2*4*\s}) {$b_1$};
@@ -133,7 +136,7 @@
 	\node[color=blue] at (0.24,{2*9*\s}) {$\vdots$};
 	\node[color=blue] at (0.24,{2*10*\s}) {$c_s$};
 	\node at (1.75,{5.5*2*\s}) {$\Delta_{k+1}$};
-	\node at (1.75,{-\s}) [above] {$\partial_{k+1\mathstrut}$};
+	\node at (1.75,{-\s-0.25}) [above] {$\partial_{k+1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*5+1)*\s});
 	\node at ({-\s-0.17},{5*\s}) [left] {$Z_{k\mathstrut}$};
@@ -146,11 +149,16 @@
 	\rechteck{0}{0}{red}
 	\Rechteck{0}{7}
 	\node at (0,{-\s}) [below] {$C_{k+1\mathstrut}$};
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (0,{-\s-0.25}) -- (-3.5,{-\s-0.25});
 	\node[color=darkgreen] at ({0},{(2.0*2+1)*\s})
 		{$B_{k+1\mathstrut}$};
 	\draw[decorate,decoration={brace,amplitude=4pt}]
 		({-\s-0.1},{-\s}) -- ({-\s-0.1},{(2*5+1)*\s});
 	\node at ({-\s-0.17},{5*\s}) [left] {$Z_{k+1\mathstrut}$};
+\end{scope}
+
+\begin{scope}[xshift=10.5cm]
+	\draw[->,shorten >= 0.5cm,shorten <= 0.5cm] (0,{-\s-0.25}) -- (-3.5,{-\s-0.25});
 \end{scope}
 
 \end{tikzpicture}
