@@ -33,7 +33,8 @@ back-black.pdf:	back-black.tex buchcover-black.pdf
 	pdflatex back-black.tex
 
 matrix:	matrix.cpp
-	g++ -Wall -O2 -g -o matrix `pkg-config --cflags Magick++` matrix.cpp `pkg-config --libs Magick++`
+	g++ -Wall -O2 -g -o matrix `pkg-config --cflags Magick++` \
+		matrix.cpp `pkg-config --libs Magick++`
 test:	matrix
 	./matrix -w 500 -h 1080  blubb.png && open blubb.png
 matrix-blue.png:	matrix
