@@ -20,7 +20,7 @@ Im Folgenden werden wir $\Bbbk^n =M_{n\times 1}(\Bbbk)$ setzen
 und den Fall der Vektoren nicht mehr separat diskutieren.
 Die Addition und Multiplikation mit Skalaren ist in 
 $M_{m\times n}(\Bbbk)$ komponentenweise definiert.
-Wir können natürlich auch ein Produkt komponentenweise definieren,
+Wir können natürlich auch ein Produkt von Matrizen komponentenweise definieren,
 dies ist das Hadamard-Produkt.
 
 \begin{definition}
@@ -41,11 +41,12 @@ Dies ist jedoch nur interessant, wenn $M_{m\times n}(\Bbbk)$ mit diesem
 Produkt eine interessante algebraische Struktur erhält.
 Dazu müssen die üblichen Verträglichkeitsgesetze zwischen den
 Vektorraumoperationen von $M_{m\times n}(\Bbbk)$ und dem neuen Produkt
-gelten, wir erhalten dann eine Algebra.
+gelten, erst so erhalten wir eine Algebra.
 Da alle Operationen elementweise definiert sind, muss man auch alle
 Rechengesetze nur elementweise prüfen.
 Es gilt
-\begin{align*}
+\[
+\begin{aligned}
 A\odot(B\odot C) &= (A\odot B)\odot C
 &&\Leftrightarrow&
 a_{i\!j}(b_{i\!j}c_{i\!j}) &= (a_{i\!j}b_{i\!j})c_{i\!j}
@@ -65,7 +66,8 @@ a_{i\!j}(b_{i\!j}+c_{i\!j}) &= a_{i\!j}b_{i\!j} + a_{i\!j}c_{i\!j}
 A\odot(\lambda B)&=\lambda(A\odot B)
 &&\Leftrightarrow&
 a_{i\!j}(\lambda b_{i\!j})&=\lambda(a_{i\!j}b_{i\!j})
-\end{align*}
+\end{aligned}
+\]
 für alle $i,j$.
 
 Das Hadamard-Produkt ist kommutativ, da die Multiplikation in $\Bbbk$
@@ -119,7 +121,7 @@ Funktion $1$ auf $[m]\times[n]$.
 
 \subsection{Hadamard-Produkt und Matrizenalgebra
 \label{buch:vektorenmatrizen:subsection:vertraeglichkeit}}
-Es ist nur in Ausnahmefällen, Hadamard-Produkt und Matrizen-Produkt
+Es ist nur in Ausnahmefällen sinnvoll, Hadamard-Produkt und Matrizen-Produkt
 gleichzeitig zu verwenden.
 Das liegt daran, dass die beiden Produkte sich überhaupt nicht 
 vertragen.
@@ -207,7 +209,7 @@ Matrizenprodukt der Diagonalmatrizen.
 
 Für die Hadamard-Matrix ist die Einbettung etwas komplizierter.
 Wir machen aus einer Matrix erst einen Vektor, den wir dann mit
-dem $\operatorname{diag}$ in eine Diagonalmatrix umwandeln:
+dem Operator $\operatorname{diag}$ in eine Diagonalmatrix umwandeln:
 \[
 \begin{pmatrix}
 a_{11}&\dots&a_{1n}\\
@@ -224,7 +226,7 @@ a_{21}\\
 a_{2n}\\
 \vdots\\
 a_{nn}
-\end{pmatrix}
+\end{pmatrix}.
 \]
 Bei dieser Abbildung geht die Hadamard-Multiplikation wieder in
 das gewöhnliche Matrizenprodukt über.

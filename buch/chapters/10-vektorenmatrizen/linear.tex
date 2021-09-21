@@ -60,7 +60,7 @@ u = \begin{pmatrix}u_1&u_2&\dots&u_m\end{pmatrix} \in \Bbbk^m.
 \end{definition}
 
 Für Vektoren gleicher Dimension sind zwei Rechenoperationen definiert.
-Die {\em Addition von Vektoren} $a,a\in\Bbbk^n$  und die Multiplikation
+Die {\em Addition von Vektoren} $a,b\in\Bbbk^n$  und die Multiplikation
 \index{Addition von Vektoren}%
 eines Vektors mit einem Skalar $\lambda\in\Bbbk$ erfolgt elementweise:
 \[
@@ -89,22 +89,21 @@ Die üblichen Rechenregeln sind erfüllt, nämlich
 &
 a+b&=b+a
 &&
-&&\forall a,b\in V
+&&\forall a,b\in \Bbbk^n
 \\
 &\text{Assoziativgesetze:}
 &
 (a+b)+c&=a+(b+c)
 &
 (\lambda\mu)a&=\lambda(\mu a)
-&&\forall a,b,c\in V,\; \lambda,\mu\in\Bbbk
+&&\forall a,b,c\in \Bbbk^n,\; \lambda,\mu\in\Bbbk
 \\
 &\text{Distributivgesetze:}
 &
 \lambda(a+b)&=\lambda a + \lambda b
 &
 (\lambda+\mu)a&=\lambda a + \mu a
-&&\forall a,b\in V,\; \lambda,\mu\in\Bbbk.
-\\
+&&\forall a,b\in \Bbbk^n,\; \lambda,\mu\in\Bbbk.
 \end{aligned}
 \label{buch:vektoren-und-matrizen:eqn:vrgesetze}
 \end{equation}
@@ -120,8 +119,8 @@ des dreidimensionalen Raumes, es gibt keine Entsprechung dafür in anderen
 Dimensionen.
 
 \subsubsection{Standardbasisvektoren}
-\index|{Standardbasisvektor}%
-In $\Bbbk^n$ findet man eine Menge von speziellen Vektoren, durch die
+\index{Standardbasisvektor}%
+In $\Bbbk^n$ findet man die folgenden speziellen Vektoren, durch die
 man alle anderen Vektoren ausdrücken kann.
 Mit den sogenannten {\em Standardbasisvektoren}
 \[
@@ -210,8 +209,9 @@ Eigenschaften eine grosse Zahl sehr verschiedenartiger mathematischer
 Objekte beschreiben kann.
 Alle Erkenntnisse, die man ausschliesslich aus Vektorraumeigenschaften
 gewonnen hat, sind auf alle diese Objekte übertragbar.
-Im folgenden werden wir alle Aussagen für einen Vektorraum $V$ formulieren,
-wenn wir die Darstellung als Tupel $\Bbbk^n$ nicht brauchen.
+Im Folgenden werden wir danach streben, Aussagen für einen 
+abstrakten Vektorraum $V$ zu formulieren,
+wenn wir die Darstellung als Tupel in $\Bbbk^n$ nicht brauchen.
 
 \subsubsection{Gleichungssysteme in Vektorform}
 Die Vektorraum-Operationen erlauben nun auch, lineare Gleichungssysteme
@@ -305,7 +305,7 @@ x_1'a_1 &+& \dots &+& x_n'a_n &=& b \\
 \end{equation}
 Die Frage, ob ein Gleichungssystem genau eine Lösung hat, hängt also
 damit zusammen, ob es Zahlen $\lambda_1,\dots,\lambda_n$ gibt, für
-die die Gleichung~\label{buch:vektoren-und-matrizen:eqn:linabhkomb}
+die die Gleichung~\eqref{buch:vektoren-und-matrizen:eqn:linabhkomb}
 erfüllt ist.
 
 \begin{definition}
@@ -317,7 +317,7 @@ $\lambda_1,\dots,\lambda_n\in\Bbbk$ gibt, die nicht alle $0$ sind, so dass
 \end{equation}
 Die Vektoren heissen linear abhängig, wenn aus
 \eqref{buch:vektoren-und-matrizen:eqn:linabhdef}
-folgt, dass alle $\lambda_1,\dots,\lambda_n=0$ sind.
+folgt, dass alle $\lambda_1=0,\dots,\lambda_n=0$ sind.
 \end{definition}
 
 Lineare Abhängigkeit der Vektoren $a_1,\dots,a_n$ bedeutet auch, dass
@@ -337,14 +337,15 @@ man sagt $a_1,\dots,a_n$ sind (untereinander) linear abhängig.
 \subsubsection{Basis}
 Ein lineares Gleichungssystem fragt danach, ob und wie ein Vektor $b$ als
 Linearkombination der Vektoren $a_1,\dots,a_n$ ausgedrückt werden kann.
-Wenn dies eindeutig möglich ist, dann haben die Vektoren $a_1,\dots,a_n$
+Wenn dies immer eindeutig möglich ist, dann haben die Vektoren $a_1,\dots,a_n$
 offenbar eine besondere Bedeutung.
 
 \begin{definition}
 \index{Basis}%
 \index{Dimension}%
 Eine linear unabhängig Menge von Vektoren
-$\mathcal{B}=\{a_1,\dots,a_n\}\subset V$
+$\mathcal{B}=\{a_1,\dots,a_n\}\subset V$,
+mit der sich jeder Vektor von $V$ linear kombinieren lässt,
 heisst {\em Basis} von $V$.
 Die maximale Anzahl linear unabhängiger Vektoren in $V$ heisst
 {\em Dimension} von $V$.
@@ -404,14 +405,14 @@ M_{m,n}(\Bbbk)
 =
 \{ A\;|\; \text{$A$ ist eine $m\times n$-Matrix}\}.
 \]
-Falls $m=n$ gilt, heisst die Matrix $A$ auch {\em quadratisch}
+Falls $m=n$ gilt, heisst die Matrix $A$ auch {\em quadratisch}.
 \index{quadratische Matrix}%
 Man kürzt die Menge der quadratischen Matrizen als
 $M_n(\Bbbk) = M_{n\times n}(\Bbbk)$ ab.
 \end{definition}
 
 Die $m$-dimensionalen Spaltenvektoren $v\in \Bbbk^m$ sind $m\times 1$-Matrizen
-$v\in M_{n\times 1}(\Bbbk)$, die $n$-dimensionalen Zeilenvetoren $u\in\Bbbk^n$
+$v\in M_{n\times 1}(\Bbbk)$, die $n$-dimensionalen Zeilenvektoren $u\in\Bbbk^n$
 sind $1\times n$-Matrizen $v\in M_{1\times n}(\Bbbk)$.
 Eine $m\times n$-Matrix $A$ mit den Koeffizienten $a_{i\!j}$ besteht aus
 den $n$ Spaltenvektoren
@@ -476,9 +477,9 @@ c_{i\!j} = \sum_{k=1}^n a_{ik} b_{k\!j}.
 
 Die Koeffizienten $a_{ik}$ kommen aus der Zeile $i$ von $A$, die Koeffizienten
 $b_{k\!j}$ stehen in der Spalte $j$ von $B$, die Multiplikationsregel
-\eqref{buch:vektoren-unbd-matrizen:eqn:matrixmultiplikation}
-besagt also, dass das Element $c_{i\!j}$ entsteht als das Produkt
-der Zeile $i$ von $A$ mit der Spalte $j$ von $C$.
+\eqref{buch:vektoren-und-matrizen:eqn:matrixmultiplikation}
+besagt also, dass das Element $c_{i\!j}$ als das Produkt
+der Zeile $i$ von $A$ mit der Spalte $j$ von $C$ entsteht.
 
 \subsubsection{Einheitsmatrix}
 Welche $m\times m$-Matrix $I\in M_{m}(\Bbbk)$ hat die Eigenschaft, dass
@@ -488,8 +489,9 @@ Die Bedingung $IA=A$ bedeutet
 \[
 a_{i\!j} = \delta_{i1}a_{1j} + \dots + \delta_{im}a_{mj},
 \]
-Da auf der linken Seite nur $a_{i\!j}$ vorkommt, müssen alle Terme auf der
-rechten Seite verschwinden ausser dem Term mit $a_{i\!j}$, dessen
+Da auf der linken Seite nur $a_{i\!j}$ vorkommt, müssen
+auf der rechten Seite alle Terme
+verschwinden ausser dem Term mit $a_{i\!j}$, dessen
 Koeffizient $\delta_{ii}=1$ sein muss.
 Die Koeffizienten sind daher
 \[
@@ -497,7 +499,7 @@ Die Koeffizienten sind daher
 =
 \begin{cases}
 1&\qquad i=j\\
-0&\qquad\text{sonst}
+0&\qquad\text{sonst.}
 \end{cases}
 \]
 Die Zahlen $\delta_{i\!j}$ heissen auch das {\em Kronecker-Symbol} oder
@@ -563,9 +565,9 @@ a_{m1}x_1 &+& \dots &+& a_{mn}x_n &=& 0
 \end{linsys}
 \label{buch:grundlagen:eqn:homogenessystem}
 \end{equation}
-eine nichttriviale Lösung haben muss.
+nur die Nulllösung haben kann.
 Das Gleichungssystem $Ax=b$ ist also genau dann eindeutig lösbar, wenn
-das homogene Gleichungssystem $Ax=0$ nur die Nulllösung hat.
+das Gleichungssystem $Ax=0$ mit gleichen Koeffizienten nur die Nulllösung hat.
 
 \subsubsection{Inhomogene und homogene Gleichungssysteme}
 Ein Gleichungssystem mit $0$ auf der rechten Seite ist also bereits
@@ -580,7 +582,7 @@ Ein homogenes Gleichungssytem $Ax=0$ hat immer mindestens die
 Lösung $x=0$, man nennt sie auch die {\em triviale} Lösung.
 \index{triviale Lösung}%
 Eine Lösung $x\ne 0$ heisst auch eine nichttriviale Lösung.
-Die Lösungen eines inhomgenen Gleichungssystem $Ax=b$ ist also nur dann
+Die Lösungen eines inhomogenen Gleichungssystem $Ax=b$ ist also nur dann
 eindeutig, wenn das zugehörige homogene Gleichungssystem eine nichttriviale
 Lösung hat.
 
@@ -600,7 +602,7 @@ a_{m1}&\dots &a_{mn}&b_m   \\
 \hline
 \end{tabular}
 \]
-geschrieben.
+eingetragen.
 Die vertikale Linie erinnert an die Position des Gleichheitszeichens.
 Das Tableau beinhaltet alle Informationen zur Durchführung des Algorithmus.
 Der Algorithmus is so gestaltet, dass er nicht mehr Speicher als
@@ -683,11 +685,11 @@ Im Idealfall wird ein Tableau der Form
 \hline
 \end{tabular}
 \]
-erreicht, was natürlich nur $m=n$ möglich ist.
+erreicht, was natürlich nur für $m=n$ möglich ist.
 Interpretiert man die Zeilen dieses Tableaus wieder als Gleichungen,
 dann liefert die Zeile $i$ den Wert $x_i=u_i$ für die Variable
 mit Nummer $i$.
-Der Lösungsvektor kann also in der Spalte rechts abgelesen werden.
+Der Lösungsvektor kann also in der Spalte ganz rechts abgelesen werden.
 
 \begin{figure}
 \centering
@@ -839,7 +841,7 @@ Insbesondere ist die Lösungsmenge $k$-dimensional.
 Zu jeder quadratischen Matrix $A\in M_n(\Bbbk)$ kann man versuchen, die
 Gleichungen
 \[
-Ac_1 = e_1,\quad Ac_2 = e_2, \dots, Ac_n = e_n
+Ac_1 = e_1,\quad Ac_2 = e_2, \quad\dots, \quad Ac_n = e_n
 \]
 mit den Standardbasisvektoren $e_i$ als rechten Seiten zu lösen, wobei
 die $c_i$ Vektoren in $\Bbbk^n$ sind.
@@ -937,7 +939,7 @@ Kapitel~2 des Skripts \cite{buch:linalg}.
 Die Determinante der Einheitsmatrix ist $\det(I)=1$.
 \item
 Sind zwei Zeilen einer Matrix gleich, dann tritt beim Gauss-Algorithmus
-eine Nullzweile auf, die Matrix kann also nicht regulär sein und die
+eine Nullzeile auf, die Matrix kann also nicht regulär sein und die
 Determinante ist $0$.
 \item
 \label{buch:linear:determinante:vorzeichen}
@@ -945,7 +947,7 @@ Vertauscht man zwei Zeilen einer Matrix, dann kehrt das Vorzeichen der
 Determinante.
 \item
 Addiert man ein Vielfaches einer Zeile der Matrix zu einer anderen Zeile,
-dann ändert der Wert der Determinante nicht.
+dann ändert der Wert der Determinanten nicht.
 \item
 Wird eine Zeile der Matrix mit einer Zahl $\lambda$ multipliziert, dann
 wird auch der Wert der Determinanten mit $\lambda$ multipliziert.
@@ -1067,7 +1069,7 @@ Die Inverse der $n\times n$-Matrix $A$ ist gegeben durch
 \label{buch:linalg:inverse:formel}
 \end{equation}
 Die Transponierte der Matrix auf der rechten Seite (ohne den Vorfaktor
-$1/\det(A)$
+$1/\det(A)$)
 heisst die {\em Adjunkte} $\operatorname{adj}A$ von $A$.
 \index{Adjunkte}%
 \end{satz}
@@ -1177,7 +1179,9 @@ dass  die Produktregel
 \det (AB) = \det(A) \cdot \det(B)
 \]
 gilt.
-Daraus folgt auch, dass $\det(A^{-1})=\det(A)^{-1}$.
+Daraus folgt auch, dass $\det(A^{-1})=\det(A)^{-1}$
+(Details in \cite{buch:linalg}).
+
 
 %
 % Lineare Abbildungen
@@ -1191,7 +1195,7 @@ und die Darstellung als Matrix mit Hilfe einer Basis eingeführt.
 
 
 \subsubsection{Definition}
-Eine lineare Abbildung zwischen Vektorräumen muss so gestaltet sein,
+Eine lineare Abbildung zwischen $\Bbbk$-Vektorräumen muss so gestaltet sein,
 dass die Operationen des Vektorraums erhalten bleiben.
 Dies wird von der folgenden Definition erreicht.
 
@@ -1213,7 +1217,7 @@ Lineare Abbildungen sind in der Mathematik weit verbreitet, wie die
 folgenden Beispiele zeigen.
 
 \begin{beispiel}
-Sie $V=C^1([a,b])$ die Menge der stetig differenzierbaren Funktionen
+Sei $V=C^1([a,b])$ die Menge der stetig differenzierbaren Funktionen
 auf dem Intervall $[a,b]$ und $U=C([a,b])$ die Menge der
 stetigen Funktion auf $[a,b]$.
 Die Ableitung $\frac{d}{dx}$ macht aus einer Funktion $f(x)$ die
@@ -1285,10 +1289,10 @@ den Basen $\mathcal{B}$ bzw.~$\mathcal{C}$.
 \index{Matrix einer linearen Abbildung}%
 
 Die Matrix einer linearen Abbildung macht Aussagen über eine lineare
-Abbilung der rechnerischen Untersuchung zugänglich.
+Abbildung der rechnerischen Untersuchung zugänglich.
 Allerdings hängt die Matrix einer linearen Abbildung von der Wahl der
 Basis ab.
-Gleichzeitig ist dies eine Chance, durch Wahl einer geeigneten Basis
+Gleichzeitig ist dies eine Chance: Durch Wahl einer geeigneten Basis
 kann man eine Matrix in eine Form bringen, die zur Lösung eines
 Problems optimal geeignet ist.
 
@@ -1364,9 +1368,9 @@ in $U$ bzw.~$V$ gewählten Basen $\mathcal{B}$ bzw.~$\mathcal{C}$.
 Wechselt man die Basis und verwendet in $U$ die Basis $\mathcal{B}'$ und
 in $V$ die Basis $\mathcal{C}'$, dann gibt es Matrizen
 $T_U$ und $T_V$, die die Koordinaten in $U$ bzw.~$V$ von der gestrichenen
-Basis in die gestrichen umzurechnen gestattet.
+Basis in die ungestrichene umzurechnen gestattet.
 Ist $A$ die Matrix von $A$ in den Basen $\mathcal{B}$ und $\mathcal{C}$,
-dann ist Matrix der gleichen Abbildung in den Basen $\mathcal{B}'$
+dann ist die Matrix der gleichen linearen Abbildung in den Basen $\mathcal{B}'$
 und $\mathcal{C}'$ gegeben durch die Matrix
 \begin{equation}
 A' = T_VAT_U^{-1}.
@@ -1374,12 +1378,14 @@ A' = T_VAT_U^{-1}.
 \end{equation}
 
 \subsubsection{Umkehrabbbildung}
-Sei $f$ eine umkehrbare lineare Abbildung $U\to V$ und $g\colon V\to U$.
+Sei $f$ eine umkehrbare lineare Abbildung $f\colon U\to V$ und $g\colon V\to U$.
 die zugehörige Umkehrabbildung.
 \index{Umkehrabbildung}%
-Für zwei Vektoren $u$ und $w$ in $U$ gibt es daher Vektoren $a=g(u)$
-und $b=g(w)$ in $V$ derart, dass $f(a)=u$ und $f(b)=w$.
-Weil $f$ linear ist, folgt daraus $f(a+b)=u+w$ und $f(\lambda a)=\lambda a$
+Für zwei Vektoren $u$ und $w$ in $U$ setzen wir $a=g(u)\in V$
+und $b=g(w)\in V$.
+Da $g$ die Umkehrabbildung von $f$ ist, folgt $f(a)=u$ und $f(b)=w$.
+Weil $f$ linear ist, folgt daraus
+$f(a+b)=u+w$ und $f(\lambda a)=\lambda a$
 für jedes $\lambda\in\Bbbk$.
 Damit kann man jetzt
 \begin{align*}
@@ -1417,7 +1423,7 @@ Der Kern oder Nullraum der Matrix $A$ ist die Menge
 \[
 \ker A
 =
-\{ x\in\Bbbk^m \;|\; Ax=0\}.
+\{ x\in\Bbbk^n \;|\; Ax=0\}.
 \]
 \end{definition}
 
@@ -1455,8 +1461,8 @@ $f(u)=a$ und $f(w)=b$.
 Für Summe und Multiplikation mit Skalaren folgt
 \[
 \begin{aligned}
-a+b       &= f(u)+f(v)=f(u+v)           & \Rightarrow &       a+b &\in\operatorname{im}f\\
-\lambda a &=\lambda f(u) = f(\lambda u) & \Rightarrow & \lambda a &\in\operatorname{im}f,
+a+b       &= f(u)+f(v)=f(u+v)           && \Rightarrow &       a+b &\in\operatorname{im}f\phantom{,}\\
+\lambda a &=\lambda f(u) = f(\lambda u) && \Rightarrow & \lambda a &\in\operatorname{im}f,
 \end{aligned}
 \]
 also ist auch das Bild $\operatorname{im}f$ ein Unterraum von $U$.
@@ -1478,7 +1484,8 @@ Der {\em Rang} der Matrix $A$ ist die Dimension des Bildraumes von $A$:
 $\operatorname{rank}A=\dim\operatorname{im} A$.
 \index{Rang einer Matrix}%
 \index{rank@$\operatorname{rank}A$}%
-Der {\em Defekt} der Matrix $A$ ist die Dimension des Kernes von $A$:
+Der {\em Defekt} $\operatorname{def}A$ der Matrix $A$ ist die Dimension
+des Kernes von $A$:
 $\operatorname{def}A=\dim\ker A$.
 \index{Defekt einer Matrix}%
 \end{definition}
@@ -1586,6 +1593,6 @@ nach dem im vorangegangenen Abschnitt angesprochenen Basiswechsel.
 Die Pivotspalten beschreiben Vektoren, die durch die Abbildung {\em nicht}
 zu $0$ gemacht werden.
 Wendet man $A$ auf die Standardbasisvektoren ab, die zu den 
-Pivospalten gehören, erhält man also eine Basis für da Bild
+Pivospalten gehören, erhält man also eine Basis für das Bild
 von $A$.
 

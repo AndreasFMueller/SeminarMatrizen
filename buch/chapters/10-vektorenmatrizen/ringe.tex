@@ -42,7 +42,7 @@ für beliebige Elemente $a,b,c\in R$.
 
 Die Distributivgesetze stellen sicher, dass man in $R$ beliebig
 ausmultiplizieren kann.
-Man kann also so rechnen kann, wie man sich das gewohnt ist.
+Man kann also so rechnen, wie man sich das gewohnt ist.
 Es stellt auch sicher, dass die Multiplikation mit $0$ immer $0$
 ergibt, denn es ist
 \[
@@ -101,10 +101,10 @@ bestehend aus den Folgen, die nur für endlich viele Folgenglieder von
 $0$ verschieden sind.
 Für eine Folge $a\in c_0(\mathbb{Z})$ gibt es eine Zahl $N$ derart, dass
 $a_n=0$ für $n\ge N$.
-Die konstante Folge $u_n=1$, die in $c(\mathbb{Z})$ erfüllt diese
+Die konstante Folge $u_n=1$, die in $c(\mathbb{Z})$ liegt, erfüllt diese
 Bedingung nicht, die Eins des Ringes $c(\mathbb{Z})$ ist also nicht in
 $c_0(\mathbb{Z})$.
-$c_0(\mathbb{Z})$ ist immer noch ein Ring, aber er hat kein Eins.
+$c_0(\mathbb{Z})$ ist immer noch ein Ring, aber er hat keine Eins.
 \end{beispiel}
 
 \begin{beispiel}
@@ -195,7 +195,7 @@ $U(R)$ ist eine Gruppe, die sogenannte {\em Einheitengruppe}.
 \begin{beispiel}
 Die Menge $M_2(\mathbb{Z})$ ist ein Ring mit Eins, die Einheitengruppe
 besteht aus den invertierbaren $2\times 2$-Matrizen. 
-Aus der Formel für 
+Die Formel für 
 \[
 \begin{pmatrix}
 a&b\\
@@ -216,9 +216,10 @@ $U(M_n(\Bbbk))=\operatorname{GL}_n(\Bbbk)$.
 \end{beispiel}
 
 \subsubsection{Nullteiler}
-Ein möglicher Grund, warum ein Element $r\in R$ nicht invertierbar
-ist, kann sein, dass es ein Element $s\in R$ mit $rs=0$ gibt.
-Wäre nämlich $t$ ein inverses Element, dann wäre $0=t0 = t(rs) = (tr)s=s$.
+Ein möglicher Grund, warum ein Element $r\in R^*$ nicht invertierbar
+ist, kann sein, dass es ein Element $s\in R^*$ mit $rs=0$ gibt.
+Wäre nämlich $t$ ein inverses Element, dann wäre $0=t0 = t(rs) = (tr)s=s$,
+also $s\not\in R^*$, ein Widerspruch.
 
 \begin{definition}
 \label{buch:grundlagen:def:nullteiler}
@@ -230,7 +231,7 @@ Ein Ring ohne Nullteiler heisst {\em nullteilerfrei}.
 \index{nullteilerfrei}%
 
 In $\mathbb{R}$ ist man sich gewohnt zu argumentieren, dass wenn ein
-Produkt $ab=0$ ist, dann muss einer der Faktoren $a=0$ oder $b=0$ sein.
+Produkt $ab=0$ ist, auch einer der Faktoren $a=0$ oder $b=0$ sein muss.
 Dieses Argument funktioniert nur, weil $\mathbb{R}$ ein nullteilerfreier
 Ring ist.
 In $M_2(\mathbb{R})$ ist dies nicht mehr möglich.
@@ -318,10 +319,14 @@ $r_2I\subset I$ ist.
 Ein Unterring $I\subset R$ heisst ein {\em Ideal}, wenn für jedes $r\in R$ gilt
 $rI\subset I$ und $Ir\subset I$ gilt.
 \index{Ideal}%
-Die Faktorgruppe $R/I$ erhält eine natürliche Ringstruktur, $R/I$ 
+\end{definition}
+
+\begin{satz}
+Für ein Ideal $I\subset R$
+erhält die Faktorgruppe $R/I$ eine natürliche Ringstruktur, $R/I$ 
 heisst der {\em Quotientenring}.
 \index{Quotientenring}%
-\end{definition}
+\end{satz}
 
 \begin{beispiel}
 Die Menge $n\mathbb{Z}\subset\mathbb{Z}$ besteht aus den durch $n$ teilbaren

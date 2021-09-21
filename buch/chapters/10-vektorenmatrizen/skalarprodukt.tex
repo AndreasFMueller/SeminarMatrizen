@@ -7,8 +7,8 @@
 \label{buch:section:skalarprodukt}}
 \rhead{Skalarprodukt}
 In der bisher dargestellten Form ist die lineare Algebra nicht
-in der Lage, unsere vom Abstandsbegriff dominierte Geometrie adäquat
-darzustellen.
+in der Lage, unsere vom Abstandsbegriff dominierte, anschauliche Geometrie
+adäquat darzustellen.
 Als zusätzliches Hilfsmittel wird eine Methode benötigt, Längen
 und Winkel auszudrücken.
 Das Skalarprodukt passt in den algebraischen Rahmen der
@@ -18,8 +18,8 @@ der genau der geometrischen Intuition entspricht.
 \subsection{Bilinearformen und Skalarprodukte
 \label{buch:subsection:bilinearformen}}
 Damit man mit einem Skalarprodukt wie mit jedem anderen Produkt
-rechnen kann, müssen man auf beiden Seiten des Zeichesn ausmultiplizieren
-können:
+rechnen kann, müssen man auf beiden Seiten des Multiplikationszeichens
+ausmultiplizieren können:
 \begin{align*}
 (\lambda x_1 + \mu x_2)\cdot y &= \lambda x_1\cdot y + \mu x_2\cdot y\\
 x\cdot (\lambda y_1 + \mu y_2) &= \lambda x\cdot y_1 + \mu x\cdot y_2.
@@ -46,7 +46,7 @@ Eine bilineare Funktion mit Werten in $\Bbbk$ heisst auch {\em Bilinearform}.
 
 \subsubsection{Symmetrische bilineare Funktionen}
 Das Skalarprodukt hängt nicht von der Reihenfolge der Faktoren ab.
-In Frage dafür kommen daher nur Bilnearformen $f\colon V\times V\to\Bbbk$,
+In Frage dafür kommen daher nur Bilinearformen $f\colon V\times V\to\Bbbk$,
 die zusätzlich $f(x,y)=f(y,x)$ erfüllen.
 Solche Bilinearformen heissen {\em symmetrisch}.
 Für eine symmetrische Bilinearform gilt die binomische Formel
@@ -115,7 +115,7 @@ die Dreiecksungleichung ausgedrückt wird.
 In diesem Abschnitt soll gezeigt werden, dass die $l^2$-Norm
 diese immer erfüllt.
 Dazu sei $V$ ein $\mathbb{R}$-Vektorraum mit Skalarprodukt
-$\langle\;,\;\rangle$.
+$\langle\;\,,\;\rangle$.
 
 \begin{satz}[Cauchy-Schwarz-Ungleichung]
 \label{buch:skalarprodukt:satz:cauchy-schwarz-ungleichung}
@@ -131,7 +131,7 @@ mit Gleichheit genau dann, wenn $x$ und $y$ linear abhängig sind.
 \index{Cauchy-Schwarz-Ungleichung}%
 
 \begin{proof}[Beweis]
-Wir die Norm von $z=x-ty$:
+Wir berechnen die Norm von $z=x-ty$:
 \begin{align}
 \|x-ty\|_2^2
 &=
@@ -230,12 +230,12 @@ zu beinhalten, als die symmetrische Bilinearform, aus der sie
 hervorgegangen ist.
 Dem ist aber nicht so, denn die Bilinearform lässt sich aus der
 Norm zurückgewinnen.
-Dies ist der Inhalt der sogenannte Polarformel.
+Dies ist der Inhalt der sogenannte {\em Polarformel}.
 
 \begin{satz}[Polarformel]
 \label{buch:skalarprodukt:satz:polarformel}
 Ist $\|\cdot\|_2$ eine Norm, die aus einer symmetrischen Bilinearform
-$\langle\;,\;\rangle$ hervorgegangen ist, dann kann die Bilinearform
+$\langle\;\,,\;\rangle$ hervorgegangen ist, dann kann die Bilinearform
 mit Hilfe der Formel
 \begin{equation}
 \langle x,y\rangle
@@ -312,7 +312,7 @@ Für die Norm $\|x\|_2^2=\langle x,x\rangle$ bedeutet dies jetzt
 \|\lambda x\|_2 = |\lambda|\, \|x\|_2.
 \]
 
-\subsection{Orthognormalbasis
+\subsection{Orthonormalbasis
 \label{buch:subsection:orthonormalbasis}}
 \index{orthonormierte Basis}%
 Sowohl die Berechnung von Skalarprodukten wie auch der Basis-Wechsel
@@ -322,7 +322,7 @@ sind und Länge $1$ haben.
 \subsubsection{Orthogonale Vektoren}
 In der Vektorgeometrie definiert man den Zwischenwinkel $\alpha$
 zwischen zwei von $0$ verschiedene Vektoren $u$ und $v$ mit Hilfe
-des Skalarproduktes und er Formel
+des Skalarproduktes und der Formel
 \[
 \cos\alpha = \frac{\langle u,v\rangle}{\|u\|_2\cdot\|v\|_2}.
 \]
@@ -419,14 +419,18 @@ Mit Hilfe des Gram-Schmidtschen Orthonormalisierungsprozesses kann aus
 einer beliebige Basis $\{a_1,a_2,\dots,a_n\}\subset V$ eines Vektorraums
 mit einem Skalarprodukt eine orthonormierte Basis 
 $\{b_1,b_2,\dots,b_n\}$ gefunden werden derart, dass für alle $k$
-$\langle b_1,\dots,b_k\rangle = \langle a_1,\dots ,a_k\rangle$.
+die aufgespannten Räume
+$\langle b_1,\dots,b_k\rangle = \langle a_1,\dots ,a_k\rangle$
+gleich sind.
 \index{Gram-Schmidt-Orthonormalisierung}%
+Mit den Vektoren $b_1,\dots,b_k$ kann man also die gleichen Vektoren
+linear kombinieren wie mit den Vektoren $a_1,\dots,a_k$.
 Der Zusammenhang zwischen den Basisvektoren $b_i$ und $a_i$ ist
 gegeben durch
 \begin{align*}
-b_1&=\frac{a_1}{\|a_1\|_2}
+b_1&=\frac{a_1}{\|a_1\|_2},
 \\
-b_2&=\frac{a_2-b_1\langle b_1,a_2\rangle}{\|a_2-b_1\langle b_1,a_2\rangle\|_2}
+b_2&=\frac{a_2-b_1\langle b_1,a_2\rangle}{\|a_2-b_1\langle b_1,a_2\rangle\|_2},
 \\
 b_3&=\frac{a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle}{\|a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle\|_2}
 \\
@@ -454,9 +458,9 @@ immer noch möglich, aus einer Basis $\{a_1,\dots,a_n\}$ eine orthogonale
 Basis zu konstruieren.
 Man verwendet dazu die Formeln
 \begin{align*}
-b_1&=a_1
+b_1&=a_1,
 \\
-b_2&=a_2-b_1\langle b_1,a_2\rangle
+b_2&=a_2-b_1\langle b_1,a_2\rangle,
 \\
 b_3&=a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle
 \\
@@ -528,7 +532,7 @@ als von der Basis unabhängige Eigenschaften betrachtet werden können.
 Ziel dieses Abschnitts ist, Eigenschaften wie Symmetrie oder
 hermitesch auf basisunabhängige Eigenschaften von
 linearen Abbildungen in einem Vektorraum $V$ mit Skalarprodukt
-$\langle\;,\;\rangle$ zu verstehen.
+$\langle\;\,,\;\rangle$ zu verstehen.
 
 \subsubsection{Reelle selbstadjungierte Abbildungen}
 Sei $f\colon V\to V$ eine lineare Abbildung.
@@ -577,7 +581,8 @@ x^tAy
 x^tA^ty = x^tAy\quad\forall x,y\in\mathbb{R}^n,
 \]
 was gleichbedeutend ist mit $A^t=A$.
-Der Begriff der selbstadjungierten Abbildung ist also eine natürliche
+Der Begriff der selbstadjungierten Abbildung ist also die natürliche,
+basisunabhängige
 Verallgemeinerung des Begriffs der symmetrischen Matrix.
 
 \subsubsection{Selbstadjungierte komplexe Abbildungen}
@@ -614,7 +619,7 @@ heisst die {\em Adjungierte} von $f$.
 \end{definition}
 
 Eine selbstadjungierte Abbildung ist also eine lineare Abbildung,
-die mit ihrer Adjungierte übereinstimmt, als $f^* = f$.
+die mit ihrer Adjungierte übereinstimmt, also $f^* = f$.
 In einer orthonormierten Basis $\{b_1,\dots,b_n\}$ hat die Abbildung
 $f$ die Matrixelemente $a_{i\!j}=\langle b_i,fb_j\rangle$.
 Die adjungierte Abbildung hat dann die Matrixelemente
@@ -636,18 +641,18 @@ die die Norm nicht verändern.
 Aus der Polarformel~\eqref{buch:grundlagen:eqn:polarformel}
 folgt dann, dass auch das Skalarprodukt erhalten ist, aus dem
 Winkel berechnet werden können.
-Abbildungen, die die Norm erhalten, sind daher auch winkeltreu.
+Lineare Abbildungen, die die Norm erhalten, sind daher auch winkeltreu.
 
 \begin{definition}
 Eine lineare Abbildung $f\colon V\to V$ in einem reellen
-Vektorraum mit heisst {\em orthogonal}, wenn
+Vektorraum mit Skalarprodukt heisst {\em orthogonal}, wenn
 $\langle fx,fy\rangle = \langle x,y\rangle$ für alle
 $x,y\in V$ gilt.
 \index{orthogonale Abbildung}%
 \index{orthogonale Matrix}%
 \end{definition}
 
-Die adjungierte einer orthogonalen Abbildung erfüllt
+Die Adjungierte einer orthogonalen Abbildung erfüllt
 $\langle x,y\rangle = \langle fx,fy\rangle = \langle f^*f x, y\rangle$
 für alle $x,y\in V$, also muss $f^*f$ die identische Abbildung sein,
 deren Matrix die Einheitsmatrix ist.
@@ -672,11 +677,12 @@ Die Matrix einer unitären Abbildung in einer orthonormierten Basis ist unitär.
 
 \subsection{Orthogonale Unterräume
 \label{buch:subsection:orthogonale-unterraeume}}
-Die Orthogonalitätsrelation lässt sich auch auf Unterräume ausdehnen.
+Die Orthogonalitätsrelation lässt sich von einzelnen Vektoren auf ganze
+auf Unterräume ausdehnen.
 Zwei Unterräume $U\subset V$ und $W\subset V$ eines Vektorraums mit
 Skalarprodukt heissen orthogonal, wenn gilt
 \(
-u\perp w\forall u\in U,w\in W
+u\perp w\;\forall u\in U,w\in W
 \).
 
 \subsubsection{Orthogonalkomplement}
@@ -883,7 +889,7 @@ Norm ausgestattet werden, wenn $U$ und $V$ jeweils eine Norm haben.
 \begin{definition}
 Seien $U$ und $V$ Vektorräume über $\mathbb{R}$ oder $\mathbb{C}$ und
 $f\colon U\to V$ eine lineare Abbildung.
-Die {\em Operatorname} der linearen Abbildung ist 
+Die {\em Operatornorm} der linearen Abbildung ist 
 \index{Operatornorm}%
 \[
 \|f\|
@@ -986,7 +992,7 @@ Die $L^1$-Norm ist dagegen definiert als.
 \]
 Die drei Normen stimmen nicht überein.
 Beschränkte Funktionen sind zwar immer integrierbar und quadratintegrierbar.
-Es gibt integrierbare Funktionen, die nicht quadratintegrierbar sind, zum
+Es gibt aber integrierbare Funktionen, die nicht quadratintegrierbar sind, zum
 Beispiel ist die Funktion $f(x)=1/\sqrt{x}$ auf dem Interval $[0,1]$
 \begin{align*}
 \|f\|_1

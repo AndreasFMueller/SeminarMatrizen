@@ -37,7 +37,7 @@ Eigenschaften:
 Die Verknüpfung ist assoziativ: $(ab)c=a(bc)$ für alle $a,b,c\in G$.
 \index{assoziativ}%
 \item
-Es gibt ein neutrales Element $e\in G$
+Es gibt ein neutrales Element $e\in G$.
 \item
 Für jedes Element $g\in G$ gibt es ein Element $h\in G$ mit 
 $hg=e$.
@@ -54,12 +54,12 @@ spricht man oft von einer {\em Halbruppe}.
 \index{Halbgruppe}%
 
 \begin{definition}
-Eine Gruppe $G$ heisst abelsch, wenn $ab=ba$ für alle $a,b\in G$.
+Eine Gruppe $G$ heisst {\em abelsch}, wenn $ab=ba$ für alle $a,b\in G$.
 \end{definition}
 \index{abelsch}%
 
 Additiv geschrieben Gruppen werden immer als abelsch angenommen,
-multiplikativ geschrieben Gruppen können abelsch oder nichtabelsch sein.
+multiplikativ geschriebene Gruppen können abelsch oder nichtabelsch sein.
 
 \subsubsection{Beispiele von Gruppen}
 
@@ -147,8 +147,8 @@ i(hg)
 =
 ie.
 \]
-Wende man dies auf das Produkt $gh$ an, folgt
-\[
+Wendet man dies auf das Produkt $gh$ an, folgt
+\begin{equation}
 gh
 =
 (ie)h
@@ -157,11 +157,13 @@ i(eh)
 =
 ih
 =
-e
-\]
+e.
+\label{buch:gruppen:eqn:gh=e}
+\end{equation}
 Es ist also nicht nur $hg=e$ sondern immer auch $gh=e$.
 
 Für eine Inverse $h$ von $g$ folgt
+aus \eqref{buch:gruppen:eqn:gh=e}
 \[
 ge
 =
