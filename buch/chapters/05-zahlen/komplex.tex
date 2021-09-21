@@ -17,7 +17,7 @@ haben weiterhin keine Lösung.
 Der Grund dafür ist das Bestreben bei der Konstruktion der reellen Zahlen, 
 die Ordnungsrelation zu erhalten.
 \index{Ordnungsrelation}%
-Diese ermöglicht, Näherungsintervall und Intervallschachtelungen
+Diese ermöglicht, Näherungsintervalle und Intervallschachtelungen
 zu definieren.
 
 Die Ordnungsrelation sagt aber auch, dass $x^2\ge 0$ ist für jedes
@@ -66,7 +66,7 @@ ist
 \]
 mit den Rechenoperationen~\eqref{buch:zahlen:cregeln}.
 Die Menge $\mathbb{C}$ verhält sich daher wie eine zweidimensionaler
-reeller Vektorraum.
+reeller Vektorraum mit Basisvektoren $1$ und $i$.
 
 \subsubsection{Real- und Imaginärteil}
 Ist $z=a+bi$ eine komplexe Zahl, dann heisst $a$ der {\em Realteil} $a=\Re z$
@@ -74,8 +74,11 @@ Ist $z=a+bi$ eine komplexe Zahl, dann heisst $a$ der {\em Realteil} $a=\Re z$
 und $b$ heisst der {\em Imaginärteil} $\Im z$.
 \index{Imaginärteil}%
 Real- und Imaginärteil sind lineare Abbildungen $\mathbb{C}\to\mathbb{R}$,
-sie projizieren einen Punkt auf die Koordinatenachsen, die entsprechend
-auch die reelle und die imaginäre Achse heissen.
+wenn man $\mathbb{C}$ als linearen $\mathbb{R}$-Vektorraum betrachtet.
+Sie projizieren einen Punkt auf die Koordinatenachsen, die entsprechend
+auch die {\em reelle} und die {\em imaginäre Achse} heissen.
+\index{reelle Achse}%
+\index{imaginäre Achse}%
 
 Die Multiplikation mit $i$ vertauscht Real- und Imaginärteil:
 \[
@@ -97,7 +100,8 @@ Abschnitt~\ref{buch:grundlagen:subsection:ringe}
 komplexe Zahlen als Matrizen beschreiben.
 
 \subsubsection{Gausssche Zahlenebene}
-Beschränkt man die Multiplikation auf einen reellen Faktor, wird $\mathbb{C}$
+Beschränkt man die Multiplikation auf einen reellen Faktor, wird $\mathbb{C}$,
+wie wir bereits ausgeführt haben,
 zu einem zweidimensionalen reellen Vektorraum.
 Man kann die komplexe Zahl $a+bi$ daher auch als Punkt $(a,b)$ in der
 sogenannten {\em Gaussschen Ebene} betrachten (Abbildung~\ref{buch:zahlen:cfig}).
@@ -110,7 +114,7 @@ genauer untersuchen müssen.
 \centering
 \includegraphics{chapters/05-zahlen/images/komplex.pdf}
 \caption{Argument und Betrag einer komplexen Zahl $z=a+ib$ in der 
-Gaussschen Zahlenebene
+Gaussschen Zahlen\-ebene
 \label{buch:zahlen:cfig}}
 \end{figure}%
 
@@ -125,8 +129,9 @@ charakterisiert werden.
 
 \subsubsection{Komplexe Konjugation}
 Der komplexen Zahl $u=a+bi$ ordnen wir die sogenannte
-{\em komplex konjugierte} Zahl $\overline{z} = a-bi$.
-Mit Hilfe der komplexen Konjugation kann man den Real- und Imaginärteil
+{\em komplex konjugierte} Zahl $\overline{z} = a-bi$ zu.
+Mit Hilfe der komplexen Konjugation $z\mapsto\overline{z}$
+kann man den Real- und Imaginärteil
 \index{komplexe Konjugation}%
 \index{Konjugation, komplexe}%
 algebraisch ausdrücken:

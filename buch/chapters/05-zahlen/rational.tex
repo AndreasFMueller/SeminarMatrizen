@@ -8,7 +8,7 @@
 \label{buch:section:rationale-zahlen}}
 \rhead{Rationale Zahlen}
 In den ganzen Zahlen sind immer noch nicht alle linearen Gleichungen
-lösbar, es gibt keine ganze Zahl $x$ mit $3x=1$.
+lösbar: Es gibt keine ganze Zahl $x$ mit $3x=1$.
 Die nötige Erweiterung der ganzen Zahlen lernen Kinder noch bevor sie
 die negativen Zahlen kennenlernen.
 
@@ -32,14 +32,14 @@ $z \mapsto (z, 1)$ in diese Menge von Paaren einbetten.
 
 Ähnlich wie schon bei den ganzen Zahlen ist diese Darstellung
 aber nicht eindeutig.
-Zwei Paare sind äquivalent, wenn sich deren beide Elemente um denselben Faktor
-unterscheiden,
+Zwei Paare sind äquivalent, wenn sich ihre beide Elemente um denselben
+Faktor unterscheiden,
 \[
 (a, b)
 \sim
 (c, d)
 \quad \Leftrightarrow \quad
-\exists \lambda \in \mathbb Z \colon
+\exists \lambda \in \mathbb Z\setminus\{0\} \colon
 \lambda a = c
 \wedge
 \lambda b = d
@@ -76,9 +76,9 @@ Die Rechenregeln werden dadurch zu den wohlvertrauten
 \qquad\text{und}\qquad
 \frac{a}{b}\cdot\frac{c}{d}
 =
-\frac{ac}{bd}
+\frac{ac}{bd}.
 \]
-und die speziellen Brüche $\frac{0}{b}$ und $\frac{1}{1}$ erfüllen die
+Die speziellen Brüche $\frac{0}{b}$ und $\frac{1}{1}$ erfüllen die
 Regeln
 \[
 \frac{a}{b}+\frac{0}{d} = \frac{ad}{bd} \sim \frac{a}{b},
@@ -104,15 +104,17 @@ Zum Beispiel folgt
 wir müssen also die beiden Brüche als gleichwertig betrachten.
 Allgemein gelten die zwei Brüche $\frac{a}{b}$ und $\frac{c}{d}$
 als äquivalent, wenn $ad-bc= 0$ gilt.
-Dies ist gleichbedeutend mit der früher definierten Äquivalenzrelation
-und bestätigt, dass die beiden Brüche
-\[
+Dies ist gleichbedeutend mit der früher definierten Äquivalenzrelation.
+Aus ihr folgt wieder, dass die beiden Brüche
+\begin{equation}
 \frac{ac}{bc} 
 \qquad\text{und}\qquad
 \frac{a}{b}
-\]
+\label{buch:zahlen:eqn:kuerzen-erweitern}
+\end{equation}
 als gleichwertig zu betrachten sind.
-Der Übergang von links nach rechts heisst {\em Kürzen},
+Der Übergang von links nach rechts in \eqref{buch:zahlen:eqn:kuerzen-erweitern}
+heisst {\em Kürzen},
 \index{Kürzen}%
 der Übergang von rechts nach links heisst {\em Erweitern}.
 \index{Erweitern}%
@@ -127,7 +129,7 @@ gewohnten Rechenregeln, die bereits in $\mathbb{Z}$ gegolten haben,
 uneingeschränkt möglich.
 
 \subsubsection{Kehrwert}
-Zu jedem Bruch $\frac{a}{b}$ lässt sich der Bruch $\frac{b}{a}$,
+Zu jedem Bruch $\frac{a}{b}$, $a\ne 0$, lässt sich der Bruch $\frac{b}{a}$,
 der sogenannte {\em Kehrwert}
 \index{Kehrwert}%
 konstruieren.
@@ -144,7 +146,8 @@ Der Kehrwert ist also das multiplikative Inverse, jede von $0$ verschiedene
 rationale Zahl hat eine solche Inverse.
 
 \subsubsection{Lösung von linearen Gleichungen}
-Mit dem Kehrwert lässt sich jetzt jede lineare Gleichung lösen.
+Mit dem Kehrwert lässt sich jetzt jede lineare Gleichung mit ganzen
+Koeffizienten lösen.
 \index{lineares Gleichungssystem}%
 Die Gleichung $ax=b$ hat die Lösung
 \[
