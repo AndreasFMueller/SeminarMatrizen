@@ -33,7 +33,7 @@ In dieser eher arithmetischen Sichtweise ist es aber eigentlich egal, dass in
 \eqref{buch:eqn:polynome:polynom} nur einfache Multiplikationen und
 Additionen vorkommen.
 In einem Programm könnten ja auch beliebig komplizierte Operationen
-verwendet werden, warum also diese Beschränkung.
+verwendet werden, warum also diese Beschränkung?
 
 Für die nachfolgenden Betrachtungen stellen wir uns $X$ daher nicht
 mehr einfach als einen Platzhalter für eine Zahl vor, sondern als ein neues
@@ -88,7 +88,8 @@ Die ganzen Zahlen $\mathbb{Z}$ kommen dafür in Frage, aber auch
 die rationalen oder reellen Zahlen $\mathbb{Q}$ und $\mathbb{R}$.
 Man kann sogar noch weiter gehen: man kann als Koeffizienten auch
 Vektoren oder sogar Matrizen zulassen.
-Polynome können addiert werden, indem die Koeffizienten addiert werden.
+Polynome können addiert werden, indem die Koeffizienten addiert werden,
+und sie können mit Skalaren aus dem Koeffizentenkörper multipliziert werden.
 Polynome können aber auch multipliziert werden, was auf die Faltung
 der Koeffizienten hinausläuft:
 \begin{align}
@@ -103,15 +104,14 @@ a_{n}b_{m}X^{n+m}
 +
 (a_{n}b_{m-1}+a_{n-1}b_{m})X^{n+m-1}
 +
-\dots
-+
-\sum_{i + j = k}a_ib_j X^k
-+
-\dots
+\ldots
 +
 (a_1b_0+a_0b_1)X
 +
 a_0b_0
+\\
+&=
+\sum_{i + j = k}a_ib_j X^k.
 \label{buch:eqn:polynome:faltung}
 \end{align}
 Dies ist aber nur möglich, wenn die Koeffizienten selbst miteinander

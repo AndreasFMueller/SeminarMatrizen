@@ -80,14 +80,14 @@ Beim Rechnen mit Resten modulo $n$ können Vielfache von $n$ ignoriert werden.
 Zum Beispiel gilt 
 \[
 \begin{aligned}
-48&\equiv -1\mod 7& 48&=-1&&\text{in $\mathbb{Z}/7\mathbb{Z}$}
+48&\equiv -1\mod 7&&\Leftrightarrow& 48&=-1&&\text{in $\mathbb{Z}/7\mathbb{Z}$}
 \\
-3\cdot 5=15&\equiv 1\mod 7 & 3\cdot 5&=1&&\text{in $\mathbb{Z}/7\mathbb{Z}$.}
+3\cdot 5=15&\equiv\phantom{-}1\mod 7&&\Leftrightarrow & 3\cdot 5&=\phantom{-}1&&\text{in $\mathbb{Z}/7\mathbb{Z}$.}
 \end{aligned}
 \]
 Das Beispiel zeigt, dass man mindestens in $\mathbb{Z}/7\mathbb{Z}$ mit
 Resten ganz ähnlich rechnen kann wie in $\mathbb{Q}$.
-In $\mathbb{Z}/7\mathbb{Z}$ scheinen $3$ und $5$ multiplikative inverse
+In $\mathbb{Z}/7\mathbb{Z}$ scheinen $3$ und $5$ multiplikative Inverse
 zu sein.
 
 Tatsächlich kann man auf den Restklassen eine Ringstruktur definieren.
@@ -97,7 +97,6 @@ Der Rest $a$ kann jede Zahl der Form $a+kn$ darstellen.
 Ebenso kann der Rest $b$ jede Zahl der Form $b+ln$ darstellen.
 Deren Summe ist $a+b+(k+l)n\equiv a+b\mod n$.
 Der Repräsentant des Restes hat also keinen Einfluss auf die Summe.
-
 Ebenso ist das Produkt der beiden Repräsentaten 
 $(a+kn)\cdot(b+ln) = ab + (al+bk)n + kln^2=ab + (al+bk+kln)n\equiv ab\mod n$
 für jede Wahl von $k$ und $l$.
@@ -105,7 +104,7 @@ Auch die Multiplikation ist also unabhängig vom gewählten Repräsentanten.
 
 \begin{definition}
 Die Menge $\mathbb{Z}/n\mathbb{Z}$ ist ein Ring,
-heisst der {\em Restklassenring modulo $n$}.
+er heisst der {\em Restklassenring modulo $n$}.
 \end{definition}
 
 \subsubsection{Division in $\mathbb{Z}/n\mathbb{Z}$}
@@ -288,7 +287,7 @@ Primzahl ist.
 Wir betrachten dazu die Menge der nicht einfarbigen, geschlossenen
 Perlenketten der Länge $p$ mit $a$ Farben.
 Einge dieser Perlenketten unterscheiden sich nur durch eine
-Drehung um einzelne Perlen.
+Drehung um eine gewisse Anzahl Perlen.
 Sei $G$ die Menge der nicht einfarbigen, geschlossenen
 Perlenketten, die sich nicht nur um eine Drehung unterscheiden.
 
@@ -362,14 +361,11 @@ $(p-1)!\equiv -1\mod p$.
 
 \begin{proof}[Beweis]
 Wenn $p$ keine Primzahl ist, dann lässt sich $p$ in Faktoren
-$p=n_1\cdot n_2=p$ zerlegen.
-Beide Faktoren kommen in der Liste $1,2,\dots,p-1$ vor.
-Insbesondere haben $p=n_1n_2$ und $(p-1)!$ mindestens einen
-der Faktoren $n_1$ oder $n_2$ gemeinsam, wir können annehmen,
-dass $n_1$ dieser Faktor ist.
-Es folgt, dass der grösste gemeinsame Teiler von $p$ und $(p-1)!$
-grösser als $n_1$ ist, auch $(p-1)!$ ein Vielfaches von $n_1$ in
-$\mathbb{F}_p$.
+$p=n_1\cdot n_2$ zerlegen.
+Dies bedeutet auch, dass $n_1$ und $n_2$ Nullteiler sind in
+$\mathbb{F}_p$, es ist also $n_1n_2=0\in\mathbb{F}_p$.
+Beide Faktoren kommen in der Liste der Zahlen $1,2,\dots,p-1$ vor.
+Daher muss auch $1\cdot2\cdot\dots\cdot(p-1)=(p-1)!=0\in\mathbb{F}_p$ sein.
 Insbesondere kann $(p-1)!$ nicht $-1\in\mathbb{F}_p$ sein.
 
 Ist andererseits $p$ eine Primzahl, dann sind die Zahlen $1, 2,\dots,p-1$
@@ -382,7 +378,7 @@ Daher ist auch $(a+1)(a-1)=0$, in $\mathbb{F}_p$ muss daher einer
 der Faktoren $0$ sein, also $a=-1$ oder $a=1$ in $\mathbb{F}_p$.
 
 Zu jeder Zahl $a\in\{2,\dots,p-2\}$ liegt die Inverse $a^{-1}$
-ebenfalls in diesen Bereich und ist verschieden von $a$: $a^{-1}\ne a$.
+ebenfalls in diesem Bereich und ist verschieden von $a$: $a^{-1}\ne a$.
 Das Produkt der Zahlen
 $2\cdot 3 \cdot\ldots\cdot (p-2)$ besteht also aus zueinander inversen
 Paaren.
@@ -467,7 +463,7 @@ Ein Körper mit Charakteristik $0$ enthält immer unendliche viele
 Elemente.
 
 \subsubsection{Teilbarkeit von Binomialkoeffizienten}
-Als Beispiel für die Auswrikung der Charakteristik auf die Arithmetik
+Als Beispiel für die Auswirkung der Charakteristik auf die Arithmetik
 in einem endlichen Körper betrachten wir die Teilbarkeitseigenschaften
 der Binomialkoeffizienten.
 
@@ -500,9 +496,10 @@ Rest bei Teilung durch $2$ der Binomialkoeffizienten.
 \index{Binomialkoeffizient}%
 Man kann daraus ablesen, dass $\binom{n}{m}\equiv 0\mod 2$ für $n=2^k$ 
 und $0<m<n$.
+
 Abbildung~\ref{buch:endliche-koerper:fig:binomial5} zeigt das Pascal-Dreieck
 auch noch für $p=5$.
-Hier ist auch schön die Selbstähnlichkeit des Pascal-Dreiecks erkennbar.
+Auch hier ist schön die Selbstähnlichkeit des Pascal-Dreiecks erkennbar.
 \index{Selbstähnlichkeit}%
 \index{Pascal-Dreieck}%
 Ersetzt man die ``5er-Dreiecke'' durch ein volles Dreieck mit der Farbe
@@ -530,7 +527,7 @@ Für den Binomialkoeffizienten gilt
 =
 \frac{p\cdot (p-1)\cdot(p-2)\cdot\ldots\cdot (p-m+1)}{1\cdot 2\cdot 3\cdot\ldots\cdot m}.
 \]
-Für $m<p$ kann keiner der Faktoren im Nenner $p$ sein, der Faktor $p$
+Für $m<p$ kann keiner der Faktoren im Nenner die Zahl $p$ sein, der Faktor $p$
 im Zähler kann also nicht weggekürzt werden, so dass der Binomialkoeffizient
 durch $p$ teilbar sein muss.
 
@@ -569,6 +566,18 @@ Sei $p$ eine Primzahl, dann ist
 für $0<m<p^k$
 \end{satz}
 
+Die Aussage von Satz~\ref{buch:endliche-koerper:satz:binomk} kann man 
+auch im Körper $\mathbb{F}_p$ formulieren, in dem auch der Beweis
+etwas eleganter formuliert werden kann:
+
+\begin{satz}
+\label{buch:endliche-koerper:satz:binomFp}
+In $\mathbb{F}_p$ gilt
+\[
+\binom{p^k}{m}=0
+\]
+für beliebige $k>0$ und $0<m<p^k$.
+\end{satz}
 \begin{proof}[Beweis]
 Wir wissen aus Satz \ref{buch:endliche-koerper:satz:binom}, dass 
 \begin{equation}
@@ -601,17 +610,6 @@ Damit ist
 \eqref{buch:endliche-koerper:eqn:a+b^p^k} für alle $k$ bewiesen.
 \end{proof}
 
-Die Aussage von Satz~\ref{buch:endliche-koerper:satz:binomk} kann man 
-auch im Körper $\mathbb{F}_p$ formulieren:
-
-\begin{satz}
-\label{buch:endliche-koerper:satz:binomFp}
-In $\mathbb{F}_p$ gilt
-\[
-\binom{p^k}{m}=0
-\]
-für beliebige $k>0$ und $0<m<p^k$.
-\end{satz}
 
 \subsubsection{Frobenius-Automorphismus}
 Die Abbildung $x\mapsto x^n$ ist weit davon entfernt, sich mit den
@@ -629,7 +627,7 @@ a^n + \binom{n}{1}a^{n-1}b + \dots + \binom{n}{n-1}ab^{n-1} + b^n
 gibt es zwischen den Termen an den Enden des Ausdrucks noch viele
 Zwischenterme, die normalerweise nicht verschwinden.
 
-Ganz anders sieht die Situation aus, wenn $n=p$ ist.
+Ganz anders sieht die Situation in $\mathbb{F}_p$ aus, wenn $n=p$ ist.
 Nach Satz~\ref{buch:endliche-koerper:satz:binomFp} verschwinden die
 Binomialkoeffizienten der Zwischenterme der Summe
 \eqref{buch:endliche-koerper:fig:binomischeformel}
@@ -638,12 +636,17 @@ Daher gilt
 \index{Frobenius-Automorphismus}%
 
 \begin{satz}[Frobenius-Automorphismus]
+\label{buch:endliche-koerper:satz:frobenius}
 In einem Körper $\Bbbk$ der Charakteristik $p$ ist die Abbildung
 $x\mapsto x^p$ ist ein Automorphismus, der den Primkörper 
 $\mathbb{F}_p\subset\Bbbk$ fest lässt.
 \end{satz}
 
-\begin{proof}[Beweis]
+\begin{definition}
+Der Automorphismus $x\mapsto x^p$ heisst {\em Frobenius-Automorphismus}.
+\end{definition}
+
+\begin{proof}[Beweis von Satz~\ref{buch:endliche-koerper:satz:frobenius}]
 Wir müssen uns nur noch davon überzeugen, dass $\mathbb{F}_p\subset\Bbbk$
 fest bleibt.
 Nach dem kleine Satz von Fermat~\ref{buch:endliche-koerper:satz:fermat}
@@ -651,6 +654,3 @@ ist $a^p=a$ für alle $a\in\mathbb{F}_p$, der Frobenius-Automorphismus
 lässt also alle Elemente von $\mathbb{F}_p$ fest.
 \end{proof}
 
-\begin{definition}
-Der Automorphismus $x\mapsto x^p$ heisst {\em Frobenius-Automorphismus}.
-\end{definition}

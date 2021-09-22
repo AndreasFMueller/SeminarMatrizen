@@ -108,7 +108,7 @@ b_0\\b_1\\\vdots\\b_m\\0\\\vdots
 \end{pmatrix}
 .
 \]
-Die Moduln $R^{k+1}$ sind also alle ineinandergeschachtelt, können aber
+Die Vektormengen $R^{k+1}$ sind also alle ineinandergeschachtelt, können aber
 alle auf konsistente Weise mit der Abbildung $\varphi$ in den Polynomring
 $R[X]$ abgebildet werden.
 \begin{center}
@@ -165,10 +165,10 @@ der die Multiplikation mit $X$ beschreibt.
 
 Ist $p(X)$ ein Polynom, dann lässt sich die Multiplikation
 in von Polynome mit $R[X]$ ebenfalls als Operator schreiben.
-Die Potenz $X^k$ wird durch $k$-fache Iteration des Operators
+Die Potenz $X^k$ wirkt durch $k$-fache Iteration des Operators
 $X\cdot$.
-Das Polynom $p(X)$ wird durch Linearkombination, entspricht
-also dem Operator, den man durch Einsetzen von $X\cdot$
+Das Polynom $p(X)$ wirkt als Linearkombination der Operatoren $(X\cdot)^k$,
+entspricht also dem Operator, den man durch Einsetzen von $X\cdot$
 in das Polynom erhalten kann:
 \[
 p(X\cdot)
@@ -192,7 +192,7 @@ $(X\cdot)^k$ auch in Matrixform darstellen:
 0&1&0&0&\dots\\
 0&0&1&0&\dots\\
 \vdots&\vdots&\vdots&\ddots&\ddots
-\end{pmatrix}
+\end{pmatrix},
 &
 (X\cdot)^k
 &=
@@ -225,11 +225,14 @@ a_4    &a_3    & a_2  & a_1  & a_0  & \dots  \\
 Da die Matrix-Operation als Produkt
 $\text{Zeile}\times\text{Spalte}$ ausgeführt wird,
 kann man erkennen, dass das Polynomprodukt auch auf
-eine Faltung hinausläuft.
+eine Faltung hinausläuft:
+Die Multiplikation einer Zeile der Matrix $p(X\cdot)$  mit
+einem Spaltenvektor $b$ multipliziert den gespiegelten und verschobenen
+Vektor der Koeffizienten $a$ mit den Koeffizienten $b$.
 
 Die wichtigste Lehre aus obigen Ausführungen aber ist
 die Beobachtung, dass sich eine ganz allgemeine Algebra
-wie die der Polynome auf sehr direkte Art und Weise auf
+wie die der Polynome auf sehr direkte Art und Weise 
 abbilden lässt in eine Algebra von Matrizen auf einem
 geeigneten Vektorraum.
 Im vorliegenden Fall sind das zwar ``undendliche''

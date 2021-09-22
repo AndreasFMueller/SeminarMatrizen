@@ -8,6 +8,8 @@
 \rhead{Der euklidische Algorithmus}
 Der euklidische Algorithmus bestimmt zu zwei gegebenen ganzen
 Zahlen $a$ und $b$ den grössten gemeinsamen Teiler $g$.
+Wir schreiben $g|a$ für ``$g$ ist Teiler von $a$'' oder ``$g$ teilt $a$'',
+gesucht ist also die grösste ganze Zahl $g$ derart, dass $g|a$ und $g|b$.
 
 \begin{definition}
 \label{buch:endliche-koerper:def:ggt}
@@ -28,18 +30,16 @@ In diesem Abschnitt soll der Algorithmus zunächst für ganze Zahlen
 vorgestellt werden, bevor er auf Polynome verallgemeinert und dann
 in Matrixform niedergeschrieben wird.
 Die Matrixform ermöglicht, einfach zu implementierende iterative
-Algorithmen für die Zahlen $s$ und $t$ un später auch für die
+Algorithmen für die Zahlen $s$ und $t$ und später auch für die
 Berechnung des kleinsten gemeinsamen Vielfachen zu finden.
 
 %
 % Der euklidische Algorithmus für ganze Zahlen
 %
 \subsection{Grösster gemeinsamer Teiler ganzer Zahlen}
-Gegeben sind zwei ganze Zahlen $a$ und $b$ und wir dürfen annehmen,
-dass $a\ge b$.
+Gegeben sind zwei ganze Zahlen $a$ und $b$.
+Wir dürfen annehmen, dass $a\ge b$.
 Gesucht ist der grösste gemeinsame Teiler $g$ von $a$ und $b$.
-Wir schreiben $g|a$ für ``$g$ ist Teiler von $a$'' oder ``$g$ teilt $a$'',
-gesucht ist also die grösste ganze Zahl $g$ derart, dass $g|a$ und $g|b$.
 
 Ist $b|a$, dann ist offenbar $b$ der grösste gemeinsame Teiler von $a$
 und $b$.
@@ -70,7 +70,15 @@ neuen Quotienten $q_1$ und einen neuen Rest $r_1$ liefert mit $a_1-q_1b_1=r_1$.
 So entstehen vier Folgen von Zahlen $a_k$, $b_k$, $q_k$ und $r_k$ derart,
 dass in jedem Schritt gilt
 \begin{align*}
-a_k - q_kb_k &= r_k & g&|a_k & g&|b_k & a_k &= b_{k-1} & b_k = r_{k-1}.
+a_k - q_kb_k &= r_k
+&&\wedge &
+g&|a_k
+&&\wedge &
+g&|b_k
+&&\wedge &
+a_k &= b_{k-1}
+&&\wedge &
+b_k = r_{k-1}.
 \end{align*}
 Der Algorithmus bricht im Schritt $n$ ab, wenn $r_{n+1}=0$.
 Der letzte nicht verschwindende Rest $r_n$ muss daher der grösste gemeinsame
@@ -109,7 +117,8 @@ Wir können sie aber verwenden, um die Zahlen $s$ und $t$ zu bestimmen.
 Wir drücken die Reste im obigen Beispiel durch die Zahlen $a_k$, $b_k$ und
 $q_k$ aus und setzen sie in den Ausdruck $g=a_5-q_5b_5$ ein, bis wir
 einen Ausdruck in $a_0$ und $b_0$ für $g$ finden:
-\begin{align*}
+\[
+\begin{aligned}
 r_5&=a_5-q_5 b_5=a_5-1\cdot b_5& g &= a_5 - 1 \cdot b_5 = b_4 - 1 \cdot r_4
 \\
 r_4&=a_4-q_4 b_4=a_4-2\cdot b_4&   &= b_4 - (a_4 -2b_4) 
@@ -126,7 +135,8 @@ r_1&=a_1-q_1 b_1=a_1-3\cdot b_1&   &= -7b_1 + 17(a_1-3b_1)
 \\
 r_0&=a_0-q_0 b_0=a_0-3\cdot b_0&   &= 17b_0 - 58(a_0t-3b_0)
                                     = -58a_0+191b_0
-\end{align*}
+\end{aligned}
+\]
 Tatsächlich gilt
 \[
 -58\cdot 76415 + 191 \cdot 23205 = 85,
@@ -339,7 +349,7 @@ berechnen.
 % Vereinfachte Durchführung des euklidischen Algorithmus
 %
 \subsection{Iterative Durchführung des erweiterten euklidischen Algorithmus
-\label{buch:endlichekoerper:subsection:matrixschreibweise}}
+\label{buch:endlichekoerper:subsection:erweitertereuklidischeralgo}}
 Die Durchführung des euklidischen Algorithmus mit Hilfe der Matrizen
 $Q(q_k)$ ist etwas unhandlich.
 In diesem Abschnitt sollen die Matrizenprodukte daher in einer Form
@@ -348,6 +358,8 @@ dargestellt werden, die leichter als Programm zu implementieren ist.
 In Abschnitt~\ref{buch:endlichekoerper:subsection:matrixschreibweise}
 wurde gezeigt, dass das Produkt der aus den Quotienten $q_k$ gebildeten
 Matrizen $Q(q_k)$ berechnet werden muss.
+Im Folgenden soll ein rekursiver Algorithmus zu seiner Berechnung
+hergeleitet werden.
 Dazu beachten wir zunächst, dass die Multiplikation mit der Matrix
 $Q(q_k)$ die zweite Zeile in die erste Zeile verschiebt:
 \[
@@ -372,7 +384,7 @@ Die Matrizen
 \[
 Q_k = Q(q_k)Q(q_{k-1})\cdots Q(q_0)
 \]
-haben daher jeweils für aufeinanderfolgende Werte vo $k$ eine Zeile
+haben daher jeweils für aufeinanderfolgende Werte von $k$ eine Zeile
 gemeinsam.
 Wir bezeichnen die Einträge der ersten Zeile der Matrix $Q_k$ mit
 $c_k$ und $d_k$.
@@ -389,7 +401,7 @@ Q(q_k)
 \begin{pmatrix}
 c_{k-1}&d_{k-1}\\
 c_{k}  &d_{k}
-\end{pmatrix}
+\end{pmatrix}.
 \]
 Daraus ergeben sich die Rekursionsformeln
 \begin{equation}
@@ -445,6 +457,15 @@ um die Spalten zur Berechnung der Koeffizienten $c_k$ und $d_k$
 Wir schreiben die gefundenen Zahlen in eine Tabelle:
 \begin{center}
 \label{buch:endlichekoerper:beispiel1erweitert}
+\begin{tikzpicture}[>=latex,thick]
+\fill[color=darkgreen!30] (1.8,-0.4) rectangle (3.5,0.4);
+\node at (3.10,0) {$\displaystyle
+\color{darkgreen}
+\begin{pmatrix}
+\phantom{-33}\,\,&\phantom{-233}\\
+\phantom{-33}\,\,&\phantom{-233}
+\end{pmatrix}\;=Q_2$};
+\node at (0,0) {$\displaystyle
 \renewcommand{\arraystretch}{1.1}
 \begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}>{$}r<{$}|}
 \hline
@@ -460,7 +481,8 @@ k&   a_k&   b_k&    q_k&  r_k&     c_k&     d_k\\
 6&   340&    85&      4&    0&     -58&     191\\
 7&    85&     0&       &     &     273&    -899\\
 \hline
-\end{tabular}
+\end{tabular}$};
+\end{tikzpicture}
 \end{center}
 Aus den letzten zwei Spalten der Tabelle kann man ablesen, dass
 \begin{align*}
@@ -471,9 +493,10 @@ wie erwartet.
 Die gesuchten Zahlen $s$ und $t$ sind also $s=-58$ und $t=191$.
 \end{beispiel}
 
-Die Matrizen $Q_k$ kann man auch as der Tabelle ablesen, sie bestehen
+Die Matrizen $Q_k$ kann man auch aus der Tabelle ablesen, sie bestehen
 aus den vier Elementen in den Zeilen $k$ und $k+1$ in den
 Spalten $c_k$ und $d_k$.
+Die Matrix $Q_2$ ist beispielhaft grün hervorgehoben.
 Auf jeder Zeile gilt $b_k = c_ka_0 + d_kb_0$, für $k>0$ ist dies
 $c_ka_0+d_kb_0=r_{k-1}$.
 
@@ -527,7 +550,7 @@ durch das Problem der Teilbarkeit der Koeffizienten.
 Dieses Problem entfällt, wenn man die Koeffizienten aus einem
 Bereich wählt, in dem Teilbarkeit kein Problem ist, also in einem Körper.}
 verhält
-sich bezüglich Teilbarkeit ganz genau gleich wie die ganzen Zahlen.
+sich bezüglich Teilbarkeit ganz ähnlich wie die ganzen Zahlen.
 Insbesondere ist der euklidische Algorithmus genauso wie die
 Matrixschreibweise auch für Polynome durchführbar.
 
@@ -595,7 +618,7 @@ ta+sb
 -4X^2+4X+8,
 \end{align*}
 und dies ist tatsächlich der gefundene grösste gemeinsame Teiler.
-Die zweite Zeile von $Q$ gibt uns die Polynomfaktoren, mit denen
+Die zweite Zeile von $Q$ gibt uns die Faktoren, mit denen
 $a$ und $b$ gleich werden:
 \begin{align*}
 q_{21}a+q_{22}b
@@ -609,20 +632,23 @@ q_{21}a+q_{22}b
 \qedhere
 \end{align*}
 Man kann natürlich den grössten gemeinsamen Teiler auch mit Hilfe einer
-Faktorisierung der Polynome $a$ und $b$ finden:
+Faktorisierung der Polynome $a$ und $b$ finden.
+Um die Übersicht zu erleichtern, werden gleiche Faktoren jeweils untereinander
+geschrieben und fehlende Faktoren als Platzhalter in grau dargestellt.
+\def\grau#1{\bgroup\color{gray!50}#1\egroup}
 \begin{align*}
 &\text{Faktorisierung von $a$:}&
-a  &=         (X-3) (X-2)\phantom{(X-1)}(X+1)         (X+2) \phantom{(X+3)}\\
+a    &=      (X-3)      (X-2)\grau{(X-1)}     (X+1)       (X+2) \grau{(X+3)}\\
 &\text{Faktorisierung von $b$:}&
-b  &=\phantom{(X-3)}(X-2)         (X-1) (X+1)\phantom{(X+2)}         (X+3) \\
+b    &=\grau{(X-3)}     (X-2)      (X-1)      (X+1) \grau{(X+2)}      (X+3) \\
 &\text{gemeinsame Faktoren:}&
-g  &=\phantom{(X-3)}(X-2)\phantom{(X-1)}(X+1)\phantom{(X+2)}\phantom{(X+3)}
+g    &=\grau{(X-3)}     (X-2)\grau{(X-1)}     (X+1) \grau{(X+2)}\grau{(X+3)}
     = X^2 -X + 2\\
 &&
-v=a/g&=         (X-3)\phantom{(X-2)(X-1)(X+1)} (X+2) \phantom{(X+3)}
+v=a/g  &=    (X-3)\grau{(X-2)      (X-1)      (X+1)}      (X+2) \grau{(X+3)}
     = X^2-X-6 \\
 &&
-u=b/g&=\phantom{(X-3)(X-2)} (X-1)\phantom{(X+1)(X+2)}(X+3)
+u=b/g&=\grau{(X-3)      (X-2)}     (X-1)\grau{(X+1)       (X+2)}      (X+3)
     = X^2+2X-3
 \end{align*}
 Aus den letzten zwei Zeilen folgt
@@ -702,7 +728,7 @@ Q(q_n)^{-1}
 \]
 Eine mögliche Lösung für die Matrix $K$ in
 \eqref{buch:eindlichekoerper:eqn:uvmatrix}
-ist der die Matrix
+ist daher die Matrix
 \[
 K
 =
@@ -715,7 +741,9 @@ Q(q_n).
 Insbesondere ist die Matrix $K$ die Inverse der früher gefundenen
 Matrix $Q$.
 
-Die Berechnung der Matrix $K$ als Inverse von $Q$ ist nicht schwierig.
+Die Berechnung der Matrix $K$ als Inverse von $Q$ ist nicht schwierig,
+aber eingebaut in den bereits etablierten iterativen Prozess fällt
+sie noch leichter.
 Genauso wie es möglich war, das Produkt $Q$ der Matrizen
 $Q(q_k)$ iterativ zu bestimmen, muss es auch eine Rekursionsformel
 für das Produkt der inversen Matrizen $Q(q_k)^{-1}$ geben.
@@ -938,7 +966,9 @@ Man weiss zusätzlich noch, dass der euklidische Algorithmus genau drei
 Schritte braucht, es gibt also genau drei Quotienten, die in die
 Berechnung der Zahlen $e_k$ und $f_k$ einfliessen.
 
-Im ersten Schritt des euklidischen Algorithmus ist der Quotient
+In den folgenden Zeilen wird der euklische Algorithmus für die Polynome
+$n(X)$ und $r(X)$ durchgeführt.
+Im ersten Schritt ist der Quotient
 $n(X) / r(X)$ zu bestimmen, der Grad $1$ haben muss.
 \begin{align*}
 a_0=n(X)           &= X^{12}+12
@@ -961,7 +991,7 @@ a_2 &= 10X^{10} + 5X^9 + 6X^8 + 8X^7 + \dots
 \\
 b_2 &= 5X^9 + 10 X^8 + \dots
 \\
-q_2 &= 2X+10
+q_2 &= 2X+10.
 \end{align*}
 Aus den Polynomen $q_k$ können jetzt die Faktoren $u$ und $v$
 bestimmt werden:
