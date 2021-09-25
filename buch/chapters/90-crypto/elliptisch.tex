@@ -11,11 +11,11 @@ Das Diffie-Hellman-Verfahren basiert auf der Schwierigkeit, in einem
 Körper $\mathbb{F}_p$ die Gleichung $a^x=b$ nach $x$ aufzulösen.
 Die Addition in $\mathbb{F}_p$ wird dazu nicht benötigt.
 Es reicht, eine Menge mit einer Multiplikation zu haben, fir die
-die Gleichung $a^x=b$ schwierig zu lösen ist.
+die Gleichung $a^x=b$ schwierig nach $x$ aufzulösen ist.
 Ein Halbgruppe wäre also durchaus ausreichend.
 
 Ein Kandidat für eine solche Gruppe könnte der Einheitskreis
-$S^1=\{z\in\mathbb{C}\;|\; |z|=1\}$ in der komplexen Ebene sein.
+$S^1=\{z\in\mathbb{C} \mid |z|=1\}$ in der komplexen Ebene sein.
 Wählt man eine Zahl $g=e^{i\alpha}$, wobei $\alpha$ ein irrationales
 Vielfaches von $\pi$ ist, dann sind alle Potenzen $g^n$ für natürliche
 Exponenten voneinander verschieden.
@@ -42,7 +42,7 @@ Die Lösungsmenge ist eine ``Kurve'' von Punkten mit
 Koordinaten in einem endlichen Körper.
 
 In diesem Abschnitt wird gezeigt, dass sogenannte elliptische Kurven
-über endlichen Körpern genau die verlangen Eigenschaften haben.
+über endlichen Körpern genau die verlangten Eigenschaften haben.
 
 \subsection{Definition}
 Elliptische Kurven sind Lösungen einer Gleichung der Form
@@ -70,7 +70,7 @@ die Menge
 \[
 E_{a,b}(\Bbbk)
 =
-\{(X,Y)\in\Bbbk^2\;|\;Y^2+XY=X^3+aX+b\},
+\{(X,Y)\in\Bbbk^2 \mid Y^2+XY=X^3+aX+b\},
 \]
 für $a,b\in\Bbbk$.
 \end{definition}
@@ -150,7 +150,7 @@ Abbildung~\ref{buch:crypto:fig:elliptischekurve}
 zeigt eine elliptische Kurve in der Ebene $\mathbb{R}^2$.
 
 \subsection{Geometrische Definition der Gruppenoperation}
-In der speziellen Form \ref{buch:crypto:ellvereinfacht} ist die
+In der speziellen Form \eqref{buch:crypto:ellvereinfacht} ist die
 elliptische Kurve symmetrisch unter Spiegelung an der $u$-Achse.
 Die Spiegelung ist eine Involution, zweimalige Ausführung führt auf
 den ursprünglichen Punkt zurück.
@@ -165,7 +165,7 @@ Die Gruppenoperation wird so definiert, dass drei Punkte der Kurve
 auf einer Geraden das Gruppenprodukt $e$ haben.
 Da aus $g_1g_2g_3=e$ folgt $g_3=(g_1g_2)^{-1}$ oder
 $g_1g_2=g_3^{-1}$, erhält man das Gruppenprodukt zweier Elemente
-auf der elliptischen Kurve indem erst den dritten Schnittpunkt
+auf der elliptischen Kurve indem man erst den dritten Schnittpunkt
 ermittelt und diesen dann an der $u$-Achse spiegelt.
 
 Die geometrische Konstruktion schlägt fehl, wenn $g_1=g_2$ ist.
@@ -186,10 +186,10 @@ Punkte die gleiche $u$-Koordinaten haben.
 
 \subsection{Gruppenoperation, algebraische Konstruktion}
 Nach den geometrischen Vorarbeiten zur Definition der Gruppenoperation
-kann können wir die Konstruktion jetzt algebraisch über einem 
+können wir jetzt die Konstruktion algebraisch über einem 
 beliebigen Körper umsetzen.
 
-Wir gehen jetzt wieder von der elliptischen Kurve in der Form
+Wir gehen wieder von der elliptischen Kurve in der Form
 \begin{equation}
 Y^2+XY=X^3+aX+b
 \label{buch:crypto:eqn:grupopgl}
@@ -377,7 +377,7 @@ Wir schreiben die Gerade als Parameterdarstellung in der Form
 t\mapsto g(t)= (x_1+ut, y_1+vt)
 \)
 für beliebige Parameter in $\Bbbk$.
-Die Werte $u_1$ und $u_2$ müssen so gewählt werden, dass $g(t)$ eine
+Die Werte $u$ und $v$ müssen so gewählt werden, dass $g(t)$ eine
 Tangente wird.
 Setzt man $g(t)$ in die Gleichung~\eqref{buch:crypto:eqn:grupopgl} ein,
 entsteht ein kubische Gleichung, die genau dann eine doppelte Nullstelle
@@ -490,7 +490,7 @@ Diffie-Hellmann-ähnlichen Verfahrens, wird das neutrale Element
 nicht wirklich benötigt.
 Um den Potenz-Algorithmus~\ref{buch:crypto:teile-und-hersche}
 durchzuführen, brauchen wir nur die beiden Operationen
-Multiplizieren und quadrieren, für die wir bereits
+Multiplizieren und Quadrieren, für die wir bereits
 geeignete Formeln gefunden haben.
 
 \subsubsection{Gruppenstruktur auf einer elliptischen Kurve}
@@ -502,7 +502,7 @@ E_{a,b}(\mathbb{F}_{p^l})
 =
 \{
 (X,Y)\in\mathbb{F}_{p^l}
-\;|\;
+\mid
 Y^2+XY = X^3-aX-b
 \}
 \]
@@ -510,7 +510,7 @@ trägt eine Gruppenstruktur, die wie folgt definiert ist:
 \begin{enumerate}
 \item Es gibt ein neutrales Element, welches man manchmal als $(0,0)$
 schreibt, obwohl dieser Punkt nicht auf der Kuve liegt.
-\item Das inverse Element von $(x,y)$ ist $(-x,-y-x)$.
+\item Das inverse Element von $(x,y)$ ist $(x,-y-x)$.
 \item Für zwei verschiedene Punkte $g_1$ und $g_2$ kann $g_3=(g_1g_2)^{-1}$
 mit Hilfe der Formeln
 \eqref{buch:crypto:eqn:x3}
@@ -556,7 +556,7 @@ die die elliptische Kurve definieren.
 
 Als Elemente $g$ für den Diffie-Hellmann-Algorithmus wird ein Punkt
 der elliptischen Kurve verwendet, dessen $X$-Koordinaten durch das
-Polynom $g_x = x^4+x^3$ gegeben ist.
+Polynom $g(x) = x^4+x^3$ gegeben ist.
 Der Standard spezifiziert die $Y$-Koordinate nicht, diese kann aus
 den gegebenen Daten abgeleitet werden.
 Die entstehende Gruppe hat etwa $4.9040\cdot10^{55}$ Elemente, die

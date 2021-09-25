@@ -9,7 +9,7 @@
 Eine wichtige Forderung bei der Konzeption des damals neuen
 Advanced Encryption Standard war, dass darin keine ``willkürlich''
 erscheinenden Operationen geben darf, bei denen der Verdacht
-entstehen könnte, dass sich dahinter noch offengelegtes Wissen
+entstehen könnte, dass sich dahinter nicht offengelegtes Wissen
 über einen möglichen Angriff auf den Verschlüsselungsalgorithmus
 verbergen könnte.
 Dies war eine Schwäche des vor AES üblichen DES Verschlüsselungsalgorithmus.
@@ -51,12 +51,13 @@ Elemente eines endlichen Körpers $\mathbb{F}_{2^8}$ interpretiert werden.
 \subsubsection{Bytes als Elemente von $\mathbb{F}_{2^8}$}
 Das Polynom $m(X)=X^8+X^4+X^3+X+1\in \mathbb{F}_2[X]$ ist irreduzibel,
 somit ist $\mathbb{F}_{2^8} = \mathbb{F}_2[X]/(m)$ ein Körper.
-Die Elemente können dargestellt werden als Polynome, das Byte
-$\texttt{63}_{16}$ bekommt die Form
+Die Elemente können dargestellt werden als Polynome
 \[
 p(X) = p_7X^7 + p_6X^6 + \dots + p_2X^2+p_1X + p_0,
 \]
 sie bestehen daher aus den $8$ Bits $p_7,\dots,p_0$.
+Das Byte $\texttt{63}_{16}$ entspricht also dem Polynom
+$X^6+X^5+X+1$ in $\mathbb{F}_2[X]/(m)$.
 
 Die Interpretation der Bytes als Elemente eines Körpers bedeutet,
 dass jede Multiplikation mit einem nicht verschwindenden Byte 
@@ -66,7 +67,7 @@ undurchsichtige, aber umkehrbare Art durcheinander, wie dies für ein
 Verschlüsselungsverfahren wünschenswert ist.
 
 \subsubsection{$S$-Box}
-Für die Operation der $S$-Box wird wie folgt zusammengesetzt.
+Für die Operation der sogenannten $S$-Box wird wie folgt zusammengesetzt.
 Zunächst wird ein Byte $x$ durch das zugehörige multiplikative
 inverse Element
 \[
@@ -135,7 +136,7 @@ Die $S$-Box-Operation kann also vektoriell geschrieben werden als
 
 Die Implementation ist möglicherweise mit einer Tabelle am schnellsten,
 es sind ja nur 256 Bytes im Definitionsbereich der $S$-Box-Abbildung
-und ebenso nur 256 möglich Werte.
+und ebenso nur 256 mögliche Werte.
 
 \subsection{Block-Operationen
 \label{buch:subsection:block-operationen}}
@@ -171,8 +172,8 @@ untereinander gut gemischt werden.
 Die bisher beschriebenen Operationen operieren immer nur auf einzelnen
 Bytes während
 die im nächsten Abschnitt beschriebene Spalten-Mischoperation
-nur auf Spalten wird.
-Die Zeilenmischoperation permutiert die Zeilen in den vier Zeilen
+nur auf Spalten wirkt.
+Die Zeilen\-misch\-ope\-ra\-tion permutiert die Zeilen in den vier Zeilen
 eines Blocks zyklisch, die erste Zeile bleibt an Ort, die zweite
 Zeile wird um ein Byte rotiert, die dritte um zwei und die letzte
 um 3 Bytes, wie in Abbildung~\ref{buch:crypto:fig:shift}
@@ -342,7 +343,7 @@ macht.
 
 \subsubsection{Schlüsseladdition}
 Nach jeder Spaltenmischoperation wird ein Rundenschlüssel
-zum Blockhinzuaddiert.
+zum Block hinzuaddiert.
 Beim ersten Mal wird dazu einfach das vom Benutzer vorgegebene
 Schlüsselmaterial verwendet.
 Für die folgenden Runden muss aus diesem Schlüssel neues
@@ -366,10 +367,10 @@ Die Erzeugung der Rundenschlüssel ist in Abbildung
 schematisch dargestellt.
 Die Blöcke beschreiben wieder Spaltenvektoren im vierdimensionalen
 Raum $\mathbb{F}_{2^8}^4$.
-Die Blöcke $K_0$ bis $K_7$ stellen den ursprünglichen Schlüssel dar.
+Die Blöcke $K_0$ bis $K_7$ enthalten den ursprünglichen Schlüssel.
 Die Erzeugung eines neuen Blocks Schlüsselmatrial beginnt damit,
-dass der letzte Vektor des vorangegangenblocks drei Operationen
-unterworfen werden.
+dass der letzte Vektor des vorangegangen Blocks drei Operationen
+unterworfen wird.
 \begin{itemize}
 \item
 Die Operation $\pi$ vertauscht die Bytes des Vektors zyklisch:
@@ -401,9 +402,10 @@ Die Operation $\pi$ vertauscht die Bytes des Vektors zyklisch:
 \end{tikzpicture}
 \end{center}
 \item
-Die $S$-Operation wendet die $S$-Box auf alle Bytes eines Vektors an.
+Die $S$-Operation wendet die $S$-Box auf jedes Byte eines Vektors an.
 \item
-Die $r_i$ Operation addiert in Runde $i$ eine Konstante $r_i$ zur $0$-Komponente.
+Die $r_i$ Operation addiert in Runde $i$ eine Konstante $r_i$ zur
+$0$-Komponente.
 \end{itemize}
 Die Konstante $r_i$ ist wieder ein einzelnes Byte und es ist daher
 naheliegend, diese Bytes mit Hilfe der Arithmetik in $\mathbb{F}_{2^8}$

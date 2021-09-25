@@ -12,10 +12,33 @@ endlichen Körpern Algorithmen zu konstruieren erlaubt, mit denen sich
 zum Beispiel sehr effizient kryptographische Schlüssel aushandeln 
 lassen.
 Der klassische Diffie-Hellmann-Algorithmus in einem Galois-Körper
-$\mathbb{F}_p$ wird in Abschnitt~\ref{buch:subsection:elliptische-kurven}
+$\mathbb{F}_p$ wird in Abschnitt~\ref{buch:section:elliptische-kurven}
 verallgemeinert auf eine sogenannte elliptische Kurve.
 Diese Version des Algorithmus ist sehr effizient was die Bitlänge der
 Schlüssel betrifft.
+
+\begin{table}
+\centering
+\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
+\hline
+ i&   q& k_i&    f\\
+\hline
+ 0&   7&   1&    7\\
+ 1&  49&   0&    7\\
+ 2&1110&   1&   24\\
+ 3& 486&   0&   24\\
+ 4&1234&   0&   24\\
+ 5& 667&   1&  516\\
+ 6& 785&   1&  977\\
+ 7& 418&   1&  430\\
+ 8& 439&   1&  284\\
+ 9& 362&   1&  819\\
+10& 653&   1&  333\\
+\hline
+\end{tabular}
+\caption{Potenzen von 7 im Körper $\mathbb{F}_{1291}$.
+\label{buch:crypto:fig:f1291}}
+\end{table}
 
 \subsection{Potenzen in $\mathbb{F}_p$ und diskreter Logarithmus
 \label{buch:subsection:potenzen-diskreter-logarithmus}}
@@ -27,6 +50,7 @@ Die arithmetischen Operationen in einem endlichen Körper sind
 mit geringem Aufwand durchführbar.
 Für die ``schwierigste'' Operation, die Division, steht der
 euklidische Algorithmus zur Verfügung.
+
 
 Die nächstschwierigere Operation ist die Potenzfunktion.
 Dank dem Algorithmus~\ref{buch:crypto:teile-und-hersche} ist auch
@@ -87,38 +111,20 @@ sie effizient durchführbar.
 %Multiplikationen durchgeführt.
 %\end{proof}
 
+
 \begin{beispiel}
 Man berechne die Potenz $7^{2021}$ in $\mathbb{F}_p$.
 Die Binärdarstellung von 2021 ist $2021_{10}=\texttt{11111100101}_2$.
 Wir stellen die nötigen Operationen des
-Algorithmus~\ref{buch:crypto:algo:teile-und-hersche} in der folgenden
-Tabelle
-\begin{center}
-\begin{tabular}{|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|>{$}r<{$}|}
-\hline
- i&   q& k_i&    f\\
-\hline
- 0&   7&   1&    7\\
- 1&  49&   0&    7\\
- 2&1110&   1&   24\\
- 3& 486&   0&   24\\
- 4&1234&   0&   24\\
- 5& 667&   1&  516\\
- 6& 785&   1&  977\\
- 7& 418&   1&  430\\
- 8& 439&   1&  284\\
- 9& 362&   1&  819\\
-10& 653&   1&  333\\
-\hline
-\end{tabular}
-\end{center}
+Algorithmus~\ref{buch:crypto:teile-und-hersche} in der 
+Tabelle~\ref{buch:crypto:fig:f1291}
 In der Spalte $q$ stehen die Potenzen $a^{i+1}=7^{i+1}$, in Spalte $f$ die
 ausgerechneten Produkte.
 Daraus liest man ab, dass $7^{2021}=333\in\mathbb{F}_{1291}$.
 \end{beispiel}
 
-Die Tabelle suggeriert, dass die Potenzen von $g$ ``wild'', also
-scheinbar ohne System in $\mathbb{F}_p$ herumspringen.
+Die Tabelle~\ref{buch:crypto:fig:f1291} suggeriert, dass die Potenzen von $g$
+``wild'', also scheinbar ohne System in $\mathbb{F}_p$ herumspringen.
 Dies deutet an, dass die Umkehrung der Exponentialfunktion in $\mathbb{F}_p$
 schwierig ist.
 Die Umkehrfunktion der Exponentialfunktion, die Umkehrfunktion von 
@@ -164,6 +170,21 @@ Funktion.
 %berechnet werden.
 %\end{algorithmus}
 
+\begin{figure}
+\centering
+\includegraphics{chapters/90-crypto/images/dh.pdf}
+\caption{Schlüsselaustausch nach Diffie-Hellman.
+\index{Diffie-Hellmann}%
+\index{Schlüsseltausch}%
+Die Kommunikationspartner $A$ und $B$ einigen sich öffentlich auf
+$p\in\mathbb{N}$ und $g\in\mathbb{F}_p$.
+$A$ wählt dann einen privaten Schlüssel $a\in\mathbb{N}$ und
+$B$ wählt $b\in\mathbb{N}$, sie tauschen dann $x=g^a$ und $y=g^b$
+aus.
+$A$ erhält den gemeinsamen Schlüssel aus $y^a$, $B$ erhält ihn
+aus $x^b$.
+\label{buch:crypto:fig:dh}}
+\end{figure}
 
 %
 % Diffie-Hellman Schlüsseltausch
@@ -179,7 +200,7 @@ ausgehandelten Schlüssel zu ermitteln.
 
 Die beiden Partner $A$ und $B$ einigen sich zunächst auf eine Zahl $g$,
 die öffentlich bekannt sein darf.
-Weiter erzeugen sie eine zufällige Zahl $a$ und $b$, die sie geheim
+Weiter erzeugen sie je eine zufällige Zahl $a$ und $b$, die sie geheim
 halten.
 Das Verfahren soll aus diesen beiden Zahlen einen Schlüssel erzeugen,
 den beide Partner berechnen können, ohne dass sie $a$ oder $b$ 
@@ -199,21 +220,6 @@ Die Kommunikationspartner einigen sich also auch noch auf die (grosse)
 Primzahl $p$ und übermitteln $x=g^a\in\mathbb{F}_p$ und
 $y=g^b\in\mathbb{F}_p$.
 
-\begin{figure}
-\centering
-\includegraphics{chapters/90-crypto/images/dh.pdf}
-\caption{Schlüsselaustausch nach Diffie-Hellman.
-\index{Diffie-Hellmann}%
-\index{Schlüsseltausch}%
-Die Kommunikationspartner $A$ und $B$ einigen sich öffentlich auf
-$p\in\mathbb{N}$ und $g\in\mathbb{F}_p$.
-$A$ wählt dann einen privaten Schlüssel $a\in\mathbb{N}$ und
-$B$ wählt $b\in\mathbb{N}$, sie tauschen dann $x=g^a$ und $y=g^b$
-aus.
-$A$ erhält den gemeinsamen Schlüssel aus $y^a$, $B$ erhält ihn
-aus $x^b$.
-\label{buch:crypto:fig:dh}}
-\end{figure}
 
 Aus $x$ und $y$ muss jetzt der gemeinsame Schlüssel abgeleitet werden.
 $A$ kennt $y=g^b$ und $a$, $B$ kennt $x=g^a$ und $b$.
