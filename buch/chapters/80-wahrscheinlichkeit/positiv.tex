@@ -29,16 +29,16 @@ erklärt.
 \label{buch:subsection:elementare-eigenschaften}}
 In diesem Abschnitt betrachten wir ausschliesslich reelle Vektoren
 und Matrizen.
-Die Komponenten sind somit immer mit miteinander vergleichbar, daraus
+Die Komponenten sind somit immer miteinander vergleichbar, daraus
 lässt sich auch eine Vergleichsrelation zwischen Vektoren
 ableiten.
 
 \begin{definition}
 Ein Vektor $v\in\mathbb{R}^n$ heisst {\em positiv}, geschrieben
-$v>0$, wenn alle seine Komponenten positiv sind: $v_i>0\forall i$.
+$v>0$, wenn alle seine Komponenten positiv sind: $v_i>0\,\forall i$.
 Ein Vektor $v\in\mathbb{R}^n$ heisst {\em nichtnegativ}, in Formeln
 $v\ge 0$, wenn alle
-seine Komponenten nicht negativ sind: $v_i\ge 0\forall i$.
+seine Komponenten nicht negativ sind: $v_i\ge 0\,\forall i$.
 \index{positiver Vektor}%
 \index{nichtnegativer Vektor}%
 \end{definition}
@@ -67,9 +67,9 @@ Die Definition funktionieren analog auch für Matrizen:
 
 \begin{definition}
 Eine Matrix $A\in M_{m\times n}(\mathbb{R})$  heisst {\em positiv},
-wenn alle ihre Einträge $a_{i\!j}$ positiv sind: $a_{i\!j}>0\forall i,j$.
+wenn alle ihre Einträge $a_{i\!j}$ positiv sind: $a_{i\!j}>0\,\forall i,j$.
 Eine Matrix $A\in M_{m\times n}(\mathbb{R})$  heisst {\em nichtnegativ},
-wenn alle ihre Einträge $a_{i\!j}$ nichtnegativ sind: $a_{i\!j}\ge 0\forall i,j$.
+wenn alle ihre Einträge $a_{i\!j}$ nichtnegativ sind: $a_{i\!j}\ge 0\,\forall i,j$.
 \index{positive Matrix}%
 \index{nichtnegative Matrix}%
 Man schreibt $A>B$ bzw.~$A\ge B$ wenn $A-B>0$ bzw.~$A-B\ge 0$.
@@ -132,7 +132,7 @@ und dass daher für alle $n\ge 5$ die Matrix $A^n$ positiv ist.
 
 Die Eigenschaft der Matrix $A$ von
 \eqref{buch:wahrscheinlichkeit:eqn:diffusion}, dass $A^n>0$
-für genügend grosses $n$ ist bei Permutationsmatrizen nicht
+für genügend grosses $n$ ist, ist bei Permutationsmatrizen nicht
 vorhanden.
 Die Zyklen-Zerlegung einer Permutationsmatrix zeigt, welche
 Unterräume von $\mathbb{R}^n$ die iterierten Bilder eines
@@ -144,14 +144,16 @@ Unterräumen statt.
 \begin{beispiel}
 Die Matrix
 \begin{equation}
-A=\begin{pmatrix}
+A=\left(\begin{array}{ccc|ccc}
 0.9&0.1&   &   &   &   \\
 0.1&0.8&0.1&   &   &   \\
    &0.1&0.9&   &   &   \\
+\hline
    &   &   &0.9&0.1&   \\
    &   &   &0.1&0.8&0.1\\
    &   &   &   &0.1&0.9
-\end{pmatrix}
+\end{array}
+\right)
 \label{buch:wahrscheinlichkeit:eqn:diffusionbloecke}
 \end{equation}
 besteht aus zwei $3\times 3$-Blöcken.
@@ -164,6 +166,7 @@ Teilmatrizen, aber die Matrix $A^n$ ist für alle $n$ nicht positiv.
 \end{beispiel}
 
 \begin{definition}
+\label{buch:positiv:def:primitiv}
 Eine nichtnegative Matrix mit der Eigenschaft, dass $A^n>0$ für
 ein genügend grosses $n$, heisst {\em primitiv}.
 \index{primitive Matrix}%
@@ -323,6 +326,7 @@ gleiche Richtung haben (rot).
 Hier dargestellt am Beispiel von Zahlen in der komplexen Zahlenebene.
 In dieser Form wird die verallgemeinerte Dreiecksungleichung in
 Satz~\ref{buch:wahrscheinlichkeit:satz:verallgdreieckC}
+angewendet.
 \label{buch:wahrscheinlichkeit:fig:dreieck}}
 \end{figure}
 
@@ -344,7 +348,7 @@ gewöhnliche Dreiecksungleichung.
 
 Wir nehmen daher jetzt an, die Aussage sei für $n$ bereits bewiesen,
 wir müssen sie für $n+1$ beweisen.
-Die Summe von $n+1$ Vektoren kann man $u=u_1+\dots+u_n$ und $v=u_{n+1}$
+Die Summe von $n+1$ Vektoren kann man in $u=u_1+\dots+u_n$ und $v=u_{n+1}$
 aufteilen.
 Es gilt nach der gewöhnlichen Dreiecksungleichung, dass
 \[
@@ -465,8 +469,8 @@ Das ist nur möglich, wenn $\lambda > 0$.
 Wenn $v$ ein Eigenvektor von $A$ ist, dann ist auch jedes Vielfache
 davon ein Eigenvektor, insbesondere können einzelne Komponenten
 des Vektors $v$ auch negativ sein.
-Der folgende Satz zeigt aber, dass man der Vektor aus den Beträgen
-von der Komponenten von $v$ ebenfalls ein Eigenvektor zum 
+Der folgende Satz zeigt aber, dass der Vektor aus den Beträgen
+der Komponenten von $v$ ebenfalls ein Eigenvektor zum 
 gleichen Eigenwert ist.
 Insbesondere gibt es immer einen nichtnegativen Eigenvektor.
 

@@ -26,7 +26,7 @@ $\operatorname{GL}_n(\mathbb{R})$ heraus.
 
 \subsection{Mannigfaltigkeitsstruktur der Matrizengruppen
 \label{buch:subsection:mannigfaltigkeitsstruktur-der-matrizengruppen}}
-Eine Matrizengruppe wird automatsich zu einer Mannigfaltigkeit,
+Eine Matrizengruppe wird automatisch zu einer Mannigfaltigkeit,
 wenn es gelingt, eine Karte für eine Umgebung des neutralen Elements
 zu finden.
 Dazu muss gezeigt werden, dass sich aus einer solchen Karte für jedes
@@ -46,7 +46,7 @@ gU_e
 h\mapsto \varphi_e(g^{-1}h)
 \]
 eine Karte für die Umgebung $U_g$ des Gruppenelementes $g$.
-schreibt man $l_{g}$ für  die Abbildung $h\mapsto gh$, dann
+Schreibt man $l_{g}$ für  die Abbildung $h\mapsto gh$, dann
 kann man die Kartenabbildung auch $\varphi_g = \varphi_e\circ l_{g^{-1}}$
 schreiben.
 
@@ -98,8 +98,9 @@ Mannigfaltigkeit ist derart, dass die Abbildungen
 \begin{align*}
 G\times G \to G &: (g_1,g_2)\mapsto g_1g_2
 \\
-G\to G &: g \mapsto g^{-1}
+G\to G &: g \mapsto g^{-1},
 \end{align*}
+die zu den Gruppenoperationen gehören,
 differenzierbare Abbildungen zwischen Mannigfaltigkeiten sind.
 \end{definition}
 
@@ -354,13 +355,83 @@ entstehen aus $J$ durch Drehung mit der Matrix $R_\alpha$ und Skalierung
 mit der Winkelgeschwindigkeit $\dot{\alpha}(t)$.
 \index{Winkelgeschwindigkeit}%
 
+\subsection{Symmetrien des harmonischen Oszillators
+\label{buch:gruppen:symmetrien-harm-osz}}
+Im Abschnitt über den harmonischen Oszillator
+auf Seite~\pageref{buch:gruppen:harmonischer-oszillator}
+wurde für die Einparameteruntergruppe
+$\Phi_t\in\operatorname{GL}_2(\mathbb{R})$ der
+Ausdruck~\eqref{buch:gruppen:eqn:phi} gefunden.
+Die Ableitung von $\Phi_t$ an der Stelle $t=0$ ist
+\begin{align*}
+\frac{d}{dt}\Phi_t\bigg|_{t=0}
+&=
+\frac{d}{dt}
+\begin{pmatrix}
+\cos\omega t&-\frac{1}{\omega}\sin\omega t\\
+\omega\sin\omega t&\cos\omega t
+\end{pmatrix}
+\bigg|_{t=0}
+=
+\begin{pmatrix}
+-\omega\sin\omega t&-\cos\omega t\\
+\omega^2\cos\omega t&-\omega\sin\omega t
+\end{pmatrix}
+\bigg|_{t=0}
+=
+\begin{pmatrix}
+0&-1\\\omega^2&0
+\end{pmatrix}
+=
+A.
+\end{align*}
+Die Potenzen von $A$ sind
+\[
+A^2
+=
+\begin{pmatrix} -\omega^2&0\\0&-\omega^2\end{pmatrix}
+=
+-\omega^2 I,
+\quad
+A^3
+=
+-\omega^2 A,
+\quad
+A^4
+=
+\omega^4 I.
+\]
+Die Potenzen wiederholen sich bis auf den Faktor $\omega^4$ mit Periode 4.
+Damit kann man jetzt die Exponentialabbildung für $At$ berechnen:
+\begin{align*}
+e^{At}
+&=
+I+At+\frac{A^2t^2}{2!}+\frac{A^3t^3}{3!}+\frac{A^4t^4}{4!}+\frac{A^5t^5}5!+\dots
+\\
+&=
+I+\frac{1}{\omega}A\omega t-I\frac{\omega^2t^2}{2!}
+-\frac1{\omega}A\frac{\omega^3t^3}{3!}
++\frac{\omega^4t^4}{4!}
++\frac{1}{\omega}\frac{\omega^5t^5}5!+\dots
+\\
+&= I\cos\omega t + \frac1{\omega}A\sin\omega t
+=
+\begin{pmatrix}
+\cos\omega t       &-\frac{1}{\omega}\sin\omega t\\
+\omega\sin\omega t & \cos\omega t
+\end{pmatrix} = \Phi_t.
+\end{align*}
+Der Fluss der Differentialgleichung des harmonischen Oszillators ist
+also nichts anderes als die Exponentialabbildung der Ableitung $A$ zur
+Zeit $t=0$.
+
 %
 % Isometrien von R^n
 %
 \subsection{Isometrien von $\mathbb{R}^n$
 \label{buch:gruppen:isometrien}}
 Isometrien von $\mathbb{R}^n$ führen automatisch auf eine interessante
-Lie-Gruppe.
+Lie-Gruppe, die in diesem Abschnitt untersucht werden soll.
 
 \subsubsection{Skalarprodukt}
 Lineare Abbildungen des Raumes $\mathbb{R}^n$ können durch
@@ -368,22 +439,23 @@ $n\times n$-Matrizen beschrieben werden.
 Die Matrizen, die das Standardskalarprodukt $\mathbb{R}^n$ erhalten,
 bilden eine Gruppe, die in diesem Abschnitt genauer untersucht werden soll.
 Eine Matrix $A\in M_{n}(\mathbb{R})$ ändert das Skalarprodukt nicht, wenn
-für jedes beliebige Paar $x,y$ von Vektoren gilt
-$\langle Ax,Ay\rangle = \langle x,y\rangle$.
+für jedes beliebige Paar $x,y$ von Vektoren 
+$\langle Ax,Ay\rangle = \langle x,y\rangle$ gilt.
 Das Standardskalarprodukt kann mit dem Matrixprodukt ausgedrückt werden:
-\[
+\begin{equation}
 \langle Ax,Ay\rangle
 =
 (Ax)^tAy
 =
 x^tA^tAy
-=
+\overset{!}{=}
 x^ty
 =
 \langle x,y\rangle
-\]
+\label{buch:gruppen:eqn:orthogonalbed}
+\end{equation}
 für jedes Paar von Vektoren $x,y\in\mathbb{R}$.
-
+%
 Mit dem Skalarprodukt kann man auch die Matrixelemente einer Matrix
 einer Abbildung $f$ in der Standardbasis bestimmen.
 Das Skalarprodukt $\langle e_i, v\rangle$ ist die Länge der Projektion
@@ -393,11 +465,12 @@ Die Matrix $A$ der Abbildung $f$ hat folglich die Matrixelemente
 $a_{i\!j}=e_i^tAe_j$.
 
 \subsubsection{Die orthogonale Gruppe $\operatorname{O}(n)$}
-Die Matrixelemente von $A^tA$ sind
-$\langle A^tAe_i, e_j\rangle =\langle e_i,e_j\rangle = \delta_{i\!j}$
-also die der Einheitsmatrix.
-Die Matrix $A$ erfüllt $AA^t=I$ oder $A^{-1}=A^t$.
-Dies sind die {\em orthogonalen} Matrizen.
+Die Matrixelemente von $A^tA$ können
+mit der Bedingung \eqref{buch:gruppen:eqn:orthogonalbed}
+berechnet werden als
+$\langle A^tAe_i, e_j\rangle =\langle e_i,e_j\rangle = \delta_{i\!j}$.
+Die Matrix $A$ erfüllt also $AA^t=I$ oder $A^{-1}=A^t$.
+Solche Matrizen heissen {\em orthogonale} Matrizen.
 \index{orthogonale Matrix}%
 Die Menge $\operatorname{O}(n)$ der isometrischen Abbildungen
 \index{O(n)@$\operatorname{O}(n)$}%
@@ -425,9 +498,10 @@ Im Spezialfall $n=2$ ist die Gruppe $\operatorname{O}(2)$ eindimensional.
 \subsubsection{Tangentialvektoren}
 Die orthogonalen Matrizen bilden eine abgeschlossene Untermannigfaltigkeit
 von $\operatorname{GL}_n(\mathbb{R})$, nicht jede Matrix $M_n(\mathbb{R})$ 
-kann also ein Tangentialvektor von $O(n)$ sein.
+kann also ein Tangentialvektor von $\operatorname{O}(n)$ sein.
 Um herauszufinden, welche Matrizen als Tangentialvektoren in Frage
-kommen, betrachten wir eine Kurve $\gamma\colon\mathbb{R}\to O(n)$
+kommen, betrachten wir eine Kurve
+$\gamma\colon\mathbb{R}\to \operatorname{O}(n)$
 von orthogonalen Matrizen mit $\gamma(0)=I$.
 Orthogonal bedeutet 
 \[
@@ -465,11 +539,39 @@ Für $n=2$ sind alle antisymmetrischen Matrizen Vielfache der Matrix
 $J$, wie in Abschnitt~\ref{buch:gruppen:drehungen2d}
 gezeigt wurde.
 
-Für jedes Paar $i<j$ ist die Matrix $A_{i\!j}$ mit den Matrixelementen
-$(A_{i\!j})_{i\!j}=-1$ und $(A_{i\!j})_{ji}=1$
+Für jedes Paar $i<j$ ist die Matrix
+\begin{equation}
+\begin{tikzpicture}[>=latex,thick,baseline=(O)]
+\coordinate (O) at (0,0);
+\draw[dotted,color=gray] (-1.2,0.42) -- (2.5,0.42);
+\draw[dotted,color=gray] (-1.2,-0.4) -- (2.5,-0.4);
+\draw[dotted,color=gray] (-0.14,-1.4) -- (-0.14,1.4);
+\draw[dotted,color=gray] (0.96,-1.4) -- (0.96,1.4);
+\node at (2.5,0.42) [right] {$i\mathstrut$};
+\node at (2.5,-0.40) [right] {$j\mathstrut$};
+\node at (-0.14,1.4) [above] {$i\mathstrut$};
+\node at (0.96,1.4) [above] {$j\mathstrut$};
+\node at (0,0) {$\displaystyle
+\Omega_{i\!j}
+=
+\begin{pmatrix*}[r]
+& & & & &  & & & \\
+& & & & &  & & & \\
+& & &0& &-1& & & \\
+& & & & &  & & & \\
+& & &1& & 0& & & \\
+& & & & &  & & & \\
+& & & & &  & & &
+\end{pmatrix*}
+$};
+\end{tikzpicture}
+\label{buch:gruppen:eqn:Omega}
+\end{equation}
+mit den Matrixelementen
+$(\Omega_{i\!j})_{i\!j}=-1$ und $(\Omega_{i\!j})_{ji}=1$
 antisymmetrisch.
-Für $n=2$ ist $A_{12}=J$.
-Die $n(n-1)/2$ Matrizen $A_{i\!j}$ bilden eine Basis des
+Für $n=2$ ist $\Omega_{12}=J$.
+Die $n(n-1)/2$ Matrizen $\Omega_{i\!j}$ bilden eine Basis des
 $n(n-1)/2$-dimensionale Tangentialraumes von $\operatorname{O}(n)$.
 
 Tangentialvektoren in einem anderen Punkt $g\in\operatorname{O}(n)$
@@ -489,8 +591,9 @@ Die Gruppe
 \[
 \operatorname{SO}(n)
 =
-\{A\in\operatorname{O}(n)\;|\; \det A=1\}
+\{A\in\operatorname{O}(n)\mid\det A=1\}
 \]
+der orientierungserhaltenden Isometrien von $\mathbb{R}^n$
 heisst die {\em spezielle orthogonale Gruppe}.
 \index{spezielle orthogonale Gruppe}%
 \index{orthogonale Gruppe, speziell}%
@@ -537,13 +640,13 @@ R_{z,\gamma}
 \end{pmatrix}
 \\
 &=
-e^{A_{23}t}
+e^{\Omega_{23}t}
 &
 &=
-e^{-A_{13}t}
+e^{-\Omega_{13}t}
 &
 &=
-e^{A_{21}t}
+e^{\Omega_{21}t}
 \end{align*}
 die Drehungen um die Koordinatenachsen um den Winkel $\alpha$
 beschreiben.
@@ -564,15 +667,15 @@ $|\vec{k}|=1$, kann man mit dem Vektorprodukt und dem Skalarprodukt
 beschreiben.
 Die Vektoren $\vec{x}-(\vec{x}\cdot\vec{k})\vec{k}$, $-\vec{x}\times\vec{k}$
 und $\vec{k}$ bilden ein Rechtssystem im Punkt $\vec{x}$, dessen zweite
-Achse tangential an die Bahn von $\vec{x}$ unter der Drehung ist.
-
+Achse tangential an die Bahn von $\vec{x}$ unter der Drehung ist
+(siehe Abbildung~\ref{buch:lie:fig:rodrigues}).
+%
 Die Komponente $(\vec{k}\cdot\vec{x})\vec{k}$ parallel zu $\vec{k}$
 ändert sich bei der Drehung nicht.
 In der Ebene mit der orthogonalen Basis aus den Vektoren
 $\vec{x}-(\vec{x}\cdot\vec{k})\vec{k}$ und $-\vec{x}\times\vec{k}$
 kann man die Drehung $R_\alpha$ um den Winkel $\alpha$ mit den
-trigonometrischen Funktionen beschreiben
-(siehe Abbildung~\ref{buch:lie:fig:rodrigues}):
+trigonometrischen Funktionen beschreiben:
 \begin{align}
 \vec{x}
 \mapsto
@@ -595,10 +698,13 @@ R_\alpha\vec{x}
 \vec{k}\times\vec{x}\sin\alpha.
 \label{buch:lie:eqn:rodrigues}
 \end{align}
-Dies ist bekannt als die {\em Formel von Rodrigues}
+\eqref{buch:lie:eqn:rodrigues} 
+ist bekannt als die {\em Formel von Rodrigues}.
 \index{Formel von Rodrigues}%
 \index{Rodrigues-Formel}%
-Wir halten noch fest, dass die Ableitung an der Stelle $\alpha=0$
+Wir halten noch fest, dass die Ableitung
+von \eqref{buch:lie:eqn:rodrigues} 
+an der Stelle $\alpha=0$
 der Tangentialvektor
 \begin{equation}
 \frac{d}{d\alpha}R_\alpha\vec{x}\,\bigg|_{\alpha=0}
@@ -631,9 +737,9 @@ Die volumenerhaltenden Abbildungen bilden die Gruppe
 =
 \{
 A\in M_n(\mathbb{R})
-\;|\;
+\mid
 \det (A) = 1
-\}
+\},
 \]
 sie heisst die {\em spezielle lineare Gruppe}.
 \index{spezielle lineare Gruppe}%
@@ -651,7 +757,7 @@ Für alle $t\in\mathbb{R}$ ist $\det A(t)=1$, daher ist die Ableitung
 \quad\text{an der Stelle $t=0$.}
 \]
 Für $n=2$ ist
-\begin{align*}
+\begin{align}
 A(t)
 &=
 \begin{pmatrix}
@@ -665,22 +771,29 @@ c(t)&d(t)
 \det A(t)\bigg|_{t=0}
 &=
 \frac{d}{dt}\bigl(a(t)d(t)-b(t)c(t)\bigr)\bigg|_{t=0}
+\notag
 \\
 &&&&
 &=
 \dot{a}(0) d(0)+a(0)\dot{d}(0)
 -
 \dot{b}(0) c(0)-b(0)\dot{c}(0)
+\notag
 \\
 &&&&
 &=
 \dot{a}(0) + \dot{d}(0)
+\notag
 \\
 &&&&
+\frac{d}{dt}
+\det A(t)\bigg|_{t=0}
 &=
 \operatorname{Spur}\frac{dA}{dt}.
-\end{align*}
-Dies gilt nicht nur im Falle $n=2$, sondern ganz allgemein für beliebige
+\label{buch:gruppen:eqn:spurformel}
+\end{align}
+Die Spurformel~\eqref{buch:gruppen:eqn:spurformel}
+gilt nicht nur im Falle $n=2$, sondern ganz allgemein für beliebige
 $n\times n$-Matrizen.
 
 \begin{satz}
@@ -691,8 +804,10 @@ mit $A(0)=I$, dann ist $\operatorname{Spur}\dot{A}(0)=0$.
 \begin{proof}[Beweis]
 Die Entwicklung der Determinante von $A$ nach der ersten Spalte ist
 \[
-\det A(t) = \sum_{i=1}^n (-1)^{i+1} a_{i1}(t) \det A_{i1}(t).
+\det A(t) = \sum_{i=1}^n (-1)^{i+1} a_{i1}(t) \det A_{i1}(t),
 \]
+Wobei $A_{i\!j}(t)$ der $i$-$k$-Minor von $A(t)$ ist
+(Seite~\pageref{buch:linear:def:minor}).
 Die Ableitung nach $t$ ist
 \[
 \frac{d}{dt} \det A(t)
@@ -824,8 +939,13 @@ Abbildung~\ref{buch:gruppen:fig:sl2} visualisiert.
 
 Die Matrizen $e^{At}$ sind Streckungen der einen Koordinatenachse und
 Stauchungen der anderen derart, dass das Volumen erhalten bleibt.
+Die Bahn eines Punktes unter Wirkung von $e^{At}$ ist eine Hyperbel
+mit den Koordinatenachsen als Asymptoten.
+
 Die Matrizen $e^{Bt}$ sind Drehmatrizen, die Längen und Winkel und
 damit erst recht den Flächeninhalt erhalten.
+Die Bahn eines Punktes ist ein Kreis um den Nullpunkt.
+
 Die Matrizen der Form $e^{Ct}$ haben die Vektoren $(1,\pm1)$ als
 Eigenvektoren:
 \begin{align*}
@@ -869,6 +989,8 @@ Die Matrizen $e^{Ct}$ strecken die Richtung $(1,1)$ um $e^t$ und
 die dazu orthogonale Richtung $(1,-1)$ um den Faktor $e^{-t}$.
 Dies ist die gegenüber $e^{At}$ um $45^\circ$ verdrehte Situation,
 auch diese Matrizen sind flächenerhaltend.
+Die Bahnen einzelner Punkte unter $e^{Ct}$ sind Hyperbeln mit
+den Winkelhalbierenden als Asymptoten.
 \begin{figure}
 \centering
 \includegraphics{chapters/60-gruppen/images/scherungen.pdf}

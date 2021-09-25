@@ -23,17 +23,17 @@ Ein stochastischer Prozess ist eine Familie von Zufallsvariablen
 \index{Zufallsvariable}%
 $X_t$ mit Werten in einer Menge $\mathcal{S}$ von Zuständen.
 Der Parameter $t$ wird üblicherweise als die Zeit interpretiert,
-er kann beliebige reelle Werte oder diskrete Werte annahmen, im letzten
+er kann beliebige reelle oder diskrete Werte annehmen, im letzten
 Fall spricht man von einem Prozess mit diskreter Zeit.
 
 Das Ereignis $\{X_t=x\}$ wird gelesen als ``zur Zeit $t$ befindet sich
 der Prozess im Zustand $x$''.
 Mit $P(X_t = x)$ wir die Wahrscheinlichkeit bezeichnet, dass sich
 der Prozess zur Zeit $t$ im Zustand $x$ befindet.
-Die Funktion $t\mapsto X_t$ beschreiben also den zeitlichen Ablauf
+Die Funktion $t\mapsto X_t$ beschreibt also den zeitlichen Ablauf
 der vom Prozess durchlaufenen Zustände.
 Dies ermöglicht, Fragen nach dem Einfluss früherer Zustände,
-also des Eintretens eines Ereignisses $\{X_{t_0}=x\}$ auf das Eintreten eines
+also des Eintretens eines Ereignisses $\{X_{t_0}=x\}$, auf das Eintreten eines
 Zustands $s\in\mathcal{S}$ zu einem späteren Zeitpunkt $t_1>t_0$
 zu studieren.
 Das Ereignis $\{X_t = x\}$ kann man sich als abhängig von der Vorgeschichte
@@ -41,17 +41,17 @@ vorstellen.
 \index{Vorgeschichte}%
 Die Vorgeschichte besteht dabei aus dem Eintreten gewisser Ereignisse
 \[
-\{X_0=x_0\},
-\{X_1=x_1\},
-\{X_2=x_2\},
-\dots,
+\{X_0=x_0\},\;
+\{X_1=x_1\},\;
+\{X_2=x_2\},\;
+\dots,\;
 \{X_n=x_n\}
 \]
 zu früheren Zeiten $t_0<t_1<\dots<t_n<t$.
 Die bedingte Wahrscheinlichkeit
 \begin{equation}
 P(X_t = x \mid
-X_{t_n}=x_n\wedge X_{t_{n-1}}=x_{n-1}\wedge\dots\wedge X_{t_1}=x_1\wedge
+X_{t_n}=x_n\wedge X_{t_{n-1}}=x_{n-1}\wedge\ldots\wedge X_{t_1}=x_1\wedge
 X_{t_0}=x_0)
 \label{buch:wahrscheinlichkeit:eqn:historybedingt}
 \end{equation}
@@ -62,7 +62,7 @@ die Zustände $x_0,x_1,\dots,x_n$ durchlaufen hat.
 \subsubsection{Gedächtnislosigkeit}
 \index{Markov-Eigenschaft}%
 In vielen Fällen ist nur der letzte durchlaufene Zustand wichtig.
-Die Zustände in den Zeitpunkten $t_0<\dots<t_{n-1}$ haben dann keinen
+Die Zustände zu den Zeitpunkten $t_0<\dots<t_{n-1}$ haben dann keinen
 Einfluss auf die Wahrscheinlichkeit.
 Auf die bedingte
 Wahrscheinlichkeit~\eqref{buch:wahrscheinlichkeit:eqn:historybedingt}
@@ -170,7 +170,7 @@ p_{x_1x_0}(t_1,s)
 \prod_{i=0}^{n}
 p_{x_{i+1}x_i}(t_{i+1}t_i)
 \]
-heisst die {\em Pfadwahrscheinlichkeit} für genannten Pfad.
+heisst die {\em Pfadwahrscheinlichkeit} für den genannten Pfad.
 \index{Pfadwahrscheinlichkeit}%
 \end{definition}
 
@@ -256,7 +256,7 @@ Die Summe der Elemente einer Spalte
 
 \begin{beispiel}
 Die Permutationsmatrix einer Permutation $\sigma\in S_n$ 
-(Abschnitt~\label{buch:section:permutationsmatrizen})
+(Abschnitt~\ref{buch:section:permutationsmatrizen})
 \index{Permutationsmatrix}%
 ist eine Matrix mit Einträgen $0$ und $1$, so dass die erste Bedingung
 erfüllt ist.
@@ -329,8 +329,8 @@ Die Summe aller Zeilen von $T-I$ ist also $0$, die Matrix $T-I$
 ist singulär.
 
 Dass $T-I$ singulär ist, garantiert aber noch nicht,
-dass alle Einträge in einem zum Eigenwert $1$
-Eigenvektor auch tatsächlich nichtnegativ gewählt werden können.
+dass alle Einträge in einem Eigenvektor zum Eigenwert $1$
+auch tatsächlich nichtnegativ gewählt werden können.
 Die Perron-Frobienus-Theorie von
 \index{Perron-Frobenius-Theorie}%
 Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
@@ -405,16 +405,17 @@ Eine eindeutige stationäre Verteilung können wir also nur erwarten,
 wenn alle Zustände miteinander kommunizieren.
 
 \begin{definition}
-Eine homogene Markov-Kette heisst {\em irreduzibel}, alle Zustände miteinander
-kommunizieren.
+Eine homogene Markov-Kette heisst {\em irreduzibel},
+wenn alle Zustände miteinander kommunizieren.
 \index{irreduzible Markov-Kette}
 \end{definition}
 
 \begin{figure}
 \centering
 \includegraphics{chapters/80-wahrscheinlichkeit/images/markov2.pdf}
-\caption{Diese Markov-Kette zerfällt in verschiedene irreduzible
-Markov-Ketten, dere Zustandsmengen nicht miteinander kommunizieren.
+\caption{Diese Markov-Kette zerfällt in zwei verschiedene irreduzible
+Markov-Ketten (blau und grün hinterlegt),
+deren Zustandsmengen nicht miteinander kommunizieren.
 Solche Markov-Ketten können unabhängig voneinander studiert werden.
 \label{buch:wahrscheinlichkeit:fig:markovzerfall}}
 \end{figure}
@@ -580,7 +581,7 @@ Die konstante Verteilung $\frac13U$ ist offensichtlich eine
 stationäre Verteilung.
 In Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
 wird gezeigt, dass es die einzige ist.
-Sei jetzt $p(0)$ eine beliebiger Vektor in $\mathbb{R}^3$ mit
+Sei jetzt $p(0)$ ein beliebiger Vektor in $\mathbb{R}^3$ mit
 nichtnegativen Einträgen, die sich zu $1$ summieren.
 Dann bilden die Vektoren $p(n)=T^np(0)$ einen Dreierzyklus
 \begin{align*}
@@ -718,7 +719,7 @@ heisst {\em absorbierend}, wenn $T_{ii}=1$ ist.
 Eine Markov-Kette mit mindestens einem absorbierenden Zustand heisst
 {\em absorbierende Markov-Kette}.
 \index{absorbierende Markov-Kette}%
-Nicht absorbierende Zustände heissen {\em transient}
+Nicht absorbierende Zustände heissen {\em transient}.
 \index{transienter Zustand}%
 \end{definition}
 
@@ -827,7 +828,7 @@ B_{k}=\begin{cases}
 0&\qquad\text{sonst,}
 \end{cases}
 \]
-die genau dann $1$ ist, wenn der Prozess ausgehend von $j$ im Zustand
+die genau dann $1$ ist, wenn der Prozess ausgehend vom Zustand $j$
 beim $k$-ten Schritt den Zustand $i$ besucht.
 Die Zufallsvariable der Anzahl $B$ der Besuche des Zustands $i$ ist die
 Summe der $B_k$.
@@ -836,7 +837,7 @@ jetzt als Erwartungswert ausdrücken lässt, es ist
 $P(X_k=i \mid X_0=j) = E(B_k)$.
 
 Damit lässt sich jetzt die Fundamentalmatrix auf andere Art interpretieren.
-Der Eintrag $N_{i\!j}$ ist
+Der Eintrag $F_{i\!j}$ ist
 \begin{align*}
 F_{i\!j}
 &=
@@ -855,7 +856,7 @@ P(X_2=i\mid X_0=j)
 &=E(B_0+B_1+B_2+\dots)
 =E(B).
 \end{align*}
-Die Summe der $B_k$ ist aber die erwartete Anzahl der Besuch im Zustand $i$.
+Die Summe der $B_k$ ist die erwartete Anzahl der Besuch im Zustand $i$.
 
 \begin{satz}
 \label{buch:markov:satz:anzahlbesuche}
@@ -866,9 +867,12 @@ Element $F_{i\!j}$ der Fundamentalmatrix $F=(I-Q)^{-1}$.
 
 \subsubsection{Absorptionszeit}
 \index{Absorptionszeit}%
+\begin{frage}
 Wie lange dauert es im Mittel, bis der Prozess ausgehend vom Zustand $j$
 in einem Absorbptionszustand $i$ stecken bleibt?
-Sie ist gleich gross wie die Zeit, während der der Prozess nicht absorbierende
+\end{frage}
+Die Absorptionszeit ist gleich gross wie die Zeit,
+während der der Prozess nicht absorbierende
 Zustände besucht.
 Die Zeit $t_j$, bis der Prozess in einen absorbierenden Zustand wechselt, ist also
 die erwartete Anzahl Besuche nicht absorbierender Zustände.
@@ -878,7 +882,7 @@ t_j
 =
 \sum_{\text{$i$ nicht absorbierend}} E(\text{Anzahl Besuche von $i$}\mid X_0=j)
 =
-\sum_{\text{$i$ nicht absorbierend}} F_{i\!j}.
+\sum_{i} F_{i\!j}.
 \]
 $t_j$ ist also die Summe der Elemente der Spalte $j$ der Fundamentalmatrix $F$.
 Man kann diese Summe auch vektoriell schreiben mit einem Zeilenvektor $U^t$
@@ -897,10 +901,12 @@ Einträge in Spalte $j$ der Fundamentalmatrix $F$.
 
 \subsubsection{Absorptionswahrscheinlichkeit}
 \index{Absorptionswahrscheinlichkeit}%
+\begin{frage}
 Wie gross ist die Wahrscheinlichkeit, dass der Prozess ausgehend von
 Zustand $j$ irgendwann im Zustand $i$ absorbiert wird?
+\end{frage}
 Die Potenzen $T^k$ der Übergangsmatrix enthalten in Zeile $j$
-und Spalte $i$ die Wahrscheinlichkeit, dass nach spätestens $k$ Schritten
+und Spalte $i$ die Wahrscheinlichkeit, dass dies nach spätestens $k$ Schritten
 geschehen ist.
 Wir müssen daher den Grenzwert
 \(
@@ -925,9 +931,11 @@ die Wahrscheinlichkeit, dass der Prozess ausgehend vom Zustand $j$
 irgendwann im Zustand $i$ absorbiert wird.
 
 \subsubsection{Absorption über den letzten Zustand $l$}
+\begin{frage}
 Wie gross ist die Wahrscheinlichkeit, dass die von $j$ ausgehende
 Absorption in den Zustand $i$ als letzten Zustand vor der Absorption
 den Zustand $l$ hat?
+\end{frage}
 Wir schreiben $l\overset{\smash{k}}{\twoheadrightarrow} i$ für das Ereignis, dass der Prozess
 im $k$-ten Schritt über den letzten
 Zustand $l$ in den Absorbtionszustand $i$ übergeht.
@@ -970,8 +978,11 @@ geschrieben werden.
 
 \subsubsection{Wartezeit für eine beliebige Markov-Kette}
 \index{Wartezeit}%
-Die mittlere Wartezeit bis zum Erreichen eines Zustands in einer
-beliebigen Markov-Kette kann mit der
+\begin{frage}
+Wie gross ist die mittlere Wartezeit, bis eine beliebige Markov-Kette
+einen bestimmten Zustand erreicht?
+\end{frage}
+Auch diese mittlere Wartezeit kann mit der
 Theorie zur Berechnung der Absorptionszeit berechnet werden.
 Dazu modifiziert man den Prozess dahingehend, dass der Zielzustand
 ein absorbierender Zustand wird.

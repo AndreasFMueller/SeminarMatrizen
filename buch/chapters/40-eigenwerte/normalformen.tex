@@ -72,8 +72,16 @@ $m(x)=(x-\lambda_1)(x-\lambda_2)\cdots(x-\lambda_m)$ mit der Eigenschaft
 $m(A)=0$.
 Dies ist auch das Polynom von kleinstmöglichem Grad, denn für jeden
 Eigenwert muss ein entsprechender Linearfaktor in so einem Polynom vorkommen.
+
+\begin{definition}
+\label{buch:normalformen:def:minimalpolynom}
+Das {\em Minimalpolynom} $m_A(X)\in\Bbbk[X]$ einer Matrix
+\index{Minimalpolynom}
+$A\in M_{n}(\Bbbk)$ ist das Polynom kleinstmöglichen Grades, für
+das $m_A(X)=0$ gilt.
+\end{definition}
+
 Das Polynom $m(x)$ ist daher das Minimalpolynom der Matrix $A$.
-\index{Minimalpolynome}%
 Da jeder Faktor in $m(x)$ auch ein Faktor von $\chi_A(x)$ ist,
 folgt wieder $\chi_A(A)=0$.
 Ausserdem ist über dem Körper $\Bbbk'$ das Polynom $m(x)$ ein Teiler
@@ -337,8 +345,8 @@ wird.
 
 Die nicht reellen Eigenwerte von $A$ treten in konjugiert komplexen Paaren
 $\lambda_i$ und $\overline{\lambda}_i$ auf.
-Wir betrachten im Folgenden nur ein einziges Paar $\lambda=a+ib$ und
-$\overline{\lambda}=a-ib$ von konjugiert komplexen Eigenwerten mit
+Wir betrachten im Folgenden nur ein einziges Paar $\lambda=\alpha+i\beta$ und
+$\overline{\lambda}=\alpha-i\beta$ von konjugiert komplexen Eigenwerten mit
 nur je einem einzigen $n\times n$-Jordan-Block $J$ und $\overline{J}$.
 Ist $\mathcal{B}=\{b_1,\dots,b_n\}$ die Basis für den Jordan-Block $J$,
 dann kann man die Vektoren
@@ -377,8 +385,8 @@ J&0\\
        &       &       &      &\lambda&&&&&\\
 &&&& &\overline{\lambda}&1&&     & \\
 &&&& &&\overline{\lambda}&1&     & \\
-&&&& &&&\overline{\lambda} &\dots& \\
-&&&& &&&                   &\dots&1\\
+&&&& &&&\overline{\lambda} &\ddots& \\
+&&&& &&&                   &\ddots&1\\
 &&&& &&&                   &&\overline{\lambda}\\
 \end{pmatrix}.
 \]
@@ -386,24 +394,24 @@ J&0\\
 Die Jordan-Normalform bedeutet, dass
 \[
 \begin{aligned}
-Ab_1&=\lambda b_1           &
-	A\overline{b}_1 &= \overline{\lambda} \overline{b}_1      \\
-Ab_2&=\lambda b_2 + b_1     &
-	A\overline{b}_2 &= \overline{\lambda} \overline{b}_2 +\overline{b_1}\\
-Ab_3&=\lambda b_3 + b_2     &
-	A\overline{b}_3 &= \overline{\lambda} \overline{b}_3 +\overline{b_2}\\
-    &\;\vdots               &
+Ab_1&=\lambda b_1           &&\Rightarrow&
+	A\overline{b}_1 &= \overline{\lambda} \overline{b}_1,      \\
+Ab_2&=\lambda b_2 + b_1     &&\Rightarrow&
+	A\overline{b}_2 &= \overline{\lambda} \overline{b}_2 +\overline{b_1},\\
+Ab_3&=\lambda b_3 + b_2     &&\Rightarrow&
+	A\overline{b}_3 &= \overline{\lambda} \overline{b}_3 +\overline{b_2},\\
+    &\;\vdots               &&           &
 	                 &\;\vdots \\
-Ab_n&=\lambda b_n + b_{n-1} &
-	A\overline{b}_n &= \overline{\lambda} \overline{b}_n +\overline{b_{n-1}}
+Ab_n&=\lambda b_n + b_{n-1} &&\Rightarrow&
+	A\overline{b}_n &= \overline{\lambda} \overline{b}_n +\overline{b_{n-1}}.
 \end{aligned}
 \]
 Für die Linearkombinationen
 \begin{equation}
 \begin{aligned}
-c_i &= \frac{b_i+\overline{b}_i}{\sqrt{2}},
+c_k &= \frac{b_k+\overline{b}_k}{\sqrt{2}},
 &
-d_i &= \frac{b_i-\overline{b}_i}{i\sqrt{2}}
+d_k &= \frac{b_k-\overline{b}_k}{i\sqrt{2}}
 \end{aligned}
 \label{buch:eigenwerte:eqn:reellenormalformumrechnung}
 \end{equation}

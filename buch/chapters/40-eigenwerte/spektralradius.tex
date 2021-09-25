@@ -45,7 +45,7 @@ kann man auch
 p(A) = a_nA^n + a_{n-1}A^{n-1} + \dots + a_1A + a_0I
 \]
 berechnen.
-In der Jordan-Normalform können die Potenzen $A^k$ leicht zusammengstellt
+In der Jordan-Normalform können die Potenzen $A^k$ leicht zusammengestellt
 werden, sobald man die Potenzen von Jordan-Blöcken berechnet hat.
 
 \begin{satz}
@@ -103,26 +103,31 @@ Die Herkunft der Binomialkoeffizienten wird klar, wenn man
 \[
 J_n(\lambda) = \lambda I + N_n
 \]
-schreibt, wobei $N_n$ die Matrix \eqref{buch:eigenwerte:eqn:nnilpotent} ist.
+schreibt, wobei $N_n$ die Matrix \eqref{buch:eigenwerte:eqn:nnilpotent}
+von Definition~\ref{buch:eigenwerte:def:Nn} von
+Seite~\pageref{buch:eigenwerte:def:Nn} ist.
 Die Potenzen von $N_n$ haben die Matrix-Elemente
 \[
-(N_n^k)_{i\!j}
+(N_n^l)_{i\!j}
 =
-\delta_{i,j-k}
+\delta_{i,j-l}
 =
 \begin{cases}
-1&\qquad j-i=k\\
+1&\qquad j-i=l\\
 0&\qquad\text{sonst,}
 \end{cases}
 \]
 sie haben also Einsen genau dort, wo in der
-\label{buch:eigenwerte:eqn:Jnkpotenz} die Potenz $\lambda^{k}$ steht.
-Die $k$-te Potenz von $J_n(\lambda)$ kann dann mit dem binomischen
+Matrix 
+\eqref{buch:eigenwerte:eqn:Jnkpotenz} die Potenz $\lambda^{k-l}$ steht.
+Die $k$-te Potenz von $J_n(\lambda)$ kann daraus mit dem binomischen
 Satz berechnet werden:
 \[
 J_n(\lambda)^k
 =
-\sum_{l=0}^k \binom{k}{l}\lambda^l N_n^{k-l},
+(N_n+\lambda I)^k
+=
+\sum_{l=0}^k \binom{k}{l} N_n^{l} \lambda^{k-l},
 \]
 dies ist genau die Form \eqref{buch:eigenwerte:eqn:Jnkpotenz}.
 \end{proof}
@@ -155,7 +160,7 @@ Ist andererseits $p(X)-q(X)=m(X)t(X)$, dann ist
 $p(A)-q(A)=m(A)t(A)=0\cdot t(A) = 0$, also $p(A)=q(A)$.
 \end{proof}
 
-Über einem Körper $\Bbbk'\supset\Bbbk$, über dem das charakteristische
+Über einem Körper $\Bbbk'\supset\Bbbk$, in dem das charakteristische
 Polynom in Linearfaktoren zerfällt, kann man das Minimalpolynom aus
 der Jordanschen Normalform ableiten.
 Es ist
@@ -272,7 +277,7 @@ wie zu erwarten war.
 
 Wenn sich zwei Polynome nur um das charakteristische Polynom unterscheiden,
 dann haben sie den gleichen Wert auf $A$.
-Das Polynom $p_1(X)=X^3$ unterschiedet sich vom Polynom
+Das Polynom $p_1(X)=X^3$ unterscheidet sich vom Polynom
 $p_2(X)=7X^2-16X+12=\chi_A(X)+X^3=p_1(X)+\chi_A(X)$ 
 um das charakteristische Polynom, welches wir bereits als das Minimalpolynom
 von $A$ erkannt haben.
@@ -318,8 +323,8 @@ für alle Eigenwerte $\lambda$ von $A$.
 
 Über dem Körper der komplexen Zahlen ist die Bedingung, dass die Differenz
 $d(X)=p_1(X)-p_2(X)$ vom Minimalpolynom geteilt werden muss, gleichbedeutend
-damit, dass $p_1(X)$ und $p_2(X)$ die gleichen Nullstellen mit den gleichen
-Vielfachheiten haben.
+damit, dass $p_1(X)-p_2(X)$ mindestens alle Nullstellen des Minimalpolynoms
+mit mindestens so grossen Vielfachheiten haben muss.
 Eine andere Art, dies auszudrücken, ist, dass $p_1(x)$ und $p_2(X)$
 die gleichen Werte und Ableitungen bis zur Ordnung $q_i-1$ haben, wenn
 $q_i$ der Exponente von $\lambda_I-X$ im Minimalpolynom von $A$ ist.
@@ -340,7 +345,7 @@ A^{i-k}A^k
 =
 A^{i-k}(-a_{k-1}A^{k-1}+ \dots + a_1 A + a_0I)
 \]
-in einer Linearkombination kleinerer Potenzen reduzieren.
+auf einer Linearkombination kleinerer Potenzen reduzieren.
 Jedes Polynom vom Grad $\ge k$ kann also reduziert werden in
 ein Polynom vom Grad $<k$ mit dem gleichen Wert auf $A$.
 
@@ -381,7 +386,8 @@ Solche Polynome gibt es dank dem Satz von Stone-Weierstrass immer:
 \begin{satz}[Stone-Weierstrass]
 Ist $I\subset\mathbb{R}$ kompakt, dann lässt sich jede stetige Funktion
 $f(x)$
-durch eine Folge $p_n(x)$ beliebig genau approximieren.
+durch eine Folge von reellen Polynomen
+$p_n(x)$ beliebig genau approximieren.
 \end{satz}
 
 Die Hoffnung ist, $f(A)$ als Grenzwert der Approximationen $p_n(A)$
@@ -389,25 +395,25 @@ zu definieren.
 Dazu muss sichergestellt sein, dass verschiedene Approximationen
 der Funktion $f$ den gleichen Grenzwert $\lim_{n\to\infty}p_n(A)$ 
 ergeben.
-Im Folgenden soll genauer untersucht werden, ob sich von der
+Im Folgenden soll genauer untersucht werden, ob von der
 Konvergenz einer Folge $p_n(x)$ auf die Konvergenz von $p_n(A)$
 geschlossen werden kann.
 
-Wir haben schon gezeigt, dass es dabei auf die höheren Potenzen gar nicht
-ankommt, nach Satz~\ref{buch:eigenwerte:satz:reduktion} kann man ein
-approximierendes Polynom immer durch ein Polynom von kleinerem Grad
-als das Minimalpolynom ersetzen.
+%Wir haben schon gezeigt, dass es dabei auf die höheren Potenzen gar nicht
+%ankommt, nach Satz~\ref{buch:eigenwerte:satz:reduktion} kann man ein
+%approximierendes Polynom immer durch ein Polynom von kleinerem Grad
+%als das Minimalpolynom ersetzen.
 
-\begin{definition}
-\index{Norm}%
-Die {\em Norm} einer Matrix $M$ ist
+Wir erinnern in diesem Zusammenhang an die Definition
+\ref{buch:vektoren-matrizen:def:operatornorm}
+der Operatornorm.
+Die Norm einer Matrix $M$ ist
 \[
 \|M\|
 =
-\max\{|Mx|\,|\, x\in\mathbb R^n\wedge |x|=1\}.
+\sup\{|Mx|\,|\, x\in\mathbb R^n\wedge |x|=1\}.
 \]
 Für einen Vektor $x\in\mathbb R^n$ gilt $|Mx| \le \|M\|\cdot |x|$.
-\end{definition}
 
 \begin{beispiel}
 Die Matrix
@@ -548,7 +554,7 @@ f(z)
 \end{equation}
 \index{Potenzreihe}
 haben, wie
-zum Beispiel $e^x$, $\sin x$ oder $\cos x$, haben eine in der Folge
+zum Beispiel $e^x$, $\sin x$ oder $\cos x$, haben in der Folge
 der Partialsummen
 \[
 p_n(z) = \sum_{k=0}^n a_kz^k
@@ -572,10 +578,10 @@ folgt, dass
 \le
 \limsup_{n\to\infty} \sqrt[n]{|a_n|}
 \cdot
-\limsup_{n\to\infty} \|M^k\|^{\frac1k}
+\limsup_{n\to\infty} \|M^n\|^{\frac1n}
 =
 \frac{1}{\varrho}
-\limsup_{n\to\infty} \|M^k\|^{\frac1k}
+\limsup_{n\to\infty} \|M^n\|^{\frac1n}
 \]
 sein muss.
 Dies führt uns auf die Grösse
@@ -593,12 +599,32 @@ Die Zahl $\pi(M)$ erlaubt zunächst einmal zu bestimmen, wie
 sich die Potenzen $M^k$ entwickeln.
 Für Zahlen ist diese Frage sehr einfach zu entscheiden: wenn $q>1$ ist,
 dann geht $q^n\to\infty$, wenn $|q|<1$ ist, dann geht $q^n\to 0$.
-Für Matrizen ist die Frage etwas schieriger.
+Für Matrizen ist die Frage etwas schwieriger.
 Man kann sich vorstellen, dass eine Streckung in einer Richtung
 von einer Stauchung in eine andere Richtung kompensiert wird, wenn
 dazwischen eine Drehung stattfindet.
 Es ist also durchaus möglich, dass $\|M\|>1$ ist, die
-Iterierten $M^k$ aber trotzdem gegen $0$ gehen.
+Iterierten $M^k$ aber trotzdem gegen $0$ gehen, wie das folgende
+Beispiel zeigt.
+
+\begin{beispiel}
+Die nilpotente Matrix $2N_2$ kann man sich vorstellen als eine Drehmatrix
+um $-90^\circ$ gefolgt von einer Projektion und Streckung um den Faktor
+$2$ auf die erste Achse:
+\[
+\begin{pmatrix}2&0\\0&0\end{pmatrix}
+R_{-90^\circ}
+=
+\begin{pmatrix}2&0\\0&0\end{pmatrix}
+\begin{pmatrix} 0&1\\-1&0 \end{pmatrix}
+=
+\begin{pmatrix}
+0&2\\0&0
+\end{pmatrix}
+=2N_2.
+\]
+Wegen $(2N_2)^2=0$ folgt $\pi(2N_2)=0$, obwohl $\|2N_2\|=2$ ist.
+\end{beispiel}
 
 Ist $\pi(M) > 1$, dann gibt es Anfangsvektoren $v$ für die Iteration,
 für die $M^kv$ über alle Grenzen wächst.
@@ -614,7 +640,7 @@ Der Grenzwert
 \[
 \pi(M)
 =
-\limsup_{n\to\infty} \|M^k\|^{\frac1k}
+\limsup_{n\to\infty} \|M^n\|^{\frac1n}
 \]
 heisst {\em Gelfand-Radius} der Matrix $M$.
 \index{Gelfand-Radius}%
@@ -639,8 +665,8 @@ Eigenwertes.
 \index{rho(M)@$\varrho(M)$}%
 \end{definition}
 
-Wir wollen in diesem Abschnitt zeigen, dass der Gelfand-Radius mit
-dem Spektralradius übereinstimmt.
+Wir wollen in diesem Abschnitt das als Satz von Gelfand bekannte Resultat
+beweisen, dass der Gelfand-Radius mit dem Spektralradius übereinstimmt.
 Dies liefert uns ein vergleichsweise einfach auszuwertendes Konvergenzkriterium.
 \index{Konvergenzkriterium}%
 
@@ -693,11 +719,11 @@ A^k v_1 + A^k v_2 + \dots + A^k v_n
 Für den Grenzwert braucht man die Norm von $A^kv$, also
 \begin{align}
 |A^kv|
-&= |\lambda_1^k v_1 + \lambda_2^k v_2 + \dots + \lambda_3 v_3|
+&= |\lambda_1^k v_1 + \lambda_2^k v_2 + \dots + \lambda_n^k v_n|
 \notag
 \\
 \Rightarrow\qquad
-\frac{|A^kv|}{\lambda_1^k}
+\frac{|A^kv|}{|\lambda_1^k|}
 &=
 \biggl|
 v_1 +
@@ -784,8 +810,8 @@ Selbstverständlich lässt sich das Lemma auf Blockmatrizen mit beliebig
 vielen diagonalen Blöcken verallgemeinern.
 \index{Blockmatrix}%
 
-Für Diagonalmatrizen der genannten Art sind aber auch die 
-Eigenwerte leicht zu bestimmen.
+Für Blockmatrizen der Art \ref{buch:spektralradius:eqn:blockmatrix}
+sind aber auch die Eigenwerte leicht zu bestimmen.
 \index{Diagonalmatrix}%
 Hat $B$ die Eigenwerte $\lambda_i^{(B)}$ mit $1\le i\le n$ und $C$ die
 Eigenwerte $\lambda_j^{(C)}$ mit $1\le j\le m$, dann ist das charakteristische
@@ -840,8 +866,8 @@ J_{n_1}(\lambda_1) &        0         & \dots & 0 \\
 \]
 geschrieben werden kann.
 Die früheren Beobachtungen über den Spektralradius und den
-Gelfand-Radius von Blockmatrizen führen uns dazu, dass
-nur gezeigt werden muss, dass nur die Gleichheit des Gelfand-Radius
+Gelfand-Radius von Blockmatrizen führen uns dazu, 
+dass nur die Gleichheit des Gelfand-Radius
 und des Spektral-Radius von Jordan-Blöcken gezeigt werden muss.
 
 \subsubsection{Potenzen von Jordan-Blöcken}
@@ -900,7 +926,7 @@ Satz~\ref{buch:spektralradius:satz:grenzwert}.
 \index{Satz von Gelfand}%
 \index{Gelfand!Satz von}%
 \label{buch:satz:gelfand}
-Für jede komplexe $n\times n$-Matrix $A$ gilt
+Für eine komplexe $n\times n$-Matrix $A$ gilt
 \[
 \pi(A)
 =
@@ -916,7 +942,7 @@ Spektralradius ein scharfes Kriterium dafür ist, ob $\|A^k\|$
 gegen 0 oder $\infty$ konvergiert.
 Andererseits ändert ein Faktor $t$ in der Matrix $A$ den Spektralradius
 ebenfalls um den gleichen Faktor, also $\varrho(tA)=t\varrho(A)$.
-Natürlich gilt auch
+Natürlich gilt dies wegen
 \[
 \pi(tA)
 =
@@ -926,8 +952,9 @@ Natürlich gilt auch
 =
 t\lim_{k\to\infty} \|A^k\|^\frac1k
 =
-t\pi(A).
+t\pi(A)
 \]
+auch für den Gelfand-Radius.
 
 Wir betrachten jetzt die Matrix
 \[

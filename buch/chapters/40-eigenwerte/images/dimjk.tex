@@ -34,9 +34,9 @@
 \fill[color=darkgreen!40] ({5*\sx},0) rectangle ({8*\sx},{6-2.4});
 
 \draw[color=darkgreen,line width=2pt] ({3*\sx},{6-6}) -- ({3*\sx},{6-2.9});
-\node[color=darkgreen] at ({3*\sx},{6-4.45}) [rotate=90,above] {$\dim\mathcal{K}^k(A)$};
+\node[color=darkgreen] at ({3*\sx},{6-4.45}) [rotate=90,above] {$\dim\mathcal{K}^i(A)$};
 \draw[color=orange,line width=2pt] ({3*\sx},{6-0}) -- ({3*\sx},{6-2.9});
-\node[color=orange] at ({3*\sx},{6-1.45}) [rotate=90,above] {$\dim\mathcal{J}^k(A)$};
+\node[color=orange] at ({3*\sx},{6-1.45}) [rotate=90,above] {$\dim\mathcal{J}^i(A)$};
 
 \node[color=orange] at ({6.5*\sx},{6-1.2}) {bijektiv};
 \node[color=darkgreen] at ({6.5*\sx},{6-4.2}) {konstant};
@@ -53,7 +53,7 @@
 
 \draw \pfad;
 
-\draw[->] (-0.5,0) -- ({8*\sx+0.5},0) coordinate[label={$k$}];
+\draw[->] (-0.5,0) -- ({8*\sx+0.5},0) coordinate[label={$i$}];
 \draw[->] (-0.5,6) -- ({8*\sx+0.5},6);
 
 \foreach \x in {0,...,8}{
@@ -63,15 +63,15 @@
         \node at ({\x*\sx},-0.05) [below] {$\x$};
 }
 \node at ({4*\sx},-0.05) [below] {$\dots\mathstrut$};
-\node at ({5*\sx},-0.05) [below] {$l$};
-\node at ({6*\sx},-0.05) [below] {$l+1$};
-\node at ({7*\sx},-0.05) [below] {$l+2$};
-\node at ({8*\sx},-0.05) [below] {$l+3$};
+\node at ({5*\sx},-0.05) [below] {$k$};
+\node at ({6*\sx},-0.05) [below] {$k+1$};
+\node at ({7*\sx},-0.05) [below] {$k+2$};
+\node at ({8*\sx},-0.05) [below] {$k+3$};
 
 \node[color=orange] at ({1.2*\sx},5.6)
-	{$\mathcal{J}^k(A)\supset\mathcal{J}^{k+1}(A)$};
+	{$\mathcal{J}^i(A)\supset\mathcal{J}^{i+1}(A)$};
 \node[color=darkgreen] at ({1.2*\sx},0.4)
-	{$\mathcal{K}^k(A)\subset\mathcal{K}^{k+1}(A)$};
+	{$\mathcal{K}^i(A)\subset\mathcal{K}^{i+1}(A)$};
 
 \end{tikzpicture}
 \end{document}

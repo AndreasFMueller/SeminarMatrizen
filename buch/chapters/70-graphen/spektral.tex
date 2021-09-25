@@ -26,7 +26,7 @@ chromatischen Zahl und der Unabhängigkeitszahl erfasst werden.
 
 \begin{definition}
 Die {\em chromatische Zahl} $\operatorname{chr}G$ eines Graphen $G$ ist
-die minimale Anzahl von Farben, die Einfärben der Knoten eines Graphen
+die minimale Anzahl von Farben, die zum Einfärben der Knoten eines Graphen
 nötig sind, sodass benachbarte Knoten verschiedene Farben haben.
 \index{chromatische Zahl}
 \end{definition}
@@ -158,7 +158,7 @@ $\operatorname{chr}G \le d+1$.
 Wir führen den Beweis mit Hilfe von vollständiger Induktion nach der
 Anzahl Knoten eines Graphen.
 Ein Graph mit nur einem Knoten hat keine Kanten, der maximale Grad ist
-daher $0$ und $d+1=1$ Farbe reicht auch tatsächlich zur Einfärbung des
+daher $d=0$ und $d+1=1$ Farbe reicht auch tatsächlich zur Einfärbung des
 einen Knotens.
 
 Wir nehmen jetzt an, die Behauptung sei für Graphen mit $n-1$ Knoten bereits
@@ -220,7 +220,7 @@ Somit ist
 \end{equation}
 der {\em mittlere Grad}, der mit $\overline{d}$ bezeichnet werden soll.
 Da die Kanten eines Graphen zusammen $2\cdot|E|$ Enden haben, kann
-er kann auch als
+er auch als
 \[
 \overline{d}=\frac{2\cdot|E|}{|V|}
 \]
@@ -257,7 +257,9 @@ ist der grösste Eigenwert, also genau die Grösse, auf die die
 Sätze~\ref{buch:wahrscheinlichkeit:satz:perron-frobenius}
 und \ref{buch:wahrscheinlichkeit:satz:perron-frobenius2}
 anwendbar sind.
-Dazu muss die Matrix allerdings primitiv sein, was gleichbedeutend
+Dazu muss die Matrix allerdings primitiv sein
+(Definition~\ref{buch:positiv:def:primitiv} in Kapitel~\ref{buch:chapter:wahrscheinlichkeit}),
+was gleichbedeutend
 \index{primitive Matrix}%
 ist damit, dass der Graph zusammenhängend ist.
 Im folgenden soll dies daher jeweils angenommen werden.
@@ -292,8 +294,8 @@ Schreiben wir $u\sim v$ für die Nachbarschaftsrelation, dann ist
 =
 \sum_{u\sim v} f(u).
 \]
-Die Summe der Komponenten $A(G)f$ kann man erhalten durch Multiplikation
-von $A(G)f$ mit einem Zeilenvektor $U^t$ aus lauter Einsen, also
+Die Summe der Komponenten $A(G)f$ kann man durch Multiplikation
+von $A(G)f$ mit einem Zeilenvektor $U^t$ aus lauter Einsen erhalten, also
 \begin{equation}
 \begin{aligned}
 {\color{red}

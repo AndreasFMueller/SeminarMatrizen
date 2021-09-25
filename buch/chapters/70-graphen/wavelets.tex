@@ -18,7 +18,11 @@ Wenn man einen Standardbasisvektor in einem Knoten $i$
 als Anfangstemperaturverteilung verwendet, erwartet man eine Lösung,
 die für kleine Zeiten $t$ die Energie immer in der Nähe des Knotens $i$
 konzentriert hat.
-Weder die Standardbasis noch die Eigenbasis haben diese Eigenschaft.
+Es werden daher mit der Zeit immer stärkere benachbarte Standardbasisvektoren
+in der Lösung auftreten.
+Auch die Eigenbasis hilft nicht, dieses Lösungsverhalten aufzuzeigen:
+sie sind im Definitionsgebiet stark delokalisiert und daher die allmählich
+abnehmende Lokalisierung der Lösung nicht wiedergeben.
 
 \subsection{Vergleich mit der Wärmeleitung auf $\mathbb{R}$}
 Ein ähnliches Phänomen findet man bei der Wärmeausbreitung gemäss
@@ -29,7 +33,7 @@ der partiellen Differentialgleichung
 Die von Fourier erfundene Methode, die Fourier-Theorie, verwendet die
 Funktionen $e^{ik x}$, die Eigenvektoren der zweiten Ableitung
 $\partial^2/\partial x^2$ sind.
-Diese haben das gleiche Problem, der Betrag von $e^{ikx}$ ist $1$, die
+Diese haben das gleiche Problem: Der Betrag von $e^{ikx}$ ist $1$, die
 Entfernung von einem Punkt spielt überhaupt keine Rolle.
 Die Funktion
 \[
@@ -90,7 +94,7 @@ wenigstens ablesen,
 dass für zunehmende Zeit die hohen Frequenzen sehr schnell gedämpft
 werden.
 Die hohen Frequenzen erzeugen also den scharfen Peak für Zeiten nahe
-beim Knoten $i$, die zu kleineren $\lambda_i$ beschreiben die Ausbreitung
+beim Knoten $i$, die kleineren $\lambda_i$ beschreiben die Ausbreitung
 über grössere Distanzen.
 Die Fundamentallösung interpoliert also in einem gewissen Sinne zwischen
 den Extremen der Standardbasis und der Eigenbasis.
@@ -142,7 +146,7 @@ Es stellt sich daher die Frage, ob man für eine beliebige Menge
 \(
 T= \{ t_1,t_2,\dots\}
 \)
-von Streckungsfaktoren eine Familie von Funktionen $\chi_j$ zu finden
+von Streckungsfaktoren eine Familie von Funktionen $\chi_j$ finden
 derart, dass man sich die $\chi_j$ in einem gewissen Sinn als aus
 $\chi_0$ durch Dilatation entstanden vorstellen kann.
 
@@ -174,8 +178,8 @@ die in der Umgebung eines Knotens wie die konstante Funktion aussehen.
 Das Mutter-Wavelet einer Wavelet-Analyse definiert, in welchem Mass
 sich Funktionen im Orts- und im Frequenzraum lokalisieren lassen.
 Die Standardbasis der Funktionen auf einem Graphen repräsentieren die
-perfekte örtliche Lokalisierung, Eigenbasis der Laplace-Matrix $L$ repräsentiert
-die perfekte Lokalisierung im Frequenzraum.
+perfekte örtliche Lokalisierung, die Eigenbasis der Laplace-Matrix
+$L$ repräsentiert die perfekte Lokalisierung im Frequenzraum.
 Sei $g(\lambda)\ge 0$ eine Funktion im Frequenzraum, die für  $\lambda\to0$ und
 $\lambda\to\infty$ rasch abfällt mit einem Maximum irgendwo dazwischen
 (Abbildung~\ref{buch:graphs:fig:lokalisierung}).
@@ -190,11 +194,13 @@ Natürlich sind vor allem die Werte auf den Eigenwerten
 $\lambda_0 < \lambda_1\le \dots\le \lambda_n$ der Laplace-Matrix
 von Interesse.
 
-Die Matrix $g(L)$ kann mit Hilfe der Spektraltheorie berechnet werden,
+Die Matrix $g(L)$ kann mit Hilfe der Spektraltheorie
+von Abschnitt~\ref{buch:section:spektraltheorie}
+berechnet werden,
 was im vorliegenden Fall naheliegend ist, weil ja die Eigenvektoren 
 der Laplace-Matrix bereits bekannt sind.
 Die Matrix $\chi^t$ bildet die Standardbasisvektoren in die
-Eigenbasis-Vektoren ab, also in eine Zerlegung im Frequenzraum ab,
+Eigenbasis-Vektoren ab, also in eine Zerlegung im Frequenzraum,
 $\chi$ vermittelt die Umkehrabbildung.
 Mit der Spektraltheorie findet man für die Abbildung $g(L)$ die Matrix
 \begin{equation}
@@ -255,7 +261,7 @@ Wir erhalten daher in den Spalten von $h(L)$ Vektoren, die um die
 einzelnen Knoten lokalisiert sind.
 
 \subsubsection{Rekonstruktion}
-Die Operatoren $h(L)$ und $g_i(L)$ erzeugen analysieren eine Funktion
+Die Operatoren $h(L)$ und $g_i(L)$ analysieren eine Funktion
 nach den verschiedenen Frequenzen mit den Skalierungsfaktoren $a_i$,
 aber die Rekonstruktion ist noch nicht klar.
 Diese wäre einfacher, wenn die Operatoren zusammen die identische

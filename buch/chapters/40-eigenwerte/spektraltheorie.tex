@@ -5,6 +5,7 @@
 % 
 \section{Spektraltheorie
 \label{buch:section:spektraltheorie}}
+\rhead{Spektraltheorie}
 Aufgabe der Spektraltheorie ist, Bedingungen an eine Matrix $A$ und eine
 \index{Spektraltheorie}
 Funktion $f(z)$ zu finden, unter denen es möglich ist, $f(A)$ auf 
@@ -28,8 +29,8 @@ unklar.
 Da der Abstand zweier Matrizen $A$ und $B$ in der Operatornorm
 mit der grössten Abweichung $\|(A-B)v\|$ für Einheitsvektoren $v$
 gemessen wird, ist es einigermassen plausibel, dass
-die grösse Abweichung zwischen zwei Polynomen $|p(z) - q(z)|$ auf
-der Menge $K$ kleine sein muss, wenn $\|p(A)-q(A)\|$ klein 
+die grösste Abweichung zwischen zwei Polynomen $|p(z) - q(z)|$ auf
+der Menge $K$ klein sein muss, wenn $\|p(A)-q(A)\|$ klein 
 sein soll.
 Da die Differenz $p(z)-q(z)$ für beliebige Polynome, die sich nicht
 nur um eine Konstante unterscheiden, mit $z$ über alle Grenzen wächst,
@@ -80,8 +81,8 @@ Abschnitt~\ref{buch:subsetion:stone-weierstrass} dargestellt wird,
 ist ein sehr allgemeines Approximationsresultat, welches nicht nur
 zeigt, dass die Approximation unter einigermassen natürlichen Voraussetzungen
 beliebig genau möglich ist, sondern uns im komplexen Fall auch
-weitere Einsicht dafür geben kann, welche Voraussetzungen an eine
-komplexe Matrix gestellt werden müssen, damit man damit rechnen kann,
+weitere Einsicht in die Voraussetzungen an eine
+komplexe Matrix geben kann, damit man damit rechnen kann,
 dass die Approximation zu einer konsistenten Definition von $f(A)$ führt.
 
 %
@@ -136,14 +137,14 @@ p(z_i)
 =
 \sum_{j=0}^n f(z_j) \delta_{i\!j}
 =
-f_(z_i)
+f(z_i)
 \]
 annimmt.
 Das Polynom $p(z)$ heisst das {\em Legendre-Interpolationspolynom}.
 
-Zwar lässt sich also für eine endliche Menge von komplexen Zahlen immer
-ein Polynom finden, welches vorgeschriebene Wert in allen diesen Zahlen
-annimmt, doch ist die Stabilität für grosse $n$ eher beschränkt.
+Zwar lässt sich auf diese Weise für eine endliche Menge von komplexen Zahlen
+immer ein Polynom finden, welches vorgeschriebene Wert in allen diesen Zahlen
+annimmt, doch ist die Stabilität für grosse $n$ eher schlecht.
 
 
 \subsubsection{Gleichmassige Approximation mit Bernstein-Polynomen}
@@ -175,8 +176,7 @@ gegen die Funktion $f(t)$.
 Über die Konvergenz ausserhalb des reellen Intervalls wird nichts
 ausgesagt.
 Die Approximation mit Bernstein-Polynomen ist daher nur sinnvoll,
-wenn man weiss, dass die Eigenwerte der Matrix reell sind, was im
-wesentlichen auf diagonalisierbare Matrizen führt.
+wenn man weiss, dass die Eigenwerte der Matrix reell sind.
 
 Für ein anderes Interval $[a,b]$ kann man ein Approximationspolynom
 erhalten, indem man die affine Transformation
@@ -205,7 +205,7 @@ In diesem Fall liefert der Satz von Stone-Weierstrass die Aussage,
 dass sich jede stetige periodische Funktion gleichmässig durch
 trigonometrische Polynome approximieren lässt.
 
-Die Aussage des Satz von Stone-Weierstrass über reelle Funktionen
+Die Aussage des Satzes von Stone-Weierstrass über reelle Funktionen
 lässt sich nicht auf komplexe Funktionen erweitern.
 Von besonderem Interesse ist jedoch, dass der Beweis des Satz 
 zeigt, warum solche Aussagen für komplexe Funktionen nicht mehr
@@ -286,7 +286,7 @@ Die Variable $x\in[a,b]$ trennt natürlich die Punkte, die Algebra der
 Polynome in der Variablen $x$ enthält also sicher Funktionen, die in
 verschiedenen Punkten des Intervalls auch verschiedene Werte annehmen.
 Nicht ganz so selbstverständlich ist aber, dass sich daraus bereits
-ergibt, dass jede beliebige Funktion sich als Polynome in $x$
+ergibt, dass jede beliebige Funktion sich durch Polynome in $x$
 approximieren lässt.
 Dies ist der Inhalt des folgenden Satzes von Stone-Weierstrass.
 
@@ -357,9 +357,9 @@ der selben Grösse.
 \end{figure}
 
 \begin{proof}[Beweis]
-Wer konstruieren zunächst das in
+Wir konstruieren zunächst das in
 Abbildung~\ref{buch:eigenwerte:fig:wurzelverfahren}
-visualierte Verfahren, mit dem für jede Zahl $a\in[0,1]$
+visualisierte Verfahren, mit dem für jede Zahl $a\in[0,1]$
 die Wurzel $\sqrt{a}$ berechnet werden kann.
 Sei $u < \sqrt{a}$ eine Approximation der Wurzel.
 Die Approximation ist der exakte Wert der Lösung, wenn $a-u^2=0$.
@@ -392,8 +392,9 @@ von Funktionen approximieren.
 Da $A$ eine Algebra ist, ist $f^2\in A$.
 Sei ausserdem $m^2=\sup \{f(x)^2\;|\;x\in K\}$, so dass $f^2/m^2$ eine Funktion
 mit Werten im Intervall $[0,1]$ ist.
-Die Funktionen $f_n(x)=mu_n(f(x)^2/m^2)$ sind ebenfalls in $A$ und
-approximieren gleichmässig $\sqrt{f(x)^2}=|f(x)|$.
+Die Funktionen $f_n(x)=mu_n(f(x)^2/m^2)$ sind ebenfalls in $A$,
+bilden eine monoton wachsende Folge von Funktionen und
+approximieren $\sqrt{f(x)^2}=|f(x)|$ gleichmässig.
 
 \item Schritt: Für zwei Funktionen $f,g\in A$ gibt es eine monoton wachsende
 Folge, die $\max(f,g)$ gleichmässig beliebig genau approximiert
@@ -454,8 +455,8 @@ derart, dass $g_y(y)=f(y)$  und $g_y(x) \le f(x) + \varepsilon$ für
 $x\in K$.
 Da $g_y$ stetig ist, gilt ausserdem $g_y(x) \ge f(x) -\varepsilon$ in
 einer Umgebung $U_y$ von $y$.
-Da $K$ kompakt ist, kann man endlich viele $y_i$ derart, dass die $U_{y_i}$
-immer noch ganz $K$ überdecken.
+Da $K$ kompakt ist, kann man endlich viele $y_i$ derart wählen,
+dass die $U_{y_i}$ immer noch ganz $K$ überdecken.
 Die Funktion $g=\sup g_{y_i}$ erfüllt dann überall $g(x) \le f(x)+\varepsilon$,
 weil jede der Funktionen $g_y$ diese Ungleichung erfüllt.
 Ausserdem gilt für $x\in V_{x_j}$
@@ -701,17 +702,11 @@ Matrizen erfüllen $A^*=\pm A$ und damit
 AA^* = \pm A^2 = A^*A.
 \)
 \item
-Symmetrische und antisymmetrische Matrizen sind normal,
+Symmetrische und antisymmetrische reelle Matrizen sind normal.
 \index{symmetrisch}%
 \index{antisymmetrisch}%
-denn aus $A=A^t$ folgt $A^*=\overline{A}^t$ und damit
-\begin{align*}
-AA^* &=  A\overline{A}^t = 
-\\
-A^*A &=
-\end{align*}
 \item
-Unitäre Matrizen $U$ sind normal, das $UU^*=I=U^*U$ gilt.
+Unitäre Matrizen $U$ sind normal, da $UU^*=I=U^*U$ gilt.
 \index{unitär}%
 \item
 Orthogonale Matrizen sind normal wegen $O(n) = U(n) \cap M_n(\mathbb{R})$.
@@ -771,20 +766,20 @@ und $AB$ normal.
 \begin{proof}[Beweis]
 Zunächst folgt aus $AB^*=B^*A$ auch
 $A^*B = (B^*A)^* = (AB^*)^* = BA^*$.
-Der Beweis erfolgt durch Nachrechnen:
+Der Beweis, dass $A+B$ normal ist, erfolgt durch Nachrechnen:
 \begin{align*}
 (A+B)(A+B)^*
 &=
-AA^* + AB^* + BA^*+BB^*
+AA^* + {\color{red}AB^*} + {\color{blue}BA^*}+BB^*
 \\
 (A+B)^*(A+B)
 &=
-A^*A + A^*B + B^*A + B^*B
+A^*A + {\color{blue}A^*B} + {\color{red}B^*A} + B^*B
 \end{align*}
 Die ersten und letzten Terme auf der rechten Seite stimmen überein, weil
 $A$ und $B$ normal sind.
-Die gemischten Terme stimmen überein wegen der Vertauschbarkeit von
-$A$ und $B^*$.
+Die gleichfarbigen gemischten Terme stimmen überein wegen der
+Vertauschbarkeit von $A$ und $B^*$.
 
 Für das Produkt rechnet man
 \begin{align*}
@@ -825,16 +820,16 @@ Es gibt eine grosse Zahl äquivalenter Eigenschaften für normale Matrizen.
 Die folgenden Eigenschaften sind äquivalent:
 \begin{enumerate}
 \item
-Die Matrix $A$ ist mit einer unitären Matrix diagonalisierbar
+Die Matrix $A$ ist mit einer unitären Matrix diagonalisierbar.
 \item
-Es gibt eine orthonormale Basis von Eigenvektoren von $A$ für $\mathbb{C}^n$
+Es gibt eine orthonormale Basis von Eigenvektoren von $A$ für $\mathbb{C}^n$.
 \item
-Für jeden Vektor $x\in\mathbb{C}^n$ gilt $\|Ax\|=\|A^*x\|$
+Für jeden Vektor $x\in\mathbb{C}^n$ gilt $\|Ax\|=\|A^*x\|$.
 \item
 Die Frobenius-Norm der Matrix $A$ kann mit den Eigenwerten $\lambda_i$
 \index{Frobenius-Norm}%
 von $A$ berechnet werden:
-$\operatorname{Spur}(A^*A) = \sum_{i=1}^n |\lambda_i|^2$
+$\operatorname{Spur}(A^*A) = \sum_{i=1}^n |\lambda_i|^2$.
 \item
 Der hermitesche Teil $\frac12(A+A^*)$ und der antihermitesche Teil
 $\frac12(A-A^*)$ von $A$ vertauschen.
@@ -843,7 +838,7 @@ $\frac12(A-A^*)$ von $A$ vertauschen.
 \item
 $A^*$ ist ein Polynom vom Grad $n-1$ in $A$.
 \item
-Es gibt eine unitäre Matrix $U$ derart, dass $A^*=AU$
+Es gibt eine unitäre Matrix $U$ derart, dass $A^*=AU$.
 \index{unitär}%
 \item
 Es gibt eine Polarzerlegung $A=UP$ mit einer unitären Matrix $U$ und

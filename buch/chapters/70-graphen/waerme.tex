@@ -5,6 +5,7 @@
 %
 \section{Wärmeleitung auf einem Graphen
 \label{buch:section:waermeleitung-auf-einem-graphen}}
+\rhead{Wärmeleitung auf einem Graphen}
 Die Vektoren, auf denen die Laplace-Matrix operiert, können
 als Funktionen betrachtet werden, die jedem Knoten einen Wert zuordnen.
 Eine mögliche physikalische Interpretation davon ist die Temperaturverteilung
@@ -44,8 +45,6 @@ wird, codiert ebenfalls wesentliche Informationen über den Graphen.
 Je mehr Kanten es zwischen verschiedenen Teilen eines Graphen gibt,
 desto schneller findet der Wärmeaustausch zwischen diesen Teilen
 statt.
-Die Lösungen der Wärmeleitungsgleichung liefern also Informationen 
-über den Graphen.
 
 \subsection{Eigenwerte und Eigenvektoren
 \label{buch:subsection:ein-zyklischer-graph}}
@@ -165,13 +164,13 @@ s_k(l)
 &=
 \sin\frac{2\pi kl}{n}
 =
-\Im \chi_k(l)
+\Im \chi_k(l),
 \\
 c_k(l)
 &=
 \cos\frac{2\pi kl}{n}
 =
-\Re\chi_k(l)
+\Re\chi_k(l).
 \end{aligned}
 \]
 Das Skalarprodukt dieser Funktionen ist
@@ -189,14 +188,16 @@ e^{\frac{2\pi i}{n}(m'-m)l}
 =
 \delta_{mm'}
 \]
-Die Funktionen bilden daher eine Orthonormalbasis des Raums der
-Funktionen auf $G$.
+Die Funktionen bilden daher eine Orthonormalbasis des komplexen
+Vektorraums der
+komplexen Funktionen auf $G$ mit dem sesquilinearen Skalarprodut.
 Wegen $\overline{e_m} = e_{-m}$ folgt, dass für gerade $n$
 die Funktionen
 \[
 c_0, c_1,s_1,c_2,s_2,\dots c_{\frac{n}2-1},c_{\frac{n}2-1},c_{\frac{n}2}
 \]
-eine orthonormierte Basis.
+eine orthonormierte Basis des reellen Vektorraumes der reellen Funktionen
+auf $G$ mit dem gewöhnlichen Skalarprodukt.
 
 \subsection{Standardbasis und Eigenbasis
 \label{buch:subsection:standardbasis-und-eigenbasis}}

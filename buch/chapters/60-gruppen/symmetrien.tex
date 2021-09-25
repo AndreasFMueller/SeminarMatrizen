@@ -28,7 +28,8 @@ ergeben die gleichen Werte wie Messungen entsprechenden Strecken
 in der linken Hälfte, was den Begriff Symmetrie rechtfertigt.
 \label{buch:lie:bild:castlehoward}}
 \end{figure}
-In der Physik wird dem Begriff der Symmetrie daher auch eine erweiterte
+
+In der Physik wird dem Begriff der Symmetrie eine erweiterte
 Bedeutung gegeben.
 Jede Transformation eines Systems, welche bestimmte Grössen nicht
 verändert, wird als Symmetrie bezeichnet.
@@ -39,7 +40,7 @@ Koordinatensystems ändert daher die Bewegungsgleichungen nicht, sie ist
 eine Symmetrie des Systems.
 
 Umgekehrt kann man fragen, welche Symmetrien ein System hat.
-Da sich Symmetrien zusammensetzen und umkehren lassen, kann man in davon
+Da sich Symmetrien zusammensetzen und umkehren lassen, kann man davon
 ausgehen, dass die Symmetrietransformationen eine Gruppe bilden.
 Besonders interessant ist dies im Falle von Transformationen, die
 durch Matrizen beschrieben weren.
@@ -94,8 +95,8 @@ ihre Normale erhalten.
 Die folgenden Beispiele sollen zeigen, wie solche Symmetriedefinitionen
 auf algebraische Bedingungen an die Matrixelemente führen.
 
-Zu jeder Abbildung $f\colon\mathbb{R}^n\to\mathbb{R}^n$, unter der 
-ein geometrisches Objekt in $\mathbb{R}^n$ unveränder bleibt, können wir
+Zu jeder linearen Abbildung $f\colon\mathbb{R}^n\to\mathbb{R}^n$, unter der 
+ein geometrisches Objekt in $\mathbb{R}^n$ unverändert bleibt, können wir
 sofort weitere Abbildungen angeben, die ebenfalls Symmetrien sind.
 Zum Beispiel sind die iterierten Abbildungen $f\circ f$, $f\circ f\circ f$
 usw., die wir auch $f^n$ mit $n\in\mathbb{N}$ schreiben werden,
@@ -131,9 +132,8 @@ beschrieben werden.
 Ein Kreis um den Nullpunkt bleibt unter jeder dieser Drehungen invariant.
 Im Gegensatz dazu sind alle gleichseitigen Dreiecke mit Schwerpunkt $0$
 nur unter der einen Drehung $R_{\frac{2\pi}3}$ invariant.
-Eine minimale Menge, die einen vorgegebenen Punkt enthält und unter
-allen Drehungen $R_\alpha$ invariant ist, ist immer ein Kreis um
-den Nullpunkt.
+Ein vorgegebener Punkt bewegt sich unter der Wirkung der Drehung
+$R_\alpha$ auf einem Kreis um den Nullpunkt.
 
 \begin{definition}
 \label{buch:lie:def:einparameteruntergruppe}
@@ -148,7 +148,7 @@ Die Abbildung
 \[
 \varphi
 \colon
-\mathbb{R}\to\operatorname{GL}_n(\mathbb{R})
+\mathbb{R}\to\operatorname{GL}_2(\mathbb{R})
 :
 \alpha \mapsto
 R_{\alpha}
@@ -161,6 +161,7 @@ R_{\alpha}
 ist also eine Einparameteruntergruppe von $\operatorname{GL}_2(\mathbb{R})$.
 
 \subsubsection{Der harmonische Oszillator}
+\label{buch:gruppen:harmonischer-oszillator}
 \index{harmonischer Oszillator}%
 \index{Oszillator}%
 \begin{figure}
@@ -171,8 +172,9 @@ Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
 im Phasenraum sind Ellipsen mit Halbachsenverhältnis $\omega^{-1}$.
 \label{chapter:gruppen:fig:phasenraum}}
 \end{figure}
-Eine Masse $m$ verbunden mit einer Feder mit der Federkonstanten $K$
+Eine Masse $m$ ist aufgehängt an einer Feder mit der Federkonstanten $K$
 \index{Federkonstante}%
+und
 schwingt um die Ruhelage $x=0$ entsprechend der Differentialgleichung
 \[
 m\frac{d^2}{dt^2} x(t) =  -Kx(t).
@@ -242,7 +244,7 @@ p(t)
 \end{equation}
 schreiben.
 Die Matrizen $\Phi_t$ bilden eine Einparameteruntergruppe von
-$\operatorname{GL}_n(\mathbb{R})$, da
+$\operatorname{GL}_2(\mathbb{R})$, da
 \begin{align*}
 \Phi_s\Phi_t
 &=
@@ -284,10 +286,10 @@ beschreibt.
 \subsubsection{Fluss einer Differentialgleichung}
 \index{Fluss}%
 Die Abbildungen $\Phi_t$ von \eqref{buch:gruppen:eqn:phi} sind jeweils
-Matrizen in $\operatorname{GL}_n(\mathbb{R})$.
+Matrizen in $\operatorname{GL}_2(\mathbb{R})$.
 Der Grund dafür ist, dass die
 Differentialgleichung~\eqref{chapter:gruppen:eqn:phasenraumdgl}
-linear ist.
+linear zu sein braucht.
 Dies hat zur Folge, dass für zwei Anfangsbedingungen $x_1,x_2\in\mathbb{R}^2$
 die Lösung für Linearkombinationen $\lambda x_1+\mu x_2$ durch
 Linearkombination der Lösungen erhalten werden kann, also
@@ -377,12 +379,14 @@ $x(t_0)+hf(t_0,x_0)$ für alle $h\ne 0$ nicht mehr auf der Kugeloberfläche
 liegen.
 Physikalisch äussert sich das in einer zusätzlichen Kraft, die nötig
 ist, die Bahn auf der Kugeloberfläche zu halten.
-Diese Kraft stellt zum Beispiel sicher, dass die Vektoren $f(t,x)$ für
+Solche Zwangskräfte leisten keine Arbeit, sorgen aber zum Beispiel
+dafür, dass die Vektoren $f(t,x)$ für
 Punkte $x$ auf der Kugeloberfläche immer tangential an die Kugel sind.
 Trotzdem ist der Tangentialvektor oder der Geschwindigkeitsvektor 
 nicht mehr ein Objekt, welches als Teil der Kugeloberfläche definiert
 werden kann, er kann nur definiert werden, wenn man sich die Kugel als
 in einen höherdimensionalen Raum eingebettet vorstellen kann.
+Der Betrag der Zwangskräfte hängt von der Krümmung der Fläche ab.
 
 Um die Idee einer Differentialgleichung auf einer beliebigen Fläche
 konsistent zu machen, ist daher notwendig, die Idee einer Tagentialrichtung
@@ -417,8 +421,8 @@ kann das Problem lösen, indem er eine lokale Karte für das Gebiet
 um den Pol erstellt.
 Dafür kann er beliebige Koordinaten verwenden, zum Beispiel auch
 ein kartesisches Koordinatensystem, er muss nur eine Methode haben,
-wie er seine Koordinaten wieder auf geographische Länge und Breite
-umrechnen will.
+nach der er seine Koordinaten wieder auf geographische Länge und Breite
+umrechnen kann.
 Und wenn er über Geschwindigkeiten kommunizieren will, dann muss
 er auch Ableitungen von Kurven in seinem kartesischen Koordinatensystem
 umrechnen können auf die Kugelkoordinaten.
@@ -475,7 +479,7 @@ Karten und Atlanten regeln also nur, wie sich verschiedene lokale
 Koordinatensysteme ineinander umrechnen lassen.
 
 \begin{beispiel}
-$M=\mathbb{R}^n$ ist eine differenzierbare Mannigfaltigkeit denn 
+$M=\mathbb{R}^n$ ist eine differenzierbare Mannigfaltigkeit, denn 
 die identische Abbildung $M\to \mathbb{R}^n$ ist eine Karte und ein
 Atlas von $M$.
 \end{beispiel}
@@ -494,19 +498,23 @@ gibt.
 Die Projektionen auf die einzelnen Koordinaten liefern die folgenden
 vier Karten:
 \begin{align*}
-\varphi_1&\colon U_{x>0}\{(x,y)\;|\;x^2+y^2=1\wedge x>0\} \to\mathbb{R}
+\color{red}
+\varphi_1&{\color{red}\colon U_{x>0}=\{(x,y)\;|\;x^2+y^2=1\wedge x>0\}}\to\mathbb{R}
 :
 (x,y) \mapsto y
 \\
-\varphi_2&\colon U_{x<0}\{(x,y)\;|\;x^2+y^2=1\wedge x<0\} \to\mathbb{R}
+\color{blue}
+\varphi_2&{\color{blue}\colon U_{x<0}=\{(x,y)\;|\;x^2+y^2=1\wedge x<0\}}\to\mathbb{R}
 :
 (x,y) \mapsto y
 \\
-\varphi_3&\colon U_{y>0}\{(x,y)\;|\;x^2+y^2=1\wedge y>0\} \to\mathbb{R}
+\color{darkgreen}
+\varphi_3&{\color{darkgreen}\colon U_{y>0}=\{(x,y)\;|\;x^2+y^2=1\wedge y>0\}}\to\mathbb{R}
 :
 (x,y) \mapsto x
 \\
-\varphi_4&\colon U_{y<0}\{(x,y)\;|\;x^2+y^2=1\wedge y<0\} \to\mathbb{R}
+\color{orange}
+\varphi_4&{\color{orange}\colon U_{y<0}=\{(x,y)\;|\;x^2+y^2=1\wedge y<0\}}\to\mathbb{R}
 :
 (x,y) \mapsto x
 \end{align*}
@@ -526,36 +534,44 @@ ist je nach Quadrant durch
 &\text{1.~Quadrant}&
 \varphi_{31}
 &=
-\varphi_3\circ\varphi_1^{-1}\colon y\mapsto\phantom{-}\sqrt{1-y^2\mathstrut}
+{\color{darkgreen}\varphi_3}\circ{\color{red}\varphi_1}^{-1}
+\colon
+y\mapsto\phantom{-}{\textstyle\sqrt{1-y^2\mathstrut}}
 &
 D\varphi_{31}
 &=
 -\frac{y}{\sqrt{1-y^2\mathstrut}}
 \\
 &\text{2.~Quadrant}&
-\varphi_{24}
+\varphi_{23}
 &=
-\varphi_3\circ\varphi_1^{-1}\colon x\mapsto\phantom{-}\sqrt{1-x^2\mathstrut}
+{\color{blue}\varphi_2}\circ{\color{darkgreen}\varphi_3}^{-1}
+\colon
+x\mapsto\phantom{-}{\textstyle\sqrt{1-x^2\mathstrut}}
 &
-D\varphi_{24}
+D\varphi_{23}
 &=
 -\frac{x}{\sqrt{1-x^2\mathstrut}}
 \\
 &\text{3.~Quadrant}&
 \varphi_{42}
 &=
-\varphi_3\circ\varphi_1^{-1}\colon y\mapsto-\sqrt{1-y^2\mathstrut}
+{\color{orange}\varphi_4}\circ{\color{blue}\varphi_2}^{-1}
+\colon
+y\mapsto-{\textstyle\sqrt{1-y^2\mathstrut}}
 &
 D\varphi_{42}
 &=
 \phantom{-}\frac{y}{\sqrt{1-y^2\mathstrut}}
 \\
 &\text{4.~Quadrant}&
-\varphi_{14}
+\varphi_{41}
 &=
-\varphi_3\circ\varphi_1^{-1}\colon x\mapsto-\sqrt{1-x^2\mathstrut}
+{\color{red}\varphi_1}\circ{\color{orange}\varphi_4}^{-1}
+\colon
+x\mapsto-{\textstyle\sqrt{1-x^2\mathstrut}}
 &
-D\varphi_{14}
+D\varphi_{41}
 &=
 \phantom{-}\frac{x}{\sqrt{1-x^2\mathstrut}}
 \end{align*}
@@ -725,7 +741,7 @@ Dies ist möglich, weil die Kreislinie eine kontinuierliche Symmetrie,
 nämlich die Drehung um den Winkel $t$ hat, die es erlaubt, den Punkt $(1,0)$
 in den Punkt $(\cos t,\sin t)$ abzubilden.
 Erst diese Symmetrie ermöglicht den Vergleich.
-Dieser Ansatz ist für alle Matrizengruppen erfolgreich,
+Dieser Ansatz ist für alle Matrizengruppen generell erfolgreich,
 wie wir später sehen werden.
 
 Ein weiterer Ansatz, Tangentialvektoren zu vergleichen, ist die Idee, 

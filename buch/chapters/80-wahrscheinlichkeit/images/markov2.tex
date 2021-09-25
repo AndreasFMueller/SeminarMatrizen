@@ -14,6 +14,8 @@
 \def\skala{1}
 \begin{tikzpicture}[>=latex,thick,scale=\skala]
 
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+
 \def\punkt#1#2#3{
 	\fill[color=white] #1 circle[radius=0.10];
 	\fill[color=#2] #1 circle[radius=0.13];
@@ -67,6 +69,11 @@
 		}
 	}
 }
+
+\fill[color=darkgreen!20]
+	(-0.5,{-4.2*\ys}) rectangle ({5*\xs+0.5},{-0.8*\ys});
+\fill[color=blue!20]
+	(-0.5,{-8.2*\ys}) rectangle ({5*\xs+0.5},{-4.8*\ys});
 
 \begin{scope}
 \clip (-0.5,{-8.5*\ys}) rectangle ({5*\xs+0.5},-0.5);

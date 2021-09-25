@@ -5,6 +5,7 @@
 %
 \section{Eigenwerte und Eigenvektoren
 \label{buch:section:eigenwerte-und-eigenvektoren}}
+\rhead{Eigenwerte und Eigenvektoren}
 In diesem Abschnitt betrachten wir Vektorräume $V=\Bbbk^n$ über einem
 beliebigen Körper $\Bbbk$ und quadratische Matrizen
 $A\in M_n(\Bbbk)$.
@@ -32,7 +33,7 @@ heisst das {\em Spektrum} von $A$.
 \end{definition}
 
 Die Bedingung $v\ne 0$ dient dazu, pathologische Situationen auszuschliessen.
-Für den Nullvektor gilt $A0=\lambda 0$ für jeden beliebigen Wert von
+Für den Nullvektor $0\in V$ gilt $A0=\lambda 0$ für jeden beliebigen Wert von
 $\lambda\in\Bbbk$.
 Würde man $v=0$ zulassen, wäre jede Zahl in $\Bbbk$ ein Eigenwert,
 ein Eigenwert von $A$ wäre nichts besonderes.
@@ -43,7 +44,7 @@ Vielfache von $v$ ist ebenfalls ein Eigenvektor.
 Zu einem Eigenwert kann man also einen Eigenvektor mit 
 geeigneten Eigenschaften finden, zum Beispiel kann man für $\Bbbk = \mathbb{R}$
 Eigenvektoren auf Länge $1$ normieren.
-Im Folgenden werden wir oft die abkürzend linear unabhängige Eigenvektoren
+Im Folgenden werden wir oft abkürzend linear unabhängige Eigenvektoren
 einfach als ``verschiedene'' Eigenvektoren bezeichnen.
 
 Wenn $v$ ein Eigenvektor von $A$ zum Eigenwert $\lambda$ ist, dann kann
@@ -77,7 +78,7 @@ Für $\lambda\in\Bbbk$ heisst
 \[
 E_\lambda
 =
-\{ v\;|\; Av=\lambda v\}
+\{ v\in V \mid Av=\lambda v\}
 \]
 der {\em Eigenraum} zum Eigenwert $\lambda$.
 \index{Elambda(A)@$E_\lambda(A)$}%
@@ -110,7 +111,7 @@ oder $A=\lambda I$.
 \end{proof}
 
 Wenn man die Eigenräume von $A$ kennt, dann kann man auch die Eigenräume
-von $A+\mu E$ berechnen.
+von $A+\mu I$ berechnen.
 Ein Vektor $v\in E_\lambda$ erfüllt
 \[
 Av=\lambda v
@@ -162,7 +163,7 @@ B
 \]
 und wir berechnen davon die vierte Potenz
 \[
-D=B^4=(A-E)^4
+D=B^4=(A-I)^4
 =
 \begin{pmatrix}
 0&0& 0&0\\
@@ -207,19 +208,21 @@ Als erstes überprüfen wir, ob diese Basisvektoren tatsächlich invariante
 Unterräume sind.
 Für $\mathcal{J}(A-I) = \langle b_1,b_2\rangle$
 berechnen wir
-\begin{align*}
+\[
+\begin{aligned}
 (A-I)b_1
 &=
 \begin{pmatrix} 0\\4\\4\\1 \end{pmatrix}
 =
-4b_2+b_1,
+4b_2+b_1&&\in\langle b_1,b_2\rangle,
 \\
 (A-I)b_2
 &=
 \begin{pmatrix} 0\\1\\1\\0 \end{pmatrix}
 =
-b_2.
-\end{align*}
+b_2&&\in\langle b_1,b_2\rangle.
+\end{aligned}
+\]
 Dies beweist, dass $\mathcal{J}(A-I)$ invariant ist.
 In dieser Basis hat die von $A-I$ beschriebene lineare Abbildung
 auf $\mathcal{J}(A-I)$ die Matrix
@@ -268,7 +271,7 @@ A'
 \]
 die Blöcke gehören zu den invarianten Unterräumen $\mathcal{K}(A-I)$
 und $\mathcal{K}(A-I)$.
-Die aus $A-E$ gewonnen invarianten Unterräume sind offenbar auch invariante
+Die aus $A-I$ gewonnenen invarianten Unterräume sind offenbar auch invariante
 Unterräume für $A$.
 \end{beispiel}
 
@@ -280,7 +283,7 @@ Unterraum
 =
 \mathcal{K}(A-\lambda I)
 \]
-der {\em verallgemeinerte Eigenraum} von $A$.
+der {\em verallgemeinerte Eigenraum} von $A$ zum Eigenwert $\lambda$.
 \index{verallgemeinerter Eigenraum}%
 \index{Eigenraum, verallgemeinerter}%
 \end{definition}
@@ -305,10 +308,11 @@ V
 \oplus
 \underbrace{\mathcal{J}(A-\lambda_1 I)}_{\displaystyle =V_2},
 \]
+in invariante Unterräume,
 wobei $\mathcal{E}_{\lambda_1}(A)\ne 0$ ist.
 Die Matrix $A-\lambda_1 I$ eingeschränkt auf $\mathcal{E}_{\lambda_1}(A)$ ist
 nilpotent.
-Man kann sagen, auf dem Unterraum $\mathcal{E}_{\lambda_i}(A)$ hat 
+Man kann daher sagen, auf dem Unterraum $\mathcal{E}_{\lambda_i}(A)$ hat 
 $A$ die Form $\lambda_1 I + N$, wobei $N$ nilpotent ist.
 
 Die Zerlegung in invariante Unterräume ist zwar mit Hilfe von $A-\lambda_1I$
@@ -414,7 +418,7 @@ hat
 als charakteristisches Polynom, welches $\lambda$ als einzige
 Nullstelle hat.
 Wenn die Einträge oberhalb der Diagonalen nicht alle 0 sind,
-dann hat der Eigenraum der Matrix Dimension, die keiner ist als
+dann hat der Eigenraum der Matrix eine Dimension, die kleiner ist als
 $n$.
 Man kann also im Allgemeinen für jede Nullstelle des charakteristischen
 Polynoms nicht mehr als einen Eigenvektor (d.~h.~einen eindimensionalen
@@ -424,7 +428,7 @@ Wenn das charakteristische Polynom von $A$ keine Nullstellen in $\Bbbk$ hat,
 dann kann es auch keine Eigenvektoren in $\Bbbk^n$ geben.
 Gäbe es nämlich einen solchen Vektor, dann müsste eine der Komponenten
 des Vektors von $0$ verschieden sein.
-Wir nehmen an, dass es die Komponente in Zeile $k$ ist.
+Nehmen wir an, dass es die Komponente in Zeile $k$ ist.
 Die Komponente $v_k$ kann man auf zwei Arten berechnen, einmal als
 die $k$-Komponenten von $Av$ und einmal als $k$-Komponente von $\lambda v$:
 \[
@@ -494,7 +498,7 @@ diagonalisieren, nicht aber über dem Körper $\mathbb{Q}$.
 Da $A'$ Diagonalform hat mit $\pm\sqrt{2}$ auf der Diagonalen, folgt
 $A^{\prime 2} = 2I$, die Matrix $A'$ erfüllt also die Gleichung
 \begin{equation}
-A^{\prime 2}-I= \chi_{A}(A) = 0.
+A^{\prime 2}-2I= \chi_{A}(A) = 0.
 \label{buch:grundlagen:eqn:cayley-hamilton-beispiel}
 \end{equation}
 Die Gleichung~\ref{buch:grundlagen:eqn:cayley-hamilton-beispiel}

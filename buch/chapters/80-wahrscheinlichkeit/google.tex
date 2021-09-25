@@ -71,7 +71,7 @@ mehr Gewicht als eine Seite mit vielen Links, unter denen der Link
 auf die Seite $j$ einer von Vielen ist.
 Im Beispiel-Internet der Abbildung~\ref{buch:figure:modellinternet}
 signalisiert die Seite $6$ mit nur einem Link auf die Seite $8$
-viel deutlicher, dass $8$ eine wichtige Seite ist, also die die
+viel deutlicher, dass $8$ eine wichtige Seite ist, also dies die
 Seite $5$ tut, die auch noch zwei andere Links enthält.
 Wir können diesen Unterschied berücksichtigen, indem wir zu einem
 Wahrscheinlichkeitsmodell übergehen, was wir im folgenden Abschnitt
@@ -91,7 +91,7 @@ einer bestimmten Seite landet.
 Wir bezeichnen mit $S_i$ das Ereignis, dass sich der Besucher auf
 der Seite mit der Nummer $i$ befindet, wobei $i=1,\dots,N$.
 Gesucht ist die Wahrscheinlichkeit $P(S_i)$.
-Ohne weitere Information müssten wir davon ausgehen, dass jede Seite
+Ohne weitere Information müssen wir davon ausgehen, dass jede Seite
 etwa gleich wahrscheinlich ist, dass also $P(S_i) = 1/N$.
 
 Wir wissen jedoch mehr.
@@ -128,6 +128,7 @@ Falls es einen Link gibt, ist $P(S'_j\mid S_i)\ge 0$.
 A priori wissen wir nicht, wie wahrscheinlich es ist, dass der Besucher
 dem Link auf die Seite $j$ folgt, normalerweise werden nicht alle
 Links mit gleicher Wahrscheinlichkeit verwendet.
+Darüber hben wir aber keine Detailinformation.
 Wir nehmen daher vereinfachend an, dass alle Links gleich wahrscheinlich
 sind.
 Enthält die Seite $i$ genau $n_i$ Links, dann ist die Wahrscheinlichkeit,
@@ -142,13 +143,13 @@ Es gilt
 \begin{equation}
 P(S'_j)
 =
-P(S'j\mid S_1) P(S_1)
+P(S'_j\mid S_1) P(S_1)
 +
-P(S'j\mid S_2) P(S_2)
+P(S'_j\mid S_2) P(S_2)
 +
 \dots
 +
-P(S'j\mid S_N) P(S_N)
+P(S'_j\mid S_N) P(S_N)
 =
 \sum_{i=1}^N P(S_j'\mid S_i)P(S_i)
 .
@@ -212,7 +213,7 @@ entlang eines Links.
 
 \begin{beispiel}
 Für das Beispiel-Internet von Abbildung~\ref{buch:figure:modellinternet}
-ist die zugehörige Matrix
+ist die zugehörige Link-Matrix
 \begin{equation}
 H =
 \begin{pmatrix}
@@ -423,7 +424,7 @@ diskutiert wird.
 
 Natürlich ist die heutzutage verwendete Matrix mit Sicherheit komplizierter.
 In der vorgestellten Form unterstützt sie zum Beispiel auch das folgende
-Geschäftsmodell, welches in der Anfangszeit von Google eine Zeitlang 
+Geschäftsmodell, welches in der Anfangszeit von Google eine Zeit lang 
 erfolgreich war.
 Ein Anbieter betreibt zu diesem Zweck eine grosse Zahl von Websites,
 deren Seiten im Wesentlichen aus Suchbegriffen und Links untereinander
@@ -457,7 +458,7 @@ Relevanz einer Seite.
 
 Wir nehmen an, dass sich diese Wahscheinlichkeit nur langsam ändert.
 Diese Annahme trifft nicht zu für neue Nachrichten, die durchaus eine
-hohe Relevanz haben, für es aber noch nicht viele Links geben kann,
+hohe Relevanz haben, für die es aber noch nicht viele Links geben kann,
 die die Relevanz in der Google-Matrix erkennbar machen.
 Die Annahme bedeutet, dass sich die Verteilung $p$ sehr viel langsamer 
 ändert als der Navigationsprozess entlang der Links erfolgt.
@@ -516,7 +517,7 @@ p
 Der Vektor $p_0$ ist ein Einheitsvektor in der euklidischen Norm.
 Er kann daher nicht eine Wahrscheinlichkeitsverteilung sein,
 da sich die Elemente nicht zu $1$ summieren.
-Die $L^1$-Norm $\|\;\cdot\;\|_1$ eines Vektors ist die Summe der Beträge aller
+Die $l^1$-Norm $\|\;\cdot\;\|_1$ eines Vektors ist die Summe der Beträge aller
 Elemente eines Vektors.
 Indem man $p_0$ durch die Summe aller Einträge von $p_0$ teilt,
 erhält man die Wahrscheinlichkeitsverteilung $p$.
@@ -580,9 +581,9 @@ Numerische Ungenauigkeiten können bewirken, dass die Iteration mit der
 Matrix $A/\lambda_1$ trotzdem nicht konvergiert.
 Man kann dies komponsieren, indem man nach jeder Iteration normiert.
 Da der gesuchte Eigenvektor eine Wahrscheinlichkeitsverteilung sein muss,
-muss die $L^1$-Norm $1$ sein.
-Statt mit der euklidischen $L^2$-Norm zu normieren, normiert man daher
-besser mit der $L^1$-Norm.
+muss die $l^1$-Norm $1$ sein.
+Statt mit der euklidischen $l^2$-Norm zu normieren, normiert man daher
+besser mit der $l^1$-Norm.
 Damit ergibt sich das folgende Verfahren zur Bestimmung der Pagerank-Verteilung
 $p$ für die Google-Matrix.
 

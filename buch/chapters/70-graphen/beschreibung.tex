@@ -12,7 +12,7 @@ Zum Beispiel zeigt Kapitel~\ref{chapter:munkres}, wie man
 ein Zuordnungsproblem als Graphenproblem formulieren kann.
 Die Lösung erfolgt dann allerdings zweckmässigerweise unter
 Verwendung einer Matrix.
-Ziel dieses Abschnitts ist, Graphen und ihre zugehörige Matrizen
+Ziel dieses Abschnitts ist, Graphen und ihre zugehörigen Matrizen
 zu definieren und erste Eigenschaften des Graphen mit algebraischen
 Mitteln abzuleiten.
 Die Präsentation ist allerdings nur ein erster Einstieg, tiefer
@@ -37,7 +37,7 @@ Die Unterschiede zeigen sich in der Art und Weise, wie die Knoten
 mit sogenannten Kanten
 \index{Kante}%
 verbunden werden.
-Bei einen ungerichteten Graphen sind die beiden Endpunkte einer Kante
+Bei einem ungerichteten Graphen sind die beiden Endpunkte einer Kante
 gleichwertig, es gibt keine bevorzugte Reihenfolge oder Richtung der
 Kante.
 Eine Kante ist daher vollständig spezifiziert, wenn wir die
@@ -110,8 +110,8 @@ Ausderdem ist eine Kante $(a,a)$ wohldefiniert, also eine Kante, die vom
 Knoten $a$ wieder zu $a$ zurück führt.
 
 Man kann einen ungerichteten Graphen in einen gerichteten Graphen
-verwandeln, indem jede Kante $\{a,b\}$ durch zwei Kanten 
-$(a,b)$ und $(b,a)$ ersetzt wird.
+verwandeln, indem jede Kante $\{u,v\}$ durch zwei Kanten 
+$(u,v)$ und $(v,u)$ ersetzt wird.
 Aus dem ungerichteten Graphen $(V,E)$ mit Knotenmenge $V$ und Kantenmenge
 $E$ wird so der gerichtete Graph
 $(V,E')$ mit der Kantenmenge
@@ -119,13 +119,13 @@ $(V,E')$ mit der Kantenmenge
 E' 
 =
 \{
-(a,e)
+(u,v)
 \,|\,
-\{a,e\}\in E
+\{u,v\}\in E
 \}.
 \end{equation*}
 Eine umgekehrte Zuordnung eines gerichteten zu einem ungerichteten
-Graphen ist nicht möglich, da eine ``Schleife'' $(a,a)$ nicht in eine Kante
+Graphen ist nicht möglich, da eine ``Schleife'' $(v,v)$ nicht in eine Kante
 des ungerichteten Graphen abgebildet werden kann.
 
 In einem gerichteten Graphen kann man sinnvoll von gerichteten Pfaden
@@ -224,8 +224,8 @@ enhält.
 Die zugehörigen Matrixelemente schreiben wir $a_{ji}^{n}$ bzw.~$a_{ji}^{(n)}$.
 Wir haben also zu zeigen, dass $A^n = A^{(n)}$.
 
-Wir beweisen, dass $A^n$ Pfade der Länge $n$ zählt, mit Hilfe von
-vollständiger Induktion.
+Wir beweisen mit Hilfe von vollständiger Induktion,
+dass $A^n$ Pfade der Länge $n$ zählt.
 Es ist klar, dass $A^1$ die genannte Eigenschaft hat.
 Der Fall $A^1$ dient daher als Induktionsverankerung.
 
@@ -233,7 +233,7 @@ Wir nehmen daher im Sinne einer Induktionsannahme an, dass bereits
 bewiesen ist, dass das Element in Zeile
 $j$ und Spalte $i$ von $A^{n-1}$ die Anzahl der Pfade der Länge $n-1$
 zählt, dass also $A^{n-1}=A^{(n-1)}$.
-Dies ist die Induktionsannahme.
+%Dies ist die Induktionsannahme.
 
 Wir bilden jetzt alle Pfade der Länge $n$ von $i$ nach $k$.
 Ein Pfad der Länge besteht aus einem Pfad der Länge $n-1$, der von $i$ zu
@@ -294,7 +294,8 @@ sind.
 \caption{Peterson-Graph mit zehn Knoten.
 \label{buch:figure:peterson}}
 \end{figure}
-Der Peterson-Graph hat die Adjazenzmatrix
+Der Peterson-Graph von Abbildung~\ref{buch:figure:peterson}
+hat die Adjazenzmatrix
 \[
 G
 =
@@ -376,7 +377,7 @@ ist eine Abbildung $l\colon E\to L$.
 \index{Beschriftung}%
 \end{definition}
 
-Einen gerichteten, beschrifteten Graphen können wir gleichwertig
+Einen gerichteten, beschrifteten Graphen können wir 
 statt mit einer Beschriftungsabbildung $l$ auch dadurch erhalten,
 dass wir Kanten als Tripel betrachten, die ausser den Knoten auch
 noch den Wert der Beschriftung enthalten.
@@ -386,12 +387,12 @@ noch den Wert der Beschriftung enthalten.
 Ein gerichteter Graph mit beschrifteten Kanten ist eine Menge $V$ von 
 Knoten und eine Menge von beschrifteten Kanten der Form
 \[
-E \{ (a,b,l)\in V^2\times L\;|\; \text{Eine Kante mit Beschriftung $l$ führt von $a$ nach $b$}\}.
+E \{ (u,v,l)\in V^2\times L\;|\; \text{Eine Kante mit Beschriftung $l$ führt von $u$ nach $v$}\}.
 \]
 Die Menge $L$ enthält die möglichen Beschriftungen der Kanten.
 \end{definition}
 
-Diese Definition gestattet, dass zwischen zwei Knoten $a$ und $e$
+Diese Definition gestattet, dass zwischen zwei Knoten $u$ und $v$
 mehrere Kanten vorhanden sind, die sich durch die Beschriftung
 unterscheiden.
 
@@ -492,13 +493,13 @@ negativ.
 
 \subsubsection{Anwendung: Netlist}
 Eine natürliche Anwendung eines gerichteten und beschrifteten Graphen
-ist eine eletronische Schaltung.
+ist eine elektronische Schaltung.
 Die Knoten des Graphen sind untereinander verbundene Leiter, sie werden
 auch {\em nets} genannt. 
 Die beschrifteten Kanten sind die elektronischen Bauteile, die solche
-Nets miteinander verbinden.
+nets miteinander verbinden.
 Die Inzidenzmatrix beschreibt, welche Anschlüsse eines Bauteils mit
-welchen Nets verbunden werden müssen.
+welchen nets verbunden werden müssen.
 Die Informationen in der Inzidenzmatrix werden also in einer
 Applikation zum Schaltungsentwurf in ganz natürlicher Weise erhoben.
 
@@ -547,9 +548,10 @@ $L(G)=B(G')B(G')^t$ nach \eqref{buch:graphen:eqn:gradmatrix} genau
 die Elemente der Gradmatrix $D(G)$.
 Die ausserdiagonalen Elemente sind nach
 \eqref{buch:graphen:eqn:ausserdiagonal}
-genau dann, wenn es in $G$ eine Verbindung zwischen den beiden Knoten
-gibt.
-Dies sind die Elemente von $-A(G)$.
+genau dann von $0$ verschieden, wenn es in $G$ eine Verbindung zwischen
+den beiden Knoten gibt.
+Im Produkt $B(G')B(G')^t$ summieren sie sich zu den ausserdiagonalen
+Elementen von $-A(G)$.
 Damit ist die Formel
 \eqref{buch:graphen:eqn:laplace-definition}
 nachgewiesen.

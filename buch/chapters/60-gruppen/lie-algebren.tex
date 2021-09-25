@@ -5,7 +5,6 @@
 %
 \section{Lie-Algebren
 \label{buch:section:lie-algebren}}
-\rhead{Lie-Algebren}
 Im vorangegangenen Abschnitt wurde gezeigt, dass alle beschriebenen
 Matrizengruppen als Untermannigfaltigkeiten im $n^2$-dimensionalen
 Vektorraum $M_n(\mathbb{R})$ betrachtet werden können.
@@ -29,6 +28,7 @@ Lie-Algebra von $\operatorname{SO}(3)$ mit dem Vektorprodukt in $\mathbb{R}^3$
 übereinstimmt.
 \index{Vektorprodukt}%
 
+\rhead{Lie-Algebren}
 %
 % Die Lie-Algebra einer Matrizengruppe
 %
@@ -92,24 +92,25 @@ e^{At}e^{Bt} - e^{(A+B)t}
 =
 (AB-BA) \frac{t^2}{2} + \ldots
 =
+\phantom{-}
 [A,B]\frac{t^2}{2}+\ldots
 \\
 e^{Bt}e^{At} - e^{(A+B)t}
 &=
 \biggl(BA-\frac{AB+BA}2\biggr)t^2
-+\ldots
++\ldots,
 =
 (BA-AB)
 \frac{t^2}{2}
 +\ldots
 =
--[A,B]\frac{t^2}{2}
+-[A,B]\frac{t^2}{2}+\ldots,
 \\
 e^{At}e^{Bt}-e^{Bt}e^{At}
 &=
 (AB-BA)t^2+\ldots
 =
-\phantom{-}[A,B]t^2+\ldots
+\phantom{-}[A,B]t^2+\ldots,
 \end{align*}
 wobei $[A,B]=AB-BA$ abgekürzt wird.
 
@@ -247,15 +248,15 @@ Solche Matrizen haben die Form
 \]
 Die antisymmetrischen Matrizen
 \[
-\omega_{23}
+\Omega_{23}
 =
 \begin{pmatrix} 0&0&0\\0&0&-1\\0&1&0\end{pmatrix},
 \quad
-\omega_{31}
+\Omega_{31}
 =
 \begin{pmatrix} 0&0&1\\0&0&0\\-1&0&0\end{pmatrix},
 \quad
-\omega_{12}
+\Omega_{12}
 =
 \begin{pmatrix} 0&1&0\\-1&0&0\\0&0&0\end{pmatrix}
 \]
@@ -263,11 +264,11 @@ bilden eine Basis für $\operatorname{so}(3)$, man kann
 \[
 \Omega
 =
-\omega_1\omega_{23}
+\omega_1\Omega_{23}
 +
-\omega_2\omega_{31}
+\omega_2\Omega_{31}
 +
-\omega_3\omega_{12}
+\omega_3\Omega_{12}
 \]
 schreiben.
 Der Vektorraum $\operatorname{so}(3)$ ist also dreidimensional.
@@ -276,7 +277,7 @@ Die Kommutatoren der Basisvektoren sind
 \begin{equation}
 \setlength\arraycolsep{4pt}
 \begin{aligned}
-[\omega_{23},\omega_{31}]
+[\Omega_{23},\Omega_{31}]
 &=
 \begin{pmatrix}
 0&-1&0\\
@@ -284,10 +285,10 @@ Die Kommutatoren der Basisvektoren sind
 0&0&0
 \end{pmatrix}
 =
-\omega_{12},
+\Omega_{12},
 %\\
 &
-[\omega_{31},\omega_{12}]
+[\Omega_{31},\Omega_{12}]
 &=
 \begin{pmatrix}
 0&0&0\\
@@ -295,10 +296,10 @@ Die Kommutatoren der Basisvektoren sind
 0&1&0
 \end{pmatrix}
 =
-\omega_{23},
+\Omega_{23},
 %\\
 &
-[\omega_{12},\omega_{23}]
+[\Omega_{12},\Omega_{23}]
 &=
 \begin{pmatrix}
 0&0&1\\
@@ -306,7 +307,7 @@ Die Kommutatoren der Basisvektoren sind
 -1&0&0
 \end{pmatrix}
 =
-\omega_{31},
+\Omega_{31},
 \end{aligned}
 \label{buch:gruppen:eqn:so3-kommutatoren}
 \end{equation}
@@ -324,19 +325,19 @@ Achse ist eine Drehung um die $x_3$-Achse.
 Abbildung~\ref{buch:lie:fig:kommutator} illustriert, wie der
 Kommutator die Nichtkommutativität der Gruppe $\operatorname{SO}(3)$
 wiedergibt.
-Die Matrix $\omega_{23}$ erzeugt eine Drehung $R_{x_1,\alpha}$
+Die Matrix $\Omega_{23}$ erzeugt eine Drehung $R_{x_1,\alpha}$
 um die $x_1$-Achse,
-die Matrix $\omega_{31}$ eine Drehung $R_{x_2,\beta}$ um die $x_2$ Achse.
-Der Kommutator $[\omega_{23},\omega_{31}]=\omega_{12}$ beschreibt in
+die Matrix $\Omega_{31}$ eine Drehung $R_{x_2,\beta}$ um die $x_2$ Achse.
+Der Kommutator $[\Omega_{23},\Omega_{31}]=\Omega_{12}$ beschreibt in
 niedrigster Ordnung den Unterschied, der entsteht, wenn man die
 beiden Drehungen in verschiedenen Reihenfolgen ausführt.
 Dies ist eine Drehung $R_{x_3,\gamma}$ um die $x_3$-Achse.
 
-Aus der Rodriguez-Formel~\ref{buch:lie:eqn:rodrigues} wissen wir
+Aus der Rodrigues-Formel~\ref{buch:lie:eqn:rodrigues} wissen wir
 bereits, dass die Ableitung der Drehung das Vektorprodukt
 $\vec{\omega}\times\vec{x}$ ist.
 Dieses kann jedoch auch als
-$\Omega\vec{x} = \vec{omega}\times\vec{x}$
+$\Omega\vec{x} = \vec{\omega}\times\vec{x}$
 ausgedrückt werden.
 
 Die Wirkung von $I+t\Omega$ auf einem Vektor $\vec{x}$ ist
@@ -482,10 +483,10 @@ somit ist
 \operatorname{sl}_n(\mathbb{R})
 =
 \{
-A\in M_n(\mathbb{R})\;|\; \operatorname{Spur}(A)=0
+A\in M_n(\mathbb{R}) \mid \operatorname{Spur}(A)=0
 \}
 \]
-mit dem Kommutator eine Lie-Algebra.
+mit dem Kommutator von Matrizen als Lie-Klammer eine Lie-Algebra.
 
 %
 % Die Lie-Algebra von U(n)
@@ -496,8 +497,8 @@ Die Lie-Gruppe
 U(n)
 =
 \{
-A\in M_n(\mathbb{C}
-\;|\;
+A\in M_n(\mathbb{C})
+\mid
 AA^*=I
 \}
 \]
@@ -507,7 +508,7 @@ AA^*=I
 heisst die unitäre Gruppe, sie besteht aus den Matrizen, die
 das sesquilineare Standardskalarprodukt auf dem komplexen
 Vektorraum $\mathbb{C}^n$ invariant lassen.
-Sei eine $\gamma(t)$ ein differenzierbare Kurve in $\operatorname{U}(n)$
+Sei $\gamma(t)$ eine differenzierbare Kurve in $\operatorname{U}(n)$
 derart, dass $\gamma(0)=I$.
 Die Ableitung der Identität $AA^*=I$ führt dann auf 
 \begin{equation*}
@@ -568,7 +569,7 @@ imaginär.
 %
 \subsection{Die Lie-Algebra von $\operatorname{SU}(2)$}
 Die Lie-Algebra $\operatorname{su}(n)$ besteht aus den
-spurlosen antihermiteschen Matrizen.
+spurlosen antihermiteschen $2\times 2$-Matrizen.
 \index{su(n)@$\operatorname{su}(n)$}%
 Sie erfüllen daher die folgenden Bedingungen:
 \[
@@ -658,7 +659,7 @@ Diese Matrizen heissen die {\em Pauli-Matrizen}, sie haben die Kommutatoren
 2i\sigma_2,
 \end{align*}
 Bis auf eine Skalierung stimmt dies überein mit den Kommutatorprodukten
-der Matrizen $\omega_{23}$, $\omega_{31}$ und $\omega_{12}$
+der Matrizen $\Omega_{23}$, $\Omega_{31}$ und $\Omega_{12}$
 in \eqref{buch:gruppen:eqn:so3-kommutatoren}.
 Die Matrizen $-\frac12i\sigma_j$ haben die Kommutatorprodukte
 \begin{align*}
@@ -688,9 +689,9 @@ Die Matrizen $-\frac12i\sigma_j$ haben die Kommutatorprodukte
 \end{align*}
 Die lineare Abbildung, die
 \begin{align*}
-\omega_{23}&\mapsto -{\textstyle\frac12}i\sigma_1\\
-\omega_{31}&\mapsto -{\textstyle\frac12}i\sigma_2\\
-\omega_{12}&\mapsto -{\textstyle\frac12}i\sigma_3
+\Omega_{23}&\mapsto -{\textstyle\frac12}i\sigma_1\\
+\Omega_{31}&\mapsto -{\textstyle\frac12}i\sigma_2\\
+\Omega_{12}&\mapsto -{\textstyle\frac12}i\sigma_3
 \end{align*}
 abbildet, ist daher ein Isomorphismus der Lie-Algebra $\operatorname{so}(3)$
 auf die Lie-Algebra $\operatorname{su}(2)$.
