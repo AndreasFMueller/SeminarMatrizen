@@ -12,12 +12,12 @@ die sogenannten Simplizes entwickeln müssen.
 
 \subsection{Simplizes und Rand
 \label{buch:subsection:simplices}}
-Die Inzidenz-Matrix eines Graphen hat einer Kante die beiden Endpunkte
+Die Inzidenzmatrix eines Graphen hat einer Kante die beiden Endpunkte
 mit verschiedenen Vorzeichen zugeordnet.
 
 \subsubsection{Rand eines Dreiecks}
 Dieses Idee soll jetzt verallgemeinert werden.
-Der Rand des Dreiecks $\triangle$ in
+Der Rand des Dreiecks $\triangle P_0P_1P_2$ in
 Abbildung~\ref{buch:homologie:figure:zusammenziehbar}
 besteht aus den Kanten $P_0P_1$, $P_1P_2$ und $P_0P_2$.
 Für eine algebraische Definition müssen die Kanten offenbar eine
@@ -27,8 +27,7 @@ Dem Dreieck $\triangle$ werden dann die drei Kanten $k_{01}$, $k_{02}$
 und $k_{12}$ zuogeordnet, aber mit zusätzlichen Vorzeichen, die
 die Orientierung festhalten.
 Durchläuft man den Rand von $\triangle$ in der Reihenfolge $P_0P_1P_2$,
-dann müssen die Kanten $k_{12}$ und $k_{02}$ ein negatives Vorzeichen
-erhalten.
+dann muss die Kante $k_{02}$ ein negatives Vorzeichen erhalten.
 
 Wir können diese Zuordnung wieder mit einer Matrix ausdrücken.
 \[
@@ -69,9 +68,10 @@ wobei die beiden positiven reellen Zahlen $t_0,t_1\in\mathbb{R}$ die
 Bedingung $t_0 + t_1 = 1$ erfüllen.
 Für ein eindimensionales Objekt brauchen wir also zwei Punkte und zwei
 positive Parameter, die sich zu $1$ summieren.
-Die Mengen $\triangle_1=\{ (t_0,t_1)\,|t_i\ge 0, t_0+t_1=1\}$ kann also
-ganz allgemein als Parameterraum zur Beschreibung eindimensionalen Objektes
-mit den Endpunkten dienen.
+Die Mengen $\triangle_1=\{ (t_0,t_1)\mid t_i\ge 0, t_0+t_1=1\}$ kann also
+ganz allgemein als Parameterraum zur Beschreibung eines eindimensionalen Objektes
+$\triangle_1$
+mit den Endpunkten $0$ und $1$ dienen.
 Eine Strecke ist also eine Abbildung der Form
 \begin{equation}
 s_1
@@ -105,7 +105,7 @@ heisst das $n$-dimensionale Standardsimplex.
 \index{Standardsimplex}%
 \end{definition}
 
-Die Standardbasisvektoren von  $\mathbb{R}^{n+1}$ werden $e_0,\dots,e_n$
+Die Standardbasisvektoren von  $\mathbb{R}^{n+1}$ werden mit $e_0,\dots,e_n$
 bezeichnet und sind die Ecken des $n$-dimensionalen Standardsimplex.
 
 \subsubsection{Simplizes in $\mathbb{R}^N$}
@@ -155,21 +155,23 @@ Wir schreiben auch $[P_0,P_1,\dots,P_n]$ für dieses Simplex.
 
 \subsubsection{Rechnen mit Simplizes}
 Wir möchten später ein geometrisches Objekt aus Simplizes zusammensetzen.
-Dazu müssen wir mehrere Simplizes so ein einen Raum abbilden können, dass
+Dies soll rein algebraisch geschehen, die einzelnen Simplizes sollen
+formal als Basisvektoren eines abstrakten Vektorraums verwendet werden.
+Damit das geht, müssen die Simplizes so platziert sein, dass
 sie an den Rändern zusammenpassen.
-Dazu müssen wir mit ``Kombinationen'' von Simplizes rechnen können.
-Wir betrachten daher
-jedes Simplex als einen Basisvektor eines abstrakten Vektorraumes.
 
 Simplizes verschiedener Dimension in $\mathbb{R}^N$ können natürlich 
 immer unterschieden werden, wir können also den Vektorraum in einzelne
-Vektorräume aufteilnen, einen für jede Dimension.
-In Dimension $l$ bezeichnen wir mit $C_l$ den Vektorraum, dessen
-Basisvektoren $l+1$-Tupel
+Vektorräume aufteilen, einen für jede Dimension.
+Der Vektorraum in Dimension $l$ wird von den $l$-dimensionalen Simplizes 
+als Basis erzeugt und wir bezeichnen ihn mit $C_l$.
+Da die Eckpunkte ein Simplex in $\mathbb{R}^N$ festlegen, ist ein
+$l$-dimensionales Simplex, als ein Basisvektor von $C_l$ durch
+das $l+1$-Tupel
 \(
 [P_0,\dots,P_l]
 \)
-von Punkten von $\mathbb{R}^N$ sind.
+von Punkten von $\mathbb{R}^N$ gegeben.
 Der Vektorraum $C_l$ besteht dann aus Linearkombinationen
 \[
 C_l
@@ -274,8 +276,9 @@ Der Rand des Simplex $[P_0,\dots,P_l]$ ist
 \]
 Darauf muss jetzt der Randoperator $\partial_{l-1}$ angewendet
 werden.
-Dabei wird jeweils der Index $i$ übersprungen, bei der Bildung der
-Summe müssen die Teile daher separat betrachtet werden:
+Dabei wird auf der rechten Seit jeweils der Index $i$ des weggelassenen
+Punktes übersprungen, bei der Bildung der
+Summe müssen die Teile vor und nach $i$ daher separat betrachtet werden:
 \begin{align}
 \partial_{l-1}\partial_l[P_0,\dots,P_l]
 &=
@@ -304,6 +307,9 @@ Summe müssen die Teile daher separat betrachtet werden:
 [P_0,\dots,\widehat{P_i},\dots,\widehat{P_j}\dots,P_l]
 \notag
 \end{align}
+Auf der letzten Zeile sind die Summen über alle Paare
+$(i,j)\in\{0,\dots,n\}^2$ zu erstrecken, die die zusätzliche
+Bedingung $j<i$ bzw.~$j>i$ erfüllen.
 Der Exponent $j-1$ im zweiten Term von
 \eqref{buch:homologie:eqn:randrand}
 trägt der Tatsache Rechnung,
@@ -383,7 +389,7 @@ dass sich die Gestalt der gesamten Menge dadurch ändert.
 \label{buch:subsection:triangulation}}
 Unser Ziel ist, geometrische Objekte besser verstehen zu können.
 Dabei sind uns Deformationen und sogar Knicke egal, es interessiert uns
-nur die ``Gestalt'' des Objekts.
+nur die ``Gestalt'' oder ``Topologie'' des Objekts.
 Entfernungen zwischen Punkten sind ebenfalls von untergeordneter 
 Bedeutung, da sie bei Deformation nicht erhalten bleiben.
 Der Begriff des ``topologischen Raumes'' fasst diese Ideen mathematisch
@@ -405,12 +411,13 @@ und $g\colon Y\to X$ gibt, die zu einander invers sein.
 Oder wenn sich $X$ stetig auf $Y$ abbilden lässt, so dass auch die
 Umkehrabbildung stetig ist.
 Eine solche Abbildung heisst ein {\em Homöomorphismus}, die beiden Räume
-$X$ und $Y$ heissen {\em homomorph}.
+$X$ und $Y$ heissen {\em homöomorph}.
 
 Eine Kugel ist natürlich kein Polyeder, aber sie kann leicht homöomorph
 auf ein dreidimensionales Simplex abgebildet werden.
 
 \begin{beispiel}
+\label{buch:homologie:projektion}
 Sei $T$ ein reguläres Tetraeder mit den Ecken auf der dreidimensionalen
 Einheitskugel $B^3$.
 Für jeden Richtungsvektor $x\ne 0$ sei $l(x)$ Entfernung vom Mittelpunkt des
@@ -436,12 +443,16 @@ l(x) x&\quad\text{für $x\ne 0$}\\
 \end{cases}
 \]
 zueinander inverse stetige Abbildungen oder Homöomorphismen.
+Dies funktioniert natürlich nicht nur ein Tetraeder, sondern für jedes
+beliebige konvexe Polyeder.
 \end{beispiel}
 
 Im Folgenden sollen daher nur solche topologischen Räume untersucht werden,
 die homöomorph sind zu einem Polyeder.
 Man nennt die homöomorphe Abbildung eines Polyeders auf so einen Raum
 auch eine Triangulation.
+Triangulationen reduzieren die algebraischen Untersuchungen auf jene
+von Polyedern.
 Durch Unterteilung der Simplizes in kleiner Simplizes kann eine solche
 Triangulation beliebig verfeinert werden.
 

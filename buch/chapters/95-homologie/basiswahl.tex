@@ -134,7 +134,9 @@ z_1
  0\\
  0
 \end{pmatrix*},
-&z_2
+&
+\phantom{\mathstrut_0}
+z_2
 &=
 \tiny
 \begin{pmatrix*}[r]
@@ -555,7 +557,9 @@ Es ist also nötig, eine Teilmenge
 \]
 von Vektoren auszuwählen, die linear
 unabhängig sind.
-Diese bilden eine Basis von $B_k(C)$.
+Diese bilden eine Basis von $B_k(C)$ und sind als
+blaue Dreiecke in Abbildung~\ref{buch:homologie:fig:homoboundaries}
+dargestellt.
 
 \begin{figure}
 \centering
@@ -585,7 +589,7 @@ Man erhält so die Beziehungen
 \partial_2e_6^{(2)} &=&   & &   & &   & &   & &   & &z_6& &   &+&z_8& &   & &      & &      & &      & &      \\
 \partial_2e_7^{(2)} &=&   & &   & &   & &   & &   & &   & &   & &   & &   & &z_{10}& &      & &      & &      \\
 \partial_2e_8^{(2)} &=&   & &   & &   & &   & &   & &   & &   & &   & &   & &      & &z_{11}& &      & &      \\
-\partial_2e_9^{(2)} &=&   &\phantom{+}&   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &      &\phantom{+} &      & &z_{12}&+&z_{13}
+\partial_2e_9^{(2)} &=&   &\phantom{+}&   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &   &\phantom{+} &      &\phantom{+} &      & &z_{12}&+&z_{13}.
 \end{array}
 \end{equation}
 Dies reicht jedoch nicht, um herauszufinden, welche der blauen Dreiecke
@@ -609,7 +613,7 @@ Vektoren.
 
 Diese Auswahl lässt sich sehr leicht mit Hilfe der folgenden
 Variante des Gauss-Algorithmus realisieren.
-Dazu werden die $n_{k+1}$ Zeilen Gauss-Tableau zunächst mit den Vektoren
+Dazu werden die $n_{k+1}$ Zeilen eines Gauss-Tableaus zunächst mit den Vektoren
 $\partial_{k+1}{e_i^{(k+1)}}^t$ gefüllt.
 Führt man in diesem Tableau die Vorwärtsreduktion durch, wobei man
 entstehende Nullzeilen einfach überspringt, bleiben nur noch Zeilen
@@ -783,18 +787,18 @@ also genau ein weisses Dreieck.
 \includegraphics[width=\textwidth]{chapters/95-homologie/torus/torus.jpg}
 \caption{Basis der Homologiegruppen eines Torus $T^2$.
 Der Algorithmus findet zwei Basisklassen für $H(T^2)$, der eine Zyklus
-geht durch das ``Loch'' des Torus (blau), der andere folgt mehr oder
-weniger dem Äquator.
+geht durch das ``Loch'' des Torus (blau), der andere folgt 
+dem Äquator.
 \label{buch:homologie:fig:torus}}
 \end{figure}
 
-Um den Algorithmus durchzuführen, bilden wir daher das Gauss-Tableau
+Um den Algorithmus für das Beispiel durchzuführen, bilden wir daher das Gauss-Tableau
 in Abbildung~\ref{buch:homologie:beispiel:gausstableau},
 bestehend aus den Vektoren $\partial_2e_i^{(2)}$ in den ersten 9
 Zeilen und den Zyklen $z_1,\dots,z_{13}$ in den folgenden 13 Zeilen.
 Das reduzierte Tableau nach der Vorwärtsreduktion ist in
 Abbildung~\ref{buch:homologie:beispiel:gausstableaureduziert}
-dargestellt, amn erkennt, dass die Zyklen $z_1$ bis $z_4$, $z_7$ und $z_8$,
+dargestellt, man erkennt, dass die Zyklen $z_1$ bis $z_4$, $z_7$ und $z_8$,
 $z_9$ und $z_{10}$ sowie $z_{13}$ weggelassen werden müssen.
 Es bleiben die folgenden Zyklen:
 \begin{center}
@@ -813,7 +817,7 @@ Abbildung~\ref{buch:homologie:beispiel:homoclasses} zusammengestellt.
 Jede solche Klasse entspricht genau einem der ``Löcher'', der weissen
 Dreiecke.
 Die Homologie kann man also als eine exakte Version der Idee eines
-Vektorraums erzeugt von den ``Löchern'' eines Polygons verstehen.
+Vektorraums erzeugt von den ``Löchern'' eines Polyeders verstehen.
 
 \subsubsection{Basis von $H_k(C)$}
 Die im vorangegangenen Abschnitt konstruierte Basis kann jetzt auch
@@ -833,7 +837,7 @@ findet es die beiden in Abbildung~\ref{buch:homologie:fig:torus} dargestellten
 Zyklen.
 Sie zeigen schön, wie die Homologieklassen die beiden Arten von ``Löchern''
 erkennen.
-Zum einen ist da der blaue Zyklus, der das ``Loch'' im inneren des Torus
+Zum einen ist da der blaue Zyklus, der das ``Loch'' im Inneren des Torus
 umschliesst.
-Der rote Zyklus dagegen folgt mehr oder weniger dem Äquator und repräsentiert
+Der rote Zyklus dagegen folgt ungefähr dem Äquator und repräsentiert
 damit die ``Ringform'' des Torus.
