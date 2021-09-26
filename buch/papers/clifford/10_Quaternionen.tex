@@ -110,15 +110,39 @@ Durch die geometrische Algebra sieht man nun, wieso es wichtig ist, bei Quaterni
 \begin{beispiel}
 	Eine Drehung eines Vektors $\mathbf{v}= 1\mathbf{e}_2$ um $90^\circ$ um die $\mathbf{e}_1$-Achse und danach $90^\circ$ um die $\mathbf{e}_2$-Achse.
 Dafür nehmen wir zuerst die Einheitsquaternion 
-	\begin{align*}
-	\mathbf{q}_{23} &= \cos(\pi/4) + \sin(\pi/4)(1\mathbf{e}_{23}) =  e^{(\pi/4)\mathbf{e}_{23}} &= \textstyle{\frac{\sqrt{2}}{2}}(1 + \mathbf{e}_{23})\\
-	\mathbf{q}_{23}^{-1} &&= \textstyle{\frac{\sqrt{2}}{2}} (1- \mathbf{e}_{23})
-	\end{align*}
-	welche um die $\mathbf{e}_{2}$-$\mathbf{e}_{3}$-Ebene um $90^\circ$ dreht und danach die Einheitsquaternion 
-	\begin{align*}
-	\mathbf{q}_{31} &= \cos(\pi/4) + \sin(\pi/4)(1\mathbf{e}_{31}) =  e^{(\pi/4)\mathbf{e}_{31}} &= \textstyle{\frac{\sqrt{2}}{2}}(1 + \mathbf{e}_{31})\\
-	\mathbf{q}_{31}^{-1} &&= \textstyle{\frac{\sqrt{2}}{2}}(1 - \mathbf{e}_{31}),
-	\end{align*}
+	\[
+	\begin{aligned}
+	\mathbf{q}_{23}
+	&=
+	\cos(\pi/4) + \sin(\pi/4)(1\mathbf{e}_{23}) = e^{(\pi/4)\mathbf{e}_{23}}
+	&
+	&=
+	\textstyle{\frac{\sqrt{2}}{2}}(1 + \mathbf{e}_{23})
+	\\
+	\mathbf{q}_{23}^{-1}
+	&
+	&
+	&= \textstyle{\frac{\sqrt{2}}{2}} (1- \mathbf{e}_{23})
+	\end{aligned}
+	\]
+welche um die $\mathbf{e}_{2}$-$\mathbf{e}_{3}$-Ebene um $90^\circ$ dreht und danach die Einheitsquaternion 
+	\[
+	\begin{aligned}
+	\mathbf{q}_{31}
+	&=
+	\cos(\pi/4) + \sin(\pi/4)(1\mathbf{e}_{31})
+	=
+	e^{(\pi/4)\mathbf{e}_{31}}
+	&
+	&=
+	\textstyle{\frac{\sqrt{2}}{2}}(1 + \mathbf{e}_{31})
+	\\
+	\mathbf{q}_{31}^{-1}
+	&
+	&
+	&= \textstyle{\frac{\sqrt{2}}{2}}(1 - \mathbf{e}_{31}),
+	\end{aligned}
+	\]
 	welche um die $\mathbf{e}_{3}$-$\mathbf{e}_{1}$-Ebene  um $90^\circ$ dreht.
 Um die vollständige Drehung zu beschreiben, können die Einheitsquaternionen multipliziert werden, wobei die Reihenfolge der Ausführung beachtet werden muss.
 Somit ist
