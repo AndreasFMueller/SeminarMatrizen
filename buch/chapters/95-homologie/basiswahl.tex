@@ -664,32 +664,6 @@ liegenden Vektoren ausdrücken lassen.
 Die auszuwählenden Vektoren sind daher genau diejenigen, die für
 $\mathcal{Z}_k'$ ausgewählt werden müssen.
 
-Um den Algorithmus durchzuführen, bilden wir daher das Gauss-Tableau
-in Abbildung~\ref{buch:homologie:beispiel:gausstableau},
-bestehend aus den Vektoren $\partial_2e_i^{(2)}$ in den ersten 9
-Zeilen und den Zyklen $z_1,\dots,z_{13}$ in den folgenden 13 Zeilen.
-Das reduzierte Tableau nach der Vorwärtsreduktion ist in
-Abbildung~\ref{buch:homologie:beispiel:gausstableaureduziert}
-dargestellt, amn erkennt, dass die Zyklen $z_1$ bis $z_4$, $z_7$ und $z_8$,
-$z_9$ und $z_{10}$ sowie $z_{13}$ weggelassen werden müssen.
-Es bleiben die folgenden Zyklen:
-\begin{center}
-\begin{tabular}{>{$}l<{$}l}
-\text{Zyklus}&Eigenschaft\\
-\hline
-z_5   &Zyklus umschliesst das kleine weisse Dreieck links unten\\
-z_6   &Zyklus umschliesst das kleine weisse Dreieck rechts unten\\
-z_9   &Zyklus umschliesst das grosse weisse Dreieck\\
-z_{12}&Zyklus umschliesst das kleine weisse Dreicke oben\\
-\hline
-\end{tabular}
-\end{center}
-Die Zyklen, die nach der Reduktion übrig bleiben, sind in
-Abbildung~\ref{buch:homologie:beispiel:homoclasses} zusammengestellt.
-Jede solche Klasse entspricht genau einem der ``Löcher'', der weissen
-Dreiecke.
-Die Homologie kann man also als eine exakte Version der Idee eines
-Vektorraums erzeugt von den ``Löchern'' eines Polygons verstehen.
 
 \begin{figure}
 \centering
@@ -804,6 +778,43 @@ also genau ein weisses Dreieck.
 \label{buch:homologie:beispiel:homoclasses}}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{chapters/95-homologie/torus/torus.jpg}
+\caption{Basis der Homologiegruppen eines Torus $T^2$.
+Der Algorithmus findet zwei Basisklassen für $H(T^2)$, der eine Zyklus
+geht durch das ``Loch'' des Torus (blau), der andere folgt mehr oder
+weniger dem Äquator.
+\label{buch:homologie:fig:torus}}
+\end{figure}
+
+Um den Algorithmus durchzuführen, bilden wir daher das Gauss-Tableau
+in Abbildung~\ref{buch:homologie:beispiel:gausstableau},
+bestehend aus den Vektoren $\partial_2e_i^{(2)}$ in den ersten 9
+Zeilen und den Zyklen $z_1,\dots,z_{13}$ in den folgenden 13 Zeilen.
+Das reduzierte Tableau nach der Vorwärtsreduktion ist in
+Abbildung~\ref{buch:homologie:beispiel:gausstableaureduziert}
+dargestellt, amn erkennt, dass die Zyklen $z_1$ bis $z_4$, $z_7$ und $z_8$,
+$z_9$ und $z_{10}$ sowie $z_{13}$ weggelassen werden müssen.
+Es bleiben die folgenden Zyklen:
+\begin{center}
+\begin{tabular}{>{$}l<{$}l}
+\text{Zyklus}&Eigenschaft\\
+\hline
+z_5   &Zyklus umschliesst das kleine weisse Dreieck links unten\\
+z_6   &Zyklus umschliesst das kleine weisse Dreieck rechts unten\\
+z_9   &Zyklus umschliesst das grosse weisse Dreieck\\
+z_{12}&Zyklus umschliesst das kleine weisse Dreicke oben\\
+\hline
+\end{tabular}
+\end{center}
+Die Zyklen, die nach der Reduktion übrig bleiben, sind in
+Abbildung~\ref{buch:homologie:beispiel:homoclasses} zusammengestellt.
+Jede solche Klasse entspricht genau einem der ``Löcher'', der weissen
+Dreiecke.
+Die Homologie kann man also als eine exakte Version der Idee eines
+Vektorraums erzeugt von den ``Löchern'' eines Polygons verstehen.
+
 \subsubsection{Basis von $H_k(C)$}
 Die im vorangegangenen Abschnitt konstruierte Basis kann jetzt auch
 dazu verwendet werden, eine Basis von $H_k(C)$ zu finden.
@@ -815,3 +826,14 @@ von $H_k(C)$.
 Die von obigem Algorithmus ausgewählten Zyklen bilden also automatisch
 eine Basis von Zyklen, die nicht Rand irgend einer Kette in $C_{k+1}$
 sein können.
+
+
+Führt man das beschriebene Verfahren für einen zweidimensionalen Torus $T^2$ durch,
+findet es die beiden in Abbildung~\ref{buch:homologie:fig:torus} dargestellten
+Zyklen.
+Sie zeigen schön, wie die Homologieklassen die beiden Arten von ``Löchern''
+erkennen.
+Zum einen ist da der blaue Zyklus, der das ``Loch'' im inneren des Torus
+umschliesst.
+Der rote Zyklus dagegen folgt mehr oder weniger dem Äquator und repräsentiert
+damit die ``Ringform'' des Torus.

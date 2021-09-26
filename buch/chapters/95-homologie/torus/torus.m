@@ -5,9 +5,9 @@
 #
 
 global n;
-n = 24;
+n = 32;
 global m;
-m = 12;
+m = 18;
 global R;
 R = 3;
 global r;
@@ -51,10 +51,10 @@ coordinates
 function insert_edges(ll, lr, ul, ur)
 	global edges;
 	k = 3 * ll + 1;
-	edges(k,1) = ll;
-	edges(k,2) = lr;
 	edges(k+1,1) = ll;
-	edges(k+1,2) = ur;
+	edges(k+1,2) = lr;
+	edges(k+0,1) = ll;
+	edges(k+0,2) = ur;
 	edges(k+2,1) = ll;
 	edges(k+2,2) = ul;
 endfunction
@@ -326,6 +326,21 @@ for i = (1:nedges)
 		fprintf(fn, "<%.4f,%.4f,%.4f>, r }\n", punkt2(1,1), punkt2(1,3), punkt2(1,2));
 		fprintf(fn, "\tsphere { <%.4f,%.4f,%.4f>, r }\n", punkt1(1,1), punkt1(1,3), punkt1(1,2));
 	endif
+endfor
+fprintf(fn, "    }\n");
+fprintf(fn, "#end\n");
+
+fprintf(fn, "#macro triangulation()\n");
+fprintf(fn, "    union {\n");
+for i = (1:nvertices)
+	punkt = coordinates(i,:);
+	fprintf(fn, "\tsphere { <%.4f,%.4f,%.4f>, r/3 }\n", punkt(1,1), punkt(1,3), punkt(1,2));
+endfor
+for i = (1:nedges)
+	punkt1 = coordinates(edges(i,1)+1,:);
+	punkt2 = coordinates(edges(i,2)+1,:);
+	fprintf(fn, "\tcylinder { <%.4f,%.4f,%.4f>, ", punkt1(1,1), punkt1(1,3), punkt1(1,2));
+	fprintf(fn, "<%.4f,%.4f,%.4f>, r/3 }\n", punkt2(1,1), punkt2(1,3), punkt2(1,2));
 endfor
 fprintf(fn, "    }\n");
 fprintf(fn, "#end\n");

@@ -12,4 +12,4 @@ torus.png:	torus.pov torus.inc
 	povray +A0.1 -W1920 -H1080 -Otorus.png torus.pov
 
 torus.jpg:	torus.png Makefile
-	convert -extract 1624x970+150+78 torus.png torus.jpg
+	convert -extract 1624x978+147+75 torus.png torus.jpg
