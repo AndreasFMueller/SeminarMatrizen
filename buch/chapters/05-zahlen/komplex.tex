@@ -21,7 +21,7 @@ zu definieren.
 
 Die Ordnungsrelation sagt aber auch, dass $x^2\ge 0$ ist für jedes
 $x\in\mathbb{R}$, so dass $x^2+1>0$ sein muss.
-Dies ist der Grund, warum die Gleichung \ref{buch:zahlen:eqn:igleichung}
+Dies ist der Grund, warum die Gleichung \eqref{buch:zahlen:eqn:igleichung}
 keine Lösung in $\mathbb{R}$ haben kann.
 Im Umkehrschluss folgt auch, dass eine Erweiterung der reellen Zahlen,
 in der die Gleichung \eqref{buch:zahlen:eqn:igleichung} lösbar ist,
@@ -218,9 +218,9 @@ Wir können den Quotienten auch durch Real- und Imaginärteil ausdrücken:
 &=
 \frac{a+bi}{c+di}
 =
-\frac{(a+bi)(c+di)}{(c+di)(c-di)}
+\frac{(a+bi)(c-di)}{(c+di)(c-di)}
 =
-\frac{ac-bd +(ad+bc)i}{c^2+d^2}.
+\frac{ac+bd +(ad-bc)i}{c^2+d^2}.
 \end{align*}
 
 
@@ -239,7 +239,7 @@ zw\overline{z}\overline{w}
 =
 z\overline{z}w\overline{w}
 =
-|z|^2|w|^2
+|z|^2|w|^2.
 \end{align*}
 Der Betrag des Produktes ist also das Produkt der Beträge.
 
@@ -282,8 +282,8 @@ Daraus liest man ab, dass das Argument eines Produkts die Summe der
 Argumente ist.
 Die Multiplikation mit einer festen komplexen Zahl führt also mit der ganzen
 komplexen Ebene eine Drehstreckung durch.
-Auf diese geometrische Beschreibung der Multiplikation werden wir zurückkommen,
-wenn wir die komplexen Zahlen als Matrizen beschreiben wollen.
+Auch auf diese geometrische Beschreibung der Multiplikation werden wir
+zurückkommen, wenn wir die komplexen Zahlen als Matrizen beschreiben wollen.
 
 \subsubsection{Algebraische Vollständigkeit}
 Die komplexen Zahlen $\mathbb{C}$ sind als Erweiterung von $\mathbb{R}$
@@ -297,9 +297,9 @@ Dies ist der Inhalt des Fundamentalsatzes der Algebra.
 \index{Fundamentalsatz der Algebra}%
 Jede algebraische Gleichung der Form
 \[
-p(x)=x^n + a_{n-1}x^{n-1}+a_1x+a_0=0,\qquad a_k\in\mathbb{C}
+p(x)=x^n + a_{n-1}x^{n-1}+a_1x+a_0=0%,\qquad a_k\in\mathbb{C}
 \]
-mit komplexen Koeffizienten hat $n$ möglicherweise mit Vielfachheit
+mit komplexen Koeffizienten $a_k\in\mathbb{C}$ hat $n$ möglicherweise mit Vielfachheit
 gezählte Nullstellen $\alpha_1,\dots,\alpha_m$, d.~h.~das Polynom $p(x)$
 lässt sich in Linearfaktoren
 \[
@@ -360,7 +360,8 @@ kann auch dividiert werden.
 Aus den Regeln für die Quadrate der Einheiten in
 \eqref{buch:zahlen:eqn:quaternionenregeln} folgt zum Beispiel
 $i^{-1}=-i$, $j^{-1}=-j$ und $k^{-1}=-k$.
-Die letzte Bedingung liefert daraus
+Die letzte Bedingung in~\eqref{buch:zahlen:eqn:quaternionenregeln}
+liefert daraus
 \[
 i\!jk=-1
 \qquad\Rightarrow\qquad

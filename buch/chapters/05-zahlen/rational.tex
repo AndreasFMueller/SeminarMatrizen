@@ -40,9 +40,17 @@ Faktor unterscheiden,
 (c, d)
 \quad \Leftrightarrow \quad
 \exists \lambda \in \mathbb Z\setminus\{0\} \colon
+(
 \lambda a = c
 \wedge
 \lambda b = d
+)
+\vee
+(
+a = \lambda c
+\wedge
+b = \lambda d
+)
 .
 \]
 Dass es sich hierbei wieder um eine Äquivalenzrelation handelt, lässt sich
@@ -50,7 +58,7 @@ einfach nachprüfen.
 
 Durch die neuen Regen gibt es nun zu jedem Paar $(a, b)$ mit $a \ne 0$
 ein Inverses $(b, a)$ bezüglich der Multiplikation,
-wie man anhand der folgenden Rechnung sieht,
+wie man anhand der folgenden Rechnung sieht:
 \[
 (a, b) \cdot (b, a)
 =
@@ -72,7 +80,7 @@ Die Rechenregeln werden dadurch zu den wohlvertrauten
 \[
 \frac{a}{b}+\frac{c}{d}
 =
-\frac{ad+bc}{bd},
+\frac{ad+bc}{bd}
 \qquad\text{und}\qquad
 \frac{a}{b}\cdot\frac{c}{d}
 =
@@ -180,7 +188,7 @@ Wann immer die Wahl des Körpers keine Rolle spielt, werden wir den
 Körper mit $\Bbbk$ bezeichnen.
 \index{k@$\Bbbk$}%
 
-Ein Körper $\Bbbk$ zeichnet sich dadurch aus, dass alle ELemente ausser $0$
+Ein Körper $\Bbbk$ zeichnet sich dadurch aus, dass alle Elemente ausser $0$
 invertierbar sind. 
 Diese wichtige Teilmenge wird mit $\Bbbk^* = \Bbbk \setminus\{0\}$ mit
 bezeichnet.
