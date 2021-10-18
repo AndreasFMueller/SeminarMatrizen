@@ -6,7 +6,7 @@
 %
 \section{Determinante
 \label{buch:section:determinante}}
-Das Signum einer Permutationsmatrizen lässt sich
+Das Signum einer Permutationsmatrix lässt sich
 gemäss~\eqref{buch:permutationen:determinante}
 mit der Determinanten berechnen.
 Umgekehrt sollte es auch möglich sein, eine Formel
@@ -70,28 +70,28 @@ schreiben lassen, wobei die Koeffizienten $c(\sigma)$ noch zu bestimmen
 sind.
 Setzt man in
 \eqref{buch:permutationen:cformel}
-eine Permutationsmatrix $P_\tau$ ein, dann verschwinden alle
-Terme auf der rechten Seite ausser dem zur Permutation $\tau$,
+eine Permutationsmatrix $P_\gamma$ ein, dann verschwinden alle
+Terme auf der rechten Seite ausser dem zur Permutation $\gamma$,
 also
 \[
-\det(P_\tau)
+\det(P_\gamma)
 =
 \sum_{\sigma \in S_n}
 c(\sigma)
 \,
-(P_\tau)_{1\sigma(1)}
-(P_\tau)_{2\sigma(2)}
+(P_\gamma)_{1\sigma(1)}
+(P_\gamma)_{2\sigma(2)}
 \cdots
-(P_\tau)_{n\sigma(n)}
+(P_\gamma)_{n\sigma(n)}
 =
-c(\tau)
+c(\gamma)
 \,
 1\cdot 1\cdots 1
 =
-c(\tau).
+c(\gamma).
 \]
-Der Koeffizientn $c(\tau)$ ist also genau das Vorzeichen
-der Permutation $\tau$.
+Der Koeffizient $c(\gamma)$ ist also genau das Vorzeichen
+der Permutation $\gamma$.
 Damit erhalten wir den folgenden Satz:
 
 \begin{satz}
@@ -106,12 +106,12 @@ a_{2\sigma(2)}
 \cdots
 a_{n\sigma(n)}
 =
-\sum_{\tau\in S_n}
-\operatorname{sgn}(\tau)
-a_{\tau(1)1}
-a_{\tau(2)2}
+\sum_{\gamma\in S_n}
+\operatorname{sgn}(\gamma)
+a_{\gamma(1)1}
+a_{\gamma(2)2}
 \cdots
-a_{\tau(n)n}.
+a_{\gamma(n)n}.
 \]
 Insbesondere folgt auch $\det(A)=\det(A^t)$.
 \end{satz}
