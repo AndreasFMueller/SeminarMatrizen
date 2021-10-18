@@ -362,7 +362,7 @@ Abbildung~\ref{buch:eigenwerte:fig:wurzelverfahren}
 visualisierte Verfahren, mit dem für jede Zahl $a\in[0,1]$
 die Wurzel $\sqrt{a}$ berechnet werden kann.
 Sei $u < \sqrt{a}$ eine Approximation der Wurzel.
-Die Approximation ist der exakte Wert der Lösung, wenn $a-u^2=0$.
+Die Approximation ist der exakte Wert, wenn $a-u^2=0$.
 In jedem anderen Fall muss $u$ um einen Betrag $d$ vergrössert werden.
 Natürlich muss immer noch $u+d<\sqrt{a}$ sein.
 Man kann die maximal zulässige Korrektur $d$ geometrisch abschätzen,
@@ -534,7 +534,7 @@ und hermitesche Matrizen erhalten.
 Ist $A$ symmetrische oder hermitesche Matrix und $f$ eine Funktion
 auf dem Spektrum $\operatorname{Sp}(A)$ von $A$.
 Dann gibt es genau eine Matrix $f(A)$, die Grenzwert jeder beliebigen
-Folge $p_n(A)$ für Polynomfolgen, die auf $\operatorname{Sp}(A)$
+Folge $p_n(A)$ mit Polynomen $p_n(x)$ ist, die auf $\operatorname{Sp}(A)$
 gleichmässig gegen $f$ konvergieren.
 \end{satz}
 
@@ -586,7 +586,7 @@ gleichmässig approximieren, muss daher verworfen werden.
 
 \subsubsection{Der Satz von Stone-Weierstrass für komplexe Funktionen}
 Der Satz von Stone-Weierstrass kann nach dem vorangegangene Abschnitt
-also für komplexe Funktionen nicht gelten, wir haben eine Funktion
+für komplexe Funktionen nicht gelten, denn wir haben eine Funktion
 gefunden, die sich nicht approximieren lässt.
 Um den Beweis des Satzes~\ref{buch:satz:stone-weierstrass}
 auf komplexe Zahlen zu übertragen, muss im ersten Schritt ein Weg
@@ -601,7 +601,7 @@ und Imaginärteil.
 Zum Beispiel kann man Real- und Imaginärteil als
 $\Re z= \frac12(z+\overline{z})$ und $\Im z = \frac12(z-\overline{z})$
 bestimmen.
-Kenntnis von Real- und Imaginärteil ist als gleichbedeutend mit
+Die Kenntnis von Real- und Imaginärteil ist gleichbedeutend mit
 der Kenntnis der komplex Konjugierten $\overline{z}$.
 Der Betrag lässt sich daraus als $|z|^2 = z\overline{z}$ finden.
 Beide Beispiele zeigen, dass man den im Beweis benötigten Betrag
@@ -676,13 +676,13 @@ A\overline{A}
 \]
 zeigt.
 Eine positive Matrix entsteht dagegen immer, wenn man statt
-$A$ die Adjungierte $A^*=\overline{A}^t$ verwendet.
+$A$ die hermitesche Konjugierte $A^*=\overline{A}^t$ verwendet.
 
 Die Substitution von $A$ für $z$ und $A^*$ für $\overline{z}$
 in einem Polynom $p(z,\overline{z})$ ist nicht unbedingt eindeutig.
 Schon das Polynom $p(z,\overline{z})=z\overline{z}$ kann man auch
 als $\overline{z}z$ schreiben.
-Damit die Substition eindeutig wird, muss man also fordern, dass
+Damit die Substitution eindeutig wird, muss man also fordern, dass
 $AA^* = A^*A$ ist.
 
 \begin{definition}
@@ -770,11 +770,11 @@ Der Beweis, dass $A+B$ normal ist, erfolgt durch Nachrechnen:
 \begin{align*}
 (A+B)(A+B)^*
 &=
-AA^* + {\color{red}AB^*} + {\color{blue}BA^*}+BB^*
+AA^* + {\color{red}AB^*} + {\color{blue}BA^*}+BB^*,
 \\
 (A+B)^*(A+B)
 &=
-A^*A + {\color{blue}A^*B} + {\color{red}B^*A} + B^*B
+A^*A + {\color{blue}A^*B} + {\color{red}B^*A} + B^*B.
 \end{align*}
 Die ersten und letzten Terme auf der rechten Seite stimmen überein, weil
 $A$ und $B$ normal sind.
@@ -796,7 +796,7 @@ was zeigt, dass auch $AB$ normal ist.
 
 \subsubsection{Spektralsatz für normale Matrizen}
 Mit dem Begriff der normalen Matrix lässt sich der Spektralsatz nun
-abschliessen formulieren.
+abschliessend formulieren.
 Die vorangegangene Diskussion hat gezeigt, dass man einen solchen
 Satz für nicht normale Matrizen nicht erwarten kann.
 

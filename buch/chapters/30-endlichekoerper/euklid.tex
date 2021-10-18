@@ -168,7 +168,7 @@ kann man als die Matrixoperation
 schreiben.
 Der Algorithmus bricht ab, wenn die zweite Komponente des Vektors $=0$ ist,
 in der ersten steht dann der grösste gemeinsame Teiler.
-Hier die Durchführung des Algorithmus in Matrix-Schreibweise:
+Hier die Durchführung des Algorithmus in Matrixschreibweise:
 \begin{align*}
 \begin{pmatrix} 23205 \\ 6800 \end{pmatrix}
 &=
@@ -358,7 +358,7 @@ dargestellt werden, die leichter als Programm zu implementieren ist.
 In Abschnitt~\ref{buch:endlichekoerper:subsection:matrixschreibweise}
 wurde gezeigt, dass das Produkt der aus den Quotienten $q_k$ gebildeten
 Matrizen $Q(q_k)$ berechnet werden muss.
-Im Folgenden soll ein rekursiver Algorithmus zu seiner Berechnung
+Im Folgenden soll ein iterativer Algorithmus zu seiner Berechnung
 hergeleitet werden.
 Dazu beachten wir zunächst, dass die Multiplikation mit der Matrix
 $Q(q_k)$ die zweite Zeile in die erste Zeile verschiebt:
@@ -453,7 +453,7 @@ berechnet.
 \begin{beispiel}
 Wir erweitern das Beispiel von Seite~\pageref{buch:endlichekoerper:beispiel1}
 zur Bestimmung des grössten gemeinsamen Teilers von $76415$ und $23205$
-um die Spalten zur Berechnung der Koeffizienten $c_k$ und $d_k$
+um die Spalten zur Berechnung der Koeffizienten $c_k$ und $d_k$.
 Wir schreiben die gefundenen Zahlen in eine Tabelle:
 \begin{center}
 \label{buch:endlichekoerper:beispiel1erweitert}
@@ -814,7 +814,7 @@ f_{k+1} &= q_kf_k + f_{k-1}
 \end{align*}
 für $k=0,1,\dots ,n$.
 Damit können $e_k$ und $f_k$ gleichzeitig mit den Zahlen $c_k$ und $d_k$
-in einer Tabelle berechnen.
+in einer Tabelle berechnet werden.
 
 \begin{beispiel}
 Wir erweitern das Beispiel von

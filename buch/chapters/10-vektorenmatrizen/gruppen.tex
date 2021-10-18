@@ -10,9 +10,9 @@ Eine solche besteht aus einer Menge $G$ mit einer Verknüpfung,
 die additiv
 \index{additive Verknüpfung}%
 \begin{align*}
-G\times G \to G&: (g,h) = g+h
+G\times G \to G&: (g,h) \mapsto g+h
 \intertext{oder multiplikativ }
-G\times G \to G&: (g,h) = gh
+G\times G \to G&: (g,h) \mapsto gh
 \end{align*}
 \index{multiplikative Verknüpfung}%
 geschrieben werden kann.
@@ -72,7 +72,7 @@ Das additive Inverse eines Elementes $a$ ist $-a$.
 \begin{beispiel}
 Die von Null verschiedenen Elemente $\Bbbk^*=\Bbbk\setminus\{0\}$ (definiert
 auf Seite~\pageref{buch:zahlen:def:bbbk*})
-eines Zahlekörpers bilden
+eines Zahlkörpers bilden
 bezüglich der Multiplikation eine Gruppe mit neutralem Element $1$.
 Das multiplikative Inverse eines Elementes $a\in \Bbbk$ mit $a\ne 0$
 ist $a^{-1}=\frac1{a}$.
@@ -255,7 +255,7 @@ der {\em Konjugation}, in sich abgebildet.
 
 \begin{definition}
 Eine Untergruppe $H \subset G$ heisst ein {\em Normalteiler},
-geschrieben $H \triangleleft G$
+geschrieben $H \triangleleft G$,
 wenn $gHg^{-1}\subset H$ für jedes $g\in G$.
 \index{Normalteiler}%
 \end{definition}
@@ -324,6 +324,7 @@ genauer untersucht.
 
 Das Beispiel suggeriert, dass man sich die Elemente von $G/H$
 als Reste vorstellen kann.
+Der Quotient $G/H$ wird daher auch die Restklassengruppe genannt.
 
 \subsubsection{Darstellungen}
 Abstrakt definierte Gruppen können schwierig zu verstehen sein.

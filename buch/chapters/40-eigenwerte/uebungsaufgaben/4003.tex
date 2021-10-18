@@ -20,11 +20,11 @@ einiger Rechnung oder mit Hilfe einer Software für symbolische Rechnung:
 =
 x^4-9x^3+30x^2-44x+24
 =
-(x-3)^3(x-2),
+(x-3)(x-2)^2,
 \]
 Eigenwerte sind also $\lambda=3$ und $\lambda=2$.
 
-Der Eigenwert $\lambda=2$ ist ein einfacher Eigenwert, der zugehörige
+Der Eigenwert $\lambda=3$ ist ein einfacher Eigenwert, der zugehörige
 Eigenraum ist daher eindimensional.
 Ein Eigenvektor kann mit Hilfe des linearen Gleichungssystems
 \begin{align*}
@@ -48,10 +48,10 @@ Ein Eigenvektor kann mit Hilfe des linearen Gleichungssystems
 \to
 \begin{tabular}{|>{$}c<{$}>{$}c<{$}>{$}c<{$}>{$}c<{$}|}
 \hline
-1&0&0& 0\\
-0&1&0& 0\\
+1&0&0&0\\
+0&1&0&0\\
 0&0&1&-1\\
-0&0&0& 0\\
+0&0&0&0\\
 \hline
 \end{tabular}
 \end{align*}
@@ -78,7 +78,8 @@ Ab_1 =
 3b_1
 \]
 ab.
-Diesen  Vektor können wir auch finden, indem wir $\mathcal{J}(A-2I)$
+
+Den Vektor $b_1$ können wir auch finden, indem wir $\mathcal{J}(A-2I)$
 bestimmen.
 Die vierte Potenz von $A-2I$ ist
 \begin{equation}
@@ -111,10 +112,10 @@ b_4
 für den Kern $\mathcal{K}(A-2I)$ ablesen.
 Da $\lambda=2$ der einzige andere Eigenwert ist, muss $\mathcal{K}(A-2I)
 = \mathcal{J}(A-3I)$ sein.
-Dies lässt sich überprüfen, indem wir die vierte Potenz von $A-2I$
+Dies lässt sich überprüfen, indem wir die vierte Potenz von $A-3I$
 berechnen, sie ist
 \[
-(A-2I)^4
+(A-3I)^4
 =
 \begin{pmatrix}
     79&  -26&  152& -152\\
@@ -124,7 +125,7 @@ berechnen, sie ist
 \end{pmatrix}.
 \]
 Die Spaltenvektoren lassen sich alle durch die Vektoren $b_2$, $b_3$
-und $b_4$ ausdrücken, also ist $\mathcal{J}(A-2I)=\langle b_2,b_3,b_4\rangle$.
+und $b_4$ ausdrücken, also ist $\mathcal{J}(A-3I)=\langle b_2,b_3,b_4\rangle$.
 
 Indem die Vektoren $b_i$ als Spalten in eine Matrix $T$ schreibt, kann man
 jetzt berechnen, wie die Matrix der linearen Abbildung in dieser neuen

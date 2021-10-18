@@ -14,13 +14,13 @@ A = [
 eig(A)
 
 
-lambda = 2
+lambda = 3
 B = A - lambda*eye(4)
 rref(B)
 
 D = B*B*B*B
 
-lambda = 3
+lambda = 2
 B = A - lambda*eye(4)
 rref(B)
 

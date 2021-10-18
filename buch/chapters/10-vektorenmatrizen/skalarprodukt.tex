@@ -71,7 +71,7 @@ f(x,y) = \frac12 \bigl(g(x,y)+g(x,y)\bigr)
 setzt.
 Dieser Prozess heisst auch {\em Symmetrisieren}.
 \index{symmetrisieren}%
-Ist $g$ bereits symmetrische, dann ist $g(x,y)=f(x,y)$.
+Ist $g$ bereits symmetrisch, dann ist $g(x,y)=f(x,y)$.
 
 \subsubsection{Positiv definite Bilinearformen und Skalarprodukt}
 Bilinearität allein genügt nicht, um einen Vektorraum mit einem
@@ -315,7 +315,7 @@ Für die Norm $\|x\|_2^2=\langle x,x\rangle$ bedeutet dies jetzt
 \subsection{Orthonormalbasis
 \label{buch:subsection:orthonormalbasis}}
 \index{orthonormierte Basis}%
-Sowohl die Berechnung von Skalarprodukten wie auch der Basis-Wechsel
+Sowohl die Berechnung von Skalarprodukten wie auch der Basiswechsel
 werden besonders einfach, wenn die verwendeten Basisvektoren orthogonal
 sind und Länge $1$ haben.
 
@@ -432,7 +432,7 @@ b_1&=\frac{a_1}{\|a_1\|_2},
 \\
 b_2&=\frac{a_2-b_1\langle b_1,a_2\rangle}{\|a_2-b_1\langle b_1,a_2\rangle\|_2},
 \\
-b_3&=\frac{a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle}{\|a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle\|_2}
+b_3&=\frac{a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle}{\|a_3-b_1\langle b_1,a_3\rangle-b_2\langle b_2,a_3\rangle\|_2},
 \\
 &\phantom{n}\vdots\\
 b_n
@@ -513,7 +513,7 @@ der folgenden Definition.
 Sei $A$ eine komplexe Matrix mit Einträgen $a_{i\!j}$, dann ist
 $\overline{A}$ die Matrix mit komplex konjugierten Elementen
 $\overline{a}_{i\!j}$.
-Die {\em adjungierte} Matrix ist $A^*=\overline{A}^t$.
+Die {\em hermitesch konjugierte} Matrix ist $A^*=\overline{A}^t$.
 \index{adjungiert}%
 Eine Matrix heisst {\em hermitesch}, wenn $A^*=A$.
 \index{hermitesch}%
@@ -749,7 +749,7 @@ Das Orthogonalkomplement des Bildes von $f$ ist
 v\in V
 \,|\,
 \langle v, fu\rangle=0\forall u\in U
-\}
+\}.
 \end{align*}
 Ein Vektor $v$ ist genau dann in $(\operatorname{im}f)^\perp$ enthalten,
 wenn für alle $u$ 
@@ -796,7 +796,7 @@ Auch die $l^1$-Norm erfüllt die Dreiecksungleichung
 \|x\|_1 + \|y\|_1.
 \]
 
-Die $l^1$-Norm kommt nicht von einem Skalarprodukt her.
+Die $l^1$-Norm kommt in Dimension $n\ge 2$ nicht von einem Skalarprodukt her.
 Wenn es ein Skalarprodukt gäbe, welches auf diese Norm führt, dann
 müsste 
 \[
@@ -819,7 +819,7 @@ bedeutet dies
 \langle e_1,\pm e_2\rangle
 =
 \frac12( 2^2 - 1^2 - 1^2) 
-=1
+=1.
 \]
 Die Linearität des Skalarproduktes verlangt aber, dass
 $1=\langle e_1,-e_2\rangle = -\langle e_1,e_2\rangle = -1$,
@@ -829,6 +829,7 @@ ein Widerspruch.
 
 \begin{definition}
 Die $l^\infty$-Norm in $V=\mathbb{R}^n$ und $V=\mathbb{C}^n$ ist definiert
+durch
 \[
 \|v\|_\infty
 =
@@ -863,7 +864,7 @@ Es ist
 \|e_1\pm e_2\|_\infty &= 1
 \end{aligned}
 \right\}
-\qquad\Rightarrow\qquad
+\quad\Rightarrow\quad
 \langle e_1,\pm e_2\rangle
 =
 \frac12(\|e_1\pm e_2\|_\infty^2 - \|e_1\|_\infty^2 - \|e_2\|_\infty^2)
@@ -985,7 +986,7 @@ Die $L^2$-Norm wird erzeugt von dem Skalarprodukt
 \qquad\Rightarrow\qquad
 \|f\|_2^2 = \frac{1}{b-a}\int_a^b |f(x)|^2\,dx.
 \]
-Die $L^1$-Norm ist dagegen definiert als.
+Die $L^1$-Norm ist dagegen definiert als
 \[
 \|f\|_1
 =
@@ -994,7 +995,7 @@ Die $L^1$-Norm ist dagegen definiert als.
 Die drei Normen stimmen nicht überein.
 Beschränkte Funktionen sind zwar immer integrierbar und quadratintegrierbar.
 Es gibt aber integrierbare Funktionen, die nicht quadratintegrierbar sind, zum
-Beispiel ist die Funktion $f(x)=1/\sqrt{x}$ auf dem Interval $[0,1]$
+Beispiel ist die Funktion $f(x)=1/\sqrt{x}$ auf dem Interval $[0,1]$:
 \begin{align*}
 \|f\|_1
 &=

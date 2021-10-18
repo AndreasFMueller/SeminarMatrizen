@@ -29,7 +29,7 @@ R^{n+1}.
 \]
 Diese Darstellung eines Polynoms gibt auch die Addition von Polynomen
 und die Multiplikation von Polynomen mit Skalaren aus $R$ korrekt wieder.
-Die Abbildung von Vektoren auf Polynome
+Die Abbildung
 \[
 \varphi
 \colon  R^{n+1} \to R[X]
@@ -38,6 +38,7 @@ Die Abbildung von Vektoren auf Polynome
 \mapsto
 a_nX^n + a_{n-1}X^{n-1}+\dots+a_1X+a_0
 \]
+von Vektoren auf Polynome
 erfüllt also
 \[
 \varphi( \lambda a) = \lambda \varphi(a)
@@ -62,7 +63,7 @@ um Multiplikation mit Skalaren geht, ist also diese vektorielle Darstellung
 mit Hilfe von $\varphi$ eine zweckmässige Darstellung.
 
 In zwei Bereichen ist die Beschreibung von Polynomen mit Vektoren allerdings
-ungenügend: einerseits können Polynome können beliebig hohen Grad haben,
+ungenügend: einerseits können Polynome beliebig hohen Grad haben,
 während Vektoren in $R^{n+1}$ höchstens $n+1$ Komponenten haben können.
 Andererseits geht bei der vektoriellen Beschreibung die multiplikative
 Struktur vollständig verloren.
@@ -159,12 +160,12 @@ Multiplikationsoperator
 betrachten.
 Diese Operatoren setzen sich zusammen zu einem Operator
 \[
-{X\cdot} \colon R^\infty \to \infty,
+{X\cdot} : R^\infty \to \infty,
 \]
 der die Multiplikation mit $X$ beschreibt.
 
 Ist $p(X)$ ein Polynom, dann lässt sich die Multiplikation
-in von Polynome mit $R[X]$ ebenfalls als Operator schreiben.
+von $p(X)$ mit Polynomen in $R[X]$ ebenfalls als Operator schreiben.
 Die Potenz $X^k$ wirkt durch $k$-fache Iteration des Operators
 $X\cdot$.
 Das Polynom $p(X)$ wirkt als Linearkombination der Operatoren $(X\cdot)^k$,
@@ -174,7 +175,7 @@ in das Polynom erhalten kann:
 p(X\cdot)
 =
 a_n(X\cdot)^n + a_{n-1}(X\cdot)^{n+1} + \dots + a_1(X\cdot) + a_0
-\colon
+:
 R^\infty \to R^\infty
 :
 q(X) 
@@ -235,7 +236,7 @@ die Beobachtung, dass sich eine ganz allgemeine Algebra
 wie die der Polynome auf sehr direkte Art und Weise 
 abbilden lässt in eine Algebra von Matrizen auf einem
 geeigneten Vektorraum.
-Im vorliegenden Fall sind das zwar ``undendliche''
+Im vorliegenden Fall sind das zwar ``unendliche''
 Matrizen, in zukünftigen Beispielen werden wir das
 selbe Prinzip jedoch in Aktion sehen in Situationen,
 wo eine Operation auf einem endlichen Vektorraum
