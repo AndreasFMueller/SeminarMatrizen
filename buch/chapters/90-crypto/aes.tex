@@ -6,7 +6,7 @@
 \section{Advanced Encryption Standard -- AES
 \label{buch:section:aes}}
 \rhead{Advanced Encryption Standard}
-Eine wichtige Forderung bei der Konzeption des damals neuen
+Eine wichtige Forderung bei der Konzeption des im Jahre 2001 neuen
 Advanced Encryption Standard war, dass darin keine ``willkürlich''
 erscheinenden Operationen geben darf, bei denen der Verdacht
 entstehen könnte, dass sich dahinter nicht offengelegtes Wissen
@@ -19,7 +19,7 @@ Die Gerüchteküche wollte wissen, dass die NSA die Konstanten aus dem
 ursprünglichen Vorschlag abgeändert habe, und dass dies geschehen sei,
 um den Algorithmus durch die NSA angreifbar zu machen.
 
-Eine weiter Forderung war, dass die Sicherheit des neuen
+Eine weitere Forderung war, dass die Sicherheit des neuen
 Verschlüsselungsstandards ``skalierbar'' sein soll, dass man also
 die Schlüssellänge mit der Zeit von 128~Bit auf 196 oder sogar 256~Bit
 steigern kann.
@@ -142,7 +142,7 @@ und ebenso nur 256 mögliche Werte.
 \label{buch:subsection:block-operationen}}
 Die zu verschlüsselnden Daten werden in in Blöcke aufgeteilt, deren
 Länge Vielfache von $32$ bit sind.
-Die kleinste Blockgrösse ist 128\,Bit, die grösste ist 256\,Bit.
+Die kleinste im Standard spezifizierte Blockgrösse ist 128\,Bit, die grösste ist 256\,Bit.
 Die Bytes eines Blockes werden dann in einem Rechteck angeordnet
 als
 \begin{equation}
@@ -173,7 +173,7 @@ Die bisher beschriebenen Operationen operieren immer nur auf einzelnen
 Bytes während
 die im nächsten Abschnitt beschriebene Spalten-Mischoperation
 nur auf Spalten wirkt.
-Die Zeilen\-misch\-ope\-ra\-tion permutiert die Zeilen in den vier Zeilen
+Die Zeilen\-misch\-ope\-ra\-tion permutiert die vier Zeilen
 eines Blocks zyklisch, die erste Zeile bleibt an Ort, die zweite
 Zeile wird um ein Byte rotiert, die dritte um zwei und die letzte
 um 3 Bytes, wie in Abbildung~\ref{buch:crypto:fig:shift}
@@ -206,7 +206,9 @@ nur multiplizieren zu können, was in diesem Fall sehr leicht möglich ist,
 weil kein Überlauf entsteht.
 Dabei hilft es zu beachten, dass die Multiplikation mit $\texttt{02}_{16}$
 nur eine Einbit-Shiftoperation nach links ist.
-Nur die Multiplikation $\texttt{03}_{16}\cdot\texttt{03}_{16}=\text{05}_{16}$
+Nur die Multiplikation $\texttt{03}_{16}\cdot\texttt{03}_{16}
+=
+\texttt{06}_{16}+\texttt{03}_{16}=\texttt{05}_{16}$
 gibt etwas mehr zu überlegen.
 Mit geeigneten Zeilen-Operationen kann man die Berechnung der Determinante
 von $C$ mit dem Entwicklungssatz etwas vereinfachen.
@@ -420,9 +422,9 @@ Eine einzelne Runde besteht dabei aus folgenden Schritten:
 \begin{enumerate}
 \item Wende die $S$-Box auf alle Bytes des Blocks an.
 \item Führe den Zeilenshift durch.
-\item Mische die Spalten (wird in der letzten Runde)
-\item Erzeuge den nächsten Rundenschlüssel
-\item Addiere den Rundenschlüssel
+\item Mische die Spalten (wird in der letzten Runde).
+\item Erzeuge den nächsten Rundenschlüssel.
+\item Addiere den Rundenschlüssel.
 \end{enumerate}
 Der AES-Verschlüsselungsalgorithmus beginnt damit, dass der Schlüssel
 zum Datenblock addiert wird.

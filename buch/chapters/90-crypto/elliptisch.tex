@@ -10,7 +10,7 @@
 Das Diffie-Hellman-Verfahren basiert auf der Schwierigkeit, in einem 
 Körper $\mathbb{F}_p$ die Gleichung $a^x=b$ nach $x$ aufzulösen.
 Die Addition in $\mathbb{F}_p$ wird dazu nicht benötigt.
-Es reicht, eine Menge mit einer Multiplikation zu haben, fir die
+Es reicht, eine Menge mit einer Multiplikation zu haben, für die
 die Gleichung $a^x=b$ schwierig nach $x$ aufzulösen ist.
 Ein Halbgruppe wäre also durchaus ausreichend.
 
@@ -33,7 +33,7 @@ Der Einheitskreis ist die Lösungsmenge der Gleichung $x^2+y^2=1$ für
 reelle Koordinaten $x$ und $y$,
 doch Rundungsunsicherheiten verunmöglichen den Einsatz in einem 
 Verfahren ähnlich dem Diffie-Hellman-Verfahren.
-Dieses Problem kann gelöst werden, indem für die Variablen Werte
+Dieses Problem kann gelöst werden, indem für die Variablen $x$ und $y$ Werte
 aus einem endlichen Körper verwendet werden.
 Gesucht ist also eine Gleichung in zwei Variablen, deren Lösungsmenge
 in einem endlichen Körper eine Gruppenstruktur trägt.
@@ -93,7 +93,7 @@ Y^2 + XY + \frac14X^2 &= X^3+\frac14 X^2 +aX+b
 v^2&=X^3+\frac14X^2+aX+b,
 \label{buch:crypto:eqn:ell2}
 \end{align}
-indem man $v=Y+\frac12X$ setzt.
+wenn man $v=Y+\frac12X$ setzt.
 Man beachte, dass man diese Substition nur machen kann, wenn $\frac12$
 definiert ist.
 In $\mathbb{R}$ ist dies kein Problem, aber genau über den Körpern
@@ -307,7 +307,8 @@ tP(x_1,y_1)
 0.
 \end{align*}
 Die Klammerausdrücke verschwinden, da sie gleichbedeutend damit sind,
-dass die Punkte Lösungen von \eqref{buch:crypto:eqn:grupopgl} sind.
+dass die Punkte $g_1$ und $g_2$ Lösungen von
+\eqref{buch:crypto:eqn:grupopgl} sind.
 Dies bestätigt nochmals, dass der Rest $r(t)=0$ ist, dass $p(t)$
 also durch $t(1-t)$ teilbar ist.
 
@@ -354,7 +355,7 @@ Die Gleichungen
 \eqref{buch:crypto:eqn:x3}
 und
 \eqref{buch:crypto:eqn:y3}
-ermöglichen also, das Element $g_1g_2^{-1}$ zu berechnen.
+ermöglichen also, das Element $(g_1g_2)^{-1}$ zu berechnen.
 Interessant daran ist, dass in den Formeln die Konstanten $a$ und $b$ 
 gar nicht vorkommen.
 

@@ -68,7 +68,7 @@ wobei die beiden positiven reellen Zahlen $t_0,t_1\in\mathbb{R}$ die
 Bedingung $t_0 + t_1 = 1$ erfüllen.
 Für ein eindimensionales Objekt brauchen wir also zwei Punkte und zwei
 positive Parameter, die sich zu $1$ summieren.
-Die Mengen $\triangle_1=\{ (t_0,t_1)\mid t_i\ge 0, t_0+t_1=1\}$ kann also
+Die Menge $\triangle_1=\{ (t_0,t_1)\mid t_i\ge 0, t_0+t_1=1\}$ kann also
 ganz allgemein als Parameterraum zur Beschreibung eines eindimensionalen Objektes
 $\triangle_1$
 mit den Endpunkten $0$ und $1$ dienen.
@@ -128,7 +128,7 @@ t_1\vec{p}_1
 +
 t_n\vec{p}_n
 \end{equation}
-Eine solche Abbildung verallgemeinert also den Begriff einer Strecke
+Eine solche Abbildung verallgemeinert den Begriff einer Strecke
 in einem Raum $\mathbb{R}^N$  
 auf höhere Dimensionen.
 Sie ist durch die Eckpunkte vollständig vorgegeben, es reicht also
@@ -242,7 +242,7 @@ Die Adjazenzmatrix ordnet ihm die Linearkombination
 A(G)\colon e_k=[v_i,v_j] \mapsto -[v_i] +[v_j]
 = (-1)^0 [\widehat{v_i},v_j] + (-1)^1 [v_i,\widehat{v_j}]
 =
-\partial_2 [v_i,v_j]
+\partial_1 [v_i,v_j]
 \]
 zu.
 Die Adjazenzmatrix eines Graphen kann man also als den Randoperator
@@ -304,7 +304,7 @@ Summe müssen die Teile vor und nach $i$ daher separat betrachtet werden:
 [P_0,\dots,\widehat{P_j},\dots,\widehat{P_i}\dots,P_l]
 -
 \sum_{j>i} (-1)^{i+j}
-[P_0,\dots,\widehat{P_i},\dots,\widehat{P_j}\dots,P_l]
+[P_0,\dots,\widehat{P_i},\dots,\widehat{P_j}\dots,P_l].
 \notag
 \end{align}
 Auf der letzten Zeile sind die Summen über alle Paare
@@ -393,7 +393,7 @@ nur die ``Gestalt'' oder ``Topologie'' des Objekts.
 Entfernungen zwischen Punkten sind ebenfalls von untergeordneter 
 Bedeutung, da sie bei Deformation nicht erhalten bleiben.
 Der Begriff des ``topologischen Raumes'' fasst diese Ideen mathematisch
-präzise ein, eine genaue Definition würde aber an dieser Stelle zu weit
+präzise, eine genaue Definition würde aber an dieser Stelle zu weit
 führen.
 Stattdessen beschränken wir uns auf eine Klasse von Punktmengen, die man
 mit Simplizes beschreiben kann.
@@ -419,7 +419,7 @@ auf ein dreidimensionales Simplex abgebildet werden.
 \begin{beispiel}
 \label{buch:homologie:projektion}
 Sei $T$ ein reguläres Tetraeder mit den Ecken auf der dreidimensionalen
-Einheitskugel $B^3$.
+Einheitsvollkugel $B^3$.
 Für jeden Richtungsvektor $x\ne 0$ sei $l(x)$ Entfernung vom Mittelpunkt des
 Tetraeders bis zum Durchstosspunkt einer Geraden durch den Mittelpunkt
 mit Richtungsvektor $x$ durch die Oberfläche des Tetraeders.
