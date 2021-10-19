@@ -150,7 +150,7 @@ Eine naheliegende Beschreibung eines Graphen mit Hilfe einer
 Matrix kann man wie folgt erhalten.
 Zunächst werden die Knoten aus der Menge $V$ durch die Zahlen
 $1,\dots,n$ mit $n=|V|$ ersetzt.
-Diese Zahlen werden dann als Zeilen- uns Spaltenindizes interpretiert.
+Diese Zahlen werden dann als Zeilen- und Spaltenindizes interpretiert.
 Die zum Graphen gehörige sogenannte {\em Adjazenzmatrix} $A(G)$
 enthält die Einträge
 \begin{equation}
@@ -180,7 +180,7 @@ von Abbildung~\ref{buch:graphen:fig:adjazenzu} hervor.
 \label{buch:graphen:fig:adjazenzd}}
 \end{figure}
 Die Adjazenzmatrix kann auch für einen gerichteten Graphen definiert
-werden wie dies in in Abbildung~\ref{buch:graphen:fig:adjazenzd}
+werden wie dies in Abbildung~\ref{buch:graphen:fig:adjazenzd}
 illustriert ist.
 Ihre Einträge sind in diesem Fall definiert mit Hilfe der 
 gerichteten Kanten als
@@ -243,7 +243,7 @@ Ob es eine solche Kante gibt, zeigt das Matrixelement $a_{k\!j}$ an.
 Das Element in Zeile $j$ und Spalte $i$ der Matrix $A^{(n-1)}$ gibt
 die Anzahl der Wege von $i$ nach $j$ an.
 Es gibt also $a_{k\!j}\cdot a_{ji}^{(n-1)}$ Wege der Länge $n$, die von $i$
-nach $k$ führen, aber als zweitletzten Knoten über den Knoten $j$ führen.
+nach $k$ führen, und als zweitletzten Knoten über den Knoten $j$ führen.
 Die Gesamtzahl der Wege der Länge $n$ von $i$ nach $k$ ist daher
 \[
 a_{ki}^{(n)}

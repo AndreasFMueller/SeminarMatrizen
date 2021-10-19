@@ -18,8 +18,8 @@ Wenn man einen Standardbasisvektor in einem Knoten $i$
 als Anfangstemperaturverteilung verwendet, erwartet man eine Lösung,
 die für kleine Zeiten $t$ die Energie immer in der Nähe des Knotens $i$
 konzentriert hat.
-Es werden daher mit der Zeit immer stärkere benachbarte Standardbasisvektoren
-in der Lösung auftreten.
+Es werden daher mit der Zeit benachbarte Standardbasisvektoren
+immer stärker in der Lösung vertreten sein.
 Auch die Eigenbasis hilft nicht, dieses Lösungsverhalten aufzuzeigen:
 sie sind im Definitionsgebiet stark delokalisiert und daher die allmählich
 abnehmende Lokalisierung der Lösung nicht wiedergeben.
@@ -28,7 +28,7 @@ abnehmende Lokalisierung der Lösung nicht wiedergeben.
 Ein ähnliches Phänomen findet man bei der Wärmeausbreitung gemäss
 der partiellen Differentialgleichung
 \[
-\frac{\partial T}{\partial t} = -\kappa \frac{\partial^2 T}{\partial x^2}.
+\frac{\partial T}{\partial t} = \kappa \frac{\partial^2 T}{\partial x^2}.
 \]
 Die von Fourier erfundene Methode, die Fourier-Theorie, verwendet die
 Funktionen $e^{ik x}$, die Eigenvektoren der zweiten Ableitung
@@ -257,7 +257,7 @@ für $\lambda\to \infty$ der Wert $h(\lambda)$ genügend rasch gegen $0$
 geht.
 Die Matrix $h(L)$ bildet daher den konstanten Vektor nicht auf $0$ ab,
 sondern lokalisiert ihn im Ortsraum.
-Wir erhalten daher in den Spalten von $h(L)$ Vektoren, die um die
+Wir erhalten so in den Spalten von $h(L)$ Vektoren, die um die
 einzelnen Knoten lokalisiert sind.
 
 \subsubsection{Rekonstruktion}
