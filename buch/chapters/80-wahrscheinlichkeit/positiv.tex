@@ -160,8 +160,8 @@ besteht aus zwei $3\times 3$-Blöcken.
 Die beiden Unterräume $V_1=\langle e_1,e_2,e_3\rangle$
 und $V_2=\langle e_4,e_5,e_6\rangle$ sind invariante
 Unterräume von $A$ und damit auch von $A^n$.
-Die Potenzen haben daher auch die gleich Blockstruktur.
-Insbesondere sind zwar die Blöcke von $A^n$ für $n>1$ positive
+Die Potenzen haben daher auch die gleiche Blockstruktur.
+Insbesondere sind zwar die diagonalen Blöcke von $A^n$ für $n>1$ positive
 Teilmatrizen, aber die Matrix $A^n$ ist für alle $n$ nicht positiv.
 \end{beispiel}
 
@@ -236,7 +236,7 @@ Der Satz besagt also, dass es eine Komponente $v_i\ne 0$ gibt
 derart, dass $u_i = (1+\varepsilon)v_i$.
 Diese Komponenten limitiert also, wie stark man $v$ strecken kann,
 so dass er immer noch $\le u$ ist.
-Natürlich folgt aus den der Voraussetzung $u>v$ auch, dass $u$ ein 
+Natürlich folgt aus der Voraussetzung $u>v$ auch, dass $u$ ein 
 positiver Vektor ist (Abbildung~\ref{buch:wahrscheinlichkeit:figure:trenn}).
 
 \begin{figure}
@@ -305,12 +305,14 @@ nicht negativen Vektoren positive Vektoren.
 \label{buch:subsection:verallgemeinerte-dreiecksungleichung}}
 Die Dreiecksungleichung besagt, dass für beliebige Vektoren
 $u,v\in\mathbb{R}^n$ gilt
-\[
+\begin{equation}
 |u+v|\le |u|+|v|
-\]
+\label{buch:wahrscheinlichkeit:eqn:dreicksungleichung}
+\end{equation}
 mit Gleichheit genau dann, wenn $u$ und $v$ linear abhängig sind.
-Wenn beide von $0$ verschieden sind, dann gibt es eine positive Zahl
-$t$ mit $u=tv$.
+Wenn beide Vektoren von $0$ verschieden sind, dann gibt es bei Gleichheit
+in~\eqref{buch:wahrscheinlichkeit:eqn:dreicksungleichung}
+eine positive Zahl $t$ mit $u=tv$.
 Wir brauchen eine Verallgemeinerung für eine grössere Zahl von
 Summanden.
 

@@ -6,10 +6,10 @@
 \section{Google-Matrix
 \label{buch:section:google-matrix}}
 \rhead{Google-Matrix}
-Das Internet besteht aus einer grossen Zahl von Websites, etwa 400~Millionen
+Das Internet besteht aus einer grossen Zahl von Websites, etwa 1.7~Milliarden
 aktiven Websites, jede besteht aus vielen einzelnen Seiten.
 \index{Internet}%
-Es ist daher angemessen von $N\approx 10^9$ verschiedenen Seiten auszugehen.
+Es ist daher angemessen von $N\approx 10^{10}$ verschiedenen Seiten auszugehen.
 Eine natürliche Sprache umfasst dagegen nur einige 100000 bis Millionen
 von Wörtern.
 Ein durchschnittlicher Sprecher englischer Muttersprache verwendet nur etwa
@@ -30,7 +30,7 @@ Traditionelle Information-Retrieval-Systeme operieren auf einem relativ
 kleinen Dokumentbestand und gehen davon aus, dass bereits wenige, spezifische
 Wörter nur in einem kleinen Teil des Dokumentbestandes vorkommen und damit
 eine übersichtliche Treffermenge ergeben.
-Die Einengung der Treffermenge dank der Suche nach einzelnen Wörtern
+Die Einengung der Treffermenge mit der Suche nach einzelnen Wörtern
 bedeutet aber auch, dass nach Synonymen oder alternative Formen eines
 Wortes separat gesucht werden muss, was die Übersichtlichkeit wieder
 zerstört.
@@ -128,7 +128,7 @@ Falls es einen Link gibt, ist $P(S'_j\mid S_i)\ge 0$.
 A priori wissen wir nicht, wie wahrscheinlich es ist, dass der Besucher
 dem Link auf die Seite $j$ folgt, normalerweise werden nicht alle
 Links mit gleicher Wahrscheinlichkeit verwendet.
-Darüber hben wir aber keine Detailinformation.
+Darüber haben wir aber keine Detailinformation.
 Wir nehmen daher vereinfachend an, dass alle Links gleich wahrscheinlich
 sind.
 Enthält die Seite $i$ genau $n_i$ Links, dann ist die Wahrscheinlichkeit,
@@ -526,7 +526,7 @@ erhält man die Wahrscheinlichkeitsverteilung $p$.
 
 \subsubsection{Potenzverfahren}
 Die üblichen Algorithmen wie der von den meisten Softwarepaketen
-verwendete Francis-Algorithmus \cite{francis:watkins_paper,buch:watkins}
+verwendete Francis-Algorith\-mus \cite{francis:watkins_paper,buch:watkins}
 \index{Francis-Algorithmus}%
 zur Bestimmung von Eigenwerten
 und Eigenvektoren ist für grosse Matrizen nicht praktikabel.
@@ -555,10 +555,10 @@ a_2\lambda_2^k v_2
 +
 \dots
 +
-a_n\lambda_2^k v_n.
+a_n\lambda_n^k v_n.
 \]
 Da $\lambda_1$ der betragsmässig grösste Eigenwert ist, wird der Vektor
-$A^kv$ ungefähr mit der $k$-ten Potenz anwachsen.
+$A^kv$ ungefähr mit der $k$-ten Potenz von $\lambda_1$ anwachsen.
 Indem man durch $\lambda_1^k$ teilt, erhält man
 \[
 \frac{1}{\lambda_1^k} A^k v

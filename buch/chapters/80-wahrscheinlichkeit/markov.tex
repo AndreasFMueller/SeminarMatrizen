@@ -70,7 +70,7 @@ sollten also die Ereignisse $\{X_{t_0}=x_0\}$ bis $\{X_{t_{n-1}}=x_{n-1}\}$
 keinen Einfluss haben.
 
 \begin{definition}
-Ein stochastischer Prozess erfüllt die Markov-Eigenschaft, wenn 
+Ein stochastischer Prozess erfüllt die {\em Markov-Eigenschaft}, wenn 
 für jede Folge von früheren Zeitpunkten $t_0<t_1<\dots <t_n<t$ und Zuständen
 $x_0,\dots,x_n,x\in \mathcal{S}$ die 
 Wahrscheinlichkeit~\eqref{buch:wahrscheinlichkeit:eqn:historybedingt}
@@ -152,12 +152,12 @@ p_{x_1y}(t_1,s)
 \]
 wird.
 Jeder Summand auf der rechten Seite beschreibt einen Weg des Prozesses
-derart, dass er zu den Zwischenzeitpunkten bestimmte 
-Zwischenzustände durchläuft.
+derart, dass zu den Zwischenzeitpunkten bestimmte 
+Zwischenzustände durchlaufen werden.
 
 \begin{definition}
 Die Wahrscheinlichkeit, dass der stochastische Prozess zwischen Zeitpunkten
-$t_0$ und $t_n$ die Zwischenzustände $x_i$ zu Zeiten $t_i$ durchläuft ist
+$t_0$ und $t_n$ die Zwischenzustände $x_i$ zu Zeiten $t_i$ durchläuft, ist
 das Produkt
 \[
 \sum_{x_1,\dots,x_n\in\mathcal{S}}
@@ -221,7 +221,7 @@ T(n+1,n)
 \begin{pmatrix}
 p_{11}(n+1,n) & \dots  & p_{1s}(n+1,n)\\
 \vdots        & \ddots & \vdots       \\
-p_{11}(n+1,n) & \dots  & p_{1s}(n+1,n)
+p_{s1}(n+1,n) & \dots  & p_{ss}(n+1,n)
 \end{pmatrix},
 \]
 auch die $1$-Schritt-Übergangswahrscheinlichkeit genannt, kann man jetzt
@@ -267,14 +267,14 @@ Eine Permutationsmatrix beschreibt einen stochastischen Prozess, dessen
 \end{beispiel}
 
 \subsubsection{Zustandswahrscheinlichkeiten}
-Die Wahrscheinlichkeit, mit der sich der Prozess zum Zeitpunkt $n$
-im Zustand $i\in\mathcal{S}$ befindet, wird
+Die Wahrscheinlichkeiten, mit der sich der Prozess zum Zeitpunkt $n$
+in den Zuständen $i\in\mathcal{S}$ befindet, werden
 \[
 p_i(n)
 =
 P(X_i=n)
 \]
-geschrieben, die auch in einem Vektor $p(n)$ mit den Komponten
+geschrieben, die auch in einem Vektor $p(n)$ mit den Komponenten
 $p_i(n)$ zusammengefasst werden können.
 Die Matrix der Übergangswahrscheinlichkeiten erlaubt, die Verteilung
 $p(n+1)$ aus der Verteilung $p(n)$ zu berechnen.
@@ -331,7 +331,7 @@ ist singulär.
 Dass $T-I$ singulär ist, garantiert aber noch nicht,
 dass alle Einträge in einem Eigenvektor zum Eigenwert $1$
 auch tatsächlich nichtnegativ gewählt werden können.
-Die Perron-Frobienus-Theorie von
+Die Perron-Frobenius-Theorie von
 \index{Perron-Frobenius-Theorie}%
 Abschnitt~\ref{buch:section:positive-vektoren-und-matrizen}
 beweist, dass genau dies immer möglich ist.
@@ -384,7 +384,7 @@ Anzahl der Zyklen der Permutation $\sigma$.
 \end{beispiel}
 
 \subsubsection{Irreduzible Markov-Ketten}
-Die Zyklen-Zerlegung einer Permutation bilden voneinander isolierte
+Die Zyklen-Zerlegung einer Permutation bildet voneinander isolierte
 Mengen von Zuständen, es gibt keine Möglichkeit eines Übergangs zu
 einem anderen Zyklus.
 Die Zyklen können daher unabhängig voneinander studiert werden.
@@ -682,7 +682,7 @@ Dies ist der Spezialfall der Frage~\ref{buch:wahrscheinlichkeit:frage1}
 für die Verteilung $p_j(n-1) = \delta_{i\!j}$.
 Der Erwartungswert ist die Summe der Spalte $j$ der Matrix $G\odot T$.
 Man kann das Produkt $U^t(G\odot T)$ also auch als eine Zeilenvektor
-von Gewinnerwartungen unter der Vorbedingung $X_{n-1}=j$ betrachten.
+von Gewinnerwartungen unter der Vorbedingung $X_{n-1}=j$ betrachten:
 \[
 \begin{pmatrix}
 E(Y\mid X_{n-1}=1)
@@ -795,7 +795,7 @@ dass der Prozess ausgehend vom Zustand $j$ im Schritt $k$ im
 Zustand $i$ ankommt.
 
 Wegen der angenommenen Irreduzibilität wird man
-früher oder später in einem absorbierenden Zustand landet,
+früher oder später in einem absorbierenden Zustand landen,
 daher muss $\lim_{k\to\infty} Q^k=0$ sein.
 Die Summe in der rechten oberen Teilmatrix kann man als geometrische
 Reihe summieren, man erhält die Matrix
@@ -926,7 +926,7 @@ I&RF\\
 \end{array}
 \right).
 \]
-Die Matrix $RF$ enthält enthält also in Zeile $i$ und Spalte $j$
+Die Matrix $RF$ enthält also in Zeile $i$ und Spalte $j$
 die Wahrscheinlichkeit, dass der Prozess ausgehend vom Zustand $j$
 irgendwann im Zustand $i$ absorbiert wird.
 
@@ -939,7 +939,7 @@ den Zustand $l$ hat?
 Wir schreiben $l\overset{\smash{k}}{\twoheadrightarrow} i$ für das Ereignis, dass der Prozess
 im $k$-ten Schritt über den letzten
 Zustand $l$ in den Absorbtionszustand $i$ übergeht.
-Ist uns der Zeitpunkt dies Übergangs egal, lassen wir das $k$
+Ist uns der Zeitpunkt des Übergangs egal, lassen wir das $k$
 weg und schreiben nur $l\twoheadrightarrow i$.
 
 Damit $l\overset{\smash{k}}{\twoheadrightarrow} i$ eintritt, muss der Prozess im $(k-1)$-ten Schritt im
