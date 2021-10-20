@@ -16,11 +16,12 @@
 \usepackage{amsfonts}
 \usepackage{txfonts}
 \usepackage{ifthen}
+\usepackage{qrcode}
 \usetikzlibrary{math}
 \geometry{papersize={402mm,278mm},total={405mm,278mm},top=72.27pt, bottom=0pt, left=72.27pt, right=0pt}
 \newboolean{guidelines}
-\setboolean{guidelines}{true}
 \setboolean{guidelines}{false}
+\setboolean{guidelines}{true}
 
 \definecolor{textfarbe}{rgb}{0.4,1,0.8}
 \definecolor{textfarbe}{rgb}{1,1,1}
@@ -144,6 +145,22 @@ Datenstruktur zu ergründen.
 Dieses Buch bringt das Skript des Vorlesungsteils mit den von den
 Seminarteilnehmern beigetragenen Seminararbeiten zusammen.
 }};
+
+\def\qrbreite{3}
+\def\qrrightoffset{0}
+\def\qrbottomoffset{1.5}
+
+\fill[color=white]
+	({\einschlag+(\breite+13.6)/2-\qrbreite-0.1},{\einschlag+\qrbottomoffset-0.1}) 
+	rectangle
+	({\einschlag+(\breite+13.6)/2+0.1},{\einschlag+\qrbottomoffset+\qrbreite+0.1});
+
+\node at ({\einschlag+(\breite+13.6)/2-\qrbreite/2},{\einschlag+\qrbottomoffset+\qrbreite/2}) {
+\qrcode[height=3cm]{https://github.com/AndreasFMueller/SeminarMatrizen/releases/download/v1.0.0/SeminarMatrizen.pdf}
+};
+\node at ({\einschlag+(\breite+13.6)/2-\qrbreite/2},{\einschlag+\qrbottomoffset+\qrbreite/2}) {
+\includegraphics[width=10mm]{mathman.png}
+};
 
 
 \ifthenelse{\boolean{guidelines}}{
