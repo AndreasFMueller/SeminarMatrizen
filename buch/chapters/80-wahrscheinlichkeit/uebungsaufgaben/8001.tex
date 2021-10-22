@@ -1,0 +1,99 @@
+Eine einem Glücksspiel gewinnt oder verliert ein Spieler in
+jeder Runde mit Wahrscheinlichkeit $p$ bzw.~$1-p$ eine Einheit, bis
+sein Anfangskapital $b$ entweder aufgebraucht ist oder verdoppelt
+worden ist.
+Wie lange dauert es im Mittel, bis einer dieser Fälle eintritt für
+$b=5$ und $p=\frac12$?
+
+\begin{loesung}
+Die Spielregeln definieren eine Markov-Kette mit Zuständen
+$\mathcal{S}=\{0,\dots,2b\}$ und Übergangsmatrix
+\[
+T=\left(
+\begin{array}{c|ccccc|c}
+   1   &  1-p  &   0   &\dots  &   0   &   0   &   0   \\
+\hline
+   0   &   0   &  1-p  &\dots  &   0   &   0   &   0   \\
+   0   &   p   &   0   &\dots  &   0   &   0   &   0   \\
+   0   &   0   &   p   &\dots  &   0   &   0   &   0   \\
+   0   &   0   &   0   &\dots  &   0   &   0   &   0   \\
+\vdots &\vdots &\vdots &       &\vdots &\vdots &\vdots \\
+   0   &   0   &   0   &\dots  &   0   &  1-p  &   0   \\
+   0   &   0   &   0   &\dots  &   p   &   0   &   0   \\
+\hline
+   0   &   0   &   0   &\dots  &   0   &   p   &   1   
+\end{array}
+\right).
+\]
+Offenbar sind die beiden Zustände $0$ und $2b$ absorbierend, alle
+anderen transient.
+
+Sortieren wir die Zustände um, so dass zuerst die absorbierenden
+Zustände gelistet werden, dann bekommt die Übergangsmatrix die Form
+\[
+T=\left(
+\begin{array}{cc|ccccc}
+   1   &   0   &  1-p  &   0   &\dots  &   0   &   0   \\
+   0   &   1   &   0   &   0   &\dots  &   0   &   p   \\
+\hline
+   0   &   0   &   0   &  1-p  &\dots  &   0   &   0   \\
+   0   &   0   &   p   &   0   &\dots  &   0   &   0   \\
+   0   &   0   &   0   &   p   &\dots  &   0   &   0   \\
+   0   &   0   &   0   &   0   &\dots  &   0   &   0   \\
+\vdots &\vdots &\vdots &\vdots &\ddots &\vdots &\vdots \\
+   0   &   0   &   0   &   0   &\dots  &   0   &  1-p  \\
+   0   &   0   &   0   &   0   &\dots  &   p   &   0   
+\end{array}
+\right).
+\]
+Die Matrizen $R$ und $Q$ sind daher
+\begin{align*}
+R&=\begin{pmatrix}
+  1-p  &   0   &\dots  &   0   &   0   \\
+   0   &   0   &\dots  &   0   &   p   
+\end{pmatrix}
+\\
+Q&=\begin{pmatrix}
+   0   &  1-p  &\dots  &   0   &   0   \\
+   p   &   0   &\dots  &   0   &   0   \\
+   0   &   p   &\dots  &   0   &   0   \\
+   0   &   0   &\dots  &   0   &   0   \\
+\vdots &\vdots &\ddots &\vdots &\vdots \\
+   0   &   0   &\dots  &   0   &  1-p  \\
+   0   &   0   &\dots  &   p   &   0   
+\end{pmatrix}.
+\end{align*}
+Die Fundamentalmatrix $N$ ist die Summe der geometrischen Reihe
+\[
+N = I + Q + Q^2 + \dots = \sum_{k=0}^\infty Q^k = (I-Q)^{-1}.
+\]
+Mit einem Computeralgebra-Programm wie Maxima kann man die Fundamentalmatrix
+berechnen kann.
+Für $b=5$ und $p=\frac12$ findet man die Matrix
+\[
+N=\begin{pmatrix}
+\frac{11}{6}&\frac{10}{6}&\frac{9}{6}&\frac{8}{6}&\frac{7}{6}&\frac{6}{6}&\frac{5}{6}&\frac{4}{6}&\frac{3}{6}&\frac{2}{6}&\frac{1}{6}\\
+\frac{5}{3} &\frac{10}{3}&\frac{9}{3}&\frac{8}{3}&\frac{7}{3}&\frac{6}{3}&\frac{5}{3}&\frac{4}{3}&\frac{3}{3}&\frac{2}{3}&\frac{1}{3}\\
+\frac{3}{2} & \frac{6}{2} & \frac{9}{2} & \frac{8}{2} & \frac{7}{2} & \frac{6}{2} & \frac{5}{2} & \frac{4}{2} & \frac{3}{2} & \frac{2}{2} & \frac{1}{2} \\
+\frac{4}{3}&\frac{8}{3}&\frac{12}{3}& \frac{16}{3}& \frac{14}{3}& \frac{12}{3}& \frac{10}{3}& \frac{8}{3}& \frac{6}{3}& \frac{4}{3}& \frac{2}{3}\\
+\frac{7}{6}& \frac{14}{6}& \frac{21}{6}& \frac{28}{6}& \frac{35}{6}& \frac{30}{6}& \frac{25}{6}& \frac{20}{6}& \frac{15}{6}& \frac{10}{6}& \frac{5}{6}\\
+1&2&3&4&5&6&5&4&3&2&1\\
+\frac{5}{6}& \frac{10}{6}& \frac{15}{6}& \frac{20}{6}& \frac{25}{6}& \frac{30}{6}& \frac{35}{6}& \frac{28}{6}& \frac{21}{6}& \frac{14}{6}& \frac{7}{6}\\
+\frac{2}{3}& \frac{4}{3}& \frac{6}{3}& \frac{8}{3}& \frac{10}{3}& \frac{12}{3}& \frac{14}{3}& \frac{16}{3}& \frac{12}{3}& \frac{8}{3}& \frac{4}{3}\\
+\frac{1}{2}& \frac{2}{2}& \frac{3}{2}& \frac{4}{2}& \frac{5}{2}& \frac{6}{2}& \frac{7}{2}& \frac{8}{2}& \frac{9}{2}& \frac{6}{2}& \frac{3}{2}\\
+\frac{1}{3}& \frac{2}{3}& \frac{3}{3}& \frac{4}{3}& \frac{5}{3}& \frac{6}{3}& \frac{7}{3}& \frac{8}{3}& \frac{9}{3}& \frac{10}{3}& \frac{5}{3}\\
+\frac{1}{6}& \frac{2}{6}& \frac{3}{6}& \frac{4}{6}& \frac{5}{6}& \frac{6}{6}& \frac{7}{6}& \frac{8}{6}& \frac{9}{6}& \frac{10}{6}& \frac{11}{6}
+\end{pmatrix}.
+\]
+Da in diesem Fall $Q$ symmetrisch ist, ist auch $N$ symmetrisch.
+
+Nach Satz~\ref{buch:markov:satz:absorptionszeit}
+liest man aus der Fundamentalmatrix ab, dass
+für ein Startkapital von $b=5$ und $p=\frac12$
+die erwarte Absorbtionszeit $E(K)$ die Summe der Einträge in der mittleren Spalte
+der Matrix sind, also $E(K)=1+2+3+4+5+6+5+\dots+1=36$ ist.
+\end{loesung}
+
+Die Aufgabe kann auch allgemeiner für $p\ne\frac12$ gelöst werden, da
+man für die Fundamentalmatrix explizite Formeln finden kann \cite{skript:rudolph}.
+
