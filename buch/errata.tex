@@ -16,6 +16,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{txfonts}
+\usepackage{verbatim}
 \begin{document}
 
 \def\fehler#1#2{
@@ -29,6 +30,14 @@ Seite 242, Zeile 6
 \egroup
 }
 
+\def\korrektur#1{
+\vspace{5mm}
+\parindent0pt
+Korrektur-Diff:\\
+\tiny
+\verbatiminput{diffs/#1.diff}
+}
+
 \section*{Mathematisches Seminar Matrizen --- Errata}
 
 Die folgenden Fehler im Buch {\em Mathematisches Seminar Matrizen}
@@ -40,8 +49,10 @@ sind seit der Drucklegung im November 2021 bekannt geworden.
 
 \[
 A^{\odot0}=U
-\quad\text{und}\quad
+\qquad\text{und}\qquad
 A^{\odot k}=A\odot A^{\odot(k-1)}
 \]
+
+\korrektur{1}
 
 \end{document}
