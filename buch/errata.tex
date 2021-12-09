@@ -15,8 +15,19 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
-
+\usepackage{txfonts}
 \begin{document}
+
+\def\fehler#1#2{
+\bgroup\parindent0pt
+\rule[0mm]{\textwidth}{0.5pt}
+\hbox to\hsize{%
+Seite 242, Zeile 6
+\hfill
+(7.~Dezember 2021)}
+\rule[2mm]{\textwidth}{0.5pt}
+\egroup
+}
 
 \section*{Mathematisches Seminar Matrizen --- Errata}
 
@@ -25,17 +36,7 @@ sind seit der Drucklegung im November 2021 bekannt geworden.
 
 \vspace*{1cm}
 
-{\parindent0pt
-
-\rule[0mm]{\textwidth}{0.5pt}
-\hbox to\hsize{%
-Seite 242, Zeile 6
-\hfill
-(7.~Dezember 2021)}
-\rule[2mm]{\textwidth}{0.5pt}
-
-
-}
+\fehler{Seite 242, Zeile 6}{(7.~Dezember 2021)}
 
 \[
 A^{\odot0}=U
