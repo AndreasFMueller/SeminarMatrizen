@@ -3,7 +3,10 @@
 #
 # (c) 2020 Prof Dr Andreas Mueller, Hochschule Rapperswil
 #
-all:	buch.pdf
+all:	buch.pdf errata.pdf
+
+errata.pdf:	errata.tex
+	pdflatex errata.tex
 
 papers/common/Makefile.inc:	papers/common/paperlist
 
