@@ -1,0 +1,11 @@
+--- a/buch/chapters/90-crypto/chapter.tex
++++ b/buch/chapters/90-crypto/chapter.tex
+@@ -5,7 +5,7 @@
+ % (c) 2020 Prof Dr Andreas Müller, Hochschule Rapperswil
+ %
+ % !TeX spellcheck = de_CH
+-\chapter{Anwendungen in Kryptographie
++\chapter{Anwendungen in der Kryptographie
+ \label{buch:chapter:kryptographie}}
+ \lhead{Kryptographie}
+ \rhead{}

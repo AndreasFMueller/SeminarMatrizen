@@ -5,7 +5,9 @@
 #
 all:	buch.pdf errata.pdf
 
-errata.pdf:	errata.tex
+DIFF =	diffs/1.diff							\
+	diffs/2.diff
+errata.pdf:	errata.tex $(DIFF)
 	pdflatex errata.tex
 
 papers/common/Makefile.inc:	papers/common/paperlist
