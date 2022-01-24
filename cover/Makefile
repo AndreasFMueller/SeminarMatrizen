@@ -42,3 +42,13 @@ matrix-blue.png:	matrix
 matrix-black.png:	matrix
 	./matrix -b black -w 3840 -h 2160 -s 2 matrix-black.png
 
+buchcover.png:  buchcover-black.pdf  Makefile
+	convert -density 300 -extract 2054x2900+2630+190 buchcover-black.pdf \
+		buchcover.png
+buchcover.jpg:  buchcover.png
+	convert buchcover.png buchcover.jpg
+backcover.png:  buchcover-black.pdf Makefile
+	convert -density 300 -extract 2054x2900+192+190 buchcover-black.pdf \
+		backcover.png
+backcover.jpg:  backcover.png
+	convert backcover.png backcover.jpg

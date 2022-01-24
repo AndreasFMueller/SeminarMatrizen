@@ -34,6 +34,12 @@ pdfauthor={Andreas Müller}
 \DeclareGraphicsRule{*}{mps}{*}{}
 \begin{document}
 
+% cover page
+\ifthenelse{\boolean{includecover}}{
+\incgraph[documentpaper][width=\paperwidth,height=\paperheight]{../cover/buchcover.jpg}
+\newpage\null\thispagestyle{empty}\newpage
+}{}
+
 \input{common/titlepage.tex}
 
 % add common macros
@@ -51,5 +57,11 @@ pdfauthor={Andreas Müller}
 \rhead{}
 \addcontentsline{toc}{chapter}{\indexname}
 \InputIfFileExists{buch.ind}{}{}
+
+% cover page
+\ifthenelse{\boolean{includecover}}{
+\newpage\null\thispagestyle{empty}\newpage
+\incgraph[documentpaper][width=\paperwidth,height=\paperheight]{../cover/backcover.jpg}
+}{}
 
 \end{document}
