@@ -1,0 +1,13 @@
+diff --git a/buch/papers/reedsolomon/dtf.tex b/buch/papers/reedsolomon/dtf.tex
+index 587d36c..75e708e 100644
+--- a/buch/papers/reedsolomon/dtf.tex
++++ b/buch/papers/reedsolomon/dtf.tex
+@@ -81,7 +81,7 @@ Damit können die Fehler korrigiert und die Originaldaten wiederhergestellt werd
+ Der Rekonstruktionsauftrag ist damit erfolgreich ausgeführt.
+ 
+ \subsection{Fourier-Transformation und Polynome\label{reedsolomon:subsection:ftandpolynom}}
+-Im Abschnitt \externaldocument{papers/reedsolomon/idee}\ref{reedsolomon:section:polynomansatz}
++Im Abschnitt \externaldocument{papers/reedsolomon/idee}\ref{reedsolomon:section:idee}
+ wurden Werte eines Polynoms zur Codierung verwendet.
+ Die 7 Übertragungspunkte könnten ein Polynom
+ \begin{equation}
